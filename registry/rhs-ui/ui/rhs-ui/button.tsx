@@ -62,7 +62,7 @@ export function Button({ className, variant, size, asChild = false, loading = fa
       {...props}
     >
       {loading ? <IconSpinner data-slot="button-spinner" /> : null}
-      {children}
+      {asChild ? <Slot.Slottable>{children}</Slot.Slottable> : children}
     </Comp>
   );
 }

@@ -1,0 +1,24 @@
+import {build} from "esbuild";
+import {createRequire} from "node:module";
+import {mkdirSync} from "node:fs";
+import path from "node:path";
+const root=path.resolve(import.meta.dirname,"..");
+const out=path.join(root,".scratch/button-render.cjs");
+mkdirSync(path.dirname(out),{recursive:true});
+await build({stdin:{resolveDir:root,loader:"tsx",contents:`
+  import assert from "node:assert/strict";
+  import {createElement as h} from "react";
+  import {renderToStaticMarkup as render} from "react-dom/server";
+  import {Slot} from "radix-ui";
+  import {Button} from "./registry/rhs-ui/ui/rhs-ui/button";
+  const normal=render(h(Button,null,"Continue"));
+  assert.match(normal,/<button/);
+  const link=render(h(Button,{asChild:true,variant:"link"},h("a",{href:"/guide"},"Read guide")));
+  assert.match(link,/<a /); assert.ok(link.includes('href="/guide"')); assert.doesNotMatch(link,/<button/);
+  const busy=render(h(Button,{asChild:true,loading:true},h("a",{href:"/guide"},"Loading guide")));
+  assert.match(busy,/aria-busy="true"/);assert.match(busy,/data-slot="button-spinner"/);
+  assert.match(render(h(Button,{loading:true},"Saving")),/disabled=""/);
+  assert.throws(()=>render(h(Slot.Root,null,null,h("a",{href:"/guide"},"Old structure"))),/Expected a single React element/);
+  console.log("PASS: native button, asChild link, slotted loading content and negative control for the old sibling structure.");
+`},bundle:true,platform:"node",format:"cjs",packages:"external",outfile:out});
+createRequire(out)(out);

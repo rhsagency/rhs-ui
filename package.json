@@ -3,20 +3,30 @@
   "version": "0.1.0",
   "description": "RHS UI: open-source components and blocks for React and Next.js, distributed as a shadcn-compatible registry.",
   "homepage": "https://rhsui.com",
-  "repository": { "type": "git", "url": "https://github.com/rhsagency/rhs-ui.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhsagency/rhs-ui.git"
+  },
   "bugs": "https://github.com/rhsagency/rhs-ui/issues",
   "license": "MIT",
   "author": "RHS Agency (https://www.rhsagency.nl)",
   "type": "module",
   "private": false,
-  "files": ["registry", "registry.json", "public/r", "README.md", "LICENSE"],
+  "files": [
+    "registry",
+    "registry.json",
+    "public/r",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
   "scripts": {
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/build-registry.mjs",
     "check:registry": "node scripts/check-registry.mjs",
     "check:built": "node scripts/build-registry.mjs && git diff --exit-code --stat public/r",
-    "check": "pnpm typecheck && pnpm check:registry",
+    "check": "pnpm typecheck && pnpm check:registry && pnpm test:button",
+    "test:button": "node scripts/test-button.mjs",
     "test:install": "node scripts/test-install.mjs"
   },
   "peerDependencies": {
@@ -30,6 +40,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "esbuild": "0.25.12",
     "radix-ui": "^1.6.7",
     "react": "19.2.8",
     "react-dom": "19.2.8",
