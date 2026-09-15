@@ -1,0 +1,32 @@
+name: Component request
+description: Propose a new item for the registry (open this before building it)
+labels: [proposal]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name and category
+      placeholder: order-summary (commerce)
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What it does and why it earns its place
+      description: What production need it covers that the existing items and the primitives do not. Data in, callbacks out; describe the props.
+    validations:
+      required: true
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accessibility
+      description: Roles, keyboard behaviour, states (loading, empty, error), reduced motion.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: It is not a re-implementation of a primitive that already exists
+          required: true
+        - label: I have read CONTRIBUTING.md
+          required: true

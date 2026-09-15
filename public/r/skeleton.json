@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "A loading placeholder in the shape of the content, with a shimmer sweep instead of a pulse. Give siblings a delay so the sweep runs as one wave.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/rhs-ui/ui/rhs-ui/skeleton.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A loading placeholder in the shape of the content it stands in for. A\n * shimmer sweeps across it instead of the whole block pulsing: pulsing every\n * block in time reads as a fault. Give siblings a `delay` (in ms) so the sweep\n * runs across the layout as one wave. Reduced motion shows a still block.\n */\nexport interface SkeletonProps extends ComponentProps<\"div\"> {\n  /** Offset of the shimmer for this block, in ms. */\n  delay?: number;\n}\n\nexport function Skeleton({ className, delay = 0, style, ...props }: SkeletonProps) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      aria-hidden=\"true\"\n      className={cn(\n        \"relative overflow-hidden rounded-md bg-muted\",\n        \"after:absolute after:inset-0 after:-translate-x-full after:animate-[rhs-shimmer_1.6s_ease-in-out_infinite] after:bg-gradient-to-r after:from-transparent after:via-foreground/6 after:to-transparent motion-reduce:after:hidden\",\n        className,\n      )}\n      style={{ ...style, \"--shimmer-delay\": `${delay}ms` } as CSSProperties}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhs-ui/skeleton.tsx"
+    }
+  ],
+  "css": {
+    "@keyframes rhs-shimmer": {
+      "from": {
+        "transform": "translateX(-100%)"
+      },
+      "to": {
+        "transform": "translateX(100%)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.1.0",
+    "since": "0.1.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Match the real layout: a skeleton that does not hold the final shape shifts the page when the data arrives.",
+  "categories": [
+    "core",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

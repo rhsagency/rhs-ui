@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Registry gate (with self-test)
+        run: pnpm check:registry
+      - name: Built output is up to date
+        run: pnpm check:built
+      - name: No private material
+        run: |
+          set -euo pipefail
+          if git grep -nIE "rhs-ui-pro|pro-registry|SUPABASE_|STRIPE_" -- . ':!docs/ARCHITECTURE.md' ':!README.md' ':!.github/workflows/ci.yml' ':!CONTRIBUTING.md'; then
+            echo "private material referenced in the public repo"; exit 1
+          fi
+      - name: Audit
+        run: pnpm audit --audit-level high
+
+  install-test:
+    runs-on: ubuntu-latest
+    needs: gates
+    strategy:
+      matrix:
+        flavor: [base, radix]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm registry:build
+      - name: Install every item into a ${{ matrix.flavor }} project and typecheck
+        run: pnpm test:install --flavor ${{ matrix.flavor }}

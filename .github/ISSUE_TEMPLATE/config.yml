@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://rhsui.com/docs
+    about: Installation, registry, theming, dark mode, accessibility
+  - name: Security
+    url: https://github.com/rhsagency/rhs-ui/security/policy
+    about: Report a vulnerability privately

@@ -1,0 +1,31 @@
+name: Bug report
+description: Something in an item does not work as documented
+labels: [bug]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Item and version
+      description: The registry item name and its meta.version, or the git tag you installed from
+      placeholder: product-card 0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: What you did, what you expected, what happened instead. A minimal reproduction (a StackBlitz or a repo) turns a report into a fix.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: Next 16.3, React 19.2, Tailwind 4.3, shadcn CLI 4.21, Base UI project
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues
+          required: true
