@@ -28,14 +28,8 @@
       "@/lib/utils": [
         "./dev/lib/utils"
       ],
-      "@rhs-ui/ui/*": [
-        "./registry/rhs-ui/ui/rhs-ui/*"
-      ],
-      "@rhs-ui/components/*": [
-        "./registry/rhs-ui/components/rhs-ui/*"
-      ],
-      "@rhs-ui/blocks/*": [
-        "./registry/rhs-ui/blocks/rhs-ui/*"
+      "@rhs-ui/*": [
+        "./registry/*"
       ]
     }
   },

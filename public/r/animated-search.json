@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-search",
+  "title": "Animated search",
+  "description": "A lens that looks left and right before it settles. For search, filter and lookup actions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/search.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The lens looks left, then right, and settles: a search in progress. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"lens\",\n      origin: \"10.5px 10.5px\",\n      duration: 850,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translate(0, 0) rotate(0deg)\", easing: \"ease-in-out\" },\n        { transform: \"translate(-1.6px, -1.2px) rotate(-8deg)\", easing: \"ease-in-out\" },\n        { transform: \"translate(1.6px, -1.2px) rotate(8deg)\", easing: \"ease-in-out\" },\n        { transform: \"translate(0, 0) rotate(0deg)\" },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconSearchAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"lens\" d=\"M16.78 8.82A6.5 6.5 0 1 1 13.55 4.9M20 20l-4.6-4.6\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/search.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Use trigger=\"loop\" while results are loading.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

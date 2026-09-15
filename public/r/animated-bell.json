@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-bell",
+  "title": "Animated bell",
+  "description": "A bell that rings: the body swings from its crown and the clapper follows a beat later. For notifications and reminders.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/bell.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\nconst swing = [0, 15, -12, 8, -4, 1.5, 0].map((deg) => ({ transform: `rotate(${deg}deg)`, easing: \"ease-in-out\" }));\n\n/** The bell swings from its crown; the clapper follows a beat later. */\nconst motion: IconMotion = {\n  steps: [\n    { part: \"bell\", keyframes: swing, origin: \"12px 5px\", duration: 900, easing: \"linear\" },\n    { part: \"clapper\", keyframes: swing, origin: \"12px 5px\", duration: 900, delay: 70, easing: \"linear\" },\n  ],\n  pause: 1800,\n};\n\nexport function IconBellAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"bell\" d=\"M17.44 8.46A6 6 0 0 1 18 11v5l1.5 2.5h-15L6 16v-5a6 6 0 0 1 8.54-5.44\" />\n      <path data-part=\"clapper\" d=\"M10.25 20.75a2 2 0 0 0 3.5 0\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/bell.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Inside a Button it rings when the button is hovered or focused. Use trigger=\"loop\" while there are unread notifications.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

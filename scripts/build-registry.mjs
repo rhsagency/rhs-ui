@@ -20,18 +20,21 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const out = path.join(root, "public", "r");
 
-export const CATEGORY_ORDER = ["core", "commerce", "dashboard", "application", "marketing", "templates"];
+export const CATEGORY_ORDER = ["primitives", "icons", "commerce", "dashboard", "application", "marketing", "templates"];
 
+/** Every category folder carries its own registry.json with the entries it owns. */
 export function loadFragments() {
-  const files = readdirSync(path.join(root, "registry")).filter((f) => f.endsWith(".json"));
-  const order = (f) => {
-    const i = CATEGORY_ORDER.indexOf(f.replace(/\.json$/, ""));
+  const categories = readdirSync(path.join(root, "registry"), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && existsSync(path.join(root, "registry", entry.name, "registry.json")))
+    .map((entry) => entry.name);
+  const order = (category) => {
+    const i = CATEGORY_ORDER.indexOf(category);
     return i === -1 ? 99 : i;
   };
   const items = [];
-  for (const file of files.sort((a, b) => order(a) - order(b) || a.localeCompare(b))) {
-    const fragment = JSON.parse(readFileSync(path.join(root, "registry", file), "utf8"));
-    for (const item of fragment.items ?? []) items.push({ ...item, __fragment: file });
+  for (const category of categories.sort((a, b) => order(a) - order(b) || a.localeCompare(b))) {
+    const fragment = JSON.parse(readFileSync(path.join(root, "registry", category, "registry.json"), "utf8"));
+    for (const item of fragment.items ?? []) items.push({ ...item, __fragment: category });
   }
   return items;
 }

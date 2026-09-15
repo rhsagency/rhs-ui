@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-menu",
+  "title": "Animated menu",
+  "description": "Three lines that fold into a cross while active. For the open state of a navigation menu.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/menu.tsx",
+      "content": "import { StateGlyph, STATE_PART, type StateIconProps } from \"@rhs-ui/icons/state-icon\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * Three lines that fold into a cross. Set `active` while the menu is open.\n * The outer lines first slide to the middle, then turn; closing runs the\n * other way round. The delays follow STATE_PART's property order:\n * opacity, scale, rotate, translate, stroke-dashoffset.\n */\nconst FOLD = \"duration-200 [transition-delay:0ms,0ms,0ms,140ms,0ms] group-data-[active=true]/rhs-icon:[transition-delay:0ms,0ms,140ms,0ms,0ms]\";\n\nexport function IconMenuAnimated(props: StateIconProps) {\n  return (\n    <StateGlyph {...props}>\n      <path\n        className={cn(STATE_PART, FOLD, \"origin-[12px_7px] group-data-[active=true]/rhs-icon:translate-y-[5px] group-data-[active=true]/rhs-icon:rotate-45\")}\n        d=\"M4 7h16\"\n      />\n      <path\n        className={cn(STATE_PART, \"origin-[12px_12px] duration-150 group-data-[active=true]/rhs-icon:scale-x-0 group-data-[active=true]/rhs-icon:opacity-0\")}\n        d=\"M4 12h16\"\n      />\n      <path\n        className={cn(STATE_PART, FOLD, \"origin-[12px_17px] group-data-[active=true]/rhs-icon:-translate-y-[5px] group-data-[active=true]/rhs-icon:-rotate-45\")}\n        d=\"M4 17h16\"\n      />\n    </StateGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/menu.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "state"
+  },
+  "docs": "Bind active to the menu's open state and aria-expanded on the button.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

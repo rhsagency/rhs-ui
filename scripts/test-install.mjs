@@ -65,15 +65,11 @@ try {
     console.log(`\n=== ${flavor}: scaffolding ===`);
     await run(`pnpm create next-app@16.3.5 app-${flavor} --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --turbopack --use-pnpm --yes`, scratch);
     await run(`pnpm dlx shadcn@latest init -y -b ${flavor} -p nova`, dir);
-    // The documented RHS aliases coexist with the consumer's existing UI.
-    const tsconfigPath=path.join(dir,"tsconfig.json");
-    const tsconfig=JSON.parse(readFileSync(tsconfigPath,"utf8"));
-    Object.assign(tsconfig.compilerOptions.paths, {
-      "@rhs-ui/ui/*":["./src/components/ui/rhs-ui/*"],
-      "@rhs-ui/components/*":["./src/components/rhs-ui/*"],
-      "@rhs-ui/blocks/*":["./src/blocks/rhs-ui/*"],
-    });
-    writeFileSync(tsconfigPath,JSON.stringify(tsconfig,null,2));
+    // The one documented RHS UI alias, next to the consumer's existing ones.
+    const tsconfigPath = path.join(dir, "tsconfig.json");
+    const tsconfig = JSON.parse(readFileSync(tsconfigPath, "utf8"));
+    Object.assign(tsconfig.compilerOptions.paths, { "@rhs-ui/*": ["./src/components/rhs-ui/*"] });
+    writeFileSync(tsconfigPath, JSON.stringify(tsconfig, null, 2));
     for (const item of items) {
       console.log(`--- ${flavor}: add ${item}`);
       try {
@@ -83,16 +79,33 @@ try {
         console.log(`FAIL ${flavor}: add ${item}`);
       }
     }
-    // Every RHS UI file must have landed under an rhs-ui/ folder.
-    const uiDir = path.join(dir, "src", "components", "ui", "rhs-ui");
-    if (!existsSync(uiDir)) {
-      failed++;
-      console.log(`FAIL ${flavor}: no src/components/ui/rhs-ui folder after install`);
+    // Everything lands in components/rhs-ui/<category>/, and nowhere else.
+    for (const folder of ["primitives", "icons/animated", "commerce/product-card", "application", "marketing"]) {
+      if (!existsSync(path.join(dir, "src", "components", "rhs-ui", ...folder.split("/")))) {
+        failed++;
+        console.log(`FAIL ${flavor}: no src/components/rhs-ui/${folder} after install`);
+      }
     }
-    // A page that renders the product card, so the typecheck covers usage.
+    for (const stray of [["components", "ui", "rhs-ui"], ["blocks"]]) {
+      if (existsSync(path.join(dir, "src", ...stray))) {
+        failed++;
+        console.log(`FAIL ${flavor}: files landed in src/${stray.join("/")}`);
+      }
+    }
+    // A file that renders across the categories, so the typecheck covers usage.
     writeFileSync(
       path.join(dir, "src", "app", "rhs-ui-smoke.tsx"),
-      `import { ProductCard } from "@rhs-ui/components/product-card/product-card";\nimport { Button } from "@rhs-ui/ui/button";\nexport { PricingSection } from "@rhs-ui/blocks/pricing-section";\nexport function Smoke() { return <div><Button>Ok</Button><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }\n`,
+      [
+        'import { ProductCard } from "@rhs-ui/commerce/product-card";',
+        'import { Button } from "@rhs-ui/primitives/button";',
+        'import { Glyph, IconBell } from "@rhs-ui/icons";',
+        'import { IconBellAnimated } from "@rhs-ui/icons/animated/bell";',
+        'import { IconCopyAnimated } from "@rhs-ui/icons/animated/copy";',
+        'export { PricingSection } from "@rhs-ui/marketing/pricing-section";',
+        'export { EmptyState } from "@rhs-ui/application/empty-state";',
+        'export function Smoke() { return <div><Button><IconBellAnimated trigger="loop" />Ok</Button><IconBell /><IconCopyAnimated active /><Glyph d="M4 12h16" title="Rule" /><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }',
+        "",
+      ].join("\n"),
     );
     console.log(`=== ${flavor}: typecheck ===`);
     try {

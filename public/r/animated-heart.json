@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-heart",
+  "title": "Animated heart",
+  "description": "A heart that beats twice, the second beat softer than the first. For favourites, wishlists and likes.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/heart.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** Two beats, the second softer than the first. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"heart\",\n      origin: \"12px 13px\",\n      duration: 900,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"scale(1)\", easing: \"ease-out\" },\n        { offset: 0.15, transform: \"scale(1.18)\", easing: \"ease-in\" },\n        { offset: 0.32, transform: \"scale(0.96)\", easing: \"ease-out\" },\n        { offset: 0.48, transform: \"scale(1.1)\", easing: \"ease-in-out\" },\n        { offset: 0.75, transform: \"scale(1)\" },\n        { transform: \"scale(1)\" },\n      ],\n    },\n  ],\n  pause: 900,\n};\n\nexport function IconHeartAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"heart\" d=\"M12 20.5S3.5 15 3.5 9A4.5 4.5 0 0 1 12 6.5 4.5 4.5 0 0 1 20.5 9c0 6-8.5 11.5-8.5 11.5z\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/heart.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Pair it with aria-pressed on the wishlist button; the icon only shows the gesture.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

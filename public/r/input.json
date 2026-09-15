@@ -7,22 +7,22 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/rhs-ui/ui/rhs-ui/input.tsx",
+      "path": "registry/primitives/input.tsx",
       "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A text input. Quiet at rest, a ring on focus, a destructive border when\n * `aria-invalid` is set by your form library. Pair it with <Label htmlFor>.\n */\nexport function Input({ className, type = \"text\", ...props }: ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        \"flex h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-xs\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        \"file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\n        \"transition-[border-color,box-shadow] duration-150 outline-none\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25 aria-invalid:focus-visible:ring-destructive/30\",\n        \"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
       "type": "registry:ui",
-      "target": "components/ui/rhs-ui/input.tsx"
+      "target": "components/rhs-ui/primitives/input.tsx"
     }
   ],
   "meta": {
     "tier": "free",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
     "preview": "inline"
   },
   "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state.",
   "categories": [
-    "core",
+    "primitives",
     "forms"
   ],
   "type": "registry:ui"

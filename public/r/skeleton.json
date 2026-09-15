@@ -7,10 +7,10 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/rhs-ui/ui/rhs-ui/skeleton.tsx",
+      "path": "registry/primitives/skeleton.tsx",
       "content": "import type { ComponentProps, CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A loading placeholder in the shape of the content it stands in for. A\n * shimmer sweeps across it instead of the whole block pulsing: pulsing every\n * block in time reads as a fault. Give siblings a `delay` (in ms) so the sweep\n * runs across the layout as one wave. Reduced motion shows a still block.\n */\nexport interface SkeletonProps extends ComponentProps<\"div\"> {\n  /** Offset of the shimmer for this block, in ms. */\n  delay?: number;\n}\n\nexport function Skeleton({ className, delay = 0, style, ...props }: SkeletonProps) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      aria-hidden=\"true\"\n      className={cn(\n        \"relative overflow-hidden rounded-md bg-muted\",\n        \"after:absolute after:inset-0 after:-translate-x-full after:animate-[rhs-shimmer_1.6s_ease-in-out_infinite] after:bg-gradient-to-r after:from-transparent after:via-foreground/6 after:to-transparent motion-reduce:after:hidden\",\n        className,\n      )}\n      style={{ ...style, \"--shimmer-delay\": `${delay}ms` } as CSSProperties}\n      {...props}\n    />\n  );\n}\n",
       "type": "registry:ui",
-      "target": "components/ui/rhs-ui/skeleton.tsx"
+      "target": "components/rhs-ui/primitives/skeleton.tsx"
     }
   ],
   "css": {
@@ -25,14 +25,14 @@
   },
   "meta": {
     "tier": "free",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
     "preview": "inline"
   },
   "docs": "Match the real layout: a skeleton that does not hold the final shape shifts the page when the data arrives.",
   "categories": [
-    "core",
+    "primitives",
     "feedback"
   ],
   "type": "registry:ui"

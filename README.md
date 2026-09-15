@@ -11,17 +11,18 @@
   <a href="https://rhsui.com">rhsui.com</a> ·
   <a href="https://rhsui.com/docs">Documentation</a> ·
   <a href="https://rhsui.com/components">Components</a> ·
+  <a href="https://rhsui.com/icons">Icons</a> ·
   <a href="https://rhsui.com/pro">Pro</a>
 </p>
 
 ---
 
 **RHS UI** is a production-ready component ecosystem for React and Next.js: its own
-primitives, and on top of them the components real applications need. Commerce
-(product cards, variant selectors, cart drawers), dashboard (KPI cards), application UI
-(command palettes, empty states, file dropzones) and marketing sections. Every item is
-copied into your project by the [shadcn CLI](https://ui.shadcn.com/docs/cli) and lives
-in an `rhs-ui/` folder you own, next to whatever else you use.
+primitives and icons, and on top of them the components real applications need.
+Commerce (product cards, variant selectors, cart drawers), dashboard (KPI cards),
+application UI (empty states, settings) and marketing sections. Every item is copied
+into your project by the [shadcn CLI](https://ui.shadcn.com/docs/cli) and lives in a
+`components/rhs-ui/` folder you own, next to whatever else you use.
 
 This repository is the **free, open-source** tier (MIT). **RHS UI Pro** is a separate,
 paid product with premium templates, complete dashboards and commerce flows; its
@@ -29,15 +30,12 @@ source lives in a private repository and is never part of this one.
 
 ## Install
 
-Start with `npx shadcn@latest init`, then merge these aliases into
-`compilerOptions.paths` in your `tsconfig.json` once. Keep your existing aliases.
-For projects without a `src` directory, remove `/src` from the paths.
+Start with `npx shadcn@latest init`, then add one alias to `compilerOptions.paths` in
+your `tsconfig.json`. Keep your existing aliases. Without a `src` directory, drop `/src`.
 
 ```json
 {
-  "@rhs-ui/ui/*": ["./src/components/ui/rhs-ui/*"],
-  "@rhs-ui/components/*": ["./src/components/rhs-ui/*"],
-  "@rhs-ui/blocks/*": ["./src/blocks/rhs-ui/*"]
+  "@rhs-ui/*": ["./src/components/rhs-ui/*"]
 }
 ```
 
@@ -54,30 +52,37 @@ npx shadcn@latest registry add @rhs-ui=https://rhsui.com/r/{name}.json
 npx shadcn@latest add @rhs-ui/product-card
 ```
 
-The CLI installs the item, the RHS UI primitives it composes
-(`components/ui/rhs-ui/`), and the npm packages it needs. The files are yours: edit
-them.
+The CLI installs the item, the RHS UI items it composes and the npm packages it needs,
+all under `components/rhs-ui/`, one folder per category. The files are yours: edit them.
 
 ```tsx
-import { Button } from "@rhs-ui/ui/button";
-import { ProductCard } from "@rhs-ui/components/product-card/product-card";
+import { Button } from "@rhs-ui/primitives/button";
+import { IconArrowRight } from "@rhs-ui/icons";
+import { IconBellAnimated } from "@rhs-ui/icons/animated/bell";
+import { ProductCard } from "@rhs-ui/commerce/product-card";
 ```
 
 Without rhsui.com: every built item is committed under [`public/r/`](./public/r) and
 installs from its raw GitHub URL too.
 
-## What is in the registry
+## How it is organised
 
-| Layer | Items today |
-| --- | --- |
-| Primitives (`components/ui/rhs-ui/`) | icons, button, badge, skeleton, separator, kbd, input, label, tooltip, dialog, sheet, tabs, command |
-| Commerce | product-card |
-| Theme | rhs-ui-theme |
+Every item belongs to one category. The category is its folder in this repository, its
+folder in your project and the first part of its import path, so you always know where
+something lives and what it is for.
 
-Next in this release: variant-selector, cart-drawer, product-gallery (commerce),
-kpi-card (dashboard), empty-state, command-palette, file-dropzone (application),
-pricing-section (marketing). Ten items is the ceiling for the first release; quality
-over quantity.
+| Category | Import | What is in it |
+| --- | --- | --- |
+| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: button, badge, input, label, switch, slider, dialog, sheet, tooltip, tabs, command, accordion, skeleton, separator, kbd |
+| Icons | `@rhs-ui/icons` | The icon set in one drawing hand, and animated icons at `@rhs-ui/icons/animated/<name>` |
+| Application | `@rhs-ui/application/<name>` | Application UI: empty-state, preferences-panel |
+| Commerce | `@rhs-ui/commerce/<name>` | Shop UI: product-card |
+| Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens |
+| Marketing | `@rhs-ui/marketing/<name>` | Marketing sections: pricing-section |
+
+The theme, `rhs-ui-theme`, has no files: it writes the RHS tokens into your `globals.css`.
+Next in the collection: variant-selector, cart-drawer and product-gallery (commerce),
+kpi-card (dashboard), command-palette and file-dropzone (application).
 
 The catalogue: [`public/r/registry.json`](./public/r/registry.json). Browse with
 previews and docs at [rhsui.com/components](https://rhsui.com/components).
@@ -99,19 +104,20 @@ previews and docs at [rhsui.com/components](https://rhsui.com/components).
 ## Repository layout
 
 ```
-registry.json              the registry root (name, homepage, include)
-registry/<category>.json   one fragment per category
-registry/rhs-ui/           the source: ui/, components/, hooks/, examples/
-public/r/                  built output, one JSON per item, committed
-scripts/                   build and gates
+registry/<category>/                  the source of one category, installed to components/rhs-ui/<category>/
+registry/<category>/registry.json     the entries of that category
+registry/examples/                    demos, used by rhsui.com
+registry.json                         generated: every entry, merged (do not edit)
+public/r/                             built output, one JSON per item, committed
+scripts/                              build and gates
 ```
 
 ## Development
 
 ```bash
 pnpm install
-pnpm check            # typecheck + registry gate
-pnpm registry:build   # rebuild public/r (commit the result)
+pnpm check            # typecheck + registry gate + button SSR test
+pnpm registry:build   # rebuild registry.json and public/r (commit the result)
 pnpm test:install     # install every item into scratch Next projects (Base UI and Radix) and typecheck
 ```
 

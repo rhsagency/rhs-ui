@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-send",
+  "title": "Animated send",
+  "description": "A paper plane that flies off to the top right and glides back in from the bottom left. For send, share and submit.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/send.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The plane flies off to the top right and glides back in from the bottom left. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"plane\",\n      duration: 700,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translate(0, 0)\", opacity: 1, easing: \"cubic-bezier(0.4, 0, 1, 1)\" },\n        { offset: 0.4, transform: \"translate(9px, -9px)\", opacity: 0 },\n        { offset: 0.41, transform: \"translate(-9px, 9px)\", opacity: 0, easing: \"cubic-bezier(0.2, 0.7, 0.2, 1)\" },\n        { transform: \"translate(0, 0)\", opacity: 1 },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconSendAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"plane\" d=\"M21 3L10.5 13.5M21 3l-6.5 18-4-7.5L3 9.5z\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/send.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Plays on hover and focus of the submit button it sits in.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

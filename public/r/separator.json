@@ -9,22 +9,22 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/rhs-ui/ui/rhs-ui/separator.tsx",
+      "path": "registry/primitives/separator.tsx",
       "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Separator as SeparatorPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/** A hairline rule. Decorative by default; pass `decorative={false}` when it separates landmarks. */\nexport function Separator({ className, orientation = \"horizontal\", decorative = true, ...props }: ComponentProps<typeof SeparatorPrimitive.Root>) {\n  return (\n    <SeparatorPrimitive.Root\n      data-slot=\"separator\"\n      orientation={orientation}\n      decorative={decorative}\n      className={cn(\"shrink-0 bg-border\", orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\", className)}\n      {...props}\n    />\n  );\n}\n",
       "type": "registry:ui",
-      "target": "components/ui/rhs-ui/separator.tsx"
+      "target": "components/rhs-ui/primitives/separator.tsx"
     }
   ],
   "meta": {
     "tier": "free",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
     "preview": "inline"
   },
   "docs": "",
   "categories": [
-    "core",
+    "primitives",
     "layout"
   ],
   "type": "registry:ui"

@@ -1,6 +1,6 @@
 {
   "name": "rhs-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "RHS UI: open-source components and blocks for React and Next.js, distributed as a shadcn-compatible registry.",
   "homepage": "https://rhsui.com",
   "repository": {

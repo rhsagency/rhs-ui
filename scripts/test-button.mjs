@@ -10,7 +10,7 @@ await build({stdin:{resolveDir:root,loader:"tsx",contents:`
   import {createElement as h} from "react";
   import {renderToStaticMarkup as render} from "react-dom/server";
   import {Slot} from "radix-ui";
-  import {Button} from "./registry/rhs-ui/ui/rhs-ui/button";
+  import {Button} from "./registry/primitives/button";
   const normal=render(h(Button,null,"Continue"));
   assert.match(normal,/<button/);
   const link=render(h(Button,{asChild:true,variant:"link"},h("a",{href:"/guide"},"Read guide")));

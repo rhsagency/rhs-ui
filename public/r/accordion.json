@@ -9,21 +9,21 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/rhs-ui/ui/rhs-ui/accordion.tsx",
+      "path": "registry/primitives/accordion.tsx",
       "content": "\"use client\";\nimport type { ComponentProps } from \"react\";\nimport { Accordion as Primitive } from \"radix-ui\";\nimport { cn } from \"@/lib/utils\";\nexport function Accordion(props:ComponentProps<typeof Primitive.Root>):React.JSX.Element { return <Primitive.Root data-slot=\"accordion\" {...props} />; }\nexport function AccordionItem({className,...props}:ComponentProps<typeof Primitive.Item>):React.JSX.Element { return <Primitive.Item data-slot=\"accordion-item\" className={cn(\"border-b border-border\",className)} {...props} />; }\nexport function AccordionTrigger({className,children,...props}:ComponentProps<typeof Primitive.Trigger>):React.JSX.Element {\n  return <Primitive.Header><Primitive.Trigger data-slot=\"accordion-trigger\" className={cn(\"group flex w-full items-center justify-between gap-6 py-5 text-left text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:opacity-50\",className)} {...props}>{children}<span aria-hidden=\"true\" className=\"text-xl font-normal transition-transform group-data-[state=open]:rotate-45 motion-reduce:transition-none\">+</span></Primitive.Trigger></Primitive.Header>;\n}\nexport function AccordionContent({className,children,...props}:ComponentProps<typeof Primitive.Content>):React.JSX.Element { return <Primitive.Content data-slot=\"accordion-content\" className={cn(\"overflow-hidden text-sm leading-relaxed text-muted-foreground\",className)} {...props}><div className=\"pb-5\">{children}</div></Primitive.Content>; }\n",
       "type": "registry:ui",
-      "target": "components/ui/rhs-ui/accordion.tsx"
+      "target": "components/rhs-ui/primitives/accordion.tsx"
     }
   ],
   "meta": {
     "tier": "free",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
     "preview": "inline"
   },
   "categories": [
-    "core"
+    "primitives"
   ],
   "type": "registry:ui"
 }

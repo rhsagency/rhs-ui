@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-icon-demo",
+  "title": "Animated icon demo",
+  "description": "Animated icons in buttons: a bell on hover, a refresh that loops while syncing, and a copy icon that turns into a check.",
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-bell.json",
+    "https://rhsui.com/r/animated-refresh.json",
+    "https://rhsui.com/r/animated-copy.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/animated-icon-demo.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { IconBellAnimated } from \"@rhs-ui/icons/animated/bell\";\nimport { IconCopyAnimated } from \"@rhs-ui/icons/animated/copy\";\nimport { IconRefreshAnimated } from \"@rhs-ui/icons/animated/refresh\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\n/** Three ways to drive an animated icon: hover on its button, a loop while busy, a state after an action. */\nexport default function Demo(): React.JSX.Element {\n  const [syncing, setSyncing] = useState(false);\n  const [copied, setCopied] = useState(false);\n  useEffect(() => {\n    if (!syncing) return;\n    const timer = window.setTimeout(() => setSyncing(false), 2400);\n    return () => window.clearTimeout(timer);\n  }, [syncing]);\n  useEffect(() => {\n    if (!copied) return;\n    const timer = window.setTimeout(() => setCopied(false), 1600);\n    return () => window.clearTimeout(timer);\n  }, [copied]);\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-3\">\n      <Button variant=\"outline\">\n        <IconBellAnimated />\n        Notifications\n      </Button>\n      <Button variant=\"outline\" aria-busy={syncing || undefined} onClick={() => setSyncing(true)}>\n        <IconRefreshAnimated trigger={syncing ? \"loop\" : \"hover\"} />\n        {syncing ? \"Syncing\" : \"Sync now\"}\n      </Button>\n      <Button variant=\"outline\" onClick={() => setCopied(true)}>\n        <IconCopyAnimated active={copied} />\n        {copied ? \"Copied\" : \"Copy link\"}\n      </Button>\n      <p className=\"sr-only\" aria-live=\"polite\">\n        {copied ? \"Link copied\" : \"\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

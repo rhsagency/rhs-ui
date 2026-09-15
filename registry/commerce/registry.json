@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "product-card",
+      "type": "registry:component",
+      "title": "Product card",
+      "description": "A production product card for React and Next.js: image with hover zoom, sale and stock badges, compare-at price, colour swatches with radiogroup semantics, add to cart, and a matching skeleton.",
+      "categories": [
+        "commerce",
+        "product",
+        "card"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/product-card/types.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-card/types.ts"
+        }
+      ],
+      "docs": "Pass a plain product object and handle onAddToCart; the card never fetches. Format prices before you pass them so the card stays locale-neutral. Use renderImage to plug in next/image."
+    },
+    {
+      "name": "product-card-demo",
+      "type": "registry:example",
+      "title": "Product card demo",
+      "description": "Two product cards: one on sale with colour variants, one sold out.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
+}

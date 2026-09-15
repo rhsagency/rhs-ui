@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-refresh",
+  "title": "Animated refresh",
+  "description": "One eased full turn on hover, or a steady loop while something syncs.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/refresh.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** One full turn, eased in and out. As `trigger=\"loop\"` it is a sync in progress. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"arrow\",\n      origin: \"12px 12px\",\n      duration: 800,\n      easing: \"cubic-bezier(0.65, 0, 0.35, 1)\",\n      keyframes: [{ transform: \"rotate(0deg)\" }, { transform: \"rotate(360deg)\" }],\n    },\n  ],\n  pause: 250,\n};\n\nexport function IconRefreshAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"arrow\" d=\"M20 12a8 8 0 1 1-2.34-5.66M17.66 2.84v3.5h-3.5\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/refresh.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Switch to trigger=\"loop\" while syncing and set aria-busy on the button; it finishes its turn when you switch back.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

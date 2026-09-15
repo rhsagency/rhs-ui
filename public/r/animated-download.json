@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-download",
+  "title": "Animated download",
+  "description": "The arrow drops through the tray and comes back from the top while the tray gives a little. For download and export actions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/download.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The arrow drops through the tray and comes back from the top; the tray gives a little. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"arrow\",\n      duration: 640,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateY(0)\", opacity: 1, easing: \"cubic-bezier(0.4, 0, 1, 1)\" },\n        { offset: 0.4, transform: \"translateY(7px)\", opacity: 0 },\n        { offset: 0.41, transform: \"translateY(-7px)\", opacity: 0, easing: \"cubic-bezier(0.2, 0.7, 0.2, 1)\" },\n        { transform: \"translateY(0)\", opacity: 1 },\n      ],\n    },\n    {\n      part: \"tray\",\n      duration: 640,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateY(0)\" },\n        { offset: 0.3, transform: \"translateY(0)\", easing: \"ease-out\" },\n        { offset: 0.42, transform: \"translateY(1.2px)\", easing: \"ease-in-out\" },\n        { offset: 0.7, transform: \"translateY(0)\" },\n        { transform: \"translateY(0)\" },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconDownloadAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"arrow\" d=\"M12 4v12M6 10l6 6 6-6\" />\n      <path data-part=\"tray\" d=\"M4 20h16\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/download.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Inside a download link it plays on hover and on keyboard focus of the link.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

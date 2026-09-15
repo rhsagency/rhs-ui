@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-cart",
+  "title": "Animated cart",
+  "description": "A product drops into the basket and the cart dips under its weight. For add-to-cart buttons and cart links.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/cart.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** A product drops into the basket, the cart dips under it, and the product settles out of view. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"item\",\n      duration: 900,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateY(-3px)\", opacity: 0, easing: \"cubic-bezier(0.5, 0, 0.75, 0)\" },\n        { offset: 0.15, opacity: 1 },\n        { offset: 0.5, transform: \"translateY(6px)\", opacity: 1 },\n        { offset: 0.78, transform: \"translateY(6px)\", opacity: 1, easing: \"ease-in\" },\n        { transform: \"translateY(6px)\", opacity: 0 },\n      ],\n    },\n    {\n      part: \"cart\",\n      duration: 900,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateY(0)\" },\n        { offset: 0.48, transform: \"translateY(0)\", easing: \"ease-out\" },\n        { offset: 0.58, transform: \"translateY(1.2px)\", easing: \"ease-in-out\" },\n        { offset: 0.78, transform: \"translateY(0)\" },\n        { transform: \"translateY(0)\" },\n      ],\n    },\n  ],\n  pause: 1400,\n};\n\nexport function IconCartAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"item\" opacity={0} d=\"M12 2.5h4v4h-4z\" />\n      <path data-part=\"cart\" d=\"M3 4h2.2l2.3 11.2a1.5 1.5 0 0 0 1.5 1.3h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6.3\" />\n      <path data-part=\"cart\" d=\"M10 20.5h.01M17 20.5h.01\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/cart.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "At rest it is the cart glyph; the product only shows while it moves.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

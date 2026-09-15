@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-copy",
+  "title": "Animated copy",
+  "description": "A copy icon that turns into a drawn check while active. For confirming a copy to the clipboard.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/copy.tsx",
+      "content": "import { StateGlyph, STATE_PART, type StateIconProps } from \"@rhs-ui/icons/state-icon\";\nimport { cn } from \"@/lib/utils\";\n\n/** Copy that turns into a check. Set `active` for the moment after a copy succeeded. */\nexport function IconCopyAnimated(props: StateIconProps) {\n  return (\n    <StateGlyph {...props}>\n      <path\n        className={cn(STATE_PART, \"origin-[12px_12px] group-data-[active=true]/rhs-icon:scale-75 group-data-[active=true]/rhs-icon:opacity-0\")}\n        d=\"M17.8 9H11a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6.8M5.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v.5\"\n      />\n      <path\n        pathLength={1}\n        strokeDasharray=\"1\"\n        className={cn(\n          STATE_PART,\n          \"opacity-0 [stroke-dashoffset:1] group-data-[active=true]/rhs-icon:opacity-100 group-data-[active=true]/rhs-icon:[stroke-dashoffset:0] group-data-[active=true]/rhs-icon:delay-100\",\n        )}\n        d=\"M5 12.5l4.5 4.5L19 7\"\n      />\n    </StateGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/copy.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "state"
+  },
+  "docs": "Set active for a moment after navigator.clipboard.writeText resolves, and announce it in a live region.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

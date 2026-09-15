@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-arrow-right",
+  "title": "Animated arrow right",
+  "description": "An arrow that leaves on the right and comes back in from the left. For continue, next and call-to-action buttons.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/arrow-right.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The arrow leaves on the right and comes back in from the left. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"arrow\",\n      duration: 560,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateX(0)\", opacity: 1, easing: \"cubic-bezier(0.4, 0, 1, 1)\" },\n        { offset: 0.42, transform: \"translateX(8px)\", opacity: 0 },\n        { offset: 0.43, transform: \"translateX(-8px)\", opacity: 0, easing: \"cubic-bezier(0.2, 0.7, 0.2, 1)\" },\n        { transform: \"translateX(0)\", opacity: 1 },\n      ],\n    },\n  ],\n  pause: 1000,\n};\n\nexport function IconArrowRightAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"arrow\" d=\"M4 12h15M13 6l6 6-6 6\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/arrow-right.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Place it after the label: <Button>Continue <IconArrowRightAnimated /></Button>.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

@@ -78,14 +78,14 @@
   },
   "meta": {
     "tier": "free",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
     "preview": "inline"
   },
   "docs": "Installs the RHS semantic tokens into your globals.css. Your components keep their names (bg-background, text-primary); only the values change.",
   "categories": [
-    "core",
+    "primitives",
     "theme"
   ],
   "type": "registry:theme"

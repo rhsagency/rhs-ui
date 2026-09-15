@@ -4,44 +4,17 @@
   "homepage": "https://rhsui.com",
   "items": [
     {
-      "name": "icons",
-      "type": "registry:ui",
-      "title": "Icons",
-      "description": "The RHS UI icon set: one drawing hand for every item, a 1.75px stroke on a 24 grid with the open corner as its signature. Sized by size, coloured by currentColor.",
-      "categories": [
-        "core",
-        "icons"
-      ],
-      "meta": {
-        "tier": "free",
-        "version": "0.1.0",
-        "since": "0.1.0",
-        "status": "stable",
-        "preview": "inline"
-      },
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/rhs-ui/ui/rhs-ui/icons.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/rhs-ui/icons.tsx"
-        }
-      ],
-      "docs": "Import the glyphs you need from \"@rhs-ui/ui/icons\". Pass a title when an icon is the only label."
-    },
-    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
       "description": "Solid, secondary, outline, ghost, link and destructive buttons with a loading state and asChild for links.",
       "categories": [
-        "core",
+        "primitives",
         "actions"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -55,9 +28,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/button.tsx",
+          "path": "registry/primitives/button.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/button.tsx"
+          "target": "components/rhs-ui/primitives/button.tsx"
         }
       ],
       "docs": "Use asChild to render the styles on a Next Link. loading disables the button and shows a spinner."
@@ -68,12 +41,12 @@
       "title": "Badge",
       "description": "Status and metadata labels with success, warning, destructive, outline and muted tones.",
       "categories": [
-        "core",
+        "primitives",
         "data-display"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -85,9 +58,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/badge.tsx",
+          "path": "registry/primitives/badge.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/badge.tsx"
+          "target": "components/rhs-ui/primitives/badge.tsx"
         }
       ],
       "docs": "Status badges carry text as well as colour; never rely on the tone alone."
@@ -98,12 +71,12 @@
       "title": "Skeleton",
       "description": "A loading placeholder in the shape of the content, with a shimmer sweep instead of a pulse. Give siblings a delay so the sweep runs as one wave.",
       "categories": [
-        "core",
+        "primitives",
         "feedback"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -112,9 +85,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/skeleton.tsx",
+          "path": "registry/primitives/skeleton.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/skeleton.tsx"
+          "target": "components/rhs-ui/primitives/skeleton.tsx"
         }
       ],
       "css": {
@@ -135,12 +108,12 @@
       "title": "Separator",
       "description": "A hairline rule, horizontal or vertical, decorative by default.",
       "categories": [
-        "core",
+        "primitives",
         "layout"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -151,9 +124,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/separator.tsx",
+          "path": "registry/primitives/separator.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/separator.tsx"
+          "target": "components/rhs-ui/primitives/separator.tsx"
         }
       ],
       "docs": ""
@@ -164,12 +137,12 @@
       "title": "Kbd",
       "description": "A keyboard key for shortcut hints, with a group for combinations.",
       "categories": [
-        "core",
+        "primitives",
         "data-display"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -178,9 +151,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/kbd.tsx",
+          "path": "registry/primitives/kbd.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/kbd.tsx"
+          "target": "components/rhs-ui/primitives/kbd.tsx"
         }
       ],
       "docs": ""
@@ -191,12 +164,12 @@
       "title": "Input",
       "description": "A text input with focus ring, invalid state and file input styling.",
       "categories": [
-        "core",
+        "primitives",
         "forms"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -205,9 +178,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/input.tsx",
+          "path": "registry/primitives/input.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/input.tsx"
+          "target": "components/rhs-ui/primitives/input.tsx"
         }
       ],
       "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state."
@@ -218,12 +191,12 @@
       "title": "Label",
       "description": "A form label that focuses its control on click.",
       "categories": [
-        "core",
+        "primitives",
         "forms"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -234,9 +207,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/label.tsx",
+          "path": "registry/primitives/label.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/label.tsx"
+          "target": "components/rhs-ui/primitives/label.tsx"
         }
       ],
       "docs": ""
@@ -247,12 +220,12 @@
       "title": "Tooltip",
       "description": "A tooltip on hover and focus, with a shared provider so a row of controls feels like one surface.",
       "categories": [
-        "core",
+        "primitives",
         "overlay"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -263,9 +236,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/tooltip.tsx",
+          "path": "registry/primitives/tooltip.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/tooltip.tsx"
+          "target": "components/rhs-ui/primitives/tooltip.tsx"
         }
       ],
       "css": {
@@ -394,12 +367,12 @@
       "title": "Dialog",
       "description": "A modal dialog with focus trap, Escape and backdrop close, and a required title and description.",
       "categories": [
-        "core",
+        "primitives",
         "overlay"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -412,9 +385,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/dialog.tsx",
+          "path": "registry/primitives/dialog.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/dialog.tsx"
+          "target": "components/rhs-ui/primitives/dialog.tsx"
         }
       ],
       "css": {
@@ -543,12 +516,12 @@
       "title": "Sheet",
       "description": "A panel that slides in from any edge: menus, carts, filters. Same accessibility contract as Dialog.",
       "categories": [
-        "core",
+        "primitives",
         "overlay"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -562,9 +535,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/sheet.tsx",
+          "path": "registry/primitives/sheet.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/sheet.tsx"
+          "target": "components/rhs-ui/primitives/sheet.tsx"
         }
       ],
       "css": {
@@ -693,12 +666,12 @@
       "title": "Tabs",
       "description": "Tabs with arrow-key navigation, as an underline (line) or a segmented control (pill).",
       "categories": [
-        "core",
+        "primitives",
         "navigation"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -710,9 +683,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/tabs.tsx",
+          "path": "registry/primitives/tabs.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/tabs.tsx"
+          "target": "components/rhs-ui/primitives/tabs.tsx"
         }
       ],
       "docs": "Give TabsList the group/list class so the triggers pick up the variant."
@@ -723,13 +696,13 @@
       "title": "Command",
       "description": "A filtered, keyboard-driven list on cmdk, inline or as a palette in CommandDialog.",
       "categories": [
-        "core",
+        "primitives",
         "navigation",
         "search"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -743,9 +716,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/command.tsx",
+          "path": "registry/primitives/command.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/command.tsx"
+          "target": "components/rhs-ui/primitives/command.tsx"
         }
       ],
       "docs": "CommandDialog carries a hidden title and description for screen readers."
@@ -756,12 +729,12 @@
       "title": "RHS UI theme",
       "description": "The RHS UI colour theme: a violet brand ramp on a constant OKLCH hue and a violet-tinted neutral scale, measured for WCAG AA in light and dark. Drops into any shadcn project as the semantic tokens.",
       "categories": [
-        "core",
+        "primitives",
         "theme"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -847,11 +820,11 @@
       "title": "Accordion",
       "description": "Keyboard-friendly disclosure rows with single or multiple expanded items.",
       "categories": [
-        "core"
+        "primitives"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -862,9 +835,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/accordion.tsx",
+          "path": "registry/primitives/accordion.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/accordion.tsx"
+          "target": "components/rhs-ui/primitives/accordion.tsx"
         }
       ]
     },
@@ -878,7 +851,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/accordion-demo.tsx",
+          "path": "registry/examples/accordion-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -889,11 +862,11 @@
       "title": "Switch",
       "description": "An accessible binary switch with form support and controlled or uncontrolled state.",
       "categories": [
-        "core"
+        "primitives"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -904,9 +877,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/switch.tsx",
+          "path": "registry/primitives/switch.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/switch.tsx"
+          "target": "components/rhs-ui/primitives/switch.tsx"
         }
       ]
     },
@@ -920,7 +893,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/switch-demo.tsx",
+          "path": "registry/examples/switch-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -931,11 +904,11 @@
       "title": "Slider",
       "description": "An accessible value or range slider with keyboard controls and labelled thumbs.",
       "categories": [
-        "core"
+        "primitives"
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -946,9 +919,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/ui/rhs-ui/slider.tsx",
+          "path": "registry/primitives/slider.tsx",
           "type": "registry:ui",
-          "target": "components/ui/rhs-ui/slider.tsx"
+          "target": "components/rhs-ui/primitives/slider.tsx"
         }
       ]
     },
@@ -962,10 +935,508 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/slider-demo.tsx",
+          "path": "registry/examples/slider-demo.tsx",
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Icons",
+      "description": "The RHS UI icon set: one drawing hand for every glyph, a 1.75px stroke on a 24 grid with the open corner as its signature. Sized by size, coloured by currentColor, with Glyph to draw your own.",
+      "categories": [
+        "icons"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/icons/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/index.tsx"
+        }
+      ],
+      "docs": "Import the glyphs you need from \"@rhs-ui/icons\". Pass a title when an icon is the only label. Draw your own glyph in the same hand with <Glyph d=\"...\" />."
+    },
+    {
+      "name": "animated-icon",
+      "type": "registry:ui",
+      "title": "Animated icon",
+      "description": "The engine behind the animated icons: hover, focus, loop and first-view triggers through the Web Animations API, a two-state frame in plain CSS, and reduced motion respected. No animation library.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated-icon.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated-icon.tsx"
+        },
+        {
+          "path": "registry/icons/state-icon.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/state-icon.tsx"
+        }
+      ],
+      "docs": "Installed with every animated icon. Motion icons take trigger: hover (default, follows the button or link around the icon), loop, appear or static. State icons take active."
+    },
+    {
+      "name": "animated-icon-demo",
+      "type": "registry:example",
+      "title": "Animated icon demo",
+      "description": "Animated icons in buttons: a bell on hover, a refresh that loops while syncing, and a copy icon that turns into a check.",
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-bell.json",
+        "https://rhsui.com/r/animated-refresh.json",
+        "https://rhsui.com/r/animated-copy.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/animated-icon-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "animated-bell",
+      "type": "registry:ui",
+      "title": "Animated bell",
+      "description": "A bell that rings: the body swings from its crown and the clapper follows a beat later. For notifications and reminders.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bell.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bell.tsx"
+        }
+      ],
+      "docs": "Inside a Button it rings when the button is hovered or focused. Use trigger=\"loop\" while there are unread notifications."
+    },
+    {
+      "name": "animated-search",
+      "type": "registry:ui",
+      "title": "Animated search",
+      "description": "A lens that looks left and right before it settles. For search, filter and lookup actions.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/search.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/search.tsx"
+        }
+      ],
+      "docs": "Use trigger=\"loop\" while results are loading."
+    },
+    {
+      "name": "animated-arrow-right",
+      "type": "registry:ui",
+      "title": "Animated arrow right",
+      "description": "An arrow that leaves on the right and comes back in from the left. For continue, next and call-to-action buttons.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/arrow-right.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/arrow-right.tsx"
+        }
+      ],
+      "docs": "Place it after the label: <Button>Continue <IconArrowRightAnimated /></Button>."
+    },
+    {
+      "name": "animated-heart",
+      "type": "registry:ui",
+      "title": "Animated heart",
+      "description": "A heart that beats twice, the second beat softer than the first. For favourites, wishlists and likes.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/heart.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/heart.tsx"
+        }
+      ],
+      "docs": "Pair it with aria-pressed on the wishlist button; the icon only shows the gesture."
+    },
+    {
+      "name": "animated-sparkle",
+      "type": "registry:ui",
+      "title": "Animated sparkle",
+      "description": "A four-point star that turns a quarter and lands on itself while the small star pops back in. For new, highlight and AI states.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/sparkle.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/sparkle.tsx"
+        }
+      ],
+      "docs": "Use trigger=\"loop\" sparingly: one moving sparkle on a page is a highlight, three is noise."
+    },
+    {
+      "name": "animated-refresh",
+      "type": "registry:ui",
+      "title": "Animated refresh",
+      "description": "One eased full turn on hover, or a steady loop while something syncs.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/refresh.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/refresh.tsx"
+        }
+      ],
+      "docs": "Switch to trigger=\"loop\" while syncing and set aria-busy on the button; it finishes its turn when you switch back."
+    },
+    {
+      "name": "animated-download",
+      "type": "registry:ui",
+      "title": "Animated download",
+      "description": "The arrow drops through the tray and comes back from the top while the tray gives a little. For download and export actions.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/download.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/download.tsx"
+        }
+      ],
+      "docs": "Inside a download link it plays on hover and on keyboard focus of the link."
+    },
+    {
+      "name": "animated-trash",
+      "type": "registry:ui",
+      "title": "Animated trash",
+      "description": "The lid lifts from its left hinge and drops shut. For delete and remove actions.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/trash.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/trash.tsx"
+        }
+      ],
+      "docs": "An icon-only delete button still needs an accessible label: <Button size=\"icon\" aria-label=\"Delete\">."
+    },
+    {
+      "name": "animated-send",
+      "type": "registry:ui",
+      "title": "Animated send",
+      "description": "A paper plane that flies off to the top right and glides back in from the bottom left. For send, share and submit.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/send.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/send.tsx"
+        }
+      ],
+      "docs": "Plays on hover and focus of the submit button it sits in."
+    },
+    {
+      "name": "animated-cart",
+      "type": "registry:ui",
+      "title": "Animated cart",
+      "description": "A product drops into the basket and the cart dips under its weight. For add-to-cart buttons and cart links.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cart.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cart.tsx"
+        }
+      ],
+      "docs": "At rest it is the cart glyph; the product only shows while it moves."
+    },
+    {
+      "name": "animated-check-circle",
+      "type": "registry:ui",
+      "title": "Animated check circle",
+      "description": "The ring draws itself and then the check. For success states, best with trigger appear.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/check-circle.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/check-circle.tsx"
+        }
+      ],
+      "docs": "<IconCheckCircleAnimated trigger=\"appear\" /> draws once when a confirmation scrolls into view."
+    },
+    {
+      "name": "animated-copy",
+      "type": "registry:ui",
+      "title": "Animated copy",
+      "description": "A copy icon that turns into a drawn check while active. For confirming a copy to the clipboard.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/copy.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/copy.tsx"
+        }
+      ],
+      "docs": "Set active for a moment after navigator.clipboard.writeText resolves, and announce it in a live region."
+    },
+    {
+      "name": "animated-menu",
+      "type": "registry:ui",
+      "title": "Animated menu",
+      "description": "Three lines that fold into a cross while active. For the open state of a navigation menu.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/menu.tsx"
+        }
+      ],
+      "docs": "Bind active to the menu's open state and aria-expanded on the button."
+    },
+    {
+      "name": "animated-sun-moon",
+      "type": "registry:ui",
+      "title": "Animated sun and moon",
+      "description": "The sun draws in its rays and turns into the moon while active. For a light and dark theme switch.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/sun-moon.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/sun-moon.tsx"
+        }
+      ],
+      "docs": "Bind active to the resolved theme after hydration, so the server and the first client render agree."
     },
     {
       "name": "product-card",
@@ -979,7 +1450,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -995,14 +1466,14 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/components/rhs-ui/product-card/product-card.tsx",
+          "path": "registry/commerce/product-card/index.tsx",
           "type": "registry:component",
-          "target": "components/rhs-ui/product-card/product-card.tsx"
+          "target": "components/rhs-ui/commerce/product-card/index.tsx"
         },
         {
-          "path": "registry/rhs-ui/components/rhs-ui/product-card/types.ts",
+          "path": "registry/commerce/product-card/types.ts",
           "type": "registry:component",
-          "target": "components/rhs-ui/product-card/types.ts"
+          "target": "components/rhs-ui/commerce/product-card/types.ts"
         }
       ],
       "docs": "Pass a plain product object and handle onAddToCart; the card never fetches. Format prices before you pass them so the card stays locale-neutral. Use renderImage to plug in next/image."
@@ -1017,7 +1488,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/product-card-demo.tsx",
+          "path": "registry/examples/product-card-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1032,7 +1503,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -1041,9 +1512,9 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/rhs-ui/components/rhs-ui/empty-state.tsx",
+          "path": "registry/application/empty-state.tsx",
           "type": "registry:component",
-          "target": "components/rhs-ui/empty-state.tsx"
+          "target": "components/rhs-ui/application/empty-state.tsx"
         }
       ]
     },
@@ -1058,7 +1529,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/empty-state-demo.tsx",
+          "path": "registry/examples/empty-state-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1073,7 +1544,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "frame"
@@ -1084,9 +1555,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/blocks/rhs-ui/preferences-panel.tsx",
+          "path": "registry/application/preferences-panel.tsx",
           "type": "registry:block",
-          "target": "blocks/rhs-ui/preferences-panel.tsx"
+          "target": "components/rhs-ui/application/preferences-panel.tsx"
         }
       ]
     },
@@ -1100,7 +1571,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/preferences-panel-demo.tsx",
+          "path": "registry/examples/preferences-panel-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1115,7 +1586,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "frame"
@@ -1126,9 +1597,9 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/blocks/rhs-ui/pricing-section.tsx",
+          "path": "registry/marketing/pricing-section.tsx",
           "type": "registry:block",
-          "target": "blocks/rhs-ui/pricing-section.tsx"
+          "target": "components/rhs-ui/marketing/pricing-section.tsx"
         }
       ]
     },
@@ -1142,7 +1613,7 @@
       ],
       "files": [
         {
-          "path": "registry/rhs-ui/examples/pricing-section-demo.tsx",
+          "path": "registry/examples/pricing-section-demo.tsx",
           "type": "registry:example"
         }
       ]

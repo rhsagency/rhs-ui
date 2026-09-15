@@ -1,40 +1,67 @@
 /**
- * Registry gate. Every item must be complete and consistent, and nothing
- * foreign may enter the registry:
+ * Registry gate. Every item must be complete and consistent, sit where its
+ * category says, and nothing foreign may enter the registry:
  *
  *  - title, description, categories[0] from the taxonomy, meta.tier/version/since/status
- *  - every file exists, and every non-example file has a target under an rhs-ui/ folder
- *  - every @/registry/rhs-ui/... import in a file resolves to a file of the same item
- *    or to an item listed in registryDependencies as https://rhsui.com/r/<name>.json
+ *  - the structure: an item's files live in registry/<categories[0]>/ and install to
+ *    components/rhs-ui/<the same path>, so folder, import path and category always agree;
+ *    demos live in registry/examples/
+ *  - every @rhs-ui/... import resolves to a file of the same item or to an item
+ *    listed in registryDependencies as https://rhsui.com/r/<name>.json, and
+ *    tsconfig.json has the one alias, @rhs-ui/* -> ./registry/*
+ *  - a file that calls a React hook starts with "use client"
  *  - registryDependencies never use a bare name (that would mean a shadcn built-in)
  *    or a namespaced name (fails without namespace setup)
  *  - dependencies never include lucide-react, cn, shadcn, @base-ui/*, @radix-ui/* (use the unified radix-ui)
  *  - names are unique across fragments
  *
- * A negative control at the end proves the gate can fail. Run: pnpm check:registry
+ * Negative controls at the end prove the gate can fail. Run: pnpm check:registry
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const TAXONOMY = new Set(["core", "application", "commerce", "dashboard", "marketing", "templates"]);
+/** The categories, and with them the folders under registry/ and components/rhs-ui/. */
+const TAXONOMY = new Set(["primitives", "icons", "application", "commerce", "dashboard", "marketing", "templates"]);
 const FORBIDDEN = [/^lucide-react(@|$)/, /^cn(@|$)/, /^shadcn(@|$)/, /^@base-ui\//, /^@radix-ui\//, /^tw-animate-css(@|$)/];
 const URL_DEP = /^https:\/\/rhsui\.com\/r\/([a-z0-9-]+)\.json$/;
+const ALIAS_IMPORT = /from\s+["']@rhs-ui\/([^"']+)["']/g;
+const HOOK_CALL = /\buse(?!Id\b)[A-Z]\w*\s*\(/;
 
-/** The source of truth is the set of fragments, not the generated root. */
+/**
+ * The source of truth is the registry.json in every category folder, not the
+ * generated root. A stray registry/<name>.json would shadow the folder of the
+ * same name in module resolution (@rhs-ui/icons -> registry/icons.json).
+ */
 function loadItems() {
   const items = [];
-  for (const file of readdirSync(path.join(root, "registry")).filter((f) => f.endsWith(".json")).sort()) {
-    const fragment = JSON.parse(readFileSync(path.join(root, "registry", file), "utf8"));
-    items.push(...(fragment.items ?? []));
+  for (const entry of readdirSync(path.join(root, "registry"), { withFileTypes: true })) {
+    if (entry.isFile()) {
+      strays.push(`registry/${entry.name}: only category folders belong in registry/`);
+      continue;
+    }
+    const file = path.join(root, "registry", entry.name, "registry.json");
+    if (!existsSync(file)) continue;
+    const fragment = JSON.parse(readFileSync(file, "utf8"));
+    items.push(...(fragment.items ?? []).map((item) => ({ ...item, __fragment: entry.name })));
   }
   return items;
+}
+const strays = [];
+
+/** A file that calls a hook must be a client module, or a Server Component that imports it fails at runtime. */
+export function clientProblems(src) {
+  const hook = HOOK_CALL.exec(src);
+  return hook && !/^\s*["']use client["']/.test(src) ? [`calls ${hook[0].replace(/\s*\($/, "")}() without "use client"`] : [];
 }
 
 export function checkItems(items) {
   const problems = [];
   const names = new Set();
   const byName = new Map(items.map((i) => [i.name, i]));
+  const byFile = new Map(
+    items.filter((i) => i.type !== "registry:example").flatMap((i) => (i.files ?? []).map((f) => [f.path.replace(/\.tsx?$/, ""), i])),
+  );
   for (const item of items) {
     const p = (msg) => problems.push(`${item.name ?? "(unnamed)"}: ${msg}`);
     if (!item.name) p("missing name");
@@ -45,14 +72,22 @@ export function checkItems(items) {
     if (!item.title) p("missing title");
     if (!item.description || item.description.length < 20) p("missing or thin description");
     const isExample = item.type === "registry:example";
+    const category = item.categories?.[0];
     if (!isExample) {
-      if (!item.categories?.length || !TAXONOMY.has(item.categories[0])) p("categories[0] must be from the taxonomy");
+      if (!category || !TAXONOMY.has(category)) p("categories[0] must be from the taxonomy");
+      if (item.__fragment && item.__fragment !== category) p(`entry belongs in registry/${category}/registry.json, not registry/${item.__fragment}/registry.json`);
       for (const k of ["tier", "version", "since", "status"]) if (!item.meta?.[k]) p(`missing meta.${k}`);
     }
     if (item.type !== "registry:theme" && !item.files?.length) p("no files");
     for (const f of item.files ?? []) {
       if (!existsSync(path.join(root, f.path))) p(`file does not exist: ${f.path}`);
-      if (!isExample && !(f.target && /(^|\/)rhs-ui\//.test(f.target))) p(`file needs a target under an rhs-ui/ folder: ${f.path}`);
+      if (isExample) {
+        if (!f.path.startsWith("registry/examples/")) p(`a demo belongs in registry/examples/: ${f.path}`);
+        continue;
+      }
+      if (!f.path.startsWith(`registry/${category}/`)) p(`${f.path} belongs in registry/${category}/, the folder of its category`);
+      const target = `components/rhs-ui/${f.path.slice("registry/".length)}`;
+      if (f.target !== target) p(`${f.path} must install to ${target}, not ${f.target ?? "(no target)"}`);
     }
     for (const d of item.registryDependencies ?? []) {
       const m = URL_DEP.exec(d);
@@ -69,13 +104,15 @@ export function checkItems(items) {
     for (const f of item.files ?? []) {
       if (!existsSync(path.join(root, f.path))) continue;
       const src = readFileSync(path.join(root, f.path), "utf8");
-      if (src.includes("@/registry/rhs-ui/")) p("legacy registry import; use @rhs-ui/<group>/<item>");
-      for (const m of src.matchAll(/from\s+["']@rhs-ui\/(ui|components|blocks)\/([^"']+)["']/g)) {
-        const target = `registry/rhs-ui/${m[1]}/rhs-ui/${m[2]}`;
-        if (own.has(target)) continue;
-        const dep = [...byName.values()].find((i) => (i.files ?? []).some((ff) => ff.path.replace(/\.tsx?$/, "") === target));
-        if (!dep) p(`import of ${m[1]} does not belong to any item`);
-        else if (!declared.has(dep.name)) p(`imports ${dep.name} but does not declare https://rhsui.com/r/${dep.name}.json`);
+      if (src.includes("@/registry/")) p(`${f.path}: legacy registry import; use @rhs-ui/<category>/<item>`);
+      for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
+      for (const m of src.matchAll(ALIAS_IMPORT)) {
+        const file = [`registry/${m[1]}`, `registry/${m[1]}/index`].find((candidate) => own.has(candidate) || byFile.has(candidate));
+        if (!file) p(`${f.path}: import of @rhs-ui/${m[1]} does not resolve to a registry file`);
+        else if (!own.has(file) && !declared.has(byFile.get(file).name)) {
+          const dep = byFile.get(file).name;
+          p(`imports ${dep} but does not declare https://rhsui.com/r/${dep}.json`);
+        }
       }
       for (const m of src.matchAll(/from\s+["']([^"'.@][^"']*|@[^/"']+\/[^"']+)["']/g)) {
         const spec = m[1];
@@ -92,20 +129,44 @@ export function checkItems(items) {
   return problems;
 }
 
-const problems = checkItems(loadItems());
+/** One alias, @rhs-ui/* -> ./registry/*, or typecheck and this gate look at different trees. */
+function aliasProblems() {
+  const paths = JSON.parse(readFileSync(path.join(root, "tsconfig.json"), "utf8")).compilerOptions?.paths ?? {};
+  const problems = [];
+  if (paths["@rhs-ui/*"]?.[0] !== "./registry/*") problems.push("tsconfig: @rhs-ui/* must resolve to ./registry/*");
+  for (const key of Object.keys(paths).filter((k) => k.startsWith("@rhs-ui/") && k !== "@rhs-ui/*")) problems.push(`tsconfig: stale alias ${key}`);
+  return problems;
+}
+
+const items = loadItems();
+const problems = [...strays, ...aliasProblems(), ...checkItems(items)];
 for (const pr of problems) console.log(`FAIL ${pr}`);
 
-// Negative control.
-const planted = checkItems([
-  { name: "planted", type: "registry:ui", title: "x", description: "a planted item that must fail the gate", categories: ["nope"], meta: {}, files: [{ path: "registry/rhs-ui/ui/rhs-ui/nope.tsx", type: "registry:ui" }], registryDependencies: ["button", "@rhs-ui/badge"], dependencies: ["lucide-react@^1.0.0", "radix-ui"] },
-]);
-if (planted.length < 6) {
-  console.log(`FAIL self-test: planted item produced only ${planted.length} problem(s)`);
-  process.exit(1);
+// Negative controls: every planted mistake must be caught, or the gate proves nothing.
+const button = items.find((i) => i.name === "button");
+const withButton = (planted) => [...items.filter((i) => i !== button), planted];
+const selfTests = [
+  [
+    "planted item",
+    checkItems([
+      { name: "planted", type: "registry:ui", title: "x", description: "a planted item that must fail the gate", categories: ["nope"], meta: {}, files: [{ path: "registry/primitives/nope.tsx", type: "registry:ui" }], registryDependencies: ["button", "@rhs-ui/badge"], dependencies: ["lucide-react@^1.0.0", "radix-ui"] },
+    ]).length >= 6,
+  ],
+  ["undeclared @rhs-ui/icons import", checkItems(withButton({ ...button, registryDependencies: [] })).some((pr) => /^button: imports icons but does not declare/.test(pr))],
+  ["item outside the folder of its category", checkItems(withButton({ ...button, categories: ["commerce"] })).some((pr) => /belongs in registry\/commerce\//.test(pr))],
+  ["target that does not mirror the source", checkItems(withButton({ ...button, files: [{ ...button.files[0], target: "components/ui/rhs-ui/button.tsx" }] })).some((pr) => /must install to components\/rhs-ui\/primitives\/button\.tsx/.test(pr))],
+  ["hook without use client", clientProblems('import { useState } from "react";\nexport function X() { useState(0); }').length === 1],
+  ["hook inside a client module", clientProblems('"use client";\nexport function X() { useState(0); }').length === 0],
+];
+for (const [name, ok] of selfTests) {
+  if (!ok) {
+    console.log(`FAIL self-test: ${name}`);
+    process.exit(1);
+  }
 }
 
 if (problems.length) {
   console.log(`${problems.length} problem(s)`);
   process.exit(1);
 }
-console.log(`check-registry: ${loadItems().length} items clean (self-test passed)`);
+console.log(`check-registry: ${items.length} items clean (${selfTests.length} self-tests passed)`);
