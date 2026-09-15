@@ -842,6 +842,132 @@
       "docs": "Installs the RHS semantic tokens into your globals.css. Your components keep their names (bg-background, text-primary); only the values change."
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Keyboard-friendly disclosure rows with single or multiple expanded items.",
+      "categories": [
+        "core"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/rhs-ui/ui/rhs-ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/rhs-ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion-demo",
+      "type": "registry:example",
+      "title": "accordion demo",
+      "description": "Interactive preview of the accordion component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/accordion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "An accessible binary switch with form support and controlled or uncontrolled state.",
+      "categories": [
+        "core"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/rhs-ui/ui/rhs-ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/rhs-ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch-demo",
+      "type": "registry:example",
+      "title": "switch demo",
+      "description": "Interactive preview of the switch component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/switch-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "An accessible value or range slider with keyboard controls and labelled thumbs.",
+      "categories": [
+        "core"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/rhs-ui/ui/rhs-ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/rhs-ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider-demo",
+      "type": "registry:example",
+      "title": "slider demo",
+      "description": "Interactive preview of the slider component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "product-card",
       "type": "registry:component",
       "title": "Product card",
@@ -892,6 +1018,131 @@
       "files": [
         {
           "path": "registry/rhs-ui/examples/product-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:component",
+      "title": "Empty State",
+      "description": "A considered empty state with a heading, explanation, icon and recovery action.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/rhs-ui/components/rhs-ui/empty-state.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/empty-state.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-demo",
+      "type": "registry:example",
+      "title": "empty-state demo",
+      "description": "Interactive preview of the empty-state component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/empty-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "preferences-panel",
+      "type": "registry:block",
+      "title": "Preferences Panel",
+      "description": "A controlled settings section with labelled preferences and accessible toggle switches.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/blocks/rhs-ui/preferences-panel.tsx",
+          "type": "registry:block",
+          "target": "blocks/rhs-ui/preferences-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "preferences-panel-demo",
+      "type": "registry:example",
+      "title": "preferences-panel demo",
+      "description": "Interactive preview of the preferences-panel component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/preferences-panel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/preferences-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pricing-section",
+      "type": "registry:block",
+      "title": "Pricing Section",
+      "description": "A responsive pricing section with monthly and yearly billing and a plan selection callback.",
+      "categories": [
+        "marketing"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.1.0",
+        "since": "0.1.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/blocks/rhs-ui/pricing-section.tsx",
+          "type": "registry:block",
+          "target": "blocks/rhs-ui/pricing-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-section-demo",
+      "type": "registry:example",
+      "title": "pricing-section demo",
+      "description": "Interactive preview of the pricing-section component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pricing-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/rhs-ui/examples/pricing-section-demo.tsx",
           "type": "registry:example"
         }
       ]
