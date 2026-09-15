@@ -55,14 +55,16 @@ installs from its raw GitHub URL too.
 
 ## What is in the registry
 
-| Layer | Items |
+| Layer | Items today |
 | --- | --- |
 | Primitives (`components/ui/rhs-ui/`) | icons, button, badge, skeleton, separator, kbd, input, label, tooltip, dialog, sheet, tabs, command |
-| Commerce | product-card, variant-selector, cart-drawer, product-gallery |
-| Dashboard | kpi-card |
-| Application | empty-state, command-palette, file-dropzone |
-| Marketing | pricing-section |
+| Commerce | product-card |
 | Theme | rhs-ui-theme |
+
+Next in this release: variant-selector, cart-drawer, product-gallery (commerce),
+kpi-card (dashboard), empty-state, command-palette, file-dropzone (application),
+pricing-section (marketing). Ten items is the ceiling for the first release; quality
+over quantity.
 
 The catalogue: [`public/r/registry.json`](./public/r/registry.json). Browse with
 previews and docs at [rhsui.com/components](https://rhsui.com/components).
