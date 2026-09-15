@@ -23,6 +23,8 @@ jobs:
         run: pnpm typecheck
       - name: Registry gate (with self-test)
         run: pnpm check:registry
+      - name: Button slot server rendering regression
+        run: pnpm test:button
       - name: Built output is up to date
         run: pnpm check:built
       - name: No private material
