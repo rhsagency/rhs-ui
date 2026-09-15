@@ -26,7 +26,7 @@
           "target": "components/ui/rhs-ui/icons.tsx"
         }
       ],
-      "docs": "Import the glyphs you need from \"@/components/ui/rhs-ui/icons\". Pass a title when an icon is the only label."
+      "docs": "Import the glyphs you need from \"@rhs-ui/ui/icons\". Pass a title when an icon is the only label."
     },
     {
       "name": "button",

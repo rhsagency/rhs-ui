@@ -65,6 +65,15 @@ try {
     console.log(`\n=== ${flavor}: scaffolding ===`);
     await run(`pnpm create next-app@16.3.5 app-${flavor} --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --turbopack --use-pnpm --yes`, scratch);
     await run(`pnpm dlx shadcn@latest init -y -b ${flavor} -p nova`, dir);
+    // The documented RHS aliases coexist with the consumer's existing UI.
+    const tsconfigPath=path.join(dir,"tsconfig.json");
+    const tsconfig=JSON.parse(readFileSync(tsconfigPath,"utf8"));
+    Object.assign(tsconfig.compilerOptions.paths, {
+      "@rhs-ui/ui/*":["./src/components/ui/rhs-ui/*"],
+      "@rhs-ui/components/*":["./src/components/rhs-ui/*"],
+      "@rhs-ui/blocks/*":["./src/blocks/rhs-ui/*"],
+    });
+    writeFileSync(tsconfigPath,JSON.stringify(tsconfig,null,2));
     for (const item of items) {
       console.log(`--- ${flavor}: add ${item}`);
       try {
@@ -83,7 +92,7 @@ try {
     // A page that renders the product card, so the typecheck covers usage.
     writeFileSync(
       path.join(dir, "src", "app", "rhs-ui-smoke.tsx"),
-      `import { ProductCard } from "@/components/rhs-ui/product-card/product-card";\nimport { Button } from "@/components/ui/rhs-ui/button";\nexport function Smoke() { return <div><Button>Ok</Button><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }\n`,
+      `import { ProductCard } from "@rhs-ui/components/product-card/product-card";\nimport { Button } from "@rhs-ui/ui/button";\nexport { PricingSection } from "@rhs-ui/blocks/pricing-section";\nexport function Smoke() { return <div><Button>Ok</Button><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }\n`,
     );
     console.log(`=== ${flavor}: typecheck ===`);
     try {

@@ -1,6 +1,6 @@
 "use client";
 import { useId } from "react";
-import { Switch } from "@/registry/rhs-ui/ui/rhs-ui/switch";
+import { Switch } from "@rhs-ui/ui/switch";
 export type Preference = {key:string;title:string;description:string;enabled:boolean};
 export function PreferencesPanel({title="Your preferences",items,onChange}:{title?:string;items:readonly Preference[];onChange:(key:string,enabled:boolean)=>void}):React.JSX.Element {
   const id=useId();

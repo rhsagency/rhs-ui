@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
-import { IconSpinner } from "@/registry/rhs-ui/ui/rhs-ui/icons";
+import { IconSpinner } from "@rhs-ui/ui/icons";
 import { cn } from "@/lib/utils";
 
 /**

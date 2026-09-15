@@ -1,4 +1,4 @@
 "use client";
 import {useState} from "react";
-import {PreferencesPanel} from "@/registry/rhs-ui/blocks/rhs-ui/preferences-panel";
+import {PreferencesPanel} from "@rhs-ui/blocks/preferences-panel";
 export default function Demo():React.JSX.Element {const [items,setItems]=useState([{key:"updates",title:"Product updates",description:"Discover new components and improvements.",enabled:true},{key:"focus",title:"Focus mode",description:"Keep the workspace quiet while you create.",enabled:false},{key:"shortcuts",title:"Keyboard shortcuts",description:"Move through your work a little faster.",enabled:true}]);return <div className="mx-auto max-w-2xl p-6"><PreferencesPanel items={items} onChange={(key,enabled)=>setItems(current=>current.map(item=>item.key===key?{...item,enabled}:item))}/><p className="mt-4 text-center text-xs text-muted-foreground" aria-live="polite">Preview only · {items.filter(item=>item.enabled).length} preferences enabled</p></div>;}

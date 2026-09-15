@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { ProductCard } from "@/registry/rhs-ui/components/rhs-ui/product-card/product-card";
-import type { ProductCardProduct } from "@/registry/rhs-ui/components/rhs-ui/product-card/types";
+import { ProductCard } from "@rhs-ui/components/product-card/product-card";
+import type { ProductCardProduct } from "@rhs-ui/components/product-card/types";
 
 const svg = (body: string) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'>${body}</svg>`);
 

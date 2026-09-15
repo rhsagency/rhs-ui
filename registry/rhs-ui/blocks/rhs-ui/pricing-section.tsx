@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/registry/rhs-ui/ui/rhs-ui/button";
+import { Button } from "@rhs-ui/ui/button";
 export type PricingPlan = {id:string;name:string;description:string;monthlyPrice:string;yearlyPrice:string;features:readonly string[];featured?:boolean;action:string};
 export function PricingSection({plans,onSelect}:{plans:readonly PricingPlan[];onSelect:(planId:string,interval:"monthly"|"yearly")=>void}):React.JSX.Element {
   const [interval,setInterval]=useState<"monthly"|"yearly">("monthly");

@@ -3,8 +3,8 @@
 import type { ComponentProps } from "react";
 import { Command as CommandPrimitive } from "cmdk";
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/registry/rhs-ui/ui/rhs-ui/dialog";
-import { IconSearch } from "@/registry/rhs-ui/ui/rhs-ui/icons";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@rhs-ui/ui/dialog";
+import { IconSearch } from "@rhs-ui/ui/icons";
 import { cn } from "@/lib/utils";
 
 /**

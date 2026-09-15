@@ -69,8 +69,9 @@ export function checkItems(items) {
     for (const f of item.files ?? []) {
       if (!existsSync(path.join(root, f.path))) continue;
       const src = readFileSync(path.join(root, f.path), "utf8");
-      for (const m of src.matchAll(/from\s+["']@\/registry\/rhs-ui\/([^"']+)["']/g)) {
-        const target = `registry/rhs-ui/${m[1]}`;
+      if (src.includes("@/registry/rhs-ui/")) p("legacy registry import; use @rhs-ui/<group>/<item>");
+      for (const m of src.matchAll(/from\s+["']@rhs-ui\/(ui|components|blocks)\/([^"']+)["']/g)) {
+        const target = `registry/rhs-ui/${m[1]}/rhs-ui/${m[2]}`;
         if (own.has(target)) continue;
         const dep = [...byName.values()].find((i) => (i.files ?? []).some((ff) => ff.path.replace(/\.tsx?$/, "") === target));
         if (!dep) p(`import of ${m[1]} does not belong to any item`);
@@ -78,7 +79,7 @@ export function checkItems(items) {
       }
       for (const m of src.matchAll(/from\s+["']([^"'.@][^"']*|@[^/"']+\/[^"']+)["']/g)) {
         const spec = m[1];
-        if (spec.startsWith("@/")) continue;
+        if (spec.startsWith("@/") || spec.startsWith("@rhs-ui/")) continue;
         const pkg = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0];
         if (["react", "react-dom"].includes(pkg)) continue;
         if (!(item.dependencies ?? []).some((d) => d === pkg || d.startsWith(`${pkg}@`))) {

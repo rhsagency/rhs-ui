@@ -3,13 +3,13 @@
 import { useId, useState, type ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { Badge } from "@/registry/rhs-ui/ui/rhs-ui/badge";
-import { Button } from "@/registry/rhs-ui/ui/rhs-ui/button";
-import { IconBag, IconCheck } from "@/registry/rhs-ui/ui/rhs-ui/icons";
-import { Skeleton } from "@/registry/rhs-ui/ui/rhs-ui/skeleton";
+import { Badge } from "@rhs-ui/ui/badge";
+import { Button } from "@rhs-ui/ui/button";
+import { IconBag, IconCheck } from "@rhs-ui/ui/icons";
+import { Skeleton } from "@rhs-ui/ui/skeleton";
 import { cn } from "@/lib/utils";
 
-import type { ProductCardImage, ProductCardProduct, ProductCardVariant } from "@/registry/rhs-ui/components/rhs-ui/product-card/types";
+import type { ProductCardImage, ProductCardProduct, ProductCardVariant } from "@rhs-ui/components/product-card/types";
 
 const productCardVariants = cva(
   "group/product-card relative flex flex-col gap-3 rounded-xl border border-border bg-card text-card-foreground transition-[border-color,box-shadow] duration-200 focus-within:border-ring/60 hover:border-ring/40",

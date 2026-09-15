@@ -3,7 +3,7 @@
 import type { ComponentProps } from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-import { IconClose } from "@/registry/rhs-ui/ui/rhs-ui/icons";
+import { IconClose } from "@rhs-ui/ui/icons";
 import { cn } from "@/lib/utils";
 
 /**

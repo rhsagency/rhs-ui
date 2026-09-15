@@ -29,7 +29,19 @@ source lives in a private repository and is never part of this one.
 
 ## Install
 
-Any project set up with `npx shadcn@latest init` can install an item directly:
+Start with `npx shadcn@latest init`, then merge these aliases into
+`compilerOptions.paths` in your `tsconfig.json` once. Keep your existing aliases.
+For projects without a `src` directory, remove `/src` from the paths.
+
+```json
+{
+  "@rhs-ui/ui/*": ["./src/components/ui/rhs-ui/*"],
+  "@rhs-ui/components/*": ["./src/components/rhs-ui/*"],
+  "@rhs-ui/blocks/*": ["./src/blocks/rhs-ui/*"]
+}
+```
+
+Then install an item directly:
 
 ```bash
 npx shadcn@latest add https://rhsui.com/r/product-card.json
@@ -47,7 +59,8 @@ The CLI installs the item, the RHS UI primitives it composes
 them.
 
 ```tsx
-import { ProductCard } from "@/components/rhs-ui/product-card/product-card";
+import { Button } from "@rhs-ui/ui/button";
+import { ProductCard } from "@rhs-ui/components/product-card/product-card";
 ```
 
 Without rhsui.com: every built item is committed under [`public/r/`](./public/r) and
