@@ -3,7 +3,15 @@
 All notable changes to the RHS UI registry. Versions are git tags; items carry their
 own `meta.version` and are listed when they change.
 
-## Unreleased (0.2.0)
+## Unreleased (0.5.0)
+
+- Four animated canvas backgrounds: dot field, contour field, orbit field and architect grid. Shared engine pauses offscreen, in hidden tabs and with reduced motion.
+- Six marketing blocks: split hero, feature spotlight, process, FAQ, animated metrics and closing CTA.
+- Four application components: segmented control, copy field, before/after comparison and activity timeline.
+- Model recipes can set the torus tube radius for finer spatial compositions.
+- Every new public item includes a working registry demo.
+
+## Previous additions (0.2.0)
 
 ### Changed (breaking)
 

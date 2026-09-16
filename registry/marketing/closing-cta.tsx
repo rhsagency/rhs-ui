@@ -1,0 +1,5 @@
+import type { ReactNode } from "react";
+
+export function ClosingCta({ eyebrow, title, description, action, note }: { eyebrow?: string; title: string; description?: string; action: ReactNode; note?: string }): React.JSX.Element {
+  return <section data-slot="closing-cta" className="relative overflow-hidden rounded-2xl border border-border bg-muted px-6 py-16 text-center sm:px-12 sm:py-24"><div aria-hidden="true" className="pointer-events-none absolute inset-x-8 top-5 flex justify-between font-mono text-xs text-muted-foreground"><span>+</span><span>+</span></div>{eyebrow && <p className="text-xs uppercase tracking-[.18em] text-muted-foreground">{eyebrow}</p>}<h2 className="mx-auto mt-5 max-w-2xl text-4xl font-medium leading-tight tracking-[-.045em] sm:text-5xl">{title}</h2>{description && <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">{description}</p>}<div className="mt-8 flex flex-wrap justify-center gap-3">{action}</div>{note && <p className="mt-5 text-xs text-muted-foreground">{note}</p>}</section>;
+}

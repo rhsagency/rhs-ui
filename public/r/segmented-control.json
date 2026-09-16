@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "title": "Segmented Control",
+  "description": "A controlled segmented choice with roving keyboard focus.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/segmented-control.tsx",
+      "content": "\"use client\";\nimport { useId, useRef } from \"react\";\nimport { cn } from \"@/lib/utils\";\nexport interface SegmentOption { value: string; label: string; disabled?: boolean }\nexport interface SegmentedControlProps { label: string; options: readonly SegmentOption[]; value: string; onValueChange: (value: string) => void; className?: string }\nexport function SegmentedControl({ label, options, value, onValueChange, className }: SegmentedControlProps): React.JSX.Element {\n  const id = useId(); const root = useRef<HTMLDivElement>(null);\n  return <div ref={root} data-slot=\"segmented-control\" role=\"radiogroup\" aria-label={label} className={cn(\"inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-border bg-muted p-1\",className)} onKeyDown={(event) => {\n    if (![\"ArrowRight\",\"ArrowLeft\",\"ArrowUp\",\"ArrowDown\",\"Home\",\"End\"].includes(event.key)) return;\n    event.preventDefault(); const enabled = options.filter(item=>!item.disabled); if (!enabled.length) return;\n    const index = enabled.findIndex(item=>item.value===value);\n    const next = event.key === \"Home\" ? 0 : event.key === \"End\" ? enabled.length-1 : (index + (event.key === \"ArrowRight\" || event.key === \"ArrowDown\" ? 1 : -1) + enabled.length) % enabled.length;\n    const option = enabled[next]!; onValueChange(option.value); root.current?.querySelector<HTMLButtonElement>(`[data-index=\"${options.indexOf(option)}\"]`)?.focus();\n  }}>{options.map((option,index)=><button key={option.value} id={`${id}-${index}`} type=\"button\" role=\"radio\" data-index={index} aria-checked={option.value===value} disabled={option.disabled} tabIndex={option.value===value || (!options.some(item=>item.value===value&&!item.disabled) && index===options.findIndex(item=>!item.disabled)) ? 0 : -1} onClick={()=>onValueChange(option.value)} className={cn(\"whitespace-nowrap rounded-lg px-4 py-2 text-sm transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-40 motion-reduce:transition-none\",option.value===value?\"bg-background text-foreground shadow-sm\":\"text-muted-foreground hover:text-foreground\")}>{option.label}</button>)}</div>;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/segmented-control.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "categories": [
+    "application"
+  ],
+  "type": "registry:component"
+}

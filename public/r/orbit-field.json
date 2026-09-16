@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbit-field",
+  "title": "Orbit Field",
+  "description": "Nested elliptical orbits with slowly moving satellites.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/orbit-field.tsx",
+      "content": "import { BackgroundCanvas, type BackgroundCanvasProps } from \"@rhs-ui/backgrounds/background-canvas\";\nexport function OrbitField(props: Omit<BackgroundCanvasProps, \"pattern\">): React.JSX.Element { return <BackgroundCanvas pattern=\"orbits\" {...props} />; }\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/orbit-field.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

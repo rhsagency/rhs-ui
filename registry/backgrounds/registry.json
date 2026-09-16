@@ -1,0 +1,198 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "dot-field",
+      "type": "registry:component",
+      "title": "Dot Field",
+      "description": "A breathing dot field with gently travelling waves.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/dot-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/dot-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dot-field-demo",
+      "type": "registry:example",
+      "title": "Dot Field demo",
+      "description": "A working preview of Dot Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dot-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dot-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contour-field",
+      "type": "registry:component",
+      "title": "Contour Field",
+      "description": "Fine topographic lines flowing across the surface.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/contour-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/contour-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contour-field-demo",
+      "type": "registry:example",
+      "title": "Contour Field demo",
+      "description": "A working preview of Contour Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contour-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contour-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "orbit-field",
+      "type": "registry:component",
+      "title": "Orbit Field",
+      "description": "Nested elliptical orbits with slowly moving satellites.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/orbit-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/orbit-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "orbit-field-demo",
+      "type": "registry:example",
+      "title": "Orbit Field demo",
+      "description": "A working preview of Orbit Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/orbit-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/orbit-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "architect-grid",
+      "type": "registry:component",
+      "title": "Architect Grid",
+      "description": "A moving perspective grid with a quiet open horizon.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/architect-grid.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/architect-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "architect-grid-demo",
+      "type": "registry:example",
+      "title": "Architect Grid demo",
+      "description": "A working preview of Architect Grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/architect-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/architect-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "background-canvas",
+      "type": "registry:internal",
+      "title": "Background Canvas",
+      "description": "A shared decorative canvas with offscreen suspension and reduced motion.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/backgrounds/background-canvas.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/background-canvas.tsx"
+        }
+      ]
+    }
+  ]
+}

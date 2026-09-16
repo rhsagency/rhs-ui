@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "architect-grid-demo",
+  "title": "Architect Grid demo",
+  "description": "A working preview of Architect Grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/architect-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/architect-grid-demo.tsx",
+      "content": "\"use client\";\nimport { useState } from \"react\";\nimport { ArchitectGrid } from \"@rhs-ui/backgrounds/architect-grid\";\nexport default function Demo(): React.JSX.Element { const [paused,setPaused]=useState(false); return <div className=\"w-full\"><ArchitectGrid paused={paused} className=\"flex min-h-80 items-center justify-center rounded-xl border border-border bg-muted\"><div className=\"rounded-xl border border-border bg-background/95 px-8 py-6 text-center\"><p className=\"text-xs uppercase tracking-widest text-muted-foreground\">Background study</p><p className=\"mt-3 text-3xl font-medium tracking-tight\">Architect Grid</p></div></ArchitectGrid><button type=\"button\" aria-pressed={paused} onClick={()=>setPaused(!paused)} className=\"mt-4 rounded-lg border border-border px-4 py-2 text-sm\">{paused?\"Resume motion\":\"Pause motion\"}</button></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

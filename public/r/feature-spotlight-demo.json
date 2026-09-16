@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-spotlight-demo",
+  "title": "Feature Spotlight demo",
+  "description": "A working preview of Feature Spotlight.",
+  "registryDependencies": [
+    "https://rhsui.com/r/feature-spotlight.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-spotlight-demo.tsx",
+      "content": "\"use client\";\nimport { FeatureSpotlight } from \"@rhs-ui/marketing/feature-spotlight\";\nexport default function Demo(): React.JSX.Element { return <div className=\"mx-auto max-w-5xl px-6\"><FeatureSpotlight title=\"One idea. Every detail.\" features={[{id:\"structure\",label:\"Structure\",title:\"A place for everything.\",description:\"Start with a clear hierarchy, then make room for the details that matter.\",visual:<div className=\"grid aspect-[4/3] grid-cols-3 gap-3 p-8\"><div className=\"row-span-2 rounded-lg bg-foreground/15\"/><div className=\"col-span-2 rounded-lg border border-border bg-background\"/><div className=\"rounded-lg bg-background\"/><div className=\"rounded-lg bg-foreground/10\"/></div>},{id:\"rhythm\",label:\"Rhythm\",title:\"Space to breathe.\",description:\"A consistent rhythm connects each part without making everything look the same.\",visual:<div className=\"flex aspect-[4/3] items-end gap-4 p-10\">{[40,70,55,90,65].map((height,index)=><div key={index} className=\"flex-1 rounded-t-lg bg-foreground/20\" style={{height:height+'%'}}/>)}</div>},{id:\"finish\",label:\"Finish\",title:\"Small things, considered.\",description:\"Legible type, balanced contrast and useful states make a product feel complete.\",visual:<div className=\"flex aspect-[4/3] flex-col items-center justify-center gap-4\"><span className=\"flex size-20 items-center justify-center rounded-full border border-border bg-background text-3xl\">✓</span><span className=\"text-sm\">Ready for the next step</span></div>}]} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

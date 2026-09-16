@@ -120,6 +120,12 @@ public/r/                             built output, one JSON per item, committed
 scripts/                              build and gates
 ```
 
+## Backgrounds and page sections
+
+Four canvas backgrounds live under `@rhs-ui/backgrounds/`. Pass `paused` and `speed`, and place your own content inside. Each respects reduced motion and stops rendering outside the viewport.
+
+Marketing blocks include a split hero, keyboard-accessible feature tabs, process steps, FAQs, animated metrics, pricing and a closing CTA. Application additions include segmented choices, clipboard feedback, image comparison and an event timeline. All are MIT licensed with working demos.
+
 ## Development
 
 ```bash

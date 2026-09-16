@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metrics-band",
+  "title": "Metrics Band",
+  "description": "A responsive strip of metrics with smooth interrupted number transitions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-number.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/metrics-band.tsx",
+      "content": "import { AnimatedNumber } from \"@rhs-ui/application/animated-number\";\n\nexport interface MetricItem { id: string; label: string; value: number; suffix?: string; description?: string }\nexport function MetricsBand({ label, metrics, locale = \"en-US\" }: { label: string; metrics: readonly MetricItem[]; locale?: string }): React.JSX.Element {\n  return <section data-slot=\"metrics-band\" aria-label={label} className=\"py-10\"><dl className=\"grid gap-8 border-y border-border py-10 sm:grid-flow-col sm:auto-cols-fr sm:gap-0 sm:divide-x sm:divide-border\">{metrics.map(metric => <div key={metric.id} className=\"px-6 text-center\"><dt className=\"text-xs font-medium uppercase tracking-[.12em] text-muted-foreground\">{metric.label}</dt><dd className=\"mt-4 text-5xl font-medium tracking-[-.05em]\"><AnimatedNumber value={metric.value} locale={locale} /><span className=\"ml-1 text-muted-foreground\">{metric.suffix}</span></dd>{metric.description && <dd className=\"mt-3 text-xs leading-relaxed text-muted-foreground\">{metric.description}</dd>}</div>)}</dl></section>;\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/metrics-band.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "frame"
+  },
+  "categories": [
+    "marketing"
+  ],
+  "type": "registry:block"
+}

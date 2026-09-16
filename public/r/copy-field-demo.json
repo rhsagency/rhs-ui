@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-field-demo",
+  "title": "Copy Field demo",
+  "description": "A working preview of Copy Field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/copy-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/copy-field-demo.tsx",
+      "content": "\"use client\";\nimport { CopyField } from \"@rhs-ui/application/copy-field\";\nexport default function Demo(): React.JSX.Element { return <div className=\"w-full max-w-xl p-6\"><p className=\"mb-4 text-sm font-medium\">Install a little motion.</p><CopyField value=\"npx shadcn@latest add https://rhsui.com/r/animated-price.json\" label=\"Copy install command\" /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

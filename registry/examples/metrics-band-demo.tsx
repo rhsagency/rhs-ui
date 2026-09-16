@@ -1,0 +1,4 @@
+"use client";
+import { useState } from "react";
+import { MetricsBand } from "@rhs-ui/marketing/metrics-band";
+export default function Demo(): React.JSX.Element { const [year,setYear]=useState(false); return <div className="w-full max-w-5xl p-6"><div className="text-center"><button className="rounded-full border border-border px-5 py-2 text-sm" type="button" onClick={()=>setYear(!year)}>{year?"Show this month":"Show this year"}</button><p className="mt-3 text-xs text-muted-foreground">Illustrative studio activity</p></div><MetricsBand label="Studio activity" metrics={[{id:"projects",label:"Projects",value:year?24:4,description:"Delivered with care"},{id:"screens",label:"Screens",value:year?186:32,description:"Designed and reviewed"},{id:"iterations",label:"Iterations",value:year?72:12,description:"Better with every pass"}]} /></div>; }

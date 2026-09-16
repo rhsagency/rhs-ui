@@ -1,0 +1,6 @@
+import type { ReactNode } from "react";
+
+export interface ProcessStep { id: string; title: string; description: string; detail?: ReactNode }
+export function ProcessSection({ title, description, steps }: { title: string; description?: string; steps: readonly ProcessStep[] }): React.JSX.Element {
+  return <section data-slot="process-section" className="py-16"><header className="mx-auto mb-12 max-w-xl text-center"><h2 className="text-4xl font-medium tracking-tight">{title}</h2>{description && <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{description}</p>}</header><ol className="grid divide-y divide-border border-y border-border md:grid-flow-col md:auto-cols-fr md:divide-x md:divide-y-0">{steps.map((step, index) => <li key={step.id} className="p-7 lg:p-9"><span className="mb-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border font-mono text-xs">{String(index + 1).padStart(2, "0")}</span><h3 className="text-xl font-medium tracking-tight">{step.title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.description}</p>{step.detail && <div className="mt-7 text-xs text-muted-foreground">{step.detail}</div>}</li>)}</ol></section>;
+}

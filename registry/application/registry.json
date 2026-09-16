@@ -167,6 +167,168 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:component",
+      "title": "Segmented Control",
+      "description": "A controlled segmented choice with roving keyboard focus.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/segmented-control.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/segmented-control.tsx"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control-demo",
+      "type": "registry:example",
+      "title": "Segmented Control demo",
+      "description": "A working preview of Segmented Control.",
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/segmented-control-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "copy-field",
+      "type": "registry:component",
+      "title": "Copy Field",
+      "description": "A selectable code field with clipboard feedback and an error fallback.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-copy.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/copy-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/copy-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-field-demo",
+      "type": "registry:example",
+      "title": "Copy Field demo",
+      "description": "A working preview of Copy Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/copy-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "comparison-slider",
+      "type": "registry:component",
+      "title": "Comparison Slider",
+      "description": "An accessible before and after comparison with a native range control.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/comparison-slider.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/comparison-slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "comparison-slider-demo",
+      "type": "registry:example",
+      "title": "Comparison Slider demo",
+      "description": "A working preview of Comparison Slider.",
+      "registryDependencies": [
+        "https://rhsui.com/r/comparison-slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/comparison-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "activity-timeline",
+      "type": "registry:component",
+      "title": "Activity Timeline",
+      "description": "A compact event timeline with timestamps and a current state.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/activity-timeline.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/activity-timeline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "activity-timeline-demo",
+      "type": "registry:example",
+      "title": "Activity Timeline demo",
+      "description": "A working preview of Activity Timeline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/activity-timeline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/activity-timeline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

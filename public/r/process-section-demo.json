@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "process-section-demo",
+  "title": "Process Section demo",
+  "description": "A working preview of Process Section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/process-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/process-section-demo.tsx",
+      "content": "\"use client\";\nimport { ProcessSection } from \"@rhs-ui/marketing/process-section\";\nexport default function Demo(): React.JSX.Element { return <div className=\"mx-auto max-w-6xl px-6\"><ProcessSection title=\"From the first thought to the final detail.\" description=\"A clear process keeps the work moving and everyone on the same page.\" steps={[{id:\"discover\",title:\"Find the direction\",description:\"Get close to the problem, ask better questions and agree on what success looks like.\",detail:\"01 / Discovery\"},{id:\"shape\",title:\"Make it tangible\",description:\"Explore the strongest ideas through prototypes you can see, touch and respond to.\",detail:\"02 / Design\"},{id:\"deliver\",title:\"Bring it to life\",description:\"Build, test and refine until every part works together as one coherent experience.\",detail:\"03 / Delivery\"}]} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -11,6 +11,8 @@ export type ModelPart = {
   color?: string;
   metalness?: number;
   roughness?: number;
+  /** Tube radius for a torus, relative to its unit ring radius. */
+  tube?: number;
 };
 export type ModelAsset = { url: string; position?: readonly [number, number, number]; rotation?: readonly [number, number, number]; scale?: readonly [number, number, number] };
 export type ModelRecipe = { name: string; parts: readonly ModelPart[]; assets?: readonly ModelAsset[] };
@@ -54,7 +56,7 @@ export function ModelViewer({ model, poster, className, active = false }: ModelV
       for (const part of model.parts) {
         const geometry = part.shape === "box" ? new RoundedBoxGeometry(1.7, 1.7, 1.7, 5, 0.2)
           : part.shape === "sphere" ? new T.SphereGeometry(1, 48, 32)
-          : part.shape === "torus" ? new T.TorusGeometry(1, 0.24, 24, 80)
+          : part.shape === "torus" ? new T.TorusGeometry(1, Number.isFinite(part.tube) ? Math.max(.01, Math.min(.5, part.tube!)) : .24, 24, 80)
           : part.shape === "knot" ? new T.TorusKnotGeometry(0.85, 0.24, 128, 20)
           : part.shape === "capsule" ? new T.CapsuleGeometry(0.6, 1, 12, 32)
           : part.shape === "octahedron" ? new T.OctahedronGeometry(1, 0)

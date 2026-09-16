@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "process-section",
+  "title": "Process Section",
+  "description": "A numbered process section with responsive steps and supporting details.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/process-section.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nexport interface ProcessStep { id: string; title: string; description: string; detail?: ReactNode }\nexport function ProcessSection({ title, description, steps }: { title: string; description?: string; steps: readonly ProcessStep[] }): React.JSX.Element {\n  return <section data-slot=\"process-section\" className=\"py-16\"><header className=\"mx-auto mb-12 max-w-xl text-center\"><h2 className=\"text-4xl font-medium tracking-tight\">{title}</h2>{description && <p className=\"mt-4 text-sm leading-relaxed text-muted-foreground\">{description}</p>}</header><ol className=\"grid divide-y divide-border border-y border-border md:grid-flow-col md:auto-cols-fr md:divide-x md:divide-y-0\">{steps.map((step, index) => <li key={step.id} className=\"p-7 lg:p-9\"><span className=\"mb-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border font-mono text-xs\">{String(index + 1).padStart(2, \"0\")}</span><h3 className=\"text-xl font-medium tracking-tight\">{step.title}</h3><p className=\"mt-3 text-sm leading-relaxed text-muted-foreground\">{step.description}</p>{step.detail && <div className=\"mt-7 text-xs text-muted-foreground\">{step.detail}</div>}</li>)}</ol></section>;\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/process-section.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "frame"
+  },
+  "categories": [
+    "marketing"
+  ],
+  "type": "registry:block"
+}
