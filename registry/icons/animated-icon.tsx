@@ -48,8 +48,12 @@ export interface IconMotion {
 const TRIGGER_ZONE = "[data-rhs-icon-trigger], button, a[href], [role='button'], summary, label";
 const EASE = "cubic-bezier(0.2, 0.7, 0.2, 1)";
 
-/** One of our own motions, as opposed to a CSS transition or a CSS animation. */
-const isIconMotion = (animation: Animation): boolean =>
+/**
+ * One of our own motions, as opposed to a CSS transition or a CSS animation.
+ * Exported so code that drives an icon can tell them apart too: cancelling a
+ * motion is fine, cancelling a state transition would leave the icon half way.
+ */
+export const isIconMotion = (animation: Animation): boolean =>
   animation.playState === "running" && !("transitionProperty" in animation) && !("animationName" in animation);
 
 /**
