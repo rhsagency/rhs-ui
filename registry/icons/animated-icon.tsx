@@ -48,6 +48,10 @@ export interface IconMotion {
 const TRIGGER_ZONE = "[data-rhs-icon-trigger], button, a[href], [role='button'], summary, label";
 const EASE = "cubic-bezier(0.2, 0.7, 0.2, 1)";
 
+/** One of our own motions, as opposed to a CSS transition or a CSS animation. */
+const isIconMotion = (animation: Animation): boolean =>
+  animation.playState === "running" && !("transitionProperty" in animation) && !("animationName" in animation);
+
 /**
  * Plays one motion on a glyph and resolves when every part has finished.
  * Nothing moves for a visitor who asks for reduced motion, and a motion that
@@ -58,7 +62,10 @@ const EASE = "cubic-bezier(0.2, 0.7, 0.2, 1)";
 export function playIconMotion(svg: SVGSVGElement, motion: IconMotion): Promise<void> {
   if (typeof svg.animate !== "function") return Promise.resolve();
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return Promise.resolve();
-  if (svg.getAnimations({ subtree: true }).some((a) => a.playState === "running")) return Promise.resolve();
+  // Only a motion of our own blocks the next one. A CSS transition inside the
+  // same icon (a state icon switching, a part fading) is not a reason to skip:
+  // that cost the first run of every motion that starts with a state change.
+  if (svg.getAnimations({ subtree: true }).some(isIconMotion)) return Promise.resolve();
   return Promise.all(
     motion.steps.flatMap((step) =>
       Array.from(svg.querySelectorAll(`[data-part="${step.part}"]`), (el) =>
@@ -81,7 +88,7 @@ export function useIconMotion(ref: RefObject<SVGSVGElement | null>, motion: Icon
     // Test environments without the Web Animations API render the still glyph.
     if (!svg || trigger === "static" || typeof svg.animate !== "function") return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const moving = (): boolean => svg.getAnimations({ subtree: true }).some((a) => a.playState === "running");
+    const moving = (): boolean => svg.getAnimations({ subtree: true }).some(isIconMotion);
     const play = (): Promise<unknown> => playIconMotion(svg, motion);
     let disposed = false;
     let visible = false;
