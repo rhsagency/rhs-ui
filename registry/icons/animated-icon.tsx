@@ -48,6 +48,33 @@ export interface IconMotion {
 const TRIGGER_ZONE = "[data-rhs-icon-trigger], button, a[href], [role='button'], summary, label";
 const EASE = "cubic-bezier(0.2, 0.7, 0.2, 1)";
 
+/**
+ * Plays one motion on a glyph and resolves when every part has finished.
+ * Nothing moves for a visitor who asks for reduced motion, and a motion that
+ * is already running is never doubled. Use it to drive an icon from your own
+ * code (a check that draws when a save succeeds, for example); `trigger` on
+ * the icon covers hover, focus, loop and first view without this.
+ */
+export function playIconMotion(svg: SVGSVGElement, motion: IconMotion): Promise<void> {
+  if (typeof svg.animate !== "function") return Promise.resolve();
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return Promise.resolve();
+  if (svg.getAnimations({ subtree: true }).some((a) => a.playState === "running")) return Promise.resolve();
+  return Promise.all(
+    motion.steps.flatMap((step) =>
+      Array.from(svg.querySelectorAll(`[data-part="${step.part}"]`), (el) =>
+        el
+          .animate(step.origin ? step.keyframes.map((frame) => ({ transformOrigin: step.origin, ...frame })) : step.keyframes, {
+            duration: step.duration,
+            delay: step.delay ?? 0,
+            easing: step.easing ?? EASE,
+            fill: "backwards",
+          })
+          .finished.catch(() => undefined),
+      ),
+    ),
+  ).then(() => undefined);
+}
+
 export function useIconMotion(ref: RefObject<SVGSVGElement | null>, motion: IconMotion, trigger: IconTrigger): void {
   useEffect(() => {
     const svg = ref.current;
@@ -55,23 +82,7 @@ export function useIconMotion(ref: RefObject<SVGSVGElement | null>, motion: Icon
     if (!svg || trigger === "static" || typeof svg.animate !== "function") return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const moving = (): boolean => svg.getAnimations({ subtree: true }).some((a) => a.playState === "running");
-    const play = (): Promise<unknown> => {
-      if (reduced.matches || moving()) return Promise.resolve();
-      return Promise.all(
-        motion.steps.flatMap((step) =>
-          Array.from(svg.querySelectorAll(`[data-part="${step.part}"]`), (el) =>
-            el
-              .animate(step.origin ? step.keyframes.map((frame) => ({ transformOrigin: step.origin, ...frame })) : step.keyframes, {
-                duration: step.duration,
-                delay: step.delay ?? 0,
-                easing: step.easing ?? EASE,
-                fill: "backwards",
-              })
-              .finished.catch(() => undefined),
-          ),
-        ),
-      );
-    };
+    const play = (): Promise<unknown> => playIconMotion(svg, motion);
     let disposed = false;
     let visible = false;
     let timer = 0;
