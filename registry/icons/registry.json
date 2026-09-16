@@ -498,6 +498,396 @@
         }
       ],
       "docs": "Bind active to the resolved theme after hydration, so the server and the first client render agree."
+    },
+    {
+      "name": "animated-settings",
+      "type": "registry:ui",
+      "title": "Animated settings",
+      "description": "A gear that turns one tooth and settles while the hub gives a little. For settings and preferences.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/settings.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/settings.tsx"
+        }
+      ],
+      "docs": "Inside a settings button it turns on hover and on keyboard focus. Use trigger=\"loop\" while preferences are saving."
+    },
+    {
+      "name": "animated-mail",
+      "type": "registry:ui",
+      "title": "Animated mail",
+      "description": "The flap folds open and a letter rises out before everything closes again. For mail, invites and messages.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/mail.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/mail.tsx"
+        }
+      ],
+      "docs": "Use it in a contact or invite action; trigger=\"appear\" plays it once when the section scrolls into view."
+    },
+    {
+      "name": "animated-upload",
+      "type": "registry:ui",
+      "title": "Animated upload",
+      "description": "The arrow leaves through the top and comes back from the tray, which gives under it. For upload and import actions.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/upload.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/upload.tsx"
+        }
+      ],
+      "docs": "Switch to trigger=\"loop\" while a file is uploading and set aria-busy on the button."
+    },
+    {
+      "name": "animated-star",
+      "type": "registry:ui",
+      "title": "Animated star",
+      "description": "A fifth of a turn lands the star back on itself, with a pop at the end. For ratings, favourites and highlights.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/star.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/star.tsx"
+        }
+      ],
+      "docs": "Pair it with aria-pressed on a favourite button; the icon shows the gesture, the button holds the state."
+    },
+    {
+      "name": "animated-log-out",
+      "type": "registry:ui",
+      "title": "Animated log out",
+      "description": "The arrow leaves through the door and comes back in behind it. For sign out and leave actions.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/log-out.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/log-out.tsx"
+        }
+      ],
+      "docs": "Inside a sign-out button it plays on hover and on keyboard focus of that button."
+    },
+    {
+      "name": "animated-phone",
+      "type": "registry:ui",
+      "title": "Animated phone",
+      "description": "A handset that rings: a shake that dies out. For call actions and contact details.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/phone.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/phone.tsx"
+        }
+      ],
+      "docs": "Use trigger=\"loop\" for an incoming call and stop the loop the moment it is answered."
+    },
+    {
+      "name": "animated-clock",
+      "type": "registry:ui",
+      "title": "Animated clock",
+      "description": "Time passing: the minute hand makes two turns while the hour hand makes one. For schedules, history and timers.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/clock.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/clock.tsx"
+        }
+      ],
+      "docs": "Use trigger=\"loop\" while something is pending, or trigger=\"appear\" on a history panel."
+    },
+    {
+      "name": "animated-message",
+      "type": "registry:ui",
+      "title": "Animated message",
+      "description": "Three dots type inside the bubble and leave it empty again. For chat, comments and support.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/message.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/message.tsx"
+        }
+      ],
+      "docs": "Use trigger=\"loop\" as a typing indicator and announce the same thing in a live region."
+    },
+    {
+      "name": "animated-lock",
+      "type": "registry:ui",
+      "title": "Animated lock",
+      "description": "A padlock that springs open. For locked and unlocked states.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/lock.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/lock.tsx"
+        }
+      ],
+      "docs": "Set active when whatever it guards is unlocked, and mirror that in the button label or aria-pressed."
+    },
+    {
+      "name": "animated-eye",
+      "type": "registry:ui",
+      "title": "Animated eye",
+      "description": "The eye closes behind a line that draws itself. For showing and hiding a password or a value.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/eye.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/eye.tsx"
+        }
+      ],
+      "docs": "Set active when the content is hidden; the button label should change with it (Show password, Hide password)."
+    },
+    {
+      "name": "animated-play-pause",
+      "type": "registry:ui",
+      "title": "Animated play and pause",
+      "description": "Play turns into pause and back. For media and any start and stop control.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/play-pause.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/play-pause.tsx"
+        }
+      ],
+      "docs": "Set active while something is playing, and keep the accessible name in step (Play, Pause)."
+    },
+    {
+      "name": "animated-plus",
+      "type": "registry:ui",
+      "title": "Animated plus",
+      "description": "A plus that turns an eighth of a turn into a close. For add buttons that open something.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/plus.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/plus.tsx"
+        }
+      ],
+      "docs": "Bind active to the open state of the menu or panel it toggles, next to aria-expanded."
+    },
+    {
+      "name": "animated-bookmark",
+      "type": "registry:ui",
+      "title": "Animated bookmark",
+      "description": "The ribbon fills and drops into place. For saving an item for later.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.2.0",
+        "since": "0.2.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "state"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bookmark.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bookmark.tsx"
+        }
+      ],
+      "docs": "Set active when the item is saved and use aria-pressed on the button around it."
     }
   ]
 }

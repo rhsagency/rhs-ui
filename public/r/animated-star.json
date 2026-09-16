@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-star",
+  "title": "Animated star",
+  "description": "A fifth of a turn lands the star back on itself, with a pop at the end. For ratings, favourites and highlights.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/star.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** A fifth of a turn, which lands the star back on itself, with a pop at the end. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"star\",\n      origin: \"12px 11.6px\",\n      duration: 720,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"rotate(0deg) scale(1)\", easing: \"cubic-bezier(0.5, 0, 0.75, 0)\" },\n        { offset: 0.42, transform: \"rotate(30deg) scale(0.82)\", easing: \"cubic-bezier(0.2, 0.7, 0.2, 1)\" },\n        { offset: 0.78, transform: \"rotate(72deg) scale(1.14)\", easing: \"ease-in-out\" },\n        { transform: \"rotate(72deg) scale(1)\" },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconStarAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"star\" d=\"M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/star.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Pair it with aria-pressed on a favourite button; the icon shows the gesture, the button holds the state.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

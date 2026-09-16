@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-clock",
+  "title": "Animated clock",
+  "description": "Time passing: the minute hand makes two turns while the hour hand makes one. For schedules, history and timers.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/clock.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** Time passes: the minute hand makes two turns while the hour hand makes one. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"minute\",\n      origin: \"12px 12px\",\n      duration: 1200,\n      easing: \"cubic-bezier(0.65, 0, 0.35, 1)\",\n      keyframes: [{ transform: \"rotate(0deg)\" }, { transform: \"rotate(720deg)\" }],\n    },\n    {\n      part: \"hour\",\n      origin: \"12px 12px\",\n      duration: 1200,\n      easing: \"cubic-bezier(0.65, 0, 0.35, 1)\",\n      keyframes: [{ transform: \"rotate(0deg)\" }, { transform: \"rotate(360deg)\" }],\n    },\n  ],\n  pause: 1400,\n};\n\nexport function IconClockAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"face\" d=\"M19.7 8.41A8.5 8.5 0 1 1 15.59 4.3\" />\n      <path data-part=\"minute\" d=\"M12 12V7.5\" />\n      <path data-part=\"hour\" d=\"M12 12l3 2\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/clock.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Use trigger=\"loop\" while something is pending, or trigger=\"appear\" on a history panel.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

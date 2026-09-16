@@ -101,9 +101,11 @@ try {
         'import { Glyph, IconBell } from "@rhs-ui/icons";',
         'import { IconBellAnimated } from "@rhs-ui/icons/animated/bell";',
         'import { IconCopyAnimated } from "@rhs-ui/icons/animated/copy";',
+        'import { IconSettingsAnimated } from "@rhs-ui/icons/animated/settings";',
+        'import { IconLockAnimated } from "@rhs-ui/icons/animated/lock";',
         'export { PricingSection } from "@rhs-ui/marketing/pricing-section";',
         'export { EmptyState } from "@rhs-ui/application/empty-state";',
-        'export function Smoke() { return <div><Button><IconBellAnimated trigger="loop" />Ok</Button><IconBell /><IconCopyAnimated active /><Glyph d="M4 12h16" title="Rule" /><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }',
+        'export function Smoke() { return <div><Button><IconBellAnimated trigger="loop" />Ok</Button><IconBell /><IconCopyAnimated active /><IconSettingsAnimated /><IconLockAnimated active /><Glyph d="M4 12h16" title="Rule" /><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /></div>; }',
         "",
       ].join("\n"),
     );

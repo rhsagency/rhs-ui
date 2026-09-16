@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-eye",
+  "title": "Animated eye",
+  "description": "The eye closes behind a line that draws itself. For showing and hiding a password or a value.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/eye.tsx",
+      "content": "import { StateGlyph, STATE_PART, type StateIconProps } from \"@rhs-ui/icons/state-icon\";\nimport { cn } from \"@/lib/utils\";\n\n/** The eye closes behind a line that draws itself. Set `active` when the content is hidden. */\nexport function IconEyeAnimated(props: StateIconProps) {\n  return (\n    <StateGlyph {...props}>\n      <path\n        className={cn(STATE_PART, \"origin-[12px_12px] group-data-[active=true]/rhs-icon:scale-y-[0.72]\")}\n        d=\"M2.5 12C4.5 7.8 8 5.5 12 5.5s7.5 2.3 9.5 6.5c-2 4.2-5.5 6.5-9.5 6.5S4.5 16.2 2.5 12z\"\n      />\n      <path\n        className={cn(STATE_PART, \"origin-[12px_12px] group-data-[active=true]/rhs-icon:scale-50 group-data-[active=true]/rhs-icon:opacity-0\")}\n        d=\"M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\"\n      />\n      <path\n        pathLength={1}\n        strokeDasharray=\"1\"\n        className={cn(\n          STATE_PART,\n          \"opacity-0 [stroke-dashoffset:1] group-data-[active=true]/rhs-icon:opacity-100 group-data-[active=true]/rhs-icon:[stroke-dashoffset:0]\",\n        )}\n        d=\"M4.5 4.5l15 15\"\n      />\n    </StateGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/eye.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "state"
+  },
+  "docs": "Set active when the content is hidden; the button label should change with it (Show password, Hide password).",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

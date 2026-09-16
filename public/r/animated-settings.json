@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-settings",
+  "title": "Animated settings",
+  "description": "A gear that turns one tooth and settles while the hub gives a little. For settings and preferences.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/settings.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The gear turns one tooth and settles; the hub stays where it is. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"gear\",\n      origin: \"12px 12px\",\n      duration: 760,\n      easing: \"cubic-bezier(0.65, 0, 0.35, 1)\",\n      keyframes: [{ transform: \"rotate(0deg)\" }, { transform: \"rotate(60deg)\" }],\n    },\n    {\n      part: \"hub\",\n      origin: \"12px 12px\",\n      duration: 760,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"scale(1)\", easing: \"ease-out\" },\n        { offset: 0.3, transform: \"scale(0.86)\", easing: \"ease-in-out\" },\n        { offset: 0.75, transform: \"scale(1)\" },\n        { transform: \"scale(1)\" },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconSettingsAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path\n        data-part=\"gear\"\n        d=\"M9.89 5.11l.46-2.47h3.3l.46 2.47a7.2 7.2 0 0 1 2.8 1.62l2.37-.84 1.65 2.86-1.91 1.63a7.2 7.2 0 0 1 0 3.24l1.91 1.63-1.65 2.86-2.37-.84a7.2 7.2 0 0 1-2.8 1.62l-.46 2.47h-3.3l-.46-2.47a7.2 7.2 0 0 1-2.8-1.62l-2.37.84-1.65-2.86 1.91-1.63a7.2 7.2 0 0 1 0-3.24L3.07 8.75l1.65-2.86 2.37.84a7.2 7.2 0 0 1 2.8-1.62z\"\n      />\n      <path data-part=\"hub\" d=\"M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/settings.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Inside a settings button it turns on hover and on keyboard focus. Use trigger=\"loop\" while preferences are saving.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

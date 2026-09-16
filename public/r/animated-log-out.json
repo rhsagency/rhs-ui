@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-log-out",
+  "title": "Animated log out",
+  "description": "The arrow leaves through the door and comes back in behind it. For sign out and leave actions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/log-out.tsx",
+      "content": "import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from \"@rhs-ui/icons/animated-icon\";\n\n/** The arrow leaves through the door and comes back in behind it. */\nconst motion: IconMotion = {\n  steps: [\n    {\n      part: \"arrow\",\n      duration: 620,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"translateX(0)\", opacity: 1, easing: \"cubic-bezier(0.4, 0, 1, 1)\" },\n        { offset: 0.42, transform: \"translateX(5px)\", opacity: 0 },\n        { offset: 0.43, transform: \"translateX(-5px)\", opacity: 0, easing: \"cubic-bezier(0.2, 0.7, 0.2, 1)\" },\n        { transform: \"translateX(0)\", opacity: 1 },\n      ],\n    },\n    {\n      part: \"door\",\n      origin: \"4px 12px\",\n      duration: 620,\n      easing: \"linear\",\n      keyframes: [\n        { transform: \"scaleX(1)\" },\n        { offset: 0.35, transform: \"scaleX(0.94)\", easing: \"ease-in-out\" },\n        { offset: 0.8, transform: \"scaleX(1)\" },\n        { transform: \"scaleX(1)\" },\n      ],\n    },\n  ],\n  pause: 1200,\n};\n\nexport function IconLogOutAnimated(props: AnimatedIconProps) {\n  return (\n    <AnimatedGlyph motion={motion} {...props}>\n      <path data-part=\"door\" d=\"M9.5 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3.5\" />\n      <path data-part=\"arrow\" d=\"M16 16l4-4-4-4M20 12H9.5\" />\n    </AnimatedGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/log-out.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "trigger"
+  },
+  "docs": "Inside a sign-out button it plays on hover and on keyboard focus of that button.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}

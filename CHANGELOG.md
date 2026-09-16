@@ -26,14 +26,22 @@ own `meta.version` and are listed when they change.
 
 ### Added
 
-- Icons: 88 new glyphs, 115 in total, in the same drawing hand, and `Glyph`, the frame
-  to draw your own.
-- Animated icons, one item each on the shared `animated-icon` engine: bell, search,
-  arrow-right, heart, sparkle, refresh, download, trash, send, cart and check-circle
-  move on hover, focus, loop or first view; copy, menu and sun-moon switch between two
-  states with `active`. No animation library; reduced motion is respected.
+- Icons: 152 new glyphs, 179 in total, in the same drawing hand, and `Glyph`, the frame
+  to draw your own. The new ones cover application UI (table, board, grip, archive,
+  history, zoom), people and security (user-plus, user-check, fingerprint,
+  shield-alert, building), devices (wifi, battery, power), code (server, git-branch,
+  bug, braces, gauge), files (file-plus, file-check, folder-open, clipboard, save,
+  printer), commerce (wallet, receipt, store, barcode, ticket, gift, banknote) and a
+  text and editing group.
+- Animated icons, one item each on the shared `animated-icon` engine, 27 in total.
+  Motion on a trigger: bell, search, arrow-right, heart, sparkle, refresh, download,
+  trash, send, cart, check-circle, settings, mail, upload, star, log-out, phone, clock
+  and message. Two states with `active`: copy, menu, sun-moon, lock, eye, play-pause,
+  plus and bookmark. No animation library; reduced motion is respected.
 - Registry gate: items must sit in the folder of their category and install to the
-  mirrored path, and every file that calls a hook must be a client module.
+  mirrored path, every file that calls a hook must be a client module, every item is
+  `meta.tier: "free"` (this registry is the free tier) and an animated icon moves on a
+  `trigger` or switches between two states.
 
 ## 0.1.0
 

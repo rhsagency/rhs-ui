@@ -28,6 +28,14 @@ This repository is the **free, open-source** tier (MIT). **RHS UI Pro** is a sep
 paid product with premium templates, complete dashboards and commerce flows; its
 source lives in a private repository and is never part of this one.
 
+Where the line runs: **Free gives you everything you need to build one interface
+right** — the primitives, the whole icon set, the animation engine and the components
+that do one job. **Pro is the bigger picture** — whole flows and finished moments.
+For icons that reads as: a free animated icon answers a control (it moves on hover or
+focus, loops while something happens, or switches between two states); a Pro moment
+icon tells a process at 32 to 96px. Nothing in Free is a cut-down version of a Pro
+item, and an item that is published here stays free.
+
 ## Install
 
 Start with `npx shadcn@latest init`, then add one alias to `compilerOptions.paths` in
@@ -74,7 +82,7 @@ something lives and what it is for.
 | Category | Import | What is in it |
 | --- | --- | --- |
 | Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: button, badge, input, label, switch, slider, dialog, sheet, tooltip, tabs, command, accordion, skeleton, separator, kbd |
-| Icons | `@rhs-ui/icons` | The icon set in one drawing hand, and animated icons at `@rhs-ui/icons/animated/<name>` |
+| Icons | `@rhs-ui/icons` | 179 glyphs in one drawing hand, and 27 animated icons at `@rhs-ui/icons/animated/<name>` |
 | Application | `@rhs-ui/application/<name>` | Application UI: empty-state, preferences-panel |
 | Commerce | `@rhs-ui/commerce/<name>` | Shop UI: product-card |
 | Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens |

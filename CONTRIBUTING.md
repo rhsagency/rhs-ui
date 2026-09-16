@@ -17,6 +17,13 @@ We do not accept re-implementations of shadcn/ui primitives, items that fetch
 data or read environment variables, or items that depend on a specific state
 library.
 
+**Everything in this repository is the free tier**, so every item carries
+`meta.tier: "free"` and the gate enforces it. An item belongs here when something
+free needs it (a primitive, the icon set, an engine) or when it does one job: one
+control, one component, at most two states. Whole flows, complete screens and
+animated icons that tell a process in stages belong to RHS UI Pro, which is a
+separate repository. Nothing here is ever a cut-down version of a Pro item.
+
 ## How an item is built
 
 Every item lives in the folder of its category and follows the same contract (see

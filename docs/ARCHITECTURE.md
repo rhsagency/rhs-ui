@@ -86,17 +86,24 @@ category next to the folder of that category (`registry/icons.json` beside
 
 ## Icons and animated icons
 
-The static set is one file, `registry/icons/index.tsx`: every glyph drawn on a 24 grid
+The static set is one file, `registry/icons/index.tsx`: 179 glyphs drawn on a 24 grid
 with a 1.75px stroke, closed shapes opening at the top right, and `Glyph`, the frame
-they are drawn in. Animated icons are one item each and share `animated-icon`:
+they are drawn in. The whole set is free: an icon set with holes in it is not an icon
+set. Animated icons are one item each (27 of them) and share `animated-icon`:
 
 - **Motion icons** (bell, search, refresh, cart and so on) describe their moving parts
   as Web Animations keyframes; `animated-icon.tsx` decides when they run: on hover or
   keyboard focus of the button or link around the icon, in a loop while on screen, or
   once when they appear. No animation library and no CSS to install, and nothing moves
   for a visitor who asks for reduced motion.
-- **State icons** (copy into check, menu into close, sun into moon) take `active` and
-  transition in CSS from `state-icon.tsx`, so they render in a Server Component.
+- **State icons** (copy into check, menu into close, sun into moon, lock, eye,
+  play/pause, plus, bookmark) take `active` and transition in CSS from
+  `state-icon.tsx`, so they render in a Server Component.
+
+Both kinds answer one control, which is what makes them part of the free tier. An icon
+that tells a whole process (stages, a status, a progress value) is a moment icon and
+belongs to RHS UI Pro; `check:registry` fails on any item here that is not
+`meta.tier: "free"` or that declares a motion kind other than `trigger` or `state`.
 
 ## Gates (CI)
 

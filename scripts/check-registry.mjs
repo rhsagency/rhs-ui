@@ -24,6 +24,7 @@ const root = path.resolve(import.meta.dirname, "..");
 /** The categories, and with them the folders under registry/ and components/rhs-ui/. */
 const TAXONOMY = new Set(["primitives", "icons", "application", "commerce", "dashboard", "marketing", "templates"]);
 const FORBIDDEN = [/^lucide-react(@|$)/, /^cn(@|$)/, /^shadcn(@|$)/, /^@base-ui\//, /^@radix-ui\//, /^tw-animate-css(@|$)/];
+const MOTION_KINDS = new Set(["trigger", "state"]);
 const URL_DEP = /^https:\/\/rhsui\.com\/r\/([a-z0-9-]+)\.json$/;
 const ALIAS_IMPORT = /from\s+["']@rhs-ui\/([^"']+)["']/g;
 const HOOK_CALL = /\buse(?!Id\b)[A-Z]\w*\s*\(/;
@@ -77,6 +78,12 @@ export function checkItems(items) {
       if (!category || !TAXONOMY.has(category)) p("categories[0] must be from the taxonomy");
       if (item.__fragment && item.__fragment !== category) p(`entry belongs in registry/${category}/registry.json, not registry/${item.__fragment}/registry.json`);
       for (const k of ["tier", "version", "since", "status"]) if (!item.meta?.[k]) p(`missing meta.${k}`);
+      // This is the free, open-source registry. Pro lives in rhs-ui-pro under its
+      // own namespace, so a "pro" item here would be published under MIT by accident.
+      if (item.meta?.tier && item.meta.tier !== "free") p(`meta.tier must be "free" in the public registry, got "${item.meta.tier}"`);
+      // Free animated icons answer one control: motion on a trigger, or two states.
+      // Moment icons (stages, status, progress) are a Pro tier (ADR 0016).
+      if (item.meta?.motion && !MOTION_KINDS.has(item.meta.motion)) p(`meta.motion must be ${[...MOTION_KINDS].join(" or ")}, got "${item.meta.motion}"`);
     }
     if (item.type !== "registry:theme" && !item.files?.length) p("no files");
     for (const f of item.files ?? []) {
@@ -155,6 +162,8 @@ const selfTests = [
   ["undeclared @rhs-ui/icons import", checkItems(withButton({ ...button, registryDependencies: [] })).some((pr) => /^button: imports icons but does not declare/.test(pr))],
   ["item outside the folder of its category", checkItems(withButton({ ...button, categories: ["commerce"] })).some((pr) => /belongs in registry\/commerce\//.test(pr))],
   ["target that does not mirror the source", checkItems(withButton({ ...button, files: [{ ...button.files[0], target: "components/ui/rhs-ui/button.tsx" }] })).some((pr) => /must install to components\/rhs-ui\/primitives\/button\.tsx/.test(pr))],
+  ["a pro item in the public registry", checkItems(withButton({ ...button, meta: { ...button.meta, tier: "pro" } })).some((pr) => /meta\.tier must be "free"/.test(pr))],
+  ["an animated icon with a pro motion kind", checkItems(withButton({ ...button, meta: { ...button.meta, motion: "moment" } })).some((pr) => /meta\.motion must be/.test(pr))],
   ["hook without use client", clientProblems('import { useState } from "react";\nexport function X() { useState(0); }').length === 1],
   ["hook inside a client module", clientProblems('"use client";\nexport function X() { useState(0); }').length === 0],
 ];

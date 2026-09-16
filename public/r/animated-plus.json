@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-plus",
+  "title": "Animated plus",
+  "description": "A plus that turns an eighth of a turn into a close. For add buttons that open something.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/animated/plus.tsx",
+      "content": "import { StateGlyph, STATE_PART, type StateIconProps } from \"@rhs-ui/icons/state-icon\";\nimport { cn } from \"@/lib/utils\";\n\n/** Plus turns a eighth of a turn into a close. Set `active` while the thing it opened is open. */\nconst ARM = \"origin-[12px_12px] group-data-[active=true]/rhs-icon:rotate-45\";\n\nexport function IconPlusAnimated(props: StateIconProps) {\n  return (\n    <StateGlyph {...props}>\n      <path className={cn(STATE_PART, ARM)} d=\"M12 5v14\" />\n      <path className={cn(STATE_PART, ARM)} d=\"M5 12h14\" />\n    </StateGlyph>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/icons/animated/plus.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.2.0",
+    "since": "0.2.0",
+    "status": "stable",
+    "preview": "inline",
+    "motion": "state"
+  },
+  "docs": "Bind active to the open state of the menu or panel it toggles, next to aria-expanded.",
+  "categories": [
+    "icons",
+    "animated"
+  ],
+  "type": "registry:ui"
+}
