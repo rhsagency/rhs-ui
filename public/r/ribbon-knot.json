@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ribbon-knot",
+  "title": "Ribbon knot",
+  "description": "A continuous satin chrome knot, ready for spatial compositions and GLB export.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/ribbon-knot.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A closed sculptural knot with satin chrome highlights. */\nexport const ribbonKnot: ModelRecipe = { name: \"ribbon-knot\", parts: [{ shape: \"knot\", roughness: 0.28, rotation: [0.2, 0.5, 0.1] }] };\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/ribbon-knot.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

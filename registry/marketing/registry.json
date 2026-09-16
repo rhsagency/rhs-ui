@@ -18,7 +18,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "https://rhsui.com/r/button.json"
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/animated-price.json"
       ],
       "files": [
         {

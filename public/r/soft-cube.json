@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "soft-cube",
+  "title": "Soft cube",
+  "description": "A softened aluminium block with rounded edges, editable material and GLB export.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/soft-cube.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A softened aluminium block, authored as editable geometry. */\nexport const softCube: ModelRecipe = { name: \"soft-cube\", parts: [{ shape: \"box\", rotation: [0.2, 0.3, 0.12] }] };\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/soft-cube.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

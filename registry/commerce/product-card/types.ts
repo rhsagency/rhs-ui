@@ -28,7 +28,9 @@ export interface ProductCardProduct {
   href?: string;
   image: ProductCardImage;
   /** Already formatted for the visitor's locale, for example "EUR 49,00". */
-  price: string;
+  price: string | number;
+  currency?: string;
+  locale?: string;
   /** Formatted strike-through price. Renders a sale state when present. */
   compareAtPrice?: string;
   /** Short badge text: "New", "-20%", "Bestseller". Keep it under 12 characters. */

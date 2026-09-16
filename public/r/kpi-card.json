@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kpi-card",
+  "title": "KPI card",
+  "description": "A considered metric card with animated values, a quiet sparkline and period context.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-number.json"
+  ],
+  "files": [
+    {
+      "path": "registry/dashboard/kpi-card.tsx",
+      "content": "\"use client\";\n\nimport { AnimatedNumber, type AnimatedNumberProps } from \"@rhs-ui/application/animated-number\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface KpiCardProps extends AnimatedNumberProps {\n  label: string;\n  description: string;\n  trend?: readonly number[];\n}\n\n/** One metric, an accessible value, and a quiet trend silhouette. */\nexport function KpiCard({ label, description, trend = [], className, ...number }: KpiCardProps): React.JSX.Element {\n  const values = trend.filter(Number.isFinite);\n  const low = Math.min(...values);\n  const range = Math.max(...values) - low || 1;\n  const points = values.map((value, index) => `${index * 240 / Math.max(1, values.length - 1)},${58 - (value - low) / range * 48}`).join(\" \");\n  return <article data-slot=\"kpi-card\" className={cn(\"relative w-full overflow-hidden rounded-2xl border border-border bg-card p-7\", className)}>\n    <h3 className=\"text-sm font-medium text-muted-foreground\">{label}</h3>\n    <p className=\"mt-4 text-4xl font-medium tracking-tight\"><AnimatedNumber {...number} /></p>\n    <p className=\"mt-2 text-xs text-muted-foreground\">{description}</p>\n    {values.length > 1 && <svg aria-hidden=\"true\" viewBox=\"0 0 240 64\" className=\"mt-8 h-16 w-full overflow-visible\"><polyline points={points} fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinejoin=\"round\" strokeLinecap=\"round\" /></svg>}\n  </article>;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/kpi-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately.",
+  "categories": [
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

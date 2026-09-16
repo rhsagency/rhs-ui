@@ -1,0 +1,226 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "model-viewer",
+      "type": "registry:component",
+      "title": "Model viewer",
+      "description": "Demand-rendered 3D viewer with lazy loading, keyboard rotation and GLB export. No idle animation loop.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "three@^0.186.0"
+      ],
+      "devDependencies": [
+        "@types/three@^0.186.0"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/models/model-viewer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/model-viewer.tsx"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "model-viewer-demo",
+      "type": "registry:example",
+      "title": "Model viewer demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json",
+        "https://rhsui.com/r/soft-cube.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/model-viewer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "soft-cube",
+      "type": "registry:component",
+      "title": "Soft cube",
+      "description": "A softened aluminium block with rounded edges, editable material and GLB export.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/soft-cube.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/soft-cube.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "soft-cube-demo",
+      "type": "registry:example",
+      "title": "Soft cube demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/soft-cube.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/soft-cube-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "orbit-ring",
+      "type": "registry:component",
+      "title": "Orbit ring",
+      "description": "A polished continuous ring with a considered tilt and a fully editable metal material.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/orbit-ring.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/orbit-ring.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "orbit-ring-demo",
+      "type": "registry:example",
+      "title": "Orbit ring demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/orbit-ring.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/orbit-ring-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ribbon-knot",
+      "type": "registry:component",
+      "title": "Ribbon knot",
+      "description": "A continuous satin chrome knot, ready for spatial compositions and GLB export.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/ribbon-knot.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/ribbon-knot.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "ribbon-knot-demo",
+      "type": "registry:example",
+      "title": "Ribbon knot demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ribbon-knot.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ribbon-knot-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "crystal-prism",
+      "title": "Crystal prism",
+      "description": "A faceted titanium crystal with a long silhouette and sharp studio reflections.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable"
+      },
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/crystal-prism.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/crystal-prism.ts"
+        }
+      ]
+    },
+    {
+      "name": "crystal-prism-demo",
+      "type": "registry:example",
+      "title": "Crystal prism demo",
+      "description": "Interactive crystal prism preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/crystal-prism.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/crystal-prism-demo.tsx",
+          "type": "registry:example",
+          "target": "components/rhs-ui/examples/crystal-prism-demo.tsx"
+        }
+      ]
+    }
+  ]
+}

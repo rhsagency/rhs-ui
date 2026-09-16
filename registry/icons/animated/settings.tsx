@@ -8,7 +8,7 @@ const motion: IconMotion = {
       origin: "12px 12px",
       duration: 760,
       easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-      keyframes: [{ transform: "rotate(0deg)" }, { transform: "rotate(60deg)" }],
+      keyframes: [{ transform: "rotate(0deg)" }, { offset: 0.55, transform: "rotate(28deg)" }, { transform: "rotate(0deg)" }],
     },
     {
       part: "hub",

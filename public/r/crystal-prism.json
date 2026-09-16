@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "crystal-prism",
+  "title": "Crystal prism",
+  "description": "A faceted titanium crystal with a long silhouette and sharp studio reflections.",
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/crystal-prism.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\nexport const crystalPrism = {\n  \"name\": \"crystal-prism\",\n  \"parts\": [\n    {\n      \"shape\": \"octahedron\",\n      \"scale\": [\n        0.85,\n        1.65,\n        0.85\n      ],\n      \"rotation\": [\n        0.1,\n        0.25,\n        0.1\n      ],\n      \"color\": \"#858585\",\n      \"metalness\": 1,\n      \"roughness\": 0.12\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/crystal-prism.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable"
+  },
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

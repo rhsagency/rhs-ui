@@ -1,17 +1,10 @@
 import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from "@rhs-ui/icons/animated-icon";
 
-/** Time passes: the minute hand makes two turns while the hour hand makes one. */
+/** The minute hand traces a turn and returns; the hour hand stays legible. */
 const motion: IconMotion = {
   steps: [
     {
       part: "minute",
-      origin: "12px 12px",
-      duration: 1200,
-      easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-      keyframes: [{ transform: "rotate(0deg)" }, { transform: "rotate(720deg)" }],
-    },
-    {
-      part: "hour",
       origin: "12px 12px",
       duration: 1200,
       easing: "cubic-bezier(0.65, 0, 0.35, 1)",

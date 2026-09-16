@@ -1,4 +1,49 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "items": []
+  "items": [
+    {
+      "name": "kpi-card",
+      "type": "registry:component",
+      "title": "KPI card",
+      "description": "A considered metric card with animated values, a quiet sparkline and period context.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/kpi-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/kpi-card.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "kpi-card-demo",
+      "type": "registry:example",
+      "title": "KPI card demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/kpi-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/kpi-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 import { AnimatedGlyph, type AnimatedIconProps, type IconMotion } from "@rhs-ui/icons/animated-icon";
 
-/** A fifth of a turn, which lands the star back on itself, with a pop at the end. */
+/** A small tilt and a soft pop, returning to the exact authored silhouette. */
 const motion: IconMotion = {
   steps: [
     {
@@ -10,9 +10,9 @@ const motion: IconMotion = {
       easing: "linear",
       keyframes: [
         { transform: "rotate(0deg) scale(1)", easing: "cubic-bezier(0.5, 0, 0.75, 0)" },
-        { offset: 0.42, transform: "rotate(30deg) scale(0.82)", easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" },
-        { offset: 0.78, transform: "rotate(72deg) scale(1.14)", easing: "ease-in-out" },
-        { transform: "rotate(72deg) scale(1)" },
+        { offset: 0.42, transform: "rotate(-12deg) scale(0.92)", easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" },
+        { offset: 0.78, transform: "rotate(4deg) scale(1.06)", easing: "ease-in-out" },
+        { transform: "rotate(0deg) scale(1)" },
       ],
     },
   ],

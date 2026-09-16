@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-number",
+  "title": "Animated number",
+  "description": "Smooth interruptible number transitions with locale formatting and a stable accessible value.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/animated-number.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useMemo, useRef } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AnimatedNumberProps {\n  value: number;\n  locale?: string;\n  format?: Intl.NumberFormatOptions;\n  /** Seconds. New values continue from the currently displayed value. */\n  duration?: number;\n  className?: string;\n}\n\n/** Smooth count transitions. Assistive technology only receives the final value. */\nexport function AnimatedNumber({ value, locale = \"en-US\", format, duration = 0.7, className }: AnimatedNumberProps): React.JSX.Element {\n  const formatter = useMemo(() => new Intl.NumberFormat(locale, format), [locale, format]);\n  const initialText = useRef(formatter.format(value));\n  const current = useRef(value);\n  const visual = useRef<HTMLSpanElement>(null);\n  useEffect(() => {\n    const element = visual.current;\n    if (!element) return;\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    let frame = 0;\n    const from = current.current;\n    const start = performance.now();\n    const finish = (): void => {\n      cancelAnimationFrame(frame);\n      current.current = value;\n      element.textContent = formatter.format(value);\n      element.style.filter = \"\";\n    };\n    const tick = (time: number): void => {\n      const progress = Math.min(1, (time - start) / (duration * 1000));\n      current.current = from + (value - from) * (1 - Math.pow(1 - progress, 4));\n      element.textContent = formatter.format(current.current);\n      element.style.filter = `blur(${0.5 * Math.sin(progress * Math.PI)}px)`;\n      if (progress < 1) frame = requestAnimationFrame(tick);\n      else finish();\n    };\n    if (reduced.matches || duration <= 0 || !Number.isFinite(from) || !Number.isFinite(value) || from === value) finish();\n    else frame = requestAnimationFrame(tick);\n    const onPreference = (): void => { if (reduced.matches) finish(); };\n    reduced.addEventListener(\"change\", onPreference);\n    return () => { cancelAnimationFrame(frame); reduced.removeEventListener(\"change\", onPreference); };\n  }, [value, duration, formatter]);\n  return <span data-slot=\"animated-number\" className={cn(\"inline-block tabular-nums\", className)}><span className=\"sr-only\">{formatter.format(value)}</span><span ref={visual} aria-hidden=\"true\">{initialText.current}</span></span>;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/animated-number.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately.",
+  "categories": [
+    "application"
+  ],
+  "type": "registry:component"
+}

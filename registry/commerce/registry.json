@@ -25,7 +25,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/skeleton.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-price.json"
       ],
       "files": [
         {
@@ -52,6 +53,50 @@
       "files": [
         {
           "path": "registry/examples/product-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "animated-price",
+      "type": "registry:component",
+      "title": "Animated price",
+      "description": "Currency-aware price transitions with the same soft count and blur across every price update.",
+      "categories": [
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/animated-price.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/animated-price.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "animated-price-demo",
+      "type": "registry:example",
+      "title": "Animated price demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/animated-price-demo.tsx",
           "type": "registry:example"
         }
       ]

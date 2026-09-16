@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-price-demo",
+  "title": "Animated price demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-price.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/animated-price-demo.tsx",
+      "content": "\"use client\";\nimport { useState } from \"react\";\nimport { AnimatedPrice } from \"@rhs-ui/commerce/animated-price\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nexport default function AnimatedPriceDemo(): React.JSX.Element {\n  const [quantity, setQuantity] = useState(1);\n  return <div className=\"flex flex-col items-center gap-8 p-8\"><p className=\"text-xs text-muted-foreground\">A considered total</p><AnimatedPrice value={quantity * 49.95} locale=\"nl-NL\" className=\"text-6xl font-medium tracking-tight\" /><div className=\"flex items-center gap-5\"><Button aria-label=\"Decrease quantity\" variant=\"outline\" disabled={quantity === 1} onClick={() => setQuantity(quantity - 1)}>−</Button><span aria-live=\"polite\">{quantity}</span><Button aria-label=\"Increase quantity\" variant=\"outline\" onClick={() => setQuantity(quantity + 1)}>+</Button></div></div>;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

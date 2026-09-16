@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ribbon-knot-demo",
+  "title": "Ribbon knot demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ribbon-knot.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ribbon-knot-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { ribbonKnot } from \"@rhs-ui/models/ribbon-knot\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={ribbonKnot} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1852,7 +1852,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/skeleton.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-price.json"
       ],
       "files": [
         {
@@ -1879,6 +1880,94 @@
       "files": [
         {
           "path": "registry/examples/product-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "animated-price",
+      "type": "registry:component",
+      "title": "Animated price",
+      "description": "Currency-aware price transitions with the same soft count and blur across every price update.",
+      "categories": [
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/animated-price.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/animated-price.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "animated-price-demo",
+      "type": "registry:example",
+      "title": "Animated price demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/animated-price-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kpi-card",
+      "type": "registry:component",
+      "title": "KPI card",
+      "description": "A considered metric card with animated values, a quiet sparkline and period context.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/kpi-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/kpi-card.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "kpi-card-demo",
+      "type": "registry:example",
+      "title": "KPI card demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/kpi-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/kpi-card-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1967,6 +2056,90 @@
       ]
     },
     {
+      "name": "animated-number",
+      "type": "registry:component",
+      "title": "Animated number",
+      "description": "Smooth interruptible number transitions with locale formatting and a stable accessible value.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/animated-number.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/animated-number.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "animated-number-demo",
+      "type": "registry:example",
+      "title": "Animated number demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/animated-number-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "step-progress",
+      "type": "registry:component",
+      "title": "Step progress",
+      "description": "A composed task progress indicator with animated tracks and accessible current-step announcements.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/step-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/step-progress.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "step-progress-demo",
+      "type": "registry:example",
+      "title": "Step progress demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/step-progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/step-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
@@ -1983,7 +2156,8 @@
       },
       "dependencies": [],
       "registryDependencies": [
-        "https://rhsui.com/r/button.json"
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/animated-price.json"
       ],
       "files": [
         {
@@ -2005,6 +2179,227 @@
         {
           "path": "registry/examples/pricing-section-demo.tsx",
           "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "model-viewer",
+      "type": "registry:component",
+      "title": "Model viewer",
+      "description": "Demand-rendered 3D viewer with lazy loading, keyboard rotation and GLB export. No idle animation loop.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "three@^0.186.0"
+      ],
+      "devDependencies": [
+        "@types/three@^0.186.0"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/models/model-viewer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/model-viewer.tsx"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "model-viewer-demo",
+      "type": "registry:example",
+      "title": "Model viewer demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json",
+        "https://rhsui.com/r/soft-cube.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/model-viewer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "soft-cube",
+      "type": "registry:component",
+      "title": "Soft cube",
+      "description": "A softened aluminium block with rounded edges, editable material and GLB export.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/soft-cube.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/soft-cube.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "soft-cube-demo",
+      "type": "registry:example",
+      "title": "Soft cube demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/soft-cube.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/soft-cube-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "orbit-ring",
+      "type": "registry:component",
+      "title": "Orbit ring",
+      "description": "A polished continuous ring with a considered tilt and a fully editable metal material.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/orbit-ring.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/orbit-ring.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "orbit-ring-demo",
+      "type": "registry:example",
+      "title": "Orbit ring demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/orbit-ring.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/orbit-ring-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ribbon-knot",
+      "type": "registry:component",
+      "title": "Ribbon knot",
+      "description": "A continuous satin chrome knot, ready for spatial compositions and GLB export.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/ribbon-knot.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/ribbon-knot.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "ribbon-knot-demo",
+      "type": "registry:example",
+      "title": "Ribbon knot demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ribbon-knot.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ribbon-knot-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "crystal-prism",
+      "title": "Crystal prism",
+      "description": "A faceted titanium crystal with a long silhouette and sharp studio reflections.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable"
+      },
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/crystal-prism.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/crystal-prism.ts"
+        }
+      ]
+    },
+    {
+      "name": "crystal-prism-demo",
+      "type": "registry:example",
+      "title": "Crystal prism demo",
+      "description": "Interactive crystal prism preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/crystal-prism.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/crystal-prism-demo.tsx",
+          "type": "registry:example",
+          "target": "components/rhs-ui/examples/crystal-prism-demo.tsx"
         }
       ]
     }

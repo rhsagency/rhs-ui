@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbit-ring",
+  "title": "Orbit ring",
+  "description": "A polished continuous ring with a considered tilt and a fully editable metal material.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/orbit-ring.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A polished continuous ring with a slightly tilted presentation. */\nexport const orbitRing: ModelRecipe = { name: \"orbit-ring\", parts: [{ shape: \"torus\", rotation: [0.35, 0.55, 0] }] };\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/orbit-ring.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

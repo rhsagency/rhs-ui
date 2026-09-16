@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-price",
+  "title": "Animated price",
+  "description": "Currency-aware price transitions with the same soft count and blur across every price update.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/animated-number.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/animated-price.tsx",
+      "content": "\"use client\";\n\nimport { useMemo } from \"react\";\nimport { AnimatedNumber, type AnimatedNumberProps } from \"@rhs-ui/application/animated-number\";\n\nexport interface AnimatedPriceProps extends Omit<AnimatedNumberProps, \"format\"> { currency?: string }\n\n/** A locale-aware price using the shared number transition. */\nexport function AnimatedPrice({ currency = \"EUR\", ...props }: AnimatedPriceProps): React.JSX.Element {\n  const format = useMemo<Intl.NumberFormatOptions>(() => ({ style: \"currency\", currency }), [currency]);\n  return <AnimatedNumber {...props} format={format} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/animated-price.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately.",
+  "categories": [
+    "commerce"
+  ],
+  "type": "registry:component"
+}

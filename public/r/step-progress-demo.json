@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-progress-demo",
+  "title": "Step progress demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/step-progress.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/step-progress-demo.tsx",
+      "content": "\"use client\";\nimport { useState } from \"react\";\nimport { StepProgress } from \"@rhs-ui/application/step-progress\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nexport default function StepProgressDemo(): React.JSX.Element {\n  const [step, setStep] = useState(0);\n  return <div className=\"flex w-full max-w-xl flex-col gap-10 p-6\"><StepProgress steps={[\"Details\", \"Delivery\", \"Review\"]} current={step} /><div className=\"flex justify-end gap-3\"><Button variant=\"outline\" disabled={step === 0} onClick={() => setStep(step - 1)}>Back</Button><Button onClick={() => setStep(step === 3 ? 0 : step + 1)}>{step === 3 ? \"Start again\" : \"Continue\"}</Button></div></div>;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

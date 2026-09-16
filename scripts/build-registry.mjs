@@ -20,7 +20,7 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const out = path.join(root, "public", "r");
 
-export const CATEGORY_ORDER = ["primitives", "icons", "commerce", "dashboard", "application", "marketing", "templates"];
+export const CATEGORY_ORDER = ["primitives", "icons", "commerce", "dashboard", "application", "marketing", "templates", "models"];
 
 /** Every category folder carries its own registry.json with the entries it owns. */
 export function loadFragments() {

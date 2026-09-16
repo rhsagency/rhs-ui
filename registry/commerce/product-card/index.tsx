@@ -7,6 +7,7 @@ import { Badge } from "@rhs-ui/primitives/badge";
 import { Button } from "@rhs-ui/primitives/button";
 import { IconBag, IconCheck } from "@rhs-ui/icons";
 import { Skeleton } from "@rhs-ui/primitives/skeleton";
+import { AnimatedPrice } from "@rhs-ui/commerce/animated-price";
 import { cn } from "@/lib/utils";
 
 import type { ProductCardImage, ProductCardProduct, ProductCardVariant } from "@rhs-ui/commerce/product-card/types";
@@ -125,7 +126,7 @@ export function ProductCard({
         </div>
 
         <p data-slot="product-card-price" className="flex items-baseline gap-2 text-sm tabular-nums">
-          <span className={cn("font-semibold", onSale && "text-primary")}>{product.price}</span>
+          <span className={cn("font-semibold", onSale && "text-primary")}>{typeof product.price === "number" ? <AnimatedPrice value={product.price} currency={product.currency} locale={product.locale} /> : product.price}</span>
           {product.compareAtPrice ? (
             <>
               <span className="sr-only">was</span>

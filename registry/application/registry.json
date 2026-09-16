@@ -83,6 +83,90 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "animated-number",
+      "type": "registry:component",
+      "title": "Animated number",
+      "description": "Smooth interruptible number transitions with locale formatting and a stable accessible value.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/animated-number.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/animated-number.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "animated-number-demo",
+      "type": "registry:example",
+      "title": "Animated number demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/animated-number-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "step-progress",
+      "type": "registry:component",
+      "title": "Step progress",
+      "description": "A composed task progress indicator with animated tracks and accessible current-step announcements.",
+      "categories": [
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/step-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/step-progress.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately."
+    },
+    {
+      "name": "step-progress-demo",
+      "type": "registry:example",
+      "title": "Step progress demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/step-progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/step-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
