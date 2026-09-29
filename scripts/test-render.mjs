@@ -33,6 +33,8 @@ export function selectProblems(html) {
     .map((tag) => `native select that can be seen or reached: ${tag.slice(0, 80)}`);
 }
 
+export const headingProblems = (html) => /<h1[\s>]/.test(html);
+
 const entry = [
   'import { createElement } from "react";',
   'import { renderToString } from "react-dom/server";',
@@ -59,6 +61,8 @@ for (const [name, Demo] of DEMOS) {
   try {
     const html = render(Demo);
     if (!html.trim()) failures.push(`${name}: rendered nothing`);
+    // A demo is not a page: rhsui.com shows many on one page, which has its own h1.
+    if (headingProblems(html)) failures.push(`${name}: renders an h1; a demo uses h2 and below`);
     for (const problem of selectProblems(html)) failures.push(`${name}: ${problem}`);
   } catch (error) {
     failures.push(`${name}: throws during server rendering: ${error instanceof Error ? error.message.split("\n")[0] : error}`);
@@ -68,6 +72,8 @@ for (const [name, Demo] of DEMOS) {
 // Negative controls: the select rule must catch a visible native select and pass the mirror.
 assert.equal(selectProblems('<select name="country"><option>NL</option></select>').length, 1);
 assert.equal(selectProblems('<select aria-hidden="true" tabindex="-1" name="country"></select>').length, 0);
+assert.equal(headingProblems('<section><h1 class="x">Hero</h1></section>'), true);
+assert.equal(headingProblems("<h2>Section</h2><header>no heading</header>"), false);
 
 for (const failure of failures) console.log(`FAIL ${failure}`);
 if (failures.length) {

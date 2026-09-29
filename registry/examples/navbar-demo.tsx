@@ -46,7 +46,7 @@ export default function Demo(): React.JSX.Element {
       />
       <section id="top" className="mx-auto max-w-3xl px-6 py-24 text-center">
         <p className="text-xs font-medium tracking-[.18em] text-muted-foreground uppercase">Planning for studios</p>
-        <h1 className="mt-5 text-5xl font-medium tracking-[-.05em] text-balance">Plans that stay true while the work moves.</h1>
+        <h2 className="mt-5 text-5xl font-medium tracking-[-.05em] text-balance">Plans that stay true while the work moves.</h2>
         <p className="mx-auto mt-6 max-w-md text-muted-foreground">Hover Product, or tab to it and press Enter. On a phone the same groups open in a sheet.</p>
       </section>
     </div>

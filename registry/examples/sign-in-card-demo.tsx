@@ -22,6 +22,7 @@ export default function Demo(): React.JSX.Element {
   return (
     <div className="flex min-h-[36rem] items-center justify-center">
       <SignInCard
+        titleAs="h2"
         onSubmit={async ({ email, password }) => {
           await new Promise((resolve) => setTimeout(resolve, 700));
           if (password !== "fieldwork") return "That email and password do not match. Try fieldwork as the password.";
