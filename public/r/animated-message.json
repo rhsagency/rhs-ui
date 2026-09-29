@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconMessage",
+    "usage": "<p role=\"status\">\n  <IconMessageAnimated trigger=\"loop\" />\n  Sam is typing\n</p>",
     "family": "icons"
   },
   "docs": "Use trigger=\"loop\" as a typing indicator and announce the same thing in a live region.",

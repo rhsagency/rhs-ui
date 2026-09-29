@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconStar",
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label=\"Add to favourites\" aria-pressed={starred}>\n  <IconStarAnimated />\n</Button>",
     "family": "icons"
   },
   "docs": "Pair it with aria-pressed on a favourite button; the icon shows the gesture, the button holds the state.",

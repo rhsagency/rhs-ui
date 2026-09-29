@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "state",
+    "glyph": "IconCopy",
+    "usage": "<Button variant=\"outline\" onClick={copy}>\n  <IconCopyAnimated active={copied} />\n  {copied ? \"Copied\" : \"Copy link\"}\n</Button>",
     "family": "icons"
   },
   "docs": "Set active for a moment after navigator.clipboard.writeText resolves, and announce it in a live region.",

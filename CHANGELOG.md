@@ -50,6 +50,13 @@ own `meta.version` and are listed when they change.
   `{ amount, currency }` in minor units, formatted by the shared `money.ts`.
 - 195 more glyphs (374 in all) in the same hand, with five new groups: weather and
   nature, travel and places, health and sport, learning and work, shapes and layout.
+- 338 more animated icons (365 in all). Each is cut from its still glyph, so it is drawn
+  exactly like it, and moves with one of a small set of motions (nudge, draw, swing,
+  pop, spin, grow and more) on hover, focus, loop or first view; reduced motion keeps
+  the still glyph. Generated from `scripts/icons/animated-icons.mjs`
+  (`pnpm icons:generate`); `pnpm check` fails when a generated file is stale.
+- Every animated icon names its still glyph and a usage snippet in `meta`, and the
+  registry gate checks both, so a gallery can be built from the registry alone.
 - Fixed: the navbar block no longer holds state, so a Server Component can pass its
   router's Link as `linkAs`; each phone link closes the sheet itself.
 - Gates: `check:registry` refuses a Tailwind variant built in a template string, an Intl

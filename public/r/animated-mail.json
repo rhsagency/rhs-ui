@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconMail",
+    "usage": "<Button variant=\"outline\" asChild>\n  <a href=\"mailto:hello@example.com\">\n    <IconMailAnimated />\n    Email us\n  </a>\n</Button>",
     "family": "icons"
   },
   "docs": "Use it in a contact or invite action; trigger=\"appear\" plays it once when the section scrolls into view.",

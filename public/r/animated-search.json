@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconSearch",
+    "usage": "<Button variant=\"outline\">\n  <IconSearchAnimated trigger={searching ? \"loop\" : \"hover\"} />\n  Search\n</Button>",
     "family": "icons"
   },
   "docs": "Use trigger=\"loop\" while results are loading.",

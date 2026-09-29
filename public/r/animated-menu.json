@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "state",
+    "glyph": "IconMenu",
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label=\"Menu\" aria-expanded={open} onClick={toggle}>\n  <IconMenuAnimated active={open} />\n</Button>",
     "family": "icons"
   },
   "docs": "Bind active to the menu's open state and aria-expanded on the button.",

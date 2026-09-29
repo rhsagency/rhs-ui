@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconClock",
+    "usage": "<Badge variant=\"muted\">\n  <IconClockAnimated trigger=\"appear\" />\n  Pending review\n</Badge>",
     "family": "icons"
   },
   "docs": "Use trigger=\"loop\" while something is pending, or trigger=\"appear\" on a history panel.",

@@ -149,6 +149,11 @@ export function checkItems(items) {
       // Free animated icons answer one control: motion on a trigger, or two states.
       // Moment icons (stages, status, progress) are a Pro tier (ADR 0016).
       if (item.meta?.motion && !MOTION_KINDS.has(item.meta.motion)) p(`meta.motion must be ${[...MOTION_KINDS].join(" or ")}, got "${item.meta.motion}"`);
+      // rhsui.com builds its animated icon pages from meta alone: the still glyph
+      // it animates (for grouping) and a usage snippet that names the real export.
+      if (item.meta?.motion) {
+        for (const problem of animatedMetaProblems(item)) p(problem);
+      }
     }
     if (item.type !== "registry:theme" && !item.files?.length) p("no files");
     for (const f of item.files ?? []) {
@@ -205,6 +210,24 @@ export function checkItems(items) {
   return problems;
 }
 
+const GLYPH_EXPORTS = new Set(
+  [...readFileSync(path.join(root, "registry/icons/index.tsx"), "utf8").matchAll(/export (?:const|function) (Icon\w+)/g)].map((m) => m[1]),
+);
+
+/** An animated icon names glyphs that exist and a usage snippet that uses its own export. */
+export function animatedMetaProblems(item, glyphExports = GLYPH_EXPORTS, source = null) {
+  const problems = [];
+  const glyphs = [item.meta?.glyph ?? []].flat();
+  if (!glyphs.length) problems.push("meta.glyph must name the still glyph it animates");
+  for (const glyph of glyphs) if (!glyphExports.has(glyph)) problems.push(`meta.glyph "${glyph}" is not an export of registry/icons/index.tsx`);
+  const file = item.files?.[0]?.path;
+  const src = source ?? (file && existsSync(path.join(root, file)) ? readFileSync(path.join(root, file), "utf8") : "");
+  const exported = /export function (Icon\w+Animated)\b/.exec(src)?.[1];
+  if (!exported) problems.push("must export an Icon...Animated component");
+  else if (!item.meta?.usage?.includes(`<${exported}`)) problems.push(`meta.usage must show <${exported}>`);
+  return problems;
+}
+
 /** One alias, @rhs-ui/* -> ./registry/*, or typecheck and this gate look at different trees. */
 function aliasProblems() {
   const paths = JSON.parse(readFileSync(path.join(root, "tsconfig.json"), "utf8")).compilerOptions?.paths ?? {};
@@ -254,6 +277,9 @@ const selfTests = [
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],
   ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],
+  ["an animated icon without a glyph or with a stale usage", animatedMetaProblems({ meta: { motion: "trigger", usage: "<IconOldAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 2],
+  ["an animated icon naming a glyph that does not exist", animatedMetaProblems({ meta: { motion: "trigger", glyph: "IconNope", usage: "<IconBellAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 1],
+  ["a complete animated icon", animatedMetaProblems({ meta: { motion: "state", glyph: ["IconLock", "IconUnlock"], usage: "<IconLockAnimated active />" }, files: [] }, new Set(["IconLock", "IconUnlock"]), "export function IconLockAnimated() {}").length === 0],
 ];
 for (const [name, ok] of selfTests) {
   if (!ok) {

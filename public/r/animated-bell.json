@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconBell",
+    "usage": "<Button variant=\"outline\">\n  <IconBellAnimated trigger={unread > 0 ? \"loop\" : \"hover\"} />\n  Notifications\n</Button>",
     "family": "icons"
   },
   "docs": "Inside a Button it rings when the button is hovered or focused. Use trigger=\"loop\" while there are unread notifications.",

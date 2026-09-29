@@ -8,7 +8,7 @@ import type { ReactNode, SVGProps } from "react";
  * coloured by `currentColor`, decorative by default (`aria-hidden`); pass a
  * `title` when the icon is the only label.
  *
- * Import from "@rhs-ui/icons". Animated versions of a few glyphs are separate
+ * Import from "@rhs-ui/icons". Animated versions of most glyphs are separate
  * items next to this file: "@rhs-ui/icons/animated/<name>".
  */
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "children"> {

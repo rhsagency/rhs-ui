@@ -25,7 +25,9 @@
     "registry:build": "node scripts/build-registry.mjs",
     "check:registry": "node scripts/check-registry.mjs",
     "check:built": "node scripts/build-registry.mjs && git diff --exit-code --stat public/r registry.json README.md",
-    "check": "pnpm typecheck && pnpm check:registry && pnpm test:button && pnpm test:render",
+    "check": "pnpm typecheck && pnpm icons:check && pnpm check:registry && pnpm test:button && pnpm test:render",
+    "icons:generate": "node scripts/icons/generate-animated.mjs",
+    "icons:check": "node scripts/icons/generate-animated.mjs --check",
     "test:button": "node scripts/test-button.mjs",
     "test:render": "node scripts/test-render.mjs",
     "test:install": "node scripts/test-install.mjs"

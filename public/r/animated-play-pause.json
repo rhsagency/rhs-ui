@@ -22,6 +22,11 @@
     "status": "stable",
     "preview": "inline",
     "motion": "state",
+    "glyph": [
+      "IconPlay",
+      "IconPause"
+    ],
+    "usage": "<Button size=\"icon\" aria-label={playing ? \"Pause\" : \"Play\"} onClick={toggle}>\n  <IconPlayPauseAnimated active={playing} />\n</Button>",
     "family": "icons"
   },
   "docs": "Set active while something is playing, and keep the accessible name in step (Play, Pause).",

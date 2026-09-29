@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconTrash",
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label=\"Delete project\">\n  <IconTrashAnimated />\n</Button>",
     "family": "icons"
   },
   "docs": "An icon-only delete button still needs an accessible label: <Button size=\"icon\" aria-label=\"Delete\">.",

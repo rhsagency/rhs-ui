@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconCart",
+    "usage": "<Button onClick={addToCart}>\n  <IconCartAnimated />\n  Add to cart\n</Button>",
     "family": "icons"
   },
   "docs": "At rest it is the cart glyph; the product only shows while it moves.",

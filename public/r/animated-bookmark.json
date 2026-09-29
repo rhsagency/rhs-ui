@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "state",
+    "glyph": "IconBookmark",
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label=\"Save for later\" aria-pressed={saved} onClick={save}>\n  <IconBookmarkAnimated active={saved} />\n</Button>",
     "family": "icons"
   },
   "docs": "Set active when the item is saved and use aria-pressed on the button around it.",

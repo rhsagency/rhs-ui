@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconUpload",
+    "usage": "<Button aria-busy={uploading} onClick={pickFile}>\n  <IconUploadAnimated trigger={uploading ? \"loop\" : \"hover\"} />\n  {uploading ? \"Uploading\" : \"Upload file\"}\n</Button>",
     "family": "icons"
   },
   "docs": "Switch to trigger=\"loop\" while a file is uploading and set aria-busy on the button.",

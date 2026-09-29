@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconRefresh",
+    "usage": "<Button variant=\"outline\" aria-busy={syncing} onClick={sync}>\n  <IconRefreshAnimated trigger={syncing ? \"loop\" : \"hover\"} />\n  {syncing ? \"Syncing\" : \"Sync now\"}\n</Button>",
     "family": "icons"
   },
   "docs": "Switch to trigger=\"loop\" while syncing and set aria-busy on the button; it finishes its turn when you switch back.",

@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconCheckCircle",
+    "usage": "<div role=\"status\">\n  <IconCheckCircleAnimated trigger=\"appear\" size={32} />\n  <p>Your order is confirmed.</p>\n</div>",
     "family": "icons"
   },
   "docs": "<IconCheckCircleAnimated trigger=\"appear\" /> draws once when a confirmation scrolls into view.",

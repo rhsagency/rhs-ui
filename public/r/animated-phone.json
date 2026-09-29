@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconPhone",
+    "usage": "<Button variant=\"outline\" asChild>\n  <a href=\"tel:+31201234567\">\n    <IconPhoneAnimated trigger={ringing ? \"loop\" : \"hover\"} />\n    Call us\n  </a>\n</Button>",
     "family": "icons"
   },
   "docs": "Use trigger=\"loop\" for an incoming call and stop the loop the moment it is answered.",

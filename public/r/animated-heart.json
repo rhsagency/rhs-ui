@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconHeart",
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label=\"Save to wishlist\" aria-pressed={saved}>\n  <IconHeartAnimated />\n</Button>",
     "family": "icons"
   },
   "docs": "Pair it with aria-pressed on the wishlist button; the icon only shows the gesture.",

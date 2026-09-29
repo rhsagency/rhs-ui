@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconLogOut",
+    "usage": "<Button variant=\"ghost\" onClick={signOut}>\n  <IconLogOutAnimated />\n  Sign out\n</Button>",
     "family": "icons"
   },
   "docs": "Inside a sign-out button it plays on hover and on keyboard focus of that button.",

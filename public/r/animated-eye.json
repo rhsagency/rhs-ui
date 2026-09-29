@@ -22,6 +22,11 @@
     "status": "stable",
     "preview": "inline",
     "motion": "state",
+    "glyph": [
+      "IconEye",
+      "IconEyeOff"
+    ],
+    "usage": "<Button variant=\"ghost\" size=\"icon\" aria-label={shown ? \"Hide password\" : \"Show password\"} onClick={toggle}>\n  <IconEyeAnimated active={shown} />\n</Button>",
     "family": "icons"
   },
   "docs": "Set active when the content is hidden; the button label should change with it (Show password, Hide password).",

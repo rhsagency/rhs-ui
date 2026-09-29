@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconDownload",
+    "usage": "<Button variant=\"outline\" asChild>\n  <a href=\"/invoice.pdf\" download>\n    <IconDownloadAnimated />\n    Download invoice\n  </a>\n</Button>",
     "family": "icons"
   },
   "docs": "Inside a download link it plays on hover and on keyboard focus of the link.",

@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconSparkle",
+    "usage": "<Badge>\n  <IconSparkleAnimated trigger=\"appear\" />\n  New\n</Badge>",
     "family": "icons"
   },
   "docs": "Use trigger=\"loop\" sparingly: one moving sparkle on a page is a highlight, three is noise.",

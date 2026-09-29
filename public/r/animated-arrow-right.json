@@ -22,6 +22,8 @@
     "status": "stable",
     "preview": "inline",
     "motion": "trigger",
+    "glyph": "IconArrowRight",
+    "usage": "<Button>\n  Continue\n  <IconArrowRightAnimated />\n</Button>",
     "family": "icons"
   },
   "docs": "Place it after the label: <Button>Continue <IconArrowRightAnimated /></Button>.",
