@@ -1,0 +1,45 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Work without a measurable end: twelve ticks fading in turn, a slow pulse under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/spinner.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface SpinnerProps extends ComponentProps<\"span\"> {\n  /** Size in pixels. */\n  size?: number;\n  /** What is loading, for screen readers. Leave it out when a visible label beside the spinner already says it. */\n  label?: string;\n}\n\n/**\n * Work in progress that has no measurable end. Twelve ticks fading in turn,\n * in the current colour; under reduced motion it pulses slowly instead of\n * turning. Prefer a skeleton when you know the shape of what is coming.\n */\nexport function Spinner({ size = 18, label = \"Loading\", className, ...props }: SpinnerProps) {\n  return (\n    <span data-slot=\"spinner\" role=\"status\" className={cn(\"inline-flex shrink-0\", className)} {...props}>\n      <svg width={size} height={size} viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\" className=\"motion-safe:animate-rhs-spin motion-reduce:animate-pulse\">\n        {Array.from({ length: 12 }, (_, index) => (\n          <line\n            key={index}\n            x1=\"12\"\n            y1=\"2.5\"\n            x2=\"12\"\n            y2=\"6.5\"\n            stroke=\"currentColor\"\n            strokeWidth=\"2\"\n            strokeLinecap=\"round\"\n            opacity={0.15 + (index / 11) * 0.85}\n            transform={`rotate(${index * 30} 12 12)`}\n          />\n        ))}\n      </svg>\n      {label ? <span className=\"sr-only\">{label}</span> : null}\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/spinner.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-spin": "rhs-spin 0.9s steps(12) infinite"
+    }
+  },
+  "css": {
+    "@keyframes rhs-spin": {
+      "from": {
+        "transform": "rotate(0deg)"
+      },
+      "to": {
+        "transform": "rotate(360deg)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Prefer a skeleton when you know the shape of what is coming. Pass label=\"\" when a visible label beside it already says what is loading.",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

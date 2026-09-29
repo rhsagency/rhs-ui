@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "title": "Toggle Group",
+  "description": "Toggles joined into one control: one of them, or any of them. Arrow keys move between items.",
+  "dependencies": [
+    "radix-ui@^1.6.7",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/toggle-group.tsx",
+      "content": "\"use client\";\n\nimport { createContext, useContext, type ComponentProps } from \"react\";\nimport type { VariantProps } from \"class-variance-authority\";\nimport { ToggleGroup as ToggleGroupPrimitive } from \"radix-ui\";\n\nimport { toggleVariants } from \"@rhs-ui/primitives/toggle\";\nimport { cn } from \"@/lib/utils\";\n\nconst ToggleGroupStyle = createContext<VariantProps<typeof toggleVariants>>({ variant: \"outline\", size: \"default\" });\n\n/**\n * A row of toggles joined into one control: text alignment (one of them),\n * formatting (any of them). Arrow keys move between the items and Tab leaves\n * the group, like a toolbar. Give the group an aria-label.\n */\nexport function ToggleGroup({ className, variant = \"outline\", size = \"default\", children, ...props }: ComponentProps<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>) {\n  return (\n    <ToggleGroupPrimitive.Root data-slot=\"toggle-group\" data-variant={variant} className={cn(\"inline-flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs\", className)} {...props}>\n      <ToggleGroupStyle.Provider value={{ variant, size }}>{children}</ToggleGroupStyle.Provider>\n    </ToggleGroupPrimitive.Root>\n  );\n}\n\nexport function ToggleGroupItem({ className, ...props }: ComponentProps<typeof ToggleGroupPrimitive.Item>) {\n  const style = useContext(ToggleGroupStyle);\n  return (\n    <ToggleGroupPrimitive.Item\n      data-slot=\"toggle-group-item\"\n      className={cn(\n        toggleVariants(style),\n        \"rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus-visible:z-10\",\n        style.variant === \"outline\" && \"border-l-0 first:border-l\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/toggle-group.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "actions"
+  },
+  "docs": "Give the group an aria-label.",
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

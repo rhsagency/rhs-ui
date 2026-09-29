@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "One section that opens and closes, its height animated, instantly under reduced motion.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/collapsible.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Collapsible as CollapsiblePrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One section that opens and closes: \"Show 12 more\", advanced settings, a\n * long description. For a list of sections use accordion. The content\n * animates its height, and under reduced motion it simply appears.\n */\nexport function Collapsible(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nexport function CollapsibleTrigger(props: ComponentProps<typeof CollapsiblePrimitive.Trigger>) {\n  return <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />;\n}\n\nexport function CollapsibleContent({ className, ...props }: ComponentProps<typeof CollapsiblePrimitive.Content>) {\n  return (\n    <CollapsiblePrimitive.Content\n      data-slot=\"collapsible-content\"\n      className={cn(\"overflow-hidden motion-safe:data-[state=closed]:animate-rhs-collapse-up motion-safe:data-[state=open]:animate-rhs-collapse-down\", className)}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/collapsible.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-collapse-down": "rhs-collapse-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-collapse-up": "rhs-collapse-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-collapse-down": {
+      "from": {
+        "height": "0"
+      },
+      "to": {
+        "height": "var(--radix-collapsible-content-height)"
+      }
+    },
+    "@keyframes rhs-collapse-up": {
+      "from": {
+        "height": "var(--radix-collapsible-content-height)"
+      },
+      "to": {
+        "height": "0"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "docs": "For a list of sections use accordion.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

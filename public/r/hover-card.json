@@ -1,0 +1,62 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "A preview that appears when the pointer rests on a link: a profile, a repository, a product.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/hover-card.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { HoverCard as HoverCardPrimitive } from \"radix-ui\";\n\nimport { panelSurface } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A preview that appears when a pointer rests on a link: a profile, a\n * repository, a product. It is a bonus for pointer users, never the only way\n * to reach the information, because touch and keyboard users may not see it.\n */\nexport function HoverCard({ openDelay = 250, closeDelay = 120, ...props }: ComponentProps<typeof HoverCardPrimitive.Root>) {\n  return <HoverCardPrimitive.Root data-slot=\"hover-card\" openDelay={openDelay} closeDelay={closeDelay} {...props} />;\n}\n\nexport function HoverCardTrigger(props: ComponentProps<typeof HoverCardPrimitive.Trigger>) {\n  return <HoverCardPrimitive.Trigger data-slot=\"hover-card-trigger\" {...props} />;\n}\n\nexport function HoverCardContent({ className, align = \"center\", sideOffset = 8, ...props }: ComponentProps<typeof HoverCardPrimitive.Content>) {\n  return (\n    <HoverCardPrimitive.Portal>\n      <HoverCardPrimitive.Content\n        data-slot=\"hover-card-content\"\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(panelSurface, \"w-72 origin-(--radix-hover-card-content-transform-origin) p-4 outline-none\", className)}\n        {...props}\n      />\n    </HoverCardPrimitive.Portal>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/hover-card.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      }
+    },
+    "@keyframes rhs-out": {
+      "from": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      },
+      "to": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "overlay"
+  },
+  "docs": "A bonus for pointer users: never the only way to reach the information.",
+  "categories": [
+    "primitives",
+    "overlay"
+  ],
+  "type": "registry:ui"
+}

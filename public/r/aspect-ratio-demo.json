@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-demo",
+  "title": "Aspect Ratio demo",
+  "description": "A working preview of Aspect Ratio.",
+  "registryDependencies": [
+    "https://rhsui.com/r/aspect-ratio.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from \"@rhs-ui/primitives/aspect-ratio\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-md grid-cols-[2fr_1fr] gap-3\">\n      <AspectRatio ratio={16 / 9} className=\"grid place-items-center rounded-lg border border-border bg-muted\">\n        <span className=\"font-mono text-xs text-muted-foreground\">16 : 9</span>\n      </AspectRatio>\n      <AspectRatio ratio={4 / 5} className=\"grid place-items-center rounded-lg border border-border bg-muted\">\n        <span className=\"font-mono text-xs text-muted-foreground\">4 : 5</span>\n      </AspectRatio>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

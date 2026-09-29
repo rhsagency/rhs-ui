@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-demo",
+  "title": "Alert Dialog demo",
+  "description": "A working preview of Alert Dialog.",
+  "registryDependencies": [
+    "https://rhsui.com/r/alert-dialog.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/alert-dialog-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@rhs-ui/primitives/alert-dialog\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nexport default function Demo(): React.JSX.Element {\n  const [last, setLast] = useState(\"The project is still here.\");\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <AlertDialog>\n        <AlertDialogTrigger asChild>\n          <Button variant=\"destructive\">Delete project</Button>\n        </AlertDialogTrigger>\n        <AlertDialogContent>\n          <AlertDialogHeader>\n            <AlertDialogTitle>Delete Northwind rebrand?</AlertDialogTitle>\n            <AlertDialogDescription>The project, its 24 tasks and every file in it are removed for everyone. There is no undo.</AlertDialogDescription>\n          </AlertDialogHeader>\n          <AlertDialogFooter>\n            <AlertDialogCancel onClick={() => setLast(\"Kept. Nothing was deleted.\")}>Keep project</AlertDialogCancel>\n            <AlertDialogAction variant=\"destructive\" onClick={() => setLast(\"Deleted. Not really: this is a preview.\")}>\n              Delete project\n            </AlertDialogAction>\n          </AlertDialogFooter>\n        </AlertDialogContent>\n      </AlertDialog>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {last}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

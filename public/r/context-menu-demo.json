@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-demo",
+  "title": "Context Menu demo",
+  "description": "A working preview of Context Menu.",
+  "registryDependencies": [
+    "https://rhsui.com/r/context-menu.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/context-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCopy, IconDownload, IconEdit, IconShare, IconTrash } from \"@rhs-ui/icons\";\nimport {\n  ContextMenu,\n  ContextMenuCheckboxItem,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuLabel,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuTrigger,\n} from \"@rhs-ui/primitives/context-menu\";\n\nexport default function Demo(): React.JSX.Element {\n  const [pinned, setPinned] = useState(false);\n  const [last, setLast] = useState(\"Right-click the file, or focus it and press Shift+F10.\");\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <ContextMenu>\n        <ContextMenuTrigger asChild>\n          <button type=\"button\" className=\"grid h-36 w-64 place-items-center rounded-xl border border-dashed border-border text-sm text-muted-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n            brand-guidelines.pdf {pinned ? \"· pinned\" : \"\"}\n          </button>\n        </ContextMenuTrigger>\n        <ContextMenuContent className=\"w-56\">\n          <ContextMenuLabel>brand-guidelines.pdf</ContextMenuLabel>\n          <ContextMenuItem onSelect={() => setLast(\"Renaming.\")}>\n            <IconEdit /> Rename <ContextMenuShortcut>F2</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem onSelect={() => setLast(\"Duplicated.\")}>\n            <IconCopy /> Duplicate <ContextMenuShortcut>⌘D</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem onSelect={() => setLast(\"Link copied.\")}>\n            <IconShare /> Copy link\n          </ContextMenuItem>\n          <ContextMenuItem onSelect={() => setLast(\"Downloading.\")}>\n            <IconDownload /> Download\n          </ContextMenuItem>\n          <ContextMenuSeparator />\n          <ContextMenuCheckboxItem checked={pinned} onCheckedChange={(checked) => setPinned(checked === true)}>\n            Pin to sidebar\n          </ContextMenuCheckboxItem>\n          <ContextMenuSeparator />\n          <ContextMenuItem variant=\"destructive\" onSelect={() => setLast(\"Moved to the bin. Not really: this is a preview.\")}>\n            <IconTrash /> Move to bin\n          </ContextMenuItem>\n        </ContextMenuContent>\n      </ContextMenu>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {last}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

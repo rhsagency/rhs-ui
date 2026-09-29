@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area-demo",
+  "title": "Scroll Area demo",
+  "description": "A working preview of Scroll Area.",
+  "registryDependencies": [
+    "https://rhsui.com/r/scroll-area.json",
+    "https://rhsui.com/r/separator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/scroll-area-demo.tsx",
+      "content": "import { ScrollArea } from \"@rhs-ui/primitives/scroll-area\";\nimport { Separator } from \"@rhs-ui/primitives/separator\";\n\nconst RELEASES = Array.from({ length: 24 }, (_, index) => `v0.${24 - index}.0`);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <ScrollArea className=\"h-64 w-56 rounded-lg border border-border\">\n      <div className=\"p-4\">\n        <p className=\"mb-3 text-sm font-medium\">Releases</p>\n        {RELEASES.map((release, index) => (\n          <div key={release}>\n            <p className=\"py-2 font-mono text-xs\">{release}</p>\n            {index < RELEASES.length - 1 ? <Separator /> : null}\n          </div>\n        ))}\n      </div>\n    </ScrollArea>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menubar-demo",
+  "title": "Menubar demo",
+  "description": "A working preview of Menubar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/menubar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/menubar-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport {\n  Menubar,\n  MenubarCheckboxItem,\n  MenubarContent,\n  MenubarItem,\n  MenubarMenu,\n  MenubarRadioGroup,\n  MenubarRadioItem,\n  MenubarSeparator,\n  MenubarShortcut,\n  MenubarSub,\n  MenubarSubContent,\n  MenubarSubTrigger,\n  MenubarTrigger,\n} from \"@rhs-ui/primitives/menubar\";\n\nexport default function Demo(): React.JSX.Element {\n  const [grid, setGrid] = useState(true);\n  const [zoom, setZoom] = useState(\"100\");\n  const [last, setLast] = useState(\"Open a menu; arrow keys move between them.\");\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <Menubar>\n        <MenubarMenu>\n          <MenubarTrigger>File</MenubarTrigger>\n          <MenubarContent>\n            <MenubarItem onSelect={() => setLast(\"New board.\")}>\n              New board <MenubarShortcut>⌘N</MenubarShortcut>\n            </MenubarItem>\n            <MenubarItem onSelect={() => setLast(\"Opened.\")}>\n              Open… <MenubarShortcut>⌘O</MenubarShortcut>\n            </MenubarItem>\n            <MenubarSub>\n              <MenubarSubTrigger>Export as</MenubarSubTrigger>\n              <MenubarSubContent>\n                <MenubarItem onSelect={() => setLast(\"Exported as PNG.\")}>PNG</MenubarItem>\n                <MenubarItem onSelect={() => setLast(\"Exported as PDF.\")}>PDF</MenubarItem>\n                <MenubarItem onSelect={() => setLast(\"Exported as SVG.\")}>SVG</MenubarItem>\n              </MenubarSubContent>\n            </MenubarSub>\n          </MenubarContent>\n        </MenubarMenu>\n        <MenubarMenu>\n          <MenubarTrigger>Edit</MenubarTrigger>\n          <MenubarContent>\n            <MenubarItem onSelect={() => setLast(\"Undone.\")}>\n              Undo <MenubarShortcut>⌘Z</MenubarShortcut>\n            </MenubarItem>\n            <MenubarItem onSelect={() => setLast(\"Redone.\")}>\n              Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>\n            </MenubarItem>\n          </MenubarContent>\n        </MenubarMenu>\n        <MenubarMenu>\n          <MenubarTrigger>View</MenubarTrigger>\n          <MenubarContent>\n            <MenubarCheckboxItem checked={grid} onCheckedChange={(checked) => setGrid(checked === true)}>\n              Show grid\n            </MenubarCheckboxItem>\n            <MenubarSeparator />\n            <MenubarRadioGroup value={zoom} onValueChange={setZoom}>\n              {[\"50\", \"100\", \"200\"].map((level) => (\n                <MenubarRadioItem key={level} value={level}>\n                  {level}%\n                </MenubarRadioItem>\n              ))}\n            </MenubarRadioGroup>\n          </MenubarContent>\n        </MenubarMenu>\n      </Menubar>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {last} Grid {grid ? \"on\" : \"off\"}, zoom {zoom}%.\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

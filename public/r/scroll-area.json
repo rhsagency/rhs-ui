@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "title": "Scroll Area",
+  "description": "A scrolling box with a slim scrollbar that matches the interface, scrolling itself stays native.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/scroll-area.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { ScrollArea as ScrollAreaPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A scrolling box with a slim scrollbar that matches the interface on every\n * platform, while scrolling itself stays native (wheel, touch, keyboard).\n * Give it a height; the viewport is focusable so the keyboard can scroll it.\n */\nexport function ScrollArea({ className, children, ...props }: ComponentProps<typeof ScrollAreaPrimitive.Root>) {\n  return (\n    <ScrollAreaPrimitive.Root data-slot=\"scroll-area\" className={cn(\"relative overflow-hidden\", className)} {...props}>\n      <ScrollAreaPrimitive.Viewport data-slot=\"scroll-area-viewport\" tabIndex={0} className=\"size-full rounded-[inherit] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollBar orientation=\"horizontal\" />\n      <ScrollAreaPrimitive.Corner />\n    </ScrollAreaPrimitive.Root>\n  );\n}\n\nexport function ScrollBar({ className, orientation = \"vertical\", ...props }: ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {\n  return (\n    <ScrollAreaPrimitive.ScrollAreaScrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      orientation={orientation}\n      className={cn(\n        \"flex touch-none p-px transition-colors duration-150 select-none\",\n        orientation === \"vertical\" ? \"h-full w-2 border-l border-l-transparent\" : \"h-2 flex-col border-t border-t-transparent\",\n        className,\n      )}\n      {...props}\n    >\n      <ScrollAreaPrimitive.ScrollAreaThumb data-slot=\"scroll-area-thumb\" className=\"relative flex-1 rounded-full bg-border hover:bg-muted-foreground/40\" />\n    </ScrollAreaPrimitive.ScrollAreaScrollbar>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/scroll-area.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "docs": "Give it a height. The viewport takes focus so the keyboard can scroll it.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

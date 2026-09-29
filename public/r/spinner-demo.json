@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-demo",
+  "title": "Spinner demo",
+  "description": "A working preview of Spinner.",
+  "registryDependencies": [
+    "https://rhsui.com/r/spinner.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/spinner-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { Spinner } from \"@rhs-ui/primitives/spinner\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex flex-col items-center gap-6\">\n      <div className=\"flex items-end gap-6\">\n        <Spinner size={14} />\n        <Spinner size={20} />\n        <Spinner size={32} />\n      </div>\n      <Button variant=\"outline\" disabled>\n        <Spinner size={16} label=\"\" /> Deploying to production\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

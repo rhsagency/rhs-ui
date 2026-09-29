@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-demo",
+  "title": "Toggle Group demo",
+  "description": "A working preview of Toggle Group.",
+  "registryDependencies": [
+    "https://rhsui.com/r/toggle-group.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/toggle-group-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconBoard, IconGrid, IconList } from \"@rhs-ui/icons\";\nimport { ToggleGroup, ToggleGroupItem } from \"@rhs-ui/primitives/toggle-group\";\n\nexport default function Demo(): React.JSX.Element {\n  const [view, setView] = useState(\"grid\");\n  const [filters, setFilters] = useState<string[]>([\"open\"]);\n  return (\n    <div className=\"flex flex-col items-center gap-5\">\n      <ToggleGroup type=\"single\" aria-label=\"View\" value={view} onValueChange={(value) => value && setView(value)}>\n        <ToggleGroupItem value=\"list\" aria-label=\"List\">\n          <IconList />\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"grid\" aria-label=\"Grid\">\n          <IconGrid />\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"board\" aria-label=\"Board\">\n          <IconBoard />\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <ToggleGroup type=\"multiple\" size=\"sm\" aria-label=\"Show\" value={filters} onValueChange={setFilters}>\n        <ToggleGroupItem value=\"open\">Open</ToggleGroupItem>\n        <ToggleGroupItem value=\"review\">In review</ToggleGroupItem>\n        <ToggleGroupItem value=\"done\">Done</ToggleGroupItem>\n      </ToggleGroup>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {view} view, showing {filters.length ? filters.join(\" and \") : \"nothing\"}.\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

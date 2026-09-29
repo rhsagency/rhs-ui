@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "title": "Aspect Ratio",
+  "description": "A box that keeps its proportions at any width and reserves the space before media loads.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/aspect-ratio.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { AspectRatio as AspectRatioPrimitive } from \"radix-ui\";\n\n/**\n * A box that keeps its proportions at any width, for images, video and maps.\n * It reserves the space before the media loads, so nothing jumps.\n */\nexport function AspectRatio(props: ComponentProps<typeof AspectRatioPrimitive.Root>) {\n  return <AspectRatioPrimitive.Root data-slot=\"aspect-ratio\" {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/aspect-ratio.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

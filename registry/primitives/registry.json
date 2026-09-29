@@ -1826,6 +1826,753 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A message that stays until its cause is gone: notice, success, warning or error, with an optional icon.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/alert.tsx"
+        }
+      ],
+      "docs": "Tone is carried by the words and the icon as well as the colour. It is a status by default; pass role=\"alert\" only for something that just happened and needs attention now."
+    },
+    {
+      "name": "alert-demo",
+      "type": "registry:example",
+      "title": "Alert demo",
+      "description": "A working preview of Alert.",
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/alert-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A question that must be answered first: delete, discard, leave. Focus starts on the safe answer.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/alert-dialog.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        },
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        },
+        "@keyframes rhs-fade-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes rhs-slide-in-right": {
+          "from": {
+            "transform": "translateX(100%)"
+          },
+          "to": {
+            "transform": "translateX(0)"
+          }
+        },
+        "@keyframes rhs-slide-out-right": {
+          "from": {
+            "transform": "translateX(0)"
+          },
+          "to": {
+            "transform": "translateX(100%)"
+          }
+        },
+        "@keyframes rhs-slide-in-left": {
+          "from": {
+            "transform": "translateX(-100%)"
+          },
+          "to": {
+            "transform": "translateX(0)"
+          }
+        },
+        "@keyframes rhs-slide-out-left": {
+          "from": {
+            "transform": "translateX(0)"
+          },
+          "to": {
+            "transform": "translateX(-100%)"
+          }
+        },
+        "@keyframes rhs-slide-in-top": {
+          "from": {
+            "transform": "translateY(-100%)"
+          },
+          "to": {
+            "transform": "translateY(0)"
+          }
+        },
+        "@keyframes rhs-slide-out-top": {
+          "from": {
+            "transform": "translateY(0)"
+          },
+          "to": {
+            "transform": "translateY(-100%)"
+          }
+        },
+        "@keyframes rhs-slide-in-bottom": {
+          "from": {
+            "transform": "translateY(100%)"
+          },
+          "to": {
+            "transform": "translateY(0)"
+          }
+        },
+        "@keyframes rhs-slide-out-bottom": {
+          "from": {
+            "transform": "translateY(0)"
+          },
+          "to": {
+            "transform": "translateY(100%)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)",
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out",
+          "animate-rhs-fade-out": "rhs-fade-out 120ms ease-in",
+          "animate-rhs-slide-in-right": "rhs-slide-in-right 320ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-slide-out-right": "rhs-slide-out-right 220ms cubic-bezier(0.4, 0, 1, 1)",
+          "animate-rhs-slide-in-left": "rhs-slide-in-left 320ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-slide-out-left": "rhs-slide-out-left 220ms cubic-bezier(0.4, 0, 1, 1)",
+          "animate-rhs-slide-in-top": "rhs-slide-in-top 320ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-slide-out-top": "rhs-slide-out-top 220ms cubic-bezier(0.4, 0, 1, 1)",
+          "animate-rhs-slide-in-bottom": "rhs-slide-in-bottom 320ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-slide-out-bottom": "rhs-slide-out-bottom 220ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "Name the action on the button (\"Delete project\", not \"OK\"). It does not close on an outside click."
+    },
+    {
+      "name": "alert-dialog-demo",
+      "type": "registry:example",
+      "title": "Alert Dialog demo",
+      "description": "A working preview of Alert Dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/alert-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "A preview that appears when the pointer rests on a link: a profile, a repository, a product.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/hover-card.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "A bonus for pointer users: never the only way to reach the information."
+    },
+    {
+      "name": "hover-card-demo",
+      "type": "registry:example",
+      "title": "Hover Card demo",
+      "description": "A working preview of Hover Card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hover-card.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hover-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "The menu behind a right click or Shift+F10: actions on the thing under the pointer.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/context-menu.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "Everything in it must also be reachable another way; nobody discovers a right click by looking."
+    },
+    {
+      "name": "context-menu-demo",
+      "type": "registry:example",
+      "title": "Context Menu demo",
+      "description": "A working preview of Context Menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/context-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/context-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "A desktop app's row of menus (File, Edit, View) with submenus, toggles and a choice of one.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/menubar.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/menubar.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "For a website's navigation use navigation-menu."
+    },
+    {
+      "name": "menubar-demo",
+      "type": "registry:example",
+      "title": "Menubar demo",
+      "description": "A working preview of Menubar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/menubar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/menubar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "One section that opens and closes, its height animated, instantly under reduced motion.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/collapsible.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-collapse-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-collapsible-content-height)"
+          }
+        },
+        "@keyframes rhs-collapse-up": {
+          "from": {
+            "height": "var(--radix-collapsible-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-collapse-down": "rhs-collapse-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-collapse-up": "rhs-collapse-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "For a list of sections use accordion."
+    },
+    {
+      "name": "collapsible-demo",
+      "type": "registry:example",
+      "title": "Collapsible demo",
+      "description": "A working preview of Collapsible.",
+      "registryDependencies": [
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/collapsible-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "A button that stays pressed (bold, pin, mute) and announces its state.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/toggle.tsx"
+        }
+      ],
+      "docs": "An icon-only toggle needs an aria-label that names the action, not the state."
+    },
+    {
+      "name": "toggle-demo",
+      "type": "registry:example",
+      "title": "Toggle demo",
+      "description": "A working preview of Toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/toggle.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Toggles joined into one control: one of them, or any of them. Arrow keys move between items.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/toggle-group.tsx"
+        }
+      ],
+      "docs": "Give the group an aria-label."
+    },
+    {
+      "name": "toggle-group-demo",
+      "type": "registry:example",
+      "title": "Toggle Group demo",
+      "description": "A working preview of Toggle Group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/toggle-group.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/toggle-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A scrolling box with a slim scrollbar that matches the interface, scrolling itself stays native.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/scroll-area.tsx"
+        }
+      ],
+      "docs": "Give it a height. The viewport takes focus so the keyboard can scroll it."
+    },
+    {
+      "name": "scroll-area-demo",
+      "type": "registry:example",
+      "title": "Scroll Area demo",
+      "description": "A working preview of Scroll Area.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-area-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "A box that keeps its proportions at any width and reserves the space before media loads.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio-demo",
+      "type": "registry:example",
+      "title": "Aspect Ratio demo",
+      "description": "A working preview of Aspect Ratio.",
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/aspect-ratio-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Work without a measurable end: twelve ticks fading in turn, a slow pulse under reduced motion.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/spinner.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-spin": {
+          "from": {
+            "transform": "rotate(0deg)"
+          },
+          "to": {
+            "transform": "rotate(360deg)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-spin": "rhs-spin 0.9s steps(12) infinite"
+        }
+      },
+      "docs": "Prefer a skeleton when you know the shape of what is coming. Pass label=\"\" when a visible label beside it already says what is loading."
+    },
+    {
+      "name": "spinner-demo",
+      "type": "registry:example",
+      "title": "Spinner demo",
+      "description": "A working preview of Spinner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/spinner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

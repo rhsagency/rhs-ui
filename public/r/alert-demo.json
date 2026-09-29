@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-demo",
+  "title": "Alert demo",
+  "description": "A working preview of Alert.",
+  "registryDependencies": [
+    "https://rhsui.com/r/alert.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/alert-demo.tsx",
+      "content": "import { IconAlertCircle, IconCheckCircle, IconInfo } from \"@rhs-ui/icons\";\nimport { Alert, AlertDescription, AlertTitle } from \"@rhs-ui/primitives/alert\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-lg gap-3\">\n      <Alert tone=\"info\">\n        <IconInfo />\n        <AlertTitle>Scheduled maintenance</AlertTitle>\n        <AlertDescription>Checkout is read-only on Sunday between 02:00 and 03:00 CET.</AlertDescription>\n      </Alert>\n      <Alert tone=\"success\">\n        <IconCheckCircle />\n        <AlertTitle>Domain connected</AlertTitle>\n        <AlertDescription>rhsui.com now points at your production deployment.</AlertDescription>\n      </Alert>\n      <Alert tone=\"warning\">\n        <IconAlertCircle />\n        <AlertTitle>Two seats left</AlertTitle>\n        <AlertDescription>Invite anyone else and the team moves to the next plan.</AlertDescription>\n      </Alert>\n      <Alert tone=\"destructive\" role=\"alert\">\n        <IconAlertCircle />\n        <AlertTitle>Payment failed</AlertTitle>\n        <AlertDescription>Your card was declined. Update it before 3 October to keep access.</AlertDescription>\n      </Alert>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

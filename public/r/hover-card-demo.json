@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-demo",
+  "title": "Hover Card demo",
+  "description": "A working preview of Hover Card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/hover-card.json",
+    "https://rhsui.com/r/avatar.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/hover-card-demo.tsx",
+      "content": "import { IconCalendar } from \"@rhs-ui/icons\";\nimport { Avatar, AvatarFallback } from \"@rhs-ui/primitives/avatar\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@rhs-ui/primitives/hover-card\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <p className=\"text-sm\">\n      Reviewed by{\" \"}\n      <HoverCard>\n        <HoverCardTrigger asChild>\n          <a href=\"#ines\" className=\"font-medium underline underline-offset-4\">\n            @ines\n          </a>\n        </HoverCardTrigger>\n        <HoverCardContent>\n          <div className=\"flex gap-4\">\n            <Avatar size=\"lg\">\n              <AvatarFallback>IM</AvatarFallback>\n            </Avatar>\n            <div className=\"grid gap-1\">\n              <p className=\"text-sm font-semibold\">Ines Moreau</p>\n              <p className=\"text-sm text-muted-foreground\">Studio lead at Orbit. Ships design systems for a living.</p>\n              <p className=\"mt-1 flex items-center gap-1.5 text-xs text-muted-foreground\">\n                <IconCalendar size={14} /> Joined March 2024\n              </p>\n            </div>\n          </div>\n        </HoverCardContent>\n      </HoverCard>{\" \"}\n      two hours ago.\n    </p>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
