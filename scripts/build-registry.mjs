@@ -22,7 +22,7 @@ import { familyOf } from "./families.mjs";
 const root = path.resolve(import.meta.dirname, "..");
 const out = path.join(root, "public", "r");
 
-export const CATEGORY_ORDER = ["primitives", "icons", "commerce", "dashboard", "application", "marketing", "templates", "models", "backgrounds"];
+export const CATEGORY_ORDER = ["primitives", "icons", "commerce", "dashboard", "application", "marketing", "templates", "models", "backgrounds", "motion"];
 
 /** Every category folder carries its own registry.json with the entries it owns. */
 export function loadFragments() {
@@ -80,7 +80,11 @@ const CATEGORY_TEXT = {
   templates: ["Templates", "Complete pages"],
   models: ["Models", "3D model recipes and the viewer"],
   backgrounds: ["Backgrounds", "Living canvas backgrounds"],
+  motion: ["Motion", "Scroll-driven reveals, parallax and reading progress"],
 };
+for (const category of CATEGORY_ORDER) {
+  if (!CATEGORY_TEXT[category]) throw new Error(`build-registry: category "${category}" has no README text in CATEGORY_TEXT`);
+}
 const publicItems = items.filter((i) => i.type !== "registry:example" && i.type !== "registry:internal");
 const glyphs = (readFileSync(path.join(root, "registry", "icons", "index.tsx"), "utf8").match(/^export const Icon\w+/gm) ?? []).length;
 const animated = publicItems.filter((i) => i.categories?.[0] === "icons" && i.meta?.motion).length;

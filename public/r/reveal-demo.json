@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal-demo",
+  "title": "Reveal demo",
+  "description": "A working preview of Reveal, in its own scrolling panel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/reveal.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/reveal-demo.tsx",
+      "content": "import { Reveal, type RevealEffect } from \"@rhs-ui/motion/reveal\";\n\nconst EFFECTS: readonly { effect: RevealEffect; note: string }[] = [\n  { effect: \"rise\", note: \"Lifts and settles. The everyday choice.\" },\n  { effect: \"tilt\", note: \"Swings forward in 3D, like a screen lifting off the page.\" },\n  { effect: \"scale\", note: \"Grows into place from the centre.\" },\n  { effect: \"blur\", note: \"Comes into focus as it arrives.\" },\n  { effect: \"slide-left\", note: \"Enters from the left edge.\" },\n  { effect: \"slide-right\", note: \"Enters from the right edge.\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40\">\n      <div className=\"grid min-h-[22rem] place-items-center px-6 text-center\">\n        <div>\n          <p className=\"text-xs uppercase tracking-widest text-muted-foreground\">Scroll inside this panel</p>\n          <p className=\"mt-3 text-2xl font-medium tracking-tight\">Six ways to arrive.</p>\n        </div>\n      </div>\n      <div className=\"grid gap-4 px-6 pb-24 sm:grid-cols-2\">\n        {EFFECTS.map(({ effect, note }, index) => (\n          <Reveal key={effect} effect={effect} order={index % 2} className=\"rounded-xl border border-border bg-background p-6 shadow-xs\">\n            <p className=\"font-mono text-xs text-muted-foreground\">effect=&quot;{effect}&quot;</p>\n            <p className=\"mt-3 text-sm leading-relaxed\">{note}</p>\n          </Reveal>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

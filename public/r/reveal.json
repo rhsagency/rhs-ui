@@ -1,0 +1,51 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal",
+  "title": "Reveal",
+  "description": "Brings an element forward as it scrolls into view, tied to the scroll: rise, tilt, scale, blur or slide.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/reveal.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport type RevealEffect = \"rise\" | \"scale\" | \"tilt\" | \"blur\" | \"slide-left\" | \"slide-right\";\n\n/** Where each effect starts; it always ends at rest. */\nfunction startOf(effect: RevealEffect, distance: number): { transform: string; opacity: number; filter: string } {\n  switch (effect) {\n    case \"scale\": return { transform: \"scale(0.86)\", opacity: 0.2, filter: \"none\" };\n    case \"tilt\": return { transform: `perspective(1200px) translate3d(0, ${distance}px, 0) rotateX(22deg) scale(0.92)`, opacity: 0.15, filter: \"none\" };\n    case \"blur\": return { transform: `translate3d(0, ${Math.round(distance / 3)}px, 0)`, opacity: 0, filter: \"blur(12px)\" };\n    case \"slide-left\": return { transform: `translate3d(${-distance}px, 0, 0)`, opacity: 0, filter: \"none\" };\n    case \"slide-right\": return { transform: `translate3d(${distance}px, 0, 0)`, opacity: 0, filter: \"none\" };\n    default: return { transform: `translate3d(0, ${distance}px, 0) scale(0.96)`, opacity: 0, filter: \"none\" };\n  }\n}\n\n/**\n * The scroll-driven animation in class form. Longhands only: the `animation`\n * shorthand would reset the timeline. Gated twice, so reduced motion and a\n * browser without scroll timelines both simply show the content at rest.\n */\nexport const revealClass =\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-name:var(--animate-rhs-reveal)] motion-safe:supports-[animation-timeline:view()]:[animation-timeline:view()] motion-safe:supports-[animation-timeline:view()]:[animation-range:var(--reveal-range)] motion-safe:supports-[animation-timeline:view()]:[animation-fill-mode:both] motion-safe:supports-[animation-timeline:view()]:[animation-timing-function:linear]\";\n\nexport interface RevealProps extends ComponentProps<\"div\"> {\n  /** How the element arrives. `tilt` swings it forward in 3D, like a screen lifting off the page. */\n  effect?: RevealEffect;\n  /** Travel in pixels for rise, tilt, blur and the slides. */\n  distance?: number;\n  /** Position in a row of reveals: each step starts a little later, so a grid lands in sequence. */\n  order?: number;\n  /** The scroll range as CSS `animation-range`. The default finishes when the element is a third of the way up the screen. */\n  range?: string;\n  asChild?: boolean;\n}\n\n/**\n * Brings an element forward as it scrolls into view, tied to the scroll\n * itself: scroll back and it steps back. Pure CSS (scroll-driven animations),\n * no JavaScript and no layout shift; the server renders the element at rest,\n * so nothing is hidden before hydration or without support.\n */\nexport function Reveal({ effect = \"rise\", distance = 48, order = 0, range, asChild = false, className, style, ...props }: RevealProps) {\n  const Comp = asChild ? Slot.Root : \"div\";\n  const start = startOf(effect, distance);\n  const offset = Math.max(0, order) * 6;\n  const vars = {\n    \"--reveal-transform\": start.transform,\n    \"--reveal-opacity\": start.opacity,\n    \"--reveal-filter\": start.filter,\n    \"--reveal-range\": range ?? `entry ${offset}% cover ${30 + offset}%`,\n  } as CSSProperties;\n  return <Comp data-slot=\"reveal\" data-effect={effect} className={cn(revealClass, className)} style={{ ...vars, ...style }} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/reveal.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-reveal": "rhs-reveal"
+    }
+  },
+  "css": {
+    "@keyframes rhs-reveal": {
+      "from": {
+        "opacity": "var(--reveal-opacity)",
+        "transform": "var(--reveal-transform)",
+        "filter": "var(--reveal-filter)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "none",
+        "filter": "none"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "scroll"
+  },
+  "docs": "Pure CSS scroll-driven animation: nothing is hidden before hydration, and reduced motion or a browser without scroll timelines shows the element at rest. Give a row of reveals an increasing order to land them in sequence. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parallax-layer-demo",
+  "title": "Parallax Layer demo",
+  "description": "A working preview of Parallax Layer, in its own scrolling panel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/parallax-layer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/parallax-layer-demo.tsx",
+      "content": "import { ParallaxLayer } from \"@rhs-ui/motion/parallax-layer\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40\">\n      <div className=\"grid h-72 place-items-center text-center\">\n        <p className=\"text-xs uppercase tracking-widest text-muted-foreground\">Scroll inside this panel</p>\n      </div>\n      <section className=\"relative mx-6 h-[26rem] overflow-clip rounded-2xl border border-border bg-foreground text-background\">\n        <ParallaxLayer speed={-0.35} className=\"absolute top-10 left-8 h-40 w-56 rounded-xl border border-background/20 bg-background/10\" />\n        <ParallaxLayer speed={0.5} rotate={-6} className=\"absolute right-10 bottom-8 h-48 w-40 rounded-xl border border-background/25 bg-background/15\" />\n        <ParallaxLayer speed={0.9} zoom={0.1} className=\"absolute top-1/3 right-1/3 size-20 rounded-full bg-background/80\" />\n        <div className=\"relative grid h-full place-items-center px-8 text-center\">\n          <div>\n            <p className=\"text-xs uppercase tracking-widest opacity-70\">Depth, not decoration</p>\n            <p className=\"mt-3 max-w-[14ch] text-3xl font-medium tracking-tight\">Every layer at its own pace.</p>\n          </div>\n        </div>\n      </section>\n      <div className=\"h-80\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

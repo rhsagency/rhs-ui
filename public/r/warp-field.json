@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "warp-field",
+  "title": "Warp Field",
+  "description": "Stars streaming out of a vanishing point, trails stretching as they speed up.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/warp-field.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\nconst STARS = Array.from({ length: 180 }, (_, i) => ({ angle: (i * 2.39996) % (Math.PI * 2), lane: ((i * 0.618034) % 1) * .9 + .1, start: (i * 0.7548776) % 1 }));\n\n/** Stars streaming out of a vanishing point, with trails that stretch as they speed up. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const cx = width * .5, cy = height * .5;\n  const reach = Math.hypot(cx, cy);\n  ctx.lineCap = \"round\";\n  for (const star of STARS) {\n    const progress = (star.start + time * .09 * (.6 + star.lane)) % 1;\n    const eased = progress ** 2.2;\n    const radius = eased * reach * 1.05;\n    const trail = Math.max(1, eased * 46 * star.lane);\n    const dx = Math.cos(star.angle), dy = Math.sin(star.angle);\n    ctx.globalAlpha = Math.min(.85, progress * 1.4) * (.35 + star.lane * .55);\n    ctx.lineWidth = .6 + eased * 1.6;\n    ctx.beginPath();\n    ctx.moveTo(cx + dx * Math.max(0, radius - trail), cy + dy * Math.max(0, radius - trail));\n    ctx.lineTo(cx + dx * radius, cy + dy * radius);\n    ctx.stroke();\n  }\n};\n\nexport function WarpField(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/warp-field.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Straight to launch.",
+    "use": "Launches, countdowns, closing calls to action",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

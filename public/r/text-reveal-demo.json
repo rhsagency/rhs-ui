@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-reveal-demo",
+  "title": "Text Reveal demo",
+  "description": "A working preview of Text Reveal, in its own scrolling panel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/text-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/text-reveal-demo.tsx",
+      "content": "import { TextReveal } from \"@rhs-ui/motion/text-reveal\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40\">\n      <div className=\"grid h-[32rem] place-items-center text-center\">\n        <p className=\"text-xs uppercase tracking-widest text-muted-foreground\">Scroll inside this panel</p>\n      </div>\n      <TextReveal\n        as=\"blockquote\"\n        className=\"mx-auto max-w-2xl px-6 text-3xl leading-tight font-medium tracking-tight sm:text-4xl\"\n        text=\"We build the interface once, carefully, so that every screen after it can be fast, calm and unmistakably yours.\"\n      />\n      <div className=\"h-96\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

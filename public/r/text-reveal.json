@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-reveal",
+  "title": "Text Reveal",
+  "description": "A statement that lights up word by word as it scrolls through the screen.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/text-reveal.tsx",
+      "content": "import type { CSSProperties, HTMLAttributes } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface TextRevealProps extends Omit<HTMLAttributes<HTMLElement>, \"children\"> {\n  /** The sentence to reveal. Plain text: it is split into words. */\n  text: string;\n  as?: \"p\" | \"h2\" | \"h3\" | \"blockquote\";\n  /** How dim a word is before its turn, 0 to 1. */\n  dim?: number;\n}\n\n/**\n * A statement that lights up word by word as it scrolls through the screen,\n * for the one sentence a page is built around. Screen readers get the\n * sentence whole; the words are presentation. Pure CSS on a view timeline;\n * reduced motion and browsers without one show every word at full strength.\n */\nexport function TextReveal({ text, as: Tag = \"p\", dim = 0.18, className, style, ...props }: TextRevealProps) {\n  const words = text.trim().split(/\\s+/);\n  const vars = { \"--text-reveal-dim\": dim } as CSSProperties;\n  return (\n    <Tag data-slot=\"text-reveal\" className={cn(\"[view-timeline-name:--rhs-text-reveal]\", className)} style={{ ...vars, ...style }} {...props}>\n      <span className=\"sr-only\">{text}</span>\n      <span aria-hidden=\"true\">\n        {words.map((word, index) => {\n          const start = 8 + (index / words.length) * 42;\n          const wordVars = { \"--word-start\": `${start.toFixed(2)}%`, \"--word-end\": `${(start + 9).toFixed(2)}%` } as CSSProperties;\n          return (\n            <span key={`${word}-${index}`}>\n              <span\n                style={wordVars}\n                className=\"inline-block motion-safe:supports-[animation-timeline:view()]:[animation-name:var(--animate-rhs-text-word)] motion-safe:supports-[animation-timeline:view()]:[animation-timeline:--rhs-text-reveal] motion-safe:supports-[animation-timeline:view()]:[animation-range:cover_var(--word-start)_cover_var(--word-end)] motion-safe:supports-[animation-timeline:view()]:[animation-fill-mode:both] motion-safe:supports-[animation-timeline:view()]:[animation-timing-function:linear]\"\n              >\n                {word}\n              </span>\n              {index < words.length - 1 ? \" \" : null}\n            </span>\n          );\n        })}\n      </span>\n    </Tag>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/text-reveal.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-text-word": "rhs-text-word"
+    }
+  },
+  "css": {
+    "@keyframes rhs-text-word": {
+      "from": {
+        "opacity": "var(--text-reveal-dim)",
+        "filter": "blur(3px)",
+        "transform": "translateY(0.12em)"
+      },
+      "to": {
+        "opacity": "1",
+        "filter": "none",
+        "transform": "none"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "scroll"
+  },
+  "docs": "For the one sentence a page is built around. Screen readers read the sentence whole. Give it room above and below, so the words have scroll to light up in. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

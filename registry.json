@@ -4097,6 +4097,8 @@
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline",
+        "tagline": "Small things. In motion.",
+        "use": "Product pages, hero sections",
         "family": "backgrounds"
       },
       "dependencies": [],
@@ -4140,6 +4142,8 @@
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline",
+        "tagline": "Follow a different line.",
+        "use": "Editorial, creative portfolios",
         "family": "backgrounds"
       },
       "dependencies": [],
@@ -4183,6 +4187,8 @@
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline",
+        "tagline": "A little space to think.",
+        "use": "Technology, feature sections",
         "family": "backgrounds"
       },
       "dependencies": [],
@@ -4226,6 +4232,8 @@
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline",
+        "tagline": "Build toward something.",
+        "use": "Launch pages, studio websites",
         "family": "backgrounds"
       },
       "dependencies": [],
@@ -4256,10 +4264,235 @@
       ]
     },
     {
+      "name": "flow-field",
+      "type": "registry:component",
+      "title": "Flow Field",
+      "description": "Short strokes that follow a slowly turning current, like wind over a map.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "tagline": "Follow the current.",
+        "use": "Climate, data and mobility products",
+        "family": "backgrounds"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/flow-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/flow-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "flow-field-demo",
+      "type": "registry:example",
+      "title": "Flow Field demo",
+      "description": "A working preview of Flow Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/flow-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/flow-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "particle-network",
+      "type": "registry:component",
+      "title": "Particle Network",
+      "description": "Drifting points that link up whenever two come close.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "tagline": "Everything, connected.",
+        "use": "Platforms, integrations, network products",
+        "family": "backgrounds"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/particle-network.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/particle-network.tsx"
+        }
+      ]
+    },
+    {
+      "name": "particle-network-demo",
+      "type": "registry:example",
+      "title": "Particle Network demo",
+      "description": "A working preview of Particle Network.",
+      "registryDependencies": [
+        "https://rhsui.com/r/particle-network.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/particle-network-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "beam-grid",
+      "type": "registry:component",
+      "title": "Beam Grid",
+      "description": "A quiet square grid with light travelling along a few of its lines.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "tagline": "Signals, in transit.",
+        "use": "Developer tools, infrastructure, APIs",
+        "family": "backgrounds"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/beam-grid.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/beam-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "beam-grid-demo",
+      "type": "registry:example",
+      "title": "Beam Grid demo",
+      "description": "A working preview of Beam Grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/beam-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/beam-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "signal-bars",
+      "type": "registry:component",
+      "title": "Signal Bars",
+      "description": "Rounded bars rising like a live equaliser, strongest in the middle.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "tagline": "Turn it up.",
+        "use": "Audio, voice and AI products",
+        "family": "backgrounds"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/signal-bars.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/signal-bars.tsx"
+        }
+      ]
+    },
+    {
+      "name": "signal-bars-demo",
+      "type": "registry:example",
+      "title": "Signal Bars demo",
+      "description": "A working preview of Signal Bars.",
+      "registryDependencies": [
+        "https://rhsui.com/r/signal-bars.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/signal-bars-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "warp-field",
+      "type": "registry:component",
+      "title": "Warp Field",
+      "description": "Stars streaming out of a vanishing point, trails stretching as they speed up.",
+      "categories": [
+        "backgrounds"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "tagline": "Straight to launch.",
+        "use": "Launches, countdowns, closing calls to action",
+        "family": "backgrounds"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/background-canvas.json"
+      ],
+      "files": [
+        {
+          "path": "registry/backgrounds/warp-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/backgrounds/warp-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "warp-field-demo",
+      "type": "registry:example",
+      "title": "Warp Field demo",
+      "description": "A working preview of Warp Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/warp-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/warp-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "background-canvas",
       "type": "registry:internal",
       "title": "Background Canvas",
-      "description": "A shared decorative canvas with offscreen suspension and reduced motion.",
+      "description": "The shared decorative canvas: painters, pointer and scroll input, offscreen suspension and reduced motion.",
       "categories": [
         "backgrounds"
       ],
@@ -4278,6 +4511,250 @@
           "path": "registry/backgrounds/background-canvas.tsx",
           "type": "registry:component",
           "target": "components/rhs-ui/backgrounds/background-canvas.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reveal",
+      "type": "registry:component",
+      "title": "Reveal",
+      "description": "Brings an element forward as it scrolls into view, tied to the scroll: rise, tilt, scale, blur or slide.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "scroll"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/reveal.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/reveal.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-reveal": {
+          "from": {
+            "opacity": "var(--reveal-opacity)",
+            "transform": "var(--reveal-transform)",
+            "filter": "var(--reveal-filter)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none",
+            "filter": "none"
+          }
+        }
+      },
+      "docs": "Pure CSS scroll-driven animation: nothing is hidden before hydration, and reduced motion or a browser without scroll timelines shows the element at rest. Give a row of reveals an increasing order to land them in sequence. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-reveal": "rhs-reveal"
+        }
+      }
+    },
+    {
+      "name": "reveal-demo",
+      "type": "registry:example",
+      "title": "Reveal demo",
+      "description": "A working preview of Reveal, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reveal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "parallax-layer",
+      "type": "registry:component",
+      "title": "Parallax Layer",
+      "description": "A layer that travels at its own pace while the page scrolls past, with optional zoom and turn.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "scroll"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/parallax-layer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/parallax-layer.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-parallax": {
+          "from": {
+            "transform": "var(--parallax-from)"
+          },
+          "to": {
+            "transform": "var(--parallax-to)"
+          }
+        }
+      },
+      "docs": "Put layers with different speeds in one relatively positioned section. Keep speeds between -0.6 and 0.6 for text, and use the stronger values for shapes and images. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-parallax": "rhs-parallax"
+        }
+      }
+    },
+    {
+      "name": "parallax-layer-demo",
+      "type": "registry:example",
+      "title": "Parallax Layer demo",
+      "description": "A working preview of Parallax Layer, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/parallax-layer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/parallax-layer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:component",
+      "title": "Scroll Progress",
+      "description": "A thin reading bar that fills as you scroll the page or a scrolling panel.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "scroll"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/scroll-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scroll-progress.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-progress": {
+          "from": {
+            "transform": "scaleX(0)"
+          },
+          "to": {
+            "transform": "scaleX(1)"
+          }
+        }
+      },
+      "docs": "Sticky at the top of its container. Uses a CSS scroll timeline where available and a passive scroll listener elsewhere. Decorative, so hidden from assistive technology.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-progress": "rhs-progress"
+        }
+      }
+    },
+    {
+      "name": "scroll-progress-demo",
+      "type": "registry:example",
+      "title": "Scroll Progress demo",
+      "description": "A working preview of Scroll Progress, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "text-reveal",
+      "type": "registry:component",
+      "title": "Text Reveal",
+      "description": "A statement that lights up word by word as it scrolls through the screen.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "scroll"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/text-reveal.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/text-reveal.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-text-word": {
+          "from": {
+            "opacity": "var(--text-reveal-dim)",
+            "filter": "blur(3px)",
+            "transform": "translateY(0.12em)"
+          },
+          "to": {
+            "opacity": "1",
+            "filter": "none",
+            "transform": "none"
+          }
+        }
+      },
+      "docs": "For the one sentence a page is built around. Screen readers read the sentence whole. Give it room above and below, so the words have scroll to light up in. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-text-word": "rhs-text-word"
+        }
+      }
+    },
+    {
+      "name": "text-reveal-demo",
+      "type": "registry:example",
+      "title": "Text Reveal demo",
+      "description": "A working preview of Text Reveal, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/text-reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/text-reveal-demo.tsx",
+          "type": "registry:example"
         }
       ]
     }

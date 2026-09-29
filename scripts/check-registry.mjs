@@ -24,7 +24,7 @@ import { FAMILIES, familyOf } from "./families.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 /** The categories, and with them the folders under registry/ and components/rhs-ui/. */
-const TAXONOMY = new Set(["primitives", "icons", "application", "commerce", "dashboard", "marketing", "templates", "models", "backgrounds"]);
+const TAXONOMY = new Set(["primitives", "icons", "application", "commerce", "dashboard", "marketing", "templates", "models", "backgrounds", "motion"]);
 const FORBIDDEN = [/^lucide-react(@|$)/, /^cn(@|$)/, /^shadcn(@|$)/, /^@base-ui\//, /^@radix-ui\//, /^tw-animate-css(@|$)/];
 const MOTION_KINDS = new Set(["trigger", "state"]);
 const URL_DEP = /^https:\/\/rhsui\.com\/r\/([a-z0-9-]+)\.json$/;

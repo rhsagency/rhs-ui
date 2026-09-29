@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flow-field",
+  "title": "Flow Field",
+  "description": "Short strokes that follow a slowly turning current, like wind over a map.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/flow-field.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Short strokes that follow a slowly turning current, like wind over a map. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const step = 22;\n  ctx.lineCap = \"round\";\n  for (let x = step / 2; x < width; x += step) {\n    for (let y = step / 2; y < height; y += step) {\n      const nx = x / width, ny = y / height;\n      const angle = Math.sin(nx * 3.1 + time * .35) * 1.4 + Math.cos(ny * 4.3 - time * .28) * 1.1 + Math.sin((nx + ny) * 2.2 + time * .18);\n      const strength = (Math.sin(nx * 5 - ny * 3 + time * .5) + 1) * .5;\n      const length = 5 + strength * 9;\n      ctx.globalAlpha = .12 + strength * .42;\n      ctx.beginPath();\n      ctx.moveTo(x - Math.cos(angle) * length * .5, y - Math.sin(angle) * length * .5);\n      ctx.lineTo(x + Math.cos(angle) * length * .5, y + Math.sin(angle) * length * .5);\n      ctx.stroke();\n    }\n  }\n};\n\nexport function FlowField(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/flow-field.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Follow the current.",
+    "use": "Climate, data and mobility products",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

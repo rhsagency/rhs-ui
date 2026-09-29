@@ -6,12 +6,12 @@
  * library without a list of names.
  */
 export const FAMILIES = new Set([
-  "actions", "forms", "overlay", "navigation", "data-display", "feedback", "layout", "motion", "theme",
+  "actions", "forms", "overlay", "navigation", "data-display", "feedback", "layout", "motion", "scroll", "theme",
   "page-chrome", "hero", "features", "social-proof", "conversion", "account",
   "application", "commerce", "dashboard", "models", "icons", "backgrounds", "templates",
 ]);
 
-const MUST_NAME_FAMILY = new Set(["primitives", "marketing"]);
+const MUST_NAME_FAMILY = new Set(["primitives", "marketing", "motion"]);
 
 export function familyOf(item) {
   const [category, second] = item.categories ?? [];

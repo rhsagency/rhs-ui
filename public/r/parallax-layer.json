@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parallax-layer",
+  "title": "Parallax Layer",
+  "description": "A layer that travels at its own pace while the page scrolls past, with optional zoom and turn.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/parallax-layer.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ParallaxLayerProps extends ComponentProps<\"div\"> {\n  /** How much faster (positive) or slower (negative) than the page the layer travels. 0.2 is subtle, 0.6 is dramatic. */\n  speed?: number;\n  /** Extra scale added by the time the layer leaves the screen: 0.15 grows it by 15% on the way through. */\n  zoom?: number;\n  /** Turn in degrees over the whole passage. */\n  rotate?: number;\n  asChild?: boolean;\n}\n\n/**\n * A layer that moves at its own pace while the page scrolls past it, for\n * depth in heroes, product shots and collages. Pure CSS on a view timeline;\n * reduced motion and browsers without scroll timelines keep it in place.\n */\nexport function ParallaxLayer({ speed = 0.25, zoom = 0, rotate = 0, asChild = false, className, style, ...props }: ParallaxLayerProps) {\n  const Comp = asChild ? Slot.Root : \"div\";\n  const travel = Math.round(Math.max(-1.5, Math.min(1.5, speed)) * 160);\n  const vars = {\n    \"--parallax-from\": `translate3d(0, ${travel}px, 0) scale(1) rotate(${-rotate / 2}deg)`,\n    \"--parallax-to\": `translate3d(0, ${-travel}px, 0) scale(${1 + zoom}) rotate(${rotate / 2}deg)`,\n  } as CSSProperties;\n  return (\n    <Comp\n      data-slot=\"parallax-layer\"\n      className={cn(\n        \"will-change-transform motion-safe:supports-[animation-timeline:view()]:[animation-name:var(--animate-rhs-parallax)] motion-safe:supports-[animation-timeline:view()]:[animation-timeline:view()] motion-safe:supports-[animation-timeline:view()]:[animation-range:cover] motion-safe:supports-[animation-timeline:view()]:[animation-fill-mode:both] motion-safe:supports-[animation-timeline:view()]:[animation-timing-function:linear]\",\n        className,\n      )}\n      style={{ ...vars, ...style }}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/parallax-layer.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-parallax": "rhs-parallax"
+    }
+  },
+  "css": {
+    "@keyframes rhs-parallax": {
+      "from": {
+        "transform": "var(--parallax-from)"
+      },
+      "to": {
+        "transform": "var(--parallax-to)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "scroll"
+  },
+  "docs": "Put layers with different speeds in one relatively positioned section. Keep speeds between -0.6 and 0.6 for text, and use the stronger values for shapes and images. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

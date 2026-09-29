@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-progress-demo",
+  "title": "Scroll Progress demo",
+  "description": "A working preview of Scroll Progress, in its own scrolling panel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/scroll-progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/scroll-progress-demo.tsx",
+      "content": "import { ScrollProgress } from \"@rhs-ui/motion/scroll-progress\";\n\nconst PARAGRAPHS = [\n  \"A reading bar tells people how much is left, which is often the one thing that keeps them reading.\",\n  \"It sits at the top of the page or, as here, of any scrolling panel, and fills as they go.\",\n  \"Where the browser has scroll timelines, the bar is pure CSS. Where it does not, a passive listener takes over.\",\n  \"It carries no meaning of its own, so assistive technology does not announce it.\",\n  \"Keep it thin and in the text colour. It is a hint, not a feature.\",\n  \"That is all there is to it. You made it to the end.\",\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-background\">\n      <ScrollProgress source=\"nearest\" />\n      <article className=\"mx-auto max-w-prose px-6 py-10\">\n        <p className=\"text-xs uppercase tracking-widest text-muted-foreground\">Scroll inside this panel</p>\n        <h3 className=\"mt-3 text-2xl font-medium tracking-tight\">How far along are you?</h3>\n        {PARAGRAPHS.map((text) => (\n          <p key={text} className=\"mt-8 text-base leading-relaxed text-muted-foreground\">\n            {text}\n          </p>\n        ))}\n        <div className=\"h-64\" />\n      </article>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

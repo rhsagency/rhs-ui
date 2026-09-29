@@ -21,6 +21,8 @@
     "since": "0.5.0",
     "status": "stable",
     "preview": "inline",
+    "tagline": "Small things. In motion.",
+    "use": "Product pages, hero sections",
     "family": "backgrounds"
   },
   "categories": [

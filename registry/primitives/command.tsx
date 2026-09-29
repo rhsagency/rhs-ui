@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import { useSyncExternalStore, type ComponentProps } from "react";
 import { Command as CommandPrimitive } from "cmdk";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@rhs-ui/primitives/dialog";
@@ -72,7 +72,17 @@ export function CommandList({ className, ...props }: ComponentProps<typeof Comma
   );
 }
 
+const noSubscription = (): (() => void) => () => undefined;
+
+/**
+ * Shown when nothing matches. cmdk counts items as they register, so on the
+ * server and in the first client render it believes every list is empty:
+ * rendering then would flash "nothing matches" above a full list. It waits
+ * until the component has mounted.
+ */
 export function CommandEmpty({ className, ...props }: ComponentProps<typeof CommandPrimitive.Empty>) {
+  const mounted = useSyncExternalStore(noSubscription, () => true, () => false);
+  if (!mounted) return null;
   return <CommandPrimitive.Empty data-slot="command-empty" className={cn("px-4 py-8 text-center text-sm text-muted-foreground", className)} {...props} />;
 }
 

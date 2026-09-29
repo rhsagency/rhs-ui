@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signal-bars",
+  "title": "Signal Bars",
+  "description": "Rounded bars rising like a live equaliser, strongest in the middle.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/signal-bars.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Rounded bars rising from the baseline like a live equaliser, strongest in the middle. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const gap = 10, bar = 5;\n  const count = Math.floor(width / gap);\n  const baseline = height * .78;\n  for (let i = 0; i < count; i++) {\n    const x = i * gap + (width - count * gap) / 2 + gap / 2;\n    const center = 1 - Math.abs(x / width - .5) * 1.5;\n    const level = (Math.sin(i * .37 + time * 1.4) + Math.sin(i * .11 - time * .9) * .7 + Math.sin(i * .9 + time * 2.3) * .3 + 2) / 4;\n    const tall = Math.max(4, level * Math.max(.15, center) * height * .62);\n    ctx.globalAlpha = .18 + level * .5 * Math.max(.3, center);\n    ctx.beginPath();\n    ctx.roundRect(x - bar / 2, baseline - tall, bar, tall, bar / 2);\n    ctx.fill();\n    ctx.globalAlpha *= .25;\n    ctx.beginPath();\n    ctx.roundRect(x - bar / 2, baseline + 6, bar, tall * .28, bar / 2);\n    ctx.fill();\n  }\n};\n\nexport function SignalBars(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/signal-bars.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Turn it up.",
+    "use": "Audio, voice and AI products",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

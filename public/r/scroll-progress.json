@@ -1,0 +1,45 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-progress",
+  "title": "Scroll Progress",
+  "description": "A thin reading bar that fills as you scroll the page or a scrolling panel.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/scroll-progress.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, type ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ScrollProgressProps extends ComponentProps<\"div\"> {\n  /** `page` follows the whole document; `nearest` follows the closest scrolling box, for a panel or a reader. */\n  source?: \"page\" | \"nearest\";\n}\n\nfunction scrollerOf(element: HTMLElement): HTMLElement | null {\n  for (let node = element.parentElement; node; node = node.parentElement) {\n    const { overflowY } = getComputedStyle(node);\n    if ((overflowY === \"auto\" || overflowY === \"scroll\") && node.scrollHeight > node.clientHeight) return node;\n  }\n  return null;\n}\n\n/**\n * A thin bar that fills as you read. Place it at the top of the page or of a\n * scrolling panel (it is sticky; position it with className). Driven by a\n * CSS scroll timeline where the browser has one, by a passive scroll\n * listener where it does not. Decorative: hidden from assistive technology.\n */\nexport function ScrollProgress({ source = \"page\", className, ...props }: ScrollProgressProps) {\n  const bar = useRef<HTMLDivElement>(null);\n  useEffect(() => {\n    const element = bar.current;\n    if (!element || CSS.supports(\"animation-timeline: scroll()\")) return;\n    const scroller = source === \"nearest\" ? scrollerOf(element) : null;\n    const update = (): void => {\n      const top = scroller ? scroller.scrollTop : scrollY;\n      const room = scroller ? scroller.scrollHeight - scroller.clientHeight : document.documentElement.scrollHeight - innerHeight;\n      element.style.transform = `scaleX(${room > 0 ? Math.min(1, top / room) : 0})`;\n    };\n    update();\n    const target: HTMLElement | Window = scroller ?? window;\n    target.addEventListener(\"scroll\", update, { passive: true });\n    addEventListener(\"resize\", update);\n    return () => { target.removeEventListener(\"scroll\", update); removeEventListener(\"resize\", update); };\n  }, [source]);\n  return (\n    <div data-slot=\"scroll-progress\" aria-hidden=\"true\" className={cn(\"sticky top-0 z-40 h-0.5 w-full overflow-clip\", className)} {...props}>\n      <div\n        ref={bar}\n        className={cn(\n          \"h-full w-full origin-left [transform:scaleX(0)] bg-foreground supports-[animation-timeline:scroll()]:[animation-name:var(--animate-rhs-progress)] supports-[animation-timeline:scroll()]:[animation-fill-mode:both] supports-[animation-timeline:scroll()]:[animation-timing-function:linear]\",\n          source === \"page\" ? \"supports-[animation-timeline:scroll()]:[animation-timeline:scroll(root)]\" : \"supports-[animation-timeline:scroll()]:[animation-timeline:scroll(nearest)]\",\n        )}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/scroll-progress.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-progress": "rhs-progress"
+    }
+  },
+  "css": {
+    "@keyframes rhs-progress": {
+      "from": {
+        "transform": "scaleX(0)"
+      },
+      "to": {
+        "transform": "scaleX(1)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "scroll"
+  },
+  "docs": "Sticky at the top of its container. Uses a CSS scroll timeline where available and a passive scroll listener elsewhere. Decorative, so hidden from assistive technology.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

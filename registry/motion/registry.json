@@ -1,0 +1,245 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "reveal",
+      "type": "registry:component",
+      "title": "Reveal",
+      "description": "Brings an element forward as it scrolls into view, tied to the scroll: rise, tilt, scale, blur or slide.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/reveal.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/reveal.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-reveal": {
+          "from": {
+            "opacity": "var(--reveal-opacity)",
+            "transform": "var(--reveal-transform)",
+            "filter": "var(--reveal-filter)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none",
+            "filter": "none"
+          }
+        }
+      },
+      "docs": "Pure CSS scroll-driven animation: nothing is hidden before hydration, and reduced motion or a browser without scroll timelines shows the element at rest. Give a row of reveals an increasing order to land them in sequence. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-reveal": "rhs-reveal"
+        }
+      }
+    },
+    {
+      "name": "reveal-demo",
+      "type": "registry:example",
+      "title": "Reveal demo",
+      "description": "A working preview of Reveal, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reveal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "parallax-layer",
+      "type": "registry:component",
+      "title": "Parallax Layer",
+      "description": "A layer that travels at its own pace while the page scrolls past, with optional zoom and turn.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/parallax-layer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/parallax-layer.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-parallax": {
+          "from": {
+            "transform": "var(--parallax-from)"
+          },
+          "to": {
+            "transform": "var(--parallax-to)"
+          }
+        }
+      },
+      "docs": "Put layers with different speeds in one relatively positioned section. Keep speeds between -0.6 and 0.6 for text, and use the stronger values for shapes and images. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-parallax": "rhs-parallax"
+        }
+      }
+    },
+    {
+      "name": "parallax-layer-demo",
+      "type": "registry:example",
+      "title": "Parallax Layer demo",
+      "description": "A working preview of Parallax Layer, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/parallax-layer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/parallax-layer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:component",
+      "title": "Scroll Progress",
+      "description": "A thin reading bar that fills as you scroll the page or a scrolling panel.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/scroll-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scroll-progress.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-progress": {
+          "from": {
+            "transform": "scaleX(0)"
+          },
+          "to": {
+            "transform": "scaleX(1)"
+          }
+        }
+      },
+      "docs": "Sticky at the top of its container. Uses a CSS scroll timeline where available and a passive scroll listener elsewhere. Decorative, so hidden from assistive technology.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-progress": "rhs-progress"
+        }
+      }
+    },
+    {
+      "name": "scroll-progress-demo",
+      "type": "registry:example",
+      "title": "Scroll Progress demo",
+      "description": "A working preview of Scroll Progress, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "text-reveal",
+      "type": "registry:component",
+      "title": "Text Reveal",
+      "description": "A statement that lights up word by word as it scrolls through the screen.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/text-reveal.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/text-reveal.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-text-word": {
+          "from": {
+            "opacity": "var(--text-reveal-dim)",
+            "filter": "blur(3px)",
+            "transform": "translateY(0.12em)"
+          },
+          "to": {
+            "opacity": "1",
+            "filter": "none",
+            "transform": "none"
+          }
+        }
+      },
+      "docs": "For the one sentence a page is built around. Screen readers read the sentence whole. Give it room above and below, so the words have scroll to light up in. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-text-word": "rhs-text-word"
+        }
+      }
+    },
+    {
+      "name": "text-reveal-demo",
+      "type": "registry:example",
+      "title": "Text Reveal demo",
+      "description": "A working preview of Text Reveal, in its own scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/text-reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/text-reveal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
+}

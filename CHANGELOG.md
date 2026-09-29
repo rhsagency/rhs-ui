@@ -21,6 +21,17 @@ own `meta.version` and are listed when they change.
   refuses a named `group-*/name` or `peer-*/name` variant that no element declares.
 - Fixed: CommandDialog wraps its children in a Command root, so a palette opens instead
   of throwing. Put CommandInput and CommandList straight inside. New command demo.
+- Fixed: CommandEmpty waits until mount. cmdk counts items as they register, so every
+  server-rendered list flashed "nothing matches" before its items appeared.
+- New category `motion`, family "Scroll & reveal": `reveal` (rise, tilt, scale, blur or
+  slide into place), `parallax-layer`, `scroll-progress` and `text-reveal`. Pure CSS
+  scroll-driven animations: nothing is hidden before hydration, and reduced motion or a
+  browser without scroll timelines shows everything at rest.
+- Five new backgrounds: flow field, particle network, beam grid, signal bars and warp
+  field. The canvas engine takes your own painter (`paint`) and, with `interactive`,
+  the pointer and the scroll position. The four existing patterns work as before.
+- Backgrounds carry a `tagline` and `use` in `meta`, so a gallery can be built from the
+  registry alone.
 - Gates: every demo is rendered on the server in CI (`pnpm test:render`), a native
   select may only be the hidden form mirror, the registry gate refuses an item without
   a family, and the README table is generated from the registry.
