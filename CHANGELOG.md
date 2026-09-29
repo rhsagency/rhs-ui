@@ -55,6 +55,8 @@ own `meta.version` and are listed when they change.
   pop, spin, grow and more) on hover, focus, loop or first view; reduced motion keeps
   the still glyph. Generated from `scripts/icons/animated-icons.mjs`
   (`pnpm icons:generate`); `pnpm check` fails when a generated file is stale.
+- Fixed: PricingSection lays out one column per plan up to four. Three plans used to wrap
+  into two columns with the third card alone on a second row.
 - Every animated icon names its still glyph and a usage snippet in `meta`, and the
   registry gate checks both, so a gallery can be built from the registry alone.
 - Fixed: the navbar block no longer holds state, so a Server Component can pass its
