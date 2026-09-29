@@ -40,6 +40,14 @@ own `meta.version` and are listed when they change.
   colour picker, calendar, date picker, file dropzone; data table, stepper, tree view,
   carousel, marquee, description list, banner, resizable, sidebar nav, code block,
   progress ring and meter. Each has a demo.
+- Eight charts in `dashboard`: line, area, bar, donut, sparkline, activity heatmap, gauge
+  and funnel. Formatting is `Intl.NumberFormatOptions`, so a Server Component can pass it,
+  and every chart carries its numbers as a table or in words for screen readers.
+- Five application components for AI and team products: prompt input, chat thread,
+  notification list, comment thread and status dot.
+- Eight commerce components: cart line, coupon field, order summary, shipping options,
+  shipping progress, rating summary, product gallery and variant selector. Money is
+  `{ amount, currency }` in minor units, formatted by the shared `money.ts`.
 - Fixed: the navbar block no longer holds state, so a Server Component can pass its
   router's Link as `linkAs`; each phone link closes the sheet itself.
 - Gates: `check:registry` refuses a Tailwind variant built in a template string, an Intl

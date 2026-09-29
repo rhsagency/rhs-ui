@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "variant-selector-demo",
+  "title": "Variant Selector demo",
+  "description": "A working preview of Variant Selector.",
+  "registryDependencies": [
+    "https://rhsui.com/r/variant-selector.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/variant-selector-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { VariantSelector } from \"@rhs-ui/commerce/variant-selector\";\n\nconst OPTIONS = [\n  { name: \"Colour\", values: [{ value: \"stone\", label: \"Stone\", swatch: \"#8b7f6a\" }, { value: \"ink\", label: \"Ink\", swatch: \"#1b1a25\" }, { value: \"sage\", label: \"Sage\", swatch: \"#8aa38b\" }] },\n  { name: \"Size\", values: [{ value: \"S\" }, { value: \"M\" }, { value: \"L\" }, { value: \"XL\" }] },\n];\n\nconst SOLD_OUT = new Set([\"sage/L\", \"sage/XL\", \"ink/S\"]);\n\nexport default function VariantSelectorDemo() {\n  const [value, setValue] = useState<Record<string, string>>({ Colour: \"stone\", Size: \"M\" });\n  const available = (selection: Readonly<Record<string, string>>) => !SOLD_OUT.has(`${selection.Colour}/${selection.Size}`);\n  return (\n    <div className=\"grid w-full max-w-sm gap-4\">\n      <VariantSelector options={OPTIONS} value={value} onValueChange={setValue} isAvailable={available} />\n      <p className=\"text-sm\" aria-live=\"polite\">\n        {available(value) ? <span>In stock, ships tomorrow.</span> : <span className=\"text-muted-foreground\">Sold out in this combination.</span>}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

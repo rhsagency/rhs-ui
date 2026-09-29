@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cart-line",
+  "title": "Cart Line",
+  "description": "One line in a cart: picture, variant, a quantity stepper that respects stock, the line total and a named remove.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/number-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/cart-line.tsx",
+      "content": "\"use client\";\n\nimport { IconTrash } from \"@rhs-ui/icons\";\nimport { NumberInput } from \"@rhs-ui/primitives/number-input\";\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CartLineProps {\n  title: string;\n  /** \"Stone / M\". */\n  variant?: string;\n  image?: { src: string; alt: string };\n  /** The price of one. The line total is computed from it. */\n  price: Money;\n  /** The old price of one, struck through beside the price. */\n  compareAt?: Money;\n  quantity: number;\n  onQuantityChange?: (quantity: number) => void;\n  onRemove?: () => void;\n  /** The most that can be ordered, from stock. */\n  max?: number;\n  href?: string;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * One line in a cart or a checkout: picture, title and variant, a quantity\n * stepper that respects stock, the line total, and a remove button that\n * names the product it removes. Without handlers it is a read-only line.\n */\nexport function CartLine({ title, variant, image, price, compareAt, quantity, onQuantityChange, onRemove, max = 99, href, locale = \"en-GB\", className }: CartLineProps) {\n  const total = { amount: price.amount * quantity, currency: price.currency };\n  const name = href ? (\n    <a href={href} className=\"rounded-sm font-medium outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n      {title}\n    </a>\n  ) : (\n    <span className=\"font-medium\">{title}</span>\n  );\n  return (\n    <div data-slot=\"cart-line\" className={cn(\"flex gap-4 py-4 text-sm\", className)}>\n      {image ? (\n        <img src={image.src} alt={image.alt} width={80} height={96} className=\"h-24 w-20 shrink-0 rounded-md border border-border bg-muted object-cover\" />\n      ) : null}\n      <div className=\"grid min-w-0 flex-1 content-between gap-3\">\n        <div className=\"flex items-start justify-between gap-4\">\n          <div className=\"grid min-w-0 gap-0.5\">\n            {name}\n            {variant ? <span className=\"text-muted-foreground\">{variant}</span> : null}\n            {quantity > 1 ? (\n              <span className=\"text-xs text-muted-foreground\" suppressHydrationWarning>\n                {formatMoney(price, locale)} each\n              </span>\n            ) : null}\n          </div>\n          <div className=\"grid shrink-0 justify-items-end gap-0.5 tabular-nums\">\n            <span className=\"font-medium\" suppressHydrationWarning>\n              {formatMoney(total, locale)}\n            </span>\n            {compareAt ? (\n              <s className=\"text-xs text-muted-foreground\" suppressHydrationWarning>\n                <span className=\"sr-only\">Was </span>\n                {formatMoney({ amount: compareAt.amount * quantity, currency: compareAt.currency }, locale)}\n              </s>\n            ) : null}\n          </div>\n        </div>\n        <div className=\"flex items-center justify-between gap-4\">\n          {onQuantityChange ? (\n            <NumberInput aria-label={`Quantity of ${title}`} value={quantity} min={1} max={max} onValueChange={onQuantityChange} className=\"h-8 w-28\" />\n          ) : (\n            <span className=\"text-muted-foreground\">Qty {quantity}</span>\n          )}\n          {onRemove ? (\n            <button type=\"button\" onClick={onRemove} aria-label={`Remove ${title}`} className=\"inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n              <IconTrash size={14} />\n              Remove\n            </button>\n          ) : null}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/cart-line.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "commerce"
+  },
+  "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it.",
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coupon-field-demo",
+  "title": "Coupon Field demo",
+  "description": "A working preview of Coupon Field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/coupon-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/coupon-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { CouponField } from \"@rhs-ui/commerce/coupon-field\";\n\nconst CODES: Record<string, string> = { WELCOME10: \"10% off your first order\", FREESHIP: \"Free shipping\" };\n\nexport default function CouponFieldDemo() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-2\">\n      <CouponField\n        onApply={async (code) => {\n          await new Promise((resolve) => setTimeout(resolve, 500));\n          return CODES[code] ? { ok: true, message: CODES[code] } : { ok: false, message: `${code} is not a valid code.` };\n        }}\n      />\n      <p className=\"text-xs text-muted-foreground\">Try WELCOME10 or FREESHIP.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

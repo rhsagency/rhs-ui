@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prompt-input",
+  "title": "Prompt Input",
+  "description": "The composer of an AI product: grows with the text, Enter sends, and send turns into stop while the answer streams.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/prompt-input.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from \"react\";\n\nimport { IconArrowUp, IconPaperclip, IconStop } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PromptInputProps {\n  /** Called with the text when the reader sends. */\n  onSubmit: (text: string) => void;\n  /** While the answer streams: the send button becomes a stop button. */\n  busy?: boolean;\n  onStop?: () => void;\n  /** Adds an attach button; you open your own file picker. */\n  onAttach?: () => void;\n  placeholder?: string;\n  /** Controls under the field: a model picker, a toggle for web search. */\n  toolbar?: ReactNode;\n  maxLength?: number;\n  label?: string;\n  className?: string;\n}\n\n/**\n * The composer of an AI product: a field that grows with the text, Enter to\n * send and Shift+Enter for a new line, a send button that turns into stop\n * while the answer streams, and room for your own controls. It keeps the\n * text on an error; clearing is up to a successful send.\n */\nexport function PromptInput({ onSubmit, busy = false, onStop, onAttach, placeholder = \"Ask anything\", toolbar, maxLength = 4000, label = \"Message\", className }: PromptInputProps) {\n  const [text, setText] = useState(\"\");\n  const field = useRef<HTMLTextAreaElement>(null);\n  const send = (event?: FormEvent) => {\n    event?.preventDefault();\n    const value = text.trim();\n    if (!value || busy) return;\n    onSubmit(value);\n    setText(\"\");\n    requestAnimationFrame(() => field.current?.focus());\n  };\n  const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {\n    if (event.key === \"Enter\" && !event.shiftKey && !event.nativeEvent.isComposing) {\n      event.preventDefault();\n      send();\n    }\n  };\n  const nearLimit = text.length > maxLength * 0.9;\n  return (\n    <form\n      data-slot=\"prompt-input\"\n      onSubmit={send}\n      className={cn(\"grid gap-2 rounded-2xl border border-input bg-background p-2 shadow-sm transition-[border-color,box-shadow] has-[textarea:focus-visible]:border-ring has-[textarea:focus-visible]:ring-[3px] has-[textarea:focus-visible]:ring-ring/40\", className)}\n    >\n      <textarea\n        ref={field}\n        aria-label={label}\n        value={text}\n        maxLength={maxLength}\n        rows={1}\n        placeholder={placeholder}\n        onChange={(event) => setText(event.target.value)}\n        onKeyDown={onKeyDown}\n        className=\"max-h-48 min-h-11 w-full resize-none bg-transparent px-2 py-2 text-sm leading-relaxed outline-none [field-sizing:content] placeholder:text-muted-foreground\"\n      />\n      <div className=\"flex items-center gap-2\">\n        {onAttach ? (\n          <button type=\"button\" aria-label=\"Attach a file\" onClick={onAttach} className=\"grid size-8 place-items-center rounded-lg text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n            <IconPaperclip size={16} />\n          </button>\n        ) : null}\n        <div className=\"flex min-w-0 flex-1 items-center gap-2\">{toolbar}</div>\n        {nearLimit ? <span className=\"text-xs tabular-nums text-muted-foreground\">{maxLength - text.length} left</span> : null}\n        {busy ? (\n          <button type=\"button\" aria-label=\"Stop generating\" onClick={onStop} className=\"grid size-8 place-items-center rounded-lg bg-foreground text-background outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n            <IconStop size={14} />\n          </button>\n        ) : (\n          <button type=\"submit\" aria-label=\"Send\" disabled={!text.trim()} className=\"grid size-8 place-items-center rounded-lg bg-foreground text-background outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-30\">\n            <IconArrowUp size={16} />\n          </button>\n        )}\n      </div>\n    </form>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/prompt-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "application"
+  },
+  "categories": [
+    "application",
+    "application"
+  ],
+  "type": "registry:component"
+}

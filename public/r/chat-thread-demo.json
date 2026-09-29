@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-thread-demo",
+  "title": "Chat Thread demo",
+  "description": "A working preview of Chat Thread.",
+  "registryDependencies": [
+    "https://rhsui.com/r/chat-thread.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/chat-thread-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ChatThread, type ChatMessage } from \"@rhs-ui/application/chat-thread\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst START: ChatMessage[] = [\n  { id: \"1\", author: \"sam\", name: \"Sam Okafor\", body: \"Morning! Did the new pricing page go live?\" },\n  { id: \"2\", author: \"sam\", name: \"Sam Okafor\", body: \"The annual toggle looked great in staging.\", time: \"09:12\" },\n  { id: \"3\", author: \"me\", name: \"You\", body: \"It shipped last night. Conversion is up a little already.\" },\n  { id: \"4\", author: \"me\", name: \"You\", body: \"I'll send the numbers after lunch.\", time: \"09:14\", state: \"sent\" },\n  { id: \"5\", author: \"sam\", name: \"Sam Okafor\", body: \"Perfect, thanks 🙌\", time: \"09:15\" },\n];\n\nexport default function ChatThreadDemo() {\n  const [messages, setMessages] = useState(START);\n  const [typing, setTyping] = useState<string | null>(null);\n  const reply = () => {\n    setMessages((current) => [...current, { id: String(current.length + 1), author: \"me\", name: \"You\", body: \"Numbers are in: +6% on annual plans.\", time: \"09:16\", state: \"sending\" }]);\n    setTyping(\"Sam\");\n    setTimeout(() => {\n      setMessages((current) => current.map((message, index) => (index === current.length - 1 ? { ...message, state: \"sent\" } : message)));\n    }, 700);\n    setTimeout(() => {\n      setTyping(null);\n      setMessages((current) => [...current, { id: String(current.length + 1), author: \"sam\", name: \"Sam Okafor\", body: \"Huge. Let's tell the team.\", time: \"09:17\" }]);\n    }, 2200);\n  };\n  return (\n    <div className=\"grid w-full max-w-md gap-4\">\n      <ChatThread messages={messages} typing={typing} className=\"rounded-xl border border-border p-4\" />\n      <Button variant=\"outline\" size=\"sm\" className=\"justify-self-start\" onClick={reply} disabled={messages.length > START.length}>\n        Send the numbers\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

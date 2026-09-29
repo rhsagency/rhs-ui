@@ -4777,6 +4777,380 @@
       ]
     },
     {
+      "name": "cart-line",
+      "type": "registry:component",
+      "title": "Cart Line",
+      "description": "One line in a cart: picture, variant, a quantity stepper that respects stock, the line total and a named remove.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/number-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/cart-line.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/cart-line.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ],
+      "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it."
+    },
+    {
+      "name": "cart-line-demo",
+      "type": "registry:example",
+      "title": "Cart Line demo",
+      "description": "A working preview of Cart Line.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cart-line.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cart-line-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coupon-field",
+      "type": "registry:component",
+      "title": "Coupon Field",
+      "description": "A discount code that answers in words: a working code becomes a removable chip, a failing one keeps its reason.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/coupon-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/coupon-field.tsx"
+        }
+      ],
+      "docs": "onApply checks the code where your discounts live and returns { ok, message }. A throw counts as a failed check."
+    },
+    {
+      "name": "coupon-field-demo",
+      "type": "registry:example",
+      "title": "Coupon Field demo",
+      "description": "A working preview of Coupon Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coupon-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coupon-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-summary",
+      "type": "registry:component",
+      "title": "Order Summary",
+      "description": "Subtotal, discounts, shipping and tax as a description list, the total set apart, room for the checkout button.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/order-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-summary.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ],
+      "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it. You compute the total; the summary only shows it."
+    },
+    {
+      "name": "order-summary-demo",
+      "type": "registry:example",
+      "title": "Order Summary demo",
+      "description": "A working preview of Order Summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-summary.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shipping-options",
+      "type": "registry:component",
+      "title": "Shipping Options",
+      "description": "Delivery methods as cards to choose one of: name, arrival and price on each, arrow keys to move.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/shipping-options.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipping-options.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ],
+      "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it."
+    },
+    {
+      "name": "shipping-options-demo",
+      "type": "registry:example",
+      "title": "Shipping Options demo",
+      "description": "A working preview of Shipping Options.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shipping-options.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shipping-options-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rating-summary",
+      "type": "registry:component",
+      "title": "Rating Summary",
+      "description": "The average with partial stars, the number of reviews and a bar per star level, computed from the counts.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/rating-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rating-summary.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rating-summary-demo",
+      "type": "registry:example",
+      "title": "Rating Summary demo",
+      "description": "A working preview of Rating Summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rating-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rating-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-gallery",
+      "type": "registry:component",
+      "title": "Product Gallery",
+      "description": "A large product image with thumbnails as tabs, zoom under the mouse pointer and a fade between pictures.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/product-gallery.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-gallery.tsx"
+        }
+      ]
+    },
+    {
+      "name": "product-gallery-demo",
+      "type": "registry:example",
+      "title": "Product Gallery demo",
+      "description": "A working preview of Product Gallery.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-gallery.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-gallery-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "variant-selector",
+      "type": "registry:component",
+      "title": "Variant Selector",
+      "description": "Colour swatches and size chips as radio groups; sold-out combinations are struck through and say so.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/variant-selector.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/variant-selector.tsx"
+        }
+      ]
+    },
+    {
+      "name": "variant-selector-demo",
+      "type": "registry:example",
+      "title": "Variant Selector demo",
+      "description": "A working preview of Variant Selector.",
+      "registryDependencies": [
+        "https://rhsui.com/r/variant-selector.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/variant-selector-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shipping-progress",
+      "type": "registry:component",
+      "title": "Shipping Progress",
+      "description": "How much more until shipping is free, in a sentence and a bar that fills towards it.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/shipping-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipping-progress.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ],
+      "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it."
+    },
+    {
+      "name": "shipping-progress-demo",
+      "type": "registry:example",
+      "title": "Shipping Progress demo",
+      "description": "A working preview of Shipping Progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shipping-progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shipping-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "kpi-card",
       "type": "registry:component",
       "title": "KPI card",
@@ -5648,6 +6022,225 @@
       "files": [
         {
           "path": "registry/examples/data-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-dot",
+      "type": "registry:component",
+      "title": "Status Dot",
+      "description": "Presence or health in a dot: online, away, busy, offline, each with its own shape so it reads without colour.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/status-dot.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-dot.tsx"
+        }
+      ]
+    },
+    {
+      "name": "status-dot-demo",
+      "type": "registry:example",
+      "title": "Status Dot demo",
+      "description": "A working preview of Status Dot.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-dot.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-dot-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chat-thread",
+      "type": "registry:component",
+      "title": "Chat Thread",
+      "description": "A conversation grouped by sender, with sending and failed states in words and a typing indicator.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/chat-thread.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chat-thread.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-thread-demo",
+      "type": "registry:example",
+      "title": "Chat Thread demo",
+      "description": "A working preview of Chat Thread.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chat-thread.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chat-thread-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:component",
+      "title": "Prompt Input",
+      "description": "The composer of an AI product: grows with the text, Enter sends, and send turns into stop while the answer streams.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/prompt-input.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/prompt-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input-demo",
+      "type": "registry:example",
+      "title": "Prompt Input demo",
+      "description": "A working preview of Prompt Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prompt-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prompt-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notification-list",
+      "type": "registry:component",
+      "title": "Notification List",
+      "description": "An inbox of what happened, grouped by time, unread marked with a dot and in words, with mark all as read.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/notification-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "notification-list-demo",
+      "type": "registry:example",
+      "title": "Notification List demo",
+      "description": "A working preview of Notification List.",
+      "registryDependencies": [
+        "https://rhsui.com/r/notification-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/notification-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "comment-thread",
+      "type": "registry:component",
+      "title": "Comment Thread",
+      "description": "Discussion under a document or task: comments with one level of replies and a reply box under the comment it answers.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/comment-thread.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/comment-thread.tsx"
+        }
+      ]
+    },
+    {
+      "name": "comment-thread-demo",
+      "type": "registry:example",
+      "title": "Comment Thread demo",
+      "description": "A working preview of Comment Thread.",
+      "registryDependencies": [
+        "https://rhsui.com/r/comment-thread.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/comment-thread-demo.tsx",
           "type": "registry:example"
         }
       ]

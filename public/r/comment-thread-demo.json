@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comment-thread-demo",
+  "title": "Comment Thread demo",
+  "description": "A working preview of Comment Thread.",
+  "registryDependencies": [
+    "https://rhsui.com/r/comment-thread.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/comment-thread-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CommentThread, type Comment } from \"@rhs-ui/application/comment-thread\";\n\nconst START: Comment[] = [\n  {\n    id: \"c1\",\n    author: \"Nora Visser\",\n    time: \"2 h ago\",\n    text: \"Can we move the pricing table above the FAQ? Most questions are about plans.\",\n    replies: [{ id: \"c1r1\", author: \"Daan Mulder\", time: \"1 h ago\", text: \"Agreed. I'll try it in the next build.\" }],\n  },\n  { id: \"c2\", author: \"Ines Costa\", time: \"35 min ago\", text: \"The hero copy is much clearer now. Ship it.\" },\n];\n\nexport default function CommentThreadDemo() {\n  const [comments, setComments] = useState(START);\n  return (\n    <CommentThread\n      comments={comments}\n      me=\"Alex Kim\"\n      className=\"w-full max-w-lg\"\n      onPost={(text, replyTo) => {\n        const comment = { id: `n${Date.now()}`, author: \"Alex Kim\", time: \"Just now\", text };\n        setComments((current) =>\n          replyTo ? current.map((entry) => (entry.id === replyTo ? { ...entry, replies: [...(entry.replies ?? []), comment] } : entry)) : [...current, comment],\n        );\n      }}\n    />\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

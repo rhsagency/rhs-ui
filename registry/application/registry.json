@@ -486,6 +486,220 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "status-dot",
+      "type": "registry:component",
+      "title": "Status Dot",
+      "description": "Presence or health in a dot: online, away, busy, offline, each with its own shape so it reads without colour.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/status-dot.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-dot.tsx"
+        }
+      ]
+    },
+    {
+      "name": "status-dot-demo",
+      "type": "registry:example",
+      "title": "Status Dot demo",
+      "description": "A working preview of Status Dot.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-dot.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-dot-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chat-thread",
+      "type": "registry:component",
+      "title": "Chat Thread",
+      "description": "A conversation grouped by sender, with sending and failed states in words and a typing indicator.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/chat-thread.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chat-thread.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chat-thread-demo",
+      "type": "registry:example",
+      "title": "Chat Thread demo",
+      "description": "A working preview of Chat Thread.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chat-thread.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chat-thread-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:component",
+      "title": "Prompt Input",
+      "description": "The composer of an AI product: grows with the text, Enter sends, and send turns into stop while the answer streams.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/prompt-input.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/prompt-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input-demo",
+      "type": "registry:example",
+      "title": "Prompt Input demo",
+      "description": "A working preview of Prompt Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prompt-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prompt-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notification-list",
+      "type": "registry:component",
+      "title": "Notification List",
+      "description": "An inbox of what happened, grouped by time, unread marked with a dot and in words, with mark all as read.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/notification-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "notification-list-demo",
+      "type": "registry:example",
+      "title": "Notification List demo",
+      "description": "A working preview of Notification List.",
+      "registryDependencies": [
+        "https://rhsui.com/r/notification-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/notification-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "comment-thread",
+      "type": "registry:component",
+      "title": "Comment Thread",
+      "description": "Discussion under a document or task: comments with one level of replies and a reply box under the comment it answers.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/comment-thread.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/comment-thread.tsx"
+        }
+      ]
+    },
+    {
+      "name": "comment-thread-demo",
+      "type": "registry:example",
+      "title": "Comment Thread demo",
+      "description": "A working preview of Comment Thread.",
+      "registryDependencies": [
+        "https://rhsui.com/r/comment-thread.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/comment-thread-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

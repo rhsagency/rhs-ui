@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-thread",
+  "title": "Chat Thread",
+  "description": "A conversation grouped by sender, with sending and failed states in words and a typing indicator.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/chat-thread.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { Avatar, AvatarFallback, initialsOf } from \"@rhs-ui/primitives/avatar\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ChatMessage {\n  id: string;\n  /** \"me\" for the reader's own messages; anything else is the other side. */\n  author: string;\n  name: string;\n  /** Plain text or your own rendering (markdown, attachments). */\n  body: ReactNode;\n  /** Shown under the last message of a run: \"09:41\". */\n  time?: string;\n  /** For \"me\": sending, sent or failed. */\n  state?: \"sending\" | \"sent\" | \"failed\";\n}\n\nexport interface ChatThreadProps {\n  messages: readonly ChatMessage[];\n  /** Shown at the end while the other side is writing. */\n  typing?: string | null;\n  label?: string;\n  className?: string;\n}\n\n/**\n * A conversation: the reader's messages on the right, the other side on the\n * left, consecutive messages from one person grouped under one avatar. It is\n * a log for screen readers, so new messages are announced politely, and a\n * failed message says so in words.\n */\nexport function ChatThread({ messages, typing = null, label = \"Conversation\", className }: ChatThreadProps) {\n  return (\n    <div data-slot=\"chat-thread\" role=\"log\" aria-label={label} aria-live=\"polite\" className={cn(\"grid gap-1\", className)}>\n      {messages.map((message, index) => {\n        const mine = message.author === \"me\";\n        const first = messages[index - 1]?.author !== message.author;\n        const last = messages[index + 1]?.author !== message.author;\n        return (\n          <div key={message.id} className={cn(\"flex items-end gap-2\", mine && \"flex-row-reverse\", first && index > 0 && \"mt-3\")}>\n            {!mine ? (\n              <span className={cn(\"w-7 shrink-0\", last && (message.time || message.state) && \"mb-5\")}>\n                {last ? (\n                  <Avatar size=\"sm\">\n                    <AvatarFallback>{initialsOf(message.name)}</AvatarFallback>\n                  </Avatar>\n                ) : null}\n              </span>\n            ) : null}\n            <div className={cn(\"grid max-w-[78%] gap-1\", mine && \"justify-items-end\")}>\n              {first && !mine ? <span className=\"px-1 text-xs text-muted-foreground\">{message.name}</span> : null}\n              <div\n                className={cn(\n                  \"rounded-2xl px-3.5 py-2 text-sm leading-relaxed\",\n                  mine ? \"bg-foreground text-background\" : \"bg-muted text-foreground\",\n                  mine ? (last ? \"rounded-br-md\" : \"\") : last ? \"rounded-bl-md\" : \"\",\n                  message.state === \"sending\" && \"opacity-60\",\n                  message.state === \"failed\" && \"ring-2 ring-destructive\",\n                )}\n              >\n                {message.body}\n              </div>\n              {last && (message.time || message.state) ? (\n                <span className={cn(\"px-1 text-[0.6875rem] text-muted-foreground\", message.state === \"failed\" && \"text-destructive\")}>\n                  {message.state === \"failed\" ? \"Not sent. Tap to retry.\" : message.state === \"sending\" ? \"Sending…\" : message.time}\n                </span>\n              ) : null}\n            </div>\n          </div>\n        );\n      })}\n      {typing ? (\n        <div className=\"mt-3 flex items-center gap-2 text-xs text-muted-foreground\">\n          <span className=\"flex gap-1 rounded-2xl bg-muted px-3 py-2.5\" aria-hidden=\"true\">\n            {[0, 1, 2].map((dot) => (\n              <span key={dot} className=\"size-1.5 rounded-full bg-muted-foreground motion-safe:animate-bounce\" style={{ animationDelay: `${dot * 140}ms` }} />\n            ))}\n          </span>\n          {typing} is typing\n        </div>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/chat-thread.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "application"
+  },
+  "categories": [
+    "application",
+    "application"
+  ],
+  "type": "registry:component"
+}

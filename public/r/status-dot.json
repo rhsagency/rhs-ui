@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-dot",
+  "title": "Status Dot",
+  "description": "Presence or health in a dot: online, away, busy, offline, each with its own shape so it reads without colour.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/status-dot.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport type Status = \"online\" | \"away\" | \"busy\" | \"offline\";\n\nconst LABEL: Record<Status, string> = { online: \"Online\", away: \"Away\", busy: \"Busy\", offline: \"Offline\" };\n\nexport interface StatusDotProps extends Omit<ComponentProps<\"span\">, \"children\"> {\n  status: Status;\n  /** Show the word next to the dot. Without it the word is only for screen readers. */\n  showLabel?: boolean;\n  /** A slow pulse on \"online\", for live things. Still under reduced motion. */\n  pulse?: boolean;\n}\n\n/**\n * Presence or health in a dot: online, away, busy, offline. Each state has\n * its own shape as well as its colour (a ring for away, a bar for busy), so\n * it reads without colour, and the word is always there for screen readers.\n */\nexport function StatusDot({ status, showLabel = false, pulse = false, className, ...props }: StatusDotProps) {\n  return (\n    <span data-slot=\"status-dot\" data-status={status} className={cn(\"inline-flex items-center gap-1.5 text-xs\", className)} {...props}>\n      <span className=\"relative inline-flex size-2.5\" aria-hidden=\"true\">\n        {pulse && status === \"online\" ? <span className=\"absolute inset-0 rounded-full bg-[var(--color-success,oklch(0.62_0.15_150))] opacity-60 motion-safe:animate-ping\" /> : null}\n        <span\n          className={cn(\n            \"relative inline-flex size-2.5 items-center justify-center rounded-full\",\n            status === \"online\" && \"bg-[var(--color-success,oklch(0.62_0.15_150))]\",\n            status === \"away\" && \"border-2 border-[var(--color-warning,oklch(0.72_0.16_75))]\",\n            status === \"busy\" && \"bg-destructive\",\n            status === \"offline\" && \"border-2 border-muted-foreground/60\",\n          )}\n        >\n          {status === \"busy\" ? <span className=\"h-0.5 w-1.5 rounded-full bg-background\" /> : null}\n        </span>\n      </span>\n      <span className={showLabel ? \"text-muted-foreground\" : \"sr-only\"}>{LABEL[status]}</span>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/status-dot.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "categories": [
+    "application",
+    "feedback"
+  ],
+  "type": "registry:component"
+}

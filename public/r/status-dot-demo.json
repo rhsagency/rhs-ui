@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-dot-demo",
+  "title": "Status Dot demo",
+  "description": "A working preview of Status Dot.",
+  "registryDependencies": [
+    "https://rhsui.com/r/status-dot.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/status-dot-demo.tsx",
+      "content": "import { StatusDot } from \"@rhs-ui/application/status-dot\";\n\nconst TEAM = [\n  { name: \"Mara Jansen\", role: \"Design\", status: \"online\" },\n  { name: \"Tomás Reyes\", role: \"Engineering\", status: \"away\" },\n  { name: \"Aiko Sato\", role: \"Support\", status: \"busy\" },\n  { name: \"Leon Weber\", role: \"Sales\", status: \"offline\" },\n] as const;\n\nexport default function StatusDotDemo() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-6\">\n      <ul className=\"grid divide-y divide-border rounded-lg border border-border\">\n        {TEAM.map((person) => (\n          <li key={person.name} className=\"flex items-center justify-between gap-4 px-4 py-3 text-sm\">\n            <span className=\"grid\">\n              <span className=\"font-medium\">{person.name}</span>\n              <span className=\"text-xs text-muted-foreground\">{person.role}</span>\n            </span>\n            <StatusDot status={person.status} showLabel />\n          </li>\n        ))}\n      </ul>\n      <p className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n        <StatusDot status=\"online\" pulse /> All systems operational\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "notification-list-demo",
+  "title": "Notification List demo",
+  "description": "A working preview of Notification List.",
+  "registryDependencies": [
+    "https://rhsui.com/r/notification-list.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/notification-list-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconCheck, IconMail, IconUser } from \"@rhs-ui/icons\";\nimport { NotificationList } from \"@rhs-ui/application/notification-list\";\n\nconst ITEMS = [\n  { id: \"1\", group: \"Today\", title: <><strong className=\"font-medium\">Priya</strong> invited you to Launch plan</>, time: \"12 min ago\", unread: true, icon: <IconUser />, href: \"#notifications\" },\n  { id: \"2\", group: \"Today\", title: \"Invoice INV-2041 was paid\", time: \"2 h ago\", unread: true, icon: <IconCheck /> },\n  { id: \"3\", group: \"Today\", title: <><strong className=\"font-medium\">Jonas</strong> replied to your comment</>, time: \"4 h ago\", icon: <IconMail /> },\n  { id: \"4\", group: \"Earlier\", title: \"Your export is ready to download\", time: \"Yesterday\", icon: <IconCheck /> },\n  { id: \"5\", group: \"Earlier\", title: <><strong className=\"font-medium\">Mei</strong> joined the workspace</>, time: \"Mon\", icon: <IconUser /> },\n];\n\nexport default function NotificationListDemo() {\n  return <NotificationList items={ITEMS} className=\"w-full max-w-sm rounded-xl border border-border p-3\" />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

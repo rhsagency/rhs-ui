@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shipping-options",
+  "title": "Shipping Options",
+  "description": "Delivery methods as cards to choose one of: name, arrival and price on each, arrow keys to move.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/commerce/shipping-options.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\";\n\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ShippingOption {\n  id: string;\n  label: string;\n  /** \"Tomorrow before 18:00\", \"2 to 4 working days\". */\n  eta: string;\n  price: Money;\n  /** A carrier logo or a glyph. */\n  icon?: ReactNode;\n  disabled?: boolean;\n}\n\nexport interface ShippingOptionsProps {\n  options: readonly ShippingOption[];\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (id: string) => void;\n  label?: string;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * How the order travels, as cards you choose one of: name, arrival and price\n * on every card, the chosen one outlined. It is a radio group underneath, so\n * arrow keys move and choose and the whole card is the target.\n */\nexport function ShippingOptions({ options, value, defaultValue, onValueChange, label = \"Shipping method\", locale = \"en-GB\", className }: ShippingOptionsProps) {\n  return (\n    <RadioGroupPrimitive.Root data-slot=\"shipping-options\" aria-label={label} value={value} defaultValue={defaultValue ?? options.find((option) => !option.disabled)?.id} onValueChange={onValueChange} className={cn(\"grid gap-2\", className)}>\n      {options.map((option) => (\n        <RadioGroupPrimitive.Item\n          key={option.id}\n          value={option.id}\n          disabled={option.disabled}\n          className=\"group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 text-left text-sm outline-none transition-[border-color,box-shadow] duration-150 hover:border-foreground/40 focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-foreground data-[state=checked]:shadow-[inset_0_0_0_1px_var(--color-foreground)]\"\n        >\n          <span aria-hidden=\"true\" className=\"grid size-[18px] shrink-0 place-items-center rounded-full border border-muted-foreground group-data-[state=checked]:border-foreground\">\n            <span className=\"size-2 scale-0 rounded-full bg-foreground transition-transform duration-150 group-data-[state=checked]:scale-100\" />\n          </span>\n          {option.icon ? <span className=\"grid size-8 shrink-0 place-items-center rounded-md bg-muted text-muted-foreground [&_svg]:size-4\">{option.icon}</span> : null}\n          <span className=\"grid min-w-0 flex-1 gap-0.5\">\n            <span className=\"font-medium\">{option.label}</span>\n            <span className=\"text-xs text-muted-foreground\">{option.disabled ? \"Not available for this address\" : option.eta}</span>\n          </span>\n          <span className=\"shrink-0 font-medium tabular-nums\" suppressHydrationWarning>\n            {option.price.amount === 0 ? \"Free\" : formatMoney(option.price, locale)}\n          </span>\n        </RadioGroupPrimitive.Item>\n      ))}\n    </RadioGroupPrimitive.Root>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/shipping-options.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "commerce"
+  },
+  "docs": "Amounts are Money: { amount, currency } in minor units (3900 is 39.00), so sums never drift. Pass locale for the reader's formatting; money.ts ships with it.",
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}
