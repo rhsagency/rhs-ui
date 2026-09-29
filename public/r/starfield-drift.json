@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "starfield-drift",
+  "title": "Starfield Drift",
+  "description": "Three layers of stars drifting past at different depths, twinkling as they go.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/starfield-drift.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Three layers of stars drifting past at different depths, twinkling as they go. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const layers = [[90, 6, 1.2, 0.5], [55, 14, 1.7, 0.7], [26, 30, 2.4, 0.95]] as const;\n  layers.forEach(([count, speed, size, strength], layer) => {\n    for (let i = 0; i < count; i++) {\n      const hx = (Math.sin(i * 12.9898 + layer * 7.1) * 43758.5453) % 1, hy = (Math.sin(i * 78.233 + layer * 3.7) * 12543.891) % 1;\n      const x = ((Math.abs(hx) * (width + 20) + time * speed) % (width + 20)) - 10;\n      ctx.globalAlpha = strength * (0.35 + 0.65 * (Math.sin(time * 2 + i * 1.7) + 1) / 2);\n      ctx.fillRect(x, Math.abs(hy) * height, size, size);\n    }\n  });\n};\n\nexport function StarfieldDrift(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/starfield-drift.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Room to wonder.",
+    "use": "Space, night modes, dreamy heroes",
+    "mood": "cosmic",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

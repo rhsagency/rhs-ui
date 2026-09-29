@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "moire-rings",
+  "title": "Moire Rings",
+  "description": "Two sets of fine circles sliding past each other, making slow interference patterns.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/moire-rings.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Two sets of fine circles sliding past each other, making slow interference patterns. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const offset = Math.sin(time * 0.3) * width * 0.06;\n  const reach = Math.hypot(width, height) * 0.6;\n  ctx.globalAlpha = 0.22;\n  for (const cx of [width * 0.45 + offset, width * 0.55 - offset]) {\n    for (let r = 6; r < reach; r += 7) { ctx.beginPath(); ctx.arc(cx, height * 0.5, r, 0, Math.PI * 2); ctx.stroke(); }\n  }\n};\n\nexport function MoireRings(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/moire-rings.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Look a little closer.",
+    "use": "Editorial, art direction, optics",
+    "mood": "calm",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sunflower",
+  "title": "Sunflower",
+  "description": "A golden-angle spiral of points turning slowly, a wave of growth running out from the centre.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/sunflower.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** A golden-angle spiral of points turning slowly, a wave of growth running out from the centre. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const count = 540, c = Math.min(width, height) / (2.1 * Math.sqrt(count));\n  const golden = Math.PI * (3 - Math.sqrt(5));\n  for (let i = 0; i < count; i++) {\n    const r = c * Math.sqrt(i), a = i * golden + time * 0.1;\n    const swell = (Math.sin(Math.sqrt(i) * 0.9 - time * 2) + 1) / 2;\n    ctx.globalAlpha = 0.25 + swell * 0.55;\n    ctx.beginPath(); ctx.arc(width * 0.5 + Math.cos(a) * r, height * 0.5 + Math.sin(a) * r, 0.8 + swell * 1.6, 0, Math.PI * 2); ctx.fill();\n  }\n};\n\nexport function Sunflower(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/sunflower.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Grown, not made.",
+    "use": "Nature, food, sustainability",
+    "mood": "calm",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "film-grain",
+  "title": "Film Grain",
+  "description": "A living photographic grain that makes a flat surface feel printed.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/film-grain.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** A living photographic grain that makes a flat surface feel printed. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  let seed = Math.floor(time * 24) * 9301 + 49297;\n  const random = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };\n  const count = Math.round((width * height) / 110);\n  for (let i = 0; i < count; i++) { ctx.globalAlpha = 0.08 + random() * 0.42; ctx.fillRect(random() * width, random() * height, 1.2, 1.2); }\n};\n\nexport function FilmGrain(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/film-grain.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Texture, not noise.",
+    "use": "Editorial, fashion, film",
+    "mood": "organic",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

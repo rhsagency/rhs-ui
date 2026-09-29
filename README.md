@@ -89,7 +89,7 @@ something lives and what it is for.
 | Application | `@rhs-ui/application/<name>` | Application UI and account screens: account-settings, activity-timeline, animated-number, comparison-slider, copy-field, empty-state, preferences-panel, segmented-control, sign-in-card, step-progress |
 | Marketing | `@rhs-ui/marketing/<name>` | Page sections, from the navbar to the footer: closing-cta, faq-section, feature-grid, feature-spotlight, footer-section, metrics-band, navbar, pricing-section, process-section, split-hero, testimonial-grid |
 | Models | `@rhs-ui/models/<name>` | 3D model recipes and the viewer: crystal-prism, model-viewer, orbit-ring, ribbon-knot, soft-cube |
-| Backgrounds | `@rhs-ui/backgrounds/<name>` | Living canvas backgrounds: architect-grid, beam-grid, contour-field, dot-field, flow-field, orbit-field, particle-network, signal-bars, warp-field |
+| Backgrounds | `@rhs-ui/backgrounds/<name>` | Living canvas backgrounds: architect-grid, ascii-field, beam-grid, circuit-trace, contour-field, depth-tunnel, diagonal-scan, dot-field, double-helix, film-grain, fireflies, flow-field, glyph-rain, halftone-wave, hex-pulse, isometric-blocks, light-curtain, lissajous, live-chart, moire-rings, orbit-field, oscilloscope, particle-network, ping-grid, plus-grid, polygon-bloom, radar-sweep, rain-streaks, ribbon-flow, ridge-lines, ripple-rings, rising-bubbles, signal-bars, sketch-lines, spiral-arms, starfield-drift, sunflower, warp-field, wave-mesh |
 | Motion | `@rhs-ui/motion/<name>` | Scroll-driven reveals, parallax and reading progress: parallax-layer, reveal, scroll-progress, text-reveal |
 <!-- catalogue:end -->
 

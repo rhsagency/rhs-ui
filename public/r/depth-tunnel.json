@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "depth-tunnel",
+  "title": "Depth Tunnel",
+  "description": "Rounded frames rushing toward you out of a vanishing point, twisting as they come.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/depth-tunnel.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Rounded frames rushing toward you out of a vanishing point, twisting as they come. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const cx = width * 0.5, cy = height * 0.5, reach = Math.hypot(width, height) * 0.62;\n  for (let k = 0; k < 18; k++) {\n    const z = (k / 18 + time * 0.12) % 1;\n    const size = z ** 2.2 * reach;\n    ctx.save(); ctx.translate(cx, cy); ctx.rotate(z * 0.6 + time * 0.05);\n    ctx.globalAlpha = z * 0.6;\n    ctx.beginPath(); ctx.roundRect(-size, -size * 0.62, size * 2, size * 1.24, size * 0.08); ctx.stroke();\n    ctx.restore();\n  }\n};\n\nexport function DepthTunnel(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/depth-tunnel.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Go deeper.",
+    "use": "Gaming, events, immersive launches",
+    "mood": "cosmic",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fireflies",
+  "title": "Fireflies",
+  "description": "Soft points of light wandering in loose loops and blinking on and off.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/fireflies.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Soft points of light wandering in loose loops and blinking on and off. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  for (let i = 0; i < 34; i++) {\n    const h = Math.abs(Math.sin(i * 91.7) * 1000) % 1;\n    const x = width * (0.5 + 0.42 * Math.sin(time * (0.1 + h * 0.12) + i * 2.3));\n    const y = height * (0.5 + 0.4 * Math.sin(time * (0.13 + h * 0.1) + i * 1.1) * Math.cos(time * 0.07 + i));\n    const glow = Math.max(0, Math.sin(time * (1 + h) + i * 3));\n    for (const [r, a] of [[10, 0.06], [5, 0.15], [1.8, 0.9]] as const) {\n      ctx.globalAlpha = a * glow;\n      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();\n    }\n  }\n};\n\nexport function Fireflies(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/fireflies.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "A little magic.",
+    "use": "Evening modes, hospitality, storytelling",
+    "mood": "calm",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

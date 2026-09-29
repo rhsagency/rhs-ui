@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "circuit-trace",
+  "title": "Circuit Trace",
+  "description": "Board traces with right-angle turns and signals racing along them to their pads.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/circuit-trace.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\nfunction seeded(seed: number): () => number {\n  return () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };\n}\nconst random = seeded(11);\n/** Fourteen traces in grid units: a start point and five turns each. */\nconst TRACES = Array.from({ length: 14 }, () => {\n  let x = Math.floor(random() * 40), y = Math.floor(random() * 24);\n  const points: [number, number][] = [[x, y]];\n  let horizontal = random() > 0.5;\n  for (let s = 0; s < 5; s++) {\n    const step = Math.floor(random() * 6) + 2;\n    if (horizontal) x += random() > 0.5 ? step : -step; else y += random() > 0.5 ? step : -step;\n    points.push([x, y]);\n    horizontal = !horizontal;\n  }\n  return points;\n});\n/** Board traces with right-angle turns and signals racing along them to their pads. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const cell = 24;\n  for (const [index, trace] of TRACES.entries()) {\n    const points = trace.map(([gx, gy]) => [gx * cell, gy * cell] as const);\n    ctx.globalAlpha = 0.2;\n    ctx.beginPath();\n    points.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));\n    ctx.stroke();\n    for (const [x, y] of [points[0]!, points[points.length - 1]!]) { ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.stroke(); }\n    const lengths = points.slice(1).map(([x, y], i) => Math.abs(x - points[i]![0]) + Math.abs(y - points[i]![1]));\n    const total = lengths.reduce((a, b) => a + b, 0);\n    let along = ((time * 90 + index * 57) % (total + 160)) - 40;\n    for (let i = 0; i < lengths.length && along >= 0; i++) {\n      if (along <= lengths[i]!) {\n        const [x0, y0] = points[i]!, [x1, y1] = points[i + 1]!, f = along / lengths[i]!;\n        ctx.globalAlpha = 0.95;\n        ctx.beginPath(); ctx.arc(x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, 2.2, 0, Math.PI * 2); ctx.fill();\n        break;\n      }\n      along -= lengths[i]!;\n    }\n  }\n};\n\nexport function CircuitTrace(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/circuit-trace.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Everything, wired.",
+    "use": "Hardware, IoT, developer platforms",
+    "mood": "technical",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

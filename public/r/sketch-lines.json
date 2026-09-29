@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sketch-lines",
+  "title": "Sketch Lines",
+  "description": "Loose curves drawing themselves across the surface and fading, like a pen thinking.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/sketch-lines.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Loose curves drawing themselves across the surface and fading, like a pen thinking. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  for (let k = 0; k < 6; k++) {\n    const cycle = 7 + k, local = ((time + k * 1.9) % cycle) / cycle;\n    const draw = Math.min(1, local / 0.6), fade = local > 0.75 ? 1 - (local - 0.75) / 0.25 : 1;\n    const y0 = height * (0.15 + k * 0.14);\n    ctx.globalAlpha = 0.45 * fade;\n    ctx.beginPath();\n    const steps = Math.floor(80 * draw);\n    for (let i = 0; i <= steps; i++) {\n      const u = i / 80;\n      const x = width * (0.05 + u * 0.9), y = y0 + Math.sin(u * 6 + k * 2.1) * height * 0.06 + Math.sin(u * 17 + k) * 6;\n      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);\n    }\n    ctx.stroke();\n  }\n};\n\nexport function SketchLines(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/sketch-lines.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Ideas, in progress.",
+    "use": "Design studios, creative tools, education",
+    "mood": "organic",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

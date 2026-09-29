@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ripple-rings",
+  "title": "Ripple Rings",
+  "description": "Rings spreading from three points and fading as they cross, like rain on still water.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/ripple-rings.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Rings spreading from three points and fading as they cross, like rain on still water. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const sources = [[0.3, 0.4, 0], [0.72, 0.62, 2.1], [0.55, 0.2, 4.2]] as const;\n  const reach = Math.hypot(width, height) * 0.45;\n  for (const [sx, sy, offset] of sources) {\n    for (let k = 0; k < 7; k++) {\n      const r = (time * 38 + offset * 40 + k * (reach / 7)) % reach;\n      ctx.globalAlpha = Math.max(0, 1 - r / reach) * 0.38;\n      ctx.beginPath(); ctx.arc(sx * width, sy * height, r, 0, Math.PI * 2); ctx.stroke();\n    }\n  }\n};\n\nexport function RippleRings(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/ripple-rings.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Every move, felt.",
+    "use": "Wellness, audio, calm product pages",
+    "mood": "calm",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

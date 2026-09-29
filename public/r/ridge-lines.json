@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ridge-lines",
+  "title": "Ridge Lines",
+  "description": "Stacked signal lines that hide one another, like a pulsar plot drawn live.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/ridge-lines.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Stacked signal lines that hide one another, like a pulsar plot drawn live. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const lines = 24, top = height * 0.16, gap = (height * 0.72) / lines;\n  for (let l = 0; l < lines; l++) {\n    const base = top + l * gap;\n    const points: [number, number][] = [];\n    for (let x = 0; x <= width; x += 5) {\n      const u = x / width;\n      const envelope = Math.exp(-((u - 0.5) ** 2) / 0.018);\n      const noise = Math.sin(u * 40 + l * 1.7 + time * 1.2) * 0.5 + Math.sin(u * 17 - l * 0.9 + time * 0.7) * 0.5;\n      points.push([x, base - envelope * (18 + noise * 22) * (0.6 + Math.sin(l * 0.7 + time * 0.3) * 0.4)]);\n    }\n    ctx.globalCompositeOperation = \"destination-out\";\n    ctx.globalAlpha = 1;\n    ctx.beginPath();\n    points.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));\n    ctx.lineTo(width, height); ctx.lineTo(0, height); ctx.closePath(); ctx.fill();\n    ctx.globalCompositeOperation = \"source-over\";\n    ctx.globalAlpha = 0.75;\n    ctx.beginPath();\n    points.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));\n    ctx.stroke();\n  }\n};\n\nexport function RidgeLines(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/ridge-lines.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Signal, not noise.",
+    "use": "Music, data, research",
+    "mood": "data",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

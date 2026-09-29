@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rising-bubbles-demo",
+  "title": "Rising Bubbles demo",
+  "description": "A working preview of Rising Bubbles.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rising-bubbles.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rising-bubbles-demo.tsx",
+      "content": "\"use client\";\nimport { useState } from \"react\";\nimport { RisingBubbles } from \"@rhs-ui/backgrounds/rising-bubbles\";\n\nexport default function Demo(): React.JSX.Element {\n  const [paused, setPaused] = useState(false);\n  return (\n    <div className=\"w-full\">\n      <RisingBubbles paused={paused} className=\"flex min-h-80 items-center justify-center rounded-xl border border-border bg-foreground text-background\">\n        <div className=\"px-8 py-6 text-center\">\n          <p className=\"text-xs uppercase tracking-widest opacity-70\">Rising Bubbles</p>\n          <p className=\"mt-3 text-3xl font-medium tracking-tight\">Light as air.</p>\n        </div>\n      </RisingBubbles>\n      <button type=\"button\" aria-pressed={paused} onClick={() => setPaused(!paused)} className=\"mt-4 rounded-lg border border-border px-4 py-2 text-sm\">\n        {paused ? \"Resume motion\" : \"Pause motion\"}\n      </button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

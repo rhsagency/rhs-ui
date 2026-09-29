@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glyph-rain",
+  "title": "Glyph Rain",
+  "description": "Columns of code characters falling at their own pace, bright at the head.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/glyph-rain.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Columns of code characters falling at their own pace, bright at the head. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  const size = 14, cols = Math.ceil(width / size), rows = height / size;\n  const chars = \"01<>/{}[]=+*\";\n  ctx.font = (size - 2) + \"px ui-monospace, SFMono-Regular, Menlo, monospace\";\n  ctx.textBaseline = \"top\";\n  for (let c = 0; c < cols; c++) {\n    const speed = 4 + ((c * 7) % 5), length = 8 + ((c * 13) % 10);\n    const head = Math.floor((time * speed + c * 3.7) % (rows + length));\n    for (let k = 0; k < length; k++) {\n      const row = head - k;\n      if (row < 0 || row > rows) continue;\n      ctx.globalAlpha = k === 0 ? 0.9 : (1 - k / length) * 0.35;\n      ctx.fillText(chars.charAt((c * 31 + row * 17 + Math.floor(time * 3)) % chars.length), c * size, row * size);\n    }\n  }\n};\n\nexport function GlyphRain(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/glyph-rain.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Ship it.",
+    "use": "Developer tools, APIs, security",
+    "mood": "technical",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}

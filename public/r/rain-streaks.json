@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rain-streaks",
+  "title": "Rain Streaks",
+  "description": "Slanted rain falling at different depths, light and steady.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/background-canvas.json"
+  ],
+  "files": [
+    {
+      "path": "registry/backgrounds/rain-streaks.tsx",
+      "content": "\"use client\";\nimport { BackgroundCanvas, type BackgroundCanvasProps, type Painter } from \"@rhs-ui/backgrounds/background-canvas\";\n\n/** Slanted rain falling at different depths, light and steady. */\nconst paint: Painter = ({ ctx, width, height, time }) => {\n  for (let i = 0; i < 130; i++) {\n    const h1 = Math.abs(Math.sin(i * 12.9898) * 43758.5453) % 1, h2 = Math.abs(Math.sin(i * 78.233) * 12543.891) % 1;\n    const speed = 220 + h2 * 260, length = 10 + h2 * 22;\n    const y = ((time * speed + h1 * height * 3) % (height + 60)) - 30;\n    const x = ((h1 * (width + 100) - y * 0.2) % (width + 100) + width + 100) % (width + 100) - 50;\n    ctx.globalAlpha = 0.12 + h2 * 0.25;\n    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - length * 0.2, y + length); ctx.stroke();\n  }\n};\n\nexport function RainStreaks(props: Omit<BackgroundCanvasProps, \"pattern\" | \"paint\">): React.JSX.Element {\n  return <BackgroundCanvas paint={paint} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/backgrounds/rain-streaks.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "tagline": "Stay in.",
+    "use": "Weather, cafes, cosy evening pages",
+    "mood": "calm",
+    "family": "backgrounds"
+  },
+  "categories": [
+    "backgrounds"
+  ],
+  "type": "registry:component"
+}
