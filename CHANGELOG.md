@@ -16,6 +16,9 @@ own `meta.version` and are listed when they change.
 - Every item names its family in `categories[1]` (forms, overlay, navigation, feedback,
   page chrome, account and more); rhsui.com groups the library by it.
 - Fixed: Skeleton's `delay` now offsets the shimmer; the variable was set but never read.
+- Fixed: Tabs show their look again. The triggers styled themselves from a `group/list`
+  the list never declared, so neither `line` nor `pill` applied. The registry gate now
+  refuses a named `group-*/name` or `peer-*/name` variant that no element declares.
 - Gates: every demo is rendered on the server in CI (`pnpm test:render`), a native
   select may only be the hidden form mirror, the registry gate refuses an item without
   a family, and the README table is generated from the registry.

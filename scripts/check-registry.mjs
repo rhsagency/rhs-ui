@@ -71,6 +71,27 @@ export function clientExportProblems(src) {
   return values.length ? [`is "use client" but calls no hook and exports ${values.join(", ")}; a Server Component would get a client reference. Drop the directive.`] : [];
 }
 
+const GROUP_USE = /(?<![\w-])(group|peer)-(?:\[[^\]]*\]|[\w-])+\/([a-z][\w-]*)(?=:)/g;
+const GROUP_DECLARE = /(?<![\w-])(group|peer)\/([a-z][\w-]*)(?![\w-]*:)/g;
+
+/**
+ * A named variant like group-data-[state=open]/list: only matches inside an
+ * element that carries group/list. Without the declaration the styles never
+ * apply and nothing fails, which is how both Tabs looks shipped unstyled.
+ * Names may cross files (the state icons read group/rhs-icon from their
+ * wrapper), so the declaration can live anywhere in the registry.
+ */
+export function groupNameProblems(sources) {
+  const declared = new Set();
+  for (const src of sources.values()) for (const m of src.matchAll(GROUP_DECLARE)) declared.add(`${m[1]}/${m[2]}`);
+  const problems = [];
+  for (const [file, src] of sources) {
+    const missing = new Set([...src.matchAll(GROUP_USE)].map((m) => `${m[1]}/${m[2]}`).filter((name) => !declared.has(name)));
+    for (const name of missing) problems.push(`${file}: uses ${name.replace("/", "-*/")} but no element declares ${name}, so those styles never apply`);
+  }
+  return problems;
+}
+
 export function checkItems(items) {
   const problems = [];
   const names = new Set();
@@ -163,7 +184,10 @@ function aliasProblems() {
 }
 
 const items = loadItems();
-const problems = [...strays, ...aliasProblems(), ...checkItems(items)];
+const registrySources = new Map(
+  [...new Set(items.flatMap((i) => (i.files ?? []).map((f) => f.path)))].filter((p) => existsSync(path.join(root, p))).map((p) => [p, readFileSync(path.join(root, p), "utf8")]),
+);
+const problems = [...strays, ...aliasProblems(), ...checkItems(items), ...groupNameProblems(registrySources)];
 for (const pr of problems) console.log(`FAIL ${pr}`);
 
 // Negative controls: every planted mistake must be caught, or the gate proves nothing.
@@ -189,6 +213,10 @@ const selfTests = [
   ["a helper exported from a hook-free client module", clientExportProblems('"use client";\nexport function initialsOf(name) { return name; }').length === 1],
   ["a client API next to its hook", clientExportProblems('"use client";\nexport function toast() {}\nexport function Toaster() { useSyncExternalStore(); }').length === 0],
   ["a component-only client module", clientExportProblems('"use client";\nexport function Button() {}').length === 0],
+  ["a named group variant nobody declares", groupNameProblems(new Map([["a.tsx", 'cn("inline-flex", "group-data-[variant=line]/list:border-b-2")']])).length === 1],
+  ["a named group declared in the same file", groupNameProblems(new Map([["a.tsx", 'cn("group/list inline-flex", "group-data-[variant=line]/list:border-b-2 group-hover/list:text-foreground")']])).length === 0],
+  ["a named group declared in another file", groupNameProblems(new Map([["a.tsx", '"group/rhs-icon"'], ["b.tsx", '"group-data-[active=true]/rhs-icon:opacity-0"']])).length === 0],
+  ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],
 ];
 for (const [name, ok] of selfTests) {
   if (!ok) {

@@ -15,7 +15,7 @@ export function Tabs({ className, ...props }: ComponentProps<typeof TabsPrimitiv
   return <TabsPrimitive.Root data-slot="tabs" className={cn("flex flex-col gap-3", className)} {...props} />;
 }
 
-const tabsListVariants = cva("inline-flex w-fit items-center", {
+const tabsListVariants = cva("group/list inline-flex w-fit items-center", {
   variants: {
     variant: {
       line: "gap-4 border-b border-border",
