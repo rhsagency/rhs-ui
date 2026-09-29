@@ -58,6 +58,19 @@ export function clientProblems(src) {
   return hook && !/^\s*["']use client["']/.test(src) ? [`calls ${hook[0].replace(/\s*\($/, "")}() without "use client"`] : [];
 }
 
+/**
+ * A "use client" module turns every export into a client reference for a
+ * Server Component: a helper like initialsOf() cannot be called there, and a
+ * class string arrives as a reference instead of the string. A module that
+ * calls no hook needs no directive (Radix marks its own files), so helpers
+ * and constants live in modules without one.
+ */
+export function clientExportProblems(src) {
+  if (!/^\s*["']use client["']/.test(src) || HOOK_CALL.test(src)) return [];
+  const values = [...src.matchAll(/export\s+(?:const|function|let)\s+([a-z]\w*)/g)].map((match) => match[1]);
+  return values.length ? [`is "use client" but calls no hook and exports ${values.join(", ")}; a Server Component would get a client reference. Drop the directive.`] : [];
+}
+
 export function checkItems(items) {
   const problems = [];
   const names = new Set();
@@ -116,6 +129,7 @@ export function checkItems(items) {
       const src = readFileSync(path.join(root, f.path), "utf8");
       if (src.includes("@/registry/")) p(`${f.path}: legacy registry import; use @rhs-ui/<category>/<item>`);
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const m of src.matchAll(ALIAS_IMPORT)) {
         const file = [`registry/${m[1]}`, `registry/${m[1]}/index`].find((candidate) => own.has(candidate) || byFile.has(candidate));
         if (!file) p(`${f.path}: import of @rhs-ui/${m[1]} does not resolve to a registry file`);
@@ -172,6 +186,9 @@ const selfTests = [
   ["a commerce item falls back to its category", familyOf({ categories: ["commerce", "product", "card"] }) === "commerce"],
   ["hook without use client", clientProblems('import { useState } from "react";\nexport function X() { useState(0); }').length === 1],
   ["hook inside a client module", clientProblems('"use client";\nexport function X() { useState(0); }').length === 0],
+  ["a helper exported from a hook-free client module", clientExportProblems('"use client";\nexport function initialsOf(name) { return name; }').length === 1],
+  ["a client API next to its hook", clientExportProblems('"use client";\nexport function toast() {}\nexport function Toaster() { useSyncExternalStore(); }').length === 0],
+  ["a component-only client module", clientExportProblems('"use client";\nexport function Button() {}').length === 0],
 ];
 for (const [name, ok] of selfTests) {
   if (!ok) {

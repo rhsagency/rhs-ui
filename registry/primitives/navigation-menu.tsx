@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentProps } from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
