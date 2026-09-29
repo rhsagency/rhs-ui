@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, type ElementType, type ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 import { IconMenu } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
@@ -13,7 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@rhs-ui/primitives/navigation-menu";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@rhs-ui/primitives/sheet";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@rhs-ui/primitives/sheet";
 import { cn } from "@/lib/utils";
 
 export interface NavbarLink {
@@ -50,10 +48,11 @@ const isMenu = (entry: NavbarEntry): entry is NavbarMenu => "links" in entry;
  * The top of a marketing site: your mark, links and panels in the middle,
  * actions on the right. From md up the panels open in one navigation menu;
  * on a phone everything moves into a sheet with the same groups. Sticky by
- * default, on a blurred page colour so content scrolls under it.
+ * default, on a blurred page colour so content scrolls under it. No state
+ * of its own: it renders on the server, so a Server Component can pass its
+ * router's Link as linkAs, and each phone link closes the sheet itself.
  */
 export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a", sticky = true, className }: NavbarProps) {
-  const [open, setOpen] = useState(false);
   const current = (href: string) => (href === currentHref ? "page" : undefined);
 
   return (
@@ -100,7 +99,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
 
         {actions ? <div className="ml-auto hidden items-center gap-2 md:flex">{actions}</div> : null}
 
-        <Sheet open={open} onOpenChange={setOpen}>
+        <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="ml-auto md:hidden" aria-label="Open the menu">
               <IconMenu size={18} />
@@ -117,27 +116,27 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
                   <section key={entry.label} className="grid gap-1">
                     <h3 className="px-2 pb-1 font-mono text-[0.6875rem] tracking-wide text-muted-foreground">{entry.label}</h3>
                     {entry.links.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        aria-current={current(link.href)}
-                        onClick={() => setOpen(false)}
-                        className="rounded-md px-2 py-2 text-sm transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-[current=page]:font-medium"
-                      >
-                        {link.label}
-                      </Link>
+                      <SheetClose key={link.href} asChild>
+                        <Link
+                          href={link.href}
+                          aria-current={current(link.href)}
+                          className="rounded-md px-2 py-2 text-sm transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-[current=page]:font-medium"
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
                     ))}
                   </section>
                 ) : (
-                  <Link
-                    key={entry.href}
-                    href={entry.href}
-                    aria-current={current(entry.href)}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-2 py-2 text-base font-medium transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40"
-                  >
-                    {entry.label}
-                  </Link>
+                  <SheetClose key={entry.href} asChild>
+                    <Link
+                      href={entry.href}
+                      aria-current={current(entry.href)}
+                      className="rounded-md px-2 py-2 text-base font-medium transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40"
+                    >
+                      {entry.label}
+                    </Link>
+                  </SheetClose>
                 ),
               )}
             </nav>

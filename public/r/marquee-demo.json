@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee-demo",
+  "title": "Marquee demo",
+  "description": "A working preview of Marquee.",
+  "registryDependencies": [
+    "https://rhsui.com/r/marquee.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/marquee-demo.tsx",
+      "content": "import { Marquee } from \"@rhs-ui/primitives/marquee\";\n\nconst LOGOS = [\"Northwind\", \"Harbour & Co\", \"Fieldwork\", \"Oak Lane\", \"Mirror Labs\", \"Studio North\", \"Atelier Moreau\", \"Orbit\"];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-3xl gap-6\">\n      <Marquee label=\"Teams building with RHS UI\" duration={32}>\n        {LOGOS.map((name) => (\n          <span key={name} className=\"text-xl font-semibold tracking-tight whitespace-nowrap text-muted-foreground\">\n            {name}\n          </span>\n        ))}\n      </Marquee>\n      <Marquee label=\"What people say\" duration={48} direction=\"right\">\n        {[\"Shipped in three weeks\", \"Every state designed\", \"Accessible by default\", \"Our own look, not a kit\", \"Docs we actually read\"].map((line) => (\n          <span key={line} className=\"rounded-full border border-border px-4 py-1.5 text-sm whitespace-nowrap\">\n            {line}\n          </span>\n        ))}\n      </Marquee>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "title": "Marquee",
+  "description": "An endless drifting row for logos and proof points; pauses on hover and focus, still under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/marquee.tsx",
+      "content": "import type { CSSProperties, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MarqueeProps {\n  children: ReactNode;\n  /** Seconds for one full pass; lower is faster. */\n  duration?: number;\n  /** Run right to left (the default) or left to right. */\n  direction?: \"left\" | \"right\";\n  /** Names the row for screen readers: \"Customers\". */\n  label: string;\n  className?: string;\n}\n\n/**\n * A row that drifts endlessly, for logos and short proof points. It pauses\n * while the pointer or focus is on it, the copy that closes the loop is\n * hidden from assistive technology, and under reduced motion it stands\n * still as a row you can scroll sideways.\n */\nexport function Marquee({ children, duration = 40, direction = \"left\", label, className }: MarqueeProps) {\n  const style = { \"--marquee-duration\": `${duration}s`, \"--marquee-direction\": direction === \"left\" ? \"normal\" : \"reverse\" } as CSSProperties;\n  // Duration and direction ride inside the animate-rhs-marquee shorthand as variables: a separate\n  // longhand class could land before the shorthand and be reset by it.\n  const row = \"flex shrink-0 items-center gap-12 pr-12 motion-safe:animate-rhs-marquee group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]\";\n  return (\n    <div\n      data-slot=\"marquee\"\n      role=\"region\"\n      aria-label={label}\n      style={style}\n      className={cn(\n        \"group relative flex overflow-hidden motion-reduce:overflow-x-auto motion-safe:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]\",\n        className,\n      )}\n    >\n      <div className={row}>{children}</div>\n      <div className={cn(row, \"motion-reduce:hidden\")} aria-hidden=\"true\">\n        {children}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/marquee.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-marquee": "rhs-marquee var(--marquee-duration, 40s) linear infinite var(--marquee-direction, normal)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-marquee": {
+      "from": {
+        "transform": "translateX(0)"
+      },
+      "to": {
+        "transform": "translateX(-100%)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "motion"
+  },
+  "categories": [
+    "primitives",
+    "motion"
+  ],
+  "type": "registry:ui"
+}

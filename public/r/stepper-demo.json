@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-demo",
+  "title": "Stepper demo",
+  "description": "A working preview of Stepper.",
+  "registryDependencies": [
+    "https://rhsui.com/r/stepper.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/stepper-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Stepper } from \"@rhs-ui/primitives/stepper\";\n\nconst STEPS = [\n  { title: \"Account\", description: \"Name and email\" },\n  { title: \"Workspace\", description: \"Name your team\" },\n  { title: \"Invite\", description: \"Bring people in\" },\n  { title: \"Done\", description: \"Start building\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [step, setStep] = useState(1);\n  return (\n    <div className=\"grid w-full max-w-xl gap-8\">\n      <Stepper steps={STEPS} current={step} onStepClick={setStep} label=\"Setting up your workspace\" />\n      <div className=\"flex justify-between\">\n        <Button variant=\"outline\" disabled={step === 0} onClick={() => setStep(step - 1)}>\n          Back\n        </Button>\n        <Button disabled={step === STEPS.length - 1} onClick={() => setStep(step + 1)}>\n          Continue\n        </Button>\n      </div>\n      <div className=\"max-w-56\">\n        <Stepper steps={STEPS} current={step} orientation=\"vertical\" label=\"Setting up, as a list\" />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

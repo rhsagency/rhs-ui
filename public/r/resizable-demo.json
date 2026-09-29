@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable-demo",
+  "title": "Resizable demo",
+  "description": "A working preview of Resizable.",
+  "registryDependencies": [
+    "https://rhsui.com/r/resizable.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/resizable-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Resizable } from \"@rhs-ui/primitives/resizable\";\n\nexport default function Demo(): React.JSX.Element {\n  const [size, setSize] = useState(32);\n  return (\n    <div className=\"grid w-full max-w-2xl gap-3\">\n      <Resizable\n        className=\"h-64\"\n        size={size}\n        onSizeChange={setSize}\n        label=\"Resize the file list\"\n        start={\n          <div className=\"grid gap-1 p-3 font-mono text-xs\">\n            {[\"app\", \"components\", \"lib\", \"public\", \"README.md\"].map((file) => (\n              <span key={file} className=\"truncate rounded px-2 py-1 hover:bg-muted\">\n                {file}\n              </span>\n            ))}\n          </div>\n        }\n        end={\n          <div className=\"grid h-full place-items-center p-6 text-center text-sm text-muted-foreground\">\n            Drag the handle, or focus it and use the arrow keys.\n          </div>\n        }\n      />\n      <p className=\"text-xs text-muted-foreground tabular-nums\" aria-live=\"polite\">\n        Sidebar at {size}%\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

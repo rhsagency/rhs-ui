@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "description-list-demo",
+  "title": "Description List demo",
+  "description": "A working preview of Description List.",
+  "registryDependencies": [
+    "https://rhsui.com/r/description-list.json",
+    "https://rhsui.com/r/badge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/description-list-demo.tsx",
+      "content": "import { Badge } from \"@rhs-ui/primitives/badge\";\nimport { DescriptionList } from \"@rhs-ui/primitives/description-list\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-xl gap-10\">\n      <DescriptionList\n        items={[\n          { term: \"Order\", value: <span className=\"font-mono\">ORD-1048</span> },\n          { term: \"Status\", value: <Badge variant=\"success\">Shipped</Badge> },\n          { term: \"Placed\", value: \"28 September 2026\" },\n          { term: \"Ship to\", value: \"Keizersgracht 12, Amsterdam\" },\n          { term: \"Total\", value: \"€249.00\" },\n        ]}\n      />\n      <DescriptionList\n        layout=\"grid\"\n        items={[\n          { term: \"Seats\", value: \"7 of 10\" },\n          { term: \"Storage\", value: \"42 GB\" },\n          { term: \"Renews\", value: \"Never\" },\n          { term: \"Plan\", value: \"Team Pro\" },\n          { term: \"Region\", value: \"EU West\" },\n          { term: \"Support\", value: \"Priority\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

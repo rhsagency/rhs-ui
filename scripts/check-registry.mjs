@@ -82,6 +82,18 @@ export function unlocalisedIntlProblems(src) {
     : [];
 }
 
+/**
+ * A component as a prop (linkAs, an icon component) cannot cross from a
+ * Server Component into a "use client" module: React refuses to serialise a
+ * function. Such a component must itself be a server-compatible module that
+ * renders its client parts inside.
+ */
+export function componentPropProblems(src) {
+  return /^\s*["']use client["']/.test(src) && /:\s*(ElementType|ComponentType)\b/.test(src)
+    ? ['is "use client" but takes a component as a prop (ElementType or ComponentType); a Server Component cannot pass one. Drop the directive and keep the client parts inside.']
+    : [];
+}
+
 /** Tailwind reads classes from the source text: `${variant}:w-max` never appears whole, so it is never generated. */
 export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
@@ -169,6 +181,7 @@ export function checkItems(items) {
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of unlocalisedIntlProblems(src)) p(`${f.path} ${problem}`);
+      if (!isExample) for (const problem of componentPropProblems(src)) p(`${f.path} ${problem}`);
       for (const m of src.matchAll(ALIAS_IMPORT)) {
         const file = [`registry/${m[1]}`, `registry/${m[1]}/index`].find((candidate) => own.has(candidate) || byFile.has(candidate));
         if (!file) p(`${f.path}: import of @rhs-ui/${m[1]} does not resolve to a registry file`);
@@ -234,6 +247,8 @@ const selfTests = [
   ["a named group variant nobody declares", groupNameProblems(new Map([["a.tsx", 'cn("inline-flex", "group-data-[variant=line]/list:border-b-2")']])).length === 1],
   ["a named group declared in the same file", groupNameProblems(new Map([["a.tsx", 'cn("group/list inline-flex", "group-data-[variant=line]/list:border-b-2 group-hover/list:text-foreground")']])).length === 0],
   ["a named group declared in another file", groupNameProblems(new Map([["a.tsx", '"group/rhs-icon"'], ["b.tsx", '"group-data-[active=true]/rhs-icon:opacity-0"']])).length === 0],
+  ["a client module that takes a component prop", componentPropProblems('"use client";\nexport interface P { linkAs?: ElementType }').length === 1],
+  ["a server module that takes a component prop", componentPropProblems('export interface P { linkAs?: ElementType }').length === 0],
   ["an Intl formatter without a locale", unlocalisedIntlProblems("new Intl.NumberFormat(undefined, { style: 'percent' })").length === 1 && unlocalisedIntlProblems("value.toLocaleString()").length === 1],
   ["an Intl formatter with a locale", unlocalisedIntlProblems("new Intl.NumberFormat(locale, format)").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],

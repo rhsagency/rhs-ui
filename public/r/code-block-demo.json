@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-demo",
+  "title": "Code Block demo",
+  "description": "A working preview of Code Block.",
+  "registryDependencies": [
+    "https://rhsui.com/r/code-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/code-block-demo.tsx",
+      "content": "import { CodeBlock } from \"@rhs-ui/primitives/code-block\";\n\nconst CODE = `import { Button } from \"@/components/rhs-ui/primitives/button\";\n\nexport default function Page() {\n  return (\n    <Button size=\"lg\">\n      Start building\n    </Button>\n  );\n}`;\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-xl gap-4\">\n      <CodeBlock language=\"bash\" code=\"npx shadcn@latest add https://rhsui.com/r/button.json\" />\n      <CodeBlock filename=\"app/page.tsx\" code={CODE} showLineNumbers highlight={[5, 6, 7]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

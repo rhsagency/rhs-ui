@@ -437,6 +437,55 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "description": "A table for real data: search, sort, select rows, act on the selection and page through.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/pagination.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/data-table.tsx"
+        }
+      ],
+      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows."
+    },
+    {
+      "name": "data-table-demo",
+      "type": "registry:example",
+      "title": "Data Table demo",
+      "description": "A working preview of Data Table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/data-table.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/data-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

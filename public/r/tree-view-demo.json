@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-view-demo",
+  "title": "Tree View demo",
+  "description": "A working preview of Tree View.",
+  "registryDependencies": [
+    "https://rhsui.com/r/tree-view.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/tree-view-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconFile, IconFileText, IconFolder, IconImage } from \"@rhs-ui/icons\";\nimport { TreeView, type TreeNode } from \"@rhs-ui/primitives/tree-view\";\n\nconst FILES: TreeNode[] = [\n  {\n    id: \"app\", label: \"app\", icon: <IconFolder />, children: [\n      { id: \"app/layout.tsx\", label: \"layout.tsx\", icon: <IconFile /> },\n      { id: \"app/page.tsx\", label: \"page.tsx\", icon: <IconFile /> },\n      { id: \"app/pricing\", label: \"pricing\", icon: <IconFolder />, children: [{ id: \"app/pricing/page.tsx\", label: \"page.tsx\", icon: <IconFile /> }] },\n    ],\n  },\n  {\n    id: \"components\", label: \"components\", icon: <IconFolder />, children: [\n      { id: \"components/hero.tsx\", label: \"hero.tsx\", icon: <IconFile /> },\n      { id: \"components/rhs-ui\", label: \"rhs-ui\", icon: <IconFolder />, children: [{ id: \"components/rhs-ui/primitives\", label: \"primitives\", icon: <IconFolder />, children: [{ id: \"components/rhs-ui/primitives/button.tsx\", label: \"button.tsx\", icon: <IconFile /> }] }] },\n    ],\n  },\n  { id: \"public\", label: \"public\", icon: <IconFolder />, children: [{ id: \"public/og.png\", label: \"og.png\", icon: <IconImage /> }] },\n  { id: \"README.md\", label: \"README.md\", icon: <IconFileText /> },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [selected, setSelected] = useState<string | null>(\"app/page.tsx\");\n  return (\n    <div className=\"grid w-full max-w-xs gap-3\">\n      <TreeView nodes={FILES} label=\"Project files\" selected={selected} onSelectedChange={setSelected} defaultExpanded={[\"app\"]} className=\"rounded-lg border border-border p-1.5\" />\n      <p className=\"font-mono text-xs text-muted-foreground\" aria-live=\"polite\">\n        {selected}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

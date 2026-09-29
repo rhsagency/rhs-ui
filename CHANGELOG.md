@@ -32,6 +32,19 @@ own `meta.version` and are listed when they change.
   the pointer and the scroll position. The four existing patterns work as before.
 - Backgrounds carry a `tagline` and `use` in `meta`, so a gallery can be built from the
   registry alone.
+- Thirty more backgrounds (39 in all), each with a `mood` (calm, technical, cosmic,
+  organic, data) for filtering.
+- Thirty-five more components: alert, alert dialog, hover card, context menu, menubar,
+  collapsible, toggle, toggle group, scroll area, aspect ratio, spinner; input group,
+  search input, password input, number input, OTP input, tag input, form field, rating,
+  colour picker, calendar, date picker, file dropzone; data table, stepper, tree view,
+  carousel, marquee, description list, banner, resizable, sidebar nav, code block,
+  progress ring and meter. Each has a demo.
+- Fixed: the navbar block no longer holds state, so a Server Component can pass its
+  router's Link as `linkAs`; each phone link closes the sheet itself.
+- Gates: `check:registry` refuses a Tailwind variant built in a template string, an Intl
+  formatter or `toLocaleString` without a locale, and a `"use client"` module that takes a
+  component as a prop.
 - Gates: every demo is rendered on the server in CI (`pnpm test:render`), a native
   select may only be the hidden form mirror, the registry gate refuses an item without
   a family, and the README table is generated from the registry.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "description-list",
+  "title": "Description List",
+  "description": "Facts about one thing as a real description list, in rows, stacked or as a spec grid.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/description-list.tsx",
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface DescriptionItem {\n  term: string;\n  value: ReactNode;\n}\n\nexport interface DescriptionListProps extends Omit<ComponentProps<\"dl\">, \"children\"> {\n  items: readonly DescriptionItem[];\n  /** Term beside its value (rows) or above it (stacked, for narrow spaces and cards). */\n  layout?: \"rows\" | \"stacked\" | \"grid\";\n}\n\n/**\n * Facts about one thing, as a real description list: an order's details, a\n * plan's limits, a profile. Screen readers announce term and value together.\n * Rows put them side by side, stacked puts the term above, grid lays the\n * facts out in columns like a spec sheet.\n */\nexport function DescriptionList({ items, layout = \"rows\", className, ...props }: DescriptionListProps) {\n  return (\n    <dl\n      data-slot=\"description-list\"\n      data-layout={layout}\n      className={cn(\n        \"text-sm\",\n        layout === \"rows\" && \"divide-y divide-border\",\n        layout === \"stacked\" && \"grid gap-4\",\n        layout === \"grid\" && \"grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3\",\n        className,\n      )}\n      {...props}\n    >\n      {items.map((item) => (\n        <div key={item.term} className={cn(layout === \"rows\" ? \"grid gap-1 py-3 first:pt-0 last:pb-0 sm:grid-cols-[minmax(8rem,1fr)_2fr] sm:gap-4\" : \"grid gap-1\")}>\n          <dt className=\"text-muted-foreground\">{item.term}</dt>\n          <dd className={cn(\"font-medium text-foreground\", layout === \"grid\" && \"text-base\")}>{item.value}</dd>\n        </div>\n      ))}\n    </dl>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/description-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

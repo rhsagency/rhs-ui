@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "title": "Resizable",
+  "description": "Two panels with a handle to drag, or to move with the arrow keys; a separator with its value.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/resizable.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ResizableProps {\n  /** The first panel (left, or top when vertical). */\n  start: ReactNode;\n  /** The second panel. */\n  end: ReactNode;\n  orientation?: \"horizontal\" | \"vertical\";\n  /** Size of the first panel in percent. */\n  defaultSize?: number;\n  size?: number;\n  onSizeChange?: (size: number) => void;\n  min?: number;\n  max?: number;\n  /** Names the handle for screen readers: \"Resize the sidebar\". */\n  label?: string;\n  className?: string;\n}\n\n/**\n * Two panels with a handle between them: drag it, or focus it and use the\n * arrow keys (Shift for larger steps, Home and End for the limits). The\n * handle is a separator with its value, so screen readers can resize too.\n */\nexport function Resizable({ start, end, orientation = \"horizontal\", defaultSize = 50, size, onSizeChange, min = 15, max = 85, label = \"Resize panels\", className }: ResizableProps) {\n  const [own, setOwn] = useState(defaultSize);\n  const current = size ?? own;\n  const box = useRef<HTMLDivElement>(null);\n  const horizontal = orientation === \"horizontal\";\n  const set = (next: number) => {\n    const clamped = Math.round(Math.min(max, Math.max(min, next)) * 10) / 10;\n    if (size === undefined) setOwn(clamped);\n    onSizeChange?.(clamped);\n  };\n  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {\n    event.currentTarget.setPointerCapture(event.pointerId);\n  };\n  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {\n    if (!event.currentTarget.hasPointerCapture(event.pointerId) || !box.current) return;\n    const rect = box.current.getBoundingClientRect();\n    set(horizontal ? ((event.clientX - rect.left) / rect.width) * 100 : ((event.clientY - rect.top) / rect.height) * 100);\n  };\n  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {\n    const step = event.shiftKey ? 10 : 2;\n    const moves: Record<string, number> = horizontal ? { ArrowLeft: -step, ArrowRight: step } : { ArrowUp: -step, ArrowDown: step };\n    if (event.key in moves) {\n      event.preventDefault();\n      set(current + moves[event.key]!);\n    } else if (event.key === \"Home\") set(min);\n    else if (event.key === \"End\") set(max);\n  };\n  return (\n    <div ref={box} data-slot=\"resizable\" data-orientation={orientation} className={cn(\"flex overflow-hidden rounded-lg border border-border\", horizontal ? \"flex-row\" : \"flex-col\", className)}>\n      <div className=\"min-h-0 min-w-0 overflow-auto\" style={{ flexBasis: `${current}%` }}>\n        {start}\n      </div>\n      <div\n        role=\"separator\"\n        tabIndex={0}\n        aria-label={label}\n        aria-orientation={horizontal ? \"vertical\" : \"horizontal\"}\n        aria-valuenow={current}\n        aria-valuemin={min}\n        aria-valuemax={max}\n        onPointerDown={onPointerDown}\n        onPointerMove={onPointerMove}\n        onKeyDown={onKeyDown}\n        className={cn(\n          \"group relative flex shrink-0 touch-none items-center justify-center bg-border outline-none focus-visible:bg-ring\",\n          horizontal ? \"w-px cursor-col-resize\" : \"h-px cursor-row-resize\",\n        )}\n      >\n        <span className={cn(\"absolute z-10 rounded-full border border-border bg-background shadow-xs transition-colors group-hover:border-foreground/40 group-focus-visible:border-ring\", horizontal ? \"h-8 w-2\" : \"h-2 w-8\")} />\n        <span className={cn(\"absolute\", horizontal ? \"inset-y-0 -inset-x-2\" : \"inset-x-0 -inset-y-2\")} />\n      </div>\n      <div className=\"min-h-0 min-w-0 flex-1 overflow-auto\">{end}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/resizable.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

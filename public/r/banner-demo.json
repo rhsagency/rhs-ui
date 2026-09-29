@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "banner-demo",
+  "title": "Banner demo",
+  "description": "A working preview of Banner.",
+  "registryDependencies": [
+    "https://rhsui.com/r/banner.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/banner-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconSparkle, IconWarning } from \"@rhs-ui/icons\";\nimport { Banner } from \"@rhs-ui/primitives/banner\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nexport default function Demo(): React.JSX.Element {\n  const [key, setKey] = useState(0);\n  return (\n    <div className=\"grid w-full gap-4\">\n      <div className=\"overflow-hidden rounded-lg border border-border\">\n        <Banner key={key} leading={<IconSparkle />} action={<a href=\"#release\">Read the release notes</a>} onDismiss={() => undefined}>\n          RHS UI 0.5 is out, with scroll-driven motion and new backgrounds.\n        </Banner>\n        <div className=\"h-24 bg-background\" />\n      </div>\n      <div className=\"overflow-hidden rounded-lg border border-border\">\n        <Banner tone=\"default\" leading={<IconWarning />}>\n          Checkout is read-only on Sunday between 02:00 and 03:00 CET.\n        </Banner>\n        <div className=\"h-16 bg-background\" />\n      </div>\n      <Button variant=\"ghost\" size=\"sm\" className=\"justify-self-start\" onClick={() => setKey(key + 1)}>\n        Bring the dismissed banner back\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

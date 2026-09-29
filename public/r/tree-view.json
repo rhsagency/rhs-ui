@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-view",
+  "title": "Tree View",
+  "description": "A folder tree with a file manager's keyboard: arrows open, close and move, letters jump.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/tree-view.tsx",
+      "content": "\"use client\";\n\nimport { useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from \"react\";\n\nimport { IconChevronRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TreeNode {\n  id: string;\n  label: string;\n  icon?: ReactNode;\n  children?: readonly TreeNode[];\n}\n\nexport interface TreeViewProps {\n  nodes: readonly TreeNode[];\n  label: string;\n  selected?: string | null;\n  onSelectedChange?: (id: string) => void;\n  defaultExpanded?: readonly string[];\n  className?: string;\n}\n\ninterface Flat {\n  node: TreeNode;\n  level: number;\n  parent: string | null;\n}\n\n/**\n * A folder tree with the keyboard of a file manager: Up and Down move,\n * Right opens a folder or steps into it, Left closes it or goes to its\n * parent, Home and End jump, Enter selects, and typing a letter jumps to\n * the next item that starts with it. Only one item is in the tab order.\n */\nexport function TreeView({ nodes, label, selected, onSelectedChange, defaultExpanded = [], className }: TreeViewProps) {\n  const [expanded, setExpanded] = useState(() => new Set(defaultExpanded));\n  const [own, setOwn] = useState<string | null>(null);\n  const chosen = selected === undefined ? own : selected;\n  const [focus, setFocus] = useState<string | null>(null);\n  const tree = useRef<HTMLUListElement>(null);\n  const visible = useMemo(() => {\n    const out: Flat[] = [];\n    const walk = (list: readonly TreeNode[], level: number, parent: string | null) => {\n      for (const node of list) {\n        out.push({ node, level, parent });\n        if (node.children?.length && expanded.has(node.id)) walk(node.children, level + 1, node.id);\n      }\n    };\n    walk(nodes, 1, null);\n    return out;\n  }, [nodes, expanded]);\n  const active = focus ?? chosen ?? visible[0]?.node.id ?? null;\n  const moveTo = (id: string) => {\n    setFocus(id);\n    requestAnimationFrame(() => (tree.current?.querySelector(`[data-node=\"${CSS.escape(id)}\"]`) as HTMLElement | null)?.focus());\n  };\n  const toggle = (id: string, open?: boolean) =>\n    setExpanded((current) => {\n      const next = new Set(current);\n      if (open ?? !next.has(id)) next.add(id);\n      else next.delete(id);\n      return next;\n    });\n  const choose = (id: string) => {\n    if (selected === undefined) setOwn(id);\n    onSelectedChange?.(id);\n  };\n  const onKey = (event: KeyboardEvent<HTMLLIElement>, item: Flat) => {\n    const index = visible.findIndex((entry) => entry.node.id === item.node.id);\n    const hasChildren = Boolean(item.node.children?.length);\n    const open = expanded.has(item.node.id);\n    const go = (target?: Flat) => target && (event.preventDefault(), moveTo(target.node.id));\n    switch (event.key) {\n      case \"ArrowDown\": return go(visible[index + 1]);\n      case \"ArrowUp\": return go(visible[index - 1]);\n      case \"Home\": return go(visible[0]);\n      case \"End\": return go(visible[visible.length - 1]);\n      case \"ArrowRight\":\n        event.preventDefault();\n        if (hasChildren && !open) toggle(item.node.id, true);\n        else if (hasChildren) go(visible[index + 1]);\n        return;\n      case \"ArrowLeft\":\n        event.preventDefault();\n        if (hasChildren && open) toggle(item.node.id, false);\n        else if (item.parent) moveTo(item.parent);\n        return;\n      case \"Enter\":\n      case \" \":\n        event.preventDefault();\n        choose(item.node.id);\n        if (hasChildren) toggle(item.node.id);\n        return;\n      default:\n        if (event.key.length === 1 && /\\S/.test(event.key)) {\n          const after = [...visible.slice(index + 1), ...visible.slice(0, index)];\n          go(after.find((entry) => entry.node.label.toLowerCase().startsWith(event.key.toLowerCase())));\n        }\n    }\n  };\n  return (\n    <ul ref={tree} role=\"tree\" aria-label={label} data-slot=\"tree-view\" className={cn(\"grid gap-px text-sm\", className)}>\n      {visible.map((item) => {\n        const hasChildren = Boolean(item.node.children?.length);\n        const open = expanded.has(item.node.id);\n        const isSelected = chosen === item.node.id;\n        return (\n          <li\n            key={item.node.id}\n            role=\"treeitem\"\n            data-node={item.node.id}\n            aria-level={item.level}\n            aria-expanded={hasChildren ? open : undefined}\n            aria-selected={isSelected}\n            tabIndex={item.node.id === active ? 0 : -1}\n            onKeyDown={(event) => onKey(event, item)}\n            onClick={() => {\n              setFocus(item.node.id);\n              choose(item.node.id);\n              if (hasChildren) toggle(item.node.id);\n            }}\n            className={cn(\n              \"flex h-8 cursor-default items-center gap-1.5 rounded-md pr-2 outline-none select-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n              isSelected && \"bg-muted font-medium\",\n            )}\n            style={{ paddingLeft: `${(item.level - 1) * 16 + 6}px` }}\n          >\n            <IconChevronRight size={14} aria-hidden=\"true\" className={cn(\"shrink-0 text-muted-foreground transition-transform duration-150\", open && \"rotate-90\", !hasChildren && \"invisible\")} />\n            {item.node.icon ? <span className=\"grid shrink-0 place-items-center text-muted-foreground [&_svg]:size-4\">{item.node.icon}</span> : null}\n            <span className=\"truncate\">{item.node.label}</span>\n          </li>\n        );\n      })}\n    </ul>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/tree-view.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

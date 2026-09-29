@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-ring-demo",
+  "title": "Progress Ring demo",
+  "description": "A working preview of Progress Ring.",
+  "registryDependencies": [
+    "https://rhsui.com/r/progress-ring.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/progress-ring-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { ProgressRing } from \"@rhs-ui/primitives/progress-ring\";\n\nexport default function Demo(): React.JSX.Element {\n  const [done, setDone] = useState(3);\n  return (\n    <div className=\"flex flex-col items-center gap-6\">\n      <div className=\"flex items-center gap-8\">\n        <ProgressRing value={done} max={5} label=\"Onboarding\" size={80}>\n          {done}/5\n        </ProgressRing>\n        <ProgressRing value={72} label=\"Storage used\" />\n        <ProgressRing label=\"Syncing\" size={40} thickness={4} />\n      </div>\n      <Button variant=\"outline\" onClick={() => setDone(done >= 5 ? 0 : done + 1)}>\n        {done >= 5 ? \"Start over\" : \"Finish a step\"}\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

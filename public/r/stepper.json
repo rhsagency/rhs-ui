@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "title": "Stepper",
+  "description": "Where someone is in a multi-step flow, horizontal or vertical; finished steps can link back.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/stepper.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface StepperStep {\n  title: string;\n  description?: string;\n}\n\nexport interface StepperProps extends Omit<ComponentProps<\"ol\">, \"children\"> {\n  steps: readonly StepperStep[];\n  /** The step in progress, from 0. */\n  current: number;\n  orientation?: \"horizontal\" | \"vertical\";\n  /** Lets people go back to a finished step. Leave it out for a read-only stepper. */\n  onStepClick?: (index: number) => void;\n  label?: string;\n}\n\n/**\n * Where someone is in a multi-step flow: finished steps carry a check, the\n * current one is marked for screen readers (aria-current=\"step\"), later ones\n * wait. Finished steps become buttons when onStepClick is given, so people\n * can go back without losing their place.\n */\nexport function Stepper({ steps, current, orientation = \"horizontal\", onStepClick, label = \"Progress\", className, ...props }: StepperProps) {\n  const vertical = orientation === \"vertical\";\n  return (\n    <ol data-slot=\"stepper\" data-orientation={orientation} aria-label={label} className={cn(vertical ? \"grid gap-0\" : \"flex w-full items-start\", className)} {...props}>\n      {steps.map((step, index) => {\n        const state = index < current ? \"done\" : index === current ? \"current\" : \"upcoming\";\n        const marker = (\n          <span\n            className={cn(\n              \"grid size-8 shrink-0 place-items-center rounded-full border text-xs font-semibold tabular-nums transition-colors duration-200\",\n              state === \"done\" && \"border-foreground bg-foreground text-background\",\n              state === \"current\" && \"border-foreground text-foreground ring-4 ring-foreground/10\",\n              state === \"upcoming\" && \"border-border text-muted-foreground\",\n            )}\n          >\n            {state === \"done\" ? <IconCheck size={14} /> : index + 1}\n          </span>\n        );\n        const text = (\n          <span className={cn(\"grid gap-0.5\", vertical ? \"pt-1\" : \"mt-2 px-2 text-center\")}>\n            <span className={cn(\"text-sm font-medium\", state === \"upcoming\" && \"text-muted-foreground\")}>{step.title}</span>\n            {step.description ? <span className=\"text-xs text-muted-foreground\">{step.description}</span> : null}\n            <span className=\"sr-only\">{state === \"done\" ? \", done\" : state === \"current\" ? \", current step\" : \", not started\"}</span>\n          </span>\n        );\n        const content = onStepClick && state === \"done\" ? (\n          <button type=\"button\" onClick={() => onStepClick(index)} className={cn(\"flex rounded-md text-left outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\", vertical ? \"gap-3\" : \"flex-col items-center\")}>\n            {marker}\n            {text}\n          </button>\n        ) : (\n          <span className={cn(\"flex\", vertical ? \"gap-3\" : \"flex-col items-center\")}>\n            {marker}\n            {text}\n          </span>\n        );\n        return (\n          <li key={step.title} aria-current={state === \"current\" ? \"step\" : undefined} className={cn(\"relative\", vertical ? \"pb-6 last:pb-0\" : \"flex flex-1 flex-col items-center\")}>\n            {index < steps.length - 1 ? (\n              <span\n                aria-hidden=\"true\"\n                className={cn(\n                  \"absolute bg-border\",\n                  vertical ? \"top-9 bottom-1 left-4 w-px\" : \"top-4 left-[calc(50%+1.5rem)] h-px w-[calc(100%-3rem)]\",\n                  index < current && \"bg-foreground\",\n                )}\n              />\n            ) : null}\n            {content}\n          </li>\n        );\n      })}\n    </ol>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/stepper.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

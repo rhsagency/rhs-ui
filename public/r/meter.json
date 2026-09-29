@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter",
+  "title": "Meter",
+  "description": "A measurement in a known range (storage, seats, quota) that warns in words and colour as it fills.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/meter.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MeterProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  value: number;\n  min?: number;\n  max?: number;\n  /** From here the value is getting high: the bar turns to a warning. */\n  high?: number;\n  /** From here the value is too high: the bar turns destructive. */\n  critical?: number;\n  label: string;\n  /** The value in words next to the label: \"7.2 of 10 GB\". */\n  valueText?: string;\n}\n\n/**\n * A measurement within a known range that is not progress: storage used,\n * seats taken, API quota. It is a meter for screen readers, with the value\n * in words, and it warns in words and colour as it fills.\n */\nexport function Meter({ value, min = 0, max = 100, high, critical, label, valueText, className, ...props }: MeterProps) {\n  const fraction = Math.min(1, Math.max(0, (value - min) / (max - min)));\n  const zone = critical !== undefined && value >= critical ? \"critical\" : high !== undefined && value >= high ? \"high\" : \"ok\";\n  const text = valueText ?? `${value} of ${max}`;\n  return (\n    <div data-slot=\"meter\" data-zone={zone} className={cn(\"grid gap-2\", className)} {...props}>\n      <div className=\"flex items-baseline justify-between gap-4 text-sm\">\n        <span className=\"font-medium\">{label}</span>\n        <span className={cn(\"tabular-nums text-muted-foreground\", zone === \"critical\" && \"text-destructive\")}>\n          {text}\n          {zone !== \"ok\" ? <span className=\"sr-only\">{zone === \"critical\" ? \", almost full\" : \", getting high\"}</span> : null}\n        </span>\n      </div>\n      <div role=\"meter\" aria-label={label} aria-valuenow={value} aria-valuemin={min} aria-valuemax={max} aria-valuetext={text} className=\"h-2 overflow-hidden rounded-full bg-muted\">\n        <div\n          className={cn(\n            \"h-full rounded-full transition-[width,background-color] duration-300\",\n            zone === \"ok\" && \"bg-foreground\",\n            zone === \"high\" && \"bg-[var(--color-warning,oklch(0.72_0.16_75))]\",\n            zone === \"critical\" && \"bg-destructive\",\n          )}\n          style={{ width: `${fraction * 100}%` }}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/meter.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

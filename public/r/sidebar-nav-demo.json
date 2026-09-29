@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-nav-demo",
+  "title": "Sidebar Nav demo",
+  "description": "A working preview of Sidebar Nav.",
+  "registryDependencies": [
+    "https://rhsui.com/r/sidebar-nav.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/sidebar-nav-demo.tsx",
+      "content": "import { IconBoard, IconChart, IconFolder, IconGrid, IconInbox, IconSettings, IconUsers } from \"@rhs-ui/icons\";\nimport { SidebarNav } from \"@rhs-ui/primitives/sidebar-nav\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"w-60 rounded-xl border border-border bg-muted/50 p-3\">\n      <SidebarNav\n        currentHref=\"/projects\"\n        groups={[\n          {\n            links: [\n              { href: \"/dashboard\", label: \"Dashboard\", icon: <IconGrid /> },\n              { href: \"/inbox\", label: \"Inbox\", icon: <IconInbox />, badge: \"12\" },\n              { href: \"/projects\", label: \"Projects\", icon: <IconFolder /> },\n              { href: \"/board\", label: \"Board\", icon: <IconBoard />, badge: \"New\" },\n            ],\n          },\n          { label: \"Reports\", collapsible: true, links: [{ href: \"/reports/revenue\", label: \"Revenue\", icon: <IconChart /> }, { href: \"/reports/team\", label: \"Team load\", icon: <IconUsers /> }] },\n          { label: \"Workspace\", links: [{ href: \"/settings\", label: \"Settings\", icon: <IconSettings /> }] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

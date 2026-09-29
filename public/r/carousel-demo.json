@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel-demo",
+  "title": "Carousel demo",
+  "description": "A working preview of Carousel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/carousel.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/carousel-demo.tsx",
+      "content": "import { Carousel } from \"@rhs-ui/primitives/carousel\";\n\nconst STORIES = [\n  { client: \"Northwind\", quote: \"We shipped the new site in three weeks, and it still feels hand-made.\", person: \"Ruth Owusu, Head of Brand\" },\n  { client: \"Harbour & Co\", quote: \"Bookings doubled the month the new flow went live.\", person: \"Arjun Mehta, Product\" },\n  { client: \"Fieldwork\", quote: \"Our team edits every page themselves now. Nothing breaks.\", person: \"Lotte de Vries, Marketing\" },\n  { client: \"Oak Lane\", quote: \"Pre-orders sold out in an afternoon. The checkout just works.\", person: \"Tom Becker, Founder\" },\n  { client: \"Mirror Labs\", quote: \"The docs finally look like the product they describe.\", person: \"Maya Lindqvist, DevRel\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"w-full max-w-3xl\">\n      <Carousel label=\"Customer stories\" perView={2}>\n        {STORIES.map((story) => (\n          <figure key={story.client} className=\"flex h-full flex-col justify-between gap-8 rounded-2xl border border-border bg-background p-6\">\n            <p className=\"font-mono text-xs tracking-widest text-muted-foreground uppercase\">{story.client}</p>\n            <blockquote className=\"text-lg leading-snug font-medium tracking-tight\">“{story.quote}”</blockquote>\n            <figcaption className=\"text-sm text-muted-foreground\">{story.person}</figcaption>\n          </figure>\n        ))}\n      </Carousel>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

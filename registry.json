@@ -3219,6 +3219,544 @@
       ]
     },
     {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "Where someone is in a multi-step flow, horizontal or vertical; finished steps can link back.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "navigation"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/stepper.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/stepper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stepper-demo",
+      "type": "registry:example",
+      "title": "Stepper demo",
+      "description": "A working preview of Stepper.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stepper.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stepper-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "title": "Tree View",
+      "description": "A folder tree with a file manager's keyboard: arrows open, close and move, letters jump.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "navigation"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/tree-view.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/tree-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tree-view-demo",
+      "type": "registry:example",
+      "title": "Tree View demo",
+      "description": "A working preview of Tree View.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tree-view.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tree-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Slides on native scroll snapping with arrows and dots; nothing moves by itself.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/carousel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/carousel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "carousel-demo",
+      "type": "registry:example",
+      "title": "Carousel demo",
+      "description": "A working preview of Carousel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/carousel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/carousel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "An endless drifting row for logos and proof points; pauses on hover and focus, still under reduced motion.",
+      "categories": [
+        "primitives",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "motion"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/marquee.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/marquee.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-marquee": {
+          "from": {
+            "transform": "translateX(0)"
+          },
+          "to": {
+            "transform": "translateX(-100%)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-marquee": "rhs-marquee var(--marquee-duration, 40s) linear infinite var(--marquee-direction, normal)"
+        }
+      }
+    },
+    {
+      "name": "marquee-demo",
+      "type": "registry:example",
+      "title": "Marquee demo",
+      "description": "A working preview of Marquee.",
+      "registryDependencies": [
+        "https://rhsui.com/r/marquee.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/marquee-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "description-list",
+      "type": "registry:ui",
+      "title": "Description List",
+      "description": "Facts about one thing as a real description list, in rows, stacked or as a spec grid.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/description-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/description-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "description-list-demo",
+      "type": "registry:example",
+      "title": "Description List demo",
+      "description": "A working preview of Description List.",
+      "registryDependencies": [
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/description-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "banner",
+      "type": "registry:ui",
+      "title": "Banner",
+      "description": "A full-width announcement with one action and an optional close button.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/banner.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/banner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "banner-demo",
+      "type": "registry:example",
+      "title": "Banner demo",
+      "description": "A working preview of Banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/banner.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Two panels with a handle to drag, or to move with the arrow keys; a separator with its value.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/resizable.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resizable-demo",
+      "type": "registry:example",
+      "title": "Resizable demo",
+      "description": "A working preview of Resizable.",
+      "registryDependencies": [
+        "https://rhsui.com/r/resizable.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/resizable-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-nav",
+      "type": "registry:ui",
+      "title": "Sidebar Nav",
+      "description": "An app's side navigation: groups of links with icons and counts, folding groups, the current page marked.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "navigation"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/sidebar-nav.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sidebar-nav.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-collapse-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-collapsible-content-height)"
+          }
+        },
+        "@keyframes rhs-collapse-up": {
+          "from": {
+            "height": "var(--radix-collapsible-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-collapse-down": "rhs-collapse-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-collapse-up": "rhs-collapse-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "Pass your router's Link as linkAs. It renders links, not a menu, because it navigates."
+    },
+    {
+      "name": "sidebar-nav-demo",
+      "type": "registry:example",
+      "title": "Sidebar Nav demo",
+      "description": "A working preview of Sidebar Nav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sidebar-nav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "code-block",
+      "type": "registry:ui",
+      "title": "Code Block",
+      "description": "Code to read and copy: a file name, a copy button that confirms, line numbers and highlighted lines.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/code-block.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-block.tsx"
+        }
+      ],
+      "docs": "It does not colour syntax: highlight on the server and pass plain text, or use your highlighter's output inside."
+    },
+    {
+      "name": "code-block-demo",
+      "type": "registry:example",
+      "title": "Code Block demo",
+      "description": "A working preview of Code Block.",
+      "registryDependencies": [
+        "https://rhsui.com/r/code-block.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/code-block-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "progress-ring",
+      "type": "registry:ui",
+      "title": "Progress Ring",
+      "description": "Progress as a ring for compact places, a progressbar with its value, or turning when there is no end.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/progress-ring.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/progress-ring.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-spin-smooth": {
+          "from": {
+            "transform": "rotate(-90deg)"
+          },
+          "to": {
+            "transform": "rotate(270deg)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-spin-smooth": "rhs-spin-smooth 1.1s linear infinite"
+        }
+      }
+    },
+    {
+      "name": "progress-ring-demo",
+      "type": "registry:example",
+      "title": "Progress Ring demo",
+      "description": "A working preview of Progress Ring.",
+      "registryDependencies": [
+        "https://rhsui.com/r/progress-ring.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/progress-ring-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "A measurement in a known range (storage, seats, quota) that warns in words and colour as it fills.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/meter.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/meter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "meter-demo",
+      "type": "registry:example",
+      "title": "Meter demo",
+      "description": "A working preview of Meter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/meter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -4727,6 +5265,56 @@
       "files": [
         {
           "path": "registry/examples/account-settings-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "description": "A table for real data: search, sort, select rows, act on the selection and page through.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/pagination.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/data-table.tsx"
+        }
+      ],
+      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows."
+    },
+    {
+      "name": "data-table-demo",
+      "type": "registry:example",
+      "title": "Data Table demo",
+      "description": "A working preview of Data Table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/data-table.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/data-table-demo.tsx",
           "type": "registry:example"
         }
       ]

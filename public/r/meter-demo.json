@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-demo",
+  "title": "Meter demo",
+  "description": "A working preview of Meter.",
+  "registryDependencies": [
+    "https://rhsui.com/r/meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/meter-demo.tsx",
+      "content": "import { Meter } from \"@rhs-ui/primitives/meter\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-sm gap-6\">\n      <Meter label=\"Storage\" value={42} max={100} high={75} critical={90} valueText=\"42 of 100 GB\" />\n      <Meter label=\"Seats\" value={8} max={10} high={8} critical={10} valueText=\"8 of 10 seats\" />\n      <Meter label=\"API calls this month\" value={96} max={100} high={75} critical={90} valueText=\"96,400 of 100,000\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

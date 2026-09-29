@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "banner",
+  "title": "Banner",
+  "description": "A full-width announcement with one action and an optional close button.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/banner.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconClose } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface BannerProps {\n  children: ReactNode;\n  /** An icon or badge in front of the message. */\n  leading?: ReactNode;\n  /** A link or button after the message: \"Read the release notes\". */\n  action?: ReactNode;\n  /** Adds a close button; persist the choice yourself in onDismiss if it should stay closed. */\n  onDismiss?: () => void;\n  dismissible?: boolean;\n  tone?: \"default\" | \"inverted\";\n  className?: string;\n}\n\n/**\n * A full-width announcement above everything else: a launch, a sale,\n * scheduled maintenance. One sentence, at most one action, and a close\n * button when it is not essential. It is a region with a label, so screen\n * reader users can find it and skip it.\n */\nexport function Banner({ children, leading, action, onDismiss, dismissible = Boolean(onDismiss), tone = \"inverted\", className }: BannerProps) {\n  const [open, setOpen] = useState(true);\n  if (!open) return null;\n  return (\n    <div\n      data-slot=\"banner\"\n      role=\"region\"\n      aria-label=\"Announcement\"\n      className={cn(\n        \"relative flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 px-10 py-2.5 text-center text-sm\",\n        tone === \"inverted\" ? \"bg-foreground text-background\" : \"border-b border-border bg-muted text-foreground\",\n        className,\n      )}\n    >\n      {leading ? <span className=\"flex items-center [&_svg]:size-4\">{leading}</span> : null}\n      <span>{children}</span>\n      {action ? <span className=\"font-medium underline underline-offset-4 [&_a]:outline-none [&_a:focus-visible]:ring-2 [&_a:focus-visible]:ring-current\">{action}</span> : null}\n      {dismissible ? (\n        <button\n          type=\"button\"\n          aria-label=\"Dismiss announcement\"\n          onClick={() => {\n            setOpen(false);\n            onDismiss?.();\n          }}\n          className=\"absolute top-1/2 right-2 grid size-7 -translate-y-1/2 place-items-center rounded-md opacity-70 outline-none hover:opacity-100 focus-visible:ring-2 focus-visible:ring-current\"\n        >\n          <IconClose size={14} />\n        </button>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/banner.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}
