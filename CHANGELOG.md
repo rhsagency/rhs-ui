@@ -19,6 +19,8 @@ own `meta.version` and are listed when they change.
 - Fixed: Tabs show their look again. The triggers styled themselves from a `group/list`
   the list never declared, so neither `line` nor `pill` applied. The registry gate now
   refuses a named `group-*/name` or `peer-*/name` variant that no element declares.
+- Fixed: CommandDialog wraps its children in a Command root, so a palette opens instead
+  of throwing. Put CommandInput and CommandList straight inside. New command demo.
 - Gates: every demo is rendered on the server in CI (`pnpm test:render`), a native
   select may only be the hidden form mirror, the registry gate refuses an item without
   a family, and the README table is generated from the registry.

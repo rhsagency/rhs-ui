@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command-demo",
+  "title": "command demo",
+  "description": "Interactive preview of the command component, inline and as a palette.",
+  "registryDependencies": [
+    "https://rhsui.com/r/command.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/command-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconFolder, IconSearch, IconSettings, IconUsers } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from \"@rhs-ui/primitives/command\";\n\nconst PAGES = [\n  { label: \"Projects\", icon: IconFolder, shortcut: \"G P\" },\n  { label: \"Team\", icon: IconUsers, shortcut: \"G T\" },\n  { label: \"Settings\", icon: IconSettings, shortcut: \"G S\" },\n] as const;\n\nconst PROJECTS = [\"Northwind rebrand\", \"Harbour booking app\", \"Oak Lane webshop\"] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(false);\n  const [last, setLast] = useState(\"Pick something, or open the palette.\");\n  const choose = (label: string) => {\n    setLast(`${label} chosen.`);\n    setOpen(false);\n  };\n  const items = (\n    <>\n      <CommandEmpty>Nothing matches that.</CommandEmpty>\n      <CommandGroup heading=\"Pages\">\n        {PAGES.map(({ label, icon: Icon, shortcut }) => (\n          <CommandItem key={label} onSelect={() => choose(label)}>\n            <Icon />\n            {label}\n            <CommandShortcut>{shortcut}</CommandShortcut>\n          </CommandItem>\n        ))}\n      </CommandGroup>\n      <CommandSeparator />\n      <CommandGroup heading=\"Projects\">\n        {PROJECTS.map((label) => (\n          <CommandItem key={label} onSelect={() => choose(label)}>\n            {label}\n          </CommandItem>\n        ))}\n      </CommandGroup>\n    </>\n  );\n\n  return (\n    <div className=\"flex w-full max-w-sm flex-col items-center gap-3\">\n      <Command className=\"rounded-lg border border-border\">\n        <CommandInput placeholder=\"Search pages and projects...\" />\n        <CommandList>{items}</CommandList>\n      </Command>\n      <Button variant=\"outline\" onClick={() => setOpen(true)}>\n        <IconSearch />\n        Open the palette\n      </Button>\n      <CommandDialog open={open} onOpenChange={setOpen} title=\"Search\" description=\"Jump to a page or a project\">\n        <CommandInput placeholder=\"Search pages and projects...\" />\n        <CommandList>{items}</CommandList>\n      </CommandDialog>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {last}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -28,6 +28,10 @@ export interface CommandDialogProps extends Omit<ComponentProps<typeof Dialog>, 
   children: React.ReactNode;
 }
 
+/**
+ * The palette: put CommandInput, CommandList and the rest straight inside;
+ * the dialog brings the Command root they read their state from.
+ */
 export function CommandDialog({ title = "Command palette", description = "Type to search", children, className, ...props }: CommandDialogProps) {
   return (
     <Dialog {...props}>
@@ -36,7 +40,7 @@ export function CommandDialog({ title = "Command palette", description = "Type t
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        {children}
+        <Command className="rounded-none">{children}</Command>
       </DialogContent>
     </Dialog>
   );
