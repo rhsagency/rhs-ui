@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "Inside a download link it plays on hover and on keyboard focus of the link.",
   "categories": [

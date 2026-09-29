@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-demo",
+  "title": "avatar demo",
+  "description": "Interactive preview of the avatar component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/avatar-demo.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage, initialsOf } from \"@rhs-ui/primitives/avatar\";\n\n// Drawn portraits as data URIs, so the preview needs no image host.\nconst PORTRAIT_A =\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\"><rect width=\"96\" height=\"96\" fill=\"#d9d6cf\"/><circle cx=\"48\" cy=\"38\" r=\"17\" fill=\"#3a3733\"/><path d=\"M14 96c4-22 18-33 34-33s30 11 34 33z\" fill=\"#3a3733\"/></svg>');\nconst PORTRAIT_B =\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\"><rect width=\"96\" height=\"96\" fill=\"#2c2f33\"/><circle cx=\"48\" cy=\"39\" r=\"16\" fill=\"#e9e7e2\"/><path d=\"M16 96c4-20 17-31 32-31s28 11 32 31z\" fill=\"#e9e7e2\"/></svg>');\n\nconst TEAM = [\"Ada Lovelace\", \"Grace Hopper\", \"Alan Turing\", \"Margaret Hamilton\", \"Tim Berners-Lee\", \"Katherine Johnson\"];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex flex-col items-center gap-8\">\n      <div className=\"flex items-end gap-4\">\n        <Avatar size=\"lg\">\n          <AvatarImage src={PORTRAIT_A} alt=\"Ada Lovelace\" />\n          <AvatarFallback>AL</AvatarFallback>\n        </Avatar>\n        <Avatar>\n          <AvatarImage src={PORTRAIT_B} alt=\"Grace Hopper\" />\n          <AvatarFallback>GH</AvatarFallback>\n        </Avatar>\n        <Avatar size=\"sm\">\n          <AvatarFallback>{initialsOf(\"Alan Turing\")}</AvatarFallback>\n        </Avatar>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <AvatarGroup>\n          {TEAM.slice(0, 4).map((name) => (\n            <Avatar key={name}>\n              <AvatarFallback>{initialsOf(name)}</AvatarFallback>\n            </Avatar>\n          ))}\n          <AvatarGroupCount>+{TEAM.length - 4}</AvatarGroupCount>\n        </AvatarGroup>\n        <span className=\"text-sm text-muted-foreground\">{TEAM.length} people on this project</span>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -7,7 +7,8 @@
       "title": "Pricing Section",
       "description": "A responsive pricing section with monthly and yearly billing and a plan selection callback.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
@@ -50,7 +51,8 @@
       "title": "Split Hero",
       "description": "An editorial two-column hero with a visual, actions and compact details.",
       "categories": [
-        "marketing"
+        "marketing",
+        "hero"
       ],
       "meta": {
         "tier": "free",
@@ -90,7 +92,8 @@
       "title": "Feature Spotlight",
       "description": "A keyboard accessible feature explorer with individual visual panels.",
       "categories": [
-        "marketing"
+        "marketing",
+        "features"
       ],
       "meta": {
         "tier": "free",
@@ -130,7 +133,8 @@
       "title": "Process Section",
       "description": "A numbered process section with responsive steps and supporting details.",
       "categories": [
-        "marketing"
+        "marketing",
+        "features"
       ],
       "meta": {
         "tier": "free",
@@ -170,7 +174,8 @@
       "title": "Faq Section",
       "description": "A considered FAQ section with accessible expanding answers.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
@@ -212,7 +217,8 @@
       "title": "Metrics Band",
       "description": "A responsive strip of metrics with smooth interrupted number transitions.",
       "categories": [
-        "marketing"
+        "marketing",
+        "social-proof"
       ],
       "meta": {
         "tier": "free",
@@ -254,7 +260,8 @@
       "title": "Closing Cta",
       "description": "A composed closing call to action with a generous typographic hierarchy.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
@@ -284,6 +291,185 @@
       "files": [
         {
           "path": "registry/examples/closing-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:block",
+      "title": "Navbar",
+      "description": "The top of a marketing site: your mark, links and panels, actions, and a phone menu in a sheet with the same groups.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/navigation-menu.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar.tsx"
+        }
+      ],
+      "docs": "Pass linkAs={Link} to render your router's links and currentHref to mark the current page."
+    },
+    {
+      "name": "navbar-demo",
+      "type": "registry:example",
+      "title": "Navbar demo",
+      "description": "A working preview of Navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-section",
+      "type": "registry:block",
+      "title": "Footer",
+      "description": "The end of every page: mark and tagline, columns of links, a slot for a newsletter or contact block, and a legal row.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/footer-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-section.tsx"
+        }
+      ],
+      "docs": "External links open in a new tab and say so to screen readers. Pass linkAs={Link} for internal links."
+    },
+    {
+      "name": "footer-section-demo",
+      "type": "registry:example",
+      "title": "Footer demo",
+      "description": "A working preview of Footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "title": "Feature grid",
+      "description": "What the product does in scannable cells: an icon, a short title and a line or two each, on a hairline grid.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/feature-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-grid.tsx"
+        }
+      ],
+      "docs": "Two columns for four features or fewer, three for more; override with columns."
+    },
+    {
+      "name": "feature-grid-demo",
+      "type": "registry:example",
+      "title": "Feature grid demo",
+      "description": "A working preview of Feature grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-grid.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-grid",
+      "type": "registry:block",
+      "title": "Testimonial grid",
+      "description": "Quotes from the people who use it, with a name, a role and a face or initials, and one featured quote.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/testimonial-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonial-grid.tsx"
+        }
+      ],
+      "docs": "featured takes the id of one testimonial; it leads the grid and spans two columns."
+    },
+    {
+      "name": "testimonial-grid-demo",
+      "type": "registry:example",
+      "title": "Testimonial grid demo",
+      "description": "A working preview of Testimonial grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonial-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-grid-demo.tsx",
           "type": "registry:example"
         }
       ]

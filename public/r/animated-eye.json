@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "state"
+    "motion": "state",
+    "family": "icons"
   },
   "docs": "Set active when the content is hidden; the button label should change with it (Show password, Hide password).",
   "categories": [

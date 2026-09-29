@@ -24,9 +24,10 @@
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/build-registry.mjs",
     "check:registry": "node scripts/check-registry.mjs",
-    "check:built": "node scripts/build-registry.mjs && git diff --exit-code --stat public/r",
-    "check": "pnpm typecheck && pnpm check:registry && pnpm test:button",
+    "check:built": "node scripts/build-registry.mjs && git diff --exit-code --stat public/r registry.json README.md",
+    "check": "pnpm typecheck && pnpm check:registry && pnpm test:button && pnpm test:render",
     "test:button": "node scripts/test-button.mjs",
+    "test:render": "node scripts/test-render.mjs",
     "test:install": "node scripts/test-install.mjs"
   },
   "peerDependencies": {

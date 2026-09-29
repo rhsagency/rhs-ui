@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "Use trigger=\"loop\" as a typing indicator and announce the same thing in a live region.",
   "categories": [

@@ -7,7 +7,8 @@
       "title": "Empty State",
       "description": "A considered empty state with a heading, explanation, icon and recovery action.",
       "categories": [
-        "application"
+        "application",
+        "feedback"
       ],
       "meta": {
         "tier": "free",
@@ -48,7 +49,8 @@
       "title": "Preferences Panel",
       "description": "A controlled settings section with labelled preferences and accessible toggle switches.",
       "categories": [
-        "application"
+        "application",
+        "account"
       ],
       "meta": {
         "tier": "free",
@@ -90,7 +92,8 @@
       "title": "Animated number",
       "description": "Smooth interruptible number transitions with locale formatting and a stable accessible value.",
       "categories": [
-        "application"
+        "application",
+        "motion"
       ],
       "meta": {
         "tier": "free",
@@ -132,7 +135,8 @@
       "title": "Step progress",
       "description": "A composed task progress indicator with animated tracks and accessible current-step announcements.",
       "categories": [
-        "application"
+        "application",
+        "feedback"
       ],
       "meta": {
         "tier": "free",
@@ -174,7 +178,8 @@
       "title": "Segmented Control",
       "description": "A controlled segmented choice with roving keyboard focus.",
       "categories": [
-        "application"
+        "application",
+        "forms"
       ],
       "meta": {
         "tier": "free",
@@ -214,7 +219,8 @@
       "title": "Copy Field",
       "description": "A selectable code field with clipboard feedback and an error fallback.",
       "categories": [
-        "application"
+        "application",
+        "actions"
       ],
       "meta": {
         "tier": "free",
@@ -256,7 +262,8 @@
       "title": "Comparison Slider",
       "description": "An accessible before and after comparison with a native range control.",
       "categories": [
-        "application"
+        "application",
+        "data-display"
       ],
       "meta": {
         "tier": "free",
@@ -296,7 +303,8 @@
       "title": "Activity Timeline",
       "description": "A compact event timeline with timestamps and a current state.",
       "categories": [
-        "application"
+        "application",
+        "data-display"
       ],
       "meta": {
         "tier": "free",
@@ -326,6 +334,106 @@
       "files": [
         {
           "path": "registry/examples/activity-timeline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sign-in-card",
+      "type": "registry:block",
+      "title": "Sign-in card",
+      "description": "Email and password with password-manager hints, a show-password toggle, other providers and one announced error.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sign-in-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/sign-in-card.tsx"
+        }
+      ],
+      "docs": "Return a message from onSubmit to show it as the error; the form keeps what was typed."
+    },
+    {
+      "name": "sign-in-card-demo",
+      "type": "registry:example",
+      "title": "Sign-in card demo",
+      "description": "A working preview of Sign-in card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sign-in-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sign-in-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "account-settings",
+      "type": "registry:block",
+      "title": "Account settings",
+      "description": "An account page in three cards: profile with a save that lights up on change, notifications, and a guarded delete.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/account-settings.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/account-settings.tsx"
+        }
+      ],
+      "docs": "The delete button unlocks only when confirmWord is typed. Return a message from onSaveProfile to show an error."
+    },
+    {
+      "name": "account-settings-demo",
+      "type": "registry:example",
+      "title": "Account settings demo",
+      "description": "A working preview of Account settings.",
+      "registryDependencies": [
+        "https://rhsui.com/r/account-settings.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/account-settings-demo.tsx",
           "type": "registry:example"
         }
       ]

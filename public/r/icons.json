@@ -18,7 +18,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "icons"
   },
   "docs": "Import the glyphs you need from \"@rhs-ui/icons\". Pass a title when an icon is the only label. Draw your own glyph in the same hand with <Glyph d=\"...\" />.",
   "categories": [

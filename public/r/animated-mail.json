@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "Use it in a contact or invite action; trigger=\"appear\" plays it once when the section scrolls into view.",
   "categories": [

@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "Inside a Button it rings when the button is hovered or focused. Use trigger=\"loop\" while there are unread notifications.",
   "categories": [

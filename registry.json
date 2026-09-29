@@ -17,7 +17,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "actions"
       },
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -49,7 +50,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "data-display"
       },
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -76,10 +78,11 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.5.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "feedback"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -116,7 +119,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "layout"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -145,7 +149,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "data-display"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -169,10 +174,11 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.5.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "forms"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -183,7 +189,7 @@
           "target": "components/rhs-ui/primitives/input.tsx"
         }
       ],
-      "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state."
+      "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state. fieldSurface is the same surface for Textarea and the Select and Combobox triggers."
     },
     {
       "name": "label",
@@ -199,7 +205,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "forms"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -228,7 +235,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "overlay"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -375,7 +383,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "overlay"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -524,7 +533,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "overlay"
       },
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -674,7 +684,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "navigation"
       },
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -705,7 +716,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "navigation"
       },
       "dependencies": [
         "cmdk@^1.1.1"
@@ -737,7 +749,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "theme"
       },
       "cssVars": {
         "theme": {
@@ -820,14 +833,16 @@
       "title": "Accordion",
       "description": "Keyboard-friendly disclosure rows with single or multiple expanded items.",
       "categories": [
-        "primitives"
+        "primitives",
+        "data-display"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "data-display"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -862,14 +877,16 @@
       "title": "Switch",
       "description": "An accessible binary switch with form support and controlled or uncontrolled state.",
       "categories": [
-        "primitives"
+        "primitives",
+        "forms"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "forms"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -904,14 +921,16 @@
       "title": "Slider",
       "description": "An accessible value or range slider with keyboard controls and labelled thumbs.",
       "categories": [
-        "primitives"
+        "primitives",
+        "forms"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "forms"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
@@ -941,6 +960,890 @@
       ]
     },
     {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A checkbox with a visible box at rest, a check and an indeterminate dash, keyboard and form support.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/checkbox.tsx"
+        }
+      ],
+      "docs": "Set checked=\"indeterminate\" on a parent whose children are partly chosen. With a name it submits like a native checkbox."
+    },
+    {
+      "name": "checkbox-demo",
+      "type": "registry:example",
+      "title": "checkbox demo",
+      "description": "Interactive preview of the checkbox component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio group",
+      "description": "One choice out of a few: arrow keys move and choose, the circle is visible at rest.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/radio-group.tsx"
+        }
+      ],
+      "docs": "Name the group with aria-label or a fieldset legend. Wrap an item and its text in a Label to make the whole row clickable."
+    },
+    {
+      "name": "radio-group-demo",
+      "type": "registry:example",
+      "title": "radio group demo",
+      "description": "Interactive preview of the radio group component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/radio-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A select on the field surface with our own listbox: groups, a second line per option, typeahead, never the browser menu.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/select.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/select.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "Opens under the field (position popper). With a name, Radix keeps a hidden, aria-hidden native select in sync for FormData and autofill; nobody sees or reaches it."
+    },
+    {
+      "name": "select-demo",
+      "type": "registry:example",
+      "title": "select demo",
+      "description": "Interactive preview of the select component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A field that opens a searchable list, for choices too long to scan: countries, time zones, customers.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/combobox.tsx"
+        }
+      ],
+      "docs": "Search matches the label and the keywords. With a name, a hidden input carries the value; validate required in your form schema."
+    },
+    {
+      "name": "combobox-demo",
+      "type": "registry:example",
+      "title": "combobox demo",
+      "description": "Interactive preview of the combobox component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/combobox-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A multi-line field on the same surface as Input that grows with its text where the browser supports it.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/textarea.tsx"
+        }
+      ],
+      "docs": "Uses field-sizing: content; older browsers fall back to rows and the resize handle."
+    },
+    {
+      "name": "textarea-demo",
+      "type": "registry:example",
+      "title": "textarea demo",
+      "description": "Interactive preview of the textarea component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/textarea-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A panel anchored to its trigger for a small form or filters. Exports the panel surface every floating layer shares.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/popover.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "Focus moves in on open and back on close. panelSurface keeps Select, Dropdown menu and Combobox on the same panel."
+    },
+    {
+      "name": "popover-demo",
+      "type": "registry:example",
+      "title": "popover demo",
+      "description": "Interactive preview of the popover component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown menu",
+      "description": "A menu of actions: shortcuts, toggles, a choice of one, submenus and a destructive item, fully keyboard driven.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dropdown-menu.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "docs": "For actions only. Navigation between pages belongs in links, not a menu."
+    },
+    {
+      "name": "dropdown-menu-demo",
+      "type": "registry:example",
+      "title": "dropdown menu demo",
+      "description": "Interactive preview of the dropdown menu component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dropdown-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Short notices with a toast() call and one Toaster: tones, an action, swipe to dismiss, pause on hover, F8 to reach them.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/toast.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-fade-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-fade-out": "rhs-fade-out 120ms ease-in"
+        }
+      },
+      "docs": "Mount one Toaster near the root and call toast() from any event handler. Reuse an id to turn Saving into Saved."
+    },
+    {
+      "name": "toast-demo",
+      "type": "registry:example",
+      "title": "toast demo",
+      "description": "Interactive preview of the toast component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Semantic table parts with a caption, its own horizontal scroll and a sortable header that sets aria-sort.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/table.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table.tsx"
+        }
+      ],
+      "docs": "Give TableHead sort and onSort to make it a sort button. Mark a selected row with data-state=\"selected\"."
+    },
+    {
+      "name": "table-demo",
+      "type": "registry:example",
+      "title": "table demo",
+      "description": "Interactive preview of the table component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A surface for one piece of content: header with title, description and action, content and footer.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "layout"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/card.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/card.tsx"
+        }
+      ],
+      "docs": "CardTitle is an h3; pass asChild with your own heading when the outline needs another level."
+    },
+    {
+      "name": "card-demo",
+      "type": "registry:example",
+      "title": "card demo",
+      "description": "Interactive preview of the card component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A person or workspace as a circle: the image when it loads, initials when it does not, and overlapping groups.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/avatar.tsx"
+        }
+      ],
+      "docs": "initialsOf(name) gives the fallback letters. Give AvatarImage an alt, or alt=\"\" when the name is written next to it."
+    },
+    {
+      "name": "avatar-demo",
+      "type": "registry:example",
+      "title": "avatar demo",
+      "description": "Interactive preview of the avatar component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/avatar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "A determinate or indeterminate progress bar that holds still under reduced motion.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/progress.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-indeterminate": {
+          "from": {
+            "transform": "translateX(-100%)"
+          },
+          "to": {
+            "transform": "translateX(250%)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-indeterminate": "rhs-indeterminate 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite"
+        }
+      },
+      "docs": "Name it with aria-label or aria-labelledby. Pass getValueLabel for an answer like \"2 of 5 files\"."
+    },
+    {
+      "name": "progress-demo",
+      "type": "registry:example",
+      "title": "progress demo",
+      "description": "Interactive preview of the progress component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Links between pages with a fixed-width page range, the current page marked and Previous and Next kept readable.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "navigation"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pagination.tsx"
+        }
+      ],
+      "docs": "paginationRange(current, total) returns the pages and gaps to draw. Pass asChild to render your router's link."
+    },
+    {
+      "name": "pagination-demo",
+      "type": "registry:example",
+      "title": "pagination demo",
+      "description": "Interactive preview of the pagination component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pagination-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Where a page sits: an ordered list of links ending in the current page, with collapsible middle crumbs.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "navigation"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/breadcrumb.tsx"
+        }
+      ],
+      "docs": "The last crumb is BreadcrumbPage (aria-current, not a link). Separators are hidden from screen readers."
+    },
+    {
+      "name": "breadcrumb-demo",
+      "type": "registry:example",
+      "title": "breadcrumb demo",
+      "description": "Interactive preview of the breadcrumb component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/breadcrumb-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation menu",
+      "description": "Site navigation with panels in one shared viewport that resizes between them, on hover and keyboard.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "navigation"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/navigation-menu.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        },
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        },
+        "@keyframes rhs-fade-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)",
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out",
+          "animate-rhs-fade-out": "rhs-fade-out 120ms ease-in"
+        }
+      },
+      "docs": "Set viewport={false} and place NavigationMenuViewport yourself when the panel must sit elsewhere, like under a full-width header."
+    },
+    {
+      "name": "navigation-menu-demo",
+      "type": "registry:example",
+      "title": "navigation menu demo",
+      "description": "Interactive preview of the navigation menu component.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navigation-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navigation-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -953,7 +1856,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -980,7 +1884,8 @@
         "version": "0.2.0",
         "since": "0.2.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1033,7 +1938,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1063,7 +1969,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1093,7 +2000,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1123,7 +2031,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1153,7 +2062,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1183,7 +2093,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1213,7 +2124,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1243,7 +2155,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1273,7 +2186,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1303,7 +2217,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1333,7 +2248,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1363,7 +2279,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1393,7 +2310,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1423,7 +2341,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1453,7 +2372,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1483,7 +2403,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1513,7 +2434,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1543,7 +2465,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1573,7 +2496,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1603,7 +2527,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1633,7 +2558,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1663,7 +2589,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "trigger"
+        "motion": "trigger",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1693,7 +2620,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1723,7 +2651,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1753,7 +2682,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1783,7 +2713,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1813,7 +2744,8 @@
         "since": "0.2.0",
         "status": "stable",
         "preview": "inline",
-        "motion": "state"
+        "motion": "state",
+        "family": "icons"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1843,7 +2775,8 @@
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "commerce"
       },
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -1890,14 +2823,16 @@
       "title": "Animated price",
       "description": "Currency-aware price transitions with the same soft count and blur across every price update.",
       "categories": [
-        "commerce"
+        "commerce",
+        "motion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "motion"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1934,14 +2869,16 @@
       "title": "KPI card",
       "description": "A considered metric card with animated values, a quiet sparkline and period context.",
       "categories": [
-        "dashboard"
+        "dashboard",
+        "motion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "motion"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -1978,14 +2915,16 @@
       "title": "Empty State",
       "description": "A considered empty state with a heading, explanation, icon and recovery action.",
       "categories": [
-        "application"
+        "application",
+        "feedback"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "feedback"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2019,14 +2958,16 @@
       "title": "Preferences Panel",
       "description": "A controlled settings section with labelled preferences and accessible toggle switches.",
       "categories": [
-        "application"
+        "application",
+        "account"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "account"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2061,14 +3002,16 @@
       "title": "Animated number",
       "description": "Smooth interruptible number transitions with locale formatting and a stable accessible value.",
       "categories": [
-        "application"
+        "application",
+        "motion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "motion"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2103,14 +3046,16 @@
       "title": "Step progress",
       "description": "A composed task progress indicator with animated tracks and accessible current-step announcements.",
       "categories": [
-        "application"
+        "application",
+        "feedback"
       ],
       "meta": {
         "tier": "free",
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "feedback"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2145,14 +3090,16 @@
       "title": "Segmented Control",
       "description": "A controlled segmented choice with roving keyboard focus.",
       "categories": [
-        "application"
+        "application",
+        "forms"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "forms"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2185,14 +3132,16 @@
       "title": "Copy Field",
       "description": "A selectable code field with clipboard feedback and an error fallback.",
       "categories": [
-        "application"
+        "application",
+        "actions"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "actions"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2227,14 +3176,16 @@
       "title": "Comparison Slider",
       "description": "An accessible before and after comparison with a native range control.",
       "categories": [
-        "application"
+        "application",
+        "data-display"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "data-display"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2267,14 +3218,16 @@
       "title": "Activity Timeline",
       "description": "A compact event timeline with timestamps and a current state.",
       "categories": [
-        "application"
+        "application",
+        "data-display"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "data-display"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2302,19 +3255,123 @@
       ]
     },
     {
+      "name": "sign-in-card",
+      "type": "registry:block",
+      "title": "Sign-in card",
+      "description": "Email and password with password-manager hints, a show-password toggle, other providers and one announced error.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "account"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sign-in-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/sign-in-card.tsx"
+        }
+      ],
+      "docs": "Return a message from onSubmit to show it as the error; the form keeps what was typed."
+    },
+    {
+      "name": "sign-in-card-demo",
+      "type": "registry:example",
+      "title": "Sign-in card demo",
+      "description": "A working preview of Sign-in card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sign-in-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sign-in-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "account-settings",
+      "type": "registry:block",
+      "title": "Account settings",
+      "description": "An account page in three cards: profile with a save that lights up on change, notifications, and a guarded delete.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "account"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/account-settings.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/account-settings.tsx"
+        }
+      ],
+      "docs": "The delete button unlocks only when confirmWord is typed. Return a message from onSaveProfile to show an error."
+    },
+    {
+      "name": "account-settings-demo",
+      "type": "registry:example",
+      "title": "Account settings demo",
+      "description": "A working preview of Account settings.",
+      "registryDependencies": [
+        "https://rhsui.com/r/account-settings.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/account-settings-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
       "description": "A responsive pricing section with monthly and yearly billing and a plan selection callback.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.2.0",
         "since": "0.1.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "conversion"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2350,14 +3407,16 @@
       "title": "Split Hero",
       "description": "An editorial two-column hero with a visual, actions and compact details.",
       "categories": [
-        "marketing"
+        "marketing",
+        "hero"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "hero"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2390,14 +3449,16 @@
       "title": "Feature Spotlight",
       "description": "A keyboard accessible feature explorer with individual visual panels.",
       "categories": [
-        "marketing"
+        "marketing",
+        "features"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "features"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2430,14 +3491,16 @@
       "title": "Process Section",
       "description": "A numbered process section with responsive steps and supporting details.",
       "categories": [
-        "marketing"
+        "marketing",
+        "features"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "features"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2470,14 +3533,16 @@
       "title": "Faq Section",
       "description": "A considered FAQ section with accessible expanding answers.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "conversion"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2512,14 +3577,16 @@
       "title": "Metrics Band",
       "description": "A responsive strip of metrics with smooth interrupted number transitions.",
       "categories": [
-        "marketing"
+        "marketing",
+        "social-proof"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "social-proof"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2554,14 +3621,16 @@
       "title": "Closing Cta",
       "description": "A composed closing call to action with a generous typographic hierarchy.",
       "categories": [
-        "marketing"
+        "marketing",
+        "conversion"
       ],
       "meta": {
         "tier": "free",
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "frame"
+        "preview": "frame",
+        "family": "conversion"
       },
       "dependencies": [],
       "registryDependencies": [],
@@ -2589,6 +3658,189 @@
       ]
     },
     {
+      "name": "navbar",
+      "type": "registry:block",
+      "title": "Navbar",
+      "description": "The top of a marketing site: your mark, links and panels, actions, and a phone menu in a sheet with the same groups.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "page-chrome"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/navigation-menu.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar.tsx"
+        }
+      ],
+      "docs": "Pass linkAs={Link} to render your router's links and currentHref to mark the current page."
+    },
+    {
+      "name": "navbar-demo",
+      "type": "registry:example",
+      "title": "Navbar demo",
+      "description": "A working preview of Navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-section",
+      "type": "registry:block",
+      "title": "Footer",
+      "description": "The end of every page: mark and tagline, columns of links, a slot for a newsletter or contact block, and a legal row.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "page-chrome"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/footer-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-section.tsx"
+        }
+      ],
+      "docs": "External links open in a new tab and say so to screen readers. Pass linkAs={Link} for internal links."
+    },
+    {
+      "name": "footer-section-demo",
+      "type": "registry:example",
+      "title": "Footer demo",
+      "description": "A working preview of Footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "title": "Feature grid",
+      "description": "What the product does in scannable cells: an icon, a short title and a line or two each, on a hairline grid.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/feature-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-grid.tsx"
+        }
+      ],
+      "docs": "Two columns for four features or fewer, three for more; override with columns."
+    },
+    {
+      "name": "feature-grid-demo",
+      "type": "registry:example",
+      "title": "Feature grid demo",
+      "description": "A working preview of Feature grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-grid.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-grid",
+      "type": "registry:block",
+      "title": "Testimonial grid",
+      "description": "Quotes from the people who use it, with a name, a role and a face or initials, and one featured quote.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "social-proof"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/testimonial-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonial-grid.tsx"
+        }
+      ],
+      "docs": "featured takes the id of one testimonial; it leads the grid and spans two columns."
+    },
+    {
+      "name": "testimonial-grid-demo",
+      "type": "registry:example",
+      "title": "Testimonial grid demo",
+      "description": "A working preview of Testimonial grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonial-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "model-viewer",
       "type": "registry:component",
       "title": "Model viewer",
@@ -2601,7 +3853,8 @@
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "models"
       },
       "dependencies": [
         "three@^0.186.0"
@@ -2648,7 +3901,8 @@
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "models"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2692,7 +3946,8 @@
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "models"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2736,7 +3991,8 @@
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "models"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2779,7 +4035,8 @@
         "tier": "free",
         "version": "0.4.0",
         "since": "0.4.0",
-        "status": "stable"
+        "status": "stable",
+        "family": "models"
       },
       "registryDependencies": [
         "https://rhsui.com/r/model-viewer.json"
@@ -2822,7 +4079,8 @@
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "backgrounds"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2864,7 +4122,8 @@
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "backgrounds"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2906,7 +4165,8 @@
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "backgrounds"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2948,7 +4208,8 @@
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "backgrounds"
       },
       "dependencies": [],
       "registryDependencies": [
@@ -2990,7 +4251,8 @@
         "version": "0.5.0",
         "since": "0.5.0",
         "status": "stable",
-        "preview": "inline"
+        "preview": "inline",
+        "family": "backgrounds"
       },
       "dependencies": [],
       "registryDependencies": [],

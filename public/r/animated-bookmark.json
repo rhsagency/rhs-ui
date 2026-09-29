@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "state"
+    "motion": "state",
+    "family": "icons"
   },
   "docs": "Set active when the item is saved and use aria-pressed on the button around it.",
   "categories": [

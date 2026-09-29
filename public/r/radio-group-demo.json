@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-demo",
+  "title": "radio group demo",
+  "description": "Interactive preview of the radio group component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/radio-group.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/radio-group-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { RadioGroup, RadioGroupItem } from \"@rhs-ui/primitives/radio-group\";\n\nconst OPTIONS = [\n  { value: \"standard\", title: \"Standard\", detail: \"Two to four working days\", price: \"Free\" },\n  { value: \"express\", title: \"Express\", detail: \"Tomorrow, before noon\", price: \"€9\" },\n  { value: \"pickup\", title: \"Pick up\", detail: \"From the studio, any weekday\", price: \"Free\" },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  const [value, setValue] = useState<string>(\"standard\");\n\n  return (\n    <RadioGroup value={value} onValueChange={setValue} aria-label=\"Delivery\" className=\"w-full max-w-sm gap-2\">\n      {OPTIONS.map((option) => (\n        <Label\n          key={option.value}\n          htmlFor={`${id}-${option.value}`}\n          className=\"cursor-pointer gap-3 rounded-lg border border-border p-4 font-normal leading-normal transition-colors duration-150 hover:bg-muted/50 has-[[data-state=checked]]:border-foreground\"\n        >\n          <RadioGroupItem value={option.value} id={`${id}-${option.value}`} />\n          <span className=\"grid flex-1 gap-0.5\">\n            <span className=\"text-sm font-medium\">{option.title}</span>\n            <span className=\"text-xs text-muted-foreground\">{option.detail}</span>\n          </span>\n          <span className=\"text-sm tabular-nums\">{option.price}</span>\n        </Label>\n      ))}\n    </RadioGroup>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

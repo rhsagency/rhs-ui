@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-demo",
+  "title": "textarea demo",
+  "description": "Interactive preview of the textarea component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/textarea.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/textarea-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\n\nconst LIMIT = 280;\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  const [text, setText] = useState(\"\");\n  const left = LIMIT - text.length;\n\n  return (\n    <div className=\"grid w-full max-w-sm gap-2\">\n      <Label htmlFor={id}>What should we build next?</Label>\n      <Textarea\n        id={id}\n        value={text}\n        maxLength={LIMIT}\n        onChange={(event) => setText(event.target.value)}\n        placeholder=\"A component you keep rebuilding, a block you miss...\"\n        aria-describedby={`${id}-count`}\n      />\n      <p id={`${id}-count`} className=\"flex justify-between text-xs text-muted-foreground\">\n        <span>The field grows as you write.</span>\n        <span className=\"font-mono tabular-nums\" aria-live={left <= 20 ? \"polite\" : \"off\"}>\n          {left} left\n        </span>\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

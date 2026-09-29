@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "A determinate or indeterminate progress bar that holds still under reduced motion.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/progress.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps, CSSProperties } from \"react\";\nimport { Progress as ProgressPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * How far along something is. With a `value` the bar fills to it; without\n * one it is indeterminate and a segment travels, or holds still under\n * reduced motion. Name it with aria-label or aria-labelledby, and pass\n * getValueLabel when \"40%\" is not the useful answer (\"2 of 5 files\").\n */\nexport function Progress({ className, value, max = 100, ...props }: ComponentProps<typeof ProgressPrimitive.Root>) {\n  const known = typeof value === \"number\";\n  const percent = known ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      value={value}\n      max={max}\n      className={cn(\"relative h-2 w-full overflow-hidden rounded-full bg-muted\", className)}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        style={{ \"--progress\": `${percent}%` } as CSSProperties}\n        className={cn(\n          \"h-full rounded-full bg-primary\",\n          known\n            ? \"w-full -translate-x-[calc(100%-var(--progress))] transition-[translate] duration-300 ease-out motion-reduce:transition-none\"\n            : \"w-2/5 animate-rhs-indeterminate motion-reduce:w-full motion-reduce:animate-none motion-reduce:opacity-40\",\n        )}\n      />\n    </ProgressPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/progress.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-indeterminate": "rhs-indeterminate 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite"
+    }
+  },
+  "css": {
+    "@keyframes rhs-indeterminate": {
+      "from": {
+        "transform": "translateX(-100%)"
+      },
+      "to": {
+        "transform": "translateX(250%)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Name it with aria-label or aria-labelledby. Pass getValueLabel for an answer like \"2 of 5 files\".",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

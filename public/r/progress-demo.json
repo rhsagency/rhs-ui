@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-demo",
+  "title": "progress demo",
+  "description": "Interactive preview of the progress component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/progress.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/progress-demo.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useId, useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Progress } from \"@rhs-ui/primitives/progress\";\n\nconst FILES = 5;\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  // null while preparing (indeterminate), then the number of files done.\n  const [done, setDone] = useState<number | null>(2);\n  const [running, setRunning] = useState(false);\n\n  useEffect(() => {\n    if (!running) return;\n    if (done === null) {\n      const start = window.setTimeout(() => setDone(0), 1400);\n      return () => window.clearTimeout(start);\n    }\n    if (done >= FILES) {\n      setRunning(false);\n      return;\n    }\n    const next = window.setTimeout(() => setDone(done + 1), 700);\n    return () => window.clearTimeout(next);\n  }, [done, running]);\n\n  const finished = done !== null && done >= FILES;\n  const status = done === null ? \"Preparing the upload...\" : finished ? \"All files uploaded.\" : `${done} of ${FILES} files uploaded`;\n\n  return (\n    <div className=\"grid w-full max-w-sm gap-3\">\n      <div className=\"flex items-baseline justify-between gap-4 text-sm\">\n        <span id={`${id}-label`} className=\"font-medium\">\n          Brand assets\n        </span>\n        <span className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n          {status}\n        </span>\n      </div>\n      <Progress aria-labelledby={`${id}-label`} value={done ?? undefined} max={FILES} getValueLabel={(value, max) => `${value} of ${max} files`} />\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        className=\"justify-self-start\"\n        disabled={running}\n        onClick={() => {\n          if (finished) setDone(null);\n          setRunning(true);\n        }}\n      >\n        {finished ? \"Upload again\" : \"Continue the upload\"}\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -8,19 +8,20 @@
   "files": [
     {
       "path": "registry/primitives/input.tsx",
-      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A text input. Quiet at rest, a ring on focus, a destructive border when\n * `aria-invalid` is set by your form library. Pair it with <Label htmlFor>.\n */\nexport function Input({ className, type = \"text\", ...props }: ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        \"flex h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-xs\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        \"file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\n        \"transition-[border-color,box-shadow] duration-150 outline-none\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25 aria-invalid:focus-visible:ring-destructive/30\",\n        \"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * The surface every RHS UI field shares: Input, Textarea and the Select and\n * Combobox triggers. Quiet at rest, a ring on focus, a destructive border\n * when `aria-invalid` is set by your form library.\n */\nexport const fieldSurface = cn(\n  \"rounded-md border border-input bg-background text-sm text-foreground shadow-xs\",\n  \"transition-[border-color,box-shadow] duration-150 outline-none\",\n  \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n  \"aria-invalid:border-destructive aria-invalid:ring-destructive/25 aria-invalid:focus-visible:ring-destructive/30\",\n  \"disabled:cursor-not-allowed disabled:opacity-50\",\n);\n\n/** A text input on the field surface. Pair it with <Label htmlFor>. */\nexport function Input({ className, type = \"text\", ...props }: ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        fieldSurface,\n        \"flex h-9 w-full min-w-0 px-3 py-1\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        \"file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\n        \"disabled:pointer-events-none\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/rhs-ui/primitives/input.tsx"
     }
   ],
   "meta": {
     "tier": "free",
-    "version": "0.2.0",
+    "version": "0.5.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "forms"
   },
-  "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state.",
+  "docs": "Pair with Label via htmlFor. Set aria-invalid from your form library to show the error state. fieldSurface is the same surface for Textarea and the Select and Combobox triggers.",
   "categories": [
     "primitives",
     "forms"

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "title": "Dropdown menu",
+  "description": "A menu of actions: shortcuts, toggles, a choice of one, submenus and a destructive item, fully keyboard driven.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/dropdown-menu.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { DropdownMenu as DropdownMenuPrimitive } from \"radix-ui\";\n\nimport { IconCheck, IconChevronRight } from \"@rhs-ui/icons\";\nimport { panelSurface } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A menu of actions behind a button: items with shortcuts, toggles, a choice\n * of one, submenus and a destructive item. Arrow keys move, typing jumps to\n * an item, Escape closes and returns focus to the trigger. For navigation\n * between pages use links, not a menu.\n */\nexport function DropdownMenu(props: ComponentProps<typeof DropdownMenuPrimitive.Root>) {\n  return <DropdownMenuPrimitive.Root data-slot=\"dropdown-menu\" {...props} />;\n}\n\nexport function DropdownMenuTrigger(props: ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {\n  return <DropdownMenuPrimitive.Trigger data-slot=\"dropdown-menu-trigger\" {...props} />;\n}\n\nexport function DropdownMenuGroup(props: ComponentProps<typeof DropdownMenuPrimitive.Group>) {\n  return <DropdownMenuPrimitive.Group data-slot=\"dropdown-menu-group\" {...props} />;\n}\n\nexport function DropdownMenuSub(props: ComponentProps<typeof DropdownMenuPrimitive.Sub>) {\n  return <DropdownMenuPrimitive.Sub data-slot=\"dropdown-menu-sub\" {...props} />;\n}\n\nexport function DropdownMenuRadioGroup(props: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {\n  return <DropdownMenuPrimitive.RadioGroup data-slot=\"dropdown-menu-radio-group\" {...props} />;\n}\n\nexport function DropdownMenuContent({ className, sideOffset = 6, align = \"start\", ...props }: ComponentProps<typeof DropdownMenuPrimitive.Content>) {\n  return (\n    <DropdownMenuPrimitive.Portal>\n      <DropdownMenuPrimitive.Content\n        data-slot=\"dropdown-menu-content\"\n        sideOffset={sideOffset}\n        align={align}\n        className={cn(\n          panelSurface,\n          \"max-h-(--radix-dropdown-menu-content-available-height) min-w-[12rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto p-1\",\n          className,\n        )}\n        {...props}\n      />\n    </DropdownMenuPrimitive.Portal>\n  );\n}\n\nconst itemBase = cn(\n  \"relative flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none select-none\",\n  \"data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n  \"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground\",\n);\n\nexport interface DropdownMenuItemProps extends ComponentProps<typeof DropdownMenuPrimitive.Item> {\n  /** Line the item up with items that carry a check or an icon. */\n  inset?: boolean;\n  variant?: \"default\" | \"destructive\";\n}\n\nexport function DropdownMenuItem({ className, inset, variant = \"default\", ...props }: DropdownMenuItemProps) {\n  return (\n    <DropdownMenuPrimitive.Item\n      data-slot=\"dropdown-menu-item\"\n      data-inset={inset || undefined}\n      data-variant={variant}\n      className={cn(\n        itemBase,\n        \"data-[inset]:pl-8\",\n        \"data-[variant=destructive]:text-destructive data-[variant=destructive]:data-[highlighted]:bg-destructive/10 data-[variant=destructive]:data-[highlighted]:text-destructive data-[variant=destructive]:[&_svg]:text-destructive\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function DropdownMenuCheckboxItem({ className, children, ...props }: ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {\n  return (\n    <DropdownMenuPrimitive.CheckboxItem data-slot=\"dropdown-menu-checkbox-item\" className={cn(itemBase, \"pl-8\", className)} {...props}>\n      <span className=\"absolute left-2 flex size-4 items-center justify-center\">\n        <DropdownMenuPrimitive.ItemIndicator>\n          <IconCheck size={14} className=\"text-foreground\" />\n        </DropdownMenuPrimitive.ItemIndicator>\n      </span>\n      {children}\n    </DropdownMenuPrimitive.CheckboxItem>\n  );\n}\n\nexport function DropdownMenuRadioItem({ className, children, ...props }: ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {\n  return (\n    <DropdownMenuPrimitive.RadioItem data-slot=\"dropdown-menu-radio-item\" className={cn(itemBase, \"pl-8\", className)} {...props}>\n      <span className=\"absolute left-2 flex size-4 items-center justify-center\">\n        <DropdownMenuPrimitive.ItemIndicator>\n          <span className=\"block size-2 rounded-full bg-foreground\" />\n        </DropdownMenuPrimitive.ItemIndicator>\n      </span>\n      {children}\n    </DropdownMenuPrimitive.RadioItem>\n  );\n}\n\nexport function DropdownMenuLabel({ className, inset, ...props }: ComponentProps<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }) {\n  return (\n    <DropdownMenuPrimitive.Label\n      data-slot=\"dropdown-menu-label\"\n      data-inset={inset || undefined}\n      className={cn(\"px-2 pt-2 pb-1 font-mono text-[0.6875rem] tracking-wide text-muted-foreground data-[inset]:pl-8\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function DropdownMenuSeparator({ className, ...props }: ComponentProps<typeof DropdownMenuPrimitive.Separator>) {\n  return <DropdownMenuPrimitive.Separator data-slot=\"dropdown-menu-separator\" className={cn(\"-mx-1 my-1 h-px bg-border\", className)} {...props} />;\n}\n\nexport function DropdownMenuShortcut({ className, ...props }: ComponentProps<\"span\">) {\n  return <span data-slot=\"dropdown-menu-shortcut\" className={cn(\"ml-auto pl-4 font-mono text-[0.6875rem] tracking-wide text-muted-foreground\", className)} {...props} />;\n}\n\nexport function DropdownMenuSubTrigger({ className, inset, children, ...props }: ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & { inset?: boolean }) {\n  return (\n    <DropdownMenuPrimitive.SubTrigger\n      data-slot=\"dropdown-menu-sub-trigger\"\n      data-inset={inset || undefined}\n      className={cn(itemBase, \"data-[inset]:pl-8 data-[state=open]:bg-muted\", className)}\n      {...props}\n    >\n      {children}\n      <IconChevronRight size={14} className=\"ml-auto\" />\n    </DropdownMenuPrimitive.SubTrigger>\n  );\n}\n\nexport function DropdownMenuSubContent({ className, ...props }: ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {\n  return (\n    <DropdownMenuPrimitive.Portal>\n      <DropdownMenuPrimitive.SubContent\n        data-slot=\"dropdown-menu-sub-content\"\n        className={cn(panelSurface, \"min-w-[10rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden p-1\", className)}\n        {...props}\n      />\n    </DropdownMenuPrimitive.Portal>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/dropdown-menu.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      }
+    },
+    "@keyframes rhs-out": {
+      "from": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      },
+      "to": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "overlay"
+  },
+  "docs": "For actions only. Navigation between pages belongs in links, not a menu.",
+  "categories": [
+    "primitives",
+    "overlay"
+  ],
+  "type": "registry:ui"
+}

@@ -141,7 +141,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "overlay"
   },
   "docs": "Pass side left, right, top or bottom. Sheets slide on transform only.",
   "categories": [

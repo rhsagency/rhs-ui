@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "state"
+    "motion": "state",
+    "family": "icons"
   },
   "docs": "Bind active to the open state of the menu or panel it toggles, next to aria-expanded.",
   "categories": [

@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "state"
+    "motion": "state",
+    "family": "icons"
   },
   "docs": "Bind active to the resolved theme after hydration, so the server and the first client render agree.",
   "categories": [

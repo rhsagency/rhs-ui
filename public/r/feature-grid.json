@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-grid",
+  "title": "Feature grid",
+  "description": "What the product does in scannable cells: an icon, a short title and a line or two each, on a hairline grid.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/feature-grid.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface Feature {\n  id: string;\n  /** A 20px icon from @rhs-ui/icons, or your own mark. */\n  icon: ReactNode;\n  title: string;\n  description: string;\n  /** An optional link or small note under the description. */\n  footer?: ReactNode;\n}\n\nexport interface FeatureGridProps {\n  eyebrow?: string;\n  title: string;\n  description?: string;\n  features: readonly Feature[];\n  /** Two columns for four features or fewer, three for more. */\n  columns?: 2 | 3;\n  className?: string;\n}\n\n/**\n * What the product does, in scannable cells: an icon, a short title and one\n * or two lines each, on a hairline grid instead of floating cards. The heading\n * sits above, centred; the cells read left to right.\n */\nexport function FeatureGrid({ eyebrow, title, description, features, columns, className }: FeatureGridProps) {\n  const cols = columns ?? (features.length <= 4 ? 2 : 3);\n  return (\n    <section data-slot=\"feature-grid\" className={cn(\"py-16 sm:py-24\", className)}>\n      <header className=\"mx-auto max-w-2xl text-center\">\n        {eyebrow ? <p className=\"mb-4 text-xs font-medium tracking-[.18em] text-muted-foreground uppercase\">{eyebrow}</p> : null}\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-5 text-base leading-relaxed text-pretty text-muted-foreground\">{description}</p> : null}\n      </header>\n      <ul\n        className={cn(\n          \"mt-14 grid overflow-hidden rounded-2xl border border-border bg-border gap-px sm:grid-cols-2\",\n          cols === 3 && \"lg:grid-cols-3\",\n        )}\n      >\n        {features.map((feature) => (\n          <li key={feature.id} className=\"flex flex-col gap-3 bg-background p-7 sm:p-8\">\n            <span className=\"inline-flex size-10 items-center justify-center rounded-lg border border-border text-foreground [&_svg]:size-5\">\n              {feature.icon}\n            </span>\n            <h3 className=\"pt-2 text-base font-medium\">{feature.title}</h3>\n            <p className=\"text-sm leading-relaxed text-muted-foreground\">{feature.description}</p>\n            {feature.footer ? <div className=\"mt-auto pt-2 text-sm\">{feature.footer}</div> : null}\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/feature-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "docs": "Two columns for four features or fewer, three for more; override with columns.",
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

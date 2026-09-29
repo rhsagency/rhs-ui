@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "account-settings-demo",
+  "title": "Account settings demo",
+  "description": "A working preview of Account settings.",
+  "registryDependencies": [
+    "https://rhsui.com/r/account-settings.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/account-settings-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { AccountSettings, type AccountNotification } from \"@rhs-ui/application/account-settings\";\n\nconst LANGUAGES = [\n  { value: \"en\", label: \"English\" },\n  { value: \"nl\", label: \"Nederlands\" },\n  { value: \"de\", label: \"Deutsch\" },\n  { value: \"fr\", label: \"Français\" },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [notifications, setNotifications] = useState<AccountNotification[]>([\n    { key: \"mentions\", title: \"Mentions\", description: \"When someone asks for your review.\", enabled: true },\n    { key: \"digest\", title: \"Daily digest\", description: \"One email at 9:00 with what moved.\", enabled: true },\n    { key: \"product\", title: \"Product news\", description: \"New features, once a month at most.\", enabled: false },\n  ]);\n  const [deleted, setDeleted] = useState(false);\n\n  if (deleted) {\n    return (\n      <p role=\"status\" className=\"py-24 text-center text-sm text-muted-foreground\">\n        The account would be deleted now. This is a preview, so nothing happened.\n      </p>\n    );\n  }\n\n  return (\n    <div className=\"flex justify-center py-6\">\n      <AccountSettings\n        profile={{ name: \"Lotte de Vries\", email: \"lotte@fieldwork.studio\", language: \"en\" }}\n        languages={LANGUAGES}\n        notifications={notifications}\n        onSaveProfile={async (profile) => {\n          await new Promise((resolve) => setTimeout(resolve, 600));\n          if (!profile.email.includes(\"@\")) return \"That email address is missing an @.\";\n        }}\n        onNotificationChange={(key, enabled) => setNotifications((items) => items.map((item) => (item.key === key ? { ...item, enabled } : item)))}\n        onDeleteAccount={async () => {\n          await new Promise((resolve) => setTimeout(resolve, 500));\n          setDeleted(true);\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

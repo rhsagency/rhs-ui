@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-demo",
+  "title": "checkbox demo",
+  "description": "Interactive preview of the checkbox component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checkbox.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkbox-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Checkbox } from \"@rhs-ui/primitives/checkbox\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nconst TASKS = [\n  { id: \"changelog\", label: \"Write the changelog\" },\n  { id: \"gates\", label: \"Run the release gates\" },\n  { id: \"tag\", label: \"Tag the version\" },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  const [done, setDone] = useState<string[]>([\"changelog\"]);\n  const parent = done.length === TASKS.length ? true : done.length > 0 ? \"indeterminate\" : false;\n\n  return (\n    <fieldset className=\"w-full max-w-xs\">\n      <legend className=\"sr-only\">Release checklist</legend>\n      <div className=\"flex items-center gap-3 border-b border-border pb-4\">\n        <Checkbox id={`${id}-all`} checked={parent} onCheckedChange={(value) => setDone(value === true ? TASKS.map((task) => task.id) : [])} />\n        <Label htmlFor={`${id}-all`}>Ready to release</Label>\n        <span className=\"ml-auto font-mono text-xs text-muted-foreground\" aria-live=\"polite\">\n          {done.length} of {TASKS.length}\n        </span>\n      </div>\n      <div className=\"grid gap-3.5 pt-4\">\n        {TASKS.map((task) => (\n          <div key={task.id} className=\"flex items-center gap-3\">\n            <Checkbox\n              id={`${id}-${task.id}`}\n              checked={done.includes(task.id)}\n              onCheckedChange={(value) => setDone((current) => (value === true ? [...current, task.id] : current.filter((item) => item !== task.id)))}\n            />\n            <Label htmlFor={`${id}-${task.id}`} className=\"font-normal\">\n              {task.label}\n            </Label>\n          </div>\n        ))}\n      </div>\n    </fieldset>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

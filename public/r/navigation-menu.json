@@ -1,0 +1,80 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu",
+  "title": "Navigation menu",
+  "description": "Site navigation with panels in one shared viewport that resizes between them, on hover and keyboard.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/navigation-menu.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { NavigationMenu as NavigationMenuPrimitive } from \"radix-ui\";\n\nimport { IconChevronDown } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * Site navigation with panels: triggers open on hover and on Enter, arrow\n * keys move between the items, Escape closes and focus stays on the trigger.\n * Panels render in one shared viewport that resizes between them. Set\n * `viewport={false}` and place <NavigationMenuViewport> yourself when the\n * panel needs to sit somewhere else, like under a full-width header.\n */\nexport function NavigationMenu({ className, children, viewport = true, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Root> & { viewport?: boolean }) {\n  return (\n    <NavigationMenuPrimitive.Root\n      data-slot=\"navigation-menu\"\n      data-viewport={viewport}\n      className={cn(\"group/navigation-menu relative flex max-w-max flex-1 items-center justify-center\", className)}\n      {...props}\n    >\n      {children}\n      {viewport ? (\n        <div className=\"absolute top-full left-0 isolate z-50 flex justify-center\">\n          <NavigationMenuViewport />\n        </div>\n      ) : null}\n    </NavigationMenuPrimitive.Root>\n  );\n}\n\nexport function NavigationMenuList({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.List>) {\n  return (\n    <NavigationMenuPrimitive.List\n      data-slot=\"navigation-menu-list\"\n      className={cn(\"group flex flex-1 list-none items-center justify-center gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function NavigationMenuItem({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Item>) {\n  return <NavigationMenuPrimitive.Item data-slot=\"navigation-menu-item\" className={cn(\"relative\", className)} {...props} />;\n}\n\n/** The look of a trigger, for a plain link that sits in the same row. */\nexport const navigationMenuTriggerStyle = cn(\n  \"group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-3 text-sm font-medium text-foreground\",\n  \"transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n  \"data-[state=open]:bg-muted data-[active]:bg-muted disabled:pointer-events-none disabled:opacity-50\",\n);\n\nexport function NavigationMenuTrigger({ className, children, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {\n  return (\n    <NavigationMenuPrimitive.Trigger data-slot=\"navigation-menu-trigger\" className={cn(navigationMenuTriggerStyle, className)} {...props}>\n      {children}\n      <IconChevronDown size={14} aria-hidden=\"true\" className=\"text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180 motion-reduce:transition-none\" />\n    </NavigationMenuPrimitive.Trigger>\n  );\n}\n\nexport function NavigationMenuContent({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Content>) {\n  return (\n    <NavigationMenuPrimitive.Content\n      data-slot=\"navigation-menu-content\"\n      className={cn(\n        \"top-0 left-0 w-full p-2 md:absolute md:w-auto\",\n        \"data-[motion^=from-]:animate-rhs-fade-in data-[motion^=to-]:animate-rhs-fade-out\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/** The panel surface. NavigationMenu places it under the list; with viewport={false}, position its parent yourself. */\nexport function NavigationMenuViewport({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {\n  return (\n    <NavigationMenuPrimitive.Viewport\n      data-slot=\"navigation-menu-viewport\"\n      className={cn(\n        \"relative mt-2 h-(--radix-navigation-menu-viewport-height) w-full origin-top overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg\",\n        \"transition-[width,height] duration-200 md:w-(--radix-navigation-menu-viewport-width) motion-reduce:transition-none\",\n        \"data-[state=open]:animate-rhs-in data-[state=closed]:animate-rhs-out\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function NavigationMenuLink({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Link>) {\n  return (\n    <NavigationMenuPrimitive.Link\n      data-slot=\"navigation-menu-link\"\n      className={cn(\n        \"flex flex-col gap-1 rounded-md p-2.5 text-sm transition-colors duration-150 outline-none\",\n        \"hover:bg-muted focus-visible:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 data-[active]:bg-muted\",\n        \"[&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function NavigationMenuIndicator({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {\n  return (\n    <NavigationMenuPrimitive.Indicator\n      data-slot=\"navigation-menu-indicator\"\n      className={cn(\"top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-rhs-fade-in data-[state=hidden]:animate-rhs-fade-out\", className)}\n      {...props}\n    >\n      <div className=\"relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md\" />\n    </NavigationMenuPrimitive.Indicator>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/navigation-menu.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)",
+      "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out",
+      "animate-rhs-fade-out": "rhs-fade-out 120ms ease-in"
+    }
+  },
+  "css": {
+    "@keyframes rhs-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      }
+    },
+    "@keyframes rhs-out": {
+      "from": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      },
+      "to": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      }
+    },
+    "@keyframes rhs-fade-in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    },
+    "@keyframes rhs-fade-out": {
+      "from": {
+        "opacity": "1"
+      },
+      "to": {
+        "opacity": "0"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "navigation"
+  },
+  "docs": "Set viewport={false} and place NavigationMenuViewport yourself when the panel must sit elsewhere, like under a full-width header.",
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

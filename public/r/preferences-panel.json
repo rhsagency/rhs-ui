@@ -20,10 +20,12 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "frame"
+    "preview": "frame",
+    "family": "account"
   },
   "categories": [
-    "application"
+    "application",
+    "account"
   ],
   "type": "registry:block"
 }

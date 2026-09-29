@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "title": "Toast",
+  "description": "Short notices with a toast() call and one Toaster: tones, an action, swipe to dismiss, pause on hover, F8 to reach them.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/toast.tsx",
+      "content": "\"use client\";\n\nimport { useSyncExternalStore, type ComponentProps, type ReactNode } from \"react\";\nimport { Toast as ToastPrimitive } from \"radix-ui\";\n\nimport { IconAlertCircle, IconCheckCircle, IconClose, IconInfo, IconWarning } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport type ToastTone = \"default\" | \"success\" | \"info\" | \"warning\" | \"destructive\";\n\nexport interface ToastOptions {\n  description?: ReactNode;\n  tone?: ToastTone;\n  /** Milliseconds before it closes. Defaults to the Toaster's duration; Infinity keeps it open. */\n  duration?: number;\n  /** One action, like Undo. `altText` says how to do the same without the toast. */\n  action?: { label: string; altText: string; onClick: () => void };\n  /** Reuse an id to replace a toast in place, like \"Saving\" turning into \"Saved\". */\n  id?: string;\n}\n\ninterface ToastRecord extends ToastOptions {\n  id: string;\n  title: ReactNode;\n  open: boolean;\n}\n\n// One small store for the whole app: toast() can be called from any event\n// handler without a context, and <Toaster /> subscribes to it.\nconst EMPTY: readonly ToastRecord[] = [];\nlet records: readonly ToastRecord[] = EMPTY;\nlet counter = 0;\nconst listeners = new Set<() => void>();\n\nfunction publish(next: readonly ToastRecord[]) {\n  records = next;\n  for (const listener of listeners) listener();\n}\n\nfunction subscribe(listener: () => void) {\n  listeners.add(listener);\n  return () => void listeners.delete(listener);\n}\n\n/** Show a toast. Returns its id, for dismissToast or to replace it later. */\nexport function toast(title: ReactNode, options: ToastOptions = {}): string {\n  const id = options.id ?? `rhs-toast-${++counter}`;\n  publish([...records.filter((record) => record.id !== id), { ...options, id, title, open: true }].slice(-3));\n  return id;\n}\n\n/** Close one toast, or every toast when no id is given. */\nexport function dismissToast(id?: string): void {\n  publish(records.map((record) => (id === undefined || record.id === id ? { ...record, open: false } : record)));\n}\n\nfunction remove(id: string) {\n  publish(records.filter((record) => record.id !== id));\n}\n\nconst TONE_ICON = {\n  default: null,\n  success: IconCheckCircle,\n  info: IconInfo,\n  warning: IconWarning,\n  destructive: IconAlertCircle,\n} as const;\n\nexport interface ToasterProps extends Omit<ComponentProps<typeof ToastPrimitive.Viewport>, \"children\"> {\n  /** Default time on screen in ms. */\n  duration?: number;\n}\n\n/**\n * Mount once, near the root. Toasts stack bottom right (bottom and full width\n * on a phone), pause while hovered or focused, swipe away to the right, and\n * F8 moves focus to them. Each one is announced politely; a destructive one\n * interrupts.\n */\nexport function Toaster({ className, duration = 5000, ...props }: ToasterProps) {\n  const items = useSyncExternalStore(subscribe, () => records, () => EMPTY);\n  return (\n    <ToastPrimitive.Provider swipeDirection=\"right\" duration={duration}>\n      {items.map((item) => {\n        const Icon = TONE_ICON[item.tone ?? \"default\"];\n        return (\n          <Toast\n            key={item.id}\n            open={item.open}\n            tone={item.tone}\n            duration={item.duration}\n            type={item.tone === \"destructive\" ? \"foreground\" : \"background\"}\n            onOpenChange={(open) => {\n              if (open) return;\n              publish(records.map((record) => (record.id === item.id ? { ...record, open: false } : record)));\n              window.setTimeout(() => remove(item.id), 400);\n            }}\n          >\n            {Icon ? <Icon size={18} className=\"mt-0.5 shrink-0\" /> : null}\n            <div className=\"grid min-w-0 flex-1 gap-1\">\n              <ToastTitle>{item.title}</ToastTitle>\n              {item.description ? <ToastDescription>{item.description}</ToastDescription> : null}\n            </div>\n            {item.action ? (\n              <ToastAction altText={item.action.altText} onClick={item.action.onClick}>\n                {item.action.label}\n              </ToastAction>\n            ) : null}\n            <ToastClose />\n          </Toast>\n        );\n      })}\n      <ToastPrimitive.Viewport\n        data-slot=\"toast-viewport\"\n        className={cn(\n          \"fixed inset-x-0 bottom-0 z-[100] m-0 flex max-h-dvh w-full list-none flex-col gap-2 p-4 outline-none sm:inset-x-auto sm:right-0 sm:max-w-[26rem]\",\n          className,\n        )}\n        {...props}\n      />\n    </ToastPrimitive.Provider>\n  );\n}\n\nexport interface ToastProps extends ComponentProps<typeof ToastPrimitive.Root> {\n  tone?: ToastTone;\n}\n\nexport function Toast({ className, tone = \"default\", ...props }: ToastProps) {\n  return (\n    <ToastPrimitive.Root\n      data-slot=\"toast\"\n      data-tone={tone}\n      className={cn(\n        \"group/toast pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-lg border border-border bg-popover p-4 pr-10 text-sm text-popover-foreground shadow-lg\",\n        \"data-[tone=success]:[&>svg]:text-foreground data-[tone=info]:[&>svg]:text-muted-foreground data-[tone=warning]:[&>svg]:text-foreground\",\n        \"data-[tone=destructive]:border-destructive/40 data-[tone=destructive]:[&>svg]:text-destructive\",\n        \"data-[state=open]:animate-rhs-in data-[state=closed]:animate-rhs-fade-out\",\n        \"data-[swipe=move]:translate-x-(--radix-toast-swipe-move-x) data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[translate] data-[swipe=end]:translate-x-(--radix-toast-swipe-end-x) data-[swipe=end]:animate-rhs-fade-out\",\n        \"motion-reduce:animate-none\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function ToastTitle({ className, ...props }: ComponentProps<typeof ToastPrimitive.Title>) {\n  return <ToastPrimitive.Title data-slot=\"toast-title\" className={cn(\"font-medium leading-snug\", className)} {...props} />;\n}\n\nexport function ToastDescription({ className, ...props }: ComponentProps<typeof ToastPrimitive.Description>) {\n  return <ToastPrimitive.Description data-slot=\"toast-description\" className={cn(\"text-muted-foreground\", className)} {...props} />;\n}\n\nexport function ToastAction({ className, ...props }: ComponentProps<typeof ToastPrimitive.Action>) {\n  return (\n    <ToastPrimitive.Action\n      data-slot=\"toast-action\"\n      className={cn(\n        \"inline-flex h-8 shrink-0 items-center justify-center self-center rounded-md border border-border bg-background px-3 text-[0.8125rem] font-medium\",\n        \"transition-colors duration-150 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function ToastClose({ className, ...props }: ComponentProps<typeof ToastPrimitive.Close>) {\n  return (\n    <ToastPrimitive.Close\n      data-slot=\"toast-close\"\n      aria-label=\"Close\"\n      className={cn(\n        \"absolute top-3 right-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground\",\n        \"transition-colors duration-150 outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        className,\n      )}\n      {...props}\n    >\n      <IconClose size={14} />\n    </ToastPrimitive.Close>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/toast.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-fade-out": "rhs-fade-out 120ms ease-in"
+    }
+  },
+  "css": {
+    "@keyframes rhs-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      }
+    },
+    "@keyframes rhs-fade-out": {
+      "from": {
+        "opacity": "1"
+      },
+      "to": {
+        "opacity": "0"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Mount one Toaster near the root and call toast() from any event handler. Reuse an id to turn Saving into Saved.",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

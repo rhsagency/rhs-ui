@@ -26,7 +26,8 @@
     "version": "0.2.0",
     "since": "0.2.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "icons"
   },
   "docs": "Installed with every animated icon. Motion icons take trigger: hover (default, follows the button or link around the icon), loop, appear or static. State icons take active.",
   "categories": [

@@ -18,10 +18,12 @@
     "version": "0.5.0",
     "since": "0.5.0",
     "status": "stable",
-    "preview": "frame"
+    "preview": "frame",
+    "family": "features"
   },
   "categories": [
-    "marketing"
+    "marketing",
+    "features"
   ],
   "type": "registry:block"
 }

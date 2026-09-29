@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-demo",
+  "title": "combobox demo",
+  "description": "Interactive preview of the combobox component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/combobox.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/combobox-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Combobox, type ComboboxOption } from \"@rhs-ui/primitives/combobox\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nconst COUNTRIES: readonly ComboboxOption[] = [\n  { value: \"NL\", label: \"Netherlands\", keywords: [\"Holland\"], group: \"Europe\" },\n  { value: \"BE\", label: \"Belgium\", group: \"Europe\" },\n  { value: \"DE\", label: \"Germany\", keywords: [\"Deutschland\"], group: \"Europe\" },\n  { value: \"FR\", label: \"France\", group: \"Europe\" },\n  { value: \"ES\", label: \"Spain\", keywords: [\"España\"], group: \"Europe\" },\n  { value: \"IT\", label: \"Italy\", keywords: [\"Italia\"], group: \"Europe\" },\n  { value: \"PT\", label: \"Portugal\", group: \"Europe\" },\n  { value: \"SE\", label: \"Sweden\", keywords: [\"Sverige\"], group: \"Europe\" },\n  { value: \"GB\", label: \"United Kingdom\", keywords: [\"UK\", \"Britain\", \"England\"], group: \"Europe\" },\n  { value: \"US\", label: \"United States\", keywords: [\"USA\", \"America\"], group: \"Americas\" },\n  { value: \"CA\", label: \"Canada\", group: \"Americas\" },\n  { value: \"MX\", label: \"Mexico\", keywords: [\"México\"], group: \"Americas\" },\n  { value: \"BR\", label: \"Brazil\", keywords: [\"Brasil\"], group: \"Americas\" },\n  { value: \"AE\", label: \"United Arab Emirates\", keywords: [\"UAE\", \"Dubai\"], group: \"Middle East\" },\n  { value: \"JP\", label: \"Japan\", keywords: [\"Nippon\"], group: \"Asia and Pacific\" },\n  { value: \"SG\", label: \"Singapore\", group: \"Asia and Pacific\" },\n  { value: \"AU\", label: \"Australia\", group: \"Asia and Pacific\" },\n  { value: \"NZ\", label: \"New Zealand\", keywords: [\"Aotearoa\"], group: \"Asia and Pacific\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  const [country, setCountry] = useState<string | null>(null);\n  const chosen = COUNTRIES.find((item) => item.value === country);\n\n  return (\n    <div className=\"grid w-full max-w-xs gap-2\">\n      <Label htmlFor={id}>Country</Label>\n      <Combobox\n        id={id}\n        label=\"Country\"\n        options={COUNTRIES}\n        value={country}\n        onValueChange={setCountry}\n        placeholder=\"Choose a country\"\n        searchPlaceholder=\"Search countries...\"\n        aria-describedby={`${id}-hint`}\n      />\n      <p id={`${id}-hint`} className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {chosen ? `Shipping to ${chosen.label}.` : \"Try typing UK or Holland.\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

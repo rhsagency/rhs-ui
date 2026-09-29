@@ -140,7 +140,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "overlay"
   },
   "docs": "Every DialogContent needs a DialogTitle; hide it visually with sr-only if the design has no heading.",
   "categories": [

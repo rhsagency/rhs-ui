@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-grid-demo",
+  "title": "Feature grid demo",
+  "description": "A working preview of Feature grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/feature-grid.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-grid-demo.tsx",
+      "content": "import { IconBell, IconChart, IconGitBranch, IconLock, IconSparkle, IconUsers } from \"@rhs-ui/icons\";\nimport { FeatureGrid } from \"@rhs-ui/marketing/feature-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FeatureGrid\n        eyebrow=\"What you get\"\n        title=\"Everything a studio plans, in one calm place.\"\n        description=\"Six things that replace the spreadsheet, the chat thread and the Friday status meeting.\"\n        features={[\n          { id: \"plans\", icon: <IconChart />, title: \"Plans that update themselves\", description: \"Dates move when the work moves, and everyone sees the same version.\" },\n          { id: \"reviews\", icon: <IconSparkle />, title: \"Reviews in context\", description: \"Comment on the work itself, not on a screenshot of it.\" },\n          { id: \"branches\", icon: <IconGitBranch />, title: \"Branches for ideas\", description: \"Try a direction without breaking the plan everyone relies on.\" },\n          { id: \"team\", icon: <IconUsers />, title: \"Built for small teams\", description: \"Two to twenty people, without an admin to keep it running.\" },\n          { id: \"quiet\", icon: <IconBell />, title: \"Quiet by default\", description: \"One digest a day, and a nudge only when something waits on you.\" },\n          { id: \"private\", icon: <IconLock />, title: \"Private by design\", description: \"Your work stays in the EU, and is never used to train anything.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu-demo",
+  "title": "navigation menu demo",
+  "description": "Interactive preview of the navigation menu component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/navigation-menu.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/navigation-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconBook, IconChart, IconLayers, IconRocket, IconSparkle, IconUsers } from \"@rhs-ui/icons\";\nimport {\n  NavigationMenu,\n  NavigationMenuContent,\n  NavigationMenuItem,\n  NavigationMenuLink,\n  NavigationMenuList,\n  NavigationMenuTrigger,\n  navigationMenuTriggerStyle,\n} from \"@rhs-ui/primitives/navigation-menu\";\n\nconst PRODUCT = [\n  { title: \"Analytics\", body: \"See what moves, as it moves.\", Icon: IconChart },\n  { title: \"Automations\", body: \"Hand the routine to the system.\", Icon: IconSparkle },\n  { title: \"Integrations\", body: \"Connect the tools you already use.\", Icon: IconLayers },\n] as const;\n\nconst RESOURCES = [\n  { title: \"Guides\", body: \"From first setup to scale.\", Icon: IconBook },\n  { title: \"Customer stories\", body: \"How teams ship with us.\", Icon: IconUsers },\n  { title: \"Changelog\", body: \"Everything new, every week.\", Icon: IconRocket },\n] as const;\n\nfunction Panel({ items }: { items: readonly { title: string; body: string; Icon: typeof IconChart }[] }) {\n  return (\n    <ul className=\"grid w-[min(20rem,calc(100vw-3rem))] gap-1 md:w-[28rem] md:grid-cols-2\">\n      {items.map(({ title, body, Icon }) => (\n        <li key={title}>\n          <NavigationMenuLink href=\"#\" className=\"flex-row items-start gap-3\">\n            <Icon size={18} className=\"mt-0.5 shrink-0\" />\n            <span className=\"grid gap-1\">\n              <span className=\"font-medium text-foreground\">{title}</span>\n              <span className=\"text-xs leading-snug text-muted-foreground\">{body}</span>\n            </span>\n          </NavigationMenuLink>\n        </li>\n      ))}\n    </ul>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex min-h-80 w-full justify-center pt-4\">\n      <NavigationMenu>\n        <NavigationMenuList>\n          <NavigationMenuItem>\n            <NavigationMenuTrigger>Product</NavigationMenuTrigger>\n            <NavigationMenuContent>\n              <Panel items={PRODUCT} />\n            </NavigationMenuContent>\n          </NavigationMenuItem>\n          <NavigationMenuItem>\n            <NavigationMenuTrigger>Resources</NavigationMenuTrigger>\n            <NavigationMenuContent>\n              <Panel items={RESOURCES} />\n            </NavigationMenuContent>\n          </NavigationMenuItem>\n          <NavigationMenuItem>\n            <NavigationMenuLink href=\"#\" className={navigationMenuTriggerStyle}>\n              Pricing\n            </NavigationMenuLink>\n          </NavigationMenuItem>\n        </NavigationMenuList>\n      </NavigationMenu>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

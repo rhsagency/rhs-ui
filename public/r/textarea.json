@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "A multi-line field on the same surface as Input that grows with its text where the browser supports it.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/textarea.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { fieldSurface } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A multi-line field on the same surface as Input. Where the browser supports\n * `field-sizing: content` it grows with the text up to max-h and then\n * scrolls; elsewhere `rows` sets the height and the handle resizes it.\n */\nexport function Textarea({ className, rows = 3, ...props }: ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      rows={rows}\n      className={cn(\n        fieldSurface,\n        \"flex min-h-20 w-full min-w-0 resize-y px-3 py-2 leading-relaxed field-sizing-content max-h-80\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/textarea.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "Uses field-sizing: content; older browsers fall back to rows and the resize handle.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

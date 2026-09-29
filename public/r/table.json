@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "title": "Table",
+  "description": "Semantic table parts with a caption, its own horizontal scroll and a sortable header that sets aria-sort.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/table.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { IconArrowDown, IconArrowUp, IconChevronsUpDown } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A real <table>: a caption that names it, header cells, and its own scroll\n * container so a wide table scrolls sideways instead of the page. Sorting and\n * selection stay in your hands: give a TableHead `sort` and `onSort`, and a\n * selected row `data-state=\"selected\"`.\n */\nexport function Table({ className, ...props }: ComponentProps<\"table\">) {\n  return (\n    <div data-slot=\"table-container\" className=\"relative w-full overflow-x-auto\">\n      <table data-slot=\"table\" className={cn(\"w-full caption-bottom border-collapse text-sm\", className)} {...props} />\n    </div>\n  );\n}\n\nexport function TableHeader({ className, ...props }: ComponentProps<\"thead\">) {\n  return <thead data-slot=\"table-header\" className={cn(\"[&_tr]:border-b [&_tr]:hover:bg-transparent\", className)} {...props} />;\n}\n\nexport function TableBody({ className, ...props }: ComponentProps<\"tbody\">) {\n  return <tbody data-slot=\"table-body\" className={cn(\"[&_tr:last-child]:border-0\", className)} {...props} />;\n}\n\nexport function TableFooter({ className, ...props }: ComponentProps<\"tfoot\">) {\n  return <tfoot data-slot=\"table-footer\" className={cn(\"border-t border-border bg-muted/50 font-medium [&>tr]:last:border-b-0\", className)} {...props} />;\n}\n\nexport function TableRow({ className, ...props }: ComponentProps<\"tr\">) {\n  return (\n    <tr\n      data-slot=\"table-row\"\n      className={cn(\"border-b border-border transition-colors duration-150 hover:bg-muted/50 data-[state=selected]:bg-muted\", className)}\n      {...props}\n    />\n  );\n}\n\nexport type TableSort = \"ascending\" | \"descending\" | \"none\";\n\nexport interface TableHeadProps extends ComponentProps<\"th\"> {\n  /** Makes the header a sort button and sets aria-sort on the cell. */\n  sort?: TableSort;\n  onSort?: () => void;\n}\n\nexport function TableHead({ className, sort, onSort, children, ...props }: TableHeadProps) {\n  const sortable = sort !== undefined && onSort !== undefined;\n  const SortIcon = sort === \"ascending\" ? IconArrowUp : sort === \"descending\" ? IconArrowDown : IconChevronsUpDown;\n  return (\n    <th\n      data-slot=\"table-head\"\n      aria-sort={sortable ? sort : undefined}\n      className={cn(\n        \"h-10 px-3 text-left align-middle font-medium whitespace-nowrap text-muted-foreground [&:has([role=checkbox])]:w-px [&:has([role=checkbox])]:pr-0\",\n        className,\n      )}\n      {...props}\n    >\n      {sortable ? (\n        <button\n          type=\"button\"\n          onClick={onSort}\n          data-sorted={sort !== \"none\" || undefined}\n          className=\"-mx-2 inline-flex h-8 items-center gap-1.5 rounded-md px-2 font-medium transition-colors duration-150 outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 data-[sorted]:text-foreground\"\n        >\n          {children}\n          <SortIcon size={14} aria-hidden=\"true\" />\n        </button>\n      ) : (\n        children\n      )}\n    </th>\n  );\n}\n\nexport function TableCell({ className, ...props }: ComponentProps<\"td\">) {\n  return <td data-slot=\"table-cell\" className={cn(\"px-3 py-2.5 align-middle [&:has([role=checkbox])]:w-px [&:has([role=checkbox])]:pr-0\", className)} {...props} />;\n}\n\nexport function TableCaption({ className, ...props }: ComponentProps<\"caption\">) {\n  return <caption data-slot=\"table-caption\" className={cn(\"mt-4 text-sm text-muted-foreground\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/table.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "Give TableHead sort and onSort to make it a sort button. Mark a selected row with data-state=\"selected\".",
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

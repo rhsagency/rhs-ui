@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "state"
+    "motion": "state",
+    "family": "icons"
   },
   "docs": "Set active for a moment after navigator.clipboard.writeText resolves, and announce it in a live region.",
   "categories": [

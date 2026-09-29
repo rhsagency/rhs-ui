@@ -17,6 +17,8 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
+import { familyOf } from "./families.mjs";
+
 const root = path.resolve(import.meta.dirname, "..");
 const out = path.join(root, "public", "r");
 
@@ -39,7 +41,11 @@ export function loadFragments() {
   return items;
 }
 
-const items = loadFragments().map(({ __fragment, ...item }) => item);
+// meta.family is derived (scripts/families.mjs), so the fragments never carry it.
+const items = loadFragments().map(({ __fragment, ...item }) => {
+  const family = item.type === "registry:example" ? undefined : familyOf(item);
+  return family ? { ...item, meta: { ...item.meta, family } } : item;
+});
 const registry = { $schema: "https://ui.shadcn.com/schema/registry.json", name: "rhs-ui", homepage: "https://rhsui.com", items };
 writeFileSync(path.join(root, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
 
@@ -61,4 +67,41 @@ if (missing.length) {
   console.error(`build-registry: no output for ${missing.join(", ")}`);
   process.exit(1);
 }
-console.log(`build-registry: ${built.length} item(s) in public/r, catalogue with ${items.length} entries`);
+
+// The README's catalogue table, generated so it can never fall behind the
+// registry. It lives between two markers; everything else is hand-written.
+const CATEGORY_TEXT = {
+  primitives: ["Primitives", "The building blocks, one job each"],
+  icons: ["Icons", ""],
+  commerce: ["Commerce", "Shop UI"],
+  dashboard: ["Dashboard", "Dashboards and admin screens"],
+  application: ["Application", "Application UI and account screens"],
+  marketing: ["Marketing", "Page sections, from the navbar to the footer"],
+  templates: ["Templates", "Complete pages"],
+  models: ["Models", "3D model recipes and the viewer"],
+  backgrounds: ["Backgrounds", "Living canvas backgrounds"],
+};
+const publicItems = items.filter((i) => i.type !== "registry:example" && i.type !== "registry:internal");
+const glyphs = (readFileSync(path.join(root, "registry", "icons", "index.tsx"), "utf8").match(/^export const Icon\w+/gm) ?? []).length;
+const animated = publicItems.filter((i) => i.categories?.[0] === "icons" && i.meta?.motion).length;
+const rows = CATEGORY_ORDER.map((category) => {
+  const [label, text] = CATEGORY_TEXT[category] ?? [category, ""];
+  const names = publicItems.filter((i) => i.categories?.[0] === category).map((i) => i.name).sort();
+  if (!names.length) return null;
+  const what = category === "icons"
+    ? `${glyphs} glyphs in one drawing hand, and ${animated} animated icons at \`@rhs-ui/icons/animated/<name>\``
+    : `${text}: ${names.join(", ")}`;
+  const importPath = category === "icons" ? "`@rhs-ui/icons`" : `\`@rhs-ui/${category}/<name>\``;
+  return `| ${label} | ${importPath} | ${what} |`;
+}).filter(Boolean);
+const table = ["| Category | Import | What is in it |", "| --- | --- | --- |", ...rows].join("\n");
+const readmePath = path.join(root, "README.md");
+const readme = readFileSync(readmePath, "utf8");
+const block = /<!-- catalogue:begin -->[\s\S]*?<!-- catalogue:end -->/;
+if (!block.test(readme)) {
+  console.error("build-registry: README.md has no <!-- catalogue:begin --> ... <!-- catalogue:end --> block");
+  process.exit(1);
+}
+writeFileSync(readmePath, readme.replace(block, `<!-- catalogue:begin -->\n${table}\n<!-- catalogue:end -->`));
+
+console.log(`build-registry: ${built.length} item(s) in public/r, catalogue with ${items.length} entries, README table with ${rows.length} categories`);

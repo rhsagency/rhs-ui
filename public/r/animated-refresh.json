@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "Switch to trigger=\"loop\" while syncing and set aria-busy on the button; it finishes its turn when you switch back.",
   "categories": [

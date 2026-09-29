@@ -21,7 +21,8 @@
     "since": "0.2.0",
     "status": "stable",
     "preview": "inline",
-    "motion": "trigger"
+    "motion": "trigger",
+    "family": "icons"
   },
   "docs": "An icon-only delete button still needs an accessible label: <Button size=\"icon\" aria-label=\"Delete\">.",
   "categories": [

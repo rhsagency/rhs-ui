@@ -79,18 +79,21 @@ Every item belongs to one category. The category is its folder in this repositor
 folder in your project and the first part of its import path, so you always know where
 something lives and what it is for.
 
+<!-- catalogue:begin -->
 | Category | Import | What is in it |
 | --- | --- | --- |
-| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: button, badge, input, label, switch, slider, dialog, sheet, tooltip, tabs, command, accordion, skeleton, separator, kbd |
+| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: accordion, avatar, badge, breadcrumb, button, card, checkbox, combobox, command, dialog, dropdown-menu, input, kbd, label, navigation-menu, pagination, popover, progress, radio-group, rhs-ui-theme, select, separator, sheet, skeleton, slider, switch, table, tabs, textarea, toast, tooltip |
 | Icons | `@rhs-ui/icons` | 179 glyphs in one drawing hand, and 27 animated icons at `@rhs-ui/icons/animated/<name>` |
-| Application | `@rhs-ui/application/<name>` | Application UI: empty-state, preferences-panel |
-| Commerce | `@rhs-ui/commerce/<name>` | Shop UI: product-card |
-| Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens |
-| Marketing | `@rhs-ui/marketing/<name>` | Marketing sections: pricing-section |
+| Commerce | `@rhs-ui/commerce/<name>` | Shop UI: animated-price, product-card |
+| Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens: kpi-card |
+| Application | `@rhs-ui/application/<name>` | Application UI and account screens: account-settings, activity-timeline, animated-number, comparison-slider, copy-field, empty-state, preferences-panel, segmented-control, sign-in-card, step-progress |
+| Marketing | `@rhs-ui/marketing/<name>` | Page sections, from the navbar to the footer: closing-cta, faq-section, feature-grid, feature-spotlight, footer-section, metrics-band, navbar, pricing-section, process-section, split-hero, testimonial-grid |
+| Models | `@rhs-ui/models/<name>` | 3D model recipes and the viewer: crystal-prism, model-viewer, orbit-ring, ribbon-knot, soft-cube |
+| Backgrounds | `@rhs-ui/backgrounds/<name>` | Living canvas backgrounds: architect-grid, contour-field, dot-field, orbit-field |
+<!-- catalogue:end -->
 
-The theme, `rhs-ui-theme`, has no files: it writes the RHS tokens into your `globals.css`.
-Next in the collection: variant-selector, cart-drawer and product-gallery (commerce),
-kpi-card (dashboard), command-palette and file-dropzone (application).
+The table is generated from the registry by `pnpm registry:build`. The theme,
+`rhs-ui-theme`, has no files: it writes the RHS tokens into your `globals.css`.
 
 The catalogue: [`public/r/registry.json`](./public/r/registry.json). Browse with
 previews and docs at [rhsui.com/components](https://rhsui.com/components).
@@ -120,17 +123,24 @@ public/r/                             built output, one JSON per item, committed
 scripts/                              build and gates
 ```
 
-## Backgrounds and page sections
+## Forms, overlays and page sections
 
-Four canvas backgrounds live under `@rhs-ui/backgrounds/`. Pass `paused` and `speed`, and place your own content inside. Each respects reduced motion and stops rendering outside the viewport.
+- **Forms** share one field surface: Input, Textarea and the Select and Combobox
+  triggers look and behave alike. A choice list is never the browser's native menu.
+- **Floating panels** share one panel surface: Popover, Select, Dropdown menu and
+  Combobox open with the same border, shadow and entrance.
+- **Page sections** run from the navbar to the footer, with a sign-in card and an
+  account page for the application side. Links take `linkAs` for your router.
+- **Backgrounds** take `paused` and `speed`, respect reduced motion and stop rendering
+  outside the viewport.
 
-Marketing blocks include a split hero, keyboard-accessible feature tabs, process steps, FAQs, animated metrics, pricing and a closing CTA. Application additions include segmented choices, clipboard feedback, image comparison and an event timeline. All are MIT licensed with working demos.
+Every item has a working demo in `registry/examples/`, rendered on the server in CI.
 
 ## Development
 
 ```bash
 pnpm install
-pnpm check            # typecheck + registry gate + button SSR test
+pnpm check            # typecheck + registry gate + button SSR test + every demo rendered on the server
 pnpm registry:build   # rebuild registry.json and public/r (commit the result)
 pnpm test:install     # install every item into scratch Next projects (Base UI and Radix) and typecheck
 ```

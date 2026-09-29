@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-demo",
+  "title": "pagination demo",
+  "description": "Interactive preview of the pagination component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/pagination.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pagination-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport {\n  Pagination,\n  PaginationContent,\n  PaginationEllipsis,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n  paginationRange,\n} from \"@rhs-ui/primitives/pagination\";\n\nconst PAGES = 12;\n\nexport default function Demo(): React.JSX.Element {\n  const [page, setPage] = useState(6);\n\n  // Real pages would be links (href=\"?page=7\"). Here the preview keeps them in state.\n  const go = (target: number) => (event: React.MouseEvent) => {\n    event.preventDefault();\n    setPage(Math.min(PAGES, Math.max(1, target)));\n  };\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Pagination>\n        <PaginationContent>\n          <PaginationItem>\n            <PaginationPrevious href={`?page=${page - 1}`} onClick={go(page - 1)} aria-disabled={page === 1 || undefined} tabIndex={page === 1 ? -1 : undefined} />\n          </PaginationItem>\n          {paginationRange(page, PAGES).map((entry, index) =>\n            entry === \"ellipsis\" ? (\n              <PaginationItem key={`gap-${index}`}>\n                <PaginationEllipsis />\n              </PaginationItem>\n            ) : (\n              <PaginationItem key={entry}>\n                <PaginationLink href={`?page=${entry}`} isActive={entry === page} onClick={go(entry)}>\n                  {entry}\n                </PaginationLink>\n              </PaginationItem>\n            ),\n          )}\n          <PaginationItem>\n            <PaginationNext href={`?page=${page + 1}`} onClick={go(page + 1)} aria-disabled={page === PAGES || undefined} tabIndex={page === PAGES ? -1 : undefined} />\n          </PaginationItem>\n        </PaginationContent>\n      </Pagination>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        Page {page} of {PAGES}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

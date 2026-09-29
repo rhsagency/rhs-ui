@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-section-demo",
+  "title": "Footer demo",
+  "description": "A working preview of Footer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/footer-section.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/footer-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { FooterSection } from \"@rhs-ui/marketing/footer-section\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\n\nfunction Newsletter() {\n  const id = useId();\n  const [sent, setSent] = useState(false);\n  return (\n    <form\n      className=\"grid max-w-xs gap-2\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        setSent(true);\n      }}\n    >\n      <label htmlFor={id} className=\"text-sm font-medium\">\n        One email a month\n      </label>\n      <div className=\"flex gap-2\">\n        <Input id={id} type=\"email\" autoComplete=\"email\" required placeholder=\"you@studio.com\" />\n        <Button type=\"submit\" variant=\"outline\">\n          Join\n        </Button>\n      </div>\n      <p className=\"text-xs text-muted-foreground\" role=\"status\">\n        {sent ? \"Thanks. The next one lands on the first.\" : \"New work and notes, nothing else.\"}\n      </p>\n    </form>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"-m-6 flex min-h-[40rem] flex-col justify-end\">\n      <FooterSection\n        brand={<span className=\"text-base font-semibold tracking-tight\">Fieldwork</span>}\n        tagline=\"Planning for studios that would rather be making things.\"\n        aside={<Newsletter />}\n        columns={[\n          { title: \"Product\", links: [{ label: \"Planning\", href: \"#planning\" }, { label: \"Reviews\", href: \"#reviews\" }, { label: \"Reports\", href: \"#reports\" }, { label: \"Pricing\", href: \"#pricing\" }] },\n          { title: \"Company\", links: [{ label: \"About\", href: \"#about\" }, { label: \"Careers\", href: \"#careers\" }, { label: \"Contact\", href: \"#contact\" }] },\n          { title: \"Resources\", links: [{ label: \"Guides\", href: \"#guides\" }, { label: \"Changelog\", href: \"#changelog\" }, { label: \"Status\", href: \"https://example.com\", external: true }] },\n        ]}\n        legal={<span>© 2026 Fieldwork. Made in Utrecht.</span>}\n        legalLinks={[\n          { label: \"Privacy\", href: \"#privacy\" },\n          { label: \"Terms\", href: \"#terms\" },\n          { label: \"Cookies\", href: \"#cookies\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

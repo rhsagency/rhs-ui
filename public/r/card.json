@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "A surface for one piece of content: header with title, description and action, content and footer.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/card.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A surface for one piece of content: a header with a title, a description\n * and an optional action on the right, then content and a footer. The title\n * is an h3; pass `asChild` with your own heading when the outline needs\n * another level. Cards sit side by side; they do not nest.\n */\nexport function Card({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card\"\n      className={cn(\"flex flex-col gap-6 rounded-xl border border-border bg-card py-6 text-card-foreground shadow-xs\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function CardHeader({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-header\"\n      className={cn(\n        \"grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function CardTitle({ className, asChild = false, ...props }: ComponentProps<\"h3\"> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot.Root : \"h3\";\n  return <Comp data-slot=\"card-title\" className={cn(\"font-semibold leading-tight tracking-tight\", className)} {...props} />;\n}\n\nexport function CardDescription({ className, ...props }: ComponentProps<\"p\">) {\n  return <p data-slot=\"card-description\" className={cn(\"text-sm text-muted-foreground\", className)} {...props} />;\n}\n\nexport function CardAction({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-action\" className={cn(\"col-start-2 row-span-2 row-start-1 self-start justify-self-end\", className)} {...props} />;\n}\n\nexport function CardContent({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-content\" className={cn(\"px-6\", className)} {...props} />;\n}\n\nexport function CardFooter({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-footer\" className={cn(\"flex items-center gap-2 px-6 [.border-t]:pt-6\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "docs": "CardTitle is an h3; pass asChild with your own heading when the outline needs another level.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

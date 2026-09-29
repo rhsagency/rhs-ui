@@ -5,6 +5,20 @@ own `meta.version` and are listed when they change.
 
 ## Unreleased (0.5.0)
 
+- Fifteen primitives: checkbox, radio group, select, combobox, textarea, popover,
+  dropdown menu, toast, table, card, avatar, progress, pagination, breadcrumb and
+  navigation menu, each with a working demo.
+- Six sections: navbar with a phone menu in a sheet, footer, feature grid, testimonial
+  grid, sign-in card and account settings. Links take `linkAs` for your router.
+- One field surface (`fieldSurface` from input) for Input, Textarea and the Select and
+  Combobox triggers, and one panel surface (`panelSurface` from popover) for every
+  floating layer. A choice list is never the browser's native menu.
+- Every item names its family in `categories[1]` (forms, overlay, navigation, feedback,
+  page chrome, account and more); rhsui.com groups the library by it.
+- Fixed: Skeleton's `delay` now offsets the shimmer; the variable was set but never read.
+- Gates: every demo is rendered on the server in CI (`pnpm test:render`), a native
+  select may only be the hidden form mirror, the registry gate refuses an item without
+  a family, and the README table is generated from the registry.
 - Four animated canvas backgrounds: dot field, contour field, orbit field and architect grid. Shared engine pauses offscreen, in hidden tabs and with reduced motion.
 - Six marketing blocks: split hero, feature spotlight, process, FAQ, animated metrics and closing CTA.
 - Four application components: segmented control, copy field, before/after comparison and activity timeline.

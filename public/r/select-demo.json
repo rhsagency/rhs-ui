@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-demo",
+  "title": "select demo",
+  "description": "Interactive preview of the select component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/select.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/select-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\n\ninterface Zone {\n  value: string;\n  city: string;\n  offset: string;\n}\n\nconst ZONES: readonly { region: string; zones: readonly Zone[] }[] = [\n  {\n    region: \"Europe\",\n    zones: [\n      { value: \"Europe/Amsterdam\", city: \"Amsterdam\", offset: \"UTC+1, summer UTC+2\" },\n      { value: \"Europe/London\", city: \"London\", offset: \"UTC, summer UTC+1\" },\n      { value: \"Europe/Lisbon\", city: \"Lisbon\", offset: \"UTC, summer UTC+1\" },\n    ],\n  },\n  {\n    region: \"Americas\",\n    zones: [\n      { value: \"America/New_York\", city: \"New York\", offset: \"UTC-5, summer UTC-4\" },\n      { value: \"America/Sao_Paulo\", city: \"São Paulo\", offset: \"UTC-3\" },\n    ],\n  },\n  {\n    region: \"Asia and Pacific\",\n    zones: [\n      { value: \"Asia/Tokyo\", city: \"Tokyo\", offset: \"UTC+9\" },\n      { value: \"Australia/Sydney\", city: \"Sydney\", offset: \"UTC+10, summer UTC+11\" },\n    ],\n  },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const id = useId();\n  const [zone, setZone] = useState<string>();\n  const city = ZONES.flatMap((group) => group.zones).find((item) => item.value === zone)?.city;\n\n  return (\n    <div className=\"grid w-full max-w-xs gap-2\">\n      <Label htmlFor={id}>Time zone</Label>\n      <Select value={zone} onValueChange={setZone}>\n        <SelectTrigger id={id} aria-describedby={`${id}-hint`}>\n          <SelectValue placeholder=\"Choose a time zone\" />\n        </SelectTrigger>\n        <SelectContent>\n          {ZONES.map((group, index) => (\n            <SelectGroup key={group.region}>\n              {index > 0 ? <SelectSeparator /> : null}\n              <SelectLabel>{group.region}</SelectLabel>\n              {group.zones.map((item) => (\n                <SelectItem key={item.value} value={item.value} description={item.offset}>\n                  {item.city}\n                </SelectItem>\n              ))}\n            </SelectGroup>\n          ))}\n        </SelectContent>\n      </Select>\n      <p id={`${id}-hint`} className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {city ? `Reminders now follow ${city}.` : \"Used for reminders and reports.\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

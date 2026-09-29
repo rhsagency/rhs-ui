@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-demo",
+  "title": "card demo",
+  "description": "Interactive preview of the card component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/card.json",
+    "https://rhsui.com/r/badge.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Badge } from \"@rhs-ui/primitives/badge\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@rhs-ui/primitives/card\";\nimport { Progress } from \"@rhs-ui/primitives/progress\";\n\nexport default function Demo(): React.JSX.Element {\n  const [shipped, setShipped] = useState(false);\n\n  return (\n    <Card className=\"w-full max-w-sm\">\n      <CardHeader>\n        <CardTitle>Autumn launch</CardTitle>\n        <CardDescription>The new storefront, from the first sketch to the first order.</CardDescription>\n        <CardAction>\n          <Badge variant={shipped ? \"success\" : \"outline\"}>{shipped ? \"Live\" : \"In review\"}</Badge>\n        </CardAction>\n      </CardHeader>\n      <CardContent className=\"grid gap-3\">\n        <div className=\"flex items-baseline justify-between text-sm\">\n          <span className=\"text-muted-foreground\">Tasks done</span>\n          <span className=\"font-medium tabular-nums\">{shipped ? \"24 of 24\" : \"21 of 24\"}</span>\n        </div>\n        <Progress aria-label=\"Tasks done\" value={shipped ? 24 : 21} max={24} />\n      </CardContent>\n      <CardFooter className=\"justify-end border-t border-border pt-6\">\n        <Button variant=\"ghost\" onClick={() => setShipped(false)} disabled={!shipped}>\n          Reopen\n        </Button>\n        <Button onClick={() => setShipped(true)} disabled={shipped}>\n          {shipped ? \"Launched\" : \"Launch\"}\n        </Button>\n      </CardFooter>\n    </Card>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

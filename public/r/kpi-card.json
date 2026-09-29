@@ -20,11 +20,13 @@
     "version": "0.4.0",
     "since": "0.4.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "motion"
   },
   "docs": "Data in, callbacks out. Locale defaults to en-US; pass your application locale explicitly. Reduced motion shows the final state immediately.",
   "categories": [
-    "dashboard"
+    "dashboard",
+    "motion"
   ],
   "type": "registry:component"
 }

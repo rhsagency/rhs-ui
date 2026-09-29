@@ -18,10 +18,12 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "feedback"
   },
   "categories": [
-    "application"
+    "application",
+    "feedback"
   ],
   "type": "registry:component"
 }

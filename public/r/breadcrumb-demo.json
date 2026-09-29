@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-demo",
+  "title": "breadcrumb demo",
+  "description": "Interactive preview of the breadcrumb component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/breadcrumb.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/breadcrumb-demo.tsx",
+      "content": "import {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from \"@rhs-ui/primitives/breadcrumb\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid gap-6\">\n      <Breadcrumb>\n        <BreadcrumbList>\n          <BreadcrumbItem>\n            <BreadcrumbLink href=\"#\">Home</BreadcrumbLink>\n          </BreadcrumbItem>\n          <BreadcrumbSeparator />\n          <BreadcrumbItem>\n            <BreadcrumbLink href=\"#\">Components</BreadcrumbLink>\n          </BreadcrumbItem>\n          <BreadcrumbSeparator />\n          <BreadcrumbItem>\n            <BreadcrumbLink href=\"#\">Forms</BreadcrumbLink>\n          </BreadcrumbItem>\n          <BreadcrumbSeparator />\n          <BreadcrumbItem>\n            <BreadcrumbPage>Select</BreadcrumbPage>\n          </BreadcrumbItem>\n        </BreadcrumbList>\n      </Breadcrumb>\n      <Breadcrumb aria-label=\"Breadcrumb, shortened\">\n        <BreadcrumbList>\n          <BreadcrumbItem>\n            <BreadcrumbLink href=\"#\">Home</BreadcrumbLink>\n          </BreadcrumbItem>\n          <BreadcrumbSeparator />\n          <BreadcrumbItem>\n            <BreadcrumbEllipsis />\n          </BreadcrumbItem>\n          <BreadcrumbSeparator>/</BreadcrumbSeparator>\n          <BreadcrumbItem>\n            <BreadcrumbLink href=\"#\">Invoices</BreadcrumbLink>\n          </BreadcrumbItem>\n          <BreadcrumbSeparator>/</BreadcrumbSeparator>\n          <BreadcrumbItem>\n            <BreadcrumbPage>INV-2043</BreadcrumbPage>\n          </BreadcrumbItem>\n        </BreadcrumbList>\n      </Breadcrumb>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -23,7 +23,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "actions"
   },
   "docs": "Use asChild to render the styles on a Next Link. loading disables the button and shows a spinner.",
   "categories": [

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "title": "Pagination",
+  "description": "Links between pages with a fixed-width page range, the current page marked and Previous and Next kept readable.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/pagination.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { IconChevronLeft, IconChevronRight, IconMoreHorizontal } from \"@rhs-ui/icons\";\nimport { buttonVariants } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * The pages to draw: the first and last, the current one with `siblings` on\n * each side, and \"ellipsis\" for a gap. paginationRange(6, 12) gives\n * [1, \"ellipsis\", 5, 6, 7, \"ellipsis\", 12]. The row always has the same\n * length (siblings * 2 + 5), so it never jumps while you page, and a gap of\n * one page shows that page instead of an ellipsis.\n */\nexport function paginationRange(current: number, total: number, siblings = 1): (number | \"ellipsis\")[] {\n  const pages = (from: number, to: number): number[] => Array.from({ length: to - from + 1 }, (_, i) => from + i);\n  if (total <= 0) return [];\n  const slots = siblings * 2 + 5;\n  if (total <= slots) return pages(1, total);\n  const page = Math.min(Math.max(1, Math.round(current)), total);\n  const left = Math.max(page - siblings, 1);\n  const right = Math.min(page + siblings, total);\n  const leftGap = left > 3;\n  const rightGap = right < total - 2;\n  if (!leftGap) return [...pages(1, slots - 2), \"ellipsis\", total];\n  if (!rightGap) return [1, \"ellipsis\", ...pages(total - slots + 3, total)];\n  return [1, \"ellipsis\", ...pages(left, right), \"ellipsis\", total];\n}\n\n/**\n * Links between the pages of a list. The current page carries\n * aria-current=\"page\"; Previous and Next keep their words for screen readers\n * when a phone hides them. Pass `asChild` to render your router's link.\n */\nexport function Pagination({ className, ...props }: ComponentProps<\"nav\">) {\n  return <nav aria-label=\"Pagination\" data-slot=\"pagination\" className={cn(\"mx-auto flex w-full justify-center\", className)} {...props} />;\n}\n\nexport function PaginationContent({ className, ...props }: ComponentProps<\"ul\">) {\n  return <ul data-slot=\"pagination-content\" className={cn(\"flex flex-row items-center gap-1\", className)} {...props} />;\n}\n\nexport function PaginationItem(props: ComponentProps<\"li\">) {\n  return <li data-slot=\"pagination-item\" {...props} />;\n}\n\nexport interface PaginationLinkProps extends ComponentProps<\"a\"> {\n  isActive?: boolean;\n  asChild?: boolean;\n  size?: \"icon\" | \"default\";\n}\n\nexport function PaginationLink({ className, isActive, asChild = false, size = \"icon\", ...props }: PaginationLinkProps) {\n  const Comp = asChild ? Slot.Root : \"a\";\n  return (\n    <Comp\n      data-slot=\"pagination-link\"\n      data-active={isActive || undefined}\n      aria-current={isActive ? \"page\" : undefined}\n      className={cn(\n        buttonVariants({ variant: isActive ? \"outline\" : \"ghost\", size }),\n        \"tabular-nums aria-disabled:pointer-events-none aria-disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function PaginationPrevious({ className, children = \"Previous\", ...props }: PaginationLinkProps) {\n  return (\n    <PaginationLink aria-label=\"Go to the previous page\" size=\"default\" className={cn(\"gap-1 px-2.5 sm:pl-2\", className)} {...props}>\n      <IconChevronLeft size={16} />\n      <span className=\"hidden sm:block\">{children}</span>\n    </PaginationLink>\n  );\n}\n\nexport function PaginationNext({ className, children = \"Next\", ...props }: PaginationLinkProps) {\n  return (\n    <PaginationLink aria-label=\"Go to the next page\" size=\"default\" className={cn(\"gap-1 px-2.5 sm:pr-2\", className)} {...props}>\n      <span className=\"hidden sm:block\">{children}</span>\n      <IconChevronRight size={16} />\n    </PaginationLink>\n  );\n}\n\nexport function PaginationEllipsis({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span aria-hidden=\"true\" data-slot=\"pagination-ellipsis\" className={cn(\"flex size-9 items-center justify-center text-muted-foreground\", className)} {...props}>\n      <IconMoreHorizontal size={16} />\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/pagination.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "navigation"
+  },
+  "docs": "paginationRange(current, total) returns the pages and gaps to draw. Pass asChild to render your router's link.",
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

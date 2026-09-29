@@ -7,7 +7,8 @@
       "title": "KPI card",
       "description": "A considered metric card with animated values, a quiet sparkline and period context.",
       "categories": [
-        "dashboard"
+        "dashboard",
+        "motion"
       ],
       "meta": {
         "tier": "free",

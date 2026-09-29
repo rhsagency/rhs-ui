@@ -138,7 +138,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "overlay"
   },
   "docs": "Wrap your app once in TooltipProvider. A tooltip is never the only place a label lives.",
   "categories": [

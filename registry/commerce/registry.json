@@ -63,7 +63,8 @@
       "title": "Animated price",
       "description": "Currency-aware price transitions with the same soft count and blur across every price update.",
       "categories": [
-        "commerce"
+        "commerce",
+        "motion"
       ],
       "meta": {
         "tier": "free",

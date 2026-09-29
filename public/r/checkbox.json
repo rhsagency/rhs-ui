@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "A checkbox with a visible box at rest, a check and an indeterminate dash, keyboard and form support.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/checkbox.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Checkbox as CheckboxPrimitive } from \"radix-ui\";\n\nimport { IconCheck, IconMinus } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A checkbox you can see at rest: the box has text contrast before anyone\n * hovers it. A check when on, a dash when `checked=\"indeterminate\"` (the\n * parent of a partly chosen list). Space toggles. Pair it with\n * <Label htmlFor>; with a `name` it submits like a native checkbox.\n */\nexport function Checkbox({ className, ...props }: ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"group/checkbox peer inline-flex size-[18px] shrink-0 items-center justify-center rounded-[5px] border border-muted-foreground bg-background text-primary-foreground shadow-xs\",\n        \"transition-[background-color,border-color,box-shadow] duration-150 outline-none hover:border-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:bg-primary\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator data-slot=\"checkbox-indicator\" className=\"flex items-center justify-center text-current\">\n        <IconCheck size={12} strokeWidth={2.5} className=\"group-data-[state=indeterminate]/checkbox:hidden\" />\n        <IconMinus size={12} strokeWidth={2.5} className=\"hidden group-data-[state=indeterminate]/checkbox:block\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/checkbox.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "Set checked=\"indeterminate\" on a parent whose children are partly chosen. With a name it submits like a native checkbox.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

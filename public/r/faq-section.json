@@ -20,10 +20,12 @@
     "version": "0.5.0",
     "since": "0.5.0",
     "status": "stable",
-    "preview": "frame"
+    "preview": "frame",
+    "family": "conversion"
   },
   "categories": [
-    "marketing"
+    "marketing",
+    "conversion"
   ],
   "type": "registry:block"
 }

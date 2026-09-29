@@ -20,6 +20,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
+import { FAMILIES, familyOf } from "./families.mjs";
+
 const root = path.resolve(import.meta.dirname, "..");
 /** The categories, and with them the folders under registry/ and components/rhs-ui/. */
 const TAXONOMY = new Set(["primitives", "icons", "application", "commerce", "dashboard", "marketing", "templates", "models", "backgrounds"]);
@@ -77,6 +79,7 @@ export function checkItems(items) {
     if (!isExample) {
       if (!category || !TAXONOMY.has(category)) p("categories[0] must be from the taxonomy");
       if (item.__fragment && item.__fragment !== category) p(`entry belongs in registry/${category}/registry.json, not registry/${item.__fragment}/registry.json`);
+      if (item.type !== "registry:internal" && !familyOf(item)) p(`categories[1] must name a family (${[...FAMILIES].join(", ")})`);
       for (const k of ["tier", "version", "since", "status"]) if (!item.meta?.[k]) p(`missing meta.${k}`);
       // This is the free, open-source registry. Pro lives in rhs-ui-pro under its
       // own namespace, so a "pro" item here would be published under MIT by accident.
@@ -164,6 +167,9 @@ const selfTests = [
   ["target that does not mirror the source", checkItems(withButton({ ...button, files: [{ ...button.files[0], target: "components/ui/rhs-ui/button.tsx" }] })).some((pr) => /must install to components\/rhs-ui\/primitives\/button\.tsx/.test(pr))],
   ["a pro item in the public registry", checkItems(withButton({ ...button, meta: { ...button.meta, tier: "pro" } })).some((pr) => /meta\.tier must be "free"/.test(pr))],
   ["an animated icon with a pro motion kind", checkItems(withButton({ ...button, meta: { ...button.meta, motion: "moment" } })).some((pr) => /meta\.motion must be/.test(pr))],
+  ["a primitive without a family", checkItems(withButton({ ...button, categories: ["primitives"] })).some((pr) => /^button: categories\[1\] must name a family/.test(pr))],
+  ["a primitive with an unknown family", checkItems(withButton({ ...button, categories: ["primitives", "widgets"] })).some((pr) => /^button: categories\[1\] must name a family/.test(pr))],
+  ["a commerce item falls back to its category", familyOf({ categories: ["commerce", "product", "card"] }) === "commerce"],
   ["hook without use client", clientProblems('import { useState } from "react";\nexport function X() { useState(0); }').length === 1],
   ["hook inside a client module", clientProblems('"use client";\nexport function X() { useState(0); }').length === 0],
 ];

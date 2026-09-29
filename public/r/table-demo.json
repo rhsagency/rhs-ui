@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-demo",
+  "title": "table demo",
+  "description": "Interactive preview of the table component.",
+  "registryDependencies": [
+    "https://rhsui.com/r/table.json",
+    "https://rhsui.com/r/badge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/table-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Badge } from \"@rhs-ui/primitives/badge\";\nimport { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, type TableSort } from \"@rhs-ui/primitives/table\";\n\nconst INVOICES = [\n  { id: \"INV-2041\", client: \"Studio North\", due: \"2026-10-02\", amount: 1840, status: \"Paid\" },\n  { id: \"INV-2042\", client: \"Harbour & Co\", due: \"2026-10-09\", amount: 620, status: \"Open\" },\n  { id: \"INV-2043\", client: \"Fieldwork\", due: \"2026-09-21\", amount: 2375, status: \"Overdue\" },\n  { id: \"INV-2044\", client: \"Oak Lane Bakery\", due: \"2026-10-16\", amount: 310, status: \"Open\" },\n  { id: \"INV-2045\", client: \"Mirror Labs\", due: \"2026-09-30\", amount: 4200, status: \"Paid\" },\n] as const;\n\nconst euro = new Intl.NumberFormat(\"en-IE\", { style: \"currency\", currency: \"EUR\" });\nconst TONE = { Paid: \"success\", Open: \"outline\", Overdue: \"destructive\" } as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [sort, setSort] = useState<TableSort>(\"none\");\n  const rows = sort === \"none\" ? INVOICES : [...INVOICES].sort((a, b) => (sort === \"ascending\" ? a.amount - b.amount : b.amount - a.amount));\n  const next: Record<TableSort, TableSort> = { none: \"descending\", descending: \"ascending\", ascending: \"none\" };\n\n  return (\n    <div className=\"w-full max-w-2xl rounded-xl border border-border\">\n      <Table>\n        <TableCaption className=\"pb-4\">Invoices for September and October. Sort by amount with the column header.</TableCaption>\n        <TableHeader>\n          <TableRow>\n            <TableHead>Invoice</TableHead>\n            <TableHead>Client</TableHead>\n            <TableHead>Due</TableHead>\n            <TableHead>Status</TableHead>\n            <TableHead sort={sort} onSort={() => setSort(next[sort])} className=\"text-right\">\n              Amount\n            </TableHead>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          {rows.map((invoice) => (\n            <TableRow key={invoice.id}>\n              <TableCell className=\"font-mono text-xs\">{invoice.id}</TableCell>\n              <TableCell className=\"font-medium\">{invoice.client}</TableCell>\n              <TableCell className=\"text-muted-foreground tabular-nums\">{invoice.due}</TableCell>\n              <TableCell>\n                <Badge variant={TONE[invoice.status]}>{invoice.status}</Badge>\n              </TableCell>\n              <TableCell className=\"text-right tabular-nums\">{euro.format(invoice.amount)}</TableCell>\n            </TableRow>\n          ))}\n        </TableBody>\n        <TableFooter>\n          <TableRow>\n            <TableCell colSpan={4}>Total</TableCell>\n            <TableCell className=\"text-right tabular-nums\">{euro.format(INVOICES.reduce((sum, invoice) => sum + invoice.amount, 0))}</TableCell>\n          </TableRow>\n        </TableFooter>\n      </Table>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

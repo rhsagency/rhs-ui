@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio group",
+  "description": "One choice out of a few: arrow keys move and choose, the circle is visible at rest.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/radio-group.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One choice out of a few. Arrow keys move and choose, Tab leaves the group\n * (a roving tabindex), and the circle is visible at rest, not only on hover.\n * Name the group with aria-label, or put it in a <fieldset> with a <legend>.\n */\nexport function RadioGroup({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return <RadioGroupPrimitive.Root data-slot=\"radio-group\" className={cn(\"grid gap-3\", className)} {...props} />;\n}\n\nexport function RadioGroupItem({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"peer inline-flex size-[18px] shrink-0 items-center justify-center rounded-full border border-muted-foreground bg-background shadow-xs\",\n        \"transition-[border-color,box-shadow] duration-150 outline-none hover:border-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"data-[state=checked]:border-primary\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator data-slot=\"radio-group-indicator\" className=\"size-2 rounded-full bg-primary\" />\n    </RadioGroupPrimitive.Item>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/radio-group.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "Name the group with aria-label or a fieldset legend. Wrap an item and its text in a Label to make the whole row clickable.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

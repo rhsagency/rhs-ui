@@ -18,10 +18,12 @@
     "version": "0.5.0",
     "since": "0.5.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "data-display"
   },
   "categories": [
-    "application"
+    "application",
+    "data-display"
   ],
   "type": "registry:component"
 }

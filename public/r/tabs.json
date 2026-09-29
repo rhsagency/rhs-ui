@@ -21,7 +21,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "navigation"
   },
   "docs": "Give TabsList the group/list class so the triggers pick up the variant.",
   "categories": [

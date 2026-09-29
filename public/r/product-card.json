@@ -32,7 +32,8 @@
     "version": "0.2.0",
     "since": "0.1.0",
     "status": "stable",
-    "preview": "inline"
+    "preview": "inline",
+    "family": "commerce"
   },
   "docs": "Pass a plain product object and handle onAddToCart; the card never fetches. Format prices before you pass them so the card stays locale-neutral. Use renderImage to plug in next/image.",
   "categories": [

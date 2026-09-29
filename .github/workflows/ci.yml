@@ -27,6 +27,8 @@ jobs:
         run: pnpm test:button
       - name: Built output is up to date
         run: pnpm check:built
+      - name: Every demo renders on the server, no visible native select
+        run: pnpm test:render
       - name: No private material
         run: |
           set -euo pipefail
