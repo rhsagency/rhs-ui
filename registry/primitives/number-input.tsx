@@ -50,6 +50,7 @@ export function NumberInput({ value, defaultValue = 0, onValueChange, min = Numb
         aria-valuemax={Number.isFinite(max) ? max : undefined}
         disabled={disabled}
         value={shown}
+        suppressHydrationWarning
         onFocus={() => setDraft(String(current))}
         onChange={(event) => setDraft(event.target.value)}
         onBlur={() => {

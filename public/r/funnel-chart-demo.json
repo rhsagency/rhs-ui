@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "funnel-chart-demo",
+  "title": "Funnel Chart demo",
+  "description": "A working preview of Funnel Chart.",
+  "registryDependencies": [
+    "https://rhsui.com/r/funnel-chart.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/funnel-chart-demo.tsx",
+      "content": "import { FunnelChart } from \"@rhs-ui/dashboard/funnel-chart\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"w-full max-w-xl\">\n      <FunnelChart\n        label=\"Sign-up funnel, September\"\n        steps={[\n          { label: \"Visited pricing\", value: 18400 },\n          { label: \"Started sign-up\", value: 6210 },\n          { label: \"Verified email\", value: 4870 },\n          { label: \"Started a trial\", value: 2130 },\n          { label: \"Paid\", value: 612 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

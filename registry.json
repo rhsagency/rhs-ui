@@ -4823,6 +4823,339 @@
       ]
     },
     {
+      "name": "line-chart",
+      "type": "registry:component",
+      "title": "Line Chart",
+      "description": "Lines over time in the text colour, a readout on hover and touch, and the numbers as a table for screen readers.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/line-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/line-chart.tsx"
+        }
+      ],
+      "docs": "Series are keys in each row. Pass format for currency or percentages; it is used on the axis, in the readout and in the table."
+    },
+    {
+      "name": "line-chart-demo",
+      "type": "registry:example",
+      "title": "Line Chart demo",
+      "description": "A working preview of Line Chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/line-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/line-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "Area Chart",
+      "description": "The line chart with light filled areas, for totals that build up: revenue, sign-ups, traffic.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/line-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/area-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/area-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "area-chart-demo",
+      "type": "registry:example",
+      "title": "Area Chart demo",
+      "description": "A working preview of Area Chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/area-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/area-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "Bar Chart",
+      "description": "Amounts per category, grouped or stacked; every column is focusable and reads its values.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/bar-chart.tsx"
+        }
+      ],
+      "docs": "Set stacked to add the series into one bar."
+    },
+    {
+      "name": "bar-chart-demo",
+      "type": "registry:example",
+      "title": "Bar Chart demo",
+      "description": "A working preview of Bar Chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bar-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bar-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:component",
+      "title": "Donut Chart",
+      "description": "Parts of a whole for five slices or fewer, with a legend that lists every number.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/donut-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/donut-chart.tsx"
+        }
+      ],
+      "docs": "Past five slices use a bar chart: shades stop being distinguishable."
+    },
+    {
+      "name": "donut-chart-demo",
+      "type": "registry:example",
+      "title": "Donut Chart demo",
+      "description": "A working preview of Donut Chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/donut-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/donut-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:component",
+      "title": "Sparkline",
+      "description": "A trend in a word's space, beside a number or in a table cell, with a label that says what it shows.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/sparkline.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/sparkline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sparkline-demo",
+      "type": "registry:example",
+      "title": "Sparkline demo",
+      "description": "A working preview of Sparkline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sparkline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sparkline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "activity-heatmap",
+      "type": "registry:component",
+      "title": "Activity Heatmap",
+      "description": "Months of activity as a calendar of squares, darker for busier days, summarised in words for screen readers.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/activity-heatmap.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/activity-heatmap.tsx"
+        }
+      ]
+    },
+    {
+      "name": "activity-heatmap-demo",
+      "type": "registry:example",
+      "title": "Activity Heatmap demo",
+      "description": "A working preview of Activity Heatmap.",
+      "registryDependencies": [
+        "https://rhsui.com/r/activity-heatmap.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/activity-heatmap-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "gauge",
+      "type": "registry:component",
+      "title": "Gauge",
+      "description": "A dial for one number against its range that changes tone past its thresholds; a meter for screen readers.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/gauge.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/gauge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "gauge-demo",
+      "type": "registry:example",
+      "title": "Gauge demo",
+      "description": "A working preview of Gauge.",
+      "registryDependencies": [
+        "https://rhsui.com/r/gauge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/gauge-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:component",
+      "title": "Funnel Chart",
+      "description": "Where people drop off between steps: counts, share of the first step and the drop from the one before.",
+      "categories": [
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "dashboard"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/funnel-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/funnel-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "funnel-chart-demo",
+      "type": "registry:example",
+      "title": "Funnel Chart demo",
+      "description": "A working preview of Funnel Chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/funnel-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/funnel-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "empty-state",
       "type": "registry:component",
       "title": "Empty State",
@@ -5300,7 +5633,7 @@
           "target": "components/rhs-ui/application/data-table.tsx"
         }
       ],
-      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows."
+      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows. Columns hold functions, so define the table in a client component (\"use client\"); a Server Component cannot pass them."
     },
     {
       "name": "data-table-demo",

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gauge-demo",
+  "title": "Gauge demo",
+  "description": "A working preview of Gauge.",
+  "registryDependencies": [
+    "https://rhsui.com/r/gauge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/gauge-demo.tsx",
+      "content": "import { Gauge } from \"@rhs-ui/dashboard/gauge\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex flex-wrap items-end justify-center gap-10\">\n      <Gauge value={72} label=\"Net Promoter Score\" valueText=\"72\" />\n      <Gauge value={81} label=\"CPU load\" valueText=\"81%\" high={70} critical={90} size={150} />\n      <Gauge value={96} label=\"Quota used\" valueText=\"96%\" high={75} critical={90} size={150} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

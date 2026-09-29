@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "area-chart",
+  "title": "Area Chart",
+  "description": "The line chart with light filled areas, for totals that build up: revenue, sign-ups, traffic.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/line-chart.json"
+  ],
+  "files": [
+    {
+      "path": "registry/dashboard/area-chart.tsx",
+      "content": "import { LineChart, type LineChartProps } from \"@rhs-ui/dashboard/line-chart\";\n\n/**\n * Volumes over time: the line chart with the area under each series filled\n * in a light shade, for totals that build up (revenue, sign-ups, traffic).\n * The same readout, and the same table for screen readers.\n */\nexport function AreaChart(props: Omit<LineChartProps, \"area\">) {\n  return <LineChart {...props} area />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/area-chart.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

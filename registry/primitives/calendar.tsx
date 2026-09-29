@@ -96,7 +96,7 @@ export function Calendar({ value, defaultValue = null, onValueChange, min, max, 
         <button type="button" aria-label="Previous month" onClick={() => setFocused(addMonths(focused, -1))} className="grid size-8 place-items-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40">
           <IconChevronLeft size={16} />
         </button>
-        <p id={`${id}-title`} aria-live="polite" className="text-sm font-medium capitalize">
+        <p id={`${id}-title`} aria-live="polite" className="text-sm font-medium capitalize" suppressHydrationWarning>
           {title}
         </p>
         <button type="button" aria-label="Next month" onClick={() => setFocused(addMonths(focused, 1))} className="grid size-8 place-items-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40">
@@ -106,7 +106,7 @@ export function Calendar({ value, defaultValue = null, onValueChange, min, max, 
       <div ref={grid} role="grid" aria-labelledby={`${id}-title`}>
         <div role="row" className="grid grid-cols-7">
           {weekdays.map((day) => (
-            <span key={day.long} role="columnheader" aria-label={day.long} className="grid h-8 place-items-center text-[0.6875rem] font-medium text-muted-foreground uppercase">
+            <span key={day.long} role="columnheader" aria-label={day.long} suppressHydrationWarning className="grid h-8 place-items-center text-[0.6875rem] font-medium text-muted-foreground uppercase">
               {day.short}
             </span>
           ))}
@@ -123,6 +123,7 @@ export function Calendar({ value, defaultValue = null, onValueChange, min, max, 
                   <button
                     type="button"
                     data-day={dayKey(date)}
+                    suppressHydrationWarning
                     tabIndex={isFocused ? 0 : -1}
                     aria-disabled={off || undefined}
                     aria-current={dayKey(date) === today ? "date" : undefined}

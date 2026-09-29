@@ -468,7 +468,7 @@
           "target": "components/rhs-ui/application/data-table.tsx"
         }
       ],
-      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows."
+      "docs": "Columns are data: give a column a sortValue to make it sortable. Pass actions to act on the selected rows. Columns hold functions, so define the table in a client component (\"use client\"); a Server Component cannot pass them."
     },
     {
       "name": "data-table-demo",
