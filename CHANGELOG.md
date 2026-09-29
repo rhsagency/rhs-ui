@@ -48,6 +48,8 @@ own `meta.version` and are listed when they change.
 - Eight commerce components: cart line, coupon field, order summary, shipping options,
   shipping progress, rating summary, product gallery and variant selector. Money is
   `{ amount, currency }` in minor units, formatted by the shared `money.ts`.
+- 195 more glyphs (374 in all) in the same hand, with five new groups: weather and
+  nature, travel and places, health and sport, learning and work, shapes and layout.
 - Fixed: the navbar block no longer holds state, so a Server Component can pass its
   router's Link as `linkAs`; each phone link closes the sheet itself.
 - Gates: `check:registry` refuses a Tailwind variant built in a template string, an Intl
