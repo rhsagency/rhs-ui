@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag-input",
+  "title": "Tag Input",
+  "description": "Several short values in one field: Enter or a comma adds, Backspace removes, duplicates are refused.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/tag-input.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type ComponentProps } from \"react\";\n\nimport { IconClose } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TagInputProps extends Omit<ComponentProps<\"input\">, \"value\" | \"defaultValue\" | \"onChange\"> {\n  value?: readonly string[];\n  defaultValue?: readonly string[];\n  onValueChange?: (tags: string[]) => void;\n  /** At most this many tags. */\n  max?: number;\n  /** Returns a message to refuse a tag, or nothing to accept it. */\n  validate?: (tag: string) => string | void;\n  /** The field's name, for a plain form submit: the tags joined by commas in one hidden input. */\n  name?: string;\n}\n\n/**\n * Several short values in one field: emails to invite, keywords, skills.\n * Enter or a comma adds the text as a tag, Backspace on an empty field\n * removes the last one, and each tag has its own remove button. Duplicates\n * are refused with a message.\n */\nexport function TagInput({ value, defaultValue = [], onValueChange, max = Number.POSITIVE_INFINITY, validate, name, className, placeholder = \"Type and press Enter\", id, ...props }: TagInputProps) {\n  const own = useId();\n  const inputId = id ?? own;\n  const [tags, setTags] = useState<readonly string[]>(defaultValue);\n  const [text, setText] = useState(\"\");\n  const [error, setError] = useState<string | null>(null);\n  const current = value ?? tags;\n  const set = (next: string[]) => {\n    if (value === undefined) setTags(next);\n    onValueChange?.(next);\n  };\n  const add = (raw: string) => {\n    const tag = raw.trim();\n    if (!tag) return;\n    const problem = current.includes(tag) ? `${tag} is already in the list.` : current.length >= max ? `At most ${max}.` : validate?.(tag);\n    if (problem) {\n      setError(problem);\n      return;\n    }\n    setError(null);\n    set([...current, tag]);\n    setText(\"\");\n  };\n  return (\n    <div data-slot=\"tag-input\" className={cn(\"grid w-full gap-1.5\", className)}>\n      <div\n        className=\"flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2 py-1.5 text-sm shadow-xs has-[input:focus-visible]:border-ring has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/40\"\n        onClick={(event) => (event.currentTarget.querySelector(\"input\") as HTMLInputElement | null)?.focus()}\n      >\n        {current.map((tag) => (\n          <span key={tag} className=\"inline-flex items-center gap-1 rounded bg-muted py-0.5 pr-0.5 pl-2 text-xs font-medium\">\n            {tag}\n            <button\n              type=\"button\"\n              aria-label={`Remove ${tag}`}\n              onClick={() => set(current.filter((item) => item !== tag))}\n              className=\"grid size-5 place-items-center rounded text-muted-foreground outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40\"\n            >\n              <IconClose size={12} />\n            </button>\n          </span>\n        ))}\n        <input\n          id={inputId}\n          value={text}\n          placeholder={current.length ? undefined : placeholder}\n          aria-invalid={error ? true : undefined}\n          aria-describedby={error ? `${inputId}-error` : undefined}\n          onChange={(event) => {\n            setError(null);\n            const typed = event.target.value;\n            if (typed.includes(\",\")) typed.split(\",\").slice(0, -1).forEach(add);\n            setText(typed.includes(\",\") ? typed.split(\",\").at(-1) ?? \"\" : typed);\n          }}\n          onKeyDown={(event) => {\n            if (event.key === \"Enter\") {\n              event.preventDefault();\n              add(text);\n            } else if (event.key === \"Backspace\" && !text && current.length) set(current.slice(0, -1));\n          }}\n          onBlur={() => add(text)}\n          className=\"min-w-24 flex-1 bg-transparent px-1 outline-none placeholder:text-muted-foreground\"\n          {...props}\n        />\n      </div>\n      <p id={`${inputId}-error`} role=\"status\" className=\"min-h-4 text-xs text-destructive empty:hidden\">\n        {error}\n      </p>\n      {name ? <input type=\"hidden\" name={name} value={current.join(\",\")} /> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/tag-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

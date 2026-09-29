@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-input-demo",
+  "title": "OTP Input demo",
+  "description": "A working preview of OTP Input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/otp-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/otp-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { OtpInput } from \"@rhs-ui/primitives/otp-input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [status, setStatus] = useState(\"Enter the six digits from your email.\");\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <OtpInput groupAfter={3} onComplete={(code) => setStatus(code === \"123456\" ? \"Signed in.\" : `Checking ${code}. Try 123456 in this preview.`)} />\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {status}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

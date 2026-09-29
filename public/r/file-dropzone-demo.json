@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-dropzone-demo",
+  "title": "File Dropzone demo",
+  "description": "A working preview of File Dropzone.",
+  "registryDependencies": [
+    "https://rhsui.com/r/file-dropzone.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/file-dropzone-demo.tsx",
+      "content": "import { FileDropzone } from \"@rhs-ui/primitives/file-dropzone\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FileDropzone label=\"Upload your brand assets\" accept=\".pdf,.svg,image/*\" maxSize={10 * 1024 * 1024} maxFiles={5} hint=\"PDF, SVG or image, up to 10 MB each\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

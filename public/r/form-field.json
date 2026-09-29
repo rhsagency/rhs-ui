@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field",
+  "title": "Form Field",
+  "description": "Label, control, hint and error wired together for assistive technology, with any form library.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/form-field.tsx",
+      "content": "\"use client\";\n\nimport { createContext, useContext, useId, type ComponentProps } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { cn } from \"@/lib/utils\";\n\ninterface FieldIds {\n  control: string;\n  description: string;\n  message: string;\n  invalid: boolean;\n  hasDescription: boolean;\n}\n\nconst FieldContext = createContext<FieldIds | null>(null);\n\nfunction useField(part: string): FieldIds {\n  const field = useContext(FieldContext);\n  if (!field) throw new Error(`${part} must be inside <FormField>`);\n  return field;\n}\n\nexport interface FormFieldProps extends ComponentProps<\"div\"> {\n  /** The error to show; the control is marked invalid while it is set. */\n  error?: string | null;\n  /** Whether a FormDescription is present, so the control points at it. */\n  described?: boolean;\n}\n\n/**\n * A label, a control, a hint and an error, wired together the way assistive\n * technology expects: the label names the control, the hint and the error\n * describe it, and an error marks it invalid. Works with any form library:\n * pass the library's error message as `error`.\n */\nexport function FormField({ error, described = false, className, children, ...props }: FormFieldProps) {\n  const id = useId();\n  const ids: FieldIds = { control: `${id}-control`, description: `${id}-description`, message: `${id}-message`, invalid: Boolean(error), hasDescription: described };\n  return (\n    <FieldContext.Provider value={ids}>\n      <div data-slot=\"form-field\" data-invalid={ids.invalid || undefined} className={cn(\"grid gap-2\", className)} {...props}>\n        {children}\n        <p id={ids.message} role=\"status\" className=\"text-xs font-medium text-destructive empty:hidden\">\n          {error}\n        </p>\n      </div>\n    </FieldContext.Provider>\n  );\n}\n\nexport function FormLabel({ className, ...props }: ComponentProps<typeof Label>) {\n  const field = useField(\"FormLabel\");\n  return <Label data-slot=\"form-label\" htmlFor={field.control} className={cn(field.invalid && \"text-destructive\", className)} {...props} />;\n}\n\n/** Wraps the one control (an Input, a SelectTrigger, a Textarea) and gives it the id and the ARIA links. */\nexport function FormControl(props: ComponentProps<typeof Slot.Root>) {\n  const field = useField(\"FormControl\");\n  const describedBy = [field.hasDescription ? field.description : null, field.invalid ? field.message : null].filter(Boolean).join(\" \") || undefined;\n  return <Slot.Root data-slot=\"form-control\" id={field.control} aria-invalid={field.invalid || undefined} aria-describedby={describedBy} {...props} />;\n}\n\nexport function FormDescription({ className, ...props }: ComponentProps<\"p\">) {\n  const field = useField(\"FormDescription\");\n  return <p data-slot=\"form-description\" id={field.description} className={cn(\"text-xs text-muted-foreground\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/form-field.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "Pass your form library's error as error and set described when a FormDescription is present.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

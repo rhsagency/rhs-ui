@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "title": "Input Group",
+  "description": "A field with something attached (a unit, a prefix, an icon) that takes the focus ring as one.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/input-group.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A field with something attached: a currency sign, a unit, an icon, a\n * button. The group draws the field surface and takes the focus ring when\n * anything inside it has focus, so the input and its addons read as one.\n */\nexport function InputGroup({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-group\"\n      className={cn(\n        \"flex h-9 w-full min-w-0 items-center rounded-md border border-input bg-background text-sm shadow-xs transition-[border-color,box-shadow] duration-150\",\n        \"has-[input:focus-visible]:border-ring has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/40\",\n        \"has-[[aria-invalid=true]]:border-destructive has-[input:disabled]:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Text or an icon at either end: \"https://\", \"EUR\", \"kg\", a search glyph. Decorative by default; the input's label says what to type. */\nexport function InputGroupAddon({ className, ...props }: ComponentProps<\"span\">) {\n  return <span data-slot=\"input-group-addon\" className={cn(\"flex h-full shrink-0 items-center gap-1.5 px-3 text-muted-foreground select-none first:pr-0 last:pl-0 [&_svg]:size-4\", className)} {...props} />;\n}\n\n/** The input inside a group: no surface of its own. Pair it with <Label htmlFor>. */\nexport function InputGroupInput({ className, ...props }: ComponentProps<\"input\">) {\n  return <input data-slot=\"input-group-input\" className={cn(\"h-full min-w-0 flex-1 bg-transparent px-3 outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/input-group.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

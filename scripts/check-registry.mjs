@@ -71,6 +71,17 @@ export function clientExportProblems(src) {
   return values.length ? [`is "use client" but calls no hook and exports ${values.join(", ")}; a Server Component would get a client reference. Drop the directive.`] : [];
 }
 
+/**
+ * An Intl formatter without a locale uses the server's default while
+ * rendering and the reader's in the browser: a Dutch reader then hydrates
+ * "1.234" over "1,234" and React throws the server HTML away.
+ */
+export function unlocalisedIntlProblems(src) {
+  return /\bIntl\.(DateTimeFormat|NumberFormat|RelativeTimeFormat|ListFormat|PluralRules)\(\s*(undefined\b|\)|\{)/.test(src) || /\.toLocale(Date|Time)?String\(\s*\)/.test(src)
+    ? ["formats with Intl or toLocaleString without a locale; server and browser disagree. Pass a locale (a prop with a fixed default)."]
+    : [];
+}
+
 /** Tailwind reads classes from the source text: `${variant}:w-max` never appears whole, so it is never generated. */
 export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
@@ -157,6 +168,7 @@ export function checkItems(items) {
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of unlocalisedIntlProblems(src)) p(`${f.path} ${problem}`);
       for (const m of src.matchAll(ALIAS_IMPORT)) {
         const file = [`registry/${m[1]}`, `registry/${m[1]}/index`].find((candidate) => own.has(candidate) || byFile.has(candidate));
         if (!file) p(`${f.path}: import of @rhs-ui/${m[1]} does not resolve to a registry file`);
@@ -222,6 +234,8 @@ const selfTests = [
   ["a named group variant nobody declares", groupNameProblems(new Map([["a.tsx", 'cn("inline-flex", "group-data-[variant=line]/list:border-b-2")']])).length === 1],
   ["a named group declared in the same file", groupNameProblems(new Map([["a.tsx", 'cn("group/list inline-flex", "group-data-[variant=line]/list:border-b-2 group-hover/list:text-foreground")']])).length === 0],
   ["a named group declared in another file", groupNameProblems(new Map([["a.tsx", '"group/rhs-icon"'], ["b.tsx", '"group-data-[active=true]/rhs-icon:opacity-0"']])).length === 0],
+  ["an Intl formatter without a locale", unlocalisedIntlProblems("new Intl.NumberFormat(undefined, { style: 'percent' })").length === 1 && unlocalisedIntlProblems("value.toLocaleString()").length === 1],
+  ["an Intl formatter with a locale", unlocalisedIntlProblems("new Intl.NumberFormat(locale, format)").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],
   ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],

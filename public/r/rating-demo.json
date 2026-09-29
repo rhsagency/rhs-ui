@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-demo",
+  "title": "Rating demo",
+  "description": "A working preview of Rating.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rating.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rating-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Rating } from \"@rhs-ui/primitives/rating\";\n\nexport default function Demo(): React.JSX.Element {\n  const [score, setScore] = useState(4);\n  return (\n    <div className=\"flex flex-col items-center gap-6\">\n      <div className=\"flex items-center gap-3\">\n        <Rating readOnly value={4.6} label=\"Average rating\" />\n        <span className=\"text-sm text-muted-foreground\">4.6 from 1,280 reviews</span>\n      </div>\n      <div className=\"grid justify-items-center gap-2\">\n        <Rating label=\"Your rating\" value={score} onValueChange={setScore} size={28} />\n        <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n          You gave it {score} out of 5.\n        </p>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-picker-demo",
+  "title": "Color Picker demo",
+  "description": "A working preview of Color Picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/color-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/color-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ColorPicker } from \"@rhs-ui/primitives/color-picker\";\n\nexport default function Demo(): React.JSX.Element {\n  const [brand, setBrand] = useState(\"#2563eb\");\n  return (\n    <div className=\"flex flex-col items-center gap-5\">\n      <ColorPicker label=\"Brand colour\" value={brand} onValueChange={setBrand} />\n      <div className=\"flex items-center gap-3 rounded-xl border border-border p-4\">\n        <span className=\"grid size-10 place-items-center rounded-lg text-sm font-semibold text-white\" style={{ background: brand }}>\n          Aa\n        </span>\n        <div className=\"grid gap-1\">\n          <span className=\"text-sm font-medium\">Button preview</span>\n          <span className=\"rounded-md px-3 py-1 text-xs font-medium text-white\" style={{ background: brand }}>\n            Get started\n          </span>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

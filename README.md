@@ -82,7 +82,7 @@ something lives and what it is for.
 <!-- catalogue:begin -->
 | Category | Import | What is in it |
 | --- | --- | --- |
-| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, card, checkbox, collapsible, combobox, command, context-menu, dialog, dropdown-menu, hover-card, input, kbd, label, menubar, navigation-menu, pagination, popover, progress, radio-group, rhs-ui-theme, scroll-area, select, separator, sheet, skeleton, slider, spinner, switch, table, tabs, textarea, toast, toggle, toggle-group, tooltip |
+| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, checkbox, collapsible, color-picker, combobox, command, context-menu, date-picker, dialog, dropdown-menu, file-dropzone, form-field, hover-card, input, input-group, kbd, label, menubar, navigation-menu, number-input, otp-input, pagination, password-input, popover, progress, radio-group, rating, rhs-ui-theme, scroll-area, search-input, select, separator, sheet, skeleton, slider, spinner, switch, table, tabs, tag-input, textarea, toast, toggle, toggle-group, tooltip |
 | Icons | `@rhs-ui/icons` | 179 glyphs in one drawing hand, and 27 animated icons at `@rhs-ui/icons/animated/<name>` |
 | Commerce | `@rhs-ui/commerce/<name>` | Shop UI: animated-price, product-card |
 | Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens: kpi-card |

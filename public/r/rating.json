@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating",
+  "title": "Rating",
+  "description": "Stars to give a score (a radio group underneath) or to show one, in words for screen readers.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/rating.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { IconStar } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RatingProps {\n  value?: number;\n  defaultValue?: number;\n  onValueChange?: (value: number) => void;\n  /** Number of stars. */\n  max?: number;\n  /** Show a score without letting anyone change it; fractions round to the half star. */\n  readOnly?: boolean;\n  label?: string;\n  name?: string;\n  size?: number;\n  className?: string;\n}\n\n/**\n * Stars to give or show a score. Giving one is a radio group underneath, so\n * arrow keys change it and a form submits it; showing one is a single image\n * with its score in words (\"4.5 out of 5\").\n */\nexport function Rating({ value, defaultValue = 0, onValueChange, max = 5, readOnly = false, label = \"Rating\", name, size = 20, className }: RatingProps) {\n  const id = useId();\n  const [own, setOwn] = useState(defaultValue);\n  const [hover, setHover] = useState<number | null>(null);\n  const current = value ?? own;\n  if (readOnly) {\n    const rounded = Math.round(current * 2) / 2;\n    return (\n      <span data-slot=\"rating\" role=\"img\" aria-label={`${label}: ${rounded} out of ${max}`} className={cn(\"inline-flex items-center gap-0.5\", className)}>\n        {Array.from({ length: max }, (_, index) => {\n          const fill = Math.max(0, Math.min(1, rounded - index));\n          return (\n            <span key={index} className=\"relative inline-flex\" style={{ width: size, height: size }}>\n              <IconStar size={size} className=\"text-muted-foreground/40\" />\n              {fill > 0 ? (\n                <span className=\"absolute inset-0 overflow-hidden\" style={{ width: `${fill * 100}%` }}>\n                  <IconStar size={size} fill=\"currentColor\" className=\"text-foreground\" />\n                </span>\n              ) : null}\n            </span>\n          );\n        })}\n      </span>\n    );\n  }\n  const shown = hover ?? current;\n  return (\n    <fieldset data-slot=\"rating\" className={cn(\"inline-flex items-center gap-0.5\", className)} onMouseLeave={() => setHover(null)}>\n      <legend className=\"sr-only\">{label}</legend>\n      {Array.from({ length: max }, (_, index) => {\n        const score = index + 1;\n        return (\n          <label key={score} className=\"group relative cursor-pointer\" onMouseEnter={() => setHover(score)}>\n            <input\n              type=\"radio\"\n              name={name ?? id}\n              value={score}\n              checked={current === score}\n              onChange={() => {\n                if (value === undefined) setOwn(score);\n                onValueChange?.(score);\n              }}\n              className=\"peer sr-only\"\n            />\n            <span className=\"sr-only\">{`${score} ${score === 1 ? \"star\" : \"stars\"}`}</span>\n            <IconStar\n              size={size}\n              fill={score <= shown ? \"currentColor\" : \"none\"}\n              className={cn(\"transition-[color,transform] duration-150 peer-focus-visible:rounded-sm peer-focus-visible:ring-[3px] peer-focus-visible:ring-ring/40 motion-safe:group-hover:scale-110\", score <= shown ? \"text-foreground\" : \"text-muted-foreground/50\")}\n            />\n          </label>\n        );\n      })}\n    </fieldset>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/rating.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

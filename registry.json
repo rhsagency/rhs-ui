@@ -2619,6 +2619,606 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A field with something attached (a unit, a prefix, an icon) that takes the focus ring as one.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/input-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/input-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-group-demo",
+      "type": "registry:example",
+      "title": "Input Group demo",
+      "description": "A working preview of Input Group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/input-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "Search Input",
+      "description": "A search field with a magnifier, a clear button, Escape to clear and an optional key hint.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/search-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/search-input.tsx"
+        }
+      ],
+      "docs": "Give it a label, visible or as aria-label. The shortcut hint is display only: bind the key yourself."
+    },
+    {
+      "name": "search-input-demo",
+      "type": "registry:example",
+      "title": "Search Input demo",
+      "description": "A working preview of Search Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/search-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "A password field with show and hide, and for a new password the rules it must meet, ticked off live.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/password-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/password-input.tsx"
+        }
+      ],
+      "docs": "Set autoComplete to current-password or new-password so password managers help."
+    },
+    {
+      "name": "password-input-demo",
+      "type": "registry:example",
+      "title": "Password Input demo",
+      "description": "A working preview of Password Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/password-input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/password-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "title": "Number Input",
+      "description": "A number with minus and plus: arrow keys step, Page keys step by ten, typing is checked on leave.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/number-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/number-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "number-input-demo",
+      "type": "registry:example",
+      "title": "Number Input demo",
+      "description": "A working preview of Number Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/number-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "otp-input",
+      "type": "registry:ui",
+      "title": "OTP Input",
+      "description": "A one-time code in boxes: typing moves on, Backspace moves back, pasting fills them all.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/otp-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/otp-input.tsx"
+        }
+      ],
+      "docs": "The first box carries autocomplete=\"one-time-code\", so phones offer the code from the message."
+    },
+    {
+      "name": "otp-input-demo",
+      "type": "registry:example",
+      "title": "OTP Input demo",
+      "description": "A working preview of OTP Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/otp-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/otp-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "title": "Tag Input",
+      "description": "Several short values in one field: Enter or a comma adds, Backspace removes, duplicates are refused.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/tag-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/tag-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tag-input-demo",
+      "type": "registry:example",
+      "title": "Tag Input demo",
+      "description": "A working preview of Tag Input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tag-input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tag-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-field",
+      "type": "registry:ui",
+      "title": "Form Field",
+      "description": "Label, control, hint and error wired together for assistive technology, with any form library.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/form-field.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/form-field.tsx"
+        }
+      ],
+      "docs": "Pass your form library's error as error and set described when a FormDescription is present."
+    },
+    {
+      "name": "form-field-demo",
+      "type": "registry:example",
+      "title": "Form Field demo",
+      "description": "A working preview of Form Field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "title": "Rating",
+      "description": "Stars to give a score (a radio group underneath) or to show one, in words for screen readers.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/rating.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rating.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rating-demo",
+      "type": "registry:example",
+      "title": "Rating demo",
+      "description": "A working preview of Rating.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rating-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "description": "A colour from swatches (a radio group) or typed as a hex code, behind a trigger showing it.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/color-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/color-picker.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      }
+    },
+    {
+      "name": "color-picker-demo",
+      "type": "registry:example",
+      "title": "Color Picker demo",
+      "description": "A working preview of Color Picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/color-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/color-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A month to pick a day from: a keyboard grid, limits and blocked days, names from the locale.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/calendar.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/calendar.tsx"
+        }
+      ],
+      "docs": "Pass locale for your readers; it defaults to en-GB so the server and the browser draw the same month. Today is marked only in the browser."
+    },
+    {
+      "name": "calendar-demo",
+      "type": "registry:example",
+      "title": "Calendar demo",
+      "description": "A working preview of Calendar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/calendar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/calendar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "A day behind a field-like trigger: the calendar opens in a panel, picking closes it.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/calendar.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/date-picker.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        },
+        "@keyframes rhs-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-out": "rhs-out 120ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      }
+    },
+    {
+      "name": "date-picker-demo",
+      "type": "registry:example",
+      "title": "Date Picker demo",
+      "description": "A working preview of Date Picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/date-picker.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/date-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-dropzone",
+      "type": "registry:ui",
+      "title": "File Dropzone",
+      "description": "Drop files or click to choose, with type and size checks and a list to remove them again.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/file-dropzone.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/file-dropzone.tsx"
+        }
+      ],
+      "docs": "A real file input underneath: keyboard and screen readers get the native control."
+    },
+    {
+      "name": "file-dropzone-demo",
+      "type": "registry:example",
+      "title": "File Dropzone demo",
+      "description": "A working preview of File Dropzone.",
+      "registryDependencies": [
+        "https://rhsui.com/r/file-dropzone.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-dropzone-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-dropzone",
+  "title": "File Dropzone",
+  "description": "Drop files or click to choose, with type and size checks and a list to remove them again.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/file-dropzone.tsx",
+      "content": "\"use client\";\n\nimport { useId, useRef, useState, type DragEvent } from \"react\";\n\nimport { IconClose, IconFile, IconUpload } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FileDropzoneProps {\n  files?: readonly File[];\n  onFilesChange?: (files: File[]) => void;\n  /** Like the input's accept: \".pdf,image/*\". */\n  accept?: string;\n  /** Largest file in bytes. */\n  maxSize?: number;\n  maxFiles?: number;\n  multiple?: boolean;\n  /** What to drop, in words: \"PDF or image, up to 10 MB\". */\n  hint?: string;\n  label?: string;\n  name?: string;\n  className?: string;\n}\n\nconst size = (bytes: number) => (bytes < 1024 ? `${bytes} B` : bytes < 1048576 ? `${(bytes / 1024).toFixed(0)} KB` : `${(bytes / 1048576).toFixed(1)} MB`);\n\nfunction accepts(file: File, accept?: string): boolean {\n  if (!accept) return true;\n  return accept.split(\",\").map((rule) => rule.trim().toLowerCase()).some((rule) => (rule.startsWith(\".\") ? file.name.toLowerCase().endsWith(rule) : rule.endsWith(\"/*\") ? file.type.startsWith(rule.slice(0, -1)) : file.type === rule));\n}\n\n/**\n * Drop files or click to choose them. It is a real file input underneath, so\n * the keyboard and screen readers get the native control; the zone only adds\n * the drop target. Wrong types and oversized files are refused with a\n * reason, and every chosen file can be removed again.\n */\nexport function FileDropzone({ files, onFilesChange, accept, maxSize, maxFiles = Number.POSITIVE_INFINITY, multiple = true, hint, label = \"Upload files\", name, className }: FileDropzoneProps) {\n  const id = useId();\n  const input = useRef<HTMLInputElement>(null);\n  const [own, setOwn] = useState<File[]>([]);\n  const [over, setOver] = useState(false);\n  const [problems, setProblems] = useState<string[]>([]);\n  const current = files ? [...files] : own;\n  const set = (next: File[]) => {\n    if (!files) setOwn(next);\n    onFilesChange?.(next);\n  };\n  const add = (list: FileList | null) => {\n    if (!list) return;\n    const refused: string[] = [];\n    const taken: File[] = [];\n    for (const file of Array.from(list)) {\n      if (!accepts(file, accept)) refused.push(`${file.name}: this type is not accepted.`);\n      else if (maxSize && file.size > maxSize) refused.push(`${file.name}: larger than ${size(maxSize)}.`);\n      else if (current.length + taken.length >= maxFiles) refused.push(`${file.name}: at most ${maxFiles} files.`);\n      else taken.push(file);\n    }\n    setProblems(refused);\n    set(multiple ? [...current, ...taken] : taken.slice(0, 1));\n  };\n  const onDrop = (event: DragEvent<HTMLLabelElement>) => {\n    event.preventDefault();\n    setOver(false);\n    add(event.dataTransfer.files);\n  };\n  return (\n    <div data-slot=\"file-dropzone\" className={cn(\"grid w-full gap-3\", className)}>\n      <label\n        htmlFor={id}\n        onDragOver={(event) => {\n          event.preventDefault();\n          setOver(true);\n        }}\n        onDragLeave={() => setOver(false)}\n        onDrop={onDrop}\n        className={cn(\n          \"flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-input px-6 py-8 text-center transition-colors duration-150 has-[input:focus-visible]:border-ring has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/40\",\n          over ? \"border-foreground bg-muted\" : \"hover:bg-muted/50\",\n        )}\n      >\n        <span className=\"grid size-10 place-items-center rounded-full border border-border bg-background\">\n          <IconUpload size={18} />\n        </span>\n        <span className=\"text-sm font-medium\">{over ? \"Drop to add\" : label}</span>\n        <span className=\"text-xs text-muted-foreground\">Drag files here or click to choose{hint ? `. ${hint}` : \"\"}</span>\n        <input ref={input} id={id} name={name} type=\"file\" accept={accept} multiple={multiple} className=\"sr-only\" onChange={(event) => { add(event.target.files); event.target.value = \"\"; }} />\n      </label>\n      {problems.length ? (\n        <ul role=\"status\" className=\"grid gap-1 text-xs text-destructive\">\n          {problems.map((problem) => (\n            <li key={problem}>{problem}</li>\n          ))}\n        </ul>\n      ) : null}\n      {current.length ? (\n        <ul className=\"grid gap-2\" aria-label=\"Chosen files\">\n          {current.map((file, index) => (\n            <li key={`${file.name}-${index}`} className=\"flex items-center gap-3 rounded-lg border border-border px-3 py-2 text-sm\">\n              <IconFile size={16} className=\"shrink-0 text-muted-foreground\" />\n              <span className=\"min-w-0 flex-1 truncate\">{file.name}</span>\n              <span className=\"text-xs text-muted-foreground tabular-nums\">{size(file.size)}</span>\n              <button type=\"button\" aria-label={`Remove ${file.name}`} onClick={() => set(current.filter((_, at) => at !== index))} className=\"grid size-6 place-items-center rounded text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n                <IconClose size={14} />\n              </button>\n            </li>\n          ))}\n        </ul>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/file-dropzone.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "A real file input underneath: keyboard and screen readers get the native control.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

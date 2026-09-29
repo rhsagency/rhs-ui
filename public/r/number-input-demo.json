@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-input-demo",
+  "title": "Number Input demo",
+  "description": "A working preview of Number Input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/number-input.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/number-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { NumberInput } from \"@rhs-ui/primitives/number-input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [seats, setSeats] = useState(3);\n  return (\n    <div className=\"grid w-full max-w-xs gap-6\">\n      <div className=\"grid gap-2\">\n        <Label htmlFor=\"seats\">Seats</Label>\n        <NumberInput id=\"seats\" min={1} max={10} value={seats} onValueChange={setSeats} />\n        <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n          {seats} of 10 seats. {10 - seats} left on this plan.\n        </p>\n      </div>\n      <div className=\"grid gap-2\">\n        <Label htmlFor=\"budget\">Monthly budget</Label>\n        <NumberInput id=\"budget\" className=\"w-44\" min={0} step={50} defaultValue={1200} format={{ style: \"currency\", currency: \"EUR\", maximumFractionDigits: 0 }} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-demo",
+  "title": "Form Field demo",
+  "description": "A working preview of Form Field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/form-field.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/form-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type FormEvent } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { FormControl, FormDescription, FormField, FormLabel } from \"@rhs-ui/primitives/form-field\";\nimport { Input } from \"@rhs-ui/primitives/input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [error, setError] = useState<string | null>(null);\n  const [sent, setSent] = useState(false);\n  const submit = (event: FormEvent<HTMLFormElement>) => {\n    event.preventDefault();\n    const slug = String(new FormData(event.currentTarget).get(\"slug\") ?? \"\");\n    const problem = !slug ? \"Choose an address for the workspace.\" : /^[a-z0-9-]{3,}$/.test(slug) ? null : \"Use at least three lower-case letters, digits or hyphens.\";\n    setError(problem);\n    setSent(!problem);\n  };\n  return (\n    <form onSubmit={submit} noValidate className=\"grid w-full max-w-sm gap-4\">\n      <FormField error={error} described>\n        <FormLabel>Workspace address</FormLabel>\n        <FormControl>\n          <Input name=\"slug\" defaultValue=\"North Wind\" autoComplete=\"off\" />\n        </FormControl>\n        <FormDescription>rhsui.com/w/your-address. You can change it later.</FormDescription>\n      </FormField>\n      <Button type=\"submit\" className=\"justify-self-start\">\n        Create workspace\n      </Button>\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {sent ? \"Created. Not really: this is a preview.\" : \"Submit to see the error wiring.\"}\n      </p>\n    </form>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

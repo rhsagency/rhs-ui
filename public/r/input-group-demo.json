@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-demo",
+  "title": "Input Group demo",
+  "description": "A working preview of Input Group.",
+  "registryDependencies": [
+    "https://rhsui.com/r/input-group.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/input-group-demo.tsx",
+      "content": "import { IconAtSign, IconGlobe } from \"@rhs-ui/icons\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@rhs-ui/primitives/input-group\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-sm gap-5\">\n      <div className=\"grid gap-2\">\n        <Label htmlFor=\"site\">Website</Label>\n        <InputGroup>\n          <InputGroupAddon>\n            <IconGlobe /> https://\n          </InputGroupAddon>\n          <InputGroupInput id=\"site\" placeholder=\"studio.example\" />\n        </InputGroup>\n      </div>\n      <div className=\"grid gap-2\">\n        <Label htmlFor=\"price\">Price</Label>\n        <InputGroup>\n          <InputGroupAddon>EUR</InputGroupAddon>\n          <InputGroupInput id=\"price\" inputMode=\"decimal\" defaultValue=\"149\" />\n          <InputGroupAddon>one-time</InputGroupAddon>\n        </InputGroup>\n      </div>\n      <div className=\"grid gap-2\">\n        <Label htmlFor=\"handle\">Handle</Label>\n        <InputGroup>\n          <InputGroupAddon>\n            <IconAtSign />\n          </InputGroupAddon>\n          <InputGroupInput id=\"handle\" defaultValue=\"ines\" />\n        </InputGroup>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-input",
+  "title": "Search Input",
+  "description": "A search field with a magnifier, a clear button, Escape to clear and an optional key hint.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/kbd.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/search-input.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState, type ComponentProps } from \"react\";\n\nimport { IconClose, IconSearch } from \"@rhs-ui/icons\";\nimport { Kbd } from \"@rhs-ui/primitives/kbd\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SearchInputProps extends Omit<ComponentProps<\"input\">, \"type\" | \"onChange\"> {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  /** A key hint shown while the field is empty, e.g. \"/\" or \"⌘K\". Display only: bind the key yourself. */\n  shortcut?: string;\n}\n\n/**\n * A search field: magnifier in front, a clear button once there is text, and\n * Escape clears it too. Type \"search\" so browsers and screen readers know it.\n * Give it a label, visible or as aria-label.\n */\nexport function SearchInput({ value, defaultValue = \"\", onValueChange, shortcut, className, onKeyDown, ...props }: SearchInputProps) {\n  const [own, setOwn] = useState(defaultValue);\n  const current = value ?? own;\n  const input = useRef<HTMLInputElement>(null);\n  const set = (next: string) => {\n    if (value === undefined) setOwn(next);\n    onValueChange?.(next);\n  };\n  return (\n    <div data-slot=\"search-input\" className={cn(\"relative flex h-9 w-full min-w-0 items-center\", className)}>\n      <IconSearch size={16} className=\"pointer-events-none absolute left-3 text-muted-foreground\" />\n      <input\n        ref={input}\n        type=\"search\"\n        value={current}\n        onChange={(event) => set(event.target.value)}\n        onKeyDown={(event) => {\n          if (event.key === \"Escape\" && current) {\n            event.preventDefault();\n            set(\"\");\n          }\n          onKeyDown?.(event);\n        }}\n        className=\"h-full w-full min-w-0 rounded-md border border-input bg-background pr-9 pl-9 text-sm shadow-xs transition-[border-color,box-shadow] duration-150 outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40 [&::-webkit-search-cancel-button]:appearance-none\"\n        {...props}\n      />\n      {current ? (\n        <button\n          type=\"button\"\n          aria-label=\"Clear search\"\n          onClick={() => {\n            set(\"\");\n            input.current?.focus();\n          }}\n          className=\"absolute right-1.5 grid size-6 place-items-center rounded text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n        >\n          <IconClose size={14} />\n        </button>\n      ) : shortcut ? (\n        <Kbd className=\"pointer-events-none absolute right-2\">{shortcut}</Kbd>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/search-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "Give it a label, visible or as aria-label. The shortcut hint is display only: bind the key yourself.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

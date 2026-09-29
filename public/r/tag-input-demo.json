@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag-input-demo",
+  "title": "Tag Input demo",
+  "description": "A working preview of Tag Input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/tag-input.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/tag-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { TagInput } from \"@rhs-ui/primitives/tag-input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [emails, setEmails] = useState<string[]>([\"ines@orbit.example\"]);\n  return (\n    <div className=\"grid w-full max-w-md gap-2\">\n      <Label htmlFor=\"invite\">Invite by email</Label>\n      <TagInput\n        id=\"invite\"\n        value={emails}\n        onValueChange={setEmails}\n        max={5}\n        placeholder=\"name@company.com\"\n        validate={(tag) => (/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(tag) ? undefined : `${tag} is not an email address.`)}\n      />\n      <p className=\"text-xs text-muted-foreground\">\n        {emails.length} of 5 invites. Press Enter or type a comma after each address.\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-demo",
+  "title": "Date Picker demo",
+  "description": "A working preview of Date Picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/date-picker.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/date-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { DatePicker } from \"@rhs-ui/primitives/date-picker\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nexport default function Demo(): React.JSX.Element {\n  const [launch, setLaunch] = useState<Date | null>(null);\n  return (\n    <div className=\"grid w-full max-w-xs gap-2\">\n      <Label htmlFor=\"launch\">Launch date</Label>\n      <DatePicker id=\"launch\" name=\"launch\" value={launch} onValueChange={setLaunch} min={new Date(2026, 9, 1)} isDisabled={(date) => date.getDay() === 0 || date.getDay() === 6} />\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {launch ? \"We will remind the team a week before.\" : \"Weekdays only.\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

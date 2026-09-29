@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-input",
+  "title": "OTP Input",
+  "description": "A one-time code in boxes: typing moves on, Backspace moves back, pasting fills them all.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/otp-input.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState, type ClipboardEvent, type KeyboardEvent } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface OtpInputProps {\n  /** Number of characters, 6 by default. */\n  length?: number;\n  value?: string;\n  onValueChange?: (value: string) => void;\n  /** Called once every box is filled, with the whole code. */\n  onComplete?: (code: string) => void;\n  /** Digits only (the default) or letters and digits. */\n  mode?: \"numeric\" | \"alphanumeric\";\n  /** Draw a gap after this many boxes, e.g. 3 for \"123 456\". */\n  groupAfter?: number;\n  /** The field's name, for a plain form submit: the whole code is in one hidden input. */\n  name?: string;\n  label?: string;\n  disabled?: boolean;\n  invalid?: boolean;\n  className?: string;\n}\n\n/**\n * A one-time code in separate boxes: typing moves on, Backspace moves back,\n * pasting a whole code fills every box, and the first box asks the phone to\n * offer the code from the message (autocomplete=\"one-time-code\").\n */\nexport function OtpInput({ length = 6, value, onValueChange, onComplete, mode = \"numeric\", groupAfter, name, label = \"Verification code\", disabled, invalid, className }: OtpInputProps) {\n  const [own, setOwn] = useState(\"\");\n  const code = (value ?? own).slice(0, length);\n  const boxes = useRef<(HTMLInputElement | null)[]>([]);\n  const allowed = mode === \"numeric\" ? /\\d/ : /[a-z\\d]/i;\n  const set = (next: string) => {\n    const clean = [...next].filter((char) => allowed.test(char)).join(\"\").slice(0, length).toUpperCase();\n    if (value === undefined) setOwn(clean);\n    onValueChange?.(clean);\n    if (clean.length === length) onComplete?.(clean);\n    return clean;\n  };\n  const focus = (index: number) => boxes.current[Math.max(0, Math.min(length - 1, index))]?.focus();\n  const onKey = (index: number, event: KeyboardEvent<HTMLInputElement>) => {\n    if (event.key === \"Backspace\") {\n      event.preventDefault();\n      if (code[index]) set(code.slice(0, index) + code.slice(index + 1));\n      else if (index > 0) {\n        set(code.slice(0, index - 1) + code.slice(index));\n        focus(index - 1);\n      }\n    } else if (event.key === \"ArrowLeft\") focus(index - 1);\n    else if (event.key === \"ArrowRight\") focus(index + 1);\n  };\n  const onPaste = (event: ClipboardEvent<HTMLInputElement>) => {\n    event.preventDefault();\n    focus(set(event.clipboardData.getData(\"text\")).length);\n  };\n  return (\n    <div data-slot=\"otp-input\" role=\"group\" aria-label={label} className={cn(\"flex items-center gap-2\", className)}>\n      {Array.from({ length }, (_, index) => (\n        <span key={index} className={cn(\"contents\", groupAfter && index === groupAfter && \"[&>input]:ml-3\")}>\n          <input\n            ref={(element) => {\n              boxes.current[index] = element;\n            }}\n            aria-label={`${label}, character ${index + 1} of ${length}`}\n            aria-invalid={invalid || undefined}\n            inputMode={mode === \"numeric\" ? \"numeric\" : \"text\"}\n            autoComplete={index === 0 ? \"one-time-code\" : \"off\"}\n            maxLength={length}\n            disabled={disabled}\n            value={code[index] ?? \"\"}\n            onFocus={(event) => event.currentTarget.select()}\n            onChange={(event) => {\n              const typed = event.target.value.slice(-1);\n              if (event.target.value.length > 1 && index === 0) {\n                focus(set(event.target.value).length);\n                return;\n              }\n              if (!allowed.test(typed)) return;\n              set(code.slice(0, index) + typed + code.slice(index + 1));\n              focus(index + 1);\n            }}\n            onKeyDown={(event) => onKey(index, event)}\n            onPaste={onPaste}\n            className=\"size-11 rounded-md border border-input bg-background text-center font-mono text-lg shadow-xs transition-[border-color,box-shadow] duration-150 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive disabled:opacity-50\"\n          />\n        </span>\n      ))}\n      {name ? <input type=\"hidden\" name={name} value={code} /> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/otp-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.5.0",
+    "since": "0.5.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "forms"
+  },
+  "docs": "The first box carries autocomplete=\"one-time-code\", so phones offer the code from the message.",
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

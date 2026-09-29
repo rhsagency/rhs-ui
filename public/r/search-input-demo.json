@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-input-demo",
+  "title": "Search Input demo",
+  "description": "A working preview of Search Input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/search-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/search-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SearchInput } from \"@rhs-ui/primitives/search-input\";\n\nconst COMPONENTS = [\"Accordion\", \"Alert\", \"Avatar\", \"Badge\", \"Button\", \"Calendar\", \"Card\", \"Checkbox\", \"Combobox\", \"Dialog\", \"Menubar\", \"Popover\", \"Select\", \"Tabs\", \"Toast\"];\n\nexport default function Demo(): React.JSX.Element {\n  const [query, setQuery] = useState(\"\");\n  const found = COMPONENTS.filter((name) => name.toLowerCase().includes(query.trim().toLowerCase()));\n  return (\n    <div className=\"grid w-full max-w-sm gap-3\">\n      <SearchInput aria-label=\"Search components\" placeholder=\"Search components\" shortcut=\"/\" value={query} onValueChange={setQuery} />\n      <p className=\"text-xs text-muted-foreground\" aria-live=\"polite\">\n        {found.length} {found.length === 1 ? \"component\" : \"components\"}\n      </p>\n      <ul className=\"flex flex-wrap gap-1.5\">\n        {found.map((name) => (\n          <li key={name} className=\"rounded-md border border-border px-2 py-1 text-xs\">\n            {name}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
