@@ -24,7 +24,7 @@
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/build-registry.mjs",
     "check:registry": "node scripts/check-registry.mjs",
-    "check:built": "node scripts/build-registry.mjs && git diff --exit-code --stat public/r registry.json README.md",
+    "check:built": "node scripts/check-built.mjs",
     "check": "pnpm typecheck && pnpm icons:check && pnpm check:registry && pnpm test:button && pnpm test:render",
     "icons:generate": "node scripts/icons/generate-animated.mjs",
     "icons:check": "node scripts/icons/generate-animated.mjs --check",
