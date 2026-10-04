@@ -15897,6 +15897,3042 @@
       ]
     },
     {
+      "name": "animated-pizza",
+      "type": "registry:ui",
+      "title": "Animated pizza",
+      "description": "The toppings pop one by one. For menus and food delivery.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPizza",
+        "usage": "<Button variant=\"outline\">\n  <IconPizzaAnimated />\n  Order pizza\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/pizza.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/pizza.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-burger",
+      "type": "registry:ui",
+      "title": "Animated burger",
+      "description": "The burger hops. For fast food and menus.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBurger",
+        "usage": "<Button variant=\"outline\">\n  <IconBurgerAnimated />\n  Menu\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/burger.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/burger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-cake",
+      "type": "registry:ui",
+      "title": "Animated cake",
+      "description": "The flame flickers. For birthdays and celebrations.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCake",
+        "usage": "<Button variant=\"outline\">\n  <IconCakeAnimated />\n  Celebrate\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cake.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cake.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-wine-glass",
+      "type": "registry:ui",
+      "title": "Animated wine glass",
+      "description": "The glass tips a little. For wine lists and bars.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconWineGlass",
+        "usage": "<Button variant=\"outline\">\n  <IconWineGlassAnimated />\n  Wine list\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/wine-glass.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/wine-glass.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-beer",
+      "type": "registry:ui",
+      "title": "Animated beer",
+      "description": "The mug raises a toast. For bars and drinks.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBeer",
+        "usage": "<Button variant=\"outline\">\n  <IconBeerAnimated />\n  Cheers\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/beer.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/beer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-cocktail",
+      "type": "registry:ui",
+      "title": "Animated cocktail",
+      "description": "The glass sways. For bars and happy hours.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCocktail",
+        "usage": "<Button variant=\"outline\">\n  <IconCocktailAnimated />\n  Drinks\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cocktail.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cocktail.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-teacup",
+      "type": "registry:ui",
+      "title": "Animated teacup",
+      "description": "The steam rises. For tea, breaks and cafes.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconTeacup",
+        "usage": "<Button variant=\"outline\">\n  <IconTeacupAnimated />\n  Tea break\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/teacup.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/teacup.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-egg",
+      "type": "registry:ui",
+      "title": "Animated egg",
+      "description": "The egg wobbles. For breakfast and surprises.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconEgg",
+        "usage": "<Button variant=\"outline\">\n  <IconEggAnimated />\n  Breakfast\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/egg.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/egg.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-fish",
+      "type": "registry:ui",
+      "title": "Animated fish",
+      "description": "The fish swims ahead. For seafood and aquariums.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFish",
+        "usage": "<Button variant=\"outline\">\n  <IconFishAnimated />\n  Seafood\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/fish.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/fish.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-carrot",
+      "type": "registry:ui",
+      "title": "Animated carrot",
+      "description": "The carrot shakes its leaves. For vegetables and healthy food.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCarrot",
+        "usage": "<Button variant=\"outline\">\n  <IconCarrotAnimated />\n  Vegetables\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/carrot.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/carrot.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-cherries",
+      "type": "registry:ui",
+      "title": "Animated cherries",
+      "description": "The cherries swing on their stems. For fruit and sweet things.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCherries",
+        "usage": "<Button variant=\"outline\">\n  <IconCherriesAnimated />\n  Fruit\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cherries.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cherries.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-lemon",
+      "type": "registry:ui",
+      "title": "Animated lemon",
+      "description": "The lemon rolls a little. For citrus and fresh.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconLemon",
+        "usage": "<Button variant=\"outline\">\n  <IconLemonAnimated />\n  Fresh\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/lemon.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/lemon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-ice-cream",
+      "type": "registry:ui",
+      "title": "Animated ice cream",
+      "description": "The scoop wobbles on the cone. For desserts and summer.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconIceCream",
+        "usage": "<Button variant=\"outline\">\n  <IconIceCreamAnimated />\n  Dessert\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/ice-cream.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/ice-cream.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-cookie",
+      "type": "registry:ui",
+      "title": "Animated cookie",
+      "description": "The chips pop in turn. For snacks and cookie notices.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCookie",
+        "usage": "<Button variant=\"outline\">\n  <IconCookieAnimated />\n  Cookies\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cookie.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cookie.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-bread",
+      "type": "registry:ui",
+      "title": "Animated bread",
+      "description": "The loaf hops. For bakeries.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBread",
+        "usage": "<Button variant=\"outline\">\n  <IconBreadAnimated />\n  Bakery\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bread.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bread.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-bottle",
+      "type": "registry:ui",
+      "title": "Animated bottle",
+      "description": "The bottle tips. For drinks and refills.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBottle",
+        "usage": "<Button variant=\"outline\">\n  <IconBottleAnimated />\n  Refill\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bottle.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bottle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-chef-hat",
+      "type": "registry:ui",
+      "title": "Animated chef hat",
+      "description": "The hat puffs up. For recipes and kitchens.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconChefHat",
+        "usage": "<Button variant=\"outline\">\n  <IconChefHatAnimated />\n  Recipes\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/chef-hat.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/chef-hat.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-soup",
+      "type": "registry:ui",
+      "title": "Animated soup",
+      "description": "The steam rises. For hot meals and lunch.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSoup",
+        "usage": "<Button variant=\"outline\">\n  <IconSoupAnimated />\n  Lunch\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/soup.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/soup.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-candy",
+      "type": "registry:ui",
+      "title": "Animated candy",
+      "description": "The candy twists. For treats and rewards.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCandy",
+        "usage": "<Button variant=\"outline\">\n  <IconCandyAnimated />\n  Treat\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/candy.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/candy.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-sofa",
+      "type": "registry:ui",
+      "title": "Animated sofa",
+      "description": "The sofa settles. For living rooms and furniture.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSofa",
+        "usage": "<Button variant=\"outline\">\n  <IconSofaAnimated />\n  Furniture\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/sofa.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/sofa.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-armchair",
+      "type": "registry:ui",
+      "title": "Animated armchair",
+      "description": "The chair rocks. For lounges and seating.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconArmchair",
+        "usage": "<Button variant=\"outline\">\n  <IconArmchairAnimated />\n  Seating\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/armchair.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/armchair.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-lamp",
+      "type": "registry:ui",
+      "title": "Animated lamp",
+      "description": "The shade swings. For lighting.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconLamp",
+        "usage": "<Button variant=\"outline\">\n  <IconLampAnimated />\n  Lighting\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/lamp.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/lamp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-door",
+      "type": "registry:ui",
+      "title": "Animated door",
+      "description": "The handle turns. For entrances and sign-in.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconDoor",
+        "usage": "<Button variant=\"outline\">\n  <IconDoorAnimated />\n  Enter\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/door.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/door.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-stairs",
+      "type": "registry:ui",
+      "title": "Animated stairs",
+      "description": "The steps draw upwards. For levels and progress.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconStairs",
+        "usage": "<Button variant=\"outline\">\n  <IconStairsAnimated />\n  Next level\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/stairs.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/stairs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-shower",
+      "type": "registry:ui",
+      "title": "Animated shower",
+      "description": "The water falls in turn. For bathrooms.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconShower",
+        "usage": "<Button variant=\"outline\">\n  <IconShowerAnimated />\n  Bathroom\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/shower.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/shower.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-bathtub",
+      "type": "registry:ui",
+      "title": "Animated bathtub",
+      "description": "The tub settles. For bathrooms and spas.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBathtub",
+        "usage": "<Button variant=\"outline\">\n  <IconBathtubAnimated />\n  Spa\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bathtub.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bathtub.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-washing-machine",
+      "type": "registry:ui",
+      "title": "Animated washing machine",
+      "description": "The drum spins. For laundry.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconWashingMachine",
+        "usage": "<Button variant=\"outline\">\n  <IconWashingMachineAnimated />\n  Laundry\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/washing-machine.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/washing-machine.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-fridge",
+      "type": "registry:ui",
+      "title": "Animated fridge",
+      "description": "The fridge hums. For kitchens and groceries.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFridge",
+        "usage": "<Button variant=\"outline\">\n  <IconFridgeAnimated />\n  Groceries\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/fridge.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/fridge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-oven",
+      "type": "registry:ui",
+      "title": "Animated oven",
+      "description": "The window glows. For baking and cooking.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconOven",
+        "usage": "<Button variant=\"outline\">\n  <IconOvenAnimated />\n  Cooking\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/oven.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/oven.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-fan",
+      "type": "registry:ui",
+      "title": "Animated fan",
+      "description": "The blades turn. For cooling and airflow.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFan",
+        "usage": "<Button variant=\"outline\">\n  <IconFanAnimated />\n  Cooling\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/fan.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/fan.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-mailbox",
+      "type": "registry:ui",
+      "title": "Animated mailbox",
+      "description": "The flag goes up. For new post.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconMailbox",
+        "usage": "<Button variant=\"outline\">\n  <IconMailboxAnimated />\n  New mail\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/mailbox.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/mailbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-hanger",
+      "type": "registry:ui",
+      "title": "Animated hanger",
+      "description": "The hanger swings. For wardrobes and clothing.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconHanger",
+        "usage": "<Button variant=\"outline\">\n  <IconHangerAnimated />\n  Wardrobe\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/hanger.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/hanger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-broom",
+      "type": "registry:ui",
+      "title": "Animated broom",
+      "description": "The broom sweeps. For cleaning up.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBroom",
+        "usage": "<Button variant=\"outline\">\n  <IconBroomAnimated />\n  Clean up\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/broom.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/broom.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-vase",
+      "type": "registry:ui",
+      "title": "Animated vase",
+      "description": "The vase sways. For decor and interiors.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconVase",
+        "usage": "<Button variant=\"outline\">\n  <IconVaseAnimated />\n  Decor\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/vase.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/vase.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-easel",
+      "type": "registry:ui",
+      "title": "Animated easel",
+      "description": "The canvas pops. For art and studios.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconEasel",
+        "usage": "<Button variant=\"outline\">\n  <IconEaselAnimated />\n  Studio\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/easel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/easel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-fence",
+      "type": "registry:ui",
+      "title": "Animated fence",
+      "description": "The posts pop in turn. For gardens and boundaries.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFence",
+        "usage": "<Button variant=\"outline\">\n  <IconFenceAnimated />\n  Garden\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/fence.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/fence.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-garage",
+      "type": "registry:ui",
+      "title": "Animated garage",
+      "description": "The door lines draw. For parking and storage.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconGarage",
+        "usage": "<Button variant=\"outline\">\n  <IconGarageAnimated />\n  Garage\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/garage.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/garage.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-radiator",
+      "type": "registry:ui",
+      "title": "Animated radiator",
+      "description": "The fins warm one by one. For heating.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconRadiator",
+        "usage": "<Button variant=\"outline\">\n  <IconRadiatorAnimated />\n  Heating\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/radiator.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/radiator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-house-window",
+      "type": "registry:ui",
+      "title": "Animated house window",
+      "description": "The window pops. For homes and views.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconHouseWindow",
+        "usage": "<Button variant=\"outline\">\n  <IconHouseWindowAnimated />\n  View\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/house-window.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/house-window.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-file-signature",
+      "type": "registry:ui",
+      "title": "Animated file signature",
+      "description": "The signature writes itself. For contracts and e-signing.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFileSignature",
+        "usage": "<Button variant=\"outline\">\n  <IconFileSignatureAnimated />\n  Sign\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/file-signature.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/file-signature.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-stamp",
+      "type": "registry:ui",
+      "title": "Animated stamp",
+      "description": "The stamp presses down. For approvals.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconStamp",
+        "usage": "<Button variant=\"outline\">\n  <IconStampAnimated />\n  Approve\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/stamp.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/stamp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-safe",
+      "type": "registry:ui",
+      "title": "Animated safe",
+      "description": "The dial turns. For vaults and secure storage.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSafe",
+        "usage": "<Button variant=\"outline\">\n  <IconSafeAnimated />\n  Vault\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/safe.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/safe.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-gold-bars",
+      "type": "registry:ui",
+      "title": "Animated gold bars",
+      "description": "The shine sparkles. For reserves and premium.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconGoldBars",
+        "usage": "<Button variant=\"outline\">\n  <IconGoldBarsAnimated />\n  Reserves\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/gold-bars.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/gold-bars.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-chart-candles",
+      "type": "registry:ui",
+      "title": "Animated chart candles",
+      "description": "The candles grow in turn. For trading charts.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconChartCandles",
+        "usage": "<Button variant=\"outline\">\n  <IconChartCandlesAnimated />\n  Markets\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/chart-candles.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/chart-candles.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-chart-area",
+      "type": "registry:ui",
+      "title": "Animated chart area",
+      "description": "The area line draws. For growth over time.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconChartArea",
+        "usage": "<Button variant=\"outline\">\n  <IconChartAreaAnimated />\n  Trend\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/chart-area.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/chart-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-chart-scatter",
+      "type": "registry:ui",
+      "title": "Animated chart scatter",
+      "description": "The points appear in turn. For correlation and research.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconChartScatter",
+        "usage": "<Button variant=\"outline\">\n  <IconChartScatterAnimated />\n  Insights\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/chart-scatter.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/chart-scatter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-chart-radar",
+      "type": "registry:ui",
+      "title": "Animated chart radar",
+      "description": "The shape inside expands. For skills and comparisons.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconChartRadar",
+        "usage": "<Button variant=\"outline\">\n  <IconChartRadarAnimated />\n  Compare\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/chart-radar.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/chart-radar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-pound",
+      "type": "registry:ui",
+      "title": "Animated pound",
+      "description": "The pound sign hops. For prices in sterling.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPound",
+        "usage": "<Button variant=\"outline\">\n  <IconPoundAnimated />\n  Pay in GBP\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/pound.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/pound.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-yen",
+      "type": "registry:ui",
+      "title": "Animated yen",
+      "description": "The yen sign hops. For prices in yen.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconYen",
+        "usage": "<Button variant=\"outline\">\n  <IconYenAnimated />\n  Pay in JPY\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/yen.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/yen.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-cash-register",
+      "type": "registry:ui",
+      "title": "Animated cash register",
+      "description": "The keys press in turn. For checkout and point of sale.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCashRegister",
+        "usage": "<Button variant=\"outline\">\n  <IconCashRegisterAnimated />\n  Checkout\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/cash-register.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/cash-register.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-atm",
+      "type": "registry:ui",
+      "title": "Animated atm",
+      "description": "The cash slides out. For withdrawals.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconAtm",
+        "usage": "<Button variant=\"outline\">\n  <IconAtmAnimated />\n  Withdraw\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/atm.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/atm.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-office-tower",
+      "type": "registry:ui",
+      "title": "Animated office tower",
+      "description": "The windows light up in turn. For companies and offices.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconOfficeTower",
+        "usage": "<Button variant=\"outline\">\n  <IconOfficeTowerAnimated />\n  Company\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/office-tower.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/office-tower.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-factory",
+      "type": "registry:ui",
+      "title": "Animated factory",
+      "description": "The factory hums. For manufacturing and production.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconFactory",
+        "usage": "<Button variant=\"outline\">\n  <IconFactoryAnimated />\n  Production\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/factory.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/factory.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-warehouse",
+      "type": "registry:ui",
+      "title": "Animated warehouse",
+      "description": "The shelves fill in turn. For stock and storage.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconWarehouse",
+        "usage": "<Button variant=\"outline\">\n  <IconWarehouseAnimated />\n  Stock\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/warehouse.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/warehouse.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-invoice",
+      "type": "registry:ui",
+      "title": "Animated invoice",
+      "description": "The lines write in turn. For invoices and bills.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconInvoice",
+        "usage": "<Button variant=\"outline\">\n  <IconInvoiceAnimated />\n  Invoices\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/invoice.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/invoice.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-growth",
+      "type": "registry:ui",
+      "title": "Animated growth",
+      "description": "The bars grow and the line climbs. For growth.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconGrowth",
+        "usage": "<Button variant=\"outline\">\n  <IconGrowthAnimated />\n  Growth\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/growth.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/growth.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-portfolio",
+      "type": "registry:ui",
+      "title": "Animated portfolio",
+      "description": "The case hops. For jobs and portfolios.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPortfolio",
+        "usage": "<Button variant=\"outline\">\n  <IconPortfolioAnimated />\n  Portfolio\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/portfolio.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/portfolio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-atom",
+      "type": "registry:ui",
+      "title": "Animated atom",
+      "description": "The orbits turn around the nucleus. For science and physics.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconAtom",
+        "usage": "<Button variant=\"outline\">\n  <IconAtomAnimated />\n  Science\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/atom.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/atom.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-dna",
+      "type": "registry:ui",
+      "title": "Animated dna",
+      "description": "The rungs pulse in turn. For biology and genetics.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconDna",
+        "usage": "<Button variant=\"outline\">\n  <IconDnaAnimated />\n  Genetics\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/dna.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/dna.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-microscope",
+      "type": "registry:ui",
+      "title": "Animated microscope",
+      "description": "The tube focuses down. For research and labs.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconMicroscope",
+        "usage": "<Button variant=\"outline\">\n  <IconMicroscopeAnimated />\n  Research\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/microscope.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/microscope.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-telescope",
+      "type": "registry:ui",
+      "title": "Animated telescope",
+      "description": "The tube tilts to the sky. For astronomy and discovery.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconTelescope",
+        "usage": "<Button variant=\"outline\">\n  <IconTelescopeAnimated />\n  Discover\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/telescope.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/telescope.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-planet",
+      "type": "registry:ui",
+      "title": "Animated planet",
+      "description": "The planet tilts in its ring. For space and worlds.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPlanet",
+        "usage": "<Button variant=\"outline\">\n  <IconPlanetAnimated />\n  Explore\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/planet.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/planet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-circuit",
+      "type": "registry:ui",
+      "title": "Animated circuit",
+      "description": "The traces draw. For electronics and hardware.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCircuit",
+        "usage": "<Button variant=\"outline\">\n  <IconCircuitAnimated />\n  Hardware\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/circuit.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/circuit.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-solar-panel",
+      "type": "registry:ui",
+      "title": "Animated solar panel",
+      "description": "The panel catches the light. For solar and energy.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSolarPanel",
+        "usage": "<Button variant=\"outline\">\n  <IconSolarPanelAnimated />\n  Energy\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/solar-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/solar-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-wind-turbine",
+      "type": "registry:ui",
+      "title": "Animated wind turbine",
+      "description": "The blades turn. For wind energy.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconWindTurbine",
+        "usage": "<Button variant=\"outline\">\n  <IconWindTurbineAnimated />\n  Wind energy\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/wind-turbine.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/wind-turbine.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-test-tube",
+      "type": "registry:ui",
+      "title": "Animated test tube",
+      "description": "The tube sloshes. For experiments.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconTestTube",
+        "usage": "<Button variant=\"outline\">\n  <IconTestTubeAnimated />\n  Experiment\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/test-tube.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/test-tube.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-radiation",
+      "type": "registry:ui",
+      "title": "Animated radiation",
+      "description": "The symbol turns. For hazards and warnings.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconRadiation",
+        "usage": "<Button variant=\"outline\">\n  <IconRadiationAnimated />\n  Hazard\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/radiation.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/radiation.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-infinity",
+      "type": "registry:ui",
+      "title": "Animated infinity",
+      "description": "The loop is drawn. For unlimited and forever.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconInfinity",
+        "usage": "<Button variant=\"outline\">\n  <IconInfinityAnimated />\n  Unlimited\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/infinity.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/infinity.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-sigma",
+      "type": "registry:ui",
+      "title": "Animated sigma",
+      "description": "The sigma draws. For sums and formulas.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSigma",
+        "usage": "<Button variant=\"outline\">\n  <IconSigmaAnimated />\n  Sum\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/sigma.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/sigma.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-pi",
+      "type": "registry:ui",
+      "title": "Animated pi",
+      "description": "The pi hops. For maths.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPi",
+        "usage": "<Button variant=\"outline\">\n  <IconPiAnimated />\n  Maths\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/pi.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/pi.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-brain",
+      "type": "registry:ui",
+      "title": "Animated brain",
+      "description": "The brain pulses. For thinking and AI.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBrain",
+        "usage": "<Button variant=\"outline\">\n  <IconBrainAnimated />\n  Thinking\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/brain.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/brain.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-virus",
+      "type": "registry:ui",
+      "title": "Animated virus",
+      "description": "The virus turns. For health and infection.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconVirus",
+        "usage": "<Button variant=\"outline\">\n  <IconVirusAnimated />\n  Infection\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/virus.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/virus.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-antenna",
+      "type": "registry:ui",
+      "title": "Animated antenna",
+      "description": "The waves send out. For broadcast and signal.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconAntenna",
+        "usage": "<Button variant=\"outline\">\n  <IconAntennaAnimated />\n  Broadcast\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/antenna.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/antenna.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-drone",
+      "type": "registry:ui",
+      "title": "Animated drone",
+      "description": "The drone hovers. For aerial and delivery.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconDrone",
+        "usage": "<Button variant=\"outline\">\n  <IconDroneAnimated />\n  Fly\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/drone.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/drone.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-orbit",
+      "type": "registry:ui",
+      "title": "Animated orbit",
+      "description": "The satellite circles. For orbits and cycles.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconOrbit",
+        "usage": "<Button variant=\"outline\">\n  <IconOrbitAnimated />\n  Cycle\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/orbit.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/orbit.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-magnifier",
+      "type": "registry:ui",
+      "title": "Animated magnifier",
+      "description": "The lens glints. For inspecting detail.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconMagnifier",
+        "usage": "<Button variant=\"outline\">\n  <IconMagnifierAnimated />\n  Inspect\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/magnifier.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/magnifier.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-hammer",
+      "type": "registry:ui",
+      "title": "Animated hammer",
+      "description": "The hammer strikes. For building and fixing.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconHammer",
+        "usage": "<Button variant=\"outline\">\n  <IconHammerAnimated />\n  Build\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/hammer.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/hammer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-screwdriver",
+      "type": "registry:ui",
+      "title": "Animated screwdriver",
+      "description": "The screwdriver turns. For repairs.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconScrewdriver",
+        "usage": "<Button variant=\"outline\">\n  <IconScrewdriverAnimated />\n  Repair\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/screwdriver.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/screwdriver.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-drill",
+      "type": "registry:ui",
+      "title": "Animated drill",
+      "description": "The drill whirs. For power tools.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconDrill",
+        "usage": "<Button variant=\"outline\">\n  <IconDrillAnimated />\n  Drill\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/drill.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/drill.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-paint-roller",
+      "type": "registry:ui",
+      "title": "Animated paint roller",
+      "description": "The roller rolls. For decorating and themes.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconPaintRoller",
+        "usage": "<Button variant=\"outline\">\n  <IconPaintRollerAnimated />\n  Paint\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/paint-roller.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/paint-roller.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-hard-hat",
+      "type": "registry:ui",
+      "title": "Animated hard hat",
+      "description": "The hat tips. For construction and safety.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconHardHat",
+        "usage": "<Button variant=\"outline\">\n  <IconHardHatAnimated />\n  Safety\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/hard-hat.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/hard-hat.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-toolbox",
+      "type": "registry:ui",
+      "title": "Animated toolbox",
+      "description": "The box hops. For tools and kits.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconToolbox",
+        "usage": "<Button variant=\"outline\">\n  <IconToolboxAnimated />\n  Tools\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/toolbox.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/toolbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-ladder",
+      "type": "registry:ui",
+      "title": "Animated ladder",
+      "description": "The rungs draw upwards. For climbing and levels.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconLadder",
+        "usage": "<Button variant=\"outline\">\n  <IconLadderAnimated />\n  Climb\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/ladder.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/ladder.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-bricks",
+      "type": "registry:ui",
+      "title": "Animated bricks",
+      "description": "The bricks pop in turn. For building blocks.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBricks",
+        "usage": "<Button variant=\"outline\">\n  <IconBricksAnimated />\n  Build\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bricks.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bricks.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-crane",
+      "type": "registry:ui",
+      "title": "Animated crane",
+      "description": "The hook lowers. For construction sites.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconCrane",
+        "usage": "<Button variant=\"outline\">\n  <IconCraneAnimated />\n  Construction\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/crane.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/crane.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-shovel",
+      "type": "registry:ui",
+      "title": "Animated shovel",
+      "description": "The shovel digs. For gardening and digging.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconShovel",
+        "usage": "<Button variant=\"outline\">\n  <IconShovelAnimated />\n  Dig\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/shovel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/shovel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-nut",
+      "type": "registry:ui",
+      "title": "Animated nut",
+      "description": "The nut turns. For hardware and settings.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconNut",
+        "usage": "<Button variant=\"outline\">\n  <IconNutAnimated />\n  Hardware\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/nut.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/nut.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-spray-can",
+      "type": "registry:ui",
+      "title": "Animated spray can",
+      "description": "The spray mists out. For paint and graffiti.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSprayCan",
+        "usage": "<Button variant=\"outline\">\n  <IconSprayCanAnimated />\n  Spray\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/spray-can.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/spray-can.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-bucket",
+      "type": "registry:ui",
+      "title": "Animated bucket",
+      "description": "The bucket swings. For cleaning and water.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBucket",
+        "usage": "<Button variant=\"outline\">\n  <IconBucketAnimated />\n  Clean\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/bucket.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/bucket.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-traffic-cone",
+      "type": "registry:ui",
+      "title": "Animated traffic cone",
+      "description": "The cone wobbles. For roadworks and caution.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconTrafficCone",
+        "usage": "<Button variant=\"outline\">\n  <IconTrafficConeAnimated />\n  Under construction\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/traffic-cone.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/traffic-cone.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-blueprint",
+      "type": "registry:ui",
+      "title": "Animated blueprint",
+      "description": "The plan draws. For architecture and plans.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconBlueprint",
+        "usage": "<Button variant=\"outline\">\n  <IconBlueprintAnimated />\n  Plans\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/blueprint.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/blueprint.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-spirit-level",
+      "type": "registry:ui",
+      "title": "Animated spirit level",
+      "description": "The bubble finds the middle. For alignment.",
+      "categories": [
+        "icons",
+        "animated"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.5.0",
+        "since": "0.5.0",
+        "status": "stable",
+        "preview": "inline",
+        "motion": "trigger",
+        "glyph": "IconSpiritLevel",
+        "usage": "<Button variant=\"outline\">\n  <IconSpiritLevelAnimated />\n  Align\n</Button>",
+        "generated": true,
+        "family": "icons"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/icons/animated/spirit-level.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/icons/animated/spirit-level.tsx"
+        }
+      ]
+    },
+    {
       "name": "product-card",
       "type": "registry:component",
       "title": "Product card",
