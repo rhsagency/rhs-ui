@@ -573,6 +573,204 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "light-bulb",
+      "type": "registry:component",
+      "title": "Light bulb",
+      "description": "A translucent bulb with a visible filament, threaded metal base and contact tip.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/light-bulb.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/light-bulb.ts"
+        },
+        {
+          "path": "registry/models/assets/lightBulb.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/lightBulb.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "key-ring",
+      "type": "registry:component",
+      "title": "Key ring",
+      "description": "Two individually cut satin keys suspended from a split chrome ring.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/key-ring.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/key-ring.ts"
+        },
+        {
+          "path": "registry/models/assets/keyRing.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/keyRing.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "paper-plane",
+      "type": "registry:component",
+      "title": "Paper plane",
+      "description": "A sharply folded paper aircraft with a deep central keel and a fine metallic crease.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/paper-plane.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/paper-plane.ts"
+        },
+        {
+          "path": "registry/models/assets/paperPlane.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/paperPlane.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "hourglass",
+      "type": "registry:component",
+      "title": "Hourglass",
+      "description": "A glass hourglass with flowing porcelain sand held between turned metal plates.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/hourglass.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/hourglass.ts"
+        },
+        {
+          "path": "registry/models/assets/hourglass.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/hourglass.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "coffee-cup",
+      "type": "registry:component",
+      "title": "Coffee cup",
+      "description": "A hollow ceramic cup with a swept handle, dark coffee and a turned saucer.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/coffee-cup.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/coffee-cup.ts"
+        },
+        {
+          "path": "registry/models/assets/coffeeCup.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/coffeeCup.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "padlock",
+      "type": "registry:component",
+      "title": "Padlock",
+      "description": "A rounded satin lock body with a swept chrome shackle and recessed keyhole.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/padlock.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/padlock.ts"
+        },
+        {
+          "path": "registry/models/assets/padlock.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/assets/padlock.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
     }
   ]
 }
