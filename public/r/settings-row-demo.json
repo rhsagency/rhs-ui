@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "settings-row-demo",
+  "title": "Settings row demo",
+  "description": "A working preview of Settings row.",
+  "registryDependencies": [
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/settings-row.json",
+    "https://rhsui.com/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/settings-row-demo.tsx",
+      "content": "\"use client\";\n\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { SettingsRow } from \"@rhs-ui/primitives/settings-row\";\nimport { Switch } from \"@rhs-ui/primitives/switch\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl divide-y divide-border p-8\">\n      <SettingsRow label=\"Display name\" htmlFor=\"sr-name\" description=\"Shown on comments and invoices.\">\n        <Input id=\"sr-name\" defaultValue=\"Anouk de Wit\" className=\"sm:w-64\" />\n      </SettingsRow>\n      <SettingsRow label=\"Weekly summary\" htmlFor=\"sr-summary\" description=\"A Monday email with what changed.\">\n        <Switch id=\"sr-summary\" defaultChecked />\n      </SettingsRow>\n      <SettingsRow label=\"Two-step sign-in\" htmlFor=\"sr-2fa\" description=\"Ask for a code from your phone.\">\n        <Switch id=\"sr-2fa\" />\n      </SettingsRow>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

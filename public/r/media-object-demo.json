@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "media-object-demo",
+  "title": "Media object demo",
+  "description": "A working preview of Media object.",
+  "registryDependencies": [
+    "https://rhsui.com/r/avatar.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/media-object.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/media-object-demo.tsx",
+      "content": "import { Avatar, AvatarFallback } from \"@rhs-ui/primitives/avatar\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { MediaObject } from \"@rhs-ui/primitives/media-object\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-xl space-y-6 p-8\">\n      <MediaObject media={<Avatar><AvatarFallback>SH</AvatarFallback></Avatar>} title=\"Sara Haddad\" aside={<span className=\"text-xs text-muted-foreground\">2 h ago</span>}>\n        Moved the launch to Thursday so the new pricing page ships with it.\n      </MediaObject>\n      <MediaObject align=\"center\" media={<span className=\"inline-flex size-10 items-center justify-center rounded-lg bg-muted text-xs font-semibold\">PDF</span>} title=\"Q1 report.pdf\" aside={<Button size=\"sm\" variant=\"outline\">Open</Button>}>\n        2.4 MB, shared with the team\n      </MediaObject>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

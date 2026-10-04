@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bottom-nav-demo",
+  "title": "Bottom nav demo",
+  "description": "A working preview of Bottom nav.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/bottom-nav.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/bottom-nav-demo.tsx",
+      "content": "import { IconHome, IconSearch, IconCart, IconUser } from \"@rhs-ui/icons\";\nimport { BottomNav } from \"@rhs-ui/primitives/bottom-nav\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto p-8\">\n      <div className=\"relative mx-auto h-[26rem] w-72 overflow-hidden rounded-[2rem] border border-border bg-muted/40\">\n        <div className=\"space-y-3 p-5\">\n          <div className=\"h-32 rounded-2xl bg-muted\" />\n          <div className=\"h-4 w-2/3 rounded bg-muted\" />\n          <div className=\"h-4 w-1/2 rounded bg-muted\" />\n        </div>\n        <BottomNav\n          className=\"absolute md:block\"\n          current=\"#home\"\n          items={[\n            { href: \"#home\", label: \"Home\", icon: <IconHome className=\"size-5\" /> },\n            { href: \"#search\", label: \"Search\", icon: <IconSearch className=\"size-5\" /> },\n            { href: \"#bag\", label: \"Bag\", icon: <IconCart className=\"size-5\" />, badge: 2 },\n            { href: \"#account\", label: \"Account\", icon: <IconUser className=\"size-5\" /> },\n          ]}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

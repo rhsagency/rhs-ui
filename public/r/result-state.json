@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "result-state",
+  "title": "Result state",
+  "description": "The end of an action, in a panel: done (a check, what happened, what is next) or failed (what went wrong in plain words, retry, and a reference for support).",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/result-state.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { IconCheck, IconRefresh, IconWarning } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ResultStateProps {\n  /** A finished action, or one that failed. */\n  tone: \"success\" | \"error\";\n  title: string;\n  description?: string;\n  /** For an error: what someone can do about it. */\n  onRetry?: () => void;\n  retryLabel?: string;\n  /** Extra actions: \"Back to orders\", \"Contact support\". */\n  actions?: ReactNode;\n  /** A reference people can quote to support. */\n  reference?: string;\n  className?: string;\n}\n\n/**\n * The end of an action, in a panel: done (a check, what happened, what is\n * next) or failed (what went wrong in plain words, retry, and a reference\n * for support). Never a dead end; there is always a way on.\n */\nexport function ResultState({ tone, title, description, onRetry, retryLabel = \"Try again\", actions, reference, className }: ResultStateProps) {\n  return (\n    <section data-slot=\"result-state\" data-tone={tone} role={tone === \"error\" ? \"alert\" : \"status\"} className={cn(\"mx-auto flex max-w-md flex-col items-center px-6 py-12 text-center\", className)}>\n      <span className={cn(\"inline-flex size-12 items-center justify-center rounded-full [&_svg]:size-5\", tone === \"success\" ? \"bg-foreground text-background\" : \"bg-destructive/12 text-destructive\")}>\n        {tone === \"success\" ? <IconCheck /> : <IconWarning />}\n      </span>\n      <h3 className=\"mt-5 text-xl font-medium tracking-[-0.02em]\">{title}</h3>\n      {description ? <p className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">{description}</p> : null}\n      <div className=\"mt-6 flex flex-wrap justify-center gap-2\">\n        {onRetry ? (\n          <button type=\"button\" onClick={onRetry} className=\"inline-flex h-9 items-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground outline-none hover:bg-primary/90 focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\"><IconRefresh />{retryLabel}</button>\n        ) : null}\n        {actions}\n      </div>\n      {reference ? <p className=\"mt-6 font-mono text-xs text-muted-foreground\">Reference {reference}</p> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/result-state.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

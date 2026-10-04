@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section-heading",
+  "title": "Section heading",
+  "description": "The heading every section needs, in one place: eyebrow, title, a line of description and an optional action, left or centred.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/section-heading.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface SectionHeadingProps {\n  eyebrow?: string;\n  title: string;\n  description?: string;\n  /** A link or button on the right: \"View all\". */\n  action?: ReactNode;\n  align?: \"left\" | \"center\";\n  /** Heading level: h2 for page sections, h3 inside a section. */\n  as?: \"h2\" | \"h3\";\n  className?: string;\n}\n\n/**\n * The heading every section needs, in one place: eyebrow, title, a line of\n * description and an optional action, left or centred. Keeps the rhythm of\n * a page consistent instead of hand-tuned per section.\n */\nexport function SectionHeading({ eyebrow, title, description, action, align = \"left\", as: Tag = \"h2\", className }: SectionHeadingProps) {\n  const centered = align === \"center\";\n  return (\n    <header data-slot=\"section-heading\" className={cn(\"flex flex-wrap items-end gap-4\", centered ? \"flex-col items-center text-center\" : \"justify-between\", className)}>\n      <div className={cn(\"max-w-2xl\", centered && \"mx-auto\")}>\n        {eyebrow ? <p className=\"mb-3 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n        <Tag className={cn(\"font-medium tracking-[-.035em] text-balance\", Tag === \"h2\" ? \"text-3xl sm:text-4xl\" : \"text-xl sm:text-2xl\")}>{title}</Tag>\n        {description ? <p className=\"mt-3 text-base leading-relaxed text-pretty text-muted-foreground\">{description}</p> : null}\n      </div>\n      {action ? <div className=\"shrink-0 text-sm\">{action}</div> : null}\n    </header>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/section-heading.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

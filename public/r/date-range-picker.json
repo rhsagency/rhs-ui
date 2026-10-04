@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-picker",
+  "title": "Date range picker",
+  "description": "Two dates in one field: quick presets on the left, a start and an end calendar beside them, and the end can never fall before the start.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/calendar.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/date-range-picker.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCalendar } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Calendar } from \"@rhs-ui/primitives/calendar\";\nimport { fieldSurface } from \"@rhs-ui/primitives/input\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface DateRange {\n  from: Date | null;\n  to: Date | null;\n}\n\nexport interface DateRangePreset {\n  label: string;\n  /** Builds the range from today. */\n  range: (today: Date) => DateRange;\n}\n\nconst day = (date: Date, offset: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + offset);\n\nexport const DEFAULT_RANGE_PRESETS: readonly DateRangePreset[] = [\n  { label: \"Last 7 days\", range: (today) => ({ from: day(today, -6), to: today }) },\n  { label: \"Last 30 days\", range: (today) => ({ from: day(today, -29), to: today }) },\n  { label: \"This month\", range: (today) => ({ from: new Date(today.getFullYear(), today.getMonth(), 1), to: today }) },\n  { label: \"Last month\", range: (today) => ({ from: new Date(today.getFullYear(), today.getMonth() - 1, 1), to: new Date(today.getFullYear(), today.getMonth(), 0) }) },\n];\n\nexport interface DateRangePickerProps {\n  value: DateRange;\n  onValueChange: (range: DateRange) => void;\n  presets?: readonly DateRangePreset[];\n  placeholder?: string;\n  /** Fixed, so the server and the browser print the same dates. */\n  locale?: string;\n  className?: string;\n}\n\n/**\n * Two dates in one field: quick presets on the left, a start and an end\n * calendar beside them, and the end can never fall before the start. The\n * trigger reads the range back in words.\n */\nexport function DateRangePicker({ value, onValueChange, presets = DEFAULT_RANGE_PRESETS, placeholder = \"Pick a range\", locale = \"en-GB\", className }: DateRangePickerProps) {\n  const [open, setOpen] = useState(false);\n  const print = new Intl.DateTimeFormat(locale, { day: \"numeric\", month: \"short\", year: \"numeric\" });\n  const label = value.from && value.to ? `${print.format(value.from)} – ${print.format(value.to)}` : value.from ? `${print.format(value.from)} – …` : placeholder;\n  return (\n    <Popover open={open} onOpenChange={setOpen}>\n      <PopoverTrigger data-slot=\"date-range-picker\" className={cn(fieldSurface, \"inline-flex h-9 items-center gap-2 px-3 text-left\", !value.from && \"text-muted-foreground\", className)}>\n        <IconCalendar className=\"size-4 shrink-0 text-muted-foreground\" />\n        <span className=\"truncate tabular-nums\">{label}</span>\n      </PopoverTrigger>\n      <PopoverContent align=\"start\" className=\"w-auto p-0\">\n        <div className=\"flex flex-col sm:flex-row\">\n          <ul className=\"relative flex gap-1 overflow-x-auto border-b border-border p-2 sm:flex-col sm:border-r sm:border-b-0\">\n            {presets.map((preset) => (\n              <li key={preset.label}>\n                <Button variant=\"ghost\" size=\"sm\" className=\"w-full justify-start whitespace-nowrap\" onClick={() => { onValueChange(preset.range(new Date())); setOpen(false); }}>{preset.label}</Button>\n              </li>\n            ))}\n          </ul>\n          <div className=\"grid gap-2 p-3 sm:grid-cols-2\">\n            <div>\n              <p className=\"px-1 pb-1 text-xs text-muted-foreground\">From</p>\n              <Calendar value={value.from} locale={locale} onValueChange={(from) => onValueChange({ from, to: value.to && value.to < from ? null : value.to })} />\n            </div>\n            <div>\n              <p className=\"px-1 pb-1 text-xs text-muted-foreground\">To</p>\n              <Calendar value={value.to} locale={locale} min={value.from ?? undefined} onValueChange={(to) => { onValueChange({ from: value.from ?? to, to }); setOpen(false); }} />\n            </div>\n          </div>\n        </div>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/date-range-picker.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-switcher-demo",
+  "title": "App switcher demo",
+  "description": "A working preview of App switcher.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/app-switcher.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/app-switcher-demo.tsx",
+      "content": "import { IconCalendar, IconChart, IconFolder, IconInbox, IconMessages, IconReceipt } from \"@rhs-ui/icons\";\nimport { AppSwitcher } from \"@rhs-ui/primitives/app-switcher\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-md items-start justify-center p-10\">\n      <AppSwitcher\n        current=\"mail\"\n        apps={[\n          { id: \"mail\", name: \"Mail\", href: \"#\", icon: <IconInbox className=\"size-5\" /> },\n          { id: \"calendar\", name: \"Calendar\", href: \"#\", icon: <IconCalendar className=\"size-5\" /> },\n          { id: \"files\", name: \"Files\", href: \"#\", icon: <IconFolder className=\"size-5\" /> },\n          { id: \"chat\", name: \"Chat\", href: \"#\", icon: <IconMessages className=\"size-5\" /> },\n          { id: \"billing\", name: \"Billing\", href: \"#\", icon: <IconReceipt className=\"size-5\" />, hint: \"Admin\" },\n          { id: \"insights\", name: \"Insights\", href: \"#\", icon: <IconChart className=\"size-5\" /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

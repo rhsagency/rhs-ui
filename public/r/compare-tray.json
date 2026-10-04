@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "compare-tray",
+  "title": "Compare tray",
+  "description": "The tray that collects products to compare: fixed to the bottom while anything is picked, a slot per product with remove, empty slots for the room left, and compare once there are two.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/compare-tray.tsx",
+      "content": "\"use client\";\n\nimport { IconClose } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CompareItem {\n  id: string;\n  title: string;\n  image?: { src: string; alt: string };\n}\n\nexport interface CompareTrayProps {\n  items: readonly CompareItem[];\n  /** How many can be compared at once; empty slots show the room left. */\n  max?: number;\n  onRemove: (id: string) => void;\n  onClear: () => void;\n  compareHref: string;\n  className?: string;\n}\n\n/**\n * The tray that collects products to compare: fixed to the bottom while\n * anything is picked, a slot per product with remove, empty slots for the\n * room left, and compare once there are two.\n */\nexport function CompareTray({ items, max = 4, onRemove, onClear, compareHref, className }: CompareTrayProps) {\n  if (!items.length) return null;\n  return (\n    <section data-slot=\"compare-tray\" aria-label=\"Compare products\" className={cn(\"fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur\", className)}>\n      <div className=\"mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3\">\n        <ul className=\"flex flex-1 gap-2\">\n          {Array.from({ length: max }, (_, index) => {\n            const item = items[index];\n            return item ? (\n              <li key={item.id} className=\"relative flex w-40 items-center gap-2 rounded-lg border border-border p-1.5 pr-7 text-xs\">\n                <span className=\"size-9 shrink-0 overflow-hidden rounded-md bg-muted\">{item.image ? <img src={item.image.src} alt=\"\" className=\"size-full object-cover\" /> : null}</span>\n                <span className=\"line-clamp-2\">{item.title}</span>\n                <button type=\"button\" aria-label={`Remove ${item.title} from comparison`} onClick={() => onRemove(item.id)} className=\"absolute top-1 right-1 inline-flex size-5 items-center justify-center rounded hover:bg-muted [&_svg]:size-3\"><IconClose /></button>\n              </li>\n            ) : (\n              <li key={`empty-${index}`} aria-hidden=\"true\" className=\"hidden w-40 items-center justify-center rounded-lg border border-dashed border-border text-xs text-muted-foreground sm:flex\">Add a product</li>\n            );\n          })}\n        </ul>\n        <p className=\"sr-only\" role=\"status\">{items.length} of {max} products picked to compare</p>\n        <div className=\"flex gap-2\">\n          <Button variant=\"ghost\" size=\"sm\" onClick={onClear}>Clear</Button>\n          <Button size=\"sm\" disabled={items.length < 2} asChild={items.length >= 2}>{items.length >= 2 ? <a href={compareHref}>Compare {items.length}</a> : <span>Pick one more</span>}</Button>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/compare-tray.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

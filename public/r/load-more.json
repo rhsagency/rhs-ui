@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "load-more",
+  "title": "Load more",
+  "description": "The calm alternative to infinite scroll: a count of what is shown, a progress line, and one button for the next page.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/load-more.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface LoadMoreProps {\n  /** How many are shown, and how many exist. */\n  shown: number;\n  total: number;\n  /** Fetch and append the next page; resolve when it is in. */\n  onLoadMore: () => Promise<void> | void;\n  noun?: string;\n  className?: string;\n}\n\n/**\n * The calm alternative to infinite scroll: a count of what is shown, a\n * progress line, and one button for the next page. The footer stays\n * reachable, and the new count is announced when the page arrives.\n */\nexport function LoadMore({ shown, total, onLoadMore, noun = \"items\", className }: LoadMoreProps) {\n  const [busy, setBusy] = useState(false);\n  const done = shown >= total;\n  return (\n    <div data-slot=\"load-more\" className={cn(\"mx-auto flex max-w-xs flex-col items-center gap-3 py-6 text-center\", className)}>\n      <p role=\"status\" className=\"text-sm text-muted-foreground tabular-nums\">Showing {Math.min(shown, total)} of {total} {noun}</p>\n      <div className=\"h-1 w-full overflow-hidden rounded-full bg-muted\" aria-hidden=\"true\"><div className=\"h-full rounded-full bg-foreground transition-[width] duration-500\" style={{ width: `${total ? (Math.min(shown, total) / total) * 100 : 0}%` }} /></div>\n      {done ? (\n        <p className=\"text-sm\">That is everything.</p>\n      ) : (\n        <Button variant=\"outline\" loading={busy} onClick={async () => { setBusy(true); try { await onLoadMore(); } finally { setBusy(false); } }}>Load more {noun}</Button>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/load-more.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

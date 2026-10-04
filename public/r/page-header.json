@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header",
+  "title": "Page header",
+  "description": "The top of an application page: breadcrumbs, the title as the page's h1, a line of description, the main actions, and a slot for tabs.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/page-header.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconChevronRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PageHeaderProps {\n  title: string;\n  /** The title is the page's h1; use \"h2\" when the header sits inside a page that has one. */\n  titleAs?: \"h1\" | \"h2\";\n  description?: string;\n  /** The way back up: Settings / Team. The last item is the current page. */\n  breadcrumbs?: readonly { label: string; href?: string }[];\n  /** Buttons on the right: the page's main actions. */\n  actions?: ReactNode;\n  /** Small facts under the title: status, owner, last edited. */\n  meta?: ReactNode;\n  /** Tabs or filters under the header. */\n  children?: ReactNode;\n  className?: string;\n}\n\n/**\n * The top of an application page: breadcrumbs, the title as the page's h1,\n * a line of description, the main actions, and a slot for tabs. Actions\n * wrap under the title on a phone.\n */\nexport function PageHeader({ title, titleAs: Title = \"h1\", description, breadcrumbs = [], actions, meta, children, className }: PageHeaderProps) {\n  return (\n    <header data-slot=\"page-header\" className={cn(\"border-b border-border pb-0\", className)}>\n      {breadcrumbs.length ? (\n        <nav aria-label=\"Breadcrumb\">\n          <ol className=\"flex flex-wrap items-center gap-1 text-sm text-muted-foreground\">\n            {breadcrumbs.map((crumb, index) => (\n              <li key={`${crumb.label}-${index}`} className=\"flex items-center gap-1\">\n                {index > 0 ? <IconChevronRight aria-hidden=\"true\" className=\"size-3.5\" /> : null}\n                {crumb.href && index < breadcrumbs.length - 1 ? <a href={crumb.href} className=\"hover:text-foreground\">{crumb.label}</a> : <span aria-current={index === breadcrumbs.length - 1 ? \"page\" : undefined}>{crumb.label}</span>}\n              </li>\n            ))}\n          </ol>\n        </nav>\n      ) : null}\n      <div className=\"mt-3 flex flex-wrap items-start justify-between gap-4 pb-6\">\n        <div className=\"min-w-0\">\n          <Title className=\"text-2xl font-medium tracking-[-0.03em] sm:text-3xl\">{title}</Title>\n          {description ? <p className=\"mt-1.5 max-w-2xl text-sm text-muted-foreground\">{description}</p> : null}\n          {meta ? <div className=\"mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground\">{meta}</div> : null}\n        </div>\n        {actions ? <div className=\"flex flex-wrap gap-2\">{actions}</div> : null}\n      </div>\n      {children}\n    </header>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/page-header.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

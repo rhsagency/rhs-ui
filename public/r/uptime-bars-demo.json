@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "uptime-bars-demo",
+  "title": "Uptime bars demo",
+  "description": "A working preview of Uptime bars.",
+  "registryDependencies": [
+    "https://rhsui.com/r/uptime-bars.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/uptime-bars-demo.tsx",
+      "content": "import { UptimeBars, type UptimeDay } from \"@rhs-ui/dashboard/uptime-bars\";\n\nconst MONTHS = [\"March\", \"April\"];\n\nfunction days(seed: number, dips: Record<number, number>): UptimeDay[] {\n  return Array.from({ length: 45 }, (_, index) => {\n    const day = index + 1 + seed;\n    const date = day <= 31 ? `${day} ${MONTHS[0]}` : `${day - 31} ${MONTHS[1]}`;\n    return { date, uptime: index < 3 && seed > 0 ? null : (dips[index] ?? 1) };\n  });\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-2xl flex-col gap-6 p-8\">\n      <UptimeBars label=\"API\" days={days(0, { 12: 0.982, 30: 0.999 })} />\n      <UptimeBars label=\"Dashboard\" days={days(0, {})} />\n      <UptimeBars label=\"Webhooks\" days={days(1, { 20: 0.91, 21: 0.995 })} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

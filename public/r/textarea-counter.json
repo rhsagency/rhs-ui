@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-counter",
+  "title": "Textarea counter",
+  "description": "A textarea that says how much room is left, quietly until the last tenth, then in words.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/textarea-counter.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type ComponentProps } from \"react\";\n\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TextareaCounterProps extends Omit<ComponentProps<\"textarea\">, \"maxLength\"> {\n  /** The limit the counter counts down to. */\n  limit: number;\n  /** Let people type past the limit and show it as an error, instead of stopping them. */\n  soft?: boolean;\n}\n\n/**\n * A textarea that says how much room is left, quietly until the last tenth,\n * then in words. Screen readers hear the count only when it matters, not on\n * every keystroke.\n */\nexport function TextareaCounter({ limit, soft = false, className, onChange, defaultValue, value, ...props }: TextareaCounterProps) {\n  const id = useId();\n  const [length, setLength] = useState(String(value ?? defaultValue ?? \"\").length);\n  const left = limit - length;\n  const near = left <= Math.max(10, Math.round(limit * 0.1));\n  return (\n    <div data-slot=\"textarea-counter\" className=\"grid gap-1.5\">\n      <Textarea\n        {...props}\n        value={value}\n        defaultValue={defaultValue}\n        maxLength={soft ? undefined : limit}\n        aria-invalid={left < 0 || undefined}\n        aria-describedby={`${id}-count`}\n        onChange={(event) => { setLength(event.target.value.length); onChange?.(event); }}\n        className={className}\n      />\n      <p id={`${id}-count`} aria-live={near ? \"polite\" : \"off\"} className={cn(\"text-right text-xs tabular-nums\", left < 0 ? \"text-destructive\" : near ? \"text-foreground\" : \"text-muted-foreground\")}>\n        {left < 0 ? `${-left} characters over the limit` : `${left} characters left`}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/textarea-counter.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

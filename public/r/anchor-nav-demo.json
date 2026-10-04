@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "anchor-nav-demo",
+  "title": "Anchor nav demo",
+  "description": "A working preview of Anchor nav.",
+  "registryDependencies": [
+    "https://rhsui.com/r/anchor-nav.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/anchor-nav-demo.tsx",
+      "content": "\"use client\";\n\nimport { AnchorNav } from \"@rhs-ui/primitives/anchor-nav\";\n\nconst ITEMS = [\n  { id: \"an-overview\", label: \"Overview\" },\n  { id: \"an-specs\", label: \"Specifications\" },\n  { id: \"an-reviews\", label: \"Reviews\" },\n  { id: \"an-delivery\", label: \"Delivery\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-3xl p-8\">\n      <AnchorNav items={ITEMS} />\n      <div className=\"mt-6 space-y-8\">\n        {ITEMS.map((item) => (\n          <section key={item.id} id={item.id} className=\"scroll-mt-16\">\n            <h2 className=\"text-lg font-medium\">{item.label}</h2>\n            <p className=\"mt-2 text-sm text-muted-foreground\">Placeholder copy for the {item.label.toLowerCase()} section of a product page.</p>\n          </section>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

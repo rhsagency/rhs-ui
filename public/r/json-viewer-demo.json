@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "json-viewer-demo",
+  "title": "JSON viewer demo",
+  "description": "A working preview of JSON viewer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/json-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/json-viewer-demo.tsx",
+      "content": "\"use client\";\n\nimport { JsonViewer } from \"@rhs-ui/primitives/json-viewer\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-xl p-8\">\n      <JsonViewer\n        rootName=\"event\"\n        data={{ id: \"evt_1Q2w3E\", type: \"order.paid\", created: 1775200000, livemode: false, data: { order: { id: \"ORD-10482\", total: 7500, currency: \"EUR\", lines: [{ sku: \"APRON-STONE\", quantity: 1 }, { sku: \"MUG-SAND\", quantity: 2 }] }, customer: { id: \"cus_8a7b\", returning: true } } }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

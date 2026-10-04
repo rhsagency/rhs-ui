@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loading-dots-demo",
+  "title": "Loading dots demo",
+  "description": "A working preview of Loading dots.",
+  "registryDependencies": [
+    "https://rhsui.com/r/loading-dots.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/loading-dots-demo.tsx",
+      "content": "import { LoadingDots } from \"@rhs-ui/primitives/loading-dots\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-md flex-wrap items-center justify-center gap-10 p-10\">\n      <LoadingDots size=\"sm\" label=\"Saving\" />\n      <LoadingDots label=\"Loading results\" />\n      <span className=\"inline-flex items-center gap-3 rounded-full bg-muted px-4 py-2 text-sm text-muted-foreground\">\n        Assistant is typing <LoadingDots size=\"sm\" label=\"Assistant is typing\" />\n      </span>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

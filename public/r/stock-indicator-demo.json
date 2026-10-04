@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stock-indicator-demo",
+  "title": "Stock indicator demo",
+  "description": "A working preview of Stock indicator.",
+  "registryDependencies": [
+    "https://rhsui.com/r/stock-indicator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/stock-indicator-demo.tsx",
+      "content": "import { StockIndicator } from \"@rhs-ui/commerce/stock-indicator\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-sm flex-col gap-4 p-10\">\n      <StockIndicator stock={48} />\n      <StockIndicator stock={3} />\n      <StockIndicator stock={0} restock=\"on 22 April\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pull-quote",
+  "title": "Pull quote",
+  "description": "A line lifted out of an article and set large, with a rule above and the person underneath.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/pull-quote.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface PullQuoteProps {\n  quote: string;\n  /** Who said it. */\n  cite?: string;\n  /** Their role or the source. */\n  source?: string;\n  align?: \"center\" | \"left\";\n  className?: string;\n}\n\n/**\n * A line lifted out of an article and set large, with a rule above and the\n * person underneath. A figure with a blockquote and a caption, so the\n * attribution belongs to the quote.\n */\nexport function PullQuote({ quote, cite, source, align = \"center\", className }: PullQuoteProps) {\n  return (\n    <figure data-slot=\"pull-quote\" className={cn(\"my-10 border-t-2 border-foreground pt-6\", align === \"center\" ? \"text-center\" : \"text-left\", className)}>\n      <blockquote className=\"text-2xl leading-snug font-medium tracking-[-0.02em] text-balance sm:text-3xl\">{quote}</blockquote>\n      {cite ? (\n        <figcaption className=\"mt-4 text-sm\">\n          <span className=\"font-medium\">{cite}</span>\n          {source ? <span className=\"text-muted-foreground\">, {source}</span> : null}\n        </figcaption>\n      ) : null}\n    </figure>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/pull-quote.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

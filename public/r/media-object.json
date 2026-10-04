@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "media-object",
+  "title": "Media object",
+  "description": "The oldest pattern in interface design: media beside text. A comment, a notification, a search result, a product line.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/media-object.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MediaObjectProps {\n  /** The picture, icon or avatar on the side. */\n  media: ReactNode;\n  title: ReactNode;\n  children?: ReactNode;\n  /** Something on the far side: a time, a menu, a price. */\n  aside?: ReactNode;\n  /** Media on the left (default) or the right; top-aligned or centred. */\n  reverse?: boolean;\n  align?: \"start\" | \"center\";\n  className?: string;\n}\n\n/**\n * The oldest pattern in interface design: media beside text. A comment, a\n * notification, a search result, a product line. The text column shrinks\n * and truncates instead of pushing the media out.\n */\nexport function MediaObject({ media, title, children, aside, reverse = false, align = \"start\", className }: MediaObjectProps) {\n  return (\n    <div data-slot=\"media-object\" className={cn(\"flex gap-3\", reverse && \"flex-row-reverse\", align === \"center\" ? \"items-center\" : \"items-start\", className)}>\n      <div className=\"shrink-0\">{media}</div>\n      <div className=\"min-w-0 flex-1\">\n        <div className=\"text-sm font-medium\">{title}</div>\n        {children ? <div className=\"mt-0.5 text-sm text-muted-foreground\">{children}</div> : null}\n      </div>\n      {aside ? <div className=\"shrink-0 text-xs text-muted-foreground\">{aside}</div> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/media-object.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

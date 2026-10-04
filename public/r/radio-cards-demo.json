@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-cards-demo",
+  "title": "Radio cards demo",
+  "description": "A working preview of Radio cards.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/radio-cards.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/radio-cards-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconRocket, IconTruck, IconZap } from \"@rhs-ui/icons\";\nimport { RadioCards } from \"@rhs-ui/primitives/radio-cards\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState(\"standard\");\n  return (\n    <div className=\"mx-auto max-w-xl p-8\">\n      <RadioCards\n        label=\"Delivery speed\"\n        value={value}\n        onValueChange={setValue}\n        options={[\n          { value: \"standard\", title: \"Standard\", description: \"2 to 3 working days\", aside: \"Free\", icon: <IconTruck /> },\n          { value: \"express\", title: \"Express\", description: \"Tomorrow before 18:00\", aside: \"€4.95\", icon: <IconZap /> },\n          { value: \"same-day\", title: \"Same day\", description: \"Order before 12:00, Amsterdam only\", aside: \"€9.95\", icon: <IconRocket /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

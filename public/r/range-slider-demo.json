@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "range-slider-demo",
+  "title": "Range slider demo",
+  "description": "A working preview of Range slider.",
+  "registryDependencies": [
+    "https://rhsui.com/r/range-slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/range-slider-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { RangeSlider } from \"@rhs-ui/primitives/range-slider\";\n\nexport default function Demo(): React.JSX.Element {\n  const [range, setRange] = useState<[number, number]>([40, 180]);\n  return (\n    <div className=\"mx-auto max-w-sm p-8\">\n      <RangeSlider label=\"Price\" value={range} onValueChange={setRange} min={0} max={300} step={5} format={(value) => `€${value}`} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

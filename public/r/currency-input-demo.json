@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "currency-input-demo",
+  "title": "Currency input demo",
+  "description": "A working preview of Currency input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/currency-input.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/currency-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CurrencyInput } from \"@rhs-ui/primitives/currency-input\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nexport default function Demo(): React.JSX.Element {\n  const [amount, setAmount] = useState<number | null>(125000);\n  return (\n    <div className=\"mx-auto grid max-w-sm gap-2 p-8\">\n      <Label htmlFor=\"budget-demo\">Monthly budget</Label>\n      <CurrencyInput id=\"budget-demo\" value={amount} onValueChange={setAmount} />\n      <p className=\"text-xs text-muted-foreground\">In cents: <span className=\"font-mono\">{amount ?? \"empty\"}</span></p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "unsaved-changes-bar-demo",
+  "title": "Unsaved changes bar demo",
+  "description": "A working preview of Unsaved changes bar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/unsaved-changes-bar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/unsaved-changes-bar-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { UnsavedChangesBar } from \"@rhs-ui/primitives/unsaved-changes-bar\";\n\nconst SAVED = \"Northwind Studio\";\n\nexport default function Demo(): React.JSX.Element {\n  const [saved, setSaved] = useState(SAVED);\n  const [name, setName] = useState(\"Northwind Studio Amsterdam\");\n  const [saving, setSaving] = useState(false);\n  const save = () => {\n    setSaving(true);\n    setTimeout(() => {\n      setSaved(name);\n      setSaving(false);\n    }, 700);\n  };\n  return (\n    <div className=\"relative mx-auto flex h-72 max-w-xl flex-col gap-2 overflow-hidden p-8\">\n      <label htmlFor=\"ucb-name\" className=\"text-sm font-medium\">Workspace name</label>\n      <Input id=\"ucb-name\" value={name} onChange={(event) => setName(event.target.value)} />\n      <p className=\"text-xs text-muted-foreground\">Edit the name to bring the bar back.</p>\n      <UnsavedChangesBar className=\"absolute\" dirty={name !== saved} saving={saving} guardUnload={false} onSave={save} onDiscard={() => setName(saved)} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

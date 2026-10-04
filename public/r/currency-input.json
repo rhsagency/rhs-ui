@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "currency-input",
+  "title": "Currency input",
+  "description": "A money field that thinks in cents: type \"12,5\" or \"12.50\" and it reports 1250.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/currency-input.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState, type ComponentProps } from \"react\";\n\nimport { fieldSurface } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CurrencyInputProps extends Omit<ComponentProps<\"input\">, \"value\" | \"defaultValue\" | \"onChange\" | \"type\"> {\n  /** The amount in minor units (cents), or null when empty. */\n  value: number | null;\n  onValueChange: (minor: number | null) => void;\n  currency?: string;\n  /** Fixed, so the server and the browser format the same. */\n  locale?: string;\n}\n\n/**\n * A money field that thinks in cents: type \"12,5\" or \"12.50\" and it reports\n * 1250. The currency symbol sits in the field, and on blur the amount is\n * shown formatted for the locale; while typing it stays out of the way.\n */\nexport function CurrencyInput({ value, onValueChange, currency = \"EUR\", locale = \"nl-NL\", className, onBlur, onFocus, ...props }: CurrencyInputProps) {\n  const parts = new Intl.NumberFormat(locale, { style: \"currency\", currency }).formatToParts(0);\n  const symbol = parts.find((part) => part.type === \"currency\")?.value ?? currency;\n  const decimal = parts.find((part) => part.type === \"decimal\")?.value ?? \".\";\n  const format = (minor: number | null) => (minor === null ? \"\" : new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(minor / 100));\n  const [text, setText] = useState(format(value));\n  const [editing, setEditing] = useState(false);\n  useEffect(() => {\n    if (!editing) setText(format(value));\n    // Reformat when the value changes from outside, or when editing ends.\n  }, [value, editing, locale]);\n  function parse(raw: string): number | null {\n    const cleaned = raw.replace(/[^\\d.,-]/g, \"\");\n    if (!cleaned) return null;\n    // The last separator is the decimal one, whichever the person used.\n    const lastSep = Math.max(cleaned.lastIndexOf(\",\"), cleaned.lastIndexOf(\".\"));\n    const whole = lastSep === -1 ? cleaned : cleaned.slice(0, lastSep).replace(/[.,]/g, \"\");\n    const fraction = lastSep === -1 ? \"\" : cleaned.slice(lastSep + 1, lastSep + 3);\n    const number = Number(`${whole || \"0\"}.${fraction.padEnd(2, \"0\")}`);\n    return Number.isFinite(number) ? Math.round(number * 100) : null;\n  }\n  return (\n    <div data-slot=\"currency-input\" className={cn(fieldSurface, \"flex h-9 items-center px-3 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/40\", className)}>\n      <span aria-hidden=\"true\" className=\"mr-2 text-muted-foreground\">{symbol}</span>\n      <input\n        inputMode=\"decimal\"\n        autoComplete=\"off\"\n        value={text}\n        placeholder={`0${decimal}00`}\n        onFocus={(event) => { setEditing(true); onFocus?.(event); }}\n        onBlur={(event) => { setEditing(false); setText(format(value)); onBlur?.(event); }}\n        onChange={(event) => { setText(event.target.value); onValueChange(parse(event.target.value)); }}\n        className=\"min-w-0 flex-1 bg-transparent text-right tabular-nums outline-none placeholder:text-muted-foreground\"\n        {...props}\n      />\n      <span className=\"sr-only\">{currency}</span>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/currency-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-counter-demo",
+  "title": "Textarea counter demo",
+  "description": "A working preview of Textarea counter.",
+  "registryDependencies": [
+    "https://rhsui.com/r/label.json",
+    "https://rhsui.com/r/textarea-counter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/textarea-counter-demo.tsx",
+      "content": "import { Label } from \"@rhs-ui/primitives/label\";\nimport { TextareaCounter } from \"@rhs-ui/primitives/textarea-counter\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-md gap-2 p-8\">\n      <Label htmlFor=\"bio-demo\">Short bio</Label>\n      <TextareaCounter id=\"bio-demo\" limit={160} rows={4} defaultValue=\"Designer in Utrecht. I make calm software for small teams and write about it on Sundays.\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

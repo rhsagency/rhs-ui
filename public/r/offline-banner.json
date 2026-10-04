@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "offline-banner",
+  "title": "Offline banner",
+  "description": "Tells people when the connection drops and when it is back, from the browser's online and offline events.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/offline-banner.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { IconWifi, IconWifiOff } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface OfflineBannerProps {\n  /** Override the browser's own online state, for demos and tests. */\n  online?: boolean;\n  offlineMessage?: string;\n  backMessage?: string;\n  className?: string;\n}\n\n/**\n * Tells people when the connection drops and when it is back, from the\n * browser's online and offline events. Nothing shows while all is well;\n * \"back online\" shows briefly, then leaves. Announced politely.\n */\nexport function OfflineBanner({ online: forced, offlineMessage = \"You are offline. Changes will sync when you reconnect.\", backMessage = \"Back online. Everything is synced.\", className }: OfflineBannerProps) {\n  const [online, setOnline] = useState(true);\n  const [recovered, setRecovered] = useState(false);\n  useEffect(() => {\n    if (forced !== undefined) return;\n    setOnline(navigator.onLine);\n    const up = () => { setOnline(true); setRecovered(true); };\n    const down = () => { setOnline(false); setRecovered(false); };\n    window.addEventListener(\"online\", up);\n    window.addEventListener(\"offline\", down);\n    return () => { window.removeEventListener(\"online\", up); window.removeEventListener(\"offline\", down); };\n  }, [forced]);\n  useEffect(() => {\n    if (!recovered) return;\n    const timer = window.setTimeout(() => setRecovered(false), 3000);\n    return () => window.clearTimeout(timer);\n  }, [recovered]);\n  const isOnline = forced ?? online;\n  const show = !isOnline || recovered;\n  return (\n    <div data-slot=\"offline-banner\" role=\"status\" aria-live=\"polite\" className={cn(!show && \"sr-only\", className)}>\n      {show ? (\n        <p className={cn(\"flex items-center justify-center gap-2 px-4 py-2 text-sm [&_svg]:size-4\", isOnline ? \"bg-muted\" : \"bg-foreground text-background\")}>\n          {isOnline ? <IconWifi /> : <IconWifiOff />}\n          {isOnline ? backMessage : offlineMessage}\n        </p>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/offline-banner.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

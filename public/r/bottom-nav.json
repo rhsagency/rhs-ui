@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bottom-nav",
+  "title": "Bottom nav",
+  "description": "The tab bar of a mobile web app: three to five destinations with an icon and a word each, fixed to the bottom with room for the home indicator, the current one marked with aria-current.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/bottom-nav.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface BottomNavItem {\n  href: string;\n  label: string;\n  icon: ReactNode;\n  /** A count on the icon. */\n  badge?: number;\n}\n\nexport interface BottomNavProps {\n  items: readonly BottomNavItem[];\n  /** The href of the current page. */\n  current: string;\n  label?: string;\n  className?: string;\n}\n\n/**\n * The tab bar of a mobile web app: three to five destinations with an icon\n * and a word each, fixed to the bottom with room for the home indicator,\n * the current one marked with aria-current. Hidden from md up.\n */\nexport function BottomNav({ items, current, label = \"Main\", className }: BottomNavProps) {\n  return (\n    <nav data-slot=\"bottom-nav\" aria-label={label} className={cn(\"fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden\", className)}>\n      <ul className=\"grid\" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>\n        {items.map((item) => {\n          const active = item.href === current;\n          return (\n            <li key={`${item.href}-${item.label}`}>\n              <a href={item.href} aria-current={active ? \"page\" : undefined} className=\"flex flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground outline-none focus-visible:bg-muted aria-[current=page]:text-foreground\">\n                <span className=\"relative [&_svg]:size-5\">\n                  {item.icon}\n                  {item.badge ? <span className=\"absolute -top-1 -right-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[9px] font-semibold text-destructive-foreground tabular-nums\"><span aria-hidden=\"true\">{item.badge}</span><span className=\"sr-only\">, {item.badge} new</span></span> : null}\n                </span>\n                <span className={cn(active && \"font-medium\")}>{item.label}</span>\n              </a>\n            </li>\n          );\n        })}\n      </ul>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/bottom-nav.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

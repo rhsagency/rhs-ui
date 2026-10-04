@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-cards",
+  "title": "Radio cards",
+  "description": "One choice from a few rich options, as cards: a plan, a shipping speed, a workspace type.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/radio-cards.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RadioCardOption {\n  value: string;\n  title: string;\n  description?: string;\n  /** A price, a badge or an icon on the right. */\n  aside?: ReactNode;\n  icon?: ReactNode;\n  disabled?: boolean;\n}\n\nexport interface RadioCardsProps {\n  /** Names the group for screen readers. */\n  label: string;\n  options: readonly RadioCardOption[];\n  value: string;\n  onValueChange: (value: string) => void;\n  columns?: 1 | 2 | 3;\n  className?: string;\n}\n\n/**\n * One choice from a few rich options, as cards: a plan, a shipping speed, a\n * workspace type. A real radio group (arrow keys move, one tab stop), with\n * the chosen card outlined and checked.\n */\nexport function RadioCards({ label, options, value, onValueChange, columns = 1, className }: RadioCardsProps) {\n  return (\n    <RadioGroupPrimitive.Root\n      data-slot=\"radio-cards\"\n      aria-label={label}\n      value={value}\n      onValueChange={onValueChange}\n      className={cn(\"grid gap-2\", columns === 2 && \"sm:grid-cols-2\", columns === 3 && \"sm:grid-cols-3\", className)}\n    >\n      {options.map((option) => (\n        <RadioGroupPrimitive.Item\n          key={option.value}\n          value={option.value}\n          disabled={option.disabled}\n          className=\"group/card relative flex items-start gap-3 rounded-xl border border-border p-4 text-left outline-none transition-colors hover:bg-muted/50 focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-50 data-[state=checked]:border-foreground data-[state=checked]:bg-muted/40\"\n        >\n          {option.icon ? <span className=\"mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background [&_svg]:size-4\">{option.icon}</span> : null}\n          <span className=\"min-w-0 flex-1\">\n            <span className=\"block text-sm font-medium\">{option.title}</span>\n            {option.description ? <span className=\"mt-0.5 block text-sm text-muted-foreground\">{option.description}</span> : null}\n          </span>\n          {option.aside ? <span className=\"text-sm\">{option.aside}</span> : null}\n          <span aria-hidden=\"true\" className=\"inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-background group-data-[state=checked]/card:border-foreground group-data-[state=checked]/card:bg-foreground [&_svg]:size-3\">\n            <RadioGroupPrimitive.Indicator><IconCheck /></RadioGroupPrimitive.Indicator>\n          </span>\n        </RadioGroupPrimitive.Item>\n      ))}\n    </RadioGroupPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/radio-cards.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "load-more-demo",
+  "title": "Load more demo",
+  "description": "A working preview of Load more.",
+  "registryDependencies": [
+    "https://rhsui.com/r/load-more.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/load-more-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { LoadMore } from \"@rhs-ui/primitives/load-more\";\n\nconst TOTAL = 26;\n\nexport default function Demo(): React.JSX.Element {\n  const [shown, setShown] = useState(12);\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <ul className=\"grid grid-cols-3 gap-2 sm:grid-cols-6\">\n        {Array.from({ length: shown }, (_, index) => (\n          <li key={index} className=\"aspect-square rounded-lg bg-muted\" />\n        ))}\n      </ul>\n      <LoadMore shown={shown} total={TOTAL} noun=\"products\" onLoadMore={() => new Promise<void>((resolve) => setTimeout(() => { setShown((value) => Math.min(value + 12, TOTAL)); resolve(); }, 500))} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

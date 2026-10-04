@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "floating-action-bar",
+  "title": "Floating action bar",
+  "description": "A dark bar that floats above the content while a selection is active, with the count and the actions that apply to it: move, share, delete.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/floating-action-bar.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FloatingActionBarProps {\n  /** Show the bar: usually \"items are selected\". */\n  open: boolean;\n  /** What the actions apply to: \"3 files selected\". */\n  label: string;\n  /** The actions; keep them to four. */\n  children: ReactNode;\n  /** A way out, rendered on the right: \"Clear selection\". */\n  onDismiss?: () => void;\n  className?: string;\n}\n\n/**\n * A dark bar that floats above the content while a selection is active,\n * with the count and the actions that apply to it: move, share, delete.\n * A toolbar for assistive technology, announced as it appears.\n */\nexport function FloatingActionBar({ open, label, children, onDismiss, className }: FloatingActionBarProps) {\n  return (\n    <div data-slot=\"floating-action-bar\" aria-live=\"polite\" className={cn(\"pointer-events-none fixed inset-x-0 bottom-5 z-40 flex justify-center px-4\", className)}>\n      {open ? (\n        <div role=\"toolbar\" aria-label={label} className=\"pointer-events-auto flex max-w-full items-center gap-1 overflow-hidden rounded-2xl bg-foreground p-1.5 text-sm text-background shadow-2xl [&_button]:text-background [&_button:hover]:bg-background/15\">\n          <span className=\"px-3 whitespace-nowrap tabular-nums\">{label}</span>\n          <span aria-hidden=\"true\" className=\"h-5 w-px bg-background/25\" />\n          <div className=\"flex items-center gap-0.5\">{children}</div>\n          {onDismiss ? (\n            <>\n              <span aria-hidden=\"true\" className=\"h-5 w-px bg-background/25\" />\n              <button type=\"button\" onClick={onDismiss} className=\"rounded-xl px-3 py-1.5 whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-background\">Clear</button>\n            </>\n          ) : null}\n        </div>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/floating-action-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "actions"
+  },
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

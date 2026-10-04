@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-player-demo",
+  "title": "Audio player demo",
+  "description": "A working preview of Audio player.",
+  "registryDependencies": [
+    "https://rhsui.com/r/audio-player.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/audio-player-demo.tsx",
+      "content": "\"use client\";\n\nimport { AudioPlayer } from \"@rhs-ui/primitives/audio-player\";\n\nconst artwork = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='#2b2d31'/><circle cx='100' cy='100' r='50' fill='none' stroke='#f4f1ea' stroke-width='10'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-lg p-8\">\n      <AudioPlayer title=\"Why the best teams write everything down\" subtitle=\"Slow Build, episode 42\" artwork={artwork} src=\"\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

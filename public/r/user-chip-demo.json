@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-chip-demo",
+  "title": "User chip demo",
+  "description": "A working preview of User chip.",
+  "registryDependencies": [
+    "https://rhsui.com/r/user-chip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/user-chip-demo.tsx",
+      "content": "import { UserChip } from \"@rhs-ui/primitives/user-chip\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-sm gap-4 p-8\">\n      <UserChip name=\"Anouk de Wit\" detail=\"anouk@example.com\" status=\"online\" />\n      <UserChip name=\"Ravi Menon\" detail=\"Engineering lead\" status=\"busy\" />\n      <UserChip name=\"Lotte Visser\" status=\"away\" size=\"sm\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

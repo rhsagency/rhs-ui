@@ -370,6 +370,248 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "stat-trend",
+      "type": "registry:component",
+      "title": "Stat trend",
+      "description": "A compact number for dense dashboards: label, value, the change with an arrow and a word for whether that is good, and a sparkline.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/sparkline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/stat-trend.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/stat-trend.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stat-trend-demo",
+      "type": "registry:example",
+      "title": "Stat trend demo",
+      "description": "A working preview of Stat trend.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stat-trend.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stat-trend-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "progress-list",
+      "type": "registry:component",
+      "title": "Progress list",
+      "description": "Several goals at once, each a labelled bar against its own target: sales per region, tickets per agent, budget per category.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/progress-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/progress-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress-list-demo",
+      "type": "registry:example",
+      "title": "Progress list demo",
+      "description": "A working preview of Progress list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/progress-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/progress-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bullet-chart",
+      "type": "registry:component",
+      "title": "Bullet chart",
+      "description": "Stephen Few's bullet chart: one measure against a target on three grey bands (poor, ok, good).",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/bullet-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/bullet-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bullet-chart-demo",
+      "type": "registry:example",
+      "title": "Bullet chart demo",
+      "description": "A working preview of Bullet chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bullet-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bullet-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stacked-bar",
+      "type": "registry:component",
+      "title": "Stacked bar",
+      "description": "Parts of a whole on one bar: storage by type, traffic by device, budget by team.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/stacked-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/stacked-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stacked-bar-demo",
+      "type": "registry:example",
+      "title": "Stacked bar demo",
+      "description": "A working preview of Stacked bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stacked-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stacked-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "metric-comparison",
+      "type": "registry:component",
+      "title": "Metric comparison",
+      "description": "This period against the last, metric by metric, as a real table: both values and the change with its direction in words, marked when the change is bad news for that metric.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/metric-comparison.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/metric-comparison.tsx"
+        }
+      ]
+    },
+    {
+      "name": "metric-comparison-demo",
+      "type": "registry:example",
+      "title": "Metric comparison demo",
+      "description": "A working preview of Metric comparison.",
+      "registryDependencies": [
+        "https://rhsui.com/r/metric-comparison.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/metric-comparison-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "uptime-bars",
+      "type": "registry:component",
+      "title": "Uptime bars",
+      "description": "Uptime as a row of day bars, the way status pages show it: full days solid, partial days lighter, outages marked, unmonitored days hollow.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/uptime-bars.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/uptime-bars.tsx"
+        }
+      ]
+    },
+    {
+      "name": "uptime-bars-demo",
+      "type": "registry:example",
+      "title": "Uptime bars demo",
+      "description": "A working preview of Uptime bars.",
+      "registryDependencies": [
+        "https://rhsui.com/r/uptime-bars.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/uptime-bars-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

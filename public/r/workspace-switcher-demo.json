@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "workspace-switcher-demo",
+  "title": "Workspace switcher demo",
+  "description": "A working preview of Workspace switcher.",
+  "registryDependencies": [
+    "https://rhsui.com/r/workspace-switcher.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/workspace-switcher-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { WorkspaceSwitcher } from \"@rhs-ui/primitives/workspace-switcher\";\n\nconst WORKSPACES = [\n  { id: \"northwind\", name: \"Northwind Studio\", detail: \"Pro plan, 12 members\" },\n  { id: \"atlas\", name: \"Atlas Logistics\", detail: \"Team plan, 4 members\" },\n  { id: \"side\", name: \"Side project\", detail: \"Free plan\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [current, setCurrent] = useState(\"northwind\");\n  return (\n    <div className=\"mx-auto min-h-64 max-w-xs p-8\">\n      <WorkspaceSwitcher workspaces={WORKSPACES} current={current} onSelect={setCurrent} onCreate={() => undefined} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

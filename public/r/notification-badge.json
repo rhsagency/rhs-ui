@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "notification-badge",
+  "title": "Notification badge",
+  "description": "A count on the corner of an icon: the inbox, the bell, an avatar.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/notification-badge.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface NotificationBadgeProps {\n  /** What the count is about: \"unread messages\". */\n  label: string;\n  count: number;\n  /** Shown as \"99+\" above this number. */\n  max?: number;\n  /** A dot instead of a number, for \"something new\". */\n  dot?: boolean;\n  /** The icon or avatar the badge sits on. */\n  children: ReactNode;\n  className?: string;\n}\n\n/**\n * A count on the corner of an icon: the inbox, the bell, an avatar. The\n * number is hidden at zero, capped at max, and spelled out for screen\n * readers (\"3 unread messages\") instead of just the digit.\n */\nexport function NotificationBadge({ label, count, max = 99, dot = false, children, className }: NotificationBadgeProps) {\n  const shown = count > max ? `${max}+` : String(count);\n  return (\n    <span data-slot=\"notification-badge\" className={cn(\"relative inline-flex\", className)}>\n      {children}\n      {count > 0 ? (\n        dot ? (\n          <span className=\"absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-destructive ring-2 ring-background\"><span className=\"sr-only\">{`New ${label}`}</span></span>\n        ) : (\n          <span className=\"absolute -top-1.5 -right-1.5 inline-flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-semibold text-destructive-foreground tabular-nums ring-2 ring-background\">\n            <span aria-hidden=\"true\">{shown}</span>\n            <span className=\"sr-only\">{`${count} ${label}`}</span>\n          </span>\n        )\n      ) : null}\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/notification-badge.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

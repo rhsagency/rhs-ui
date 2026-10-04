@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "back-to-top",
+  "title": "Back to top",
+  "description": "A round button that appears after a long scroll and takes the reader back up, with a ring that fills as they read.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/back-to-top.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { IconArrowUp } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface BackToTopProps {\n  /** Pixels scrolled before the button shows. */\n  threshold?: number;\n  className?: string;\n}\n\n/**\n * A round button that appears after a long scroll and takes the reader back\n * up, with a ring that fills as they read. Focus moves to the top of the\n * page too, so keyboard users land where the eye does. Instant under\n * reduced motion.\n */\nexport function BackToTop({ threshold = 600, className }: BackToTopProps) {\n  const [progress, setProgress] = useState(0);\n  const [shown, setShown] = useState(false);\n  useEffect(() => {\n    const update = () => {\n      const max = document.documentElement.scrollHeight - innerHeight;\n      setProgress(max > 0 ? scrollY / max : 0);\n      setShown(scrollY > threshold);\n    };\n    update();\n    window.addEventListener(\"scroll\", update, { passive: true });\n    return () => window.removeEventListener(\"scroll\", update);\n  }, [threshold]);\n  function top() {\n    const reduce = window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n    window.scrollTo({ top: 0, behavior: reduce ? \"auto\" : \"smooth\" });\n    const target = document.querySelector<HTMLElement>(\"h1, main, body\");\n    target?.setAttribute(\"tabindex\", target.getAttribute(\"tabindex\") ?? \"-1\");\n    target?.focus({ preventScroll: true });\n  }\n  const r = 20;\n  const length = 2 * Math.PI * r;\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"back-to-top\"\n      aria-label=\"Back to top\"\n      onClick={top}\n      className={cn(\"fixed right-5 bottom-5 z-40 inline-flex size-12 items-center justify-center rounded-full bg-background text-foreground shadow-lg outline-none transition-[opacity,transform] duration-300 focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-reduce:transition-none\", shown ? \"translate-y-0 opacity-100\" : \"pointer-events-none translate-y-3 opacity-0\", className)}\n      tabIndex={shown ? 0 : -1}\n      aria-hidden={!shown}\n    >\n      <svg viewBox=\"0 0 48 48\" className=\"absolute inset-0 size-full -rotate-90\" aria-hidden=\"true\">\n        <circle cx=\"24\" cy=\"24\" r={r} fill=\"none\" strokeWidth=\"2\" className=\"stroke-border\" />\n        <circle cx=\"24\" cy=\"24\" r={r} fill=\"none\" strokeWidth=\"2\" strokeLinecap=\"round\" className=\"stroke-foreground\" strokeDasharray={length} strokeDashoffset={length * (1 - progress)} />\n      </svg>\n      <IconArrowUp className=\"relative size-4\" />\n    </button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/back-to-top.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

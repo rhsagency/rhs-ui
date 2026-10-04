@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "confirm-popover-demo",
+  "title": "Confirm popover demo",
+  "description": "A working preview of Confirm popover.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/confirm-popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/confirm-popover-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { ConfirmPopover } from \"@rhs-ui/primitives/confirm-popover\";\n\nexport default function Demo(): React.JSX.Element {\n  const [deleted, setDeleted] = useState(false);\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-md flex-col items-center justify-center gap-3 p-8\">\n      {deleted ? (\n        <p role=\"status\" className=\"text-sm text-muted-foreground\">Invoice INV-2041 deleted. <button type=\"button\" className=\"underline underline-offset-4\" onClick={() => setDeleted(false)}>Undo</button></p>\n      ) : (\n        <ConfirmPopover title=\"Delete invoice INV-2041?\" description=\"The customer keeps the copy they received. You cannot undo this.\" confirmLabel=\"Delete\" onConfirm={() => new Promise<void>((resolve) => setTimeout(() => { setDeleted(true); resolve(); }, 600))}>\n          <Button variant=\"outline\">Delete invoice</Button>\n        </ConfirmPopover>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

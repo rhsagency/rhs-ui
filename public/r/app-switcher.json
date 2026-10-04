@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-switcher",
+  "title": "App switcher",
+  "description": "The grid button in a suite's top bar: every product in a three-column grid of icon tiles, the current one marked.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/app-switcher.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconGrid } from \"@rhs-ui/icons\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SwitcherApp {\n  id: string;\n  name: string;\n  href: string;\n  icon: ReactNode;\n  /** One word under the name: \"Docs\", \"Beta\". */\n  hint?: string;\n}\n\nexport interface AppSwitcherProps {\n  apps: readonly SwitcherApp[];\n  /** The app you are in, marked in the grid. */\n  current?: string;\n  label?: string;\n  className?: string;\n}\n\n/**\n * The grid button in a suite's top bar: every product in a three-column\n * grid of icon tiles, the current one marked. Each tile is a plain link.\n */\nexport function AppSwitcher({ apps, current, label = \"Switch app\", className }: AppSwitcherProps) {\n  return (\n    <Popover>\n      <PopoverTrigger data-slot=\"app-switcher\" aria-label={label} className={cn(\"inline-flex size-9 items-center justify-center rounded-lg outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\", className)}>\n        <IconGrid />\n      </PopoverTrigger>\n      <PopoverContent align=\"end\" className=\"w-72 p-2\">\n        <ul className=\"grid grid-cols-3 gap-1\">\n          {apps.map((app) => (\n            <li key={app.id}>\n              <a href={app.href} aria-current={app.id === current ? \"page\" : undefined} className=\"flex flex-col items-center gap-1.5 rounded-xl p-3 text-center text-xs outline-none hover:bg-muted focus-visible:bg-muted aria-[current=page]:bg-muted\">\n                <span className=\"inline-flex size-10 items-center justify-center rounded-xl border border-border bg-background [&_svg]:size-5\">{app.icon}</span>\n                <span className=\"font-medium\">{app.name}</span>\n                {app.hint ? <span className=\"-mt-1 text-[10px] text-muted-foreground\">{app.hint}</span> : null}\n              </a>\n            </li>\n          ))}\n        </ul>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/app-switcher.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "price-tag-demo",
+  "title": "Price tag demo",
+  "description": "A working preview of Price tag.",
+  "registryDependencies": [
+    "https://rhsui.com/r/price-tag.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/price-tag-demo.tsx",
+      "content": "import { PriceTag } from \"@rhs-ui/commerce/price-tag\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-xl flex-wrap items-end justify-center gap-10 p-10\">\n      <PriceTag size=\"sm\" price={{ amount: 1295, currency: \"EUR\" }} />\n      <PriceTag price={{ amount: 3900, currency: \"EUR\" }} compareAt={{ amount: 5200, currency: \"EUR\" }} />\n      <PriceTag size=\"lg\" price={{ amount: 1900, currency: \"EUR\" }} unit=\"per month\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-picker-demo",
+  "title": "Date range picker demo",
+  "description": "A working preview of Date range picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/date-range-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/date-range-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { DateRangePicker, type DateRange } from \"@rhs-ui/primitives/date-range-picker\";\n\nexport default function Demo(): React.JSX.Element {\n  const [range, setRange] = useState<DateRange>({ from: new Date(2026, 3, 6), to: new Date(2026, 3, 12) });\n  return (\n    <div className=\"flex min-h-40 items-start justify-center p-8\">\n      <DateRangePicker value={range} onValueChange={setRange} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

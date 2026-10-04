@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "labeled-divider",
+  "title": "Labeled divider",
+  "description": "A rule with a word in it: \"or\" between sign-in options, a date between messages, \"New\" above unread items.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/labeled-divider.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface LabeledDividerProps {\n  /** The word in the line: \"or\", \"Today\", \"New\". */\n  children: ReactNode;\n  align?: \"center\" | \"left\";\n  className?: string;\n}\n\n/**\n * A rule with a word in it: \"or\" between sign-in options, a date between\n * messages, \"New\" above unread items. The lines are decoration; only the\n * label is read out.\n */\nexport function LabeledDivider({ children, align = \"center\", className }: LabeledDividerProps) {\n  return (\n    <div data-slot=\"labeled-divider\" role=\"separator\" className={cn(\"flex items-center gap-3 text-xs text-muted-foreground\", className)}>\n      {align === \"center\" ? <span aria-hidden=\"true\" className=\"h-px flex-1 bg-border\" /> : null}\n      <span className=\"shrink-0\">{children}</span>\n      <span aria-hidden=\"true\" className=\"h-px flex-1 bg-border\" />\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/labeled-divider.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

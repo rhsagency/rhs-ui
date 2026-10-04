@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-list",
+  "title": "Progress list",
+  "description": "Several goals at once, each a labelled bar against its own target: sales per region, tickets per agent, budget per category.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/progress-list.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface ProgressListItem {\n  id: string;\n  label: string;\n  value: number;\n  /** The target; the bar shows value against it. */\n  target: number;\n  /** How to print a value: \"€12k\", \"84 tickets\". */\n  display?: string;\n}\n\nexport interface ProgressListProps {\n  title?: string;\n  items: readonly ProgressListItem[];\n  className?: string;\n}\n\n/**\n * Several goals at once, each a labelled bar against its own target: sales\n * per region, tickets per agent, budget per category. Over-target bars stay\n * full and say so; every bar is a meter for assistive technology.\n */\nexport function ProgressList({ title, items, className }: ProgressListProps) {\n  return (\n    <section data-slot=\"progress-list\" aria-label={title} className={cn(\"space-y-4\", className)}>\n      {title ? <h3 className=\"text-sm font-medium\">{title}</h3> : null}\n      <ul className=\"space-y-4\">\n        {items.map((item) => {\n          const ratio = item.target > 0 ? item.value / item.target : 0;\n          return (\n            <li key={item.id}>\n              <div className=\"flex items-baseline justify-between gap-4 text-sm\">\n                <span>{item.label}</span>\n                <span className=\"text-muted-foreground tabular-nums\">{item.display ?? item.value}{ratio >= 1 ? <span className=\"ml-1.5 text-foreground\">Target met</span> : <span className=\"ml-1.5\">{Math.round(ratio * 100)}%</span>}</span>\n              </div>\n              <div role=\"meter\" aria-label={item.label} aria-valuemin={0} aria-valuemax={item.target} aria-valuenow={Math.min(item.value, item.target)} className=\"mt-1.5 h-2 overflow-hidden rounded-full bg-muted\">\n                <div className=\"h-full rounded-full bg-foreground\" style={{ width: `${Math.min(1, ratio) * 100}%` }} />\n              </div>\n            </li>\n          );\n        })}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/progress-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

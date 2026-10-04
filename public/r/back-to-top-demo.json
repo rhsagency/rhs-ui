@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "back-to-top-demo",
+  "title": "Back to top demo",
+  "description": "A working preview of Back to top.",
+  "registryDependencies": [
+    "https://rhsui.com/r/back-to-top.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/back-to-top-demo.tsx",
+      "content": "\"use client\";\n\nimport { BackToTop } from \"@rhs-ui/primitives/back-to-top\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"relative mx-auto h-64 max-w-md rounded-2xl border border-border p-6\">\n      <p className=\"text-sm text-muted-foreground\">On a long page the button appears after the reader scrolls past the threshold, with a ring that fills as they go.</p>\n      <BackToTop threshold={-1} className=\"absolute\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

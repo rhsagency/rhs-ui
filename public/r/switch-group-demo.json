@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-group-demo",
+  "title": "Switch group demo",
+  "description": "A working preview of Switch group.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/switch-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/switch-group-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconBell, IconEye, IconMail } from \"@rhs-ui/icons\";\nimport { SwitchGroup } from \"@rhs-ui/primitives/switch-group\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<Record<string, boolean>>({ email: true, push: false, profile: true });\n  return (\n    <div className=\"mx-auto max-w-lg p-8\">\n      <SwitchGroup\n        title=\"Privacy and alerts\"\n        description=\"Changes save right away.\"\n        value={value}\n        onValueChange={(id, on) => setValue((current) => ({ ...current, [id]: on }))}\n        items={[\n          { id: \"email\", label: \"Email summaries\", description: \"One email a day with what changed\", icon: <IconMail /> },\n          { id: \"push\", label: \"Push notifications\", description: \"Only for mentions and assignments\", icon: <IconBell /> },\n          { id: \"profile\", label: \"Public profile\", description: \"Anyone with the link can see your work\", icon: <IconEye /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

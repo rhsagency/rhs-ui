@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multi-select-demo",
+  "title": "Multi select demo",
+  "description": "A working preview of Multi select.",
+  "registryDependencies": [
+    "https://rhsui.com/r/multi-select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/multi-select-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { MultiSelect } from \"@rhs-ui/primitives/multi-select\";\n\nconst SKILLS = [\"Design\", \"Research\", \"React\", \"TypeScript\", \"Postgres\", \"Writing\", \"Motion\", \"Accessibility\", \"Product\", \"Branding\"].map((label) => ({ value: label.toLowerCase(), label }));\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string[]>([\"design\", \"react\", \"accessibility\", \"writing\"]);\n  return (\n    <div className=\"mx-auto grid max-w-md gap-2 p-8\">\n      <p className=\"text-sm font-medium\">Skills</p>\n      <MultiSelect label=\"Skills\" options={SKILLS} value={value} onValueChange={setValue} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

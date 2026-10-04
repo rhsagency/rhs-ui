@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-of-contents",
+  "title": "Table of contents",
+  "description": "\"On this page\" for docs and long articles: the headings as links, the one you are reading marked as you scroll (aria-current), subsections indented.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/table-of-contents.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface TocItem {\n  /** The id of the heading on the page. */\n  id: string;\n  title: string;\n  /** 2 for a section, 3 for a subsection. */\n  level: 2 | 3;\n}\n\nexport interface TableOfContentsProps {\n  items: readonly TocItem[];\n  title?: string;\n  className?: string;\n}\n\n/**\n * \"On this page\" for docs and long articles: the headings as links, the one\n * you are reading marked as you scroll (aria-current), subsections indented.\n * Put it in a sticky aside next to the text.\n */\nexport function TableOfContents({ items, title = \"On this page\", className }: TableOfContentsProps) {\n  const [active, setActive] = useState(items[0]?.id ?? \"\");\n  useEffect(() => {\n    const headings = items.map((item) => document.getElementById(item.id)).filter((node): node is HTMLElement => Boolean(node));\n    if (!headings.length || typeof IntersectionObserver === \"undefined\") return;\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];\n        if (visible) setActive(visible.target.id);\n      },\n      { rootMargin: \"0px 0px -70% 0px\" },\n    );\n    headings.forEach((heading) => observer.observe(heading));\n    return () => observer.disconnect();\n  }, [items]);\n  return (\n    <nav data-slot=\"table-of-contents\" aria-label={title} className={cn(\"text-sm\", className)}>\n      <p className=\"mb-3 text-xs font-medium uppercase tracking-[.14em] text-muted-foreground\">{title}</p>\n      <ol className=\"border-l border-border\">\n        {items.map((item) => (\n          <li key={item.id}>\n            <a\n              href={`#${item.id}`}\n              aria-current={item.id === active ? \"location\" : undefined}\n              onClick={() => setActive(item.id)}\n              className={cn(\"-ml-px block border-l-2 border-transparent py-1 text-muted-foreground outline-none hover:text-foreground focus-visible:text-foreground aria-[current=location]:border-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground\", item.level === 3 ? \"pl-6\" : \"pl-3\")}\n            >\n              {item.title}\n            </a>\n          </li>\n        ))}\n      </ol>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/table-of-contents.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

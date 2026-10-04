@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "time-picker",
+  "title": "Time picker",
+  "description": "A time field that opens a list of slots instead of a fiddly spinner: every step minutes between min and max, taken slots disabled, and the chosen one scrolled into view.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/time-picker.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { IconClock } from \"@rhs-ui/icons\";\nimport { fieldSurface } from \"@rhs-ui/primitives/input\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TimePickerProps {\n  /** \"HH:MM\" in 24-hour time, or null. */\n  value: string | null;\n  onValueChange: (time: string) => void;\n  /** Minutes between slots. */\n  step?: number;\n  /** First and last slot, \"HH:MM\". */\n  min?: string;\n  max?: string;\n  /** Slots that are taken. */\n  unavailable?: readonly string[];\n  placeholder?: string;\n  className?: string;\n}\n\nfunction slots(min: string, max: string, step: number) {\n  const [h1, m1] = min.split(\":\").map(Number);\n  const [h2, m2] = max.split(\":\").map(Number);\n  const out: string[] = [];\n  for (let t = (h1 ?? 0) * 60 + (m1 ?? 0); t <= (h2 ?? 23) * 60 + (m2 ?? 59); t += step) out.push(`${String(Math.floor(t / 60)).padStart(2, \"0\")}:${String(t % 60).padStart(2, \"0\")}`);\n  return out;\n}\n\n/**\n * A time field that opens a list of slots instead of a fiddly spinner:\n * every step minutes between min and max, taken slots disabled, and the\n * chosen one scrolled into view. Arrow keys move through the list.\n */\nexport function TimePicker({ value, onValueChange, step = 15, min = \"08:00\", max = \"18:00\", unavailable = [], placeholder = \"Pick a time\", className }: TimePickerProps) {\n  const [open, setOpen] = useState(false);\n  const list = useRef<HTMLUListElement>(null);\n  const options = slots(min, max, step);\n  useEffect(() => {\n    if (!open) return;\n    const frame = requestAnimationFrame(() => {\n      const target = list.current?.querySelector<HTMLButtonElement>('[aria-selected=\"true\"]') ?? list.current?.querySelector<HTMLButtonElement>(\"button:not([disabled])\");\n      target?.scrollIntoView({ block: \"center\" });\n      target?.focus();\n    });\n    return () => cancelAnimationFrame(frame);\n  }, [open]);\n  function move(event: React.KeyboardEvent<HTMLUListElement>) {\n    if (event.key !== \"ArrowDown\" && event.key !== \"ArrowUp\") return;\n    event.preventDefault();\n    const buttons = [...(list.current?.querySelectorAll<HTMLButtonElement>(\"button:not([disabled])\") ?? [])];\n    const index = buttons.indexOf(document.activeElement as HTMLButtonElement);\n    buttons[Math.max(0, Math.min(buttons.length - 1, index + (event.key === \"ArrowDown\" ? 1 : -1)))]?.focus();\n  }\n  return (\n    <Popover open={open} onOpenChange={setOpen}>\n      <PopoverTrigger data-slot=\"time-picker\" className={cn(fieldSurface, \"inline-flex h-9 w-36 items-center gap-2 px-3 text-left\", !value && \"text-muted-foreground\", className)}>\n        <IconClock className=\"size-4 text-muted-foreground\" />\n        <span className=\"tabular-nums\">{value ?? placeholder}</span>\n      </PopoverTrigger>\n      <PopoverContent align=\"start\" className=\"w-40 p-1\">\n        <ul ref={list} role=\"listbox\" aria-label=\"Times\" onKeyDown={move} className=\"relative max-h-64 overflow-y-auto\">\n          {options.map((option) => {\n            const taken = unavailable.includes(option);\n            return (\n              <li key={option}>\n                <button type=\"button\" role=\"option\" aria-selected={option === value} disabled={taken} onClick={() => { onValueChange(option); setOpen(false); }} className=\"flex w-full items-center justify-between rounded-sm px-2 py-1.5 text-sm tabular-nums outline-none hover:bg-muted focus-visible:bg-muted aria-selected:bg-foreground aria-selected:text-background disabled:text-muted-foreground disabled:line-through\">\n                  {option}\n                  {taken ? <span className=\"sr-only\">, taken</span> : null}\n                </button>\n              </li>\n            );\n          })}\n        </ul>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/time-picker.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "image-grid",
+  "title": "Image grid",
+  "description": "A grid of thumbnails that opens each image large in a lightbox, with previous and next (buttons and arrow keys) and the caption underneath.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/image-grid.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconArrowLeft, IconArrowRight } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Dialog, DialogContent, DialogTitle } from \"@rhs-ui/primitives/dialog\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface GridImage {\n  id: string;\n  src: string;\n  alt: string;\n  caption?: string;\n}\n\nexport interface ImageGridProps {\n  images: readonly GridImage[];\n  /** Columns on wide screens; two on a phone. */\n  columns?: 2 | 3 | 4;\n  className?: string;\n}\n\n/**\n * A grid of thumbnails that opens each image large in a lightbox, with\n * previous and next (buttons and arrow keys) and the caption underneath.\n * Thumbnails keep one ratio so mixed photos still line up.\n */\nexport function ImageGrid({ images, columns = 3, className }: ImageGridProps) {\n  const [index, setIndex] = useState<number | null>(null);\n  const current = index === null ? null : images[index];\n  const go = (step: number) => setIndex((value) => (value === null ? value : (value + step + images.length) % images.length));\n  return (\n    <div data-slot=\"image-grid\" className={className}>\n      <ul className={cn(\"grid grid-cols-2 gap-2\", columns === 3 && \"sm:grid-cols-3\", columns === 4 && \"sm:grid-cols-4\")}>\n        {images.map((image, i) => (\n          <li key={image.id}>\n            <button type=\"button\" onClick={() => setIndex(i)} className=\"group block w-full overflow-hidden rounded-lg outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50\" aria-label={`Open ${image.alt}`}>\n              <img src={image.src} alt=\"\" className=\"aspect-square w-full bg-muted object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none\" />\n            </button>\n          </li>\n        ))}\n      </ul>\n      <Dialog open={current !== null && current !== undefined} onOpenChange={(open) => !open && setIndex(null)}>\n        <DialogContent className=\"max-w-4xl p-3\" onKeyDown={(event) => { if (event.key === \"ArrowRight\") go(1); if (event.key === \"ArrowLeft\") go(-1); }}>\n          <DialogTitle className=\"sr-only\">{current?.alt}</DialogTitle>\n          {current ? (\n            <figure>\n              <img src={current.src} alt={current.alt} className=\"max-h-[75vh] w-full rounded-md object-contain\" />\n              <figcaption className=\"mt-3 flex items-center justify-between gap-4 px-1 text-sm\">\n                <span>{current.caption ?? current.alt}</span>\n                <span className=\"flex items-center gap-1\">\n                  <span className=\"mr-2 text-xs text-muted-foreground tabular-nums\">{(index ?? 0) + 1} / {images.length}</span>\n                  <Button size=\"icon-sm\" variant=\"outline\" aria-label=\"Previous image\" onClick={() => go(-1)}><IconArrowLeft /></Button>\n                  <Button size=\"icon-sm\" variant=\"outline\" aria-label=\"Next image\" onClick={() => go(1)}><IconArrowRight /></Button>\n                </span>\n              </figcaption>\n            </figure>\n          ) : null}\n        </DialogContent>\n      </Dialog>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/image-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

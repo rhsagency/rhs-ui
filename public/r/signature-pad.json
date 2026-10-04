@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signature-pad",
+  "title": "Signature pad",
+  "description": "Sign with a mouse, a finger or a pen: smooth strokes on a canvas sized to the device, a clear button, and an optional \"type your name instead\" for people who cannot draw, which is also what a screen reader user gets.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/signature-pad.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type PointerEvent } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SignaturePadProps {\n  /** Called with a PNG data URL when the person finishes a stroke, or null when cleared. */\n  onValueChange: (dataUrl: string | null) => void;\n  label?: string;\n  /** A typed name as the accessible alternative to drawing. */\n  allowTyped?: boolean;\n  className?: string;\n}\n\n/**\n * Sign with a mouse, a finger or a pen: smooth strokes on a canvas sized to\n * the device, a clear button, and an optional \"type your name instead\" for\n * people who cannot draw, which is also what a screen reader user gets.\n */\nexport function SignaturePad({ onValueChange, label = \"Signature\", allowTyped = true, className }: SignaturePadProps) {\n  const canvas = useRef<HTMLCanvasElement>(null);\n  const last = useRef<{ x: number; y: number } | null>(null);\n  const [empty, setEmpty] = useState(true);\n  const [typed, setTyped] = useState(false);\n  const [name, setName] = useState(\"\");\n  useEffect(() => {\n    const node = canvas.current;\n    if (!node) return;\n    const ratio = window.devicePixelRatio || 1;\n    const box = node.getBoundingClientRect();\n    node.width = box.width * ratio;\n    node.height = box.height * ratio;\n    const ctx = node.getContext(\"2d\");\n    if (!ctx) return;\n    ctx.scale(ratio, ratio);\n    ctx.lineCap = \"round\";\n    ctx.lineJoin = \"round\";\n    ctx.lineWidth = 2.2;\n    ctx.strokeStyle = getComputedStyle(node).color;\n  }, [typed]);\n  function point(event: PointerEvent<HTMLCanvasElement>) {\n    const box = event.currentTarget.getBoundingClientRect();\n    return { x: event.clientX - box.left, y: event.clientY - box.top };\n  }\n  function down(event: PointerEvent<HTMLCanvasElement>) {\n    event.currentTarget.setPointerCapture(event.pointerId);\n    last.current = point(event);\n  }\n  function move(event: PointerEvent<HTMLCanvasElement>) {\n    const ctx = canvas.current?.getContext(\"2d\");\n    if (!ctx || !last.current) return;\n    const next = point(event);\n    const mid = { x: (last.current.x + next.x) / 2, y: (last.current.y + next.y) / 2 };\n    ctx.beginPath();\n    ctx.moveTo(last.current.x, last.current.y);\n    ctx.quadraticCurveTo(last.current.x, last.current.y, mid.x, mid.y);\n    ctx.stroke();\n    last.current = next;\n    setEmpty(false);\n  }\n  function up() {\n    last.current = null;\n    if (canvas.current && !empty) onValueChange(canvas.current.toDataURL(\"image/png\"));\n  }\n  function clear() {\n    const node = canvas.current;\n    node?.getContext(\"2d\")?.clearRect(0, 0, node.width, node.height);\n    setEmpty(true);\n    onValueChange(null);\n  }\n  return (\n    <div data-slot=\"signature-pad\" className={cn(\"grid gap-2\", className)}>\n      <div className=\"flex items-center justify-between text-sm\">\n        <span className=\"font-medium\">{label}</span>\n        {allowTyped ? <button type=\"button\" className=\"text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline\" onClick={() => { setTyped(!typed); clear(); }}>{typed ? \"Draw instead\" : \"Type your name instead\"}</button> : null}\n      </div>\n      {typed ? (\n        <input aria-label={`${label}, typed name`} value={name} onChange={(event) => { setName(event.target.value); onValueChange(event.target.value ? `typed:${event.target.value}` : null); }} placeholder=\"Your full name\" className=\"h-28 w-full rounded-xl border border-dashed border-border bg-background px-4 text-center font-serif text-3xl italic outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\" />\n      ) : (\n        <div className=\"relative\">\n          <canvas ref={canvas} aria-label={`${label}, draw with mouse, finger or pen`} role=\"img\" onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} className=\"h-28 w-full touch-none rounded-xl border border-dashed border-border bg-background text-foreground\" />\n          {empty ? <span aria-hidden=\"true\" className=\"pointer-events-none absolute inset-x-6 bottom-6 border-b border-border text-xs text-muted-foreground\">Sign above the line</span> : null}\n        </div>\n      )}\n      <div className=\"flex justify-end\"><Button type=\"button\" size=\"sm\" variant=\"ghost\" onClick={clear} disabled={typed ? !name : empty}>Clear</Button></div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/signature-pad.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

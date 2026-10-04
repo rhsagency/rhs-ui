@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header-demo",
+  "title": "Page header demo",
+  "description": "A working preview of Page header.",
+  "registryDependencies": [
+    "https://rhsui.com/r/badge.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/page-header.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/page-header-demo.tsx",
+      "content": "import { Badge } from \"@rhs-ui/primitives/badge\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { PageHeader } from \"@rhs-ui/primitives/page-header\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl p-8\">\n      <PageHeader\n        titleAs=\"h2\"\n        title=\"Invoices\"\n        description=\"Everything you billed this year, with what is still open.\"\n        breadcrumbs={[{ label: \"Finance\", href: \"#\" }, { label: \"Invoices\" }]}\n        meta={<Badge variant=\"secondary\">12 open</Badge>}\n        actions={\n          <>\n            <Button variant=\"outline\">Export</Button>\n            <Button>New invoice</Button>\n          </>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

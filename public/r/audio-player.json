@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-player",
+  "title": "Audio player",
+  "description": "A compact audio player for a podcast, a voice note or a track: artwork, title, a scrubber that is a real slider, skip back fifteen and forward thirty seconds, and the speed that podcast listeners always ask for.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/audio-player.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { IconPause, IconPlay, IconRewind, IconFastForward } from \"@rhs-ui/icons\";\nimport { Slider } from \"@rhs-ui/primitives/slider\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AudioPlayerProps {\n  src: string;\n  title: string;\n  /** The show, the artist, or who is speaking. */\n  subtitle?: string;\n  /** Square artwork. */\n  artwork?: string;\n  className?: string;\n}\n\nconst clock = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, \"0\")}`;\n\n/**\n * A compact audio player for a podcast, a voice note or a track: artwork,\n * title, a scrubber that is a real slider, skip back fifteen and forward\n * thirty seconds, and the speed that podcast listeners always ask for.\n */\nexport function AudioPlayer({ src, title, subtitle, artwork, className }: AudioPlayerProps) {\n  const audio = useRef<HTMLAudioElement>(null);\n  const [playing, setPlaying] = useState(false);\n  const [time, setTime] = useState(0);\n  const [duration, setDuration] = useState(0);\n  const [rate, setRate] = useState(1);\n  useEffect(() => {\n    const node = audio.current;\n    if (!node) return;\n    const tick = () => setTime(node.currentTime);\n    const meta = () => setDuration(node.duration || 0);\n    const end = () => setPlaying(false);\n    node.addEventListener(\"timeupdate\", tick);\n    node.addEventListener(\"loadedmetadata\", meta);\n    node.addEventListener(\"ended\", end);\n    return () => { node.removeEventListener(\"timeupdate\", tick); node.removeEventListener(\"loadedmetadata\", meta); node.removeEventListener(\"ended\", end); };\n  }, []);\n  const toggle = () => { const node = audio.current; if (!node) return; if (node.paused) { void node.play(); setPlaying(true); } else { node.pause(); setPlaying(false); } };\n  const skip = (seconds: number) => { if (audio.current) audio.current.currentTime = Math.max(0, Math.min(duration, audio.current.currentTime + seconds)); };\n  const cycle = () => { const next = rate >= 2 ? 1 : rate + 0.25; setRate(next); if (audio.current) audio.current.playbackRate = next; };\n  const button = \"inline-flex size-9 items-center justify-center rounded-full outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\";\n  return (\n    <div data-slot=\"audio-player\" role=\"group\" aria-label={`Audio: ${title}`} className={cn(\"flex items-center gap-4 rounded-2xl border border-border bg-card p-3\", className)}>\n      <audio ref={audio} src={src || undefined} preload=\"metadata\" />\n      <span className=\"size-14 shrink-0 overflow-hidden rounded-xl bg-muted\">{artwork ? <img src={artwork} alt=\"\" className=\"size-full object-cover\" /> : null}</span>\n      <div className=\"min-w-0 flex-1\">\n        <p className=\"truncate text-sm font-medium\">{title}</p>\n        {subtitle ? <p className=\"truncate text-xs text-muted-foreground\">{subtitle}</p> : null}\n        <div className=\"mt-2 flex items-center gap-2\">\n          <span className=\"w-9 text-xs text-muted-foreground tabular-nums\">{clock(time)}</span>\n          <Slider className=\"flex-1\" value={[time]} min={0} max={duration || 1} step={1} thumbLabels={[\"Position\"]} onValueChange={([value]) => { if (audio.current && value !== undefined) audio.current.currentTime = value; }} />\n          <span className=\"w-9 text-right text-xs text-muted-foreground tabular-nums\">{clock(duration)}</span>\n        </div>\n      </div>\n      <div className=\"flex items-center gap-1\">\n        <button type=\"button\" className={button} aria-label=\"Back 15 seconds\" onClick={() => skip(-15)}><IconRewind /></button>\n        <button type=\"button\" className={cn(button, \"size-11 bg-foreground text-background hover:bg-foreground/90\")} aria-label={playing ? \"Pause\" : \"Play\"} onClick={toggle}>{playing ? <IconPause /> : <IconPlay />}</button>\n        <button type=\"button\" className={button} aria-label=\"Forward 30 seconds\" onClick={() => skip(30)}><IconFastForward /></button>\n        <button type=\"button\" className=\"h-9 rounded-full px-2 text-xs font-medium tabular-nums outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\" aria-label={`Playback speed ${rate}x`} onClick={cycle}>{rate}×</button>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/audio-player.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

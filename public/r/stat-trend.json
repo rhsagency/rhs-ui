@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat-trend",
+  "title": "Stat trend",
+  "description": "A compact number for dense dashboards: label, value, the change with an arrow and a word for whether that is good, and a sparkline.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/sparkline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/dashboard/stat-trend.tsx",
+      "content": "import { Sparkline } from \"@rhs-ui/dashboard/sparkline\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface StatTrendProps {\n  label: string;\n  /** Already formatted: \"€48,200\", \"2.8%\". */\n  value: string;\n  /** Change against the previous period, as a fraction: 0.12 is +12%. */\n  change: number;\n  /** Is up good? Revenue yes, churn no. */\n  upIsGood?: boolean;\n  trend?: readonly number[];\n  period?: string;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * A compact number for dense dashboards: label, value, the change with an\n * arrow and a word for whether that is good, and a sparkline. \"Good\" is\n * your call (upIsGood), because a rising churn is not good news.\n */\nexport function StatTrend({ label, value, change, upIsGood = true, trend = [], period = \"vs last period\", locale = \"en-GB\", className }: StatTrendProps) {\n  const percent = new Intl.NumberFormat(locale, { style: \"percent\", maximumFractionDigits: 1 }).format(Math.abs(change));\n  const up = change > 0;\n  const good = change === 0 ? null : up === upIsGood;\n  return (\n    <div data-slot=\"stat-trend\" className={cn(\"flex items-end justify-between gap-4 rounded-xl border border-border p-4\", className)}>\n      <div className=\"min-w-0\">\n        <p className=\"text-xs text-muted-foreground\">{label}</p>\n        <p className=\"mt-1 text-2xl font-medium tracking-[-0.04em] tabular-nums\">{value}</p>\n        <p className={cn(\"mt-1 text-xs tabular-nums\", good === false ? \"text-destructive\" : \"text-foreground\")}>\n          <span aria-hidden=\"true\">{change === 0 ? \"■\" : up ? \"▲\" : \"▼\"} </span>\n          {change === 0 ? \"No change\" : `${up ? \"Up\" : \"Down\"} ${percent}`}\n          {good !== null ? <span className=\"sr-only\">{good ? \", good\" : \", needs attention\"}</span> : null}\n          <span className=\"text-muted-foreground\"> {period}</span>\n        </p>\n      </div>\n      {trend.length > 1 ? <Sparkline values={trend} label={`${label} trend`} className=\"h-10 w-24 shrink-0\" /> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/stat-trend.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

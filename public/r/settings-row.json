@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "settings-row",
+  "title": "Settings row",
+  "description": "One setting: its name and an explanation on the left, the control on the right, stacked on a phone.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/settings-row.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface SettingsRowProps {\n  /** The setting's name; link the control to it with htmlFor. */\n  label: string;\n  htmlFor?: string;\n  description?: ReactNode;\n  /** The control: a switch, a select, an input, a button. */\n  children: ReactNode;\n  className?: string;\n}\n\n/**\n * One setting: its name and an explanation on the left, the control on the\n * right, stacked on a phone. Stack several in a bordered list for a\n * settings page that reads the same everywhere.\n */\nexport function SettingsRow({ label, htmlFor, description, children, className }: SettingsRowProps) {\n  return (\n    <div data-slot=\"settings-row\" className={cn(\"grid gap-3 py-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:items-center sm:gap-8\", className)}>\n      <div>\n        <label htmlFor={htmlFor} className=\"text-sm font-medium\">{label}</label>\n        {description ? <p className=\"mt-0.5 text-sm text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"sm:justify-self-end\">{children}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/settings-row.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

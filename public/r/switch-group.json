@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-group",
+  "title": "Switch group",
+  "description": "Settings as a list of switches on one surface, each with its label and a line of explanation tied to the switch, so the description is read along with it.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/switch-group.tsx",
+      "content": "\"use client\";\n\nimport { useId, type ReactNode } from \"react\";\n\nimport { Switch } from \"@rhs-ui/primitives/switch\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SwitchGroupItem {\n  id: string;\n  label: string;\n  description?: string;\n  icon?: ReactNode;\n  disabled?: boolean;\n}\n\nexport interface SwitchGroupProps {\n  title: string;\n  description?: string;\n  items: readonly SwitchGroupItem[];\n  value: Readonly<Record<string, boolean>>;\n  onValueChange: (id: string, on: boolean) => void;\n  className?: string;\n}\n\n/**\n * Settings as a list of switches on one surface, each with its label and a\n * line of explanation tied to the switch, so the description is read along\n * with it. For notifications, privacy and feature toggles.\n */\nexport function SwitchGroup({ title, description, items, value, onValueChange, className }: SwitchGroupProps) {\n  const id = useId();\n  return (\n    <section data-slot=\"switch-group\" aria-labelledby={`${id}-title`} className={cn(\"rounded-xl border border-border\", className)}>\n      <header className=\"border-b border-border px-5 py-4\">\n        <h3 id={`${id}-title`} className=\"text-sm font-medium\">{title}</h3>\n        {description ? <p className=\"mt-0.5 text-sm text-muted-foreground\">{description}</p> : null}\n      </header>\n      <ul className=\"divide-y divide-border\">\n        {items.map((item) => (\n          <li key={item.id} className=\"flex items-center gap-4 px-5 py-4\">\n            {item.icon ? <span className=\"inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted [&_svg]:size-4\">{item.icon}</span> : null}\n            <label htmlFor={`${id}-${item.id}`} className={cn(\"min-w-0 flex-1 text-sm\", item.disabled && \"text-muted-foreground\")}>\n              <span className=\"block font-medium\">{item.label}</span>\n              {item.description ? <span id={`${id}-${item.id}-d`} className=\"block text-muted-foreground\">{item.description}</span> : null}\n            </label>\n            <Switch id={`${id}-${item.id}`} checked={Boolean(value[item.id])} disabled={item.disabled} aria-describedby={item.description ? `${id}-${item.id}-d` : undefined} onCheckedChange={(on) => onValueChange(item.id, on)} />\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/switch-group.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

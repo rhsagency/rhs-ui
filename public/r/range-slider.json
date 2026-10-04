@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "range-slider",
+  "title": "Range slider",
+  "description": "A minimum and a maximum on one track, with number fields that type the same values: for price filters and ranges.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/range-slider.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\n\nimport { Slider } from \"@rhs-ui/primitives/slider\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RangeSliderProps {\n  label: string;\n  value: readonly [number, number];\n  onValueChange: (value: [number, number]) => void;\n  min: number;\n  max: number;\n  step?: number;\n  /** How a value is printed: \"€120\", \"25 km\". */\n  format?: (value: number) => string;\n  className?: string;\n}\n\n/**\n * A minimum and a maximum on one track, with number fields that type the\n * same values: for price filters and ranges. The two stay in order; typing\n * a minimum above the maximum moves the maximum with it.\n */\nexport function RangeSlider({ label, value, onValueChange, min, max, step = 1, format = String, className }: RangeSliderProps) {\n  const id = useId();\n  const [low, high] = value;\n  const clamp = (n: number) => Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));\n  const box = \"h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 text-sm tabular-nums outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\";\n  return (\n    <div data-slot=\"range-slider\" role=\"group\" aria-labelledby={`${id}-label`} className={cn(\"grid gap-3\", className)}>\n      <div className=\"flex items-baseline justify-between text-sm\">\n        <span id={`${id}-label`} className=\"font-medium\">{label}</span>\n        <span className=\"text-muted-foreground tabular-nums\">{format(low)} – {format(high)}</span>\n      </div>\n      <Slider value={[low, high]} min={min} max={max} step={step} thumbLabels={[`Minimum ${label.toLowerCase()}`, `Maximum ${label.toLowerCase()}`]} onValueChange={([a = low, b = high]) => onValueChange([a, b])} minStepsBetweenThumbs={1} />\n      <div className=\"grid grid-cols-2 gap-3\">\n        <label className=\"grid gap-1 text-xs text-muted-foreground\">Minimum<input type=\"number\" inputMode=\"numeric\" className={box} value={low} min={min} max={max} step={step} onChange={(event) => { const next = clamp(Number(event.target.value)); onValueChange([next, Math.max(next, high)]); }} /></label>\n        <label className=\"grid gap-1 text-xs text-muted-foreground\">Maximum<input type=\"number\" inputMode=\"numeric\" className={box} value={high} min={min} max={max} step={step} onChange={(event) => { const next = clamp(Number(event.target.value)); onValueChange([Math.min(low, next), next]); }} /></label>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/range-slider.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

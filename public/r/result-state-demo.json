@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "result-state-demo",
+  "title": "Result state demo",
+  "description": "A working preview of Result state.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/result-state.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/result-state-demo.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { ResultState } from \"@rhs-ui/primitives/result-state\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-4xl gap-6 p-8 md:grid-cols-2\">\n      <ResultState\n        tone=\"success\"\n        title=\"Payment received\"\n        description=\"We sent the receipt to your inbox. Your plan is active right away.\"\n        reference=\"PAY-58213\"\n        actions={<Button>Go to dashboard</Button>}\n      />\n      <ResultState tone=\"error\" title=\"The card was declined\" description=\"Nothing was charged. Check the card details or use another card.\" onRetry={() => undefined} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

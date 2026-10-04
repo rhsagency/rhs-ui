@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stacked-bar",
+  "title": "Stacked bar",
+  "description": "Parts of a whole on one bar: storage by type, traffic by device, budget by team.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/stacked-bar.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface StackedBarSegment {\n  label: string;\n  value: number;\n}\n\nexport interface StackedBarProps {\n  label: string;\n  segments: readonly StackedBarSegment[];\n  locale?: string;\n  className?: string;\n}\n\nconst SHADES = [\"bg-foreground\", \"bg-foreground/65\", \"bg-foreground/40\", \"bg-foreground/20\", \"bg-foreground/10\"];\n\n/**\n * Parts of a whole on one bar: storage by type, traffic by device, budget by\n * team. Shades step from the largest down, a legend repeats every part with\n * its share, and the bar is described in full for screen readers.\n */\nexport function StackedBar({ label, segments, locale = \"en-GB\", className }: StackedBarProps) {\n  const total = segments.reduce((sum, segment) => sum + segment.value, 0) || 1;\n  const percent = new Intl.NumberFormat(locale, { style: \"percent\", maximumFractionDigits: 0 });\n  const sorted = [...segments].sort((a, b) => b.value - a.value);\n  return (\n    <figure data-slot=\"stacked-bar\" className={cn(\"grid gap-3\", className)}>\n      <figcaption className=\"text-sm font-medium\">{label}</figcaption>\n      <div role=\"img\" aria-label={`${label}: ${sorted.map((segment) => `${segment.label} ${percent.format(segment.value / total)}`).join(\", \")}`} className=\"flex h-3 gap-0.5 overflow-hidden rounded-full\">\n        {sorted.map((segment, index) => <span key={segment.label} className={cn(\"h-full first:rounded-l-full last:rounded-r-full\", SHADES[Math.min(index, SHADES.length - 1)])} style={{ width: `${(segment.value / total) * 100}%` }} />)}\n      </div>\n      <ul aria-hidden=\"true\" className=\"flex flex-wrap gap-x-5 gap-y-1.5 text-xs\">\n        {sorted.map((segment, index) => (\n          <li key={segment.label} className=\"flex items-center gap-1.5\">\n            <span className={cn(\"size-2.5 rounded-sm\", SHADES[Math.min(index, SHADES.length - 1)])} />\n            {segment.label}\n            <span className=\"text-muted-foreground tabular-nums\">{percent.format(segment.value / total)}</span>\n          </li>\n        ))}\n      </ul>\n    </figure>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/stacked-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

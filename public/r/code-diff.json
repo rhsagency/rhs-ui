@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-diff",
+  "title": "Code diff",
+  "description": "Two versions of a file, unified: removed lines marked with a minus, added lines with a plus, both line numbers in the gutter.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/code-diff.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface CodeDiffProps {\n  /** The text before the change. */\n  before: string;\n  /** The text after the change. */\n  after: string;\n  filename?: string;\n  className?: string;\n}\n\ntype Line = { kind: \"same\" | \"add\" | \"remove\"; text: string; old?: number; new?: number };\n\n/** A line diff on the longest common subsequence: small inputs, exact result. */\nfunction diff(a: string[], b: string[]): Line[] {\n  const table = Array.from({ length: a.length + 1 }, () => new Array<number>(b.length + 1).fill(0));\n  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) table[i]![j] = a[i] === b[j] ? table[i + 1]![j + 1]! + 1 : Math.max(table[i + 1]![j]!, table[i]![j + 1]!);\n  const lines: Line[] = [];\n  let i = 0;\n  let j = 0;\n  while (i < a.length || j < b.length) {\n    if (i < a.length && j < b.length && a[i] === b[j]) { lines.push({ kind: \"same\", text: a[i]!, old: i + 1, new: j + 1 }); i++; j++; }\n    else if (j < b.length && (i >= a.length || table[i]![j + 1]! >= table[i + 1]![j]!)) { lines.push({ kind: \"add\", text: b[j]!, new: j + 1 }); j++; }\n    else { lines.push({ kind: \"remove\", text: a[i]!, old: i + 1 }); i++; }\n  }\n  return lines;\n}\n\n/**\n * Two versions of a file, unified: removed lines marked with a minus,\n * added lines with a plus, both line numbers in the gutter. The sign is\n * part of the text, so the change is clear without colour.\n */\nexport function CodeDiff({ before, after, filename, className }: CodeDiffProps) {\n  const lines = diff(before.split(\"\\n\"), after.split(\"\\n\"));\n  const added = lines.filter((line) => line.kind === \"add\").length;\n  const removed = lines.filter((line) => line.kind === \"remove\").length;\n  return (\n    <figure data-slot=\"code-diff\" className={cn(\"overflow-hidden rounded-lg border border-border font-mono text-[0.8125rem]\", className)}>\n      <figcaption className=\"flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2 text-xs\">\n        <span>{filename ?? \"Changes\"}</span>\n        <span className=\"tabular-nums\"><span className=\"text-[var(--color-success,oklch(0.55_0.15_150))]\">+{added}</span> <span className=\"text-destructive\">−{removed}</span></span>\n      </figcaption>\n      <div className=\"relative overflow-x-auto\">\n        <table className=\"w-full border-collapse\">\n          <tbody>\n            {lines.map((line, index) => (\n              <tr key={index} className={cn(line.kind === \"add\" && \"bg-[color-mix(in_oklch,var(--color-success,oklch(0.62_0.15_150))_12%,transparent)]\", line.kind === \"remove\" && \"bg-destructive/8\")}>\n                <td className=\"w-10 px-2 text-right text-muted-foreground/70 select-none tabular-nums\">{line.old ?? \"\"}</td>\n                <td className=\"w-10 px-2 text-right text-muted-foreground/70 select-none tabular-nums\">{line.new ?? \"\"}</td>\n                <td className=\"w-5 text-center text-muted-foreground select-none\">{line.kind === \"add\" ? \"+\" : line.kind === \"remove\" ? \"−\" : \"\"}</td>\n                <td className=\"pr-4 whitespace-pre\">\n                  {line.kind !== \"same\" ? <span className=\"sr-only\">{line.kind === \"add\" ? \"Added: \" : \"Removed: \"}</span> : null}\n                  {line.text || \" \"}\n                </td>\n              </tr>\n            ))}\n          </tbody>\n        </table>\n      </div>\n    </figure>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/code-diff.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

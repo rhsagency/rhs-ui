@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "review-card",
+  "title": "Review card",
+  "description": "One customer review: stars with the rating in words, title and text, who and when, a verified-purchase badge, the variant they chose, and the shop's reply when there is one.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/review-card.tsx",
+      "content": "import { IconBadgeCheck, IconStar } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ReviewCardProps {\n  rating: 1 | 2 | 3 | 4 | 5;\n  title?: string;\n  body: string;\n  author: string;\n  /** \"12 March 2026\", formatted on your side. */\n  date: string;\n  dateTime: string;\n  /** Bought the product: a badge says so. */\n  verified?: boolean;\n  /** What they bought: \"Stone, size M\". */\n  variant?: string;\n  /** Your reply, shown under the review. */\n  reply?: string;\n  className?: string;\n}\n\n/**\n * One customer review: stars with the rating in words, title and text,\n * who and when, a verified-purchase badge, the variant they chose, and the\n * shop's reply when there is one.\n */\nexport function ReviewCard({ rating, title, body, author, date, dateTime, verified = false, variant, reply, className }: ReviewCardProps) {\n  return (\n    <article data-slot=\"review-card\" className={cn(\"rounded-xl border border-border p-5\", className)}>\n      <div className=\"flex items-center gap-0.5\" role=\"img\" aria-label={`${rating} out of 5 stars`}>\n        {[1, 2, 3, 4, 5].map((star) => <IconStar key={star} className={cn(\"size-4\", star <= rating ? \"fill-current text-foreground\" : \"text-border\")} />)}\n      </div>\n      {title ? <h3 className=\"mt-3 text-sm font-medium\">{title}</h3> : null}\n      <p className=\"mt-1.5 text-sm leading-relaxed text-muted-foreground\">{body}</p>\n      <p className=\"mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground\">\n        <span className=\"font-medium text-foreground\">{author}</span>\n        {verified ? <span className=\"inline-flex items-center gap-1 [&_svg]:size-3.5\"><IconBadgeCheck />Verified purchase</span> : null}\n        <time dateTime={dateTime}>{date}</time>\n        {variant ? <span>{variant}</span> : null}\n      </p>\n      {reply ? (\n        <div className=\"mt-4 rounded-lg bg-muted/60 p-3 text-sm\">\n          <p className=\"text-xs font-medium\">Reply from the shop</p>\n          <p className=\"mt-1 text-muted-foreground\">{reply}</p>\n        </div>\n      ) : null}\n    </article>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/review-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

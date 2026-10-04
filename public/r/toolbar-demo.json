@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar-demo",
+  "title": "Toolbar demo",
+  "description": "A working preview of Toolbar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/toolbar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/toolbar-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconAlignCenter, IconAlignLeft, IconAlignRight, IconBold, IconItalic, IconLink, IconRedo, IconUnderline, IconUndo } from \"@rhs-ui/icons\";\nimport { Toolbar } from \"@rhs-ui/primitives/toolbar\";\n\nexport default function Demo(): React.JSX.Element {\n  const [marks, setMarks] = useState<string[]>([\"bold\"]);\n  const [align, setAlign] = useState(\"left\");\n  const mark = (id: string) => () => setMarks((list) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]));\n  return (\n    <div className=\"mx-auto flex max-w-xl justify-center p-10\">\n      <Toolbar\n        label=\"Text formatting\"\n        groups={[\n          [\n            { id: \"undo\", label: \"Undo\", icon: <IconUndo /> },\n            { id: \"redo\", label: \"Redo\", icon: <IconRedo />, disabled: true },\n          ],\n          [\n            { id: \"bold\", label: \"Bold\", icon: <IconBold />, pressed: marks.includes(\"bold\"), onSelect: mark(\"bold\") },\n            { id: \"italic\", label: \"Italic\", icon: <IconItalic />, pressed: marks.includes(\"italic\"), onSelect: mark(\"italic\") },\n            { id: \"underline\", label: \"Underline\", icon: <IconUnderline />, pressed: marks.includes(\"underline\"), onSelect: mark(\"underline\") },\n          ],\n          [\n            { id: \"left\", label: \"Align left\", icon: <IconAlignLeft />, pressed: align === \"left\", onSelect: () => setAlign(\"left\") },\n            { id: \"center\", label: \"Align centre\", icon: <IconAlignCenter />, pressed: align === \"center\", onSelect: () => setAlign(\"center\") },\n            { id: \"right\", label: \"Align right\", icon: <IconAlignRight />, pressed: align === \"right\", onSelect: () => setAlign(\"right\") },\n          ],\n          [{ id: \"link\", label: \"Add link\", icon: <IconLink /> }],\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

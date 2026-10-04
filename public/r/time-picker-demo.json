@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "time-picker-demo",
+  "title": "Time picker demo",
+  "description": "A working preview of Time picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/time-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/time-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { TimePicker } from \"@rhs-ui/primitives/time-picker\";\n\nexport default function Demo(): React.JSX.Element {\n  const [time, setTime] = useState<string | null>(\"10:30\");\n  return (\n    <div className=\"flex min-h-40 flex-col items-center gap-3 p-8\">\n      <TimePicker value={time} onValueChange={setTime} step={30} min=\"09:00\" max=\"17:00\" unavailable={[\"12:00\", \"12:30\", \"15:00\"]} />\n      <p className=\"text-xs text-muted-foreground\">Lunch and 15:00 are taken.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

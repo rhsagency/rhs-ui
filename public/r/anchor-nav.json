@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "anchor-nav",
+  "title": "Anchor nav",
+  "description": "A sticky row of in-page links for long pages (a product page, a policy, a pricing page): the section you are in is marked as you scroll, and the row scrolls sideways on a phone with the active link kept in view.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/anchor-nav.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AnchorNavProps {\n  /** Sections on the page, by id. */\n  items: readonly { id: string; label: string }[];\n  label?: string;\n  className?: string;\n}\n\n/**\n * A sticky row of in-page links for long pages (a product page, a policy,\n * a pricing page): the section you are in is marked as you scroll, and the\n * row scrolls sideways on a phone with the active link kept in view.\n */\nexport function AnchorNav({ items, label = \"On this page\", className }: AnchorNavProps) {\n  const [active, setActive] = useState(items[0]?.id ?? \"\");\n  useEffect(() => {\n    if (typeof IntersectionObserver === \"undefined\") return;\n    const observer = new IntersectionObserver((entries) => {\n      const hit = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];\n      if (hit) setActive(hit.target.id);\n    }, { rootMargin: \"-20% 0px -70% 0px\" });\n    for (const item of items) { const node = document.getElementById(item.id); if (node) observer.observe(node); }\n    return () => observer.disconnect();\n  }, [items]);\n  useEffect(() => {\n    document.querySelector(`[data-slot=\"anchor-nav\"] a[href=\"#${active}\"]`)?.scrollIntoView({ block: \"nearest\", inline: \"nearest\" });\n  }, [active]);\n  return (\n    <nav data-slot=\"anchor-nav\" aria-label={label} className={cn(\"sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur\", className)}>\n      <ul className=\"relative mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4\">\n        {items.map((item) => (\n          <li key={item.id}>\n            <a href={`#${item.id}`} aria-current={item.id === active ? \"location\" : undefined} onClick={() => setActive(item.id)} className=\"block border-b-2 border-transparent px-3 py-3 text-sm whitespace-nowrap text-muted-foreground outline-none hover:text-foreground focus-visible:text-foreground aria-[current=location]:border-foreground aria-[current=location]:text-foreground\">\n              {item.label}\n            </a>\n          </li>\n        ))}\n      </ul>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/anchor-nav.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

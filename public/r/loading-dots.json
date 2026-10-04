@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loading-dots",
+  "title": "Loading dots",
+  "description": "Three dots that pulse in turn, for \"someone is typing\" and short waits.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/loading-dots.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface LoadingDotsProps {\n  /** What is loading, for screen readers: \"Loading messages\". */\n  label?: string;\n  size?: \"sm\" | \"md\";\n  className?: string;\n}\n\n/**\n * Three dots that pulse in turn, for \"someone is typing\" and short waits.\n * Plain CSS with staggered delays; under reduced motion the dots stand\n * still at half strength. Announces its label once as a status.\n */\nexport function LoadingDots({ label = \"Loading\", size = \"md\", className }: LoadingDotsProps) {\n  const dot = cn(\"rounded-full bg-current motion-safe:animate-pulse motion-reduce:opacity-50\", size === \"sm\" ? \"size-1\" : \"size-1.5\");\n  return (\n    <span data-slot=\"loading-dots\" role=\"status\" className={cn(\"inline-flex items-center gap-1 text-muted-foreground\", className)}>\n      <span className={dot} style={{ animationDelay: \"0ms\" }} />\n      <span className={dot} style={{ animationDelay: \"200ms\" }} />\n      <span className={dot} style={{ animationDelay: \"400ms\" }} />\n      <span className=\"sr-only\">{label}</span>\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/loading-dots.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

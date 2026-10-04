@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pull-quote-demo",
+  "title": "Pull quote demo",
+  "description": "A working preview of Pull quote.",
+  "registryDependencies": [
+    "https://rhsui.com/r/pull-quote.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pull-quote-demo.tsx",
+      "content": "import { PullQuote } from \"@rhs-ui/primitives/pull-quote\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <p className=\"text-sm leading-relaxed text-muted-foreground\">For a year we built software that waited: no red dots, no streaks, no weekly email about what people had missed.</p>\n      <PullQuote quote=\"The best notification is the one you never had to send.\" cite=\"Anouk de Wit\" source=\"Field Notes, March 2026\" />\n      <p className=\"text-sm leading-relaxed text-muted-foreground\">Daily opens went down. Finished work went up.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

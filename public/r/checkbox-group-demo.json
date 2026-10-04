@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group-demo",
+  "title": "Checkbox group demo",
+  "description": "A working preview of Checkbox group.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checkbox-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkbox-group-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CheckboxGroup } from \"@rhs-ui/primitives/checkbox-group\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string[]>([\"comments\"]);\n  return (\n    <div className=\"mx-auto max-w-sm p-8\">\n      <CheckboxGroup\n        legend=\"Email me about\"\n        selectAll\n        value={value}\n        onValueChange={setValue}\n        options={[\n          { value: \"comments\", label: \"Comments\", description: \"Someone replies to you\" },\n          { value: \"mentions\", label: \"Mentions\", description: \"Someone writes your name\" },\n          { value: \"digest\", label: \"Weekly digest\", description: \"Mondays at 08:00\" },\n          { value: \"billing\", label: \"Billing\", description: \"Always on for owners\", disabled: true },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar",
+  "title": "Toolbar",
+  "description": "A row of icon buttons in groups, for an editor or a table header: one tab stop, arrow keys between buttons (Radix Toolbar), toggles that report aria-pressed, and the label of every button in its tooltip-free name.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/toolbar.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { Toolbar as ToolbarPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ToolbarAction {\n  id: string;\n  label: string;\n  icon: ReactNode;\n  onSelect?: () => void;\n  /** A toggle that stays pressed: bold, pin, wrap. */\n  pressed?: boolean;\n  disabled?: boolean;\n}\n\nexport interface ToolbarProps {\n  label: string;\n  /** Groups of actions, with a divider between groups. */\n  groups: readonly (readonly ToolbarAction[])[];\n  className?: string;\n}\n\n/**\n * A row of icon buttons in groups, for an editor or a table header: one tab\n * stop, arrow keys between buttons (Radix Toolbar), toggles that report\n * aria-pressed, and the label of every button in its tooltip-free name.\n */\nexport function Toolbar({ label, groups, className }: ToolbarProps) {\n  const button = \"inline-flex size-8 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-40 aria-pressed:bg-muted aria-pressed:text-foreground [&_svg]:size-4\";\n  return (\n    <ToolbarPrimitive.Root data-slot=\"toolbar\" aria-label={label} className={cn(\"inline-flex items-center gap-1 rounded-xl border border-border bg-background p-1\", className)}>\n      {groups.map((group, index) => (\n        <div key={index} className=\"contents\">\n          {index > 0 ? <ToolbarPrimitive.Separator className=\"mx-1 h-5 w-px bg-border\" /> : null}\n          {group.map((action) => (\n            <ToolbarPrimitive.Button key={action.id} aria-label={action.label} title={action.label} aria-pressed={action.pressed === undefined ? undefined : action.pressed} disabled={action.disabled} onClick={action.onSelect} className={button}>\n              {action.icon}\n            </ToolbarPrimitive.Button>\n          ))}\n        </div>\n      ))}\n    </ToolbarPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/toolbar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "actions"
+  },
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

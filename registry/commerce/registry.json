@@ -467,6 +467,346 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "price-tag",
+      "type": "registry:component",
+      "title": "Price tag",
+      "description": "A price as shoppers expect to read it: the price, the old one struck through, the saving as a percentage, and a unit.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/shipping-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-tag.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-tag.tsx"
+        }
+      ]
+    },
+    {
+      "name": "price-tag-demo",
+      "type": "registry:example",
+      "title": "Price tag demo",
+      "description": "A working preview of Price tag.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-tag.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-tag-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stock-indicator",
+      "type": "registry:component",
+      "title": "Stock indicator",
+      "description": "How many are left, in words with a small bar: in stock, only a few left, or sold out with the restock date.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/stock-indicator.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/stock-indicator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stock-indicator-demo",
+      "type": "registry:example",
+      "title": "Stock indicator demo",
+      "description": "A working preview of Stock indicator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stock-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stock-indicator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wishlist-button",
+      "type": "registry:component",
+      "title": "Wishlist button",
+      "description": "Save for later: a heart that answers the click right away (optimistic), rolls back if saving fails, and reports aria-pressed so the state is read out, not only seen.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-heart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/wishlist-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/wishlist-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "wishlist-button-demo",
+      "type": "registry:example",
+      "title": "Wishlist button demo",
+      "description": "A working preview of Wishlist button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/wishlist-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wishlist-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "size-guide",
+      "type": "registry:component",
+      "title": "Size guide",
+      "description": "\"Which size am I?\" in a dialog: the chart in centimetres or inches with a switch, how to measure, and the size column as row headers so a screen reader names the size for every number.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/size-guide.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/size-guide.tsx"
+        }
+      ]
+    },
+    {
+      "name": "size-guide-demo",
+      "type": "registry:example",
+      "title": "Size guide demo",
+      "description": "A working preview of Size guide.",
+      "registryDependencies": [
+        "https://rhsui.com/r/size-guide.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/size-guide-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mini-cart",
+      "type": "registry:component",
+      "title": "Mini cart",
+      "description": "The bag in the header: a count on the icon, and a small panel with the lines, the subtotal and the way to checkout.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/shipping-progress.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/mini-cart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/mini-cart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mini-cart-demo",
+      "type": "registry:example",
+      "title": "Mini cart demo",
+      "description": "A working preview of Mini cart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/mini-cart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mini-cart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "delivery-estimate",
+      "type": "registry:component",
+      "title": "Delivery estimate",
+      "description": "When it arrives, before people ask: the delivery and pick-up options with a date in words and the cost, and the real cut-off for today when there is one.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/delivery-estimate.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/delivery-estimate.tsx"
+        }
+      ]
+    },
+    {
+      "name": "delivery-estimate-demo",
+      "type": "registry:example",
+      "title": "Delivery estimate demo",
+      "description": "A working preview of Delivery estimate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/delivery-estimate.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/delivery-estimate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "review-card",
+      "type": "registry:component",
+      "title": "Review card",
+      "description": "One customer review: stars with the rating in words, title and text, who and when, a verified-purchase badge, the variant they chose, and the shop's reply when there is one.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/review-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/review-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "review-card-demo",
+      "type": "registry:example",
+      "title": "Review card demo",
+      "description": "A working preview of Review card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/review-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/review-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "compare-tray",
+      "type": "registry:component",
+      "title": "Compare tray",
+      "description": "The tray that collects products to compare: fixed to the bottom while anything is picked, a slot per product with remove, empty slots for the room left, and compare once there are two.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/compare-tray.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/compare-tray.tsx"
+        }
+      ]
+    },
+    {
+      "name": "compare-tray-demo",
+      "type": "registry:example",
+      "title": "Compare tray demo",
+      "description": "A working preview of Compare tray.",
+      "registryDependencies": [
+        "https://rhsui.com/r/compare-tray.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/compare-tray-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

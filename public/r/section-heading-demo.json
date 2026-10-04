@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section-heading-demo",
+  "title": "Section heading demo",
+  "description": "A working preview of Section heading.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/section-heading.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/section-heading-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { SectionHeading } from \"@rhs-ui/primitives/section-heading\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl space-y-14 p-8\">\n      <SectionHeading eyebrow=\"Recent work\" title=\"Projects we shipped this year\" description=\"A few of the launches we are proudest of.\" action={<Button variant=\"outline\">All projects</Button>} />\n      <SectionHeading align=\"center\" eyebrow=\"Pricing\" title=\"One plan, everything in it\" description=\"No seats to count, no features held back.\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

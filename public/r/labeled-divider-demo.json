@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "labeled-divider-demo",
+  "title": "Labeled divider demo",
+  "description": "A working preview of Labeled divider.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/labeled-divider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/labeled-divider-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { LabeledDivider } from \"@rhs-ui/primitives/labeled-divider\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-sm flex-col gap-5 p-8\">\n      <Button variant=\"outline\" className=\"w-full\">Continue with Google</Button>\n      <LabeledDivider>or with email</LabeledDivider>\n      <Button className=\"w-full\">Send me a link</Button>\n      <LabeledDivider align=\"left\">Older</LabeledDivider>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

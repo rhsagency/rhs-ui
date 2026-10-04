@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "size-guide",
+  "title": "Size guide",
+  "description": "\"Which size am I?\" in a dialog: the chart in centimetres or inches with a switch, how to measure, and the size column as row headers so a screen reader names the size for every number.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/segmented-control.json",
+    "https://rhsui.com/r/dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/size-guide.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconRuler } from \"@rhs-ui/icons\";\nimport { SegmentedControl } from \"@rhs-ui/application/segmented-control\";\nimport { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from \"@rhs-ui/primitives/dialog\";\n\nexport interface SizeGuideProps {\n  /** Column headings after the size: \"Chest\", \"Waist\", \"Length\". */\n  measures: readonly string[];\n  /** One row per size, measurements in centimetres in the order of measures. */\n  sizes: readonly { size: string; cm: readonly number[] }[];\n  /** How to measure, one line each. */\n  howTo?: readonly string[];\n  triggerLabel?: string;\n}\n\n/**\n * \"Which size am I?\" in a dialog: the chart in centimetres or inches with a\n * switch, how to measure, and the size column as row headers so a screen\n * reader names the size for every number.\n */\nexport function SizeGuide({ measures, sizes, howTo = [], triggerLabel = \"Size guide\" }: SizeGuideProps) {\n  const [unit, setUnit] = useState<\"cm\" | \"in\">(\"cm\");\n  const show = (cm: number) => (unit === \"cm\" ? String(cm) : (cm / 2.54).toFixed(1));\n  return (\n    <Dialog>\n      <DialogTrigger data-slot=\"size-guide\" className=\"inline-flex items-center gap-1.5 text-sm underline underline-offset-4 outline-none hover:text-muted-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\"><IconRuler />{triggerLabel}</DialogTrigger>\n      <DialogContent className=\"max-w-xl\">\n        <DialogHeader>\n          <DialogTitle>Size guide</DialogTitle>\n          <DialogDescription>Measurements of the body, not of the garment.</DialogDescription>\n        </DialogHeader>\n        <SegmentedControl label=\"Unit\" value={unit} onValueChange={(value) => setUnit(value as \"cm\" | \"in\")} options={[{ value: \"cm\", label: \"Centimetres\" }, { value: \"in\", label: \"Inches\" }]} />\n        <div className=\"relative overflow-x-auto rounded-lg border border-border\">\n          <table className=\"w-full text-sm\">\n            <thead className=\"bg-muted/60 text-left text-xs text-muted-foreground\">\n              <tr><th scope=\"col\" className=\"px-4 py-2 font-normal\">Size</th>{measures.map((measure) => <th key={measure} scope=\"col\" className=\"px-4 py-2 font-normal\">{measure} ({unit})</th>)}</tr>\n            </thead>\n            <tbody className=\"divide-y divide-border\">\n              {sizes.map((row) => (\n                <tr key={row.size}>\n                  <th scope=\"row\" className=\"px-4 py-2 text-left font-medium\">{row.size}</th>\n                  {row.cm.map((value, index) => <td key={index} className=\"px-4 py-2 tabular-nums\">{show(value)}</td>)}\n                </tr>\n              ))}\n            </tbody>\n          </table>\n        </div>\n        {howTo.length ? (\n          <ul className=\"space-y-1.5 text-sm text-muted-foreground\">{howTo.map((line) => <li key={line}>· {line}</li>)}</ul>\n        ) : null}\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/size-guide.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

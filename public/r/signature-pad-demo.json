@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signature-pad-demo",
+  "title": "Signature pad demo",
+  "description": "A working preview of Signature pad.",
+  "registryDependencies": [
+    "https://rhsui.com/r/signature-pad.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/signature-pad-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SignaturePad } from \"@rhs-ui/primitives/signature-pad\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string | null>(null);\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <SignaturePad label=\"Sign the agreement\" onValueChange={setValue} />\n      <p role=\"status\" className=\"mt-2 text-xs text-muted-foreground\">{value ? \"Signed.\" : \"Not signed yet.\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

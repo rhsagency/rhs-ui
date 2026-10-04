@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multi-select",
+  "title": "Multi select",
+  "description": "Pick several from a long list: a searchable listbox with checks, the picks as removable chips in the trigger, and select all or clear at the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/command.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/multi-select.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCheck, IconChevronDown, IconClose } from \"@rhs-ui/icons\";\nimport { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from \"@rhs-ui/primitives/command\";\nimport { fieldSurface } from \"@rhs-ui/primitives/input\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface MultiSelectOption {\n  value: string;\n  label: string;\n}\n\nexport interface MultiSelectProps {\n  options: readonly MultiSelectOption[];\n  value: readonly string[];\n  onValueChange: (value: string[]) => void;\n  /** Names the field for screen readers. */\n  label: string;\n  placeholder?: string;\n  /** Show this many chips, then \"+3\". */\n  maxChips?: number;\n  className?: string;\n}\n\n/**\n * Pick several from a long list: a searchable listbox with checks, the\n * picks as removable chips in the trigger, and select all or clear at the\n * bottom. Each chip's remove button names what it removes.\n */\nexport function MultiSelect({ options, value, onValueChange, label, placeholder = \"Select…\", maxChips = 3, className }: MultiSelectProps) {\n  const [open, setOpen] = useState(false);\n  const picked = options.filter((option) => value.includes(option.value));\n  const toggle = (item: string) => onValueChange(value.includes(item) ? value.filter((entry) => entry !== item) : [...value, item]);\n  return (\n    <Popover open={open} onOpenChange={setOpen}>\n      <div data-slot=\"multi-select\" className={cn(fieldSurface, \"flex min-h-9 w-full items-center gap-1 py-1 pr-1 pl-1.5\", className)}>\n        <div className=\"flex min-w-0 flex-1 flex-wrap gap-1\">\n          {picked.slice(0, maxChips).map((option) => (\n            <span key={option.value} className=\"inline-flex items-center gap-1 rounded-md bg-muted py-0.5 pr-0.5 pl-2 text-xs\">\n              {option.label}\n              <button type=\"button\" aria-label={`Remove ${option.label}`} onClick={() => toggle(option.value)} className=\"inline-flex size-5 items-center justify-center rounded outline-none hover:bg-background focus-visible:ring-2 focus-visible:ring-ring/40 [&_svg]:size-3\"><IconClose /></button>\n            </span>\n          ))}\n          {picked.length > maxChips ? <span className=\"rounded-md bg-muted px-2 py-0.5 text-xs tabular-nums\">+{picked.length - maxChips}</span> : null}\n          {picked.length === 0 ? <span className=\"px-1.5 py-0.5 text-sm text-muted-foreground\">{placeholder}</span> : null}\n        </div>\n        <PopoverTrigger aria-label={`${label}: ${picked.length} selected. Open list`} className=\"inline-flex size-7 shrink-0 items-center justify-center rounded text-muted-foreground outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/40 [&_svg]:size-4\"><IconChevronDown /></PopoverTrigger>\n      </div>\n      <PopoverContent align=\"start\" className=\"w-64 p-0\">\n        <Command>\n          <CommandInput placeholder={`Search ${label.toLowerCase()}`} />\n          <CommandList>\n            <CommandEmpty>Nothing matches.</CommandEmpty>\n            <CommandGroup>\n              {options.map((option) => (\n                <CommandItem key={option.value} value={option.label} onSelect={() => toggle(option.value)}>\n                  <span className={cn(\"inline-flex size-4 items-center justify-center rounded-sm border [&_svg]:size-3\", value.includes(option.value) ? \"border-foreground bg-foreground text-background\" : \"border-border\")}>{value.includes(option.value) ? <IconCheck /> : null}</span>\n                  {option.label}\n                </CommandItem>\n              ))}\n            </CommandGroup>\n          </CommandList>\n          <div className=\"flex justify-between border-t border-border p-1 text-xs\">\n            <button type=\"button\" className=\"rounded px-2 py-1 hover:bg-muted\" onClick={() => onValueChange(options.map((option) => option.value))}>Select all</button>\n            <button type=\"button\" className=\"rounded px-2 py-1 hover:bg-muted\" onClick={() => onValueChange([])}>Clear</button>\n          </div>\n        </Command>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/multi-select.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

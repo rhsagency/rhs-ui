@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-presets-demo",
+  "title": "Skeleton presets demo",
+  "description": "A working preview of Skeleton presets.",
+  "registryDependencies": [
+    "https://rhsui.com/r/skeleton-presets.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/skeleton-presets-demo.tsx",
+      "content": "import { SkeletonCard, SkeletonList, SkeletonProfile, SkeletonTable } from \"@rhs-ui/primitives/skeleton-presets\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-4xl gap-8 p-8 md:grid-cols-2\">\n      <SkeletonProfile />\n      <SkeletonCard />\n      <SkeletonList rows={3} />\n      <SkeletonTable rows={4} columns={3} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
