@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-icon-row-demo",
+  "title": "Feature icon row demo",
+  "description": "A working preview of Feature icon row.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/feature-icon-row.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-icon-row-demo.tsx",
+      "content": "import { IconHeadphones, IconRefresh, IconShieldCheck, IconTruck } from \"@rhs-ui/icons\";\nimport { FeatureIconRow } from \"@rhs-ui/marketing/feature-icon-row\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <FeatureIconRow\n        items={[\n          { icon: <IconTruck />, title: \"Free delivery\", description: \"On orders over €50, next day in the Netherlands\" },\n          { icon: <IconRefresh />, title: \"30-day returns\", description: \"Free, with a label in the box\" },\n          { icon: <IconShieldCheck />, title: \"Five-year warranty\", description: \"On every lamp and frame\" },\n          { icon: <IconHeadphones />, title: \"Real people\", description: \"Support in Dutch and English, 8:00 to 20:00\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

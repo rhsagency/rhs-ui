@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blog-list",
+  "title": "Blog list",
+  "description": "Posts as a list instead of a grid: date in the margin, category, title and one line, separated by rules.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/blog-list.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface BlogListPost {\n  href: string;\n  title: string;\n  excerpt: string;\n  category: string;\n  /** Formatted: \"12 March 2026\". */\n  date: string;\n  dateTime: string;\n  readingTime?: string;\n}\n\nexport interface BlogListProps {\n  title?: string;\n  posts: readonly BlogListPost[];\n  className?: string;\n}\n\n/**\n * Posts as a list instead of a grid: date in the margin, category, title and\n * one line, separated by rules. Text-first and fast to scan, for blogs that\n * publish more words than pictures.\n */\nexport function BlogList({ title, posts, className }: BlogListProps) {\n  return (\n    <section data-slot=\"blog-list\" className={cn(\"py-16 sm:py-20\", className)}>\n      {title ? <h2 className=\"text-3xl font-medium tracking-[-.04em]\">{title}</h2> : null}\n      <ol className={cn(\"divide-y divide-border border-y border-border\", title && \"mt-10\")}>\n        {posts.map((post) => (\n          <li key={`${post.href}-${post.title}`}>\n            <article className=\"group relative grid gap-2 py-7 sm:grid-cols-[10rem_1fr] sm:gap-8\">\n              <p className=\"text-sm text-muted-foreground\"><time dateTime={post.dateTime}>{post.date}</time></p>\n              <div>\n                <p className=\"text-xs font-medium tracking-[.1em] text-muted-foreground uppercase\">{post.category}{post.readingTime ? ` · ${post.readingTime}` : \"\"}</p>\n                <h3 className=\"mt-2 text-xl font-medium tracking-[-.02em] text-balance\">\n                  <a href={post.href} className=\"outline-none after:absolute after:inset-0 group-hover:underline group-hover:underline-offset-4 focus-visible:underline\">{post.title}</a>\n                </h3>\n                <p className=\"mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground\">{post.excerpt}</p>\n              </div>\n            </article>\n          </li>\n        ))}\n      </ol>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/blog-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

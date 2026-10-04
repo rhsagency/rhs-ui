@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "editorial-hero",
+  "title": "Editorial hero",
+  "description": "A magazine opening: kicker, a very large serif-free headline set tight, the standfirst in a narrow column beside the byline, and a full-width picture with its caption.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/editorial-hero.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface EditorialHeroProps {\n  /** The title's element: \"h2\" inside a page that has its own h1 (the default), \"h1\" when the hero opens the page. */\n  titleAs?: \"h1\" | \"h2\";\n  /** The issue or section: \"Issue 14, Spring\". */\n  kicker?: string;\n  title: string;\n  /** The standfirst: one or two sentences that sell the read. */\n  standfirst?: string;\n  byline?: ReactNode;\n  /** A wide photo or illustration under the type. */\n  visual?: ReactNode;\n  caption?: string;\n  className?: string;\n}\n\n/**\n * A magazine opening: kicker, a very large serif-free headline set tight, the\n * standfirst in a narrow column beside the byline, and a full-width picture\n * with its caption. For journals, case studies and long reads.\n */\nexport function EditorialHero({ titleAs: Title = \"h2\", kicker, title, standfirst, byline, visual, caption, className }: EditorialHeroProps) {\n  return (\n    <section data-slot=\"editorial-hero\" className={cn(\"py-16 sm:py-20\", className)}>\n      {kicker ? <p className=\"border-t border-foreground pt-3 text-xs font-medium tracking-[.14em] uppercase\">{kicker}</p> : null}\n      <Title className=\"mt-8 text-5xl font-medium leading-[.98] tracking-[-.06em] text-balance sm:text-7xl lg:text-8xl\">{title}</Title>\n      <div className=\"mt-10 grid gap-6 sm:grid-cols-[1fr_2fr] sm:gap-12\">\n        {byline ? <div className=\"text-sm text-muted-foreground\">{byline}</div> : <span />}\n        {standfirst ? <p className=\"max-w-2xl text-lg leading-relaxed text-pretty sm:text-xl\">{standfirst}</p> : null}\n      </div>\n      {visual ? (\n        <figure className=\"mt-12\">\n          <div className=\"aspect-[21/9] overflow-hidden rounded-2xl bg-muted [&_img]:size-full [&_img]:object-cover\">{visual}</div>\n          {caption ? <figcaption className=\"mt-3 text-xs text-muted-foreground\">{caption}</figcaption> : null}\n        </figure>\n      ) : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/editorial-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

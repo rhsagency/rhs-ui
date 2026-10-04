@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "press-quotes",
+  "title": "Press quotes",
+  "description": "\"As seen in\", done properly: a short line from each article with the outlet under it, linking to the piece.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/press-quotes.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface PressQuote {\n  /** The publication's name, and its wordmark if you have the rights to show it. */\n  outlet: string;\n  mark?: ReactNode;\n  quote: string;\n  /** Link to the article. */\n  href?: string;\n}\n\nexport interface PressQuotesProps {\n  title?: string;\n  quotes: readonly PressQuote[];\n  className?: string;\n}\n\n/**\n * \"As seen in\", done properly: a short line from each article with the\n * outlet under it, linking to the piece. Three across, stacked on a phone,\n * with thin rules between them like a newspaper column.\n */\nexport function PressQuotes({ title = \"In the press\", quotes, className }: PressQuotesProps) {\n  return (\n    <section data-slot=\"press-quotes\" className={cn(\"py-14 sm:py-20\", className)}>\n      <h2 className=\"text-center text-xs font-medium tracking-[.14em] text-muted-foreground uppercase\">{title}</h2>\n      <ul className=\"mt-10 grid divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0\">\n        {quotes.map((item) => (\n          <li key={item.outlet} className=\"px-6 py-8 text-center md:py-2\">\n            <figure>\n              <blockquote className=\"text-lg leading-snug font-medium tracking-[-.02em] text-balance\">&ldquo;{item.quote}&rdquo;</blockquote>\n              <figcaption className=\"mt-5 flex items-center justify-center gap-2 text-sm text-muted-foreground [&_svg]:h-5 [&_svg]:w-auto\">\n                {item.mark}\n                {item.href ? <a href={item.href} className=\"underline-offset-4 hover:text-foreground hover:underline\">{item.outlet}</a> : <cite className=\"not-italic\">{item.outlet}</cite>}\n              </figcaption>\n            </figure>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/press-quotes.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

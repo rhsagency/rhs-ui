@@ -1451,6 +1451,238 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "sign-up-card",
+      "type": "registry:block",
+      "title": "Sign up card",
+      "description": "Create an account in a card: name, email and a new password with its rules and strength shown as you type, an opt-in for product updates that starts unticked, and one announced error region.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sign-up-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/sign-up-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sign-up-card-demo",
+      "type": "registry:example",
+      "title": "Sign up card demo",
+      "description": "A working preview of Sign up card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/sign-up-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sign-up-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "forgot-password-card",
+      "type": "registry:block",
+      "title": "Forgot password card",
+      "description": "Reset a password: one email field, then a confirmation that reads the same whether or not the address has an account (no account enumeration), with a resend that waits thirty seconds before it can be used again.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/forgot-password-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/forgot-password-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "forgot-password-card-demo",
+      "type": "registry:example",
+      "title": "Forgot password card demo",
+      "description": "A working preview of Forgot password card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/forgot-password-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/forgot-password-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "two-factor-card",
+      "type": "registry:block",
+      "title": "Two factor card",
+      "description": "The second step of sign-in: a six-box code that submits itself when the last digit lands (pasting a whole code works), a busy state while it is checked, a wrong code announced and cleared, and the way out underneath.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/otp-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/two-factor-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/two-factor-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "two-factor-card-demo",
+      "type": "registry:example",
+      "title": "Two factor card demo",
+      "description": "A working preview of Two factor card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/two-factor-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-factor-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "billing-section",
+      "type": "registry:block",
+      "title": "Billing section",
+      "description": "The billing page of an account: current plan with its renewal date, the payment method, and the invoices as a real table with status in words and a PDF download per row.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/billing-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/billing-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "billing-section-demo",
+      "type": "registry:example",
+      "title": "Billing section demo",
+      "description": "A working preview of Billing section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/billing-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/billing-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "onboarding-welcome",
+      "type": "registry:block",
+      "title": "Onboarding welcome",
+      "description": "The first screen after sign-up: a greeting and one question with big choice tiles, so the empty workspace can start with the right templates.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/onboarding-welcome.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/onboarding-welcome.tsx"
+        }
+      ]
+    },
+    {
+      "name": "onboarding-welcome-demo",
+      "type": "registry:example",
+      "title": "Onboarding welcome demo",
+      "description": "A working preview of Onboarding welcome.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/onboarding-welcome.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/onboarding-welcome-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

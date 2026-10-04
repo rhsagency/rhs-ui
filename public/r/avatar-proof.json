@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-proof",
+  "title": "Avatar proof",
+  "description": "The small social proof that sits under a hero's buttons: a stack of faces, stars and one line.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/avatar-proof.tsx",
+      "content": "import { IconStar } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AvatarProofProps {\n  /** Up to five faces or initials; more are summarised in the count. */\n  people: readonly { name: string; image?: string }[];\n  /** The claim: \"Loved by 12,000 designers\". */\n  label: string;\n  /** Optional average rating out of five. */\n  rating?: number;\n  className?: string;\n}\n\nconst initials = (name: string) => name.split(/\\s+/).map((part) => part[0]).join(\"\").slice(0, 2).toUpperCase();\n\n/**\n * The small social proof that sits under a hero's buttons: a stack of faces,\n * stars and one line. The faces are decoration (the line says it all), so a\n * screen reader hears the claim once, not five names.\n */\nexport function AvatarProof({ people, label, rating, className }: AvatarProofProps) {\n  return (\n    <div data-slot=\"avatar-proof\" className={cn(\"flex items-center gap-3\", className)}>\n      <span aria-hidden=\"true\" className=\"flex -space-x-2.5\">\n        {people.slice(0, 5).map((person) => (\n          <span key={person.name} className=\"inline-flex size-9 items-center justify-center overflow-hidden rounded-full bg-muted text-[11px] font-medium ring-2 ring-background\">\n            {person.image ? <img src={person.image} alt=\"\" className=\"size-full object-cover\" /> : initials(person.name)}\n          </span>\n        ))}\n      </span>\n      <span className=\"flex flex-col gap-0.5\">\n        {rating !== undefined ? (\n          <span className=\"flex items-center gap-0.5\" aria-label={`Rated ${rating.toFixed(1)} out of 5`} role=\"img\">\n            {[1, 2, 3, 4, 5].map((star) => <IconStar key={star} aria-hidden=\"true\" className={cn(\"size-3.5\", star <= Math.round(rating) ? \"fill-current text-foreground\" : \"text-border\")} />)}\n          </span>\n        ) : null}\n        <span className=\"text-sm text-muted-foreground\">{label}</span>\n      </span>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/marketing/avatar-proof.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:component"
+}

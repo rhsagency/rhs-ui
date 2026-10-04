@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "platform-hub",
+  "title": "Platform hub",
+  "description": "\"Everything connects to us\": the product in the middle and the tools it talks to on a ring around it, joined by thin lines.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/platform-hub.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface HubSpoke {\n  name: string;\n  icon: ReactNode;\n}\n\nexport interface PlatformHubProps {\n  title: string;\n  description?: string;\n  /** The product in the middle: a logo or a mark. */\n  center: ReactNode;\n  centerLabel: string;\n  /** Six to eight tools around it. */\n  spokes: readonly HubSpoke[];\n  className?: string;\n}\n\n/**\n * \"Everything connects to us\": the product in the middle and the tools it\n * talks to on a ring around it, joined by thin lines. The ring is drawn with\n * trigonometry, not a picture, so it takes any number of spokes; the list\n * underneath is what a screen reader gets.\n */\nexport function PlatformHub({ title, description, center, centerLabel, spokes, className }: PlatformHubProps) {\n  const radius = 40;\n  const points = spokes.map((_, index) => {\n    const angle = (index / spokes.length) * Math.PI * 2 - Math.PI / 2;\n    return { x: 50 + radius * Math.cos(angle), y: 50 + radius * Math.sin(angle) };\n  });\n  return (\n    <section data-slot=\"platform-hub\" className={cn(\"grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2\", className)}>\n      <div>\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 max-w-md text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        <ul className=\"mt-8 flex flex-wrap gap-2 text-sm\">\n          {spokes.map((spoke) => (\n            <li key={spoke.name} className=\"rounded-full border border-border px-3 py-1\">{spoke.name}</li>\n          ))}\n        </ul>\n      </div>\n      <div aria-hidden=\"true\" className=\"relative mx-auto aspect-square w-full max-w-md\">\n        <svg viewBox=\"0 0 100 100\" className=\"absolute inset-0 size-full text-border\">\n          <circle cx=\"50\" cy=\"50\" r={radius} fill=\"none\" stroke=\"currentColor\" strokeWidth=\".3\" strokeDasharray=\"1 1.5\" />\n          {points.map((point, index) => (\n            <line key={index} x1=\"50\" y1=\"50\" x2={point.x} y2={point.y} stroke=\"currentColor\" strokeWidth=\".3\" />\n          ))}\n        </svg>\n        <span className=\"absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1 rounded-3xl bg-foreground text-background shadow-xl [&_svg]:size-8\">\n          {center}\n          <span className=\"text-[10px] font-medium\">{centerLabel}</span>\n        </span>\n        {spokes.map((spoke, index) => (\n          <span\n            key={spoke.name}\n            className=\"absolute flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-border bg-background shadow-sm [&_svg]:size-6\"\n            style={{ left: `${points[index]?.x}%`, top: `${points[index]?.y}%` }}\n          >\n            {spoke.icon}\n          </span>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/platform-hub.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

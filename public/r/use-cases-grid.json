@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-cases-grid",
+  "title": "Use cases grid",
+  "description": "\"Built for teams like yours\": one card per audience, each a whole link to its own page, with who it is for, the job it does for them and an arrow that moves on hover.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/use-cases-grid.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconArrowRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface UseCase {\n  href: string;\n  icon: ReactNode;\n  /** Who it is for: \"Agencies\", \"Finance teams\". */\n  audience: string;\n  title: string;\n  description: string;\n}\n\nexport interface UseCasesGridProps {\n  title: string;\n  description?: string;\n  cases: readonly UseCase[];\n  className?: string;\n}\n\n/**\n * \"Built for teams like yours\": one card per audience, each a whole link to\n * its own page, with who it is for, the job it does for them and an arrow\n * that moves on hover.\n */\nexport function UseCasesGrid({ title, description, cases, className }: UseCasesGridProps) {\n  return (\n    <section data-slot=\"use-cases-grid\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"max-w-2xl\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      </div>\n      <ul className=\"mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3\">\n        {cases.map((useCase) => (\n          <li key={`${useCase.href}-${useCase.audience}`}>\n            <a href={useCase.href} className=\"group flex h-full flex-col rounded-2xl border border-border p-6 outline-none transition-colors hover:bg-muted/60 focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n              <span className=\"flex items-center gap-3 text-xs font-medium tracking-[.1em] text-muted-foreground uppercase [&_svg]:size-4.5 [&_svg]:text-foreground\">{useCase.icon}{useCase.audience}</span>\n              <span className=\"mt-5 text-lg font-medium tracking-[-.02em]\">{useCase.title}</span>\n              <span className=\"mt-2 flex-1 text-sm leading-relaxed text-muted-foreground\">{useCase.description}</span>\n              <span className=\"mt-6 inline-flex items-center gap-1.5 text-sm font-medium\">\n                Learn more\n                <IconArrowRight aria-hidden=\"true\" className=\"size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none\" />\n              </span>\n            </a>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/use-cases-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

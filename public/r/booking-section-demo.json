@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "booking-section-demo",
+  "title": "Booking section demo",
+  "description": "A working preview of Booking section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/booking-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/booking-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { BookingSection } from \"@rhs-ui/marketing/booking-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <BookingSection\n        title=\"Book a walkthrough.\"\n        description=\"Pick a time that suits you. We will send a calendar invite with the video link.\"\n        duration=\"30 minutes, video call\"\n        days={[\n          { id: \"2026-04-13\", weekday: \"Mon\", date: \"13 Apr\", slots: [\"09:30\", \"11:00\", \"14:00\", \"15:30\"] },\n          { id: \"2026-04-14\", weekday: \"Tue\", date: \"14 Apr\", slots: [\"10:00\", \"13:30\"] },\n          { id: \"2026-04-15\", weekday: \"Wed\", date: \"15 Apr\", slots: [] },\n          { id: \"2026-04-16\", weekday: \"Thu\", date: \"16 Apr\", slots: [\"09:00\", \"09:30\", \"10:00\", \"16:00\"] },\n          { id: \"2026-04-17\", weekday: \"Fri\", date: \"17 Apr\", slots: [\"11:30\"] },\n        ]}\n        onBook={() => new Promise<void>((resolve) => setTimeout(resolve, 600))}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

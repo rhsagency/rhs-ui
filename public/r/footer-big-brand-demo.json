@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-big-brand-demo",
+  "title": "Footer big brand demo",
+  "description": "A working preview of Footer big brand.",
+  "registryDependencies": [
+    "https://rhsui.com/r/footer-big-brand.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/footer-big-brand-demo.tsx",
+      "content": "import { FooterBigBrand } from \"@rhs-ui/marketing/footer-big-brand\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FooterBigBrand\n        name=\"Fieldwork\"\n        links={[{ label: \"Work\", href: \"#work\" }, { label: \"Studio\", href: \"#studio\" }, { label: \"Journal\", href: \"#journal\" }, { label: \"Careers\", href: \"#careers\" }, { label: \"Contact\", href: \"#contact\" }]}\n        aside={<a href=\"mailto:hello@example.com\" className=\"hover:text-foreground\">hello@example.com</a>}\n        legal={<><span>© 2026 Fieldwork Studio</span><span>Katendrecht, Rotterdam</span></>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

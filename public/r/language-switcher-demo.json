@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "language-switcher-demo",
+  "title": "Language switcher demo",
+  "description": "A working preview of Language switcher.",
+  "registryDependencies": [
+    "https://rhsui.com/r/language-switcher.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/language-switcher-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { LanguageSwitcher } from \"@rhs-ui/marketing/language-switcher\";\n\nexport default function Demo(): React.JSX.Element {\n  const [language, setLanguage] = useState(\"nl\");\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-md items-start justify-center p-10\">\n      <LanguageSwitcher\n        current={language}\n        onChange={setLanguage}\n        languages={[\n          { code: \"nl\", name: \"Nederlands\" },\n          { code: \"en\", name: \"English\" },\n          { code: \"de\", name: \"Deutsch\" },\n          { code: \"fr\", name: \"Français\" },\n          { code: \"es\", name: \"Español\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

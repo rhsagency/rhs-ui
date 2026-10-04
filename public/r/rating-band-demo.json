@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-band-demo",
+  "title": "Rating band demo",
+  "description": "A working preview of Rating band.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rating-band.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rating-band-demo.tsx",
+      "content": "import { RatingBand } from \"@rhs-ui/marketing/rating-band\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <RatingBand\n        ratings={[\n          { source: \"App Store\", rating: 4.8, count: \"2,140 reviews\", href: \"#app-store\" },\n          { source: \"Google Play\", rating: 4.6, count: \"1,380 reviews\", href: \"#google-play\" },\n          { source: \"Trustpilot\", rating: 4.7, count: \"910 reviews\", href: \"#trustpilot\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

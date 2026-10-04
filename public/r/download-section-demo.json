@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "download-section-demo",
+  "title": "Download section demo",
+  "description": "A working preview of Download section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/download-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/download-section-demo.tsx",
+      "content": "import { IconLaptop, IconMonitor, IconTerminal } from \"@rhs-ui/icons\";\nimport { DownloadSection } from \"@rhs-ui/marketing/download-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <DownloadSection\n        title=\"Download Ledger for desktop.\"\n        description=\"Offline drafts, global shortcuts and native notifications. Free with every plan.\"\n        options={[\n          { platform: \"macOS\", icon: <IconLaptop />, href: \"#mac\", detail: \"Apple silicon and Intel\", meta: \"v2.4.1, 92 MB\" },\n          { platform: \"Windows\", icon: <IconMonitor />, href: \"#windows\", detail: \"64-bit installer\", meta: \"v2.4.1, 88 MB\" },\n          { platform: \"Linux\", icon: <IconTerminal />, href: \"#linux\", detail: \"AppImage and .deb\", meta: \"v2.4.1, 95 MB\" },\n        ]}\n        footer={<><a href=\"#notes\">Release notes</a> · <a href=\"#checksums\">Checksums</a> · <a href=\"#older\">Older versions</a></>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

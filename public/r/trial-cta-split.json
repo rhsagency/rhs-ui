@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trial-cta-split",
+  "title": "Trial CTA split",
+  "description": "A closing call to action with a product shot: dark band, the trial offer and what is in it on the left, the product bleeding off the right edge.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/trial-cta-split.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TrialCtaSplitProps {\n  title: string;\n  description?: string;\n  /** What the trial includes, a line each. */\n  includes: readonly string[];\n  actions: ReactNode;\n  /** The fine print that removes the last doubt: \"No card. Cancel in one click.\" */\n  note?: string;\n  /** A product shot that bleeds off the right edge. */\n  visual: ReactNode;\n  className?: string;\n}\n\n/**\n * A closing call to action with a product shot: dark band, the trial offer\n * and what is in it on the left, the product bleeding off the right edge.\n * The dark band is an island (class \"dark\"), so it stays dark in light mode\n * and keeps its contrast in dark mode.\n */\nexport function TrialCtaSplit({ title, description, includes, actions, note, visual, className }: TrialCtaSplitProps) {\n  return (\n    <section data-slot=\"trial-cta-split\" className={cn(\"dark overflow-hidden rounded-3xl bg-background text-foreground\", className)}>\n      <div className=\"grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]\">\n        <div className=\"px-8 pt-12 sm:px-12 lg:py-16\">\n          <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n          {description ? <p className=\"mt-4 max-w-md text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n          <ul className=\"mt-7 space-y-2.5 text-sm\">\n            {includes.map((item) => (\n              <li key={item} className=\"flex items-center gap-2.5\"><IconCheck className=\"size-4 shrink-0\" />{item}</li>\n            ))}\n          </ul>\n          <div className=\"mt-9 flex flex-wrap gap-3\">{actions}</div>\n          {note ? <p className=\"mt-4 text-xs text-muted-foreground\">{note}</p> : null}\n        </div>\n        <div className=\"relative h-72 sm:h-96 lg:h-full lg:min-h-[28rem]\">\n          <div className=\"absolute inset-y-8 left-8 right-0 overflow-hidden rounded-l-2xl border border-r-0 border-border bg-muted lg:inset-y-12 lg:left-0\">{visual}</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/trial-cta-split.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

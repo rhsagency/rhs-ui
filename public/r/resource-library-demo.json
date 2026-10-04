@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resource-library-demo",
+  "title": "Resource library demo",
+  "description": "A working preview of Resource library.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/resource-library.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/resource-library-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconBook, IconChartBar, IconFileText, IconVideo } from \"@rhs-ui/icons\";\nimport { ResourceLibrary } from \"@rhs-ui/marketing/resource-library\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <ResourceLibrary\n        title=\"Resources\"\n        description=\"Everything we have written, recorded and measured, free to use.\"\n        resources={[\n          { href: \"#roadmap-guide\", type: \"Guide\", icon: <IconBook />, title: \"The calm roadmap\", description: \"Plan a quarter without the all-day workshop.\" },\n          { href: \"#okr-template\", type: \"Template\", icon: <IconFileText />, title: \"OKR template for small teams\", description: \"Three objectives, nine key results, one page.\" },\n          { href: \"#webinar-async\", type: \"Webinar\", icon: <IconVideo />, title: \"Async updates that people read\", description: \"A 40-minute session with three team leads.\" },\n          { href: \"#report-2026\", type: \"Report\", icon: <IconChartBar />, title: \"State of small teams 2026\", description: \"Survey of 1,200 teams on tools, meetings and focus.\" },\n          { href: \"#retro-template\", type: \"Template\", icon: <IconFileText />, title: \"Retro in 30 minutes\", description: \"A format that ends with decisions, not feelings.\" },\n          { href: \"#hiring-guide\", type: \"Guide\", icon: <IconBook />, title: \"Hiring your first designer\", description: \"What to look for and what the first month holds.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

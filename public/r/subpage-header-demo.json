@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "subpage-header-demo",
+  "title": "Subpage header demo",
+  "description": "A working preview of Subpage header.",
+  "registryDependencies": [
+    "https://rhsui.com/r/subpage-header.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/subpage-header-demo.tsx",
+      "content": "import { SubpageHeader } from \"@rhs-ui/marketing/subpage-header\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <SubpageHeader\n        titleAs=\"h2\"\n        breadcrumbs={[{ label: \"Home\", href: \"#home\" }, { label: \"Resources\", href: \"#resources\" }, { label: \"Guides\" }]}\n        title=\"Guides\"\n        description=\"Step-by-step write-ups for the things teams ask us about most.\"\n      >\n        <ul className=\"flex flex-wrap gap-2 text-sm\">\n          {[\"Planning\", \"Meetings\", \"Hiring\", \"Remote work\"].map((topic) => (\n            <li key={topic}><a href={`#${topic.toLowerCase().replace(\" \", \"-\")}`} className=\"inline-flex rounded-full border border-border bg-background px-3 py-1 hover:bg-muted\">{topic}</a></li>\n          ))}\n        </ul>\n      </SubpageHeader>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

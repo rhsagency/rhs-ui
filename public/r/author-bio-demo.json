@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "author-bio-demo",
+  "title": "Author bio demo",
+  "description": "A working preview of Author bio.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/author-bio.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/author-bio-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { AuthorBio } from \"@rhs-ui/marketing/author-bio\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <AuthorBio\n        name=\"Anouk de Wit\"\n        role=\"Editor, Field Notes\"\n        bio=\"Anouk writes about how small teams organise their work. Before Field Notes she ran operations at a 40-person design studio in Rotterdam.\"\n        links={[{ label: \"Profile\", href: \"#anouk\" }, { label: \"All posts by Anouk\", href: \"#posts\" }, { label: \"Newsletter\", href: \"#newsletter\" }]}\n        action={<Button size=\"sm\" variant=\"outline\">Follow</Button>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

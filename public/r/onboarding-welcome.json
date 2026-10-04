@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "onboarding-welcome",
+  "title": "Onboarding welcome",
+  "description": "The first screen after sign-up: a greeting and one question with big choice tiles, so the empty workspace can start with the right templates.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/onboarding-welcome.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconArrowRight, IconCheck } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface WelcomeChoice {\n  id: string;\n  icon: ReactNode;\n  label: string;\n  description: string;\n}\n\nexport interface OnboardingWelcomeProps {\n  /** \"Welcome, Anouk\". */\n  title: string;\n  /** The question that tailors the workspace: \"What will you use Ledger for?\" */\n  question: string;\n  choices: readonly WelcomeChoice[];\n  /** Pick more than one. */\n  multiple?: boolean;\n  onContinue: (ids: string[]) => void;\n  onSkip?: () => void;\n  /** The title is the page heading on the welcome screen; use h2 inside a larger page. */\n  titleAs?: \"h1\" | \"h2\";\n  className?: string;\n}\n\n/**\n * The first screen after sign-up: a greeting and one question with big\n * choice tiles, so the empty workspace can start with the right templates.\n * Tiles are checkboxes or radios underneath, continue waits for a pick,\n * and skip is always there.\n */\nexport function OnboardingWelcome({ title, question, choices, multiple = false, onContinue, onSkip, titleAs: Heading = \"h1\", className }: OnboardingWelcomeProps) {\n  const [picked, setPicked] = useState<string[]>([]);\n  function toggle(id: string) {\n    setPicked((list) => (multiple ? (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]) : [id]));\n  }\n  return (\n    <section data-slot=\"onboarding-welcome\" className={cn(\"mx-auto w-full max-w-2xl text-center\", className)}>\n      <Heading className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</Heading>\n      <fieldset className=\"mt-8\">\n        <legend className=\"mx-auto text-base text-muted-foreground\">{question}{multiple ? \" Pick any that apply.\" : \"\"}</legend>\n        <div className=\"mt-6 grid gap-3 text-left sm:grid-cols-2\">\n          {choices.map((choice) => {\n            const checked = picked.includes(choice.id);\n            return (\n              <label key={choice.id} className=\"relative flex cursor-pointer items-start gap-4 rounded-2xl border border-border p-5 transition-colors hover:bg-muted/60 has-[:checked]:border-foreground has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\">\n                <input type={multiple ? \"checkbox\" : \"radio\"} name=\"onboarding-choice\" value={choice.id} checked={checked} onChange={() => toggle(choice.id)} className=\"sr-only\" />\n                <span className=\"inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted [&_svg]:size-5\">{choice.icon}</span>\n                <span className=\"min-w-0 flex-1\">\n                  <span className=\"block font-medium\">{choice.label}</span>\n                  <span className=\"mt-0.5 block text-sm text-muted-foreground\">{choice.description}</span>\n                </span>\n                <span aria-hidden=\"true\" className={cn(\"inline-flex size-5 shrink-0 items-center justify-center rounded-full border border-border [&_svg]:size-3\", checked && \"border-foreground bg-foreground text-background\")}>{checked ? <IconCheck /> : null}</span>\n              </label>\n            );\n          })}\n        </div>\n      </fieldset>\n      <div className=\"mt-8 flex flex-col-reverse items-center justify-center gap-3 sm:flex-row\">\n        {onSkip ? <Button variant=\"ghost\" onClick={onSkip}>Skip for now</Button> : null}\n        <Button size=\"lg\" disabled={!picked.length} onClick={() => onContinue(picked)}>Continue <IconArrowRight /></Button>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/application/onboarding-welcome.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "account"
+  },
+  "categories": [
+    "application",
+    "account"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "security-section",
+  "title": "Security section",
+  "description": "The \"is it safe?\" section of a B2B page: the standards you actually meet as chips, and the practices behind them as icon rows.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/security-section.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconShieldCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SecurityPractice {\n  icon: ReactNode;\n  title: string;\n  description: string;\n}\n\nexport interface SecuritySectionProps {\n  title: string;\n  description?: string;\n  /** Certifications or standards as short labels: \"ISO 27001\", \"GDPR\". Only the ones you hold. */\n  standards?: readonly string[];\n  practices: readonly SecurityPractice[];\n  /** A link to the trust centre or the security page. */\n  action?: ReactNode;\n  className?: string;\n}\n\n/**\n * The \"is it safe?\" section of a B2B page: the standards you actually meet as\n * chips, and the practices behind them as icon rows. Scannable for the\n * person who has to fill in the vendor questionnaire.\n */\nexport function SecuritySection({ title, description, standards = [], practices, action, className }: SecuritySectionProps) {\n  return (\n    <section data-slot=\"security-section\" className={cn(\"rounded-3xl border border-border bg-muted/40 px-6 py-12 sm:px-12 sm:py-16\", className)}>\n      <div className=\"grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16\">\n        <div>\n          <span className=\"inline-flex size-12 items-center justify-center rounded-2xl bg-foreground text-background [&_svg]:size-6\"><IconShieldCheck /></span>\n          <h2 className=\"mt-6 text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n          {description ? <p className=\"mt-4 text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n          {standards.length ? (\n            <ul aria-label=\"Standards\" className=\"mt-6 flex flex-wrap gap-2\">\n              {standards.map((standard) => (\n                <li key={standard} className=\"rounded-full border border-border bg-background px-3 py-1 text-xs font-medium\">{standard}</li>\n              ))}\n            </ul>\n          ) : null}\n          {action ? <div className=\"mt-8\">{action}</div> : null}\n        </div>\n        <ul className=\"grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2\">\n          {practices.map((practice) => (\n            <li key={practice.title} className=\"bg-background p-6\">\n              <span className=\"inline-flex size-9 items-center justify-center rounded-lg border border-border [&_svg]:size-4.5\">{practice.icon}</span>\n              <h3 className=\"mt-4 text-sm font-medium\">{practice.title}</h3>\n              <p className=\"mt-1.5 text-sm leading-relaxed text-muted-foreground\">{practice.description}</p>\n            </li>\n          ))}\n        </ul>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/security-section.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

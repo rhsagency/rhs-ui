@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "contact-cards",
+  "title": "Contact cards",
+  "description": "\"Who should I talk to?\": one card per route (sales, support, press) with what it is for, how fast you answer, and the one link that gets there.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/contact-cards.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconArrowRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ContactRoute {\n  icon: ReactNode;\n  /** Who this route is for: \"Sales\", \"Support\", \"Press\". */\n  title: string;\n  description: string;\n  /** \"Reply within a day\", \"Mon to Fri, 9:00 to 17:00\". */\n  promise?: string;\n  /** The link text and target: an email, a phone number, a form. */\n  label: string;\n  href: string;\n}\n\nexport interface ContactCardsProps {\n  title: string;\n  description?: string;\n  routes: readonly ContactRoute[];\n  className?: string;\n}\n\n/**\n * \"Who should I talk to?\": one card per route (sales, support, press) with\n * what it is for, how fast you answer, and the one link that gets there.\n * Sends people to the right inbox before they write.\n */\nexport function ContactCards({ title, description, routes, className }: ContactCardsProps) {\n  return (\n    <section data-slot=\"contact-cards\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      </div>\n      <ul className=\"mt-12 grid gap-4 md:grid-cols-3\">\n        {routes.map((route) => (\n          <li key={route.title} className=\"flex flex-col rounded-3xl border border-border p-7\">\n            <span className=\"inline-flex size-11 items-center justify-center rounded-2xl bg-muted [&_svg]:size-5\">{route.icon}</span>\n            <h3 className=\"mt-6 text-lg font-medium\">{route.title}</h3>\n            <p className=\"mt-2 flex-1 text-sm leading-relaxed text-muted-foreground\">{route.description}</p>\n            {route.promise ? <p className=\"mt-4 text-xs text-muted-foreground\">{route.promise}</p> : null}\n            <a href={route.href} className=\"group mt-6 inline-flex items-center gap-1.5 self-start text-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:underline\">\n              {route.label}\n              <IconArrowRight aria-hidden=\"true\" className=\"size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none\" />\n            </a>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/contact-cards.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-band",
+  "title": "Rating band",
+  "description": "Ratings from the places people check: score, partial stars and the count per source, side by side.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/rating-band.tsx",
+      "content": "import { IconStar } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PlatformRating {\n  /** Where the rating comes from: \"App Store\", \"Trustpilot\", \"G2\". */\n  source: string;\n  /** Out of five, one decimal. */\n  rating: number;\n  /** \"2,140 reviews\". */\n  count: string;\n  href?: string;\n}\n\nexport interface RatingBandProps {\n  ratings: readonly PlatformRating[];\n  className?: string;\n}\n\nfunction Stars({ rating }: { rating: number }) {\n  return (\n    <span aria-hidden=\"true\" className=\"relative inline-flex\">\n      <span className=\"flex text-border\">{Array.from({ length: 5 }, (_, index) => <IconStar key={index} className=\"size-4 fill-current\" />)}</span>\n      <span className=\"absolute inset-0 flex overflow-hidden text-foreground\" style={{ width: `${(rating / 5) * 100}%` }}>\n        {Array.from({ length: 5 }, (_, index) => <IconStar key={index} className=\"size-4 shrink-0 fill-current\" />)}\n      </span>\n    </span>\n  );\n}\n\n/**\n * Ratings from the places people check: score, partial stars and the count\n * per source, side by side. The stars are decoration; the score is read as\n * \"4.8 out of 5 on the App Store, 2,140 reviews\".\n */\nexport function RatingBand({ ratings, className }: RatingBandProps) {\n  return (\n    <section data-slot=\"rating-band\" aria-label=\"Ratings\" className={cn(\"py-10\", className)}>\n      <ul className=\"flex flex-wrap items-center justify-center gap-x-12 gap-y-6\">\n        {ratings.map((item) => {\n          const body = (\n            <>\n              <span aria-hidden=\"true\" className=\"flex items-center gap-3\">\n                <span className=\"text-3xl font-medium tracking-[-.05em] tabular-nums\">{item.rating.toFixed(1)}</span>\n                <span className=\"flex flex-col gap-1\">\n                  <Stars rating={item.rating} />\n                  <span className=\"text-xs text-muted-foreground\">{item.source}, {item.count}</span>\n                </span>\n              </span>\n              <span className=\"sr-only\">{`${item.rating.toFixed(1)} out of 5 on ${item.source}, ${item.count}`}</span>\n            </>\n          );\n          return (\n            <li key={item.source}>\n              {item.href ? (\n                <a href={item.href} className=\"relative flex items-center gap-3 rounded-lg outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\">{body}</a>\n              ) : (\n                <span className=\"relative flex items-center gap-3\">{body}</span>\n              )}\n            </li>\n          );\n        })}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/rating-band.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

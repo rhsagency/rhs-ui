@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "event-hero-demo",
+  "title": "Event hero demo",
+  "description": "A working preview of Event hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/event-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/event-hero-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { EventHero } from \"@rhs-ui/marketing/event-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <EventHero\n        kind=\"Conference\"\n        title=\"Calm Software Summit 2026\"\n        description=\"Two days on building products people trust, with talks you can use on Monday.\"\n        date=\"12 to 13 June 2026\"\n        dateTime=\"2026-06-12\"\n        venue=\"Tivoli, Utrecht\"\n        capacity=\"600 seats, 112 left\"\n        actions={\n          <>\n            <Button size=\"lg\">Get a ticket</Button>\n            <Button size=\"lg\" variant=\"outline\">See the programme</Button>\n          </>\n        }\n        aside={\n          <dl className=\"grid grid-cols-3 gap-4 text-center\">\n            {[[\"28\", \"talks\"], [\"6\", \"workshops\"], [\"2\", \"days\"]].map(([value, label]) => (\n              <div key={label}>\n                <dt className=\"sr-only\">{label}</dt>\n                <dd className=\"text-4xl font-medium tracking-[-.05em] tabular-nums\">{value}</dd>\n                <dd className=\"mt-1 text-xs text-muted-foreground\">{label}</dd>\n              </div>\n            ))}\n          </dl>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

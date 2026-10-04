@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "language-switcher",
+  "title": "Language switcher",
+  "description": "The language menu for a site header or footer: a globe and the short code on the trigger, each language named in itself in the menu (people look for \"Deutsch\", not \"German\"), with lang set so a screen reader pronounces it.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/dropdown-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/language-switcher.tsx",
+      "content": "\"use client\";\n\nimport { IconGlobe } from \"@rhs-ui/icons\";\nimport { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from \"@rhs-ui/primitives/dropdown-menu\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SiteLanguage {\n  /** BCP 47 code: \"nl\", \"en-GB\". */\n  code: string;\n  /** The language in its own words: \"Nederlands\", \"English\". */\n  name: string;\n}\n\nexport interface LanguageSwitcherProps {\n  languages: readonly SiteLanguage[];\n  current: string;\n  /** Navigate to the same page in the chosen language. */\n  onChange: (code: string) => void;\n  className?: string;\n}\n\n/**\n * The language menu for a site header or footer: a globe and the short code\n * on the trigger, each language named in itself in the menu (people look for\n * \"Deutsch\", not \"German\"), with lang set so a screen reader pronounces it.\n */\nexport function LanguageSwitcher({ languages, current, onChange, className }: LanguageSwitcherProps) {\n  const active = languages.find((language) => language.code === current);\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger data-slot=\"language-switcher\" aria-label={`Language: ${active?.name ?? current}`} className={cn(\"inline-flex h-9 items-center gap-1.5 rounded-full border border-border px-3 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\", className)}>\n        <IconGlobe aria-hidden=\"true\" className=\"size-4\" />\n        <span className=\"uppercase\">{current.split(\"-\")[0]}</span>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent align=\"end\" className=\"w-48\">\n        <DropdownMenuLabel>Language</DropdownMenuLabel>\n        <DropdownMenuRadioGroup value={current} onValueChange={onChange}>\n          {languages.map((language) => (\n            <DropdownMenuRadioItem key={language.code} value={language.code} lang={language.code}>{language.name}</DropdownMenuRadioItem>\n          ))}\n        </DropdownMenuRadioGroup>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/marketing/language-switcher.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:component"
+}

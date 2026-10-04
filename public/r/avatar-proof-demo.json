@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-proof-demo",
+  "title": "Avatar proof demo",
+  "description": "A working preview of Avatar proof.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/avatar-proof.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/avatar-proof-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { AvatarProof } from \"@rhs-ui/marketing/avatar-proof\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-md flex-col items-center gap-6 p-10\">\n      <Button size=\"lg\">Start for free</Button>\n      <AvatarProof\n        rating={4.9}\n        label=\"Loved by 12,000 designers\"\n        people={[{ name: \"Sara Haddad\" }, { name: \"Luca Romano\" }, { name: \"Mei Tanaka\" }, { name: \"Daan Peters\" }, { name: \"Anouk de Wit\" }]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

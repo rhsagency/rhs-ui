@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "awards-row-demo",
+  "title": "Awards row demo",
+  "description": "A working preview of Awards row.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/awards-row.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/awards-row-demo.tsx",
+      "content": "import { IconCrown, IconMedal, IconTrophy } from \"@rhs-ui/icons\";\nimport { AwardsRow } from \"@rhs-ui/marketing/awards-row\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <AwardsRow\n        title=\"Recognition\"\n        awards={[\n          { title: \"Product of the Day\", by: \"Maker community\", year: \"2026\", icon: <IconTrophy /> },\n          { title: \"Best Workplace Tool\", by: \"Workplace Review\", year: \"2025\", icon: <IconMedal /> },\n          { title: \"Design Award, Software\", by: \"Dutch Design Prize\", year: \"2025\" },\n          { title: \"Leader, Project Management\", by: \"Buyer's Guide\", year: \"2026\", icon: <IconCrown /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

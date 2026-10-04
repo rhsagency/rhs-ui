@@ -57,7 +57,14 @@ export function OtpInput({ length = 6, value, onValueChange, onComplete, mode = 
     focus(set(event.clipboardData.getData("text")).length);
   };
   return (
-    <div data-slot="otp-input" role="group" aria-label={label} className={cn("flex items-center gap-2", className)}>
+    // Fills the space it gets up to its natural width, so six boxes fit a card on a 320px phone.
+    <div
+      data-slot="otp-input"
+      role="group"
+      aria-label={label}
+      className={cn("flex w-full items-center gap-2", className)}
+      style={{ maxWidth: `calc(${length} * 2.75rem + ${length - 1} * 0.5rem + ${groupAfter ? "0.75rem" : "0rem"})` }}
+    >
       {Array.from({ length }, (_, index) => (
         <span key={index} className={cn("contents", groupAfter && index === groupAfter && "[&>input]:ml-3")}>
           <input
@@ -84,7 +91,7 @@ export function OtpInput({ length = 6, value, onValueChange, onComplete, mode = 
             }}
             onKeyDown={(event) => onKey(index, event)}
             onPaste={onPaste}
-            className="size-11 rounded-md border border-input bg-background text-center font-mono text-lg shadow-xs transition-[border-color,box-shadow] duration-150 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive disabled:opacity-50"
+            className="aspect-square h-auto w-0 max-w-11 min-w-0 flex-1 rounded-md border border-input bg-background text-center font-mono text-lg shadow-xs transition-[border-color,box-shadow] duration-150 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive disabled:opacity-50"
           />
         </span>
       ))}

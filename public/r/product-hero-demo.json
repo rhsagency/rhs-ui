@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "product-hero-demo",
+  "title": "Product hero demo",
+  "description": "A working preview of Product hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/product-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/product-hero-demo.tsx",
+      "content": "import { IconStar } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { ProductHero } from \"@rhs-ui/marketing/product-hero\";\n\nconst lamp = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><rect width='500' height='400' fill='#e9e6e0'/><path d='M250 60 L330 180 H170 Z' fill='#2c2e33'/><rect x='246' y='180' width='8' height='150' fill='#2c2e33'/><ellipse cx='250' cy='336' rx='70' ry='12' fill='#2c2e33'/><ellipse cx='250' cy='190' rx='110' ry='26' fill='#f6e7b8' opacity='.55'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <ProductHero\n        eyebrow=\"New, in three finishes\"\n        title=\"Aero, the lamp that dims by touch.\"\n        description=\"Recycled aluminium, a linen shade and warm light that follows your evening.\"\n        points={[\"Dims from 100% to a night light\", \"Five-year warranty\", \"Ships tomorrow, free returns\"]}\n        actions={\n          <>\n            <Button size=\"lg\">Buy for €189</Button>\n            <Button size=\"lg\" variant=\"outline\">See the finishes</Button>\n          </>\n        }\n        note={<span className=\"inline-flex items-center gap-1.5\"><IconStar className=\"size-3.5\" /> 4.8 from 1,204 reviews</span>}\n        visual={<img src={lamp} alt=\"Aero lamp in charcoal with a warm glow\" />}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "customer-story-demo",
+  "title": "Customer story demo",
+  "description": "A working preview of Customer story.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/customer-story.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/customer-story-demo.tsx",
+      "content": "import { IconHexagon } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { CustomerStory } from \"@rhs-ui/marketing/customer-story\";\n\nconst photo = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'><rect width='600' height='800' fill='#4a4d52'/><circle cx='300' cy='300' r='110' fill='#c9c3b7'/><path d='M120 800 Q300 470 480 800Z' fill='#8d877c'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <CustomerStory\n        company=\"Fieldwork\"\n        logo={<IconHexagon />}\n        quote=\"We stopped asking where things stood. The answer is just there, and our Mondays went back to design.\"\n        name=\"Mara Lindqvist\"\n        role=\"Head of Design\"\n        photo={<img src={photo} alt=\"Mara Lindqvist in the Fieldwork studio\" />}\n        results={[\n          { value: \"6 h\", label: \"saved per designer, weekly\" },\n          { value: \"3\", label: \"tools replaced\" },\n          { value: \"98%\", label: \"of projects on time\" },\n        ]}\n        action={<Button variant=\"outline\">Read the story</Button>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

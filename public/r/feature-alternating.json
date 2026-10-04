@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-alternating",
+  "title": "Feature alternating",
+  "description": "Features as a zig-zag: text and picture side by side, swapping sides every row, stacking text-first on a phone.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/feature-alternating.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AlternatingFeature {\n  id: string;\n  eyebrow?: string;\n  title: string;\n  description: string;\n  /** Two or three short facts under the text. */\n  points?: readonly string[];\n  visual: ReactNode;\n}\n\nexport interface FeatureAlternatingProps {\n  features: readonly AlternatingFeature[];\n  className?: string;\n}\n\n/**\n * Features as a zig-zag: text and picture side by side, swapping sides every\n * row, stacking text-first on a phone. The classic for three to five\n * features that each deserve a picture.\n */\nexport function FeatureAlternating({ features, className }: FeatureAlternatingProps) {\n  return (\n    <section data-slot=\"feature-alternating\" className={cn(\"space-y-20 py-16 sm:space-y-28 sm:py-24\", className)}>\n      {features.map((feature, index) => (\n        <article key={feature.id} className=\"grid items-center gap-8 lg:grid-cols-2 lg:gap-16\">\n          <div className={cn(index % 2 === 1 && \"lg:order-2\")}>\n            {feature.eyebrow ? <p className=\"text-xs font-medium tracking-[.14em] text-muted-foreground uppercase\">{feature.eyebrow}</p> : null}\n            <h3 className=\"mt-3 text-3xl font-medium leading-[1.1] tracking-[-.04em] text-balance sm:text-4xl\">{feature.title}</h3>\n            <p className=\"mt-4 max-w-md text-base leading-relaxed text-muted-foreground\">{feature.description}</p>\n            {feature.points?.length ? (\n              <ul className=\"mt-6 grid gap-2 text-sm sm:grid-cols-2\">\n                {feature.points.map((point) => (\n                  <li key={point} className=\"flex items-center gap-2\"><span aria-hidden=\"true\" className=\"size-1.5 rounded-full bg-foreground\" />{point}</li>\n                ))}\n              </ul>\n            ) : null}\n          </div>\n          <div className=\"aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted\">{feature.visual}</div>\n        </article>\n      ))}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/feature-alternating.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

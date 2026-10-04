@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "legal-layout-demo",
+  "title": "Legal layout demo",
+  "description": "A working preview of Legal layout.",
+  "registryDependencies": [
+    "https://rhsui.com/r/legal-layout.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/legal-layout-demo.tsx",
+      "content": "import { LegalLayout } from \"@rhs-ui/marketing/legal-layout\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <LegalLayout\n        titleAs=\"h2\"\n        title=\"Privacy policy\"\n        updated=\"Last updated 1 March 2026\"\n        updatedDateTime=\"2026-03-01\"\n        summary={[\"We collect what we need to run your account, nothing more.\", \"We never sell your data or use it for ads.\", \"Your data is stored in the EU and you can export or delete it any time.\"]}\n        sections={[\n          { id: \"legal-collect\", title: \"What we collect\", body: [\"Your name, email address and the content you put into your workspace.\", \"Basic usage data, such as which features are used, without tracking you across other sites.\"] },\n          { id: \"legal-use\", title: \"How we use it\", body: [\"To run the service, to keep it secure and to answer your questions.\", \"We email you about your account. Product news only if you opted in.\"] },\n          { id: \"legal-share\", title: \"Who we share it with\", body: [\"Only the processors that help us run the service, listed on our sub-processors page, under a data processing agreement.\"] },\n          { id: \"legal-rights\", title: \"Your rights\", body: [\"You can see, correct, export and delete your data from the settings, or by emailing us.\"] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trial-cta-split-demo",
+  "title": "Trial CTA split demo",
+  "description": "A working preview of Trial CTA split.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/trial-cta-split.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/trial-cta-split-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { TrialCtaSplit } from \"@rhs-ui/marketing/trial-cta-split\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <TrialCtaSplit\n        title=\"Try every feature for 14 days.\"\n        description=\"Bring your team, import a project, and see if it sticks.\"\n        includes={[\"Unlimited projects and guests\", \"Imports from Trello, Asana and Jira\", \"Priority support during the trial\"]}\n        actions={\n          <>\n            <Button size=\"lg\">Start the trial</Button>\n            <Button size=\"lg\" variant=\"outline\">Talk to sales</Button>\n          </>\n        }\n        note=\"No card needed. Your data stays if you upgrade.\"\n        visual={\n          <div className=\"grid h-full grid-cols-3 gap-3 p-5 text-xs\">\n            {[\"To do\", \"Doing\", \"Done\"].map((column, index) => (\n              <div key={column} className=\"space-y-2\">\n                <p className=\"font-medium text-muted-foreground\">{column}</p>\n                {Array.from({ length: 4 - index }, (_, card) => (\n                  <p key={card} className=\"rounded-lg border border-border bg-background p-3\">Task {index * 4 + card + 1}</p>\n                ))}\n              </div>\n            ))}\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

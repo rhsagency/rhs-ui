@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "contact-cards-demo",
+  "title": "Contact cards demo",
+  "description": "A working preview of Contact cards.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/contact-cards.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/contact-cards-demo.tsx",
+      "content": "import { IconHeadphones, IconMegaphone, IconMessage } from \"@rhs-ui/icons\";\nimport { ContactCards } from \"@rhs-ui/marketing/contact-cards\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <ContactCards\n        title=\"Talk to the right person.\"\n        description=\"Three inboxes, each read by people who can actually help.\"\n        routes={[\n          { icon: <IconMessage />, title: \"Sales\", description: \"Pricing for larger teams, security reviews and invoices instead of cards.\", promise: \"Reply within a working day\", label: \"Book a call\", href: \"#sales\" },\n          { icon: <IconHeadphones />, title: \"Support\", description: \"Something not working, or not working the way you expected.\", promise: \"Mon to Fri, 8:00 to 20:00 CET\", label: \"support@example.com\", href: \"mailto:support@example.com\" },\n          { icon: <IconMegaphone />, title: \"Press\", description: \"Interviews, logos and the numbers we can share.\", promise: \"Press kit available any time\", label: \"Open the press kit\", href: \"#press\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resource-library",
+  "title": "Resource library",
+  "description": "A resource centre: guides, templates, webinars and reports in one grid, with chips to filter by type.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/resource-library.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface Resource {\n  href: string;\n  /** \"Guide\", \"Template\", \"Webinar\", \"Report\". */\n  type: string;\n  title: string;\n  description: string;\n  icon?: ReactNode;\n}\n\nexport interface ResourceLibraryProps {\n  title: string;\n  description?: string;\n  resources: readonly Resource[];\n  className?: string;\n}\n\n/**\n * A resource centre: guides, templates, webinars and reports in one grid,\n * with chips to filter by type. The chips are toggle buttons (aria-pressed)\n * and the result count is announced when it changes.\n */\nexport function ResourceLibrary({ title, description, resources, className }: ResourceLibraryProps) {\n  const types = [...new Set(resources.map((resource) => resource.type))];\n  const [filter, setFilter] = useState<string | null>(null);\n  const shown = filter ? resources.filter((resource) => resource.type === filter) : resources;\n  const chip = \"rounded-full border border-border px-3.5 py-1.5 text-sm outline-none transition-colors hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background\";\n  return (\n    <section data-slot=\"resource-library\" className={cn(\"py-16 sm:py-20\", className)}>\n      <h2 className=\"text-3xl font-medium tracking-[-.04em]\">{title}</h2>\n      {description ? <p className=\"mt-3 max-w-xl text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      <div role=\"group\" aria-label=\"Filter by type\" className=\"mt-8 flex flex-wrap gap-2\">\n        <button type=\"button\" aria-pressed={filter === null} onClick={() => setFilter(null)} className={chip}>All</button>\n        {types.map((type) => (\n          <button key={type} type=\"button\" aria-pressed={filter === type} onClick={() => setFilter(type)} className={chip}>{type}</button>\n        ))}\n      </div>\n      <p role=\"status\" className=\"mt-4 text-xs text-muted-foreground\">{shown.length} {shown.length === 1 ? \"resource\" : \"resources\"}</p>\n      <ul className=\"mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3\">\n        {shown.map((resource) => (\n          <li key={`${resource.href}-${resource.title}`}>\n            <a href={resource.href} className=\"flex h-full flex-col rounded-2xl border border-border p-6 outline-none transition-colors hover:bg-muted/60 focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n              <span className=\"flex items-center gap-2 text-xs font-medium tracking-[.1em] text-muted-foreground uppercase [&_svg]:size-4 [&_svg]:text-foreground\">{resource.icon}{resource.type}</span>\n              <span className=\"mt-4 font-medium text-balance\">{resource.title}</span>\n              <span className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">{resource.description}</span>\n            </a>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/resource-library.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sign-up-card-demo",
+  "title": "Sign up card demo",
+  "description": "A working preview of Sign up card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/sign-up-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/sign-up-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { SignUpCard } from \"@rhs-ui/application/sign-up-card\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-md justify-center p-8\">\n      <SignUpCard\n        titleAs=\"h2\"\n        providers={<Button variant=\"outline\">Continue with Google</Button>}\n        terms={<>By creating an account you agree to the <a href=\"#terms\">terms</a> and <a href=\"#privacy\">privacy policy</a>.</>}\n        footer={<>Already have an account? <a href=\"#sign-in\" className=\"ml-1 font-medium text-foreground underline underline-offset-4\">Sign in</a></>}\n        onSubmit={({ email }) => new Promise<string | void>((resolve) => setTimeout(() => resolve(email.endsWith(\"@example.com\") ? \"That email already has an account. Sign in instead?\" : undefined), 600))}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

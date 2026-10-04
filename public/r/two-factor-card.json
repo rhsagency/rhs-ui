@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "two-factor-card",
+  "title": "Two factor card",
+  "description": "The second step of sign-in: a six-box code that submits itself when the last digit lands (pasting a whole code works), a busy state while it is checked, a wrong code announced and cleared, and the way out underneath.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/card.json",
+    "https://rhsui.com/r/otp-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/two-factor-card.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconAlertCircle, IconShieldCheck } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@rhs-ui/primitives/card\";\nimport { OtpInput } from \"@rhs-ui/primitives/otp-input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TwoFactorCardProps {\n  /** Where the code went: \"your authenticator app\", \"+31 6 •• •• 12 34\". */\n  destination: string;\n  /** Resolve to true when the code is right; false shows the error and clears the boxes. */\n  onVerify: (code: string) => Promise<boolean> | boolean;\n  /** \"Use a recovery code\" or \"Send a text instead\". */\n  alternative?: ReactNode;\n  /** The title is the page heading on this step; use h2 inside a dialog or a larger page. */\n  titleAs?: \"h1\" | \"h2\" | \"h3\";\n  className?: string;\n}\n\n/**\n * The second step of sign-in: a six-box code that submits itself when the\n * last digit lands (pasting a whole code works), a busy state while it is\n * checked, a wrong code announced and cleared, and the way out underneath.\n */\nexport function TwoFactorCard({ destination, onVerify, alternative, titleAs: Heading = \"h1\", className }: TwoFactorCardProps) {\n  const [code, setCode] = useState(\"\");\n  const [busy, setBusy] = useState(false);\n  const [wrong, setWrong] = useState(false);\n  async function verify(value: string) {\n    setBusy(true);\n    setWrong(false);\n    try {\n      const ok = await onVerify(value);\n      if (!ok) {\n        setWrong(true);\n        setCode(\"\");\n      }\n    } finally {\n      setBusy(false);\n    }\n  }\n  return (\n    <div data-slot=\"two-factor-card\" className={cn(\"grid w-full max-w-sm gap-6\", className)}>\n      <Card>\n        <CardHeader className=\"justify-items-center text-center\">\n          <span className=\"mb-2 inline-flex size-12 items-center justify-center rounded-full bg-muted [&_svg]:size-6\"><IconShieldCheck /></span>\n          <CardTitle asChild><Heading className=\"text-xl\">Enter your code</Heading></CardTitle>\n          <CardDescription>We sent a six-digit code to {destination}.</CardDescription>\n        </CardHeader>\n        <CardContent className=\"grid justify-items-center gap-4\">\n          <OtpInput value={code} onValueChange={setCode} onComplete={(value) => void verify(value)} groupAfter={3} invalid={wrong} disabled={busy} />\n          <div role=\"alert\" className=\"min-h-5 text-sm\">\n            {wrong ? <span className=\"inline-flex items-center gap-1.5 text-destructive\"><IconAlertCircle className=\"size-4\" />That code did not match. Try again.</span> : null}\n          </div>\n          <Button className=\"w-full\" loading={busy} disabled={code.length < 6} onClick={() => void verify(code)}>Verify</Button>\n        </CardContent>\n        {alternative ? <CardFooter className=\"justify-center text-sm text-muted-foreground\">{alternative}</CardFooter> : null}\n      </Card>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/application/two-factor-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "account"
+  },
+  "categories": [
+    "application",
+    "account"
+  ],
+  "type": "registry:block"
+}

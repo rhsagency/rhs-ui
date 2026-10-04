@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-big-brand",
+  "title": "Footer big brand",
+  "description": "A footer that ends the page with the name in huge type across the full width, the links in one row above it.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/footer-big-brand.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FooterBigBrandProps {\n  /** The brand name, set as large as the viewport allows. */\n  name: string;\n  links: readonly { label: string; href: string }[];\n  /** Socials or a contact line. */\n  aside?: ReactNode;\n  legal: ReactNode;\n  className?: string;\n}\n\n/**\n * A footer that ends the page with the name in huge type across the full\n * width, the links in one row above it. For studios and brands where the\n * name is the logo. The giant word is decoration; the page already says it.\n */\nexport function FooterBigBrand({ name, links, aside, legal, className }: FooterBigBrandProps) {\n  return (\n    <footer data-slot=\"footer-big-brand\" className={cn(\"overflow-hidden border-t border-border pt-12\", className)}>\n      <div className=\"flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between\">\n        <nav aria-label=\"Footer\">\n          <ul className=\"flex flex-wrap gap-x-8 gap-y-3 text-sm\">\n            {links.map((link) => (\n              <li key={`${link.href}-${link.label}`}><a href={link.href} className=\"hover:underline hover:underline-offset-4\">{link.label}</a></li>\n            ))}\n          </ul>\n        </nav>\n        {aside ? <div className=\"text-sm text-muted-foreground\">{aside}</div> : null}\n      </div>\n      <p aria-hidden=\"true\" className=\"mt-16 text-[22vw] leading-[.8] font-medium tracking-[-.08em] whitespace-nowrap select-none sm:text-[18vw] lg:text-[15rem]\">{name}</p>\n      <div className=\"flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:justify-between\">{legal}</div>\n    </footer>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/footer-big-brand.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

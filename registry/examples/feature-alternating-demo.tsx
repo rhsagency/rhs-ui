@@ -1,0 +1,25 @@
+import { FeatureAlternating } from "@rhs-ui/marketing/feature-alternating";
+
+function Panel({ rows, accent }: { rows: string[]; accent: number }): React.JSX.Element {
+  return (
+    <div className="flex h-full flex-col justify-center gap-2.5 p-8 text-sm">
+      {rows.map((row, index) => (
+        <p key={row} className={index === accent ? "rounded-xl bg-foreground px-4 py-3 text-background" : "rounded-xl bg-background px-4 py-3"}>{row}</p>
+      ))}
+    </div>
+  );
+}
+
+export default function Demo(): React.JSX.Element {
+  return (
+    <div className="mx-auto max-w-6xl px-6">
+      <FeatureAlternating
+        features={[
+          { id: "plan", eyebrow: "Plan", title: "A roadmap that updates itself.", description: "Tasks roll up into projects and projects into the roadmap, so the big picture is never a week behind.", points: ["Drag to reschedule", "Dependencies drawn for you"], visual: <Panel rows={["Q2: Onboarding v2", "Q2: Exports", "Q3: Mobile app", "Q3: SSO"]} accent={1} /> },
+          { id: "decide", eyebrow: "Decide", title: "Decisions you can find again.", description: "Write the why next to the work. Six months later, the reason is one search away.", points: ["Linked to tasks", "Searchable history"], visual: <Panel rows={["Use Postgres for search", "Ship weekly, not monthly", "Drop the free plan cap"]} accent={0} /> },
+          { id: "ship", eyebrow: "Ship", title: "Releases without the spreadsheet.", description: "Group finished work into a release and get the changelog written from it.", points: ["Draft notes", "Notify subscribers"], visual: <Panel rows={["v2.4 ready to ship", "12 tasks done", "Changelog drafted"]} accent={2} /> },
+        ]}
+      />
+    </div>
+  );
+}

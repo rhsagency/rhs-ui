@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-download-hero",
+  "title": "App download hero",
+  "description": "The opening for a mobile app: the promise, the two store buttons drawn in the house style (no copied badges), a rating line, and the app in a phone frame that leans into the section.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/app-download-hero.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconPlay, IconSmartphone } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AppStoreLink {\n  store: \"app-store\" | \"google-play\";\n  href: string;\n}\n\nexport interface AppDownloadHeroProps {\n  /** The title's element: \"h2\" inside a page that has its own h1 (the default), \"h1\" when the hero opens the page. */\n  titleAs?: \"h1\" | \"h2\";\n  title: string;\n  description?: string;\n  stores: readonly AppStoreLink[];\n  /** \"4.9 on the App Store, 12k ratings\". */\n  rating?: ReactNode;\n  /** The app on a phone; sits in a phone-shaped frame. */\n  screen: ReactNode;\n  className?: string;\n}\n\nconst STORE = {\n  \"app-store\": { icon: <IconSmartphone />, small: \"Download on the\", name: \"App Store\" },\n  \"google-play\": { icon: <IconPlay />, small: \"Get it on\", name: \"Google Play\" },\n} as const;\n\n/**\n * The opening for a mobile app: the promise, the two store buttons drawn in\n * the house style (no copied badges), a rating line, and the app in a phone\n * frame that leans into the section.\n */\nexport function AppDownloadHero({ titleAs: Title = \"h2\", title, description, stores, rating, screen, className }: AppDownloadHeroProps) {\n  return (\n    <section data-slot=\"app-download-hero\" className={cn(\"grid items-center gap-12 overflow-x-clip py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:gap-20\", className)}>\n      <div>\n        <Title className=\"text-4xl font-medium leading-[1.05] tracking-[-.05em] text-balance sm:text-5xl lg:text-6xl\">{title}</Title>\n        {description ? <p className=\"mt-5 max-w-md text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        <div className=\"mt-8 flex flex-wrap gap-3\">\n          {stores.map((link) => {\n            const store = STORE[link.store];\n            return (\n              <a key={link.store} href={link.href} className=\"inline-flex h-13 items-center gap-3 rounded-xl bg-foreground px-4 text-background outline-none hover:bg-foreground/90 focus-visible:ring-[3px] focus-visible:ring-ring/50 [&_svg]:size-6\">\n                {store.icon}\n                <span className=\"text-left leading-tight\">\n                  <span className=\"block text-[10px] opacity-75\">{store.small}</span>\n                  <span className=\"block text-base font-medium\">{store.name}</span>\n                </span>\n              </a>\n            );\n          })}\n        </div>\n        {rating ? <div className=\"mt-5 text-sm text-muted-foreground\">{rating}</div> : null}\n      </div>\n      <div className=\"mx-auto w-64 rotate-3 rounded-[2.5rem] border-[10px] border-foreground bg-background shadow-2xl sm:w-72\">\n        <div className=\"aspect-[9/19] overflow-hidden rounded-[1.8rem] bg-muted\">{screen}</div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/app-download-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

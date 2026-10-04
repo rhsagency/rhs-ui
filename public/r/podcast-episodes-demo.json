@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "podcast-episodes-demo",
+  "title": "Podcast episodes demo",
+  "description": "A working preview of Podcast episodes.",
+  "registryDependencies": [
+    "https://rhsui.com/r/podcast-episodes.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/podcast-episodes-demo.tsx",
+      "content": "import { PodcastEpisodes } from \"@rhs-ui/marketing/podcast-episodes\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl px-6\">\n      <PodcastEpisodes\n        title=\"Slow Build\"\n        description=\"Conversations with people who build companies at a human pace. New episode every other Tuesday.\"\n        subscribe={[{ label: \"Apple Podcasts\", href: \"#apple\" }, { label: \"Spotify\", href: \"#spotify\" }, { label: \"RSS\", href: \"#rss\" }]}\n        episodes={[\n          { href: \"#42\", number: 42, title: \"Why the best teams write everything down\", guest: \"Mara Lindqvist\", summary: \"On decision logs, async updates and the meeting nobody misses.\", duration: \"48 min\", date: \"8 April 2026\", dateTime: \"2026-04-08\" },\n          { href: \"#41\", number: 41, title: \"Pricing without the dark patterns\", guest: \"Luca Romano\", summary: \"How a subscription business grew after making cancelling easy.\", duration: \"41 min\", date: \"25 March 2026\", dateTime: \"2026-03-25\" },\n          { href: \"#40\", number: 40, title: \"Hiring your first designer\", summary: \"What to look for, what to pay and what the first month should look like.\", duration: \"36 min\", date: \"11 March 2026\", dateTime: \"2026-03-11\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

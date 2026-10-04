@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "waitlist-section-demo",
+  "title": "Waitlist section demo",
+  "description": "A working preview of Waitlist section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/waitlist-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/waitlist-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { WaitlistSection } from \"@rhs-ui/marketing/waitlist-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <WaitlistSection\n        title=\"Ledger for iPad is almost here.\"\n        description=\"Plan with a pencil, sync to your team. We are letting people in each week, in order.\"\n        waiting={4812}\n        onJoin={() => new Promise<number>((resolve) => setTimeout(() => resolve(4813), 600))}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "editorial-hero-demo",
+  "title": "Editorial hero demo",
+  "description": "A working preview of Editorial hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/editorial-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/editorial-hero-demo.tsx",
+      "content": "import { EditorialHero } from \"@rhs-ui/marketing/editorial-hero\";\n\nconst photo = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2100 900'><rect width='2100' height='900' fill='#d8d3c9'/><rect x='0' y='560' width='2100' height='340' fill='#b9b2a5'/><rect x='300' y='260' width='420' height='300' fill='#3a3c40'/><rect x='760' y='180' width='260' height='380' fill='#6e685d'/><circle cx='1600' cy='240' r='110' fill='#f2efe8'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <EditorialHero\n        kicker=\"Field Notes, Issue 14\"\n        title=\"The office that closed on Fridays.\"\n        standfirst=\"A design studio in Rotterdam cut the week to four days and shipped more. We spent a month there to find out what actually changed.\"\n        byline={<><span className=\"font-medium text-foreground\">Anouk de Wit</span><br />12 min read, March 2026</>}\n        visual={<img src={photo} alt=\"The studio floor, empty on a Friday\" />}\n        caption=\"The studio at Katendrecht on a Friday morning.\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

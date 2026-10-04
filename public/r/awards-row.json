@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "awards-row",
+  "title": "Awards row",
+  "description": "Recognition as laurel-free tiles: the award, who gave it and the year, in a row that scrolls sideways on a phone instead of wrapping into a wall.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/awards-row.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconAward } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface Award {\n  /** \"Product of the Day\", \"Best Workplace\". */\n  title: string;\n  /** Who gave it: \"Design Week Awards\". */\n  by: string;\n  year: string;\n  icon?: ReactNode;\n}\n\nexport interface AwardsRowProps {\n  title?: string;\n  awards: readonly Award[];\n  className?: string;\n}\n\n/**\n * Recognition as laurel-free tiles: the award, who gave it and the year, in\n * a row that scrolls sideways on a phone instead of wrapping into a wall.\n */\nexport function AwardsRow({ title, awards, className }: AwardsRowProps) {\n  return (\n    <section data-slot=\"awards-row\" aria-label={title ?? \"Awards\"} className={cn(\"py-12\", className)}>\n      {title ? <h2 className=\"mb-8 text-center text-xs font-medium tracking-[.14em] text-muted-foreground uppercase\">{title}</h2> : null}\n      <ul className=\"relative -mx-6 flex snap-x gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4\">\n        {awards.map((award) => (\n          <li key={`${award.title}-${award.year}`} className=\"flex w-60 shrink-0 snap-start items-center gap-4 rounded-2xl border border-border p-5 sm:w-auto\">\n            <span className=\"inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-muted [&_svg]:size-5\">{award.icon ?? <IconAward />}</span>\n            <span className=\"min-w-0\">\n              <span className=\"block text-sm font-medium\">{award.title}</span>\n              <span className=\"block truncate text-xs text-muted-foreground\">{award.by}, {award.year}</span>\n            </span>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/awards-row.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

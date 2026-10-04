@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "author-bio",
+  "title": "Author bio",
+  "description": "The box at the end of an article: who wrote it, what they do, a short bio and where to read more.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/author-bio.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AuthorBioProps {\n  name: string;\n  role: string;\n  bio: string;\n  /** A portrait; initials are drawn when there is none. */\n  image?: string;\n  /** Links to their profile, other posts or socials. */\n  links?: readonly { label: string; href: string }[];\n  /** An extra action, like \"Follow\". */\n  action?: ReactNode;\n  className?: string;\n}\n\n/**\n * The box at the end of an article: who wrote it, what they do, a short bio\n * and where to read more. Marked up as an aside with rel=\"author\" on the\n * profile link, so readers and search engines know who is behind the words.\n */\nexport function AuthorBio({ name, role, bio, image, links = [], action, className }: AuthorBioProps) {\n  const initials = name.split(/\\s+/).map((part) => part[0]).join(\"\").slice(0, 2).toUpperCase();\n  return (\n    <aside data-slot=\"author-bio\" aria-label=\"About the author\" className={cn(\"flex flex-col gap-5 rounded-3xl border border-border p-6 sm:flex-row sm:p-8\", className)}>\n      <span className=\"inline-flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-lg font-medium\">\n        {image ? <img src={image} alt=\"\" className=\"size-full object-cover\" /> : initials}\n      </span>\n      <div className=\"min-w-0 flex-1\">\n        <div className=\"flex flex-wrap items-start justify-between gap-3\">\n          <div>\n            <p className=\"text-xs text-muted-foreground\">Written by</p>\n            <p className=\"text-lg font-medium\">{links[0] ? <a href={links[0].href} rel=\"author\" className=\"hover:underline hover:underline-offset-4\">{name}</a> : name}</p>\n            <p className=\"text-sm text-muted-foreground\">{role}</p>\n          </div>\n          {action}\n        </div>\n        <p className=\"mt-4 text-sm leading-relaxed\">{bio}</p>\n        {links.length > 1 ? (\n          <ul className=\"mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm\">\n            {links.slice(1).map((link) => (\n              <li key={`${link.href}-${link.label}`}><a href={link.href} className=\"text-muted-foreground underline underline-offset-4 hover:text-foreground\">{link.label}</a></li>\n            ))}\n          </ul>\n        ) : null}\n      </div>\n    </aside>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/marketing/author-bio.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:component"
+}

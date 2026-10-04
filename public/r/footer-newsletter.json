@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-newsletter",
+  "title": "Footer newsletter",
+  "description": "A full footer with the newsletter built in: brand and sign-up across the top, link columns in the middle, legal at the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/footer-newsletter.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent, type ReactNode } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FooterColumn {\n  title: string;\n  links: readonly { label: string; href: string }[];\n}\n\nexport interface FooterNewsletterProps {\n  brand: ReactNode;\n  /** One line under the brand. */\n  tagline?: string;\n  columns: readonly FooterColumn[];\n  newsletterTitle?: string;\n  onSubscribe: (email: string) => Promise<void> | void;\n  /** \"© 2026 Ledger B.V.\" and legal links. */\n  legal: ReactNode;\n  className?: string;\n}\n\n/**\n * A full footer with the newsletter built in: brand and sign-up across the\n * top, link columns in the middle, legal at the bottom. The columns are nav\n * landmarks with their own names, so a screen reader can jump to \"Product\".\n */\nexport function FooterNewsletter({ brand, tagline, columns, newsletterTitle = \"Get the monthly update\", onSubscribe, legal, className }: FooterNewsletterProps) {\n  const id = useId();\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\" | \"error\">(\"idle\");\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    const email = String(new FormData(event.currentTarget).get(\"email\") ?? \"\").trim();\n    if (!email) return;\n    setState(\"busy\");\n    try {\n      await onSubscribe(email);\n      setState(\"done\");\n    } catch {\n      setState(\"error\");\n    }\n  }\n  return (\n    <footer data-slot=\"footer-newsletter\" className={cn(\"border-t border-border pt-14 pb-8\", className)}>\n      <div className=\"flex flex-col gap-8 border-b border-border pb-12 lg:flex-row lg:items-end lg:justify-between\">\n        <div>\n          <div className=\"text-lg font-medium\">{brand}</div>\n          {tagline ? <p className=\"mt-2 max-w-xs text-sm text-muted-foreground\">{tagline}</p> : null}\n        </div>\n        <div className=\"w-full lg:w-[24rem]\">\n          <p id={`${id}-title`} className=\"text-sm font-medium\">{newsletterTitle}</p>\n          {state === \"done\" ? (\n            <p role=\"status\" className=\"mt-3 text-sm text-muted-foreground\">Thanks. Check your inbox to confirm.</p>\n          ) : (\n            <form onSubmit={submit} aria-labelledby={`${id}-title`} className=\"mt-3 flex gap-2\">\n              <label htmlFor={id} className=\"sr-only\">Email address</label>\n              <Input id={id} name=\"email\" type=\"email\" required autoComplete=\"email\" placeholder=\"you@company.com\" className=\"flex-1\" />\n              <Button type=\"submit\" loading={state === \"busy\"}>Subscribe</Button>\n            </form>\n          )}\n          {state === \"error\" ? <p role=\"alert\" className=\"mt-2 text-xs text-destructive\">That did not work. Please try again.</p> : null}\n        </div>\n      </div>\n      <div className=\"grid grid-cols-2 gap-8 py-12 sm:grid-cols-4\">\n        {columns.map((column) => (\n          <nav key={column.title} aria-label={column.title}>\n            <p className=\"text-sm font-medium\">{column.title}</p>\n            <ul className=\"mt-4 space-y-2.5\">\n              {column.links.map((link) => (\n                <li key={`${link.href}-${link.label}`}><a href={link.href} className=\"text-sm text-muted-foreground hover:text-foreground\">{link.label}</a></li>\n              ))}\n            </ul>\n          </nav>\n        ))}\n      </div>\n      <div className=\"flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between [&_a]:hover:text-foreground\">{legal}</div>\n    </footer>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/footer-newsletter.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

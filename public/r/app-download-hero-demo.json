@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-download-hero-demo",
+  "title": "App download hero demo",
+  "description": "A working preview of App download hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/app-download-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/app-download-hero-demo.tsx",
+      "content": "import { IconStar } from \"@rhs-ui/icons\";\nimport { AppDownloadHero } from \"@rhs-ui/marketing/app-download-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <AppDownloadHero\n        title=\"Your training plan, in your pocket.\"\n        description=\"Workouts that adapt to how you slept, what you lifted last week and the time you have today.\"\n        stores={[{ store: \"app-store\", href: \"#app-store\" }, { store: \"google-play\", href: \"#google-play\" }]}\n        rating={<span className=\"inline-flex items-center gap-1.5\"><IconStar className=\"size-4\" /> 4.9 average from 12,400 ratings</span>}\n        screen={\n          <div className=\"flex h-full flex-col gap-3 p-4 text-xs\">\n            <p className=\"pt-6 text-[10px] text-muted-foreground\">Thursday</p>\n            <p className=\"text-lg font-medium tracking-[-.03em]\">Upper body, 42 min</p>\n            {[\"Bench press, 4 × 6\", \"Pull-ups, 4 × 8\", \"Overhead press, 3 × 8\", \"Rows, 3 × 10\"].map((set, index) => (\n              <p key={set} className=\"flex items-center gap-2 rounded-xl bg-background px-3 py-2.5\">\n                <span className={index === 0 ? \"size-3 rounded-full bg-foreground\" : \"size-3 rounded-full border border-border\"} />\n                {set}\n              </p>\n            ))}\n            <p className=\"mt-auto rounded-full bg-foreground py-2.5 text-center font-medium text-background\">Start workout</p>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

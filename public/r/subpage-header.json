@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "subpage-header",
+  "title": "Subpage header",
+  "description": "The quiet header of an inner page (about, a category, a docs section): breadcrumbs, the title, a line of context and an optional row underneath, on a muted band.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/subpage-header.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconChevronRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SubpageHeaderProps {\n  /** The title's element: \"h1\" (the default) because this header opens an inner page, \"h2\" inside a preview. */\n  titleAs?: \"h1\" | \"h2\";\n  /** The trail to this page; the last item is the page itself and is not a link. */\n  breadcrumbs: readonly { label: string; href?: string }[];\n  title: string;\n  description?: string;\n  /** Tabs, filters or a meta line under the description. */\n  children?: ReactNode;\n  className?: string;\n}\n\n/**\n * The quiet header of an inner page (about, a category, a docs section):\n * breadcrumbs, the title, a line of context and an optional row underneath,\n * on a muted band. The page's h1 lives here by default.\n */\nexport function SubpageHeader({ titleAs: Title = \"h1\", breadcrumbs, title, description, children, className }: SubpageHeaderProps) {\n  return (\n    <header data-slot=\"subpage-header\" className={cn(\"rounded-3xl bg-muted/60 px-6 py-12 sm:px-10 sm:py-16\", className)}>\n      <nav aria-label=\"Breadcrumb\">\n        <ol className=\"flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground\">\n          {breadcrumbs.map((crumb, index) => {\n            const last = index === breadcrumbs.length - 1;\n            return (\n              <li key={`${crumb.label}-${index}`} className=\"flex items-center gap-1.5\">\n                {crumb.href && !last ? <a href={crumb.href} className=\"hover:text-foreground\">{crumb.label}</a> : <span aria-current={last ? \"page\" : undefined} className={last ? \"text-foreground\" : undefined}>{crumb.label}</span>}\n                {last ? null : <IconChevronRight aria-hidden=\"true\" className=\"size-3.5\" />}\n              </li>\n            );\n          })}\n        </ol>\n      </nav>\n      <Title className=\"mt-6 text-4xl font-medium tracking-[-.05em] text-balance sm:text-5xl\">{title}</Title>\n      {description ? <p className=\"mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      {children ? <div className=\"mt-8\">{children}</div> : null}\n    </header>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/subpage-header.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

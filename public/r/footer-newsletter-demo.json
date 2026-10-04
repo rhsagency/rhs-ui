@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-newsletter-demo",
+  "title": "Footer newsletter demo",
+  "description": "A working preview of Footer newsletter.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/footer-newsletter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/footer-newsletter-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconLayers } from \"@rhs-ui/icons\";\nimport { FooterNewsletter } from \"@rhs-ui/marketing/footer-newsletter\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FooterNewsletter\n        brand={<span className=\"inline-flex items-center gap-2\"><IconLayers className=\"size-5\" /> Ledger</span>}\n        tagline=\"Calm project planning for teams that ship.\"\n        onSubscribe={() => new Promise<void>((resolve) => setTimeout(resolve, 500))}\n        columns={[\n          { title: \"Product\", links: [{ label: \"Features\", href: \"#features\" }, { label: \"Pricing\", href: \"#pricing\" }, { label: \"Changelog\", href: \"#changelog\" }, { label: \"Download\", href: \"#download\" }] },\n          { title: \"Company\", links: [{ label: \"About\", href: \"#about\" }, { label: \"Careers\", href: \"#careers\" }, { label: \"Press\", href: \"#press\" }] },\n          { title: \"Resources\", links: [{ label: \"Guides\", href: \"#guides\" }, { label: \"Templates\", href: \"#templates\" }, { label: \"Help centre\", href: \"#help\" }] },\n          { title: \"Legal\", links: [{ label: \"Privacy\", href: \"#privacy\" }, { label: \"Terms\", href: \"#terms\" }, { label: \"Security\", href: \"#security\" }] },\n        ]}\n        legal={<><span>© 2026 Ledger B.V., Utrecht</span><span className=\"flex gap-4\"><a href=\"#status\">Status</a><a href=\"#cookies\">Cookie settings</a></span></>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

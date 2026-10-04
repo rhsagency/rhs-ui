@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-accordion-media",
+  "title": "Feature accordion media",
+  "description": "Features as an accordion with a picture that follows: open a feature on the left and its visual takes the stage on the right.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/feature-accordion-media.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@rhs-ui/primitives/accordion\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AccordionFeature {\n  id: string;\n  title: string;\n  description: string;\n  visual: ReactNode;\n}\n\nexport interface FeatureAccordionMediaProps {\n  title: string;\n  description?: string;\n  features: readonly AccordionFeature[];\n  className?: string;\n}\n\n/**\n * Features as an accordion with a picture that follows: open a feature on\n * the left and its visual takes the stage on the right. One is always open.\n * On a phone the visual sits inside the open item instead.\n */\nexport function FeatureAccordionMedia({ title, description, features, className }: FeatureAccordionMediaProps) {\n  const [open, setOpen] = useState(features[0]?.id ?? \"\");\n  const active = features.find((feature) => feature.id === open) ?? features[0];\n  return (\n    <section data-slot=\"feature-accordion-media\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"max-w-2xl\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"mt-12 grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16\">\n        <Accordion type=\"single\" value={open} onValueChange={(value) => value && setOpen(value)} className=\"border-t border-border\">\n          {features.map((feature) => (\n            <AccordionItem key={feature.id} value={feature.id}>\n              <AccordionTrigger className=\"text-base\">{feature.title}</AccordionTrigger>\n              <AccordionContent>\n                <p className=\"text-sm leading-relaxed text-muted-foreground\">{feature.description}</p>\n                <div className=\"mt-5 aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted lg:hidden\">{feature.visual}</div>\n              </AccordionContent>\n            </AccordionItem>\n          ))}\n        </Accordion>\n        <div aria-hidden=\"true\" className=\"hidden aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted lg:block\">\n          <div key={active?.id} className=\"size-full\">{active?.visual}</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/feature-accordion-media.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

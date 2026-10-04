@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lead-magnet",
+  "title": "Lead magnet",
+  "description": "Trade an email for something worth it: a guide, a template, a report.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/lead-magnet.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent, type ReactNode } from \"react\";\n\nimport { IconCheck, IconDownload } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface LeadMagnetProps {\n  /** \"Free guide\", \"Template\", \"Report 2026\". */\n  kind: string;\n  title: string;\n  description?: string;\n  /** What is inside, a line each. */\n  contents?: readonly string[];\n  /** The cover: an image or a drawn cover. */\n  cover: ReactNode;\n  /** Resolve to confirm and show the download, reject to show the error. */\n  onSubmit: (email: string) => Promise<void> | void;\n  /** Where the file lives once they signed up. */\n  downloadHref: string;\n  className?: string;\n}\n\n/**\n * Trade an email for something worth it: a guide, a template, a report. The\n * cover tilted on the left, what is inside on the right, one field, and after\n * sign-up the download right there instead of \"check your inbox\" only.\n */\nexport function LeadMagnet({ kind, title, description, contents = [], cover, onSubmit, downloadHref, className }: LeadMagnetProps) {\n  const id = useId();\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\" | \"error\">(\"idle\");\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    const email = String(new FormData(event.currentTarget).get(\"email\") ?? \"\").trim();\n    if (!email) return;\n    setState(\"busy\");\n    try {\n      await onSubmit(email);\n      setState(\"done\");\n    } catch {\n      setState(\"error\");\n    }\n  }\n  return (\n    <section data-slot=\"lead-magnet\" className={cn(\"grid items-center gap-12 rounded-3xl bg-muted/50 px-6 py-12 sm:px-12 lg:grid-cols-[auto_1fr] lg:gap-16\", className)}>\n      <div className=\"mx-auto w-48 -rotate-3 overflow-hidden rounded-lg shadow-2xl ring-1 ring-border sm:w-56 [&_img]:size-full [&_img]:object-cover\">\n        <div className=\"aspect-[3/4]\">{cover}</div>\n      </div>\n      <div>\n        <p className=\"text-xs font-medium tracking-[.14em] text-muted-foreground uppercase\">{kind}</p>\n        <h2 className=\"mt-3 text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 max-w-lg text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        {contents.length ? (\n          <ul className=\"mt-6 grid gap-2 text-sm sm:grid-cols-2\">\n            {contents.map((item) => (\n              <li key={item} className=\"flex items-start gap-2\"><IconCheck className=\"mt-0.5 size-4 shrink-0\" />{item}</li>\n            ))}\n          </ul>\n        ) : null}\n        {state === \"done\" ? (\n          <div role=\"status\" className=\"mt-8 flex flex-wrap items-center gap-4\">\n            <Button asChild size=\"lg\"><a href={downloadHref} download><IconDownload /> Download now</a></Button>\n            <span className=\"text-sm text-muted-foreground\">A copy is on its way to your inbox too.</span>\n          </div>\n        ) : (\n          <form onSubmit={submit} className=\"mt-8 flex max-w-md flex-col gap-2 sm:flex-row\">\n            <label htmlFor={id} className=\"sr-only\">Email address</label>\n            <Input id={id} name=\"email\" type=\"email\" required autoComplete=\"email\" placeholder=\"you@company.com\" className=\"h-11 flex-1 bg-background\" />\n            <Button type=\"submit\" size=\"lg\" loading={state === \"busy\"}>Get the {kind.toLowerCase()}</Button>\n          </form>\n        )}\n        {state === \"error\" ? <p role=\"alert\" className=\"mt-3 text-sm text-destructive\">That did not work. Please try again.</p> : null}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/lead-magnet.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

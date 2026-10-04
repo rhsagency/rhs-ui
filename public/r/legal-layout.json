@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "legal-layout",
+  "title": "Legal layout",
+  "description": "Terms, privacy or a DPA that people can actually read: the date it changed, a summary in plain words, numbered sections with anchors, and a sticky contents list beside the text on wide screens.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/legal-layout.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface LegalSection {\n  id: string;\n  title: string;\n  /** Paragraphs of the section, plain text. */\n  body: readonly string[];\n}\n\nexport interface LegalLayoutProps {\n  /** The title's element: \"h1\" (the default) for the terms or privacy page itself, \"h2\" inside a preview. */\n  titleAs?: \"h1\" | \"h2\";\n  title: string;\n  /** \"Last updated 1 March 2026\". */\n  updated: string;\n  updatedDateTime: string;\n  /** A plain-language summary on top, a line each. */\n  summary?: readonly string[];\n  sections: readonly LegalSection[];\n  className?: string;\n}\n\n/**\n * Terms, privacy or a DPA that people can actually read: the date it changed,\n * a summary in plain words, numbered sections with anchors, and a sticky\n * contents list beside the text on wide screens.\n */\nexport function LegalLayout({ titleAs: Title = \"h1\", title, updated, updatedDateTime, summary = [], sections, className }: LegalLayoutProps) {\n  return (\n    <article data-slot=\"legal-layout\" className={cn(\"py-16 sm:py-20\", className)}>\n      <header className=\"max-w-3xl\">\n        <Title className=\"text-4xl font-medium tracking-[-.05em] sm:text-5xl\">{title}</Title>\n        <p className=\"mt-3 text-sm text-muted-foreground\"><time dateTime={updatedDateTime}>{updated}</time></p>\n        {summary.length ? (\n          <div className=\"mt-8 rounded-2xl bg-muted/60 p-6\">\n            <p className=\"text-sm font-medium\">In short</p>\n            <ul className=\"mt-3 space-y-2 text-sm leading-relaxed\">\n              {summary.map((line) => (\n                <li key={line} className=\"flex gap-2.5\"><span aria-hidden=\"true\" className=\"mt-2 size-1.5 shrink-0 rounded-full bg-foreground\" />{line}</li>\n              ))}\n            </ul>\n          </div>\n        ) : null}\n      </header>\n      <div className=\"mt-12 grid gap-12 lg:grid-cols-[14rem_1fr]\">\n        <nav aria-label=\"Contents\" className=\"lg:sticky lg:top-24 lg:self-start\">\n          <p className=\"text-xs font-medium tracking-[.14em] text-muted-foreground uppercase\">Contents</p>\n          <ol className=\"mt-4 space-y-2 text-sm\">\n            {sections.map((section, index) => (\n              <li key={section.id}><a href={`#${section.id}`} className=\"flex gap-2 text-muted-foreground hover:text-foreground\"><span className=\"tabular-nums\">{index + 1}.</span>{section.title}</a></li>\n            ))}\n          </ol>\n        </nav>\n        <div className=\"max-w-2xl space-y-12\">\n          {sections.map((section, index) => (\n            <section key={section.id} id={section.id} className=\"scroll-mt-24\">\n              <h2 className=\"text-xl font-medium tracking-[-.02em]\"><span className=\"mr-2 text-muted-foreground tabular-nums\">{index + 1}.</span>{section.title}</h2>\n              <div className=\"mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground\">\n                {section.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}\n              </div>\n            </section>\n          ))}\n        </div>\n      </div>\n    </article>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/legal-layout.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}
