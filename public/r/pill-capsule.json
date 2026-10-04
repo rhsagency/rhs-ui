@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pill-capsule",
+  "title": "Pill Capsule",
+  "description": "A single satin capsule with softly rounded ends.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/pill-capsule.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A single satin capsule with softly rounded ends. */\nexport const pillCapsule = {\n  \"name\": \"pill-capsule\",\n  \"parts\": [\n    {\n      \"shape\": \"capsule\",\n      \"rotation\": [\n        0,\n        0,\n        -0.45\n      ],\n      \"roughness\": 0.3\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/pill-capsule.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

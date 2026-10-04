@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coin-blank",
+  "title": "Coin Blank",
+  "description": "An unmarked satin coin with a clean circular face.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/coin-blank.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** An unmarked satin coin with a clean circular face. */\nexport const coinBlank = {\n  \"name\": \"coin-blank\",\n  \"parts\": [\n    {\n      \"shape\": \"cylinder\",\n      \"scale\": [\n        1,\n        0.45,\n        1\n      ],\n      \"rotation\": [\n        1.2,\n        0.6,\n        0.1\n      ],\n      \"roughness\": 0.3\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/coin-blank.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

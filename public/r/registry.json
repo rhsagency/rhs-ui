@@ -20385,6 +20385,238 @@
       ]
     },
     {
+      "name": "pill-capsule",
+      "type": "registry:component",
+      "title": "Pill Capsule",
+      "description": "A single satin capsule with softly rounded ends.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/pill-capsule.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/pill-capsule.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "stacked-rings",
+      "type": "registry:component",
+      "title": "Stacked Rings",
+      "description": "A compact column of five matching satin rings.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/stacked-rings.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/stacked-rings.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "soft-sphere",
+      "type": "registry:component",
+      "title": "Soft Sphere",
+      "description": "A single porcelain sphere with a soft studio finish.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/soft-sphere.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/soft-sphere.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "prism-tower",
+      "type": "registry:component",
+      "title": "Prism Tower",
+      "description": "A tall softened graphite pillar for minimal spatial layouts.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/prism-tower.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/prism-tower.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "coin-blank",
+      "type": "registry:component",
+      "title": "Coin Blank",
+      "description": "An unmarked satin coin with a clean circular face.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/coin-blank.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/coin-blank.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "satin-pebble",
+      "type": "registry:component",
+      "title": "Satin Pebble",
+      "description": "A single flattened porcelain pebble with a gently tilted silhouette.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/satin-pebble.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/satin-pebble.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "ring-torus-duo",
+      "type": "registry:component",
+      "title": "Ring Torus Duo",
+      "description": "Two interlocked satin rings forming a simple chain link.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/ring-torus-duo.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/ring-torus-duo.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
+      "name": "gem-octa",
+      "type": "registry:component",
+      "title": "Gem Octa",
+      "description": "A single eight-faced metal gem with crisp planar reflections.",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.4.0",
+        "since": "0.4.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/gem-octa.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/gem-octa.ts"
+        }
+      ],
+      "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
+    },
+    {
       "name": "dot-field",
       "type": "registry:component",
       "title": "Dot Field",

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "satin-pebble",
+  "title": "Satin Pebble",
+  "description": "A single flattened porcelain pebble with a gently tilted silhouette.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/satin-pebble.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A single flattened porcelain pebble with a gently tilted silhouette. */\nexport const satinPebble = {\n  \"name\": \"satin-pebble\",\n  \"parts\": [\n    {\n      \"shape\": \"sphere\",\n      \"scale\": [\n        1.2,\n        0.58,\n        0.85\n      ],\n      \"rotation\": [\n        0.2,\n        0,\n        0.15\n      ],\n      \"color\": \"#dad8d2\",\n      \"metalness\": 0.15,\n      \"roughness\": 0.33\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/satin-pebble.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prism-tower",
+  "title": "Prism Tower",
+  "description": "A tall softened graphite pillar for minimal spatial layouts.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/prism-tower.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A tall softened graphite pillar for minimal spatial layouts. */\nexport const prismTower = {\n  \"name\": \"prism-tower\",\n  \"parts\": [\n    {\n      \"shape\": \"box\",\n      \"scale\": [\n        0.48,\n        1.4,\n        0.48\n      ],\n      \"color\": \"#64686b\",\n      \"roughness\": 0.3\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/prism-tower.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

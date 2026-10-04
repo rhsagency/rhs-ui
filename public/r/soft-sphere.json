@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "soft-sphere",
+  "title": "Soft Sphere",
+  "description": "A single porcelain sphere with a soft studio finish.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/soft-sphere.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** A single porcelain sphere with a soft studio finish. */\nexport const softSphere = {\n  \"name\": \"soft-sphere\",\n  \"parts\": [\n    {\n      \"shape\": \"sphere\",\n      \"color\": \"#deddd8\",\n      \"metalness\": 0.12,\n      \"roughness\": 0.34\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/soft-sphere.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ring-torus-duo",
+  "title": "Ring Torus Duo",
+  "description": "Two interlocked satin rings forming a simple chain link.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/models/ring-torus-duo.ts",
+      "content": "import type { ModelRecipe } from \"@rhs-ui/models/model-viewer\";\n/** Two interlocked satin rings forming a simple chain link. */\nexport const ringTorusDuo = {\n  \"name\": \"ring-torus-duo\",\n  \"parts\": [\n    {\n      \"shape\": \"torus\",\n      \"tube\": 0.16,\n      \"position\": [\n        -0.56,\n        0,\n        0\n      ],\n      \"scale\": [\n        0.75,\n        0.75,\n        0.75\n      ]\n    },\n    {\n      \"shape\": \"torus\",\n      \"tube\": 0.16,\n      \"position\": [\n        0.56,\n        0,\n        0\n      ],\n      \"rotation\": [\n        1.5707963267948966,\n        0,\n        0\n      ],\n      \"scale\": [\n        0.75,\n        0.75,\n        0.75\n      ]\n    }\n  ]\n} as const satisfies ModelRecipe;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/models/ring-torus-duo.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.4.0",
+    "since": "0.4.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "models"
+  },
+  "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",
+  "categories": [
+    "models"
+  ],
+  "type": "registry:component"
+}
