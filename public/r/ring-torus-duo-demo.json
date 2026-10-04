@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ring-torus-duo-demo",
-  "title": "Ring Torus Duo demo",
+  "title": "Ring torus duo demo",
   "description": "A working preview of Ring Torus Duo.",
   "registryDependencies": [
     "https://rhsui.com/r/ring-torus-duo.json",

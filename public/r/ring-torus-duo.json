@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ring-torus-duo",
-  "title": "Ring Torus Duo",
+  "title": "Ring torus duo",
   "description": "Two interlocked satin rings forming a simple chain link.",
   "dependencies": [],
   "registryDependencies": [

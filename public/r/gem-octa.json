@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "gem-octa",
-  "title": "Gem Octa",
+  "title": "Gem octa",
   "description": "A single eight-faced metal gem with crisp planar reflections.",
   "dependencies": [],
   "registryDependencies": [

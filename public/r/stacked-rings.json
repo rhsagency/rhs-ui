@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stacked-rings",
-  "title": "Stacked Rings",
+  "title": "Stacked rings",
   "description": "A compact column of five matching satin rings.",
   "dependencies": [],
   "registryDependencies": [

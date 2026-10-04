@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pill-capsule",
-  "title": "Pill Capsule",
+  "title": "Pill capsule",
   "description": "A single satin capsule with softly rounded ends.",
   "dependencies": [],
   "registryDependencies": [

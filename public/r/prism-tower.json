@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "prism-tower",
-  "title": "Prism Tower",
+  "title": "Prism tower",
   "description": "A tall softened graphite pillar for minimal spatial layouts.",
   "dependencies": [],
   "registryDependencies": [

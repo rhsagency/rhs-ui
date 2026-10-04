@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "satin-pebble-demo",
-  "title": "Satin Pebble demo",
+  "title": "Satin pebble demo",
   "description": "A working preview of Satin Pebble.",
   "registryDependencies": [
     "https://rhsui.com/r/satin-pebble.json",

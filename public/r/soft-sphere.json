@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "soft-sphere",
-  "title": "Soft Sphere",
+  "title": "Soft sphere",
   "description": "A single porcelain sphere with a soft studio finish.",
   "dependencies": [],
   "registryDependencies": [

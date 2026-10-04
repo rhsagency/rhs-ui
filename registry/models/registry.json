@@ -225,7 +225,7 @@
     {
       "name": "pill-capsule",
       "type": "registry:component",
-      "title": "Pill Capsule",
+      "title": "Pill capsule",
       "description": "A single satin capsule with softly rounded ends.",
       "categories": [
         "models"
@@ -253,7 +253,7 @@
     {
       "name": "stacked-rings",
       "type": "registry:component",
-      "title": "Stacked Rings",
+      "title": "Stacked rings",
       "description": "A compact column of five matching satin rings.",
       "categories": [
         "models"
@@ -281,7 +281,7 @@
     {
       "name": "soft-sphere",
       "type": "registry:component",
-      "title": "Soft Sphere",
+      "title": "Soft sphere",
       "description": "A single porcelain sphere with a soft studio finish.",
       "categories": [
         "models"
@@ -309,7 +309,7 @@
     {
       "name": "prism-tower",
       "type": "registry:component",
-      "title": "Prism Tower",
+      "title": "Prism tower",
       "description": "A tall softened graphite pillar for minimal spatial layouts.",
       "categories": [
         "models"
@@ -337,7 +337,7 @@
     {
       "name": "coin-blank",
       "type": "registry:component",
-      "title": "Coin Blank",
+      "title": "Coin blank",
       "description": "An unmarked satin coin with a clean circular face.",
       "categories": [
         "models"
@@ -365,7 +365,7 @@
     {
       "name": "satin-pebble",
       "type": "registry:component",
-      "title": "Satin Pebble",
+      "title": "Satin pebble",
       "description": "A single flattened porcelain pebble with a gently tilted silhouette.",
       "categories": [
         "models"
@@ -393,7 +393,7 @@
     {
       "name": "ring-torus-duo",
       "type": "registry:component",
-      "title": "Ring Torus Duo",
+      "title": "Ring torus duo",
       "description": "Two interlocked satin rings forming a simple chain link.",
       "categories": [
         "models"
@@ -421,7 +421,7 @@
     {
       "name": "gem-octa",
       "type": "registry:component",
-      "title": "Gem Octa",
+      "title": "Gem octa",
       "description": "A single eight-faced metal gem with crisp planar reflections.",
       "categories": [
         "models"
@@ -449,7 +449,7 @@
     {
       "name": "pill-capsule-demo",
       "type": "registry:example",
-      "title": "Pill Capsule demo",
+      "title": "Pill capsule demo",
       "description": "A working preview of Pill Capsule.",
       "registryDependencies": [
         "https://rhsui.com/r/pill-capsule.json",
@@ -465,7 +465,7 @@
     {
       "name": "stacked-rings-demo",
       "type": "registry:example",
-      "title": "Stacked Rings demo",
+      "title": "Stacked rings demo",
       "description": "A working preview of Stacked Rings.",
       "registryDependencies": [
         "https://rhsui.com/r/stacked-rings.json",
@@ -481,7 +481,7 @@
     {
       "name": "soft-sphere-demo",
       "type": "registry:example",
-      "title": "Soft Sphere demo",
+      "title": "Soft sphere demo",
       "description": "A working preview of Soft Sphere.",
       "registryDependencies": [
         "https://rhsui.com/r/soft-sphere.json",
@@ -497,7 +497,7 @@
     {
       "name": "prism-tower-demo",
       "type": "registry:example",
-      "title": "Prism Tower demo",
+      "title": "Prism tower demo",
       "description": "A working preview of Prism Tower.",
       "registryDependencies": [
         "https://rhsui.com/r/prism-tower.json",
@@ -513,7 +513,7 @@
     {
       "name": "coin-blank-demo",
       "type": "registry:example",
-      "title": "Coin Blank demo",
+      "title": "Coin blank demo",
       "description": "A working preview of Coin Blank.",
       "registryDependencies": [
         "https://rhsui.com/r/coin-blank.json",
@@ -529,7 +529,7 @@
     {
       "name": "satin-pebble-demo",
       "type": "registry:example",
-      "title": "Satin Pebble demo",
+      "title": "Satin pebble demo",
       "description": "A working preview of Satin Pebble.",
       "registryDependencies": [
         "https://rhsui.com/r/satin-pebble.json",
@@ -545,7 +545,7 @@
     {
       "name": "ring-torus-duo-demo",
       "type": "registry:example",
-      "title": "Ring Torus Duo demo",
+      "title": "Ring torus duo demo",
       "description": "A working preview of Ring Torus Duo.",
       "registryDependencies": [
         "https://rhsui.com/r/ring-torus-duo.json",
@@ -561,7 +561,7 @@
     {
       "name": "gem-octa-demo",
       "type": "registry:example",
-      "title": "Gem Octa demo",
+      "title": "Gem octa demo",
       "description": "A working preview of Gem Octa.",
       "registryDependencies": [
         "https://rhsui.com/r/gem-octa.json",

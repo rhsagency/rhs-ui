@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "satin-pebble",
-  "title": "Satin Pebble",
+  "title": "Satin pebble",
   "description": "A single flattened porcelain pebble with a gently tilted silhouette.",
   "dependencies": [],
   "registryDependencies": [

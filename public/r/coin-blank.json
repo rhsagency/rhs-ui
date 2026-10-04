@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coin-blank",
-  "title": "Coin Blank",
+  "title": "Coin blank",
   "description": "An unmarked satin coin with a clean circular face.",
   "dependencies": [],
   "registryDependencies": [

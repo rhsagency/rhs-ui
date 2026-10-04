@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pill-capsule-demo",
-  "title": "Pill Capsule demo",
+  "title": "Pill capsule demo",
   "description": "A working preview of Pill Capsule.",
   "registryDependencies": [
     "https://rhsui.com/r/pill-capsule.json",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "prism-tower-demo",
-  "title": "Prism Tower demo",
+  "title": "Prism tower demo",
   "description": "A working preview of Prism Tower.",
   "registryDependencies": [
     "https://rhsui.com/r/prism-tower.json",
