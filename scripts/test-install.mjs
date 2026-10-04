@@ -80,7 +80,7 @@ try {
       }
     }
     // Everything lands in components/rhs-ui/<category>/, and nowhere else.
-    for (const folder of ["primitives", "icons/animated", "commerce/product-card", "application", "marketing"]) {
+    for (const folder of ["primitives", "icons/animated", "commerce", "application", "marketing"]) {
       if (!existsSync(path.join(dir, "src", "components", "rhs-ui", ...folder.split("/")))) {
         failed++;
         console.log(`FAIL ${flavor}: no src/components/rhs-ui/${folder} after install`);
@@ -96,7 +96,7 @@ try {
     writeFileSync(
       path.join(dir, "src", "app", "rhs-ui-smoke.tsx"),
       [
-        'import { ProductCard } from "@rhs-ui/commerce/product-card";',
+        'import { AnimatedPrice } from "@rhs-ui/commerce/animated-price";',
         'import { Button } from "@rhs-ui/primitives/button";',
         'import { Glyph, IconBell } from "@rhs-ui/icons";',
         'import { IconBellAnimated } from "@rhs-ui/icons/animated/bell";',
@@ -110,9 +110,7 @@ try {
         'import { Navbar } from "@rhs-ui/marketing/navbar";',
         'export { PricingSection } from "@rhs-ui/marketing/pricing-section";',
         'export { EmptyState } from "@rhs-ui/application/empty-state";',
-        'export { AccountSettings } from "@rhs-ui/application/account-settings";',
-        'export { SignInCard } from "@rhs-ui/application/sign-in-card";',
-        'export function Smoke() { return <div><Button onClick={() => toast("Saved", { tone: "success" })}><IconBellAnimated trigger="loop" />Ok</Button><IconBell /><IconCopyAnimated active /><IconSettingsAnimated /><IconLockAnimated active /><Glyph d="M4 12h16" title="Rule" /><ProductCard product={{ id: "x", title: "x", image: { src: "/x.png", alt: "x" }, price: "1" }} /><Select><SelectTrigger><SelectValue placeholder="Pick" /></SelectTrigger><SelectContent><SelectItem value="a" description="First">A</SelectItem></SelectContent></Select><Combobox label="Country" options={[{ value: "NL", label: "Netherlands" }]} name="country" /><Pagination><PaginationContent>{paginationRange(1, 3).map((p) => <PaginationItem key={String(p)}>{p === "ellipsis" ? null : <PaginationLink href="#" isActive={p === 1}>{p}</PaginationLink>}</PaginationItem>)}</PaginationContent></Pagination><Navbar brand="x" items={[{ label: "Docs", href: "/docs" }]} /><Toaster /></div>; }',
+        'export function Smoke() { return <div><Button onClick={() => toast("Saved", { tone: "success" })}><IconBellAnimated trigger="loop" />Ok</Button><IconBell /><IconCopyAnimated active /><IconSettingsAnimated /><IconLockAnimated active /><Glyph d="M4 12h16" title="Rule" /><AnimatedPrice value={149} /><Select><SelectTrigger><SelectValue placeholder="Pick" /></SelectTrigger><SelectContent><SelectItem value="a" description="First">A</SelectItem></SelectContent></Select><Combobox label="Country" options={[{ value: "NL", label: "Netherlands" }]} name="country" /><Pagination><PaginationContent>{paginationRange(1, 3).map((p) => <PaginationItem key={String(p)}>{p === "ellipsis" ? null : <PaginationLink href="#" isActive={p === 1}>{p}</PaginationLink>}</PaginationItem>)}</PaginationContent></Pagination><Navbar brand="x" items={[{ label: "Docs", href: "/docs" }]} /><Toaster /></div>; }',
         "",
       ].join("\n"),
     );

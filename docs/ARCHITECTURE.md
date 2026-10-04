@@ -37,15 +37,16 @@ components/rhs-ui/<category>/<name>.tsx  where the CLI installs it in your proje
 | --- | --- |
 | `primitives` | the building blocks, one job each (button, input, dialog, tabs and so on) |
 | `icons` | the icon set (`@rhs-ui/icons`) and the animated icons (`@rhs-ui/icons/animated/<name>`) |
-| `application` | application UI: empty states, settings, uploads |
-| `commerce` | shop UI: product cards, variants, carts |
-| `dashboard` | dashboards and admin screens |
+| `application` | application basics: empty states, numbers that count, segmented control, copy field |
+| `commerce` | the animated price (shop screens are Pro) |
 | `marketing` | marketing sections: pricing, heroes, features |
+| `motion` | scroll reveals and parallax |
+| `backgrounds` | living canvases on one engine |
+| `models` | 3D recipes and the model viewer |
 | `templates` | complete starters (Pro) |
 
-A multi-file item is a folder with an `index.tsx`: `registry/commerce/product-card/`
-installs as `components/rhs-ui/commerce/product-card/` and imports as
-`@rhs-ui/commerce/product-card`.
+A multi-file item is a folder with an `index.tsx`: `registry/icons/`
+installs as `components/rhs-ui/icons/` and imports as `@rhs-ui/icons`.
 
 ```
 registry.json                          generated root: name "rhs-ui", every entry (committed)

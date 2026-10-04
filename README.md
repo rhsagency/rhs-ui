@@ -25,16 +25,17 @@ into your project by the [shadcn CLI](https://ui.shadcn.com/docs/cli) and lives 
 `components/rhs-ui/` folder you own, next to whatever else you use.
 
 This repository is the **free, open-source** tier (MIT). **RHS UI Pro** is a separate,
-paid product with premium templates, complete dashboards and commerce flows; its
+paid product with finished widgets, complete dashboards, commerce flows and templates; its
 source lives in a private repository and is never part of this one.
 
-Where the line runs: **Free gives you everything you need to build one interface
-right** — the primitives, the whole icon set, the animation engine and the components
-that do one job. **Pro is the bigger picture** — whole flows and finished moments.
-For icons that reads as: a free animated icon answers a control (it moves on hover or
-focus, loops while something happens, or switches between two states); a Pro moment
-icon tells a process at 32 to 96px. Nothing in Free is a cut-down version of a Pro
-item, and an item that is published here stays free.
+Where the line runs: **Free is the foundation**: the primitives you build every
+interface from, the interface icons, the animation and canvas engines, scroll basics
+and a set of marketing sections to put a page together. **Pro is the bigger picture**:
+finished widgets, whole screens and flows, dashboards, commerce, the wider icon
+library and the scroll sections. In every library roughly 40% is free and 60% is Pro.
+Nothing in Free is a cut-down version of a Pro item, and Free never depends on Pro.
+Items can move from Free to Pro in a release; a copy you installed under MIT stays
+yours under MIT.
 
 ## Install
 
@@ -50,14 +51,14 @@ your `tsconfig.json`. Keep your existing aliases. Without a `src` directory, dro
 Then install an item directly:
 
 ```bash
-npx shadcn@latest add https://rhsui.com/r/product-card.json
+npx shadcn@latest add https://rhsui.com/r/pricing-section.json
 ```
 
 Prefer the short form? Register the namespace once:
 
 ```bash
 npx shadcn@latest registry add @rhs-ui=https://rhsui.com/r/{name}.json
-npx shadcn@latest add @rhs-ui/product-card
+npx shadcn@latest add @rhs-ui/pricing-section
 ```
 
 The CLI installs the item, the RHS UI items it composes and the npm packages it needs,
@@ -67,7 +68,7 @@ all under `components/rhs-ui/`, one folder per category. The files are yours: ed
 import { Button } from "@rhs-ui/primitives/button";
 import { IconArrowRight } from "@rhs-ui/icons";
 import { IconBellAnimated } from "@rhs-ui/icons/animated/bell";
-import { ProductCard } from "@rhs-ui/commerce/product-card";
+import { PricingSection } from "@rhs-ui/marketing/pricing-section";
 ```
 
 Without rhsui.com: every built item is committed under [`public/r/`](./public/r) and
@@ -82,15 +83,14 @@ something lives and what it is for.
 <!-- catalogue:begin -->
 | Category | Import | What is in it |
 | --- | --- | --- |
-| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: accordion, address-fields, alert, alert-dialog, anchor-nav, announcement-pill, app-switcher, article-meta, aspect-ratio, audio-player, auto-grid, avatar, avatar-upload, back-to-top, badge, banner, bottom-nav, breadcrumb, breadcrumb-collapsed, button, calendar, callout, card, carousel, checkbox, checkbox-cards, checkbox-group, checkbox-tree, coachmark, code-block, code-diff, collapsible, collapsible-sidebar, color-picker, color-swatches, combobox, command, confirm-popover, connection-status, consent-checkboxes, contact-card, contact-links, context-menu, copy-command, countdown-inline, country-select, currency-input, data-list, date-picker, date-range-picker, date-time-picker, description-list, dialog, docs-sidebar, drawer, dropdown-menu, duration-input, editable-list, empty-search, error-panel, event-card, fact-chips, feature-badge, feedback-widget, figure, file-card, file-dropzone, file-trigger, floating-action-bar, form-field, fullscreen-dialog, hover-card, iban-field, image-grid, inline-confirm, input, input-group, invoice-preview, json-viewer, kbd, key-value-editor, label, labeled-divider, leaderboard, lightbox, link-preview, load-more, loading-dots, maintenance-banner, map-card, marquee, masonry-grid, media-object, mega-menu, mention-textarea, menubar, meter, metric-delta, mobile-menu, month-picker, multi-select, navigation-menu, notification-badge, nps-scale, number-input, offline-banner, opening-hours, otp-input, page-header, page-size-pagination, pager-nav, pagination, password-input, phone-input, pill-nav, popover, popover-form, profile-card, progress, progress-ring, pull-quote, quick-links, radio-cards, radio-group, range-slider, rate-limit-notice, rating, reading-progress, resizable, result-state, rhs-ui-theme, save-indicator, scroll-area, scroll-cue, scroll-tabs, search-input, search-trigger, section-heading, select, separator, session-timeout, settings-row, share-dialog, sheet, shortcut-dialog, sidebar-nav, signature-pad, skeleton, skeleton-presets, skip-link, slider, social-share, spec-table, spinner, split-view, status-pill, stepper, switch, switch-group, table, table-of-contents, tabs, tag-cloud, tag-input, term-tooltip, textarea, textarea-counter, theme-switcher, ticket-stub, time-picker, timeline-horizontal, timezone-select, toast, toc-mobile, toggle, toggle-group, toolbar, tooltip, tree-table, tree-view, unit-input, unsaved-changes-bar, upload-progress, user-chip, user-menu, version-select, vertical-tabs, video-player, weather-widget, workspace-switcher |
+| Primitives | `@rhs-ui/primitives/<name>` | The building blocks, one job each: accordion, alert, alert-dialog, anchor-nav, aspect-ratio, auto-grid, avatar, back-to-top, badge, banner, bottom-nav, breadcrumb, breadcrumb-collapsed, button, calendar, callout, card, carousel, checkbox, checkbox-cards, checkbox-group, code-block, collapsible, color-picker, combobox, command, confirm-popover, context-menu, country-select, currency-input, date-picker, date-range-picker, date-time-picker, description-list, dialog, drawer, dropdown-menu, duration-input, empty-search, feature-badge, file-dropzone, file-trigger, form-field, fullscreen-dialog, hover-card, inline-confirm, input, input-group, kbd, label, labeled-divider, load-more, loading-dots, marquee, media-object, menubar, meter, mobile-menu, month-picker, multi-select, navigation-menu, notification-badge, number-input, opening-hours, otp-input, page-header, page-size-pagination, pager-nav, pagination, password-input, phone-input, popover, progress, progress-ring, pull-quote, radio-cards, radio-group, range-slider, rating, resizable, result-state, rhs-ui-theme, scroll-area, scroll-tabs, search-input, search-trigger, section-heading, select, separator, settings-row, sheet, sidebar-nav, skeleton, skip-link, slider, spinner, split-view, stepper, switch, switch-group, table, table-of-contents, tabs, tag-input, term-tooltip, textarea, textarea-counter, time-picker, toast, toggle, toggle-group, toolbar, tooltip, tree-view, unit-input, vertical-tabs |
 | Icons | `@rhs-ui/icons` | 529 glyphs in one drawing hand, and 457 animated icons at `@rhs-ui/icons/animated/<name>` |
-| Commerce | `@rhs-ui/commerce/<name>` | Shop UI: animated-price, back-in-stock, bundle-picker, cart-drawer, cart-line, checkout-steps, compare-tray, coupon-field, delivery-estimate, filter-sidebar, gift-card-balance, loyalty-points, mini-cart, order-receipt, order-summary, payment-methods, price-tag, product-badges, product-card, product-gallery, promo-bar, quick-view, rating-summary, recently-viewed, review-card, shipping-options, shipping-progress, size-guide, sort-menu, stock-indicator, store-locator, subscribe-save, variant-selector, wishlist-button |
-| Dashboard | `@rhs-ui/dashboard/<name>` | Dashboards and admin screens: activity-heatmap, area-chart, bar-chart, bar-list, bullet-chart, category-bar, chart-card, donut-chart, funnel-chart, gauge, goal-ring, histogram-chart, kpi-card, line-chart, metric-comparison, period-compare, progress-list, radar-chart, realtime-counter, scatter-chart, sparkline, sparkline-table, stacked-bar, stat-trend, treemap-chart, uptime-bars, waterfall-chart |
-| Application | `@rhs-ui/application/<name>` | Application UI and account screens: account-settings, activity-timeline, agenda-list, ai-answer-compare, ai-artifact-card, ai-chat-launcher, ai-context-meter, ai-conversation-list, ai-diff-suggestion, ai-feedback, ai-message, ai-model-picker, ai-prompt-library, ai-quota-banner, ai-reasoning, ai-rewrite-menu, ai-sources, ai-suggestions, ai-tool-call, ai-voice-input, animated-number, api-key-field, billing-section, chat-thread, comment-thread, comparison-slider, copy-field, countdown-timer, data-table, empty-state, file-list, filter-bar, forgot-password-card, inline-edit, invite-members, kanban-board, notification-list, onboarding-checklist, onboarding-welcome, plan-usage, preferences-panel, prompt-input, segmented-control, shortcut-list, sign-in-card, sign-up-card, status-dot, step-progress, two-factor-card |
-| Marketing | `@rhs-ui/marketing/<name>` | Page sections, from the navbar to the footer: announcement-bar, api-code-section, app-download-hero, app-hero, article-layout, author-bio, avatar-proof, awards-row, bento-grid, blog-featured, blog-grid, blog-list, booking-section, callback-request, careers-list, case-study-cards, centered-hero, changelog-list, closing-cta, collage-hero, comparison-section, contact-cards, contact-section, cookie-banner, cta-banner, cta-checklist, cta-image-band, customer-story, demo-hero, download-section, editorial-hero, event-hero, event-schedule, events-list, faq-columns, faq-section, faq-tabs, feature-accordion-media, feature-alternating, feature-checklist, feature-grid, feature-icon-row, feature-image-cards, feature-numbers, feature-spotlight, feature-tabs, footer-big-brand, footer-minimal, footer-newsletter, footer-section, glossary-section, integrations-grid, job-detail, language-switcher, lead-magnet, legal-layout, location-section, logo-cloud, logo-marquee, logo-stats, menu-section, metrics-band, metrics-hero, minimal-hero, navbar, newsletter-section, not-found-section, platform-hub, podcast-episodes, portfolio-grid, press-kit, press-quotes, price-list, pricing-section, pricing-single, pricing-table, problem-solution, process-section, product-hero, quote-request, rating-band, resource-library, search-hero, security-section, service-list, signup-hero, social-posts, speaker-grid, split-hero, stats-grid, sticky-feature-list, subpage-header, team-grid, testimonial-grid, testimonial-hero, testimonial-photo, testimonial-spotlight, testimonial-wall, timeline-section, trial-cta-split, use-cases-grid, video-hero, waitlist-section |
+| Commerce | `@rhs-ui/commerce/<name>` | Shop UI: animated-price |
+| Application | `@rhs-ui/application/<name>` | Application UI and account screens: animated-number, copy-field, empty-state, segmented-control |
+| Marketing | `@rhs-ui/marketing/<name>` | Page sections, from the navbar to the footer: announcement-bar, app-download-hero, app-hero, article-layout, awards-row, blog-featured, blog-grid, blog-list, careers-list, centered-hero, changelog-list, closing-cta, collage-hero, contact-cards, contact-section, cookie-banner, cta-banner, cta-checklist, cta-image-band, download-section, editorial-hero, faq-columns, faq-section, faq-tabs, feature-alternating, feature-checklist, feature-grid, feature-icon-row, feature-image-cards, feature-numbers, feature-spotlight, feature-tabs, footer-big-brand, footer-minimal, footer-newsletter, footer-section, integrations-grid, job-detail, legal-layout, location-section, logo-cloud, logo-marquee, logo-stats, menu-section, metrics-band, minimal-hero, navbar, newsletter-section, not-found-section, portfolio-grid, press-quotes, price-list, pricing-section, pricing-single, problem-solution, process-section, product-hero, rating-band, security-section, service-list, signup-hero, split-hero, stats-grid, subpage-header, team-grid, testimonial-grid, testimonial-hero, testimonial-photo, testimonial-spotlight, timeline-section, trial-cta-split, use-cases-grid, video-hero, waitlist-section |
 | Models | `@rhs-ui/models/<name>` | 3D model recipes and the viewer: coin-blank, crystal-prism, gem-octa, model-viewer, orbit-ring, pill-capsule, prism-tower, ribbon-knot, ring-torus-duo, satin-pebble, soft-cube, soft-sphere, stacked-rings |
 | Backgrounds | `@rhs-ui/backgrounds/<name>` | Living canvas backgrounds: architect-grid, ascii-field, beam-grid, circuit-trace, contour-field, depth-tunnel, diagonal-scan, dot-field, double-helix, film-grain, fireflies, flow-field, glyph-rain, halftone-wave, hex-pulse, isometric-blocks, light-curtain, lissajous, live-chart, moire-rings, orbit-field, oscilloscope, particle-network, ping-grid, plus-grid, polygon-bloom, radar-sweep, rain-streaks, ribbon-flow, ridge-lines, ripple-rings, rising-bubbles, signal-bars, sketch-lines, spiral-arms, starfield-drift, sunflower, warp-field, wave-mesh |
-| Motion | `@rhs-ui/motion/<name>` | Scroll-driven reveals, parallax and reading progress: border-beam, dock, flip-card, highlight-text, hover-preview-list, magnetic, orbit-items, parallax-layer, reveal, scramble-text, scroll-progress, shimmer-text, split-text, spotlight-card, text-reveal, tilt-card, typewriter-text, underline-link, use-in-view, word-rotate |
+| Motion | `@rhs-ui/motion/<name>` | Scroll-driven reveals, parallax and reading progress: parallax-layer, reveal, scroll-progress, text-reveal, use-in-view |
 <!-- catalogue:end -->
 
 The table is generated from the registry by `pnpm registry:build`. The theme,

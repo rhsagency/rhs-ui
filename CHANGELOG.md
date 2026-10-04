@@ -3,6 +3,15 @@
 All notable changes to the RHS UI registry. Versions are git tags; items carry their
 own `meta.version` and are listed when they change.
 
+## Unreleased (0.7.0)
+
+- Free and Pro rebalanced to 40% free and 60% Pro per library. Free keeps the
+  foundation: the primitives, the interface icons, the engines, scroll basics and 74
+  marketing sections. 189 components and 34 blocks moved to RHS UI Pro: finished
+  widgets (players, invoice preview, leaderboard, switchers and more), the application,
+  AI, commerce and dashboard components, the account flows and the larger sections.
+  Copies you installed before stay yours under MIT.
+
 ## Unreleased (0.5.0)
 
 - Fifteen primitives: checkbox, radio group, select, combobox, textarea, popover,

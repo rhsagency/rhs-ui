@@ -152,7 +152,10 @@ export function groupNameProblems(sources) {
   return problems;
 }
 
-export function checkItems(items) {
+/** Reads a registry source, or null when it is not on disk. Self-tests pass virtual files instead. */
+const readSource = (file) => (existsSync(path.join(root, file)) ? readFileSync(path.join(root, file), "utf8") : null);
+
+export function checkItems(items, read = readSource) {
   const problems = [];
   const names = new Set();
   const byName = new Map(items.map((i) => [i.name, i]));
@@ -214,8 +217,8 @@ export function checkItems(items) {
     const own = new Set((item.files ?? []).map((f) => f.path.replace(/\.tsx?$/, "")));
     const declared = new Set((item.registryDependencies ?? []).map((d) => URL_DEP.exec(d)?.[1]).filter(Boolean));
     for (const f of item.files ?? []) {
-      if (!existsSync(path.join(root, f.path))) continue;
-      const src = readFileSync(path.join(root, f.path), "utf8");
+      const src = read(f.path);
+      if (src === null) continue;
       if (src.includes("@/registry/")) p(`${f.path}: legacy registry import; use @rhs-ui/<category>/<item>`);
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
@@ -322,12 +325,20 @@ const selfTests = [
   [
     "a shared helper taken from another item instead of shipped",
     (() => {
-      const tag = items.find((i) => i.name === "price-tag");
-      const host = items.find((i) => i.name === "shipping-progress");
-      const other = items.find((i) => i.name === "cart-line");
-      if (!tag || !host || !other) return false;
-      const borrowed = { ...tag, files: tag.files.slice(0, 1), registryDependencies: ["https://rhsui.com/r/shipping-progress.json"] };
-      return checkItems([borrowed, host, other]).some((pr) => /^price-tag: imports registry\/commerce\/money, a shared file/.test(pr)) && !checkItems([tag, host, other]).some((pr) => /^price-tag: .*a shared file/.test(pr));
+      // Virtual files: the rule must hold whichever real items ship a helper today.
+      const files = {
+        "registry/commerce/tag.tsx": 'import { formatMoney } from "@rhs-ui/commerce/money";\nexport function Tag() { return formatMoney(1); }',
+        "registry/commerce/host.tsx": 'import { formatMoney } from "@rhs-ui/commerce/money";\nexport function Host() { return formatMoney(2); }',
+        "registry/commerce/other.tsx": 'import { formatMoney } from "@rhs-ui/commerce/money";\nexport function Other() { return formatMoney(3); }',
+        "registry/commerce/money.ts": "export function formatMoney(n: number) { return String(n); }",
+      };
+      const read = (file) => files[file] ?? null;
+      const item = (name, extra = {}) => ({ name, type: "registry:component", title: name, description: "A virtual item for the self-test.", categories: ["commerce", "commerce"], meta: { tier: "free" }, files: [{ path: `registry/commerce/${name}.tsx` }, { path: "registry/commerce/money.ts" }], ...extra });
+      const host = item("host");
+      const other = item("other");
+      const shipped = item("tag");
+      const borrowed = item("tag", { files: [{ path: "registry/commerce/tag.tsx" }], registryDependencies: ["https://rhsui.com/r/host.json"] });
+      return checkItems([borrowed, host, other], read).some((pr) => /^tag: imports registry\/commerce\/money, a shared file/.test(pr)) && !checkItems([shipped, host, other], read).some((pr) => /^tag: .*a shared file/.test(pr));
     })(),
   ],
   ["a list keyed on href alone", hrefKeyProblems("<li key={link.href}>").length === 1 && hrefKeyProblems("<li key={`${link.label}-${link.href}`}>").length === 0],
