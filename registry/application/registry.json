@@ -1683,6 +1683,262 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "ai-rewrite-menu",
+      "type": "registry:component",
+      "title": "AI rewrite menu",
+      "description": "\"Improve with AI\" for any text field: a menu of rewrites, the suggestion shown next to what it replaces with accept, try again and discard, and a busy state announced while the model works.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-rewrite-menu.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-rewrite-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-rewrite-menu-demo",
+      "type": "registry:example",
+      "title": "AI rewrite menu demo",
+      "description": "A working preview of AI rewrite menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-rewrite-menu.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-rewrite-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-voice-input",
+      "type": "registry:component",
+      "title": "AI voice input",
+      "description": "Talk instead of type: one round button that records from the microphone, a live level meter drawn from the real input, the elapsed time, and stop.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-voice-input.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-voice-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-voice-input-demo",
+      "type": "registry:example",
+      "title": "AI voice input demo",
+      "description": "A working preview of AI voice input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-voice-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-voice-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-chat-launcher",
+      "type": "registry:component",
+      "title": "AI chat launcher",
+      "description": "The floating \"ask us\" button in a corner of the site, opening a compact chat panel above it.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-chat-launcher.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-chat-launcher.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-chat-launcher-demo",
+      "type": "registry:example",
+      "title": "AI chat launcher demo",
+      "description": "A working preview of AI chat launcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-chat-launcher.json",
+        "https://rhsui.com/r/chat-thread.json",
+        "https://rhsui.com/r/prompt-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-chat-launcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-prompt-library",
+      "type": "registry:component",
+      "title": "AI prompt library",
+      "description": "A library of ready prompts for an empty chat or a \"/\" menu: search, filter by category, and cards that show the prompt with its {placeholders} marked, so people see what they still need to fill in.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-prompt-library.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-prompt-library.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-prompt-library-demo",
+      "type": "registry:example",
+      "title": "AI prompt library demo",
+      "description": "A working preview of AI prompt library.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/ai-prompt-library.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-prompt-library-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-artifact-card",
+      "type": "registry:component",
+      "title": "AI artifact card",
+      "description": "The card an assistant leaves in the chat when it made something bigger than a message: a document or a piece of code with a faded preview, and open, copy and download.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-artifact-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-artifact-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-artifact-card-demo",
+      "type": "registry:example",
+      "title": "AI artifact card demo",
+      "description": "A working preview of AI artifact card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-artifact-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-artifact-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kanban-board",
+      "type": "registry:component",
+      "title": "Kanban board",
+      "description": "A board you can work with a mouse or a keyboard: drag cards between columns, or focus a card and press Alt with an arrow key to move it left, right, up or down, with every move announced.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/kanban-board.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/kanban-board.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kanban-board-demo",
+      "type": "registry:example",
+      "title": "Kanban board demo",
+      "description": "A working preview of Kanban board.",
+      "registryDependencies": [
+        "https://rhsui.com/r/kanban-board.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/kanban-board-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

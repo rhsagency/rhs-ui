@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "waterfall-chart",
+  "title": "Waterfall chart",
+  "description": "How you got from one number to another: start, each rise and fall as a floating bar, subtotals from the baseline.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/waterfall-chart.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface WaterfallStep {\n  id: string;\n  label: string;\n  /** A change (positive or negative); the first step is the starting value. */\n  value: number;\n  /** Draw this bar as a subtotal from zero instead of a change. */\n  total?: boolean;\n}\n\nexport interface WaterfallChartProps {\n  steps: readonly WaterfallStep[];\n  label: string;\n  format?: Intl.NumberFormatOptions;\n  locale?: string;\n  height?: number;\n  /** \"auto\" starts the axis just under the lowest value so small changes stay visible (the totals are then cut, like most MRR charts); \"zero\" draws from zero. */\n  baseline?: \"auto\" | \"zero\";\n  className?: string;\n}\n\n/**\n * How you got from one number to another: start, each rise and fall as a\n * floating bar, subtotals from the baseline. Rises are solid, falls are\n * hatched so the difference does not depend on colour, and each bar is\n * labelled with its change. A table carries the same steps.\n */\nexport function WaterfallChart({ steps, label, format, locale = \"en-GB\", height = 260, baseline = \"auto\", className }: WaterfallChartProps) {\n  const number = new Intl.NumberFormat(locale, format);\n  const signed = new Intl.NumberFormat(locale, { ...format, signDisplay: \"exceptZero\" });\n  let running = 0;\n  const bars = steps.map((step, index) => {\n    if (index === 0 || step.total) {\n      running = index === 0 ? step.value : running;\n      return { ...step, from: 0, to: running, kind: \"total\" as const };\n    }\n    const from = running;\n    running += step.value;\n    return { ...step, from, to: running, kind: step.value >= 0 ? (\"up\" as const) : (\"down\" as const) };\n  });\n  const width = 640;\n  const pad = { top: 22, right: 8, bottom: 28, left: 8 };\n  const max = Math.max(...bars.map((bar) => Math.max(bar.from, bar.to)));\n  const changes = bars.filter((bar) => bar.kind !== \"total\").flatMap((bar) => [bar.from, bar.to]);\n  const low = Math.min(...(changes.length ? changes : [0]), ...bars.map((bar) => bar.to));\n  // \"auto\" starts the axis just under the lowest running value, so small changes next to a large total stay visible.\n  const min = baseline === \"zero\" || low <= 0 ? Math.min(0, low) : Math.max(0, low - (max - low) * 0.8);\n  const y = (value: number) => pad.top + ((max - value) / (max - min || 1)) * (height - pad.top - pad.bottom);\n  const band = (width - pad.left - pad.right) / bars.length;\n  return (\n    <figure data-slot=\"waterfall-chart\" className={cn(\"relative\", className)}>\n      <svg viewBox={`0 0 ${width} ${height}`} className=\"h-auto w-full overflow-visible text-foreground\" aria-hidden=\"true\">\n        <defs>\n          <pattern id=\"rhs-waterfall-hatch\" width=\"6\" height=\"6\" patternUnits=\"userSpaceOnUse\" patternTransform=\"rotate(45)\">\n            <line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"6\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeOpacity=\"0.55\" />\n          </pattern>\n        </defs>\n        <line x1={pad.left} x2={width - pad.right} y1={y(Math.max(0, min))} y2={y(Math.max(0, min))} stroke=\"currentColor\" strokeOpacity={0.25} />\n        {bars.map((bar, index) => {\n          const x = pad.left + index * band + band * 0.18;\n          const w = band * 0.64;\n          const from = Math.max(bar.from, min);\n          const top = y(Math.max(from, bar.to));\n          const h = Math.max(1, Math.abs(y(from) - y(bar.to)));\n          const next = bars[index + 1];\n          return (\n            <g key={bar.id}>\n              <rect x={x} y={top} width={w} height={h} rx={3} fill={bar.kind === \"down\" ? \"url(#rhs-waterfall-hatch)\" : \"currentColor\"} fillOpacity={bar.kind === \"total\" ? 0.85 : bar.kind === \"up\" ? 0.45 : 1} stroke={bar.kind === \"down\" ? \"currentColor\" : \"none\"} strokeOpacity={0.55} />\n              {next ? <line x1={x + w} x2={x + band} y1={y(bar.to)} y2={y(bar.to)} stroke=\"currentColor\" strokeOpacity={0.3} strokeDasharray=\"3 3\" /> : null}\n              <text x={x + w / 2} y={top - 6} textAnchor=\"middle\" className=\"fill-foreground text-[10px] font-medium\" suppressHydrationWarning>{bar.kind === \"total\" ? number.format(bar.to) : signed.format(bar.value)}</text>\n              <text x={x + w / 2} y={height - 8} textAnchor=\"middle\" className=\"fill-muted-foreground text-[10px]\">{bar.label}</text>\n            </g>\n          );\n        })}\n      </svg>\n      <table className=\"sr-only\">\n        <caption>{label}</caption>\n        <thead><tr><th scope=\"col\">Step</th><th scope=\"col\">Change</th><th scope=\"col\">Running total</th></tr></thead>\n        <tbody>{bars.map((bar) => <tr key={bar.id}><th scope=\"row\">{bar.label}</th><td>{bar.kind === \"total\" ? \"\" : signed.format(bar.value)}</td><td>{number.format(bar.to)}</td></tr>)}</tbody>\n      </table>\n    </figure>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/waterfall-chart.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

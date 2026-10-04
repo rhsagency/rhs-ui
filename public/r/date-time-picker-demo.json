@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-time-picker-demo",
+  "title": "Date time picker demo",
+  "description": "A working preview of Date time picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/date-time-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/date-time-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { DateTimePicker, toLocalDateTime, type DateTimeValue } from \"@rhs-ui/primitives/date-time-picker\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<DateTimeValue>({ date: new Date(2026, 3, 14), time: null });\n  return (\n    <div className=\"mx-auto grid max-w-md gap-3 p-8\">\n      <p className=\"text-sm font-medium\">Appointment</p>\n      <DateTimePicker value={value} onValueChange={setValue} unavailable={[\"12:00\", \"12:30\"]} name=\"appointment\" />\n      <p className=\"text-xs text-muted-foreground\">Submits: {toLocalDateTime(value) || \"pick a day and a time\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-table-demo",
+  "title": "Tree table demo",
+  "description": "A working preview of Tree table.",
+  "registryDependencies": [
+    "https://rhsui.com/r/tree-table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/tree-table-demo.tsx",
+      "content": "\"use client\";\n\nimport { TreeTable } from \"@rhs-ui/primitives/tree-table\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <TreeTable\n        label=\"Budget by department\"\n        columns={[\"Department\", \"Budget\", \"Spent\", \"Left\"]}\n        defaultExpanded={[\"product\"]}\n        rows={[\n          { id: \"product\", name: \"Product\", cells: [\"€240k\", \"€151k\", \"€89k\"], children: [\n            { id: \"design\", name: \"Design\", cells: [\"€80k\", \"€52k\", \"€28k\"] },\n            { id: \"eng\", name: \"Engineering\", cells: [\"€140k\", \"€88k\", \"€52k\"], children: [\n              { id: \"platform\", name: \"Platform\", cells: [\"€70k\", \"€41k\", \"€29k\"] },\n              { id: \"apps\", name: \"Apps\", cells: [\"€70k\", \"€47k\", \"€23k\"] },\n            ] },\n            { id: \"research\", name: \"Research\", cells: [\"€20k\", \"€11k\", \"€9k\"] },\n          ] },\n          { id: \"marketing\", name: \"Marketing\", cells: [\"€120k\", \"€97k\", \"€23k\"], children: [\n            { id: \"brand\", name: \"Brand\", cells: [\"€50k\", \"€44k\", \"€6k\"] },\n            { id: \"growth\", name: \"Growth\", cells: [\"€70k\", \"€53k\", \"€17k\"] },\n          ] },\n          { id: \"ops\", name: \"Operations\", cells: [\"€60k\", \"€31k\", \"€29k\"] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

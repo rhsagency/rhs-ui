@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coachmark",
+  "title": "Coachmark",
+  "description": "A guided tip pinned to one control after a release: a pulsing ring on the target, a popover with a step counter, back, next and \"got it\", and skip that ends the tour for good.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/coachmark.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Popover, PopoverAnchor, PopoverContent } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CoachmarkStep {\n  id: string;\n  title: string;\n  body: string;\n}\n\nexport interface CoachmarkProps {\n  /** The element the tip points at. */\n  children: ReactNode;\n  steps: readonly CoachmarkStep[];\n  /** Shown until finished or dismissed; remember that on your side. */\n  open: boolean;\n  onFinish: () => void;\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\";\n  className?: string;\n}\n\n/**\n * A guided tip pinned to one control after a release: a pulsing ring on the\n * target, a popover with a step counter, back, next and \"got it\", and skip\n * that ends the tour for good. Not modal, so the page still works; focus is\n * not stolen, the popover is announced as a dialog when it opens.\n */\nexport function Coachmark({ children, steps, open, onFinish, side = \"bottom\", className }: CoachmarkProps) {\n  const [index, setIndex] = useState(0);\n  const step = steps[index];\n  const last = index === steps.length - 1;\n  return (\n    <Popover open={open && Boolean(step)}>\n      <PopoverAnchor asChild>\n        <span className={cn(\"relative inline-flex\", className)}>\n          {children}\n          {open ? <span aria-hidden=\"true\" className=\"pointer-events-none absolute -inset-1.5 rounded-xl ring-2 ring-foreground/60 motion-safe:animate-pulse\" /> : null}\n        </span>\n      </PopoverAnchor>\n      <PopoverContent side={side} align=\"start\" role=\"dialog\" aria-label={step?.title} onOpenAutoFocus={(event) => event.preventDefault()} className=\"w-72\">\n        {step ? (\n          <>\n            <p className=\"text-xs text-muted-foreground tabular-nums\">{index + 1} of {steps.length}</p>\n            <p className=\"mt-1 font-medium\">{step.title}</p>\n            <p className=\"mt-1.5 text-sm leading-relaxed text-muted-foreground\">{step.body}</p>\n            <div className=\"mt-4 flex items-center justify-between gap-2\">\n              <button type=\"button\" onClick={onFinish} className=\"text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline\">Skip tour</button>\n              <div className=\"flex gap-2\">\n                {index > 0 ? <Button size=\"sm\" variant=\"ghost\" onClick={() => setIndex((value) => value - 1)}>Back</Button> : null}\n                <Button size=\"sm\" onClick={() => (last ? onFinish() : setIndex((value) => value + 1))}>{last ? \"Got it\" : \"Next\"}</Button>\n              </div>\n            </div>\n          </>\n        ) : null}\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/coachmark.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

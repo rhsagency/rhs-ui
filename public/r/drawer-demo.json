@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-demo",
+  "title": "Drawer demo",
+  "description": "A working preview of Drawer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/checkbox.json",
+    "https://rhsui.com/r/drawer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/drawer-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Checkbox } from \"@rhs-ui/primitives/checkbox\";\nimport { Drawer } from \"@rhs-ui/primitives/drawer\";\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(false);\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-sm items-center justify-center p-8\">\n      <Drawer open={open} onOpenChange={setOpen} trigger={<Button>Filter results</Button>} title=\"Filters\" description=\"Drag the handle down or tap outside to close.\">\n        <div className=\"grid gap-3 text-sm\">\n          {[\"In stock only\", \"Free delivery\", \"On sale\", \"Recycled materials\"].map((option, index) => (\n            <label key={option} htmlFor={`drawer-filter-${index}`} className=\"flex items-center justify-between rounded-xl border border-border px-4 py-3\">\n              {option}\n              <Checkbox id={`drawer-filter-${index}`} defaultChecked={index === 0} />\n            </label>\n          ))}\n          <Button className=\"mt-2\" onClick={() => setOpen(false)}>Show 128 results</Button>\n        </div>\n      </Drawer>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-tabs-demo",
+  "title": "Scroll tabs demo",
+  "description": "A working preview of Scroll tabs.",
+  "registryDependencies": [
+    "https://rhsui.com/r/scroll-tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/scroll-tabs-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ScrollTabs } from \"@rhs-ui/primitives/scroll-tabs\";\n\nconst TABS = [\"Overview\", \"Activity\", \"Tasks\", \"Files\", \"Decisions\", \"Releases\", \"Members\", \"Integrations\", \"Billing\", \"Settings\", \"Audit log\"].map((label, i) => ({ id: label.toLowerCase().replace(\" \", \"-\"), label, count: [undefined, 12, 34, 8, 5, 3, 9, undefined, undefined, undefined, 120][i] }));\n\nexport default function Demo(): React.JSX.Element {\n  const [tab, setTab] = useState(\"tasks\");\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <ScrollTabs label=\"Project\" tabs={TABS} value={tab} onValueChange={setTab} />\n      <p className=\"mt-4 text-sm text-muted-foreground\">Showing: {TABS.find((t) => t.id === tab)?.label}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

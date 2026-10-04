@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-badge-demo",
+  "title": "Feature badge demo",
+  "description": "A working preview of Feature badge.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/feature-badge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-badge-demo.tsx",
+      "content": "import { IconChartBar, IconHome, IconInbox, IconSparkle } from \"@rhs-ui/icons\";\nimport { FeatureBadge } from \"@rhs-ui/primitives/feature-badge\";\n\nexport default function Demo(): React.JSX.Element {\n  const item = \"flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm hover:bg-muted [&_svg]:size-4 [&_svg]:text-muted-foreground\";\n  return (\n    <nav aria-label=\"Workspace\" className=\"mx-auto w-60 p-8\">\n      <ul className=\"grid gap-0.5\">\n        <li><a href=\"#home\" className={item}><IconHome />Home</a></li>\n        <li><a href=\"#inbox\" className={item}><IconInbox />Inbox</a></li>\n        <li><a href=\"#reports\" className={item}><IconChartBar /><FeatureBadge kind=\"new\">Reports</FeatureBadge></a></li>\n        <li><a href=\"#assistant\" className={item}><IconSparkle /><FeatureBadge kind=\"beta\">Assistant</FeatureBadge></a></li>\n        <li><span className={`${item} cursor-default text-muted-foreground hover:bg-transparent`}><IconSparkle /><FeatureBadge kind=\"soon\">Automations</FeatureBadge></span></li>\n      </ul>\n    </nav>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

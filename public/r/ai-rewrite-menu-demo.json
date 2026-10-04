@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-rewrite-menu-demo",
+  "title": "AI rewrite menu demo",
+  "description": "A working preview of AI rewrite menu.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-rewrite-menu.json",
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-rewrite-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { AiRewriteMenu } from \"@rhs-ui/application/ai-rewrite-menu\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\n\nconst REWRITES: Record<string, string> = {\n  shorter: \"Thanks for waiting. Your refund is on its way and should land within five working days.\",\n  formal: \"Thank you for your patience. We have processed your refund, which you can expect within five working days.\",\n  friendly: \"Thanks so much for hanging in there! Good news: your refund is on its way and should be with you in about five working days.\",\n};\n\nexport default function Demo(): React.JSX.Element {\n  const [text, setText] = useState(\"hi, sorry it took so long, we did the refund now and it will be in your account in like 5 working days probably\");\n  return (\n    <div className=\"mx-auto grid max-w-xl gap-3 p-8\">\n      <label htmlFor=\"ai-rewrite-reply\" className=\"text-sm font-medium\">Reply to customer</label>\n      <Textarea id=\"ai-rewrite-reply\" value={text} onChange={(event) => setText(event.target.value)} rows={4} />\n      <AiRewriteMenu\n        text={text}\n        actions={[{ id: \"shorter\", label: \"Shorter\" }, { id: \"formal\", label: \"More formal\" }, { id: \"friendly\", label: \"Friendlier\" }]}\n        onRewrite={(id) => new Promise<string>((resolve) => setTimeout(() => resolve(REWRITES[id] ?? text), 900))}\n        onAccept={setText}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

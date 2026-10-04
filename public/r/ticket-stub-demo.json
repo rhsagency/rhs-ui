@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ticket-stub-demo",
+  "title": "Ticket stub demo",
+  "description": "A working preview of Ticket stub.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/ticket-stub.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ticket-stub-demo.tsx",
+      "content": "import { IconQrCode } from \"@rhs-ui/icons\";\nimport { TicketStub } from \"@rhs-ui/primitives/ticket-stub\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-2xl justify-center p-8\">\n      <TicketStub\n        event=\"Calm Software Summit 2026\"\n        holder=\"Anouk de Wit\"\n        details={[{ label: \"Date\", value: \"12 June\" }, { label: \"Doors\", value: \"08:30\" }, { label: \"Seat\", value: \"Hall B, 14\" }]}\n        code=\"CSS26-8K2M-4QX\"\n        scan={<IconQrCode />}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

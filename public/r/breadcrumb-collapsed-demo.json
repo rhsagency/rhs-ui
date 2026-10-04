@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-collapsed-demo",
+  "title": "Breadcrumb collapsed demo",
+  "description": "A working preview of Breadcrumb collapsed.",
+  "registryDependencies": [
+    "https://rhsui.com/r/breadcrumb-collapsed.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/breadcrumb-collapsed-demo.tsx",
+      "content": "\"use client\";\n\nimport { BreadcrumbCollapsed } from \"@rhs-ui/primitives/breadcrumb-collapsed\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-xl gap-6 p-8\">\n      <BreadcrumbCollapsed\n        items={[\n          { label: \"Drive\", href: \"#drive\" },\n          { label: \"Clients\", href: \"#clients\" },\n          { label: \"Northwind\", href: \"#northwind\" },\n          { label: \"2026\", href: \"#2026\" },\n          { label: \"Brand refresh\", href: \"#brand\" },\n          { label: \"Deliverables\", href: \"#deliverables\" },\n          { label: \"Logo files\" },\n        ]}\n      />\n      <BreadcrumbCollapsed items={[{ label: \"Settings\", href: \"#settings\" }, { label: \"Billing\" }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

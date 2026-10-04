@@ -4,15 +4,19 @@
   "title": "Price tag",
   "description": "A price as shoppers expect to read it: the price, the old one struck through, the saving as a percentage, and a unit.",
   "dependencies": [],
-  "registryDependencies": [
-    "https://rhsui.com/r/shipping-progress.json"
-  ],
+  "registryDependencies": [],
   "files": [
     {
       "path": "registry/commerce/price-tag.tsx",
       "content": "import { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PriceTagProps {\n  price: Money;\n  /** The old price; shows the saving when higher than price. */\n  compareAt?: Money;\n  /** \"per month\", \"per kg\", \"incl. VAT\". */\n  unit?: string;\n  size?: \"sm\" | \"md\" | \"lg\";\n  locale?: string;\n  className?: string;\n}\n\n/**\n * A price as shoppers expect to read it: the price, the old one struck\n * through, the saving as a percentage, and a unit. The struck price is\n * announced as \"was\", not as a second price.\n */\nexport function PriceTag({ price, compareAt, unit, size = \"md\", locale = \"en-GB\", className }: PriceTagProps) {\n  const sale = compareAt && compareAt.amount > price.amount;\n  const off = sale ? Math.round((1 - price.amount / compareAt.amount) * 100) : 0;\n  const big = size === \"lg\" ? \"text-3xl\" : size === \"sm\" ? \"text-sm\" : \"text-xl\";\n  return (\n    <p data-slot=\"price-tag\" className={cn(\"flex flex-wrap items-baseline gap-x-2 gap-y-1\", className)}>\n      <span className={cn(\"font-medium tracking-[-0.02em] tabular-nums\", big)} suppressHydrationWarning>{formatMoney(price, locale)}</span>\n      {sale ? (\n        <>\n          <s className=\"text-sm text-muted-foreground tabular-nums\" suppressHydrationWarning><span className=\"sr-only\">was </span>{formatMoney(compareAt, locale)}</s>\n          <span className=\"rounded-full bg-foreground px-1.5 py-0.5 text-[11px] font-medium text-background\">−{off}%</span>\n        </>\n      ) : null}\n      {unit ? <span className=\"text-sm text-muted-foreground\">{unit}</span> : null}\n    </p>\n  );\n}\n",
       "type": "registry:component",
       "target": "components/rhs-ui/commerce/price-tag.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
     }
   ],
   "meta": {

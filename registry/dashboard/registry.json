@@ -612,6 +612,246 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:component",
+      "title": "Radar chart",
+      "description": "Several qualities at a glance: one spoke per axis, a filled shape per series in the text colour and its shades, rings for scale.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/radar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/radar-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart-demo",
+      "type": "registry:example",
+      "title": "Radar chart demo",
+      "description": "A working preview of Radar chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/radar-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/radar-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart",
+      "type": "registry:component",
+      "title": "Scatter chart",
+      "description": "Two measures against each other, one dot per item: price against usage, effort against impact.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/scatter-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/scatter-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart-demo",
+      "type": "registry:example",
+      "title": "Scatter chart demo",
+      "description": "A working preview of Scatter chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scatter-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scatter-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:component",
+      "title": "Treemap chart",
+      "description": "Parts of a whole as tiles sized by value: spend by team, storage by folder, revenue by product.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/treemap-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/treemap-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "treemap-chart-demo",
+      "type": "registry:example",
+      "title": "Treemap chart demo",
+      "description": "A working preview of Treemap chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/treemap-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/treemap-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "waterfall-chart",
+      "type": "registry:component",
+      "title": "Waterfall chart",
+      "description": "How you got from one number to another: start, each rise and fall as a floating bar, subtotals from the baseline.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/waterfall-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/waterfall-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "waterfall-chart-demo",
+      "type": "registry:example",
+      "title": "Waterfall chart demo",
+      "description": "A working preview of Waterfall chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/waterfall-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/waterfall-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "histogram-chart",
+      "type": "registry:component",
+      "title": "Histogram chart",
+      "description": "How values spread out: response times, order sizes, days to close.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/histogram-chart.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/histogram-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "histogram-chart-demo",
+      "type": "registry:example",
+      "title": "Histogram chart demo",
+      "description": "A working preview of Histogram chart.",
+      "registryDependencies": [
+        "https://rhsui.com/r/histogram-chart.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/histogram-chart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "goal-ring",
+      "type": "registry:component",
+      "title": "Goal ring",
+      "description": "Progress towards one goal as a ring: the share in the middle, the label and value against goal underneath, and a second lap drawn darker when the goal is beaten.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/goal-ring.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/goal-ring.tsx"
+        }
+      ]
+    },
+    {
+      "name": "goal-ring-demo",
+      "type": "registry:example",
+      "title": "Goal ring demo",
+      "description": "A working preview of Goal ring.",
+      "registryDependencies": [
+        "https://rhsui.com/r/goal-ring.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/goal-ring-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

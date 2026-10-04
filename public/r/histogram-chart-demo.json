@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "histogram-chart-demo",
+  "title": "Histogram chart demo",
+  "description": "A working preview of Histogram chart.",
+  "registryDependencies": [
+    "https://rhsui.com/r/histogram-chart.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/histogram-chart-demo.tsx",
+      "content": "import { HistogramChart } from \"@rhs-ui/dashboard/histogram-chart\";\n\n/** A fixed, made-up sample: response times in milliseconds. */\nconst SAMPLE = Array.from({ length: 240 }, (_, i) => {\n  const base = 120 + Math.sin(i * 1.7) * 40 + Math.cos(i * 0.37) * 35;\n  return Math.round(base + (i % 17 === 0 ? 220 : 0) + (i % 5) * 6);\n});\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <HistogramChart label=\"API response times, last hour\" values={SAMPLE} unit=\"ms\" bins={14} marker={{ value: 250, label: \"Target\" }} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

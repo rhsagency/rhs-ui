@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "connection-status",
+  "title": "Connection status",
+  "description": "The state of a live connection in a toolbar or footer: a dot that is solid, pulsing or hollow (so it reads without colour) and the state in words, with an optional last-synced line.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/connection-status.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport type ConnectionState = \"connected\" | \"connecting\" | \"reconnecting\" | \"offline\";\n\nexport interface ConnectionStatusProps {\n  state: ConnectionState;\n  /** What is connected: \"Live updates\", \"Sync\", \"Printer\". */\n  label?: string;\n  /** \"Last synced 2 min ago\", worked out on your side. */\n  detail?: string;\n  className?: string;\n}\n\nconst COPY: Record<ConnectionState, string> = {\n  connected: \"Connected\",\n  connecting: \"Connecting\",\n  reconnecting: \"Reconnecting\",\n  offline: \"Offline\",\n};\n\n/**\n * The state of a live connection in a toolbar or footer: a dot that is\n * solid, pulsing or hollow (so it reads without colour) and the state in\n * words, with an optional last-synced line. A status region, so changes\n * are announced without stealing focus.\n */\nexport function ConnectionStatus({ state, label = \"Live updates\", detail, className }: ConnectionStatusProps) {\n  return (\n    <p data-slot=\"connection-status\" role=\"status\" className={cn(\"inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs\", className)}>\n      <span aria-hidden=\"true\" className=\"relative inline-flex size-2\">\n        {state === \"connecting\" || state === \"reconnecting\" ? <span className=\"absolute inset-0 rounded-full bg-foreground/50 motion-safe:animate-ping\" /> : null}\n        <span className={cn(\"relative inline-block size-2 rounded-full\", state === \"connected\" ? \"bg-foreground\" : state === \"offline\" ? \"border border-destructive\" : \"bg-foreground/60\")} />\n      </span>\n      <span>\n        <span className=\"font-medium\">{label}: </span>\n        <span className={cn(state === \"offline\" && \"text-destructive\")}>{COPY[state]}</span>\n        {detail ? <span className=\"text-muted-foreground\"> · {detail}</span> : null}\n      </span>\n    </p>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/connection-status.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

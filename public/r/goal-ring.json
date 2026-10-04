@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "goal-ring",
+  "title": "Goal ring",
+  "description": "Progress towards one goal as a ring: the share in the middle, the label and value against goal underneath, and a second lap drawn darker when the goal is beaten.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/goal-ring.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface GoalRingProps {\n  label: string;\n  value: number;\n  goal: number;\n  /** How the numbers read: \"€48k\", \"12 deals\". */\n  display?: (value: number) => string;\n  /** A line under the ring: \"8 days left\". */\n  note?: ReactNode;\n  size?: \"sm\" | \"md\" | \"lg\";\n  className?: string;\n}\n\nconst SIZES = { sm: 96, md: 140, lg: 184 } as const;\n\n/**\n * Progress towards one goal as a ring: the share in the middle, the label\n * and value against goal underneath, and a second lap drawn darker when the\n * goal is beaten. A meter for assistive technology, with the numbers in its\n * name.\n */\nexport function GoalRing({ label, value, goal, display = String, note, size = \"md\", className }: GoalRingProps) {\n  const px = SIZES[size];\n  const stroke = Math.round(px / 11);\n  const r = (px - stroke) / 2;\n  const length = 2 * Math.PI * r;\n  const ratio = goal > 0 ? value / goal : 0;\n  const first = Math.min(1, ratio);\n  const over = Math.max(0, Math.min(1, ratio - 1));\n  const percent = Math.round(ratio * 100);\n  return (\n    <div data-slot=\"goal-ring\" className={cn(\"inline-flex flex-col items-center gap-3 text-center\", className)}>\n      <div role=\"meter\" aria-label={`${label}: ${display(value)} of ${display(goal)}`} aria-valuemin={0} aria-valuemax={goal} aria-valuenow={Math.min(value, goal)} className=\"relative\" style={{ width: px, height: px }}>\n        <svg viewBox={`0 0 ${px} ${px}`} className=\"-rotate-90 text-foreground\" aria-hidden=\"true\">\n          <circle cx={px / 2} cy={px / 2} r={r} fill=\"none\" stroke=\"currentColor\" strokeOpacity={0.1} strokeWidth={stroke} />\n          <circle cx={px / 2} cy={px / 2} r={r} fill=\"none\" stroke=\"currentColor\" strokeOpacity={0.55} strokeWidth={stroke} strokeLinecap=\"round\" strokeDasharray={`${first * length} ${length}`} />\n          {over > 0 ? <circle cx={px / 2} cy={px / 2} r={r} fill=\"none\" stroke=\"currentColor\" strokeWidth={stroke} strokeLinecap=\"round\" strokeDasharray={`${over * length} ${length}`} /> : null}\n        </svg>\n        <span aria-hidden=\"true\" className={cn(\"absolute inset-0 flex items-center justify-center font-medium tracking-tight tabular-nums\", size === \"sm\" ? \"text-xl\" : size === \"md\" ? \"text-3xl\" : \"text-4xl\")}>{percent}%</span>\n      </div>\n      <div>\n        <p className=\"text-sm font-medium\">{label}</p>\n        <p className=\"text-xs text-muted-foreground tabular-nums\">{display(value)} of {display(goal)}</p>\n        {note ? <p className=\"mt-1 text-xs text-muted-foreground\">{note}</p> : null}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/goal-ring.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

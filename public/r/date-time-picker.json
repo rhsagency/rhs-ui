@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-time-picker",
+  "title": "Date time picker",
+  "description": "\"2026-04-14T10:30\" from the parts, or \"\" while either is missing.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/date-picker.json",
+    "https://rhsui.com/r/time-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/date-time-picker.tsx",
+      "content": "import { DatePicker } from \"@rhs-ui/primitives/date-picker\";\nimport { TimePicker } from \"@rhs-ui/primitives/time-picker\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface DateTimeValue {\n  date: Date | null;\n  /** \"HH:MM\", 24-hour. */\n  time: string | null;\n}\n\nexport interface DateTimePickerProps {\n  value: DateTimeValue;\n  onValueChange: (value: DateTimeValue) => void;\n  /** Minutes between time slots. */\n  step?: number;\n  /** First and last slot of the day. */\n  min?: string;\n  max?: string;\n  /** Taken slots for the chosen day. */\n  unavailable?: readonly string[];\n  /** Field name: submits \"yyyy-mm-ddThh:mm\" (local, no zone) once both parts are set. */\n  name?: string;\n  locale?: string;\n  className?: string;\n}\n\nconst pad = (n: number) => String(n).padStart(2, \"0\");\n\n/** \"2026-04-14T10:30\" from the parts, or \"\" while either is missing. */\nexport function toLocalDateTime({ date, time }: DateTimeValue): string {\n  return date && time ? `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${time}` : \"\";\n}\n\n/**\n * An appointment in two steps that read as one: a day from the calendar and\n * a time from the slot list beside it, side by side on wide screens and\n * stacked on a phone. The time waits for a day, and one hidden input submits\n * the combined local date and time.\n */\nexport function DateTimePicker({ value, onValueChange, step = 30, min = \"09:00\", max = \"17:00\", unavailable = [], name, locale = \"en-GB\", className }: DateTimePickerProps) {\n  return (\n    <div data-slot=\"date-time-picker\" className={cn(\"grid gap-2 sm:grid-cols-[1fr_auto]\", className)}>\n      <DatePicker value={value.date} onValueChange={(date) => onValueChange({ date, time: value.time })} locale={locale} placeholder=\"Pick a day\" />\n      <div className={cn(!value.date && \"pointer-events-none opacity-50\")} aria-disabled={!value.date || undefined}>\n        <TimePicker value={value.time} onValueChange={(time) => onValueChange({ date: value.date, time })} step={step} min={min} max={max} unavailable={unavailable} placeholder={value.date ? \"Pick a time\" : \"Day first\"} />\n      </div>\n      {name ? <input type=\"hidden\" name={name} value={toLocalDateTime(value)} /> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/date-time-picker.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-artifact-card",
+  "title": "AI artifact card",
+  "description": "The card an assistant leaves in the chat when it made something bigger than a message: a document or a piece of code with a faded preview, and open, copy and download.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-artifact-card.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconCheck, IconCode, IconCopy, IconDownload, IconFileText, IconMaximize } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiArtifactCardProps {\n  /** What the assistant made: \"Q2 launch plan\". */\n  title: string;\n  kind: \"document\" | \"code\";\n  /** \"Markdown, 1.2k words\", \"TypeScript, 84 lines\". */\n  meta?: string;\n  /** The raw content, for copy and download. */\n  content: string;\n  /** A rendered preview; the raw content is shown when left out. */\n  preview?: ReactNode;\n  /** File name for the download. */\n  filename: string;\n  /** Open it in a side panel or a full view. */\n  onOpen?: () => void;\n  className?: string;\n}\n\n/**\n * The card an assistant leaves in the chat when it made something bigger\n * than a message: a document or a piece of code with a faded preview, and\n * open, copy and download. Copy says \"Copied\" in words; download is a real\n * file from the content, made in the browser.\n */\nexport function AiArtifactCard({ title, kind, meta, content, preview, filename, onOpen, className }: AiArtifactCardProps) {\n  const [copied, setCopied] = useState(false);\n  async function copy() {\n    await navigator.clipboard.writeText(content);\n    setCopied(true);\n    setTimeout(() => setCopied(false), 1600);\n  }\n  function download() {\n    const url = URL.createObjectURL(new Blob([content], { type: \"text/plain;charset=utf-8\" }));\n    const link = document.createElement(\"a\");\n    link.href = url;\n    link.download = filename;\n    link.click();\n    URL.revokeObjectURL(url);\n  }\n  const action = \"inline-flex size-8 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\";\n  return (\n    <article data-slot=\"ai-artifact-card\" className={cn(\"relative w-full max-w-md overflow-clip rounded-2xl border border-border bg-background\", className)}>\n      <header className=\"flex items-center gap-3 border-b border-border p-3 pl-4\">\n        <span className=\"inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted [&_svg]:size-4.5\">{kind === \"code\" ? <IconCode /> : <IconFileText />}</span>\n        <span className=\"min-w-0 flex-1\">\n          <span className=\"block truncate text-sm font-medium\">{title}</span>\n          {meta ? <span className=\"block truncate text-xs text-muted-foreground\">{meta}</span> : null}\n        </span>\n        {onOpen ? <button type=\"button\" onClick={onOpen} aria-label={`Open ${title}`} className={action}><IconMaximize /></button> : null}\n        <button type=\"button\" onClick={copy} aria-label={copied ? \"Copied\" : `Copy ${title}`} className={action}>{copied ? <IconCheck /> : <IconCopy />}</button>\n        <button type=\"button\" onClick={download} aria-label={`Download ${filename}`} className={action}><IconDownload /></button>\n      </header>\n      <div className=\"relative max-h-44 overflow-clip p-4 text-sm [mask-image:linear-gradient(#000_60%,transparent)]\">\n        {preview ?? <pre className={cn(\"whitespace-pre-wrap\", kind === \"code\" && \"font-mono text-[0.8125rem]\")}>{content}</pre>}\n      </div>\n      <span role=\"status\" className=\"sr-only\">{copied ? \"Copied to the clipboard\" : \"\"}</span>\n    </article>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-artifact-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

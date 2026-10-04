@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timezone-select",
+  "title": "Timezone select",
+  "description": "\"GMT+2\" for a zone at a moment, from the browser's own time zone data.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/timezone-select.tsx",
+      "content": "\"use client\";\n\nimport { useMemo } from \"react\";\n\nimport { Combobox, type ComboboxOption } from \"@rhs-ui/primitives/combobox\";\n\nexport interface TimezoneSelectProps {\n  /** An IANA zone: \"Europe/Amsterdam\". */\n  value?: string | null;\n  defaultValue?: string | null;\n  onValueChange?: (zone: string) => void;\n  /** Where the offsets are measured; now by default. Pass a fixed date for stable output. */\n  at?: Date;\n  locale?: string;\n  name?: string;\n  id?: string;\n  className?: string;\n}\n\n/** \"GMT+2\" for a zone at a moment, from the browser's own time zone data. */\nexport function zoneOffset(zone: string, at: Date, locale = \"en-GB\"): string {\n  return new Intl.DateTimeFormat(locale, { timeZone: zone, timeZoneName: \"shortOffset\" }).formatToParts(at).find((part) => part.type === \"timeZoneName\")?.value ?? \"\";\n}\n\n/**\n * Pick a time zone by city, the way people think about it: every IANA zone\n * the browser knows (nothing hard-coded), grouped by region, with its\n * current offset, and searchable by city, region or offset (\"GMT+2\").\n * Offsets follow daylight saving for the moment you pass.\n */\nexport function TimezoneSelect({ value, defaultValue, onValueChange, at, locale = \"en-GB\", name, id, className }: TimezoneSelectProps) {\n  const options = useMemo<ComboboxOption[]>(() => {\n    const moment = at ?? new Date();\n    const zones = typeof Intl.supportedValuesOf === \"function\" ? Intl.supportedValuesOf(\"timeZone\") : [\"UTC\"];\n    return zones.map((zone) => {\n      const [region, ...rest] = zone.split(\"/\");\n      const city = (rest.length ? rest.join(\" / \") : zone).replace(/_/g, \" \");\n      const offset = zoneOffset(zone, moment, locale);\n      return { value: zone, label: `${city} (${offset})`, keywords: [zone, offset, region ?? \"\"], group: rest.length ? region : \"Other\" };\n    });\n  }, [at, locale]);\n  return <Combobox options={options} value={value} defaultValue={defaultValue} onValueChange={onValueChange} label=\"Time zone\" placeholder=\"Choose a time zone\" searchPlaceholder=\"Search a city or offset\" emptyText=\"No time zone found\" name={name} id={id} className={className} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/timezone-select.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

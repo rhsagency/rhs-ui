@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "upload-progress",
+  "title": "Upload progress",
+  "description": "Files on their way up: a row per file with its size, a progress bar that is a real progressbar, done or failed in words with the reason, and cancel or retry per row.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/upload-progress.tsx",
+      "content": "import { IconAlertCircle, IconCheck, IconClose, IconFile, IconRefresh } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface UploadItem {\n  id: string;\n  name: string;\n  /** Bytes. */\n  size: number;\n  /** 0 to 1 while uploading. */\n  progress: number;\n  status: \"queued\" | \"uploading\" | \"done\" | \"failed\";\n  /** Why it failed, in words: \"Larger than 25 MB\". */\n  error?: string;\n}\n\nexport interface UploadProgressProps {\n  items: readonly UploadItem[];\n  onCancel?: (id: string) => void;\n  onRetry?: (id: string) => void;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * Files on their way up: a row per file with its size, a progress bar that\n * is a real progressbar, done or failed in words with the reason, and cancel\n * or retry per row. A summary line counts what is left, politely announced.\n */\nexport function UploadProgress({ items, onCancel, onRetry, locale = \"en-GB\", className }: UploadProgressProps) {\n  const unit = new Intl.NumberFormat(locale, { style: \"unit\", unit: \"megabyte\", maximumFractionDigits: 1 });\n  const done = items.filter((item) => item.status === \"done\").length;\n  const failed = items.filter((item) => item.status === \"failed\").length;\n  return (\n    <section data-slot=\"upload-progress\" aria-label=\"Uploads\" className={cn(\"rounded-2xl border border-border\", className)}>\n      <p role=\"status\" className=\"border-b border-border px-4 py-3 text-sm font-medium\">\n        {done === items.length ? `All ${items.length} files uploaded` : `${done} of ${items.length} uploaded`}{failed ? `, ${failed} failed` : \"\"}\n      </p>\n      <ul className=\"divide-y divide-border\">\n        {items.map((item) => (\n          <li key={item.id} className=\"flex items-center gap-3 px-4 py-3\">\n            <span className={cn(\"inline-flex size-9 shrink-0 items-center justify-center rounded-lg [&_svg]:size-4\", item.status === \"failed\" ? \"bg-destructive/10 text-destructive\" : \"bg-muted\")}>\n              {item.status === \"done\" ? <IconCheck /> : item.status === \"failed\" ? <IconAlertCircle /> : <IconFile />}\n            </span>\n            <div className=\"min-w-0 flex-1\">\n              <div className=\"flex items-baseline justify-between gap-3 text-sm\">\n                <span className=\"truncate\">{item.name}</span>\n                <span className=\"shrink-0 text-xs text-muted-foreground tabular-nums\" suppressHydrationWarning>\n                  {item.status === \"uploading\" ? `${Math.round(item.progress * 100)}%` : item.status === \"queued\" ? \"Waiting\" : unit.format(item.size / 1_000_000)}\n                </span>\n              </div>\n              {item.status === \"failed\" ? (\n                <p className=\"mt-1 text-xs text-destructive\">{item.error ?? \"Upload failed\"}</p>\n              ) : item.status !== \"done\" ? (\n                <div role=\"progressbar\" aria-label={`Uploading ${item.name}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(item.progress * 100)} className=\"mt-1.5 h-1 overflow-clip rounded-full bg-muted\">\n                  <div className=\"h-full rounded-full bg-foreground transition-[width] duration-300 motion-reduce:transition-none\" style={{ width: `${item.progress * 100}%` }} />\n                </div>\n              ) : null}\n            </div>\n            {item.status === \"failed\" && onRetry ? (\n              <button type=\"button\" onClick={() => onRetry(item.id)} aria-label={`Retry ${item.name}`} className=\"inline-flex size-8 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\"><IconRefresh /></button>\n            ) : item.status !== \"done\" && onCancel ? (\n              <button type=\"button\" onClick={() => onCancel(item.id)} aria-label={`Cancel ${item.name}`} className=\"inline-flex size-8 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\"><IconClose /></button>\n            ) : null}\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/upload-progress.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

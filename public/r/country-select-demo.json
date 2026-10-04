@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "country-select-demo",
+  "title": "Country select demo",
+  "description": "A working preview of Country select.",
+  "registryDependencies": [
+    "https://rhsui.com/r/country-select.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/country-select-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CountrySelect } from \"@rhs-ui/primitives/country-select\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nexport default function Demo(): React.JSX.Element {\n  const [country, setCountry] = useState<string | null>(\"NL\");\n  return (\n    <div className=\"mx-auto grid max-w-xs gap-2 p-8\">\n      <Label htmlFor=\"country-demo\">Country</Label>\n      <CountrySelect id=\"country-demo\" name=\"country\" value={country} onValueChange={setCountry} suggested={[\"NL\", \"BE\", \"DE\"]} />\n      <p className=\"text-xs text-muted-foreground\">Submits: {country ?? \"nothing yet\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

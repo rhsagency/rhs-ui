@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "subscribe-save",
+  "title": "Subscribe save",
+  "description": "Buy once or subscribe and save, the way coffee and pet food shops do it: two radio cards with the price each, the subscription showing its saving and a delivery interval that only matters when it is chosen.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/commerce/subscribe-save.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\n\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SubscribeSaveProps {\n  /** The one-off price. */\n  price: Money;\n  /** Discount for subscribing, as a fraction: 0.1 is 10% off. */\n  discount: number;\n  /** Delivery intervals in weeks. */\n  intervals: readonly number[];\n  value: { mode: \"once\" | \"subscribe\"; every: number };\n  onValueChange: (value: { mode: \"once\" | \"subscribe\"; every: number }) => void;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * Buy once or subscribe and save, the way coffee and pet food shops do it:\n * two radio cards with the price each, the subscription showing its saving\n * and a delivery interval that only matters when it is chosen. Prices are\n * worked out in cents, so the discount never rounds the wrong way.\n */\nexport function SubscribeSave({ price, discount, intervals, value, onValueChange, locale = \"en-GB\", className }: SubscribeSaveProps) {\n  const id = useId();\n  const subscribed = { amount: Math.round(price.amount * (1 - discount)), currency: price.currency };\n  const card = \"relative flex cursor-pointer items-start gap-3 rounded-2xl border border-border p-4 has-[:checked]:border-foreground has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\";\n  const dot = \"mt-0.5 inline-flex size-4.5 shrink-0 items-center justify-center rounded-full border border-border after:size-2 after:rounded-full after:bg-foreground after:opacity-0 group-has-[:checked]/opt:border-foreground group-has-[:checked]/opt:after:opacity-100\";\n  return (\n    <fieldset data-slot=\"subscribe-save\" className={cn(\"grid gap-2\", className)}>\n      <legend className=\"sr-only\">Purchase type</legend>\n      <label className={cn(card, \"group/opt\")}>\n        <input type=\"radio\" name={`${id}-mode`} checked={value.mode === \"once\"} onChange={() => onValueChange({ ...value, mode: \"once\" })} className=\"sr-only\" />\n        <span aria-hidden=\"true\" className={dot} />\n        <span className=\"flex flex-1 items-center justify-between gap-4 text-sm\">\n          <span className=\"font-medium\">One-time purchase</span>\n          <span className=\"tabular-nums\" suppressHydrationWarning>{formatMoney(price, locale)}</span>\n        </span>\n      </label>\n      <label className={cn(card, \"group/opt flex-wrap\")}>\n        <input type=\"radio\" name={`${id}-mode`} checked={value.mode === \"subscribe\"} onChange={() => onValueChange({ ...value, mode: \"subscribe\" })} className=\"sr-only\" />\n        <span aria-hidden=\"true\" className={dot} />\n        <span className=\"flex min-w-0 flex-1 items-start justify-between gap-4 text-sm\">\n          <span>\n            <span className=\"block font-medium\">Subscribe and save {Math.round(discount * 100)}%</span>\n            <span className=\"mt-0.5 block text-muted-foreground\">Skip or cancel any time</span>\n          </span>\n          <span className=\"text-right tabular-nums\">\n            <span className=\"block\" suppressHydrationWarning>{formatMoney(subscribed, locale)}</span>\n            <span className=\"block text-xs text-muted-foreground line-through\" suppressHydrationWarning><span className=\"sr-only\">was </span>{formatMoney(price, locale)}</span>\n          </span>\n        </span>\n      </label>\n      {value.mode === \"subscribe\" ? (\n        <fieldset className=\"flex flex-wrap items-center gap-3 px-1 pt-1 text-sm\">\n          <legend className=\"float-left mr-3 text-muted-foreground\">Deliver every</legend>\n          <div className=\"flex gap-1 rounded-lg bg-muted p-0.5\">\n            {intervals.map((weeks) => (\n              <label key={weeks} className=\"relative cursor-pointer rounded-md px-2.5 py-1 text-xs has-[:checked]:bg-background has-[:checked]:font-medium has-[:checked]:shadow-sm has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\">\n                <input type=\"radio\" name={`${id}-every`} checked={value.every === weeks} onChange={() => onValueChange({ ...value, every: weeks })} className=\"sr-only\" />\n                {weeks} {weeks === 1 ? \"week\" : \"weeks\"}\n              </label>\n            ))}\n          </div>\n        </fieldset>\n      ) : null}\n    </fieldset>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/subscribe-save.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

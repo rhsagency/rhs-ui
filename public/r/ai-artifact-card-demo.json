@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-artifact-card-demo",
+  "title": "AI artifact card demo",
+  "description": "A working preview of AI artifact card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-artifact-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-artifact-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { AiArtifactCard } from \"@rhs-ui/application/ai-artifact-card\";\n\nconst PLAN = `# Q2 launch plan\n\n## Goal\nShip onboarding v2 to every new workspace by 30 June.\n\n## Milestones\n- 12 May: design review\n- 26 May: beta for 50 teams\n- 16 June: general availability\n\n## Risks\n- Import from Asana is still slow above 5,000 tasks.`;\n\nconst CODE = `function usageTotal(units: number, tiers: Tier[]) {\n  let from = 0;\n  let total = 0;\n  for (const tier of tiers) {\n    if (units <= from) break;\n    total += (Math.min(units, tier.upTo) - from) * tier.price;\n    from = tier.upTo;\n  }\n  return total;\n}`;\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-md gap-4 p-8\">\n      <AiArtifactCard title=\"Q2 launch plan\" kind=\"document\" meta=\"Markdown, 64 words\" content={PLAN} filename=\"q2-launch-plan.md\" onOpen={() => undefined} />\n      <AiArtifactCard title=\"usageTotal()\" kind=\"code\" meta=\"TypeScript, 10 lines\" content={CODE} filename=\"usage-total.ts\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skip-link-demo",
+  "title": "Skip link demo",
+  "description": "A working preview of Skip link.",
+  "registryDependencies": [
+    "https://rhsui.com/r/skip-link.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/skip-link-demo.tsx",
+      "content": "import { SkipLink } from \"@rhs-ui/primitives/skip-link\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"relative mx-auto max-w-xl overflow-clip rounded-2xl border border-border\">\n      <SkipLink target=\"skip-link-demo-main\" className=\"absolute\" />\n      <div className=\"flex items-center gap-4 border-b border-border px-5 py-3 text-sm\">\n        <span className=\"font-medium\">Ledger</span>\n        {[\"Product\", \"Pricing\", \"Docs\", \"Blog\"].map((item) => <a key={item} href={`#${item.toLowerCase()}`} className=\"text-muted-foreground hover:text-foreground\">{item}</a>)}\n      </div>\n      <div id=\"skip-link-demo-main\" tabIndex={-1} className=\"p-5 text-sm text-muted-foreground outline-none\">\n        Press Tab inside this preview: the skip link appears first and jumps straight here, past the navigation.\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

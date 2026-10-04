@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "order-receipt",
+  "title": "Order receipt",
+  "description": "The order confirmation page: a clear \"thank you\" with the order number, the lines with their totals, shipping and VAT, how it was paid and where it goes, and the next actions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/order-receipt.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ReceiptLine {\n  id: string;\n  title: string;\n  variant?: string;\n  quantity: number;\n  /** The price of one. */\n  price: Money;\n}\n\nexport interface OrderReceiptProps {\n  /** Your order number, the one the customer will quote. */\n  orderNumber: string;\n  /** Formatted: \"14 April 2026, 10:42\". */\n  placedAt: string;\n  placedAtDateTime: string;\n  email: string;\n  lines: readonly ReceiptLine[];\n  shipping: Money;\n  /** VAT included in the total, shown as a line under it. */\n  vatIncluded?: Money;\n  /** \"Visa ending 4242\". */\n  paidWith: string;\n  shipTo: readonly string[];\n  /** Track order, download invoice. */\n  actions?: ReactNode;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * The order confirmation page: a clear \"thank you\" with the order number,\n * the lines with their totals, shipping and VAT, how it was paid and where\n * it goes, and the next actions. Totals are summed in cents from the lines,\n * so the receipt can never disagree with itself.\n */\nexport function OrderReceipt({ orderNumber, placedAt, placedAtDateTime, email, lines, shipping, vatIncluded, paidWith, shipTo, actions, locale = \"en-GB\", className }: OrderReceiptProps) {\n  const currency = lines[0]?.price.currency ?? shipping.currency;\n  const subtotal = lines.reduce((sum, line) => sum + line.price.amount * line.quantity, 0);\n  const total = { amount: subtotal + shipping.amount, currency };\n  const money = (amount: number) => formatMoney({ amount, currency }, locale);\n  return (\n    <article data-slot=\"order-receipt\" className={cn(\"mx-auto w-full max-w-xl rounded-3xl border border-border p-6 sm:p-8\", className)}>\n      <header className=\"text-center\">\n        <span className=\"mx-auto inline-flex size-12 items-center justify-center rounded-full bg-foreground text-background\"><IconCheck className=\"size-5\" /></span>\n        <h2 className=\"mt-4 text-2xl font-medium tracking-tight\">Thank you, your order is in</h2>\n        <p className=\"mt-2 text-sm text-muted-foreground\">Order <span className=\"font-medium text-foreground\">{orderNumber}</span>, placed <time dateTime={placedAtDateTime}>{placedAt}</time>. A confirmation is on its way to {email}.</p>\n      </header>\n      <ul className=\"mt-8 divide-y divide-border border-y border-border\">\n        {lines.map((line) => (\n          <li key={line.id} className=\"flex justify-between gap-4 py-3 text-sm\">\n            <span>\n              <span className=\"block font-medium\">{line.title}</span>\n              <span className=\"block text-muted-foreground\">{[line.variant, `${line.quantity} × ${money(line.price.amount)}`].filter(Boolean).join(\" · \")}</span>\n            </span>\n            <span className=\"shrink-0 tabular-nums\" suppressHydrationWarning>{money(line.price.amount * line.quantity)}</span>\n          </li>\n        ))}\n      </ul>\n      <dl className=\"mt-4 space-y-1.5 text-sm\">\n        <div className=\"flex justify-between\"><dt className=\"text-muted-foreground\">Subtotal</dt><dd className=\"tabular-nums\" suppressHydrationWarning>{money(subtotal)}</dd></div>\n        <div className=\"flex justify-between\"><dt className=\"text-muted-foreground\">Shipping</dt><dd className=\"tabular-nums\" suppressHydrationWarning>{shipping.amount ? money(shipping.amount) : \"Free\"}</dd></div>\n        <div className=\"flex justify-between border-t border-border pt-2 text-base font-medium\"><dt>Total</dt><dd className=\"tabular-nums\" suppressHydrationWarning>{formatMoney(total, locale)}</dd></div>\n        {vatIncluded ? <div className=\"flex justify-between text-xs text-muted-foreground\"><dt>Including VAT</dt><dd className=\"tabular-nums\" suppressHydrationWarning>{formatMoney(vatIncluded, locale)}</dd></div> : null}\n      </dl>\n      <div className=\"mt-6 grid gap-4 rounded-2xl bg-muted/60 p-4 text-sm sm:grid-cols-2\">\n        <div><p className=\"text-xs text-muted-foreground\">Paid with</p><p className=\"mt-1\">{paidWith}</p></div>\n        <div><p className=\"text-xs text-muted-foreground\">Shipping to</p><address className=\"mt-1 not-italic\">{shipTo.map((line) => <span key={line} className=\"block\">{line}</span>)}</address></div>\n      </div>\n      {actions ? <div className=\"mt-6 flex flex-wrap justify-center gap-3\">{actions}</div> : null}\n    </article>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/order-receipt.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

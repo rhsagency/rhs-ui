@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "country-select",
+  "title": "Country select",
+  "description": "A country picker on the house combobox, never a native select: every country named in the reader's language by the browser, with its flag, a search that also matches the ISO code, your most common countries on top, and the code submitted through a hidden input.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/country-select.tsx",
+      "content": "\"use client\";\n\nimport { useMemo } from \"react\";\n\nimport { Combobox, type ComboboxOption } from \"@rhs-ui/primitives/combobox\";\n\n/** ISO 3166-1 alpha-2 codes. Names come from the browser in the reader's language (Intl.DisplayNames). */\nconst CODES =\n  \"AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GU GW GY HK HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG US UY UZ VA VC VE VG VI VN VU WF WS XK YE YT ZA ZM ZW\".split(\" \");\n\nconst flag = (code: string) => String.fromCodePoint(...[...code].map((char) => 0x1f1e6 + char.charCodeAt(0) - 65));\n\nexport interface CountrySelectProps {\n  value?: string | null;\n  defaultValue?: string | null;\n  onValueChange?: (code: string) => void;\n  /** Countries listed first, under \"Suggested\": where most of your customers are. */\n  suggested?: readonly string[];\n  /** Limit the list, e.g. to the countries you ship to. */\n  only?: readonly string[];\n  /** Language of the names; the reader's own by default. */\n  locale?: string;\n  name?: string;\n  id?: string;\n  required?: boolean;\n  className?: string;\n}\n\n/**\n * A country picker on the house combobox, never a native select: every\n * country named in the reader's language by the browser, with its flag, a\n * search that also matches the ISO code, your most common countries on top,\n * and the code submitted through a hidden input.\n */\nexport function CountrySelect({ value, defaultValue, onValueChange, suggested = [], only, locale = \"en-GB\", name, id, required, className }: CountrySelectProps) {\n  const options = useMemo<ComboboxOption[]>(() => {\n    const names = new Intl.DisplayNames([locale], { type: \"region\" });\n    const codes = only ?? CODES;\n    const nameOf = (code: string) => names.of(code) ?? code;\n    const make = (code: string, group?: string): ComboboxOption => ({ value: code, label: `${flag(code)}  ${nameOf(code)}`, keywords: [code, nameOf(code)], group });\n    const top = suggested.filter((code) => codes.includes(code)).map((code) => make(code, \"Suggested\"));\n    const rest = codes.filter((code) => !suggested.includes(code)).sort((a, b) => nameOf(a).localeCompare(nameOf(b), locale)).map((code) => make(code, suggested.length ? \"All countries\" : undefined));\n    return [...top, ...rest];\n  }, [locale, only, suggested]);\n  return <Combobox options={options} value={value} defaultValue={defaultValue} onValueChange={onValueChange} label=\"Country\" placeholder=\"Choose a country\" searchPlaceholder=\"Search countries\" emptyText=\"No country found\" name={name} id={id} required={required} className={className} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/country-select.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shortcut-dialog",
+  "title": "Shortcut dialog",
+  "description": "The \"?\" cheat sheet every keyboard-heavy app needs: press ? anywhere (not while typing in a field) and a dialog lists the shortcuts in groups, each key a real kbd element.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/dialog.json",
+    "https://rhsui.com/r/kbd.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/shortcut-dialog.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from \"@rhs-ui/primitives/dialog\";\nimport { Kbd, KbdGroup } from \"@rhs-ui/primitives/kbd\";\n\nexport interface ShortcutGroup {\n  title: string;\n  shortcuts: readonly { keys: readonly string[]; label: string }[];\n}\n\nexport interface ShortcutDialogProps {\n  groups: readonly ShortcutGroup[];\n  /** Open it from your own button too. */\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n}\n\n/**\n * The \"?\" cheat sheet every keyboard-heavy app needs: press ? anywhere (not\n * while typing in a field) and a dialog lists the shortcuts in groups, each\n * key a real kbd element. Controlled or not, as you like.\n */\nexport function ShortcutDialog({ groups, open, onOpenChange }: ShortcutDialogProps) {\n  const [own, setOwn] = useState(false);\n  const isOpen = open ?? own;\n  const setOpen = (value: boolean) => (onOpenChange ? onOpenChange(value) : setOwn(value));\n  useEffect(() => {\n    const onKey = (event: KeyboardEvent) => {\n      const target = event.target as HTMLElement | null;\n      if (event.key !== \"?\" || target?.closest(\"input, textarea, select, [contenteditable=true]\")) return;\n      event.preventDefault();\n      if (onOpenChange) onOpenChange(true);\n      else setOwn(true);\n    };\n    document.addEventListener(\"keydown\", onKey);\n    return () => document.removeEventListener(\"keydown\", onKey);\n  }, [onOpenChange]);\n  return (\n    <Dialog open={isOpen} onOpenChange={setOpen}>\n      <DialogContent className=\"sm:max-w-xl\">\n        <DialogHeader>\n          <DialogTitle>Keyboard shortcuts</DialogTitle>\n          <DialogDescription>Press ? anywhere to see this again.</DialogDescription>\n        </DialogHeader>\n        <div className=\"grid gap-6 sm:grid-cols-2\">\n          {groups.map((group) => (\n            <section key={group.title} aria-label={group.title}>\n              <h3 className=\"text-xs font-medium tracking-[.1em] text-muted-foreground uppercase\">{group.title}</h3>\n              <dl className=\"mt-2 grid gap-2\">\n                {group.shortcuts.map((shortcut) => (\n                  <div key={shortcut.label} className=\"flex items-center justify-between gap-4 text-sm\">\n                    <dt>{shortcut.label}</dt>\n                    <dd><KbdGroup>{shortcut.keys.map((key) => <Kbd key={key}>{key}</Kbd>)}</KbdGroup></dd>\n                  </div>\n                ))}\n              </dl>\n            </section>\n          ))}\n        </div>\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/shortcut-dialog.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "overlay"
+  },
+  "categories": [
+    "primitives",
+    "overlay"
+  ],
+  "type": "registry:ui"
+}

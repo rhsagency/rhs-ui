@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coachmark-demo",
+  "title": "Coachmark demo",
+  "description": "A working preview of Coachmark.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/coachmark.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/coachmark-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconSparkle } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Coachmark } from \"@rhs-ui/primitives/coachmark\";\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(true);\n  return (\n    <div className=\"mx-auto flex min-h-80 max-w-md flex-col items-center gap-6 p-10\">\n      <Coachmark\n        open={open}\n        onFinish={() => setOpen(false)}\n        steps={[\n          { id: \"1\", title: \"Summaries are here\", body: \"Get a Monday digest of what changed, written from the week's work.\" },\n          { id: \"2\", title: \"Choose who gets it\", body: \"Send it to the whole team or only to project leads.\" },\n        ]}\n      >\n        <Button variant=\"outline\"><IconSparkle /> Weekly summary</Button>\n      </Coachmark>\n      {!open ? <Button variant=\"ghost\" size=\"sm\" onClick={() => setOpen(true)}>Show the tip again</Button> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

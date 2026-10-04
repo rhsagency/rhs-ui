@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skip-link",
+  "title": "Skip link",
+  "description": "The first thing in the page for keyboard users: \"Skip to content\", hidden until it gets focus, then shown top left above everything, and it moves focus to the main content (give that element tabIndex={-1}).",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/skip-link.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface SkipLinkProps {\n  /** The id of the main content, without #. */\n  target?: string;\n  label?: string;\n  className?: string;\n}\n\n/**\n * The first thing in the page for keyboard users: \"Skip to content\", hidden\n * until it gets focus, then shown top left above everything, and it moves\n * focus to the main content (give that element tabIndex={-1}). WCAG 2.4.1,\n * in one line at the top of your layout.\n */\nexport function SkipLink({ target = \"main\", label = \"Skip to content\", className }: SkipLinkProps) {\n  return (\n    <a\n      data-slot=\"skip-link\"\n      href={`#${target}`}\n      className={cn(\n        \"fixed top-3 left-3 z-[100] -translate-y-[200%] rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background shadow-lg outline-none transition-transform focus:translate-y-0 focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-reduce:transition-none\",\n        className,\n      )}\n    >\n      {label}\n    </a>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/skip-link.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

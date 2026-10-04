@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-table",
+  "title": "Tree table",
+  "description": "A table whose rows nest: budgets by department and team, files by folder, accounts by region.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/tree-table.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconChevronRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TreeRow {\n  id: string;\n  /** The cells after the name, in the order of the columns. */\n  cells: readonly ReactNode[];\n  name: string;\n  children?: readonly TreeRow[];\n}\n\nexport interface TreeTableProps {\n  /** Column headings; the first is the name column. */\n  columns: readonly string[];\n  rows: readonly TreeRow[];\n  /** Rows open at the start, by id. */\n  defaultExpanded?: readonly string[];\n  label: string;\n  className?: string;\n}\n\n/**\n * A table whose rows nest: budgets by department and team, files by folder,\n * accounts by region. A treegrid for assistive technology, with each parent\n * row's toggle announcing expanded or collapsed and the depth carried by\n * aria-level, so the hierarchy is heard and not only seen.\n */\nexport function TreeTable({ columns, rows, defaultExpanded = [], label, className }: TreeTableProps) {\n  const [open, setOpen] = useState<Set<string>>(() => new Set(defaultExpanded));\n  const toggle = (id: string) => setOpen((set) => { const next = new Set(set); if (next.has(id)) next.delete(id); else next.add(id); return next; });\n  const flat: { row: TreeRow; level: number }[] = [];\n  const walk = (list: readonly TreeRow[], level: number) => {\n    for (const row of list) {\n      flat.push({ row, level });\n      if (row.children?.length && open.has(row.id)) walk(row.children, level + 1);\n    }\n  };\n  walk(rows, 1);\n  return (\n    <div data-slot=\"tree-table\" className={cn(\"relative overflow-x-auto rounded-xl border border-border\", className)}>\n      <table role=\"treegrid\" aria-label={label} className=\"w-full text-sm\">\n        <thead className=\"border-b border-border bg-muted/40 text-xs text-muted-foreground\">\n          <tr>{columns.map((column, index) => <th key={column} scope=\"col\" className={cn(\"px-4 py-2.5 font-normal\", index === 0 ? \"text-left\" : \"text-right\")}>{column}</th>)}</tr>\n        </thead>\n        <tbody className=\"divide-y divide-border\">\n          {flat.map(({ row, level }) => {\n            const parent = Boolean(row.children?.length);\n            const expanded = open.has(row.id);\n            return (\n              <tr key={row.id} aria-level={level} aria-expanded={parent ? expanded : undefined} className={cn(level === 1 && parent && \"font-medium\")}>\n                <th scope=\"row\" className=\"px-4 py-2.5 text-left font-[inherit]\">\n                  <span className=\"flex items-center gap-1.5\" style={{ paddingLeft: `${(level - 1) * 1.25}rem` }}>\n                    {parent ? (\n                      <button type=\"button\" onClick={() => toggle(row.id)} aria-label={`${expanded ? \"Collapse\" : \"Expand\"} ${row.name}`} aria-expanded={expanded} className=\"inline-flex size-6 items-center justify-center rounded-md outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n                        <IconChevronRight className={cn(\"size-4 transition-transform motion-reduce:transition-none\", expanded && \"rotate-90\")} />\n                      </button>\n                    ) : <span className=\"inline-block w-6\" aria-hidden=\"true\" />}\n                    {row.name}\n                  </span>\n                </th>\n                {row.cells.map((cell, index) => <td key={index} className=\"px-4 py-2.5 text-right tabular-nums\">{cell}</td>)}\n              </tr>\n            );\n          })}\n        </tbody>\n      </table>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/tree-table.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

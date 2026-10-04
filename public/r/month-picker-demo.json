@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "month-picker-demo",
+  "title": "Month picker demo",
+  "description": "A working preview of Month picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/label.json",
+    "https://rhsui.com/r/month-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/month-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { MonthPicker } from \"@rhs-ui/primitives/month-picker\";\n\nexport default function Demo(): React.JSX.Element {\n  const [month, setMonth] = useState<string | null>(\"2026-03\");\n  return (\n    <div className=\"mx-auto grid max-w-xs gap-2 p-8\">\n      <Label htmlFor=\"month-demo\">Report period</Label>\n      <MonthPicker id=\"month-demo\" value={month} onValueChange={setMonth} min=\"2024-01\" max=\"2026-04\" name=\"period\" />\n      <p className=\"text-xs text-muted-foreground\">Submits: {month ?? \"nothing yet\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

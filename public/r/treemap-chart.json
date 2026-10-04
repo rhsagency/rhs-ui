@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "treemap-chart",
+  "title": "Treemap chart",
+  "description": "Parts of a whole as tiles sized by value: spend by team, storage by folder, revenue by product.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/treemap-chart.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface TreemapItem {\n  id: string;\n  label: string;\n  value: number;\n}\n\nexport interface TreemapChartProps {\n  items: readonly TreemapItem[];\n  label: string;\n  format?: Intl.NumberFormatOptions;\n  locale?: string;\n  /** Height in pixels; the width follows the container. */\n  height?: number;\n  className?: string;\n}\n\ninterface Rect { x: number; y: number; w: number; h: number }\n\n/** Squarified layout (Bruls et al.): rows that keep each tile as close to square as possible. */\nfunction squarify(values: number[], box: Rect): Rect[] {\n  const total = values.reduce((sum, v) => sum + v, 0) || 1;\n  const scale = (box.w * box.h) / total;\n  const areas = values.map((v) => v * scale);\n  const out: Rect[] = [];\n  let rest = { ...box };\n  let i = 0;\n  while (i < areas.length) {\n    const side = Math.min(rest.w, rest.h);\n    let row: number[] = [];\n    let worst = Number.POSITIVE_INFINITY;\n    while (i + row.length < areas.length) {\n      const next = [...row, areas[i + row.length]!];\n      const sum = next.reduce((a, b) => a + b, 0);\n      const ratio = Math.max(...next.map((a) => Math.max((side * side * a) / (sum * sum), (sum * sum) / (side * side * a))));\n      if (ratio > worst) break;\n      worst = ratio;\n      row = next;\n    }\n    const sum = row.reduce((a, b) => a + b, 0);\n    const thick = sum / side;\n    let offset = 0;\n    for (const area of row) {\n      const len = area / thick;\n      out.push(rest.w >= rest.h ? { x: rest.x, y: rest.y + offset, w: thick, h: len } : { x: rest.x + offset, y: rest.y, w: len, h: thick });\n      offset += len;\n    }\n    rest = rest.w >= rest.h ? { x: rest.x + thick, y: rest.y, w: rest.w - thick, h: rest.h } : { x: rest.x, y: rest.y + thick, w: rest.w, h: rest.h - thick };\n    i += row.length;\n  }\n  return out;\n}\n\n/**\n * Parts of a whole as tiles sized by value: spend by team, storage by\n * folder, revenue by product. Squarified so tiles stay readable, shaded from\n * the largest down, labels only where they fit. Screen readers get the list\n * with each share.\n */\nexport function TreemapChart({ items, label, format, locale = \"en-GB\", height = 300, className }: TreemapChartProps) {\n  const sorted = [...items].sort((a, b) => b.value - a.value);\n  const total = sorted.reduce((sum, item) => sum + item.value, 0) || 1;\n  const width = 640;\n  const rects = squarify(sorted.map((item) => item.value), { x: 0, y: 0, w: width, h: height });\n  const number = new Intl.NumberFormat(locale, format);\n  const percent = new Intl.NumberFormat(locale, { style: \"percent\", maximumFractionDigits: 1 });\n  return (\n    <figure data-slot=\"treemap-chart\" className={cn(\"relative\", className)}>\n      <svg viewBox={`0 0 ${width} ${height}`} className=\"h-auto w-full overflow-visible text-foreground\" aria-hidden=\"true\">\n        {sorted.map((item, index) => {\n          const rect = rects[index]!;\n          const shade = 0.9 - (index / Math.max(1, sorted.length - 1)) * 0.75;\n          const big = rect.w > 70 && rect.h > 38;\n          return (\n            <g key={item.id}>\n              <rect x={rect.x + 1} y={rect.y + 1} width={Math.max(0, rect.w - 2)} height={Math.max(0, rect.h - 2)} rx={6} fill=\"currentColor\" fillOpacity={shade} />\n              {big ? (\n                <>\n                  <text x={rect.x + 10} y={rect.y + 20} className={cn(\"text-[12px] font-medium\", shade > 0.45 ? \"fill-background\" : \"fill-foreground\")}>{item.label}</text>\n                  <text x={rect.x + 10} y={rect.y + 36} className={cn(\"text-[11px]\", shade > 0.45 ? \"fill-background/80\" : \"fill-muted-foreground\")} suppressHydrationWarning>{number.format(item.value)}</text>\n                </>\n              ) : null}\n            </g>\n          );\n        })}\n      </svg>\n      <figcaption className=\"sr-only\">\n        {label}\n        <ul>{sorted.map((item) => <li key={item.id}>{`${item.label}: ${number.format(item.value)}, ${percent.format(item.value / total)}`}</li>)}</ul>\n      </figcaption>\n    </figure>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/treemap-chart.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

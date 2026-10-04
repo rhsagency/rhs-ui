@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-collapsed",
+  "title": "Breadcrumb collapsed",
+  "description": "A breadcrumb for deep paths: the first crumb and the last few stay, the middle folds into a \"…\" menu with every hidden level as a link, so a path ten folders deep still fits one line on a phone.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/dropdown-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/breadcrumb-collapsed.tsx",
+      "content": "\"use client\";\n\nimport { IconChevronRight, IconMoreHorizontal } from \"@rhs-ui/icons\";\nimport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from \"@rhs-ui/primitives/dropdown-menu\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface Crumb {\n  label: string;\n  href?: string;\n}\n\nexport interface BreadcrumbCollapsedProps {\n  items: readonly Crumb[];\n  /** How many crumbs stay visible at the end, besides the first. */\n  keep?: number;\n  className?: string;\n}\n\n/**\n * A breadcrumb for deep paths: the first crumb and the last few stay, the\n * middle folds into a \"…\" menu with every hidden level as a link, so a path\n * ten folders deep still fits one line on a phone. The current page is\n * marked with aria-current and is not a link.\n */\nexport function BreadcrumbCollapsed({ items, keep = 2, className }: BreadcrumbCollapsedProps) {\n  const first = items[0];\n  const fold = items.length > keep + 2;\n  const hidden = fold ? items.slice(1, items.length - keep) : [];\n  const tail = fold ? items.slice(items.length - keep) : items.slice(1);\n  const crumb = (item: Crumb, last: boolean) =>\n    item.href && !last ? <a href={item.href} className=\"truncate hover:text-foreground\">{item.label}</a> : <span aria-current={last ? \"page\" : undefined} className={cn(\"truncate\", last && \"font-medium text-foreground\")}>{item.label}</span>;\n  const sep = <IconChevronRight aria-hidden=\"true\" className=\"size-3.5 shrink-0\" />;\n  if (!first) return null;\n  return (\n    <nav data-slot=\"breadcrumb-collapsed\" aria-label=\"Breadcrumb\" className={className}>\n      <ol className=\"flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground\">\n        <li className=\"flex min-w-0 items-center gap-1.5\">{crumb(first, items.length === 1)}</li>\n        {hidden.length ? (\n          <li className=\"flex items-center gap-1.5\">\n            {sep}\n            <DropdownMenu>\n              <DropdownMenuTrigger aria-label={`Show ${hidden.length} more levels`} className=\"inline-flex size-6 items-center justify-center rounded-md outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\"><IconMoreHorizontal className=\"size-4\" /></DropdownMenuTrigger>\n              <DropdownMenuContent align=\"start\">\n                {hidden.map((item) => (\n                  <DropdownMenuItem key={`${item.label}-${item.href ?? \"\"}`} asChild><a href={item.href ?? \"#\"}>{item.label}</a></DropdownMenuItem>\n                ))}\n              </DropdownMenuContent>\n            </DropdownMenu>\n          </li>\n        ) : null}\n        {tail.map((item, index) => (\n          <li key={`${item.label}-${index}`} className=\"flex min-w-0 items-center gap-1.5\">{sep}{crumb(item, index === tail.length - 1)}</li>\n        ))}\n      </ol>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/breadcrumb-collapsed.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

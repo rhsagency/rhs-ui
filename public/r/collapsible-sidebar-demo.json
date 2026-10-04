@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible-sidebar-demo",
+  "title": "Collapsible sidebar demo",
+  "description": "A working preview of Collapsible sidebar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/collapsible-sidebar.json",
+    "https://rhsui.com/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/collapsible-sidebar-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconChartBar, IconFolder, IconHome, IconInbox, IconLayers, IconSettings, IconUsers } from \"@rhs-ui/icons\";\nimport { CollapsibleSidebar } from \"@rhs-ui/primitives/collapsible-sidebar\";\nimport { TooltipProvider } from \"@rhs-ui/primitives/tooltip\";\n\nexport default function Demo(): React.JSX.Element {\n  const [collapsed, setCollapsed] = useState(false);\n  return (\n    <TooltipProvider>\n      <div className=\"mx-auto flex h-[30rem] max-w-3xl overflow-clip rounded-2xl border border-border\">\n        <CollapsibleSidebar\n          collapsed={collapsed}\n          onCollapsedChange={setCollapsed}\n          brand={<><IconLayers />Ledger</>}\n          mark={<IconLayers />}\n          current=\"#inbox\"\n          sections={[\n            { links: [{ href: \"#home\", label: \"Home\", icon: <IconHome /> }, { href: \"#inbox\", label: \"Inbox\", icon: <IconInbox />, badge: 4 }] },\n            { title: \"Workspace\", links: [{ href: \"#projects\", label: \"Projects\", icon: <IconFolder /> }, { href: \"#reports\", label: \"Reports\", icon: <IconChartBar /> }, { href: \"#people\", label: \"People\", icon: <IconUsers /> }] },\n          ]}\n          footer={<a href=\"#settings\" aria-label=\"Settings\" className=\"inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground\"><IconSettings className=\"size-4\" /></a>}\n        />\n        <div className=\"flex-1 bg-muted/30 p-6 text-sm text-muted-foreground\">Use the toggle at the top of the sidebar.</div>\n      </div>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

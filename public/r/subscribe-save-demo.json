@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "subscribe-save-demo",
+  "title": "Subscribe save demo",
+  "description": "A working preview of Subscribe save.",
+  "registryDependencies": [
+    "https://rhsui.com/r/subscribe-save.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/subscribe-save-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SubscribeSave } from \"@rhs-ui/commerce/subscribe-save\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<{ mode: \"once\" | \"subscribe\"; every: number }>({ mode: \"subscribe\", every: 2 });\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <p className=\"mb-3 text-sm font-medium\">Single-origin beans, 500 g</p>\n      <SubscribeSave price={{ amount: 1895, currency: \"EUR\" }} discount={0.1} intervals={[1, 2, 4]} value={value} onValueChange={setValue} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

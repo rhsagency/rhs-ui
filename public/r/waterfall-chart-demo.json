@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "waterfall-chart-demo",
+  "title": "Waterfall chart demo",
+  "description": "A working preview of Waterfall chart.",
+  "registryDependencies": [
+    "https://rhsui.com/r/waterfall-chart.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/waterfall-chart-demo.tsx",
+      "content": "import { WaterfallChart } from \"@rhs-ui/dashboard/waterfall-chart\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <WaterfallChart\n        label=\"Monthly recurring revenue, February to March\"\n        format={{ style: \"currency\", currency: \"EUR\", maximumFractionDigits: 0, notation: \"compact\" }}\n        steps={[\n          { id: \"start\", label: \"Feb MRR\", value: 48200 },\n          { id: \"new\", label: \"New\", value: 6400 },\n          { id: \"expansion\", label: \"Expansion\", value: 2100 },\n          { id: \"contraction\", label: \"Contraction\", value: -900 },\n          { id: \"churn\", label: \"Churn\", value: -2300 },\n          { id: \"end\", label: \"Mar MRR\", value: 0, total: true },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

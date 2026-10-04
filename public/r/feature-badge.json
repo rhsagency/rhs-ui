@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-badge",
+  "title": "Feature badge",
+  "description": "The little \"New\", \"Beta\" or \"Soon\" next to a menu item or a button, so people notice what changed without a tour.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/feature-badge.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FeatureBadgeProps {\n  /** \"new\" for a fresh feature, \"beta\" for one still settling, \"soon\" for one on its way. */\n  kind: \"new\" | \"beta\" | \"soon\";\n  /** The navigation item or button it labels. */\n  children: ReactNode;\n  className?: string;\n}\n\nconst COPY = { new: \"New\", beta: \"Beta\", soon: \"Soon\" } as const;\n\n/**\n * The little \"New\", \"Beta\" or \"Soon\" next to a menu item or a button, so\n * people notice what changed without a tour. The word is part of the\n * accessible name (\"Reports, new\"), and the style differs per kind in shape\n * and fill, not colour alone.\n */\nexport function FeatureBadge({ kind, children, className }: FeatureBadgeProps) {\n  return (\n    <span data-slot=\"feature-badge\" className={cn(\"inline-flex items-center gap-2\", className)}>\n      {children}\n      <span className={cn(\"relative rounded-full px-1.5 py-0.5 text-[10px] leading-none font-semibold tracking-wide uppercase\", kind === \"new\" ? \"bg-foreground text-background\" : kind === \"beta\" ? \"border border-foreground text-foreground\" : \"border border-dashed border-border text-muted-foreground\")}>\n        <span className=\"sr-only\">, </span>{COPY[kind]}\n      </span>\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/feature-badge.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

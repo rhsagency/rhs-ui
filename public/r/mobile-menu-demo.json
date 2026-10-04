@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mobile-menu-demo",
+  "title": "Mobile menu demo",
+  "description": "A working preview of Mobile menu.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/mobile-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/mobile-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconLayers } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { MobileMenu } from \"@rhs-ui/primitives/mobile-menu\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-sm p-6\">\n      <div className=\"flex items-center justify-between rounded-2xl border border-border px-4 py-2\">\n        <span className=\"inline-flex items-center gap-2 font-medium\"><IconLayers className=\"size-5\" />Ledger</span>\n        <MobileMenu\n          brand={<span className=\"inline-flex items-center gap-2\"><IconLayers className=\"size-5\" />Ledger</span>}\n          current=\"#pricing\"\n          groups={[\n            { label: \"Product\", links: [{ label: \"Roadmaps\", href: \"#roadmaps\", description: \"Plan the quarter\" }, { label: \"Cycles\", href: \"#cycles\", description: \"Run two-week sprints\" }, { label: \"Decisions\", href: \"#decisions\", description: \"Keep the why\" }] },\n            { label: \"Solutions\", links: [{ label: \"Agencies\", href: \"#agencies\" }, { label: \"Product teams\", href: \"#product-teams\" }] },\n            { label: \"Pricing\", href: \"#pricing\" },\n            { label: \"Blog\", href: \"#blog\" },\n          ]}\n          actions={<><Button size=\"lg\">Start for free</Button><Button size=\"lg\" variant=\"outline\">Sign in</Button></>}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

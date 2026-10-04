@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "event-card-demo",
+  "title": "Event card demo",
+  "description": "A working preview of Event card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/event-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/event-card-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { EventCard } from \"@rhs-ui/primitives/event-card\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-md gap-3 p-8\">\n      <EventCard title=\"Calm Software meetup, Amsterdam\" day=\"14\" month=\"Apr\" dateTime=\"2026-04-14T18:30\" time=\"18:30 to 21:00\" place=\"Haarlemmerstraat 112\" href=\"#meetup\" attendees=\"42 going\" action={<Button size=\"sm\">RSVP</Button>} />\n      <EventCard title=\"Office hours with the product team\" day=\"29\" month=\"Apr\" dateTime=\"2026-04-29T16:00\" time=\"16:00 to 17:00\" place=\"Online\" online attendees=\"18 going\" action={<Button size=\"sm\" variant=\"outline\">Add to calendar</Button>} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "address-fields-demo",
+  "title": "Address fields demo",
+  "description": "A working preview of Address fields.",
+  "registryDependencies": [
+    "https://rhsui.com/r/address-fields.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/address-fields-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { AddressFields, type Address } from \"@rhs-ui/primitives/address-fields\";\n\nexport default function Demo(): React.JSX.Element {\n  const [address, setAddress] = useState<Address>({ country: \"NL\", street: \"Oudegracht\", number: \"210\", addition: \"\", postcode: \"3511 NR\", city: \"Utrecht\" });\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <AddressFields legend=\"Shipping address\" value={address} onValueChange={setAddress} />\n      <p className=\"mt-4 text-xs text-muted-foreground\">Switch the country to the United Kingdom to see the layout follow it.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

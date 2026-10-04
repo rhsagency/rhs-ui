@@ -484,14 +484,17 @@
         "status": "stable"
       },
       "dependencies": [],
-      "registryDependencies": [
-        "https://rhsui.com/r/shipping-progress.json"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/commerce/price-tag.tsx",
           "type": "registry:component",
           "target": "components/rhs-ui/commerce/price-tag.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
         }
       ]
     },
@@ -654,7 +657,6 @@
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/shipping-progress.json",
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/popover.json"
       ],
@@ -663,6 +665,11 @@
           "path": "registry/commerce/mini-cart.tsx",
           "type": "registry:component",
           "target": "components/rhs-ui/commerce/mini-cart.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
         }
       ]
     },
@@ -804,6 +811,367 @@
       "files": [
         {
           "path": "registry/examples/compare-tray-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quick-view",
+      "type": "registry:component",
+      "title": "Quick view",
+      "description": "Look closer without leaving the listing: a dialog with the picture, price, a short description, the one choice that matters (size) as radios, and add to bag with its result in words.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/quick-view.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/quick-view.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "quick-view-demo",
+      "type": "registry:example",
+      "title": "Quick view demo",
+      "description": "A working preview of Quick view.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quick-view.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quick-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-badges",
+      "type": "registry:component",
+      "title": "Product badges",
+      "description": "The small labels on a product: New, Sale, Bestseller, Limited, Sold out, Recycled.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/product-badges.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-badges.tsx"
+        }
+      ]
+    },
+    {
+      "name": "product-badges-demo",
+      "type": "registry:example",
+      "title": "Product badges demo",
+      "description": "A working preview of Product badges.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-badges.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-badges-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "subscribe-save",
+      "type": "registry:component",
+      "title": "Subscribe save",
+      "description": "Buy once or subscribe and save, the way coffee and pet food shops do it: two radio cards with the price each, the subscription showing its saving and a delivery interval that only matters when it is chosen.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/subscribe-save.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/subscribe-save.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "subscribe-save-demo",
+      "type": "registry:example",
+      "title": "Subscribe save demo",
+      "description": "A working preview of Subscribe save.",
+      "registryDependencies": [
+        "https://rhsui.com/r/subscribe-save.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/subscribe-save-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "store-locator",
+      "type": "registry:component",
+      "title": "Store locator",
+      "description": "Find a store: search by city or postcode, a list of stores with open now in words, hours, distance and services, and directions per store.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/store-locator.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/store-locator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "store-locator-demo",
+      "type": "registry:example",
+      "title": "Store locator demo",
+      "description": "A working preview of Store locator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/store-locator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/store-locator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "gift-card-balance",
+      "type": "registry:component",
+      "title": "Gift card balance",
+      "description": "Check what is left on a gift card: the code (grouped as people type it, sent without the spaces), an optional PIN, and the balance with its expiry in a status message.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/gift-card-balance.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/gift-card-balance.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "gift-card-balance-demo",
+      "type": "registry:example",
+      "title": "Gift card balance demo",
+      "description": "A working preview of Gift card balance.",
+      "registryDependencies": [
+        "https://rhsui.com/r/gift-card-balance.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/gift-card-balance-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recently-viewed",
+      "type": "registry:component",
+      "title": "Recently viewed",
+      "description": "The strip at the bottom of a product page: what the shopper looked at before, small, in a row that scrolls sideways with snap on a phone and wraps into a grid on wide screens.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/recently-viewed.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/recently-viewed.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "recently-viewed-demo",
+      "type": "registry:example",
+      "title": "Recently viewed demo",
+      "description": "A working preview of Recently viewed.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recently-viewed.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recently-viewed-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-receipt",
+      "type": "registry:component",
+      "title": "Order receipt",
+      "description": "The order confirmation page: a clear \"thank you\" with the order number, the lines with their totals, shipping and VAT, how it was paid and where it goes, and the next actions.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-receipt.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-receipt.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "order-receipt-demo",
+      "type": "registry:example",
+      "title": "Order receipt demo",
+      "description": "A working preview of Order receipt.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-receipt.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-receipt-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "payment-methods",
+      "type": "registry:component",
+      "title": "Payment methods",
+      "description": "Which ways to pay, near the buy button or in the footer: each method as a small bordered tag with its name (readable, translatable, no borrowed logos) and an optional lock line.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/payment-methods.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/payment-methods.tsx"
+        }
+      ]
+    },
+    {
+      "name": "payment-methods-demo",
+      "type": "registry:example",
+      "title": "Payment methods demo",
+      "description": "A working preview of Payment methods.",
+      "registryDependencies": [
+        "https://rhsui.com/r/payment-methods.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/payment-methods-demo.tsx",
           "type": "registry:example"
         }
       ]

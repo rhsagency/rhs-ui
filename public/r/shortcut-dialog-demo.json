@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shortcut-dialog-demo",
+  "title": "Shortcut dialog demo",
+  "description": "A working preview of Shortcut dialog.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/kbd.json",
+    "https://rhsui.com/r/shortcut-dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/shortcut-dialog-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Kbd } from \"@rhs-ui/primitives/kbd\";\nimport { ShortcutDialog } from \"@rhs-ui/primitives/shortcut-dialog\";\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(false);\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-sm flex-col items-center justify-center gap-3 p-8 text-sm text-muted-foreground\">\n      <Button variant=\"outline\" onClick={() => setOpen(true)}>Keyboard shortcuts</Button>\n      <p>Or press <Kbd>?</Kbd> anywhere in this preview.</p>\n      <ShortcutDialog\n        open={open}\n        onOpenChange={setOpen}\n        groups={[\n          { title: \"General\", shortcuts: [{ keys: [\"⌘\", \"K\"], label: \"Search\" }, { keys: [\"?\"], label: \"Show shortcuts\" }, { keys: [\"G\", \"H\"], label: \"Go home\" }] },\n          { title: \"Tasks\", shortcuts: [{ keys: [\"C\"], label: \"New task\" }, { keys: [\"E\"], label: \"Edit task\" }, { keys: [\"⌘\", \"Enter\"], label: \"Save\" }] },\n          { title: \"Board\", shortcuts: [{ keys: [\"Alt\", \"←\"], label: \"Move card left\" }, { keys: [\"Alt\", \"→\"], label: \"Move card right\" }] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

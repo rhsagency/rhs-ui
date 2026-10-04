@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "payment-methods",
+  "title": "Payment methods",
+  "description": "Which ways to pay, near the buy button or in the footer: each method as a small bordered tag with its name (readable, translatable, no borrowed logos) and an optional lock line.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/payment-methods.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconLock } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PaymentMethodsProps {\n  /** The methods you accept, by name: \"iDEAL\", \"Visa\", \"Apple Pay\". Shown as text, so no logo licences are needed. */\n  methods: readonly string[];\n  /** The reassurance line: \"Secure checkout, encrypted end to end\". */\n  note?: ReactNode;\n  /** \"row\" under a buy button, \"footer\" in a site footer. */\n  variant?: \"row\" | \"footer\";\n  className?: string;\n}\n\n/**\n * Which ways to pay, near the buy button or in the footer: each method as a\n * small bordered tag with its name (readable, translatable, no borrowed\n * logos) and an optional lock line. A list, so screen readers can count\n * the options.\n */\nexport function PaymentMethods({ methods, note, variant = \"row\", className }: PaymentMethodsProps) {\n  return (\n    <div data-slot=\"payment-methods\" className={cn(\"grid gap-2\", variant === \"footer\" && \"justify-items-start\", className)}>\n      {note ? <p className=\"flex items-center gap-1.5 text-xs text-muted-foreground\"><IconLock aria-hidden=\"true\" className=\"size-3.5\" />{note}</p> : null}\n      <ul aria-label=\"Accepted payment methods\" className=\"flex flex-wrap gap-1.5\">\n        {methods.map((method) => (\n          <li key={method} className={cn(\"rounded-md border border-border px-2 py-1 text-[11px] font-medium tracking-wide\", variant === \"footer\" ? \"text-muted-foreground\" : \"bg-background\")}>{method}</li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/payment-methods.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

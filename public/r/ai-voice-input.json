@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-voice-input",
+  "title": "AI voice input",
+  "description": "Talk instead of type: one round button that records from the microphone, a live level meter drawn from the real input, the elapsed time, and stop.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-voice-input.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { IconMic, IconStop } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiVoiceInputProps {\n  /** Called with the recording when the person stops. Transcribe it on your side. */\n  onRecorded: (audio: Blob) => Promise<void> | void;\n  /** Longest recording in seconds; it stops itself there. */\n  maxSeconds?: number;\n  label?: string;\n  className?: string;\n}\n\n/**\n * Talk instead of type: one round button that records from the microphone,\n * a live level meter drawn from the real input, the elapsed time, and stop.\n * The browser asks for permission first; a refusal is explained in words\n * and the button stays usable to try again.\n */\nexport function AiVoiceInput({ onRecorded, maxSeconds = 120, label = \"Record a voice message\", className }: AiVoiceInputProps) {\n  const [state, setState] = useState<\"idle\" | \"recording\" | \"sending\" | \"denied\">(\"idle\");\n  const [seconds, setSeconds] = useState(0);\n  const [levels, setLevels] = useState<number[]>(() => Array.from({ length: 24 }, () => 0.08));\n  const recorder = useRef<MediaRecorder | null>(null);\n  const stopAll = useRef<() => void>(() => undefined);\n  useEffect(() => () => stopAll.current(), []);\n  useEffect(() => {\n    if (state !== \"recording\") return;\n    const timer = setInterval(() => setSeconds((value) => {\n      if (value + 1 >= maxSeconds) recorder.current?.stop();\n      return value + 1;\n    }), 1000);\n    return () => clearInterval(timer);\n  }, [state, maxSeconds]);\n  async function start() {\n    try {\n      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });\n      const context = new AudioContext();\n      const analyser = context.createAnalyser();\n      analyser.fftSize = 64;\n      context.createMediaStreamSource(stream).connect(analyser);\n      const data = new Uint8Array(analyser.frequencyBinCount);\n      let frame = 0;\n      const draw = () => {\n        analyser.getByteFrequencyData(data);\n        setLevels(Array.from({ length: 24 }, (_, i) => Math.max(0.08, (data[i] ?? 0) / 255)));\n        frame = requestAnimationFrame(draw);\n      };\n      draw();\n      const chunks: Blob[] = [];\n      const media = new MediaRecorder(stream);\n      media.ondataavailable = (event) => chunks.push(event.data);\n      media.onstop = async () => {\n        stopAll.current();\n        setState(\"sending\");\n        try {\n          await onRecorded(new Blob(chunks, { type: media.mimeType }));\n        } finally {\n          setState(\"idle\");\n          setSeconds(0);\n        }\n      };\n      stopAll.current = () => {\n        cancelAnimationFrame(frame);\n        stream.getTracks().forEach((track) => track.stop());\n        void context.close();\n        setLevels(Array.from({ length: 24 }, () => 0.08));\n      };\n      recorder.current = media;\n      media.start();\n      setState(\"recording\");\n    } catch {\n      setState(\"denied\");\n    }\n  }\n  const recording = state === \"recording\";\n  const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, \"0\")}`;\n  return (\n    <div data-slot=\"ai-voice-input\" className={cn(\"inline-flex items-center gap-4 rounded-full border border-border bg-background p-2 pr-5\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => (recording ? recorder.current?.stop() : void start())}\n        disabled={state === \"sending\"}\n        aria-label={recording ? \"Stop recording\" : label}\n        aria-pressed={recording}\n        className={cn(\"inline-flex size-11 shrink-0 items-center justify-center rounded-full outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:opacity-50 [&_svg]:size-5\", recording ? \"bg-destructive text-destructive-foreground\" : \"bg-foreground text-background\")}\n      >\n        {recording ? <IconStop /> : <IconMic />}\n      </button>\n      <span aria-hidden=\"true\" className=\"flex h-8 items-center gap-[3px]\">\n        {levels.map((level, index) => <span key={index} className=\"w-[3px] rounded-full bg-foreground/70 transition-[height] duration-75\" style={{ height: `${level * 100}%` }} />)}\n      </span>\n      <span role=\"status\" className=\"min-w-16 text-sm text-muted-foreground tabular-nums\">\n        {state === \"recording\" ? time : state === \"sending\" ? \"Sending…\" : state === \"denied\" ? \"Microphone blocked\" : \"Tap to talk\"}\n      </span>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-voice-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

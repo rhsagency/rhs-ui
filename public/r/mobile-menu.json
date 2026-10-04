@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mobile-menu",
+  "title": "Mobile menu",
+  "description": "The phone navigation of a marketing site: a menu button that opens a full screen panel with big tap targets, groups that fold open in place, the current page marked and the main actions pinned to the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/mobile-menu.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconChevronDown, IconClose, IconMenu } from \"@rhs-ui/icons\";\nimport { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from \"@rhs-ui/primitives/dialog\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface MobileMenuGroup {\n  label: string;\n  /** A direct link, or a group of links that folds open. */\n  href?: string;\n  links?: readonly { label: string; href: string; description?: string }[];\n}\n\nexport interface MobileMenuProps {\n  brand: ReactNode;\n  groups: readonly MobileMenuGroup[];\n  /** The buttons at the bottom: sign in, start free. */\n  actions?: ReactNode;\n  /** The href of the current page, marked with aria-current. */\n  current?: string;\n  className?: string;\n}\n\n/**\n * The phone navigation of a marketing site: a menu button that opens a full\n * screen panel with big tap targets, groups that fold open in place, the\n * current page marked and the main actions pinned to the bottom. A modal\n * dialog, so focus stays inside and Escape closes it.\n */\nexport function MobileMenu({ brand, groups, actions, current, className }: MobileMenuProps) {\n  const [openGroup, setOpenGroup] = useState<string | null>(null);\n  return (\n    <Dialog>\n      <DialogTrigger aria-label=\"Open menu\" className={cn(\"inline-flex size-10 items-center justify-center rounded-full outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-5\", className)}><IconMenu /></DialogTrigger>\n      <DialogContent showCloseButton={false} className=\"top-0 left-0 flex h-dvh max-h-none w-screen max-w-none translate-x-0 sm:max-w-none translate-y-0 flex-col gap-0 rounded-none border-0 p-0\">\n        <div className=\"flex items-center justify-between border-b border-border px-5 py-3\">\n          <DialogTitle className=\"text-base font-medium\">{brand}</DialogTitle>\n          <DialogClose aria-label=\"Close menu\" className=\"inline-flex size-10 items-center justify-center rounded-full outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-5\"><IconClose /></DialogClose>\n        </div>\n        <nav aria-label=\"Main\" className=\"relative min-h-0 flex-1 overflow-y-auto px-3 py-4\">\n          <ul className=\"grid gap-1\">\n            {groups.map((group) => {\n              const expanded = openGroup === group.label;\n              return (\n                <li key={group.label}>\n                  {group.links?.length ? (\n                    <>\n                      <button type=\"button\" aria-expanded={expanded} onClick={() => setOpenGroup(expanded ? null : group.label)} className=\"flex w-full items-center justify-between rounded-xl px-3 py-3.5 text-left text-lg font-medium outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n                        {group.label}\n                        <IconChevronDown aria-hidden=\"true\" className={cn(\"size-5 transition-transform motion-reduce:transition-none\", expanded && \"rotate-180\")} />\n                      </button>\n                      {expanded ? (\n                        <ul className=\"mb-2 grid gap-0.5 pl-3\">\n                          {group.links.map((link) => (\n                            <li key={`${link.href}-${link.label}`}>\n                              <a href={link.href} aria-current={link.href === current ? \"page\" : undefined} className=\"block rounded-lg px-3 py-2.5 outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-[current=page]:font-medium\">\n                                <span className=\"block\">{link.label}</span>\n                                {link.description ? <span className=\"block text-sm text-muted-foreground\">{link.description}</span> : null}\n                              </a>\n                            </li>\n                          ))}\n                        </ul>\n                      ) : null}\n                    </>\n                  ) : (\n                    <a href={group.href} aria-current={group.href === current ? \"page\" : undefined} className=\"block rounded-xl px-3 py-3.5 text-lg font-medium outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-[current=page]:underline aria-[current=page]:underline-offset-4\">{group.label}</a>\n                  )}\n                </li>\n              );\n            })}\n          </ul>\n        </nav>\n        {actions ? <div className=\"grid gap-2 border-t border-border p-4 pb-[max(1rem,env(safe-area-inset-bottom))] *:w-full\">{actions}</div> : null}\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/mobile-menu.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

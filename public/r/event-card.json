@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "event-card",
+  "title": "Event card",
+  "description": "One event as a card: a calendar block with the day, the title (a link when there is a page), time and place with icons, who is going and the RSVP.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/event-card.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconClock, IconPin, IconVideo } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface EventCardProps {\n  title: string;\n  /** Day and month for the date block: \"14\", \"Apr\". */\n  day: string;\n  month: string;\n  dateTime: string;\n  /** \"18:30 to 21:00\". */\n  time: string;\n  place: string;\n  online?: boolean;\n  /** People going, as a small avatar row or a count. */\n  attendees?: ReactNode;\n  /** RSVP or add to calendar. */\n  action?: ReactNode;\n  href?: string;\n  className?: string;\n}\n\n/**\n * One event as a card: a calendar block with the day, the title (a link when\n * there is a page), time and place with icons, who is going and the RSVP.\n * The date is a real time element for calendars and search.\n */\nexport function EventCard({ title, day, month, dateTime, time, place, online = false, attendees, action, href, className }: EventCardProps) {\n  return (\n    <article data-slot=\"event-card\" className={cn(\"flex gap-4 rounded-2xl border border-border p-4\", className)}>\n      <time dateTime={dateTime} className=\"flex w-14 shrink-0 flex-col items-center self-start overflow-clip rounded-xl border border-border\">\n        <span className=\"w-full bg-foreground py-0.5 text-center text-[10px] font-medium tracking-[.12em] text-background uppercase\">{month}</span>\n        <span className=\"py-1.5 text-2xl font-medium tabular-nums\">{day}</span>\n      </time>\n      <div className=\"min-w-0 flex-1\">\n        <h3 className=\"font-medium text-balance\">{href ? <a href={href} className=\"underline-offset-4 hover:underline\">{title}</a> : title}</h3>\n        <p className=\"mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground [&_svg]:size-3.5\">\n          <span className=\"inline-flex items-center gap-1.5 tabular-nums\"><IconClock aria-hidden=\"true\" />{time}</span>\n          <span className=\"inline-flex items-center gap-1.5\">{online ? <IconVideo aria-hidden=\"true\" /> : <IconPin aria-hidden=\"true\" />}{place}</span>\n        </p>\n        {attendees || action ? (\n          <div className=\"mt-3 flex flex-wrap items-center justify-between gap-3\">\n            {attendees ? <div className=\"text-xs text-muted-foreground\">{attendees}</div> : <span />}\n            {action}\n          </div>\n        ) : null}\n      </div>\n    </article>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/event-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mention-textarea",
+  "title": "Mention textarea",
+  "description": "A comment box that knows your team: type @ and a list of people filters as you go, arrow keys move, Enter or Tab inserts \"@Name\", Escape closes.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/mention-textarea.tsx",
+      "content": "\"use client\";\n\nimport { useId, useRef, useState, type KeyboardEvent } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MentionPerson {\n  id: string;\n  name: string;\n  /** \"Design\", \"a.dewit\": a second line in the list. */\n  detail?: string;\n}\n\nexport interface MentionTextareaProps {\n  value: string;\n  onValueChange: (value: string) => void;\n  people: readonly MentionPerson[];\n  label: string;\n  placeholder?: string;\n  rows?: number;\n  className?: string;\n}\n\n/** The \"@word\" being typed right before the caret, if any. */\nfunction activeQuery(text: string, caret: number): { start: number; query: string } | null {\n  const match = /(^|\\s)@([\\p{L}\\p{N}._-]{0,30})$/u.exec(text.slice(0, caret));\n  return match ? { start: caret - match[2]!.length - 1, query: match[2]!.toLowerCase() } : null;\n}\n\n/**\n * A comment box that knows your team: type @ and a list of people filters as\n * you go, arrow keys move, Enter or Tab inserts \"@Name\", Escape closes. A\n * real combobox for assistive technology, the textarea keeps focus the whole\n * time, and the value stays plain text.\n */\nexport function MentionTextarea({ value, onValueChange, people, label, placeholder, rows = 4, className }: MentionTextareaProps) {\n  const id = useId();\n  const area = useRef<HTMLTextAreaElement>(null);\n  const [query, setQuery] = useState<{ start: number; query: string } | null>(null);\n  const [active, setActive] = useState(0);\n  const matches = query ? people.filter((person) => person.name.toLowerCase().includes(query.query)).slice(0, 6) : [];\n  const open = matches.length > 0;\n  function update(text: string, caret: number) {\n    onValueChange(text);\n    setQuery(activeQuery(text, caret));\n    setActive(0);\n  }\n  function insert(person: MentionPerson) {\n    if (!query || !area.current) return;\n    const caret = area.current.selectionStart;\n    const next = `${value.slice(0, query.start)}@${person.name} ${value.slice(caret)}`;\n    const at = query.start + person.name.length + 2;\n    onValueChange(next);\n    setQuery(null);\n    requestAnimationFrame(() => area.current?.setSelectionRange(at, at));\n  }\n  function keys(event: KeyboardEvent<HTMLTextAreaElement>) {\n    if (!open) return;\n    if (event.key === \"ArrowDown\" || event.key === \"ArrowUp\") {\n      event.preventDefault();\n      setActive((index) => (index + (event.key === \"ArrowDown\" ? 1 : -1) + matches.length) % matches.length);\n    } else if (event.key === \"Enter\" || event.key === \"Tab\") {\n      event.preventDefault();\n      const person = matches[active];\n      if (person) insert(person);\n    } else if (event.key === \"Escape\") {\n      event.preventDefault();\n      setQuery(null);\n    }\n  }\n  return (\n    <div data-slot=\"mention-textarea\" className={cn(\"relative grid gap-1.5\", className)}>\n      <label htmlFor={id} className=\"text-sm font-medium\">{label}</label>\n      <textarea\n        ref={area}\n        id={id}\n        value={value}\n        rows={rows}\n        placeholder={placeholder}\n        onChange={(event) => update(event.target.value, event.target.selectionStart)}\n        onKeyDown={keys}\n        onBlur={() => setTimeout(() => setQuery(null), 120)}\n        role=\"combobox\"\n        aria-expanded={open}\n        aria-controls={`${id}-list`}\n        aria-autocomplete=\"list\"\n        aria-activedescendant={open ? `${id}-option-${active}` : undefined}\n        className=\"w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm leading-relaxed outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n      />\n      <ul id={`${id}-list`} role=\"listbox\" aria-label=\"People\" hidden={!open} className=\"absolute top-full right-0 left-0 z-20 mt-1 max-h-60 overflow-y-auto rounded-xl border border-border bg-popover p-1 text-popover-foreground shadow-lg\">\n        {matches.map((person, index) => (\n          <li\n            key={person.id}\n            id={`${id}-option-${index}`}\n            role=\"option\"\n            aria-selected={index === active}\n            onPointerDown={(event) => { event.preventDefault(); insert(person); }}\n            className=\"flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm aria-selected:bg-muted\"\n          >\n            <span aria-hidden=\"true\" className=\"inline-flex size-7 items-center justify-center rounded-full bg-muted text-[11px] font-medium\">{person.name.split(\" \").map((part) => part[0]).join(\"\").slice(0, 2).toUpperCase()}</span>\n            <span>\n              <span className=\"block\">{person.name}</span>\n              {person.detail ? <span className=\"block text-xs text-muted-foreground\">{person.detail}</span> : null}\n            </span>\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/mention-textarea.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

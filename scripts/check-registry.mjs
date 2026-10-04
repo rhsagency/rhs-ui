@@ -29,7 +29,8 @@ const FORBIDDEN = [/^lucide-react(@|$)/, /^cn(@|$)/, /^shadcn(@|$)/, /^@base-ui\
 const MOTION_KINDS = new Set(["trigger", "state"]);
 const URL_DEP = /^https:\/\/rhsui\.com\/r\/([a-z0-9-]+)\.json$/;
 const ALIAS_IMPORT = /from\s+["']@rhs-ui\/([^"']+)["']/g;
-const HOOK_CALL = /\buse(?!Id\b)[A-Z]\w*\s*\(/;
+// A hook call, also with type arguments: useMemo<Option[]>(...), useState<Set<string>>(...).
+const HOOK_CALL = /\buse(?!Id\b)[A-Z]\w*\s*(?:<[^()]*?>)?\s*\(/;
 
 /**
  * The source of truth is the registry.json in every category folder, not the
@@ -158,6 +159,9 @@ export function checkItems(items) {
   const byFile = new Map(
     items.filter((i) => i.type !== "registry:example").flatMap((i) => (i.files ?? []).map((f) => [f.path.replace(/\.tsx?$/, ""), i])),
   );
+  // How many items ship each file: more than one means a travelling helper (money.ts), which every importer ships itself.
+  const shippedBy = new Map();
+  for (const i of items) if (i.type !== "registry:example") for (const f of i.files ?? []) shippedBy.set(f.path.replace(/\.tsx?$/, ""), (shippedBy.get(f.path.replace(/\.tsx?$/, "")) ?? 0) + 1);
   for (const item of items) {
     const p = (msg) => problems.push(`${item.name ?? "(unnamed)"}: ${msg}`);
     if (!item.name) p("missing name");
@@ -224,7 +228,11 @@ export function checkItems(items) {
       for (const m of src.matchAll(ALIAS_IMPORT)) {
         const file = [`registry/${m[1]}`, `registry/${m[1]}/index`].find((candidate) => own.has(candidate) || byFile.has(candidate));
         if (!file) p(`${f.path}: import of @rhs-ui/${m[1]} does not resolve to a registry file`);
-        else if (!own.has(file) && !declared.has(byFile.get(file).name)) {
+        // A shared helper (money.ts) travels in the files of every item that imports it. Depending on
+        // whichever item happens to ship it first installs that whole component for one helper.
+        else if (!own.has(file) && (shippedBy.get(file) ?? 0) > 1) {
+          p(`imports ${file}, a shared file of ${byFile.get(file).name}; list it in this item's own files instead of depending on ${byFile.get(file).name}`);
+        } else if (!own.has(file) && !declared.has(byFile.get(file).name)) {
           const dep = byFile.get(file).name;
           p(`imports ${dep} but does not declare https://rhsui.com/r/${dep}.json`);
         }
@@ -300,6 +308,7 @@ const selfTests = [
   ["hook inside a client module", clientProblems('"use client";\nexport function X() { useState(0); }').length === 0],
   ["a helper exported from a hook-free client module", clientExportProblems('"use client";\nexport function initialsOf(name) { return name; }').length === 1],
   ["a client API next to its hook", clientExportProblems('"use client";\nexport function toast() {}\nexport function Toaster() { useSyncExternalStore(); }').length === 0],
+  ["a hook called with type arguments counts as a hook", clientExportProblems('"use client";\nexport function zoneOffset() {}\nexport function X() { const o = useMemo<Option[]>(() => [], []); const s = useState<Set<string>>(new Set()); }').length === 0],
   ["a component-only client module", clientExportProblems('"use client";\nexport function Button() {}').length === 0],
   ["a named group variant nobody declares", groupNameProblems(new Map([["a.tsx", 'cn("inline-flex", "group-data-[variant=line]/list:border-b-2")']])).length === 1],
   ["a named group declared in the same file", groupNameProblems(new Map([["a.tsx", 'cn("group/list inline-flex", "group-data-[variant=line]/list:border-b-2 group-hover/list:text-foreground")']])).length === 0],
@@ -310,6 +319,17 @@ const selfTests = [
   ["an Intl formatter with a locale", unlocalisedIntlProblems("new Intl.NumberFormat(locale, format)").length === 0],
   ["a scroll container that is not positioned", unpositionedScrollProblems('<div className="overflow-x-auto rounded-2xl">').length === 1 && unpositionedScrollProblems('<div className="relative overflow-x-auto">').length === 0],
   ["currentColor under clipped text", clippedCurrentColorProblems('"bg-[linear-gradient(currentColor,transparent)] bg-clip-text text-transparent"').length === 1 && clippedCurrentColorProblems('"bg-[linear-gradient(var(--foreground),transparent)] text-transparent"').length === 0],
+  [
+    "a shared helper taken from another item instead of shipped",
+    (() => {
+      const tag = items.find((i) => i.name === "price-tag");
+      const host = items.find((i) => i.name === "shipping-progress");
+      const other = items.find((i) => i.name === "cart-line");
+      if (!tag || !host || !other) return false;
+      const borrowed = { ...tag, files: tag.files.slice(0, 1), registryDependencies: ["https://rhsui.com/r/shipping-progress.json"] };
+      return checkItems([borrowed, host, other]).some((pr) => /^price-tag: imports registry\/commerce\/money, a shared file/.test(pr)) && !checkItems([tag, host, other]).some((pr) => /^price-tag: .*a shared file/.test(pr));
+    })(),
+  ],
   ["a list keyed on href alone", hrefKeyProblems("<li key={link.href}>").length === 1 && hrefKeyProblems("<li key={`${link.label}-${link.href}`}>").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],

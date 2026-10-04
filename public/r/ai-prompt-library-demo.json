@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-prompt-library-demo",
+  "title": "AI prompt library demo",
+  "description": "A working preview of AI prompt library.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/ai-prompt-library.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-prompt-library-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconChartBar, IconMail, IconNote, IconUsers } from \"@rhs-ui/icons\";\nimport { AiPromptLibrary } from \"@rhs-ui/application/ai-prompt-library\";\n\nexport default function Demo(): React.JSX.Element {\n  const [chosen, setChosen] = useState<string | null>(null);\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <AiPromptLibrary\n        onUse={(prompt) => setChosen(prompt.prompt)}\n        prompts={[\n          { id: \"1\", category: \"Writing\", icon: <IconMail />, title: \"Reply to a customer\", prompt: \"Write a short, friendly reply to {customer} about {issue}, and offer {next step}.\" },\n          { id: \"2\", category: \"Writing\", icon: <IconNote />, title: \"Release notes\", prompt: \"Turn these finished tasks into release notes for {audience}: {tasks}\" },\n          { id: \"3\", category: \"Analysis\", icon: <IconChartBar />, title: \"Explain a metric\", prompt: \"Why did {metric} change from {before} to {after} this month? List three likely causes.\" },\n          { id: \"4\", category: \"Team\", icon: <IconUsers />, title: \"One-on-one agenda\", prompt: \"Draft an agenda for a one-on-one with {name}, focused on {topic}.\" },\n        ]}\n      />\n      {chosen ? <p className=\"mt-4 rounded-xl bg-muted p-3 text-sm\">In the composer: {chosen}</p> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

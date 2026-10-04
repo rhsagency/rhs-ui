@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "month-picker",
+  "title": "Month picker",
+  "description": "Pick a month, not a day: for reports, billing periods and card expiry.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/month-picker.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCalendar, IconChevronLeft, IconChevronRight } from \"@rhs-ui/icons\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface MonthPickerProps {\n  /** \"yyyy-mm\", or null. */\n  value: string | null;\n  onValueChange: (month: string) => void;\n  /** Earliest and latest choosable months, \"yyyy-mm\". */\n  min?: string;\n  max?: string;\n  locale?: string;\n  placeholder?: string;\n  /** Submits \"yyyy-mm\" through a hidden input. */\n  name?: string;\n  id?: string;\n  className?: string;\n}\n\n/**\n * Pick a month, not a day: for reports, billing periods and card expiry.\n * A year with arrows and the twelve months as a grid, named by the browser\n * in the reader's language, with months outside min and max disabled. The\n * value is \"yyyy-mm\", so there is no day or time zone to get wrong.\n */\nexport function MonthPicker({ value, onValueChange, min, max, locale = \"en-GB\", placeholder = \"Pick a month\", name, id, className }: MonthPickerProps) {\n  const [open, setOpen] = useState(false);\n  const initialYear = value ? Number(value.slice(0, 4)) : new Date().getFullYear();\n  const [year, setYear] = useState(initialYear);\n  const short = new Intl.DateTimeFormat(locale, { month: \"short\", timeZone: \"UTC\" });\n  const long = new Intl.DateTimeFormat(locale, { month: \"long\", year: \"numeric\", timeZone: \"UTC\" });\n  const label = (month: string) => long.format(new Date(`${month}-01T00:00:00Z`));\n  const key = (y: number, m: number) => `${y}-${String(m + 1).padStart(2, \"0\")}`;\n  return (\n    <Popover open={open} onOpenChange={(next) => { setOpen(next); if (next) setYear(initialYear); }}>\n      <PopoverTrigger id={id} data-slot=\"month-picker\" className={cn(\"inline-flex h-9 w-full min-w-44 items-center gap-2 rounded-md border border-input bg-background px-3 text-left text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\", !value && \"text-muted-foreground\", className)}>\n        <IconCalendar size={16} className=\"shrink-0 text-muted-foreground\" />\n        {value ? label(value) : placeholder}\n      </PopoverTrigger>\n      <PopoverContent align=\"start\" className=\"w-64 p-3\">\n        <div className=\"flex items-center justify-between\">\n          <button type=\"button\" onClick={() => setYear((y) => y - 1)} disabled={min !== undefined && year <= Number(min.slice(0, 4))} aria-label=\"Previous year\" className=\"inline-flex size-8 items-center justify-center rounded-md outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-30\"><IconChevronLeft className=\"size-4\" /></button>\n          <p aria-live=\"polite\" className=\"text-sm font-medium tabular-nums\">{year}</p>\n          <button type=\"button\" onClick={() => setYear((y) => y + 1)} disabled={max !== undefined && year >= Number(max.slice(0, 4))} aria-label=\"Next year\" className=\"inline-flex size-8 items-center justify-center rounded-md outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-30\"><IconChevronRight className=\"size-4\" /></button>\n        </div>\n        <div role=\"group\" aria-label={`Months of ${year}`} className=\"mt-2 grid grid-cols-3 gap-1\">\n          {Array.from({ length: 12 }, (_, m) => {\n            const month = key(year, m);\n            const off = (min !== undefined && month < min) || (max !== undefined && month > max);\n            const selected = month === value;\n            return (\n              <button\n                key={month}\n                type=\"button\"\n                aria-pressed={selected}\n                aria-label={label(month)}\n                disabled={off}\n                onClick={() => { onValueChange(month); setOpen(false); }}\n                className=\"h-9 rounded-md text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:pointer-events-none disabled:opacity-30 aria-pressed:bg-foreground aria-pressed:text-background\"\n              >\n                {short.format(new Date(Date.UTC(year, m, 1)))}\n              </button>\n            );\n          })}\n        </div>\n      </PopoverContent>\n      {name ? <input type=\"hidden\" name={name} value={value ?? \"\"} /> : null}\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/month-picker.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}
