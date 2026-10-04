@@ -598,6 +598,10 @@ export const IconRainbow = (p: IconProps) => <Glyph {...p} d="M3 17a9 9 0 0 1 18
 export const IconWaves = (p: IconProps) => <Glyph {...p} d="M3 7q1.5 -2 3 0t3 0q1.5 2 3 0t3 0q1.5 -2 3 0t3 0M3 12q1.5 -2 3 0t3 0q1.5 2 3 0t3 0q1.5 -2 3 0t3 0M3 17q1.5 -2 3 0t3 0q1.5 2 3 0t3 0q1.5 -2 3 0t3 0" />;
 export const IconPaw = (p: IconProps) => <Glyph {...p} d="M12 13c-2.8 0-5 2.8-5 5 0 1.4 1 2 2.3 2 1 0 1.7-.5 2.7-.5s1.7.5 2.7.5c1.3 0 2.3-.6 2.3-2 0-2.2-2.2-5-5-5zM7 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM11 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM20 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />;
 export const IconSprout = (p: IconProps) => <Glyph {...p} d="M12 20.5V11M12 11c0-3.5-2.5-6-6.5-6 0 3.7 2.6 6 6.5 6zM12 13.5c0-3.2 2.4-5.5 6.5-5.5 0 3.4-2.5 5.5-6.5 5.5zM7.5 20.5h9" />;
+export const IconFog = (p: IconProps) => <Glyph {...p} d="M4 9h16M3 13h18M5 17h14M7 5h10" />;
+export const IconTornado = (p: IconProps) => <Glyph {...p} d="M3.5 4.5h17M5.5 8.5h13M8 12.5h9M10 16.5h5M11.5 20.5h2" />;
+export const IconCloudMoon = (p: IconProps) => <Glyph {...p} d="M16.5 3.5a5 5 0 0 0 4 7.5M8 19.5h8.5a3.5 3.5 0 0 0 .3-7A5 5 0 0 0 7.2 11 4.3 4.3 0 0 0 8 19.5z" />;
+export const IconSunset = (p: IconProps) => <Glyph {...p} d="M3 17.5h18M7.5 17.5a4.5 4.5 0 0 1 9 0M12 3v5M9.5 5.5L12 8l2.5-2.5M4.6 10.9l1.4 1.4M19.4 10.9L18 12.3M6 21h12" />;
 
 /* Travel & places -- Getting somewhere and staying there. */
 
@@ -616,6 +620,16 @@ export const IconParking = (p: IconProps) => <Glyph {...p} d="M17.8 3H5a2 2 0 0 
 export const IconSignpost = (p: IconProps) => <Glyph {...p} d="M12 3v18M12 5h6l2 2.5-2 2.5h-6M12 12H6l-2 2.5L6 17h6M9 21h6" />;
 export const IconFuel = (p: IconProps) => <Glyph {...p} d="M4.5 20.5V5A1.5 1.5 0 0 1 6 3.5h6A1.5 1.5 0 0 1 13.5 5v15.5M3 20.5h12M4.5 10h9M13.5 8.5h2A1.5 1.5 0 0 1 17 10v6a1.5 1.5 0 0 0 3 0V8l-2.5-2.5" />;
 export const IconAnchor = (p: IconProps) => <Glyph {...p} d="M13.5 5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM12 6.5v14M8.5 10h7M4.5 12.5a7.5 7.5 0 0 0 15 0M4.5 12.5H6.5M19.5 12.5h-2" />;
+export const IconRoute = (p: IconProps) => <Glyph {...p} d="M6 19.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8.5 17h8a3 3 0 0 0 0-6h-9a3 3 0 0 1 0-6h8" />;
+export const IconCastle = (p: IconProps) => <Glyph {...p} d="M4 21V7h2.5v2h2V7h2v2h3V7h2v2h2V7H20v14zM10 21v-4a2 2 0 0 1 4 0v4M4 12h16" />;
+export const IconBridge = (p: IconProps) => <Glyph {...p} d="M2.5 16h19M6 6.5V19M18 6.5V19M6 8c1.6 4 3.8 6 6 6s4.4-2 6-6M2.5 11.5c1.5.8 2.5 1 3.5 1M21.5 11.5c-1.5.8-2.5 1-3.5 1M9 12.3V16M12 14v2M15 12.3V16" />;
+export const IconLighthouse = (p: IconProps) => <Glyph {...p} d="M9 21l1.5-12h3L15 21zM9.5 9h5l-.5-3h-4zM12 6V3.5M5 21h14M6 4.5l2.5 1.5M18 4.5L15.5 6M9.8 14.5h4.4" />;
+export const IconCabin = (p: IconProps) => <Glyph {...p} d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-5h4v5M16 6.5V4h2v4" />;
+export const IconCampfire = (p: IconProps) => <Glyph {...p} d="M12 3c2.5 3 4 5 4 7.5a4 4 0 0 1-8 0c0-1.5.6-2.6 1.5-3.5.2 1.3.8 2 1.5 2.3C11 7.5 11.3 5.3 12 3zM4 20l16-3.5M20 20L4 16.5" />;
+export const IconPalmTree = (p: IconProps) => <Glyph {...p} d="M12 9.5c-1 3.5-1.5 7.5-1 11M12 9.5C10 6.5 6.5 6 4 7.5M12 9.5c1.5-3 5-4 7.5-2.5M12 9.5C9 9 6.5 10.5 5.5 13M12 9.5c3 0 5.5 1.5 6.5 4M12 9.5c0-3 1-5 3-6.5M6.5 20.5h10" />;
+export const IconVolcano = (p: IconProps) => <Glyph {...p} d="M3 20.5l5.5-10h7l5.5 10zM8.5 10.5L11 13l2-2.5 2.5 0M12 7.5V4.5M9 6L7.5 4M15 6l1.5-2" />;
+export const IconFerrisWheel = (p: IconProps) => <Glyph {...p} d="M12 3a7 7 0 1 0 0 14a7 7 0 1 0 0 -14zM12 3v14M5 10h14M7 5l10 10M17 5L7 15M8 21l4-4 4 4M6.5 21h11" />;
+export const IconWindmill = (p: IconProps) => <Glyph {...p} d="M9.5 21l1.5-10h2l1.5 10zM12 9L5.5 2.5M12 9l6.5-6.5M12 9l-6.5 6.5M12 9l6.5 6.5M7.5 21h9M11 17h2" />;
 
 /* Health & sport -- Care, fitness and wellbeing. */
 
@@ -628,6 +642,24 @@ export const IconBall = (p: IconProps) => <Glyph {...p} d="M19.7 8.41A8.5 8.5 0 
 export const IconApple = (p: IconProps) => <Glyph {...p} d="M12 7c-1.5-1-5.5-1.5-6.8 2.3-1.3 3.7 1 9.7 3.8 10.7 1.2.4 2-.4 3-.4s1.8.8 3 .4c2.8-1 5.1-7 3.8-10.7C17.5 5.5 13.5 6 12 7zM12 7c0-2 1-3.5 3-4" />;
 export const IconHospital = (p: IconProps) => <Glyph {...p} d="M5 21V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v15M3 21h18M12 8.5v5M9.5 11h5M10 21v-3.5h4V21" />;
 export const IconAccessibility = (p: IconProps) => <Glyph {...p} d="M13.5 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM5 8.5l7 1.5 7-1.5M12 10v4.5M12 14.5l-3 6M12 14.5l3 6" />;
+export const IconTennis = (p: IconProps) => <Glyph {...p} d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0 -18zM5.6 5.6c3.3 3.3 3.3 9.5 0 12.8M18.4 5.6c-3.3 3.3-3.3 9.5 0 12.8" />;
+export const IconBasketball = (p: IconProps) => <Glyph {...p} d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0 -18zM12 3v18M3 12h18M6 5.2c2.2 3.4 2.2 10.2 0 13.6M18 5.2c-2.2 3.4-2.2 10.2 0 13.6" />;
+export const IconSoccer = (p: IconProps) => <Glyph {...p} d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0 -18zM12 8.5l3.3 2.4-1.3 3.9h-4l-1.3-3.9zM12 8.5V3M15.3 10.9l5.2-1.7M14 14.8l3.2 4.4M10 14.8l-3.2 4.4M8.7 10.9L3.5 9.2" />;
+export const IconGolf = (p: IconProps) => <Glyph {...p} d="M9 19V3.5l7.5 3.25L9 10M4 19.5c0-1.4 3.6-2.5 8-2.5s8 1.1 8 2.5-3.6 2.5-8 2.5-8-1.1-8-2.5z" />;
+export const IconBowling = (p: IconProps) => <Glyph {...p} d="M10 3.5h4c.8 1.5.6 3-.4 4.4 2.3 2 3.3 5 2.4 8.6l-1 4h-6l-1-4c-.9-3.6.1-6.6 2.4-8.6-1-1.4-1.2-2.9-.4-4.4zM10.4 8h3.2" />;
+export const IconWhistle = (p: IconProps) => <Glyph {...p} d="M9 9.5h12V13h-6.6A5.5 5.5 0 1 1 9 9.5zM9 15h.01M7.5 9.6V6.5h4" />;
+export const IconStopwatch = (p: IconProps) => <Glyph {...p} d="M12 6a7.5 7.5 0 1 0 0 15a7.5 7.5 0 1 0 0 -15zM12 13.5V10M10 2.5h4M12 2.5V6M18.5 6.5L20 5" />;
+export const IconSkateboard = (p: IconProps) => <Glyph {...p} d="M2.5 9.5c0 1.4 1.1 2.5 2.5 2.5h14c1.4 0 2.5-1.1 2.5-2.5M7 12v2.5M17 12v2.5M7 14.75a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 1 0 0 -3.5zM17 14.75a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 1 0 0 -3.5z" />;
+export const IconKite = (p: IconProps) => <Glyph {...p} d="M12 2.5l6 7-6 8-6-8zM6 9.5h12M12 2.5v15M12 17.5c-.8 1.5-2.2 2.2-3.8 1.8-1.5-.4-2.6.4-3.2 2.2" />;
+export const IconTooth = (p: IconProps) => <Glyph {...p} d="M7.5 3.5C5 3.5 3.5 5.5 4 8.5c.5 3 2 5 2.5 8 .4 2.5 1.2 4 2.2 4 1.2 0 1.6-2 2-4 .3-1.3.7-2 1.3-2s1 .7 1.3 2c.4 2 .8 4 2 4 1 0 1.8-1.5 2.2-4 .5-3 2-5 2.5-8 .5-3-1-5-3.5-5-1.8 0-3 1-4.5 1s-2.7-1-4.5-1z" />;
+export const IconBandage = (p: IconProps) => <Glyph {...p} d="M4.6 14.3l9.7-9.7a3 3 0 0 1 4.2 0l.9.9a3 3 0 0 1 0 4.2l-9.7 9.7a3 3 0 0 1-4.2 0l-.9-.9a3 3 0 0 1 0-4.2zM10 10h.01M14 14h.01M12 12h.01M10 14h.01M14 10h.01" />;
+export const IconSyringe = (p: IconProps) => <Glyph {...p} d="M18 2.5l3.5 3.5M19.75 4.25L15.5 8.5M17 10l-8.5 8.5-3-3L14 7zM5.5 15.5l-3 6M11.5 8.5l2 2M9 11l2 2M6.5 13.5l2 2M12.5 5.5l6 6" />;
+export const IconEar = (p: IconProps) => <Glyph {...p} d="M6.5 9a5.5 5.5 0 0 1 11 0c0 3-2 4.2-3 5.5-.8 1-1 2-1 3a3 3 0 0 1-6 0M10 9a2 2 0 0 1 4 0c0 1-.8 1.6-1.5 2" />;
+export const IconHandWave = (p: IconProps) => <Glyph {...p} d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v6M14 10V5.5a1.5 1.5 0 0 1 3 0V13c0 4.5-2.5 8-6.5 8-2.5 0-4-1.2-5.2-3.2L3.6 15a1.5 1.5 0 0 1 2.4-1.8L8 15M19.5 4c.8.7 1.3 1.6 1.5 2.5M3 7.5c.2-1 .7-1.8 1.5-2.5" />;
+export const IconFootprints = (p: IconProps) => <Glyph {...p} d="M7 3.5c1.6 0 2.5 1.8 2.5 4s-.6 4.5-2.5 4.5S4.5 9.7 4.5 7.5 5.4 3.5 7 3.5zM4.8 14.5h4.4c0 2-1 3-2.2 3s-2.2-1-2.2-3zM17 8c1.6 0 2.5 1.8 2.5 4s-.6 4.5-2.5 4.5-2.5-2.3-2.5-4.5.9-4 2.5-4zM14.8 19h4.4c0 1.5-1 2.5-2.2 2.5s-2.2-1-2.2-2.5z" />;
+export const IconAmbulance = (p: IconProps) => <Glyph {...p} d="M2.5 16.5v-9h11v9M13.5 10.5h4l3 3.5v2.5h-7M8 9.5v4M6 11.5h4M5.5 16.5h0M3 16.5h1M8.5 16.5h6M19 16.5h1.5M7 15.75a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 1 0 0 -3.5zM17 15.75a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 1 0 0 -3.5z" />;
+export const IconFaceMask = (p: IconProps) => <Glyph {...p} d="M4 9.5c3 0 5-1.5 8-1.5s5 1.5 8 1.5v4c0 3-4 5-8 5s-8-2-8-5zM4 10.5H2.5M20 10.5h1.5M4 13H2.5a2 2 0 0 0 1.7 2M20 13h1.5a2 2 0 0 1-1.7 2M8 12h8M8.5 15h7" />;
+export const IconStroller = (p: IconProps) => <Glyph {...p} d="M3.5 10.5h13a5 5 0 0 1-5 5H8.5a5 5 0 0 1-5-5zM16.5 10.5V4.5h-.5A6.5 6.5 0 0 0 9.5 10.5M16.5 6H19M8 15.5l-.8 2M13.5 15.5l.8 2M7 17.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0 -3zM14.5 17.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0 -3z" />;
 
 /* Learning & work -- School, office and the tools of the trade. */
 
@@ -643,6 +675,11 @@ export const IconFlask = (p: IconProps) => <Glyph {...p} d="M9 3.5h6M10 3.5V9l-5
 export const IconGlasses = (p: IconProps) => <Glyph {...p} d="M10 15a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0zM21 15a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0zM10 14.5a2 2 0 0 1 4 0M3 15V9l2-3.5M21 15V9l-2-3.5" />;
 export const IconClipboardCheck = (p: IconProps) => <Glyph {...p} d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2M9.5 3h5a1 1 0 0 1 1 1v1.5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM9 14l2 2 4-4.5" />;
 export const IconClipboardList = (p: IconProps) => <Glyph {...p} d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2M9.5 3h5a1 1 0 0 1 1 1v1.5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM9 11h6M9 15h6" />;
+export const IconStapler = (p: IconProps) => <Glyph {...p} d="M3.5 13.5h17v3a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1zM4.5 13.5l2-6.5h11.5a2 2 0 0 1 2 2.5l-1 4M7 10h10" />;
+export const IconStickyNote = (p: IconProps) => <Glyph {...p} d="M4.5 4.5h15v9.5l-5.5 5.5H4.5zM14 19.5V14h5.5M8 9h8M8 12h5" />;
+export const IconFountainPen = (p: IconProps) => <Glyph {...p} d="M14.5 4.5l5 5-7.5 7.5-6 1.5 1.5-6zM7.5 12.5l4 4M12 12l-4.5 4.5M17 2l5 5" />;
+export const IconBinder = (p: IconProps) => <Glyph {...p} d="M6 3.5h12.5a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1.5 1.5 0 0 1-1.5-1.5v-14A1.5 1.5 0 0 1 6 3.5zM9 3.5v17M3 8h3M3 12h3M3 16h3M12.5 8h4" />;
+export const IconTape = (p: IconProps) => <Glyph {...p} d="M10 5.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0 -13zM10 9.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0 -5zM10 18.5h11M21 18.5l-1.5-2.5" />;
 
 /* Shapes & layout -- Primitives for editors, canvases and design tools. */
 
@@ -766,6 +803,41 @@ export const IconBucket = (p: IconProps) => <Glyph {...p} d="M4.5 8.5h15l-1.5 11
 export const IconTrafficCone = (p: IconProps) => <Glyph {...p} d="M9.5 4h5l4 15H5.5zM8 10h8M6.8 14.5h10.4M3.5 19h17" />;
 export const IconBlueprint = (p: IconProps) => <Glyph {...p} d="M3.5 5.5a2 2 0 0 1 2-2H20v14H5.5a2 2 0 0 0-2 2zM3.5 19.5a2 2 0 0 0 2 2H20v-4M8 7.5h4v6h5M12 10.5h-4" />;
 export const IconSpiritLevel = (p: IconProps) => <Glyph {...p} d="M3 9h18v6H3zM10 9v6M14 9v6M12 11.5h.01M6 12h1.5M16.5 12H18" />;
+
+/* Play & celebration -- Games, parties and moments worth marking. */
+
+export const IconDice = (p: IconProps) => <Glyph {...p} d="M6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11A2.5 2.5 0 0 1 6.5 4zM8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01" />;
+export const IconChessPawn = (p: IconProps) => <Glyph {...p} d="M12 3.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0 -5zM9.5 10.5h5M10.5 10.5l-1 6.5h5l-1-6.5M7.5 20.5h9l-1-3.5h-7z" />;
+export const IconPlayingCards = (p: IconProps) => <Glyph {...p} d="M9 3.5h8.5A1.5 1.5 0 0 1 19 5v13a1.5 1.5 0 0 1-1.5 1.5H9A1.5 1.5 0 0 1 7.5 18V5A1.5 1.5 0 0 1 9 3.5zM7.5 6.5l-2.4.6a1.5 1.5 0 0 0-1.1 1.8l2.8 11a1.5 1.5 0 0 0 1.8 1.1l3.6-.9M13.25 8.5l-2.25 3 2.25 3 2.25-3z" />;
+export const IconBalloon = (p: IconProps) => <Glyph {...p} d="M12 3a5.5 6.5 0 0 0-5.5 6.5c0 3.6 2.5 6.5 5.5 6.5s5.5-2.9 5.5-6.5A5.5 6.5 0 0 0 12 3zM11 16l-.5 1.5h3L13 16M12 17.5c0 1.5-1.5 2-1.5 3.5" />;
+export const IconPartyPopper = (p: IconProps) => <Glyph {...p} d="M4 20l4.5-12 7.5 7.5zM8.5 8c2 1 4.6 3.5 6 6M13 4.5l.5 1.5M19.5 11l-1.5.5M16 7.5L20 4M15.5 3.5h.01M20.5 8.5h.01" />;
+export const IconConfetti = (p: IconProps) => <Glyph {...p} d="M5 4l1 2.5M18 5l-1.5 2M9.5 11l2.5 1M15.5 13.5l-2 2M5.5 15.5l2.5-1M17 19l1.5 1.5M11 19.5h.01M20 10.5h.01M3.5 10h.01M12 4.5h.01" />;
+export const IconCandle = (p: IconProps) => <Glyph {...p} d="M9 10.5h6v10H9zM12 10.5V8M12 6c-1-1-1-2.2 0-3.5 1 1.3 1 2.5 0 3.5zM7 20.5h10" />;
+export const IconFireworks = (p: IconProps) => <Glyph {...p} d="M12 12V3M12 12l6.4-6.4M12 12h9M12 12l6.4 6.4M12 12v9M12 12l-6.4 6.4M12 12H3M12 12L5.6 5.6" />;
+export const IconRibbon = (p: IconProps) => <Glyph {...p} d="M12 12.5L8 21l-1.5-3H3.5l4-8.5M12 12.5l4 8.5 1.5-3h3l-4-8.5M12 3a5 5 0 1 0 0 10a5 5 0 1 0 0 -10z" />;
+export const IconTheaterMasks = (p: IconProps) => <Glyph {...p} d="M3.5 4.5c3-1 6-1 9 0v5a4.5 4.5 0 0 1-9 0zM6.5 8h.01M9.5 8h.01M6.5 11c1 .8 2 .8 3 0M13.5 10.5c3-1 5-1 7 0v5a4.5 4.5 0 0 1-8 2.8M15.5 14h.01M18.5 14h.01M15.5 17.5c1-.8 2-.8 3 0" />;
+export const IconLantern = (p: IconProps) => <Glyph {...p} d="M9 5.5h6M10 3h4v2.5h-4zM8 5.5h8l1 4v6l-1 3H8l-1-3v-6zM7 9.5h10M7 15.5h10M12 18.5V21" />;
+
+/* Animals -- Pets and the creatures around them. */
+
+export const IconCat = (p: IconProps) => <Glyph {...p} d="M5 10V4l4 3h6l4-3v6a7 7 0 0 1-14 0zM9.5 11.5h.01M14.5 11.5h.01M10.5 15c.9.7 2.1.7 3 0" />;
+export const IconDog = (p: IconProps) => <Glyph {...p} d="M7.5 5.5L4.5 4.5l-1 5 3 1.5M16.5 5.5l3-1 1 5-3 1.5M6.5 9a5.5 5.5 0 0 1 11 0v5a5.5 5.5 0 0 1-11 0zM10 11h.01M14 11h.01M11 15h2l-1 1.25z" />;
+export const IconBird = (p: IconProps) => <Glyph {...p} d="M16 7.5a2.5 2.5 0 0 0-5 0v2L3.5 17c4.5 1 9.5.2 12-3.6l.5-3.9 3.5.5zM11 9.5l-3.5 3.5M9.5 17.3l-.8 3.2M13 16.7l.4 3.8M15 7.5h.01" />;
+export const IconRabbit = (p: IconProps) => <Glyph {...p} d="M9.8 10.2C8.2 7.6 7.8 3.6 9.2 3s2.8 3 2.8 6.5c0-3.5 1.4-7.1 2.8-6.5s1 4.6-.6 7.2a6 6 0 1 1-4.4 0zM10 14h.01M14 14h.01M11 17h2" />;
+export const IconTurtle = (p: IconProps) => <Glyph {...p} d="M4 15a8 8 0 0 1 16 0zM20 13h1.2a1.6 1.6 0 0 0 0-3.2H19M6.5 15l-1 3M17.5 15l1 3M9 7.6l2 3.4h2l2-3.4M8.5 15l2.5-4M15.5 15L13 11" />;
+export const IconButterfly = (p: IconProps) => <Glyph {...p} d="M12 7.5V19M12 8.5C10 5.5 6.5 3.8 4.6 5S4 11 7.2 12c-2.8 1.2-3.2 4.6-1.5 5.6s4.4-.5 6.3-3.6c1.9 3.1 4.6 4.6 6.3 3.6s1.3-4.4-1.5-5.6C20 11 21.3 6.2 19.4 5S14 5.5 12 8.5zM10.6 4.6L12 7.5l1.4-2.9" />;
+export const IconBee = (p: IconProps) => <Glyph {...p} d="M12 8.5c1.9 0 3.5 2 3.5 4.5s-1.6 4.5-3.5 4.5-3.5-2-3.5-4.5 1.6-4.5 3.5-4.5zM8.7 11.5h6.6M8.7 14.5h6.6M12 17.5V20M9.5 9.5C7.5 6 4 6 4 8.5s3 3.2 5 2.3M14.5 9.5c2-3.5 5.5-3.5 5.5-1s-3 3.2-5 2.3" />;
+export const IconSnail = (p: IconProps) => <Glyph {...p} d="M4 18.5h12.5M20 9v6.5a3 3 0 0 1-3 3M20 9l-1.2-3.5M20 9l1.5-3M11.5 7a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0 -11zM11.5 12.5a1.8 1.8 0 1 1 1.8 1.8" />;
+export const IconFeather = (p: IconProps) => <Glyph {...p} d="M20 4C13.5 4 8.5 8.5 8 15.5L5.5 20M8 15.5h5.5c3.2-1.6 5.5-5.4 6.5-11.5M9.8 11.5H16" />;
+export const IconBone = (p: IconProps) => <Glyph {...p} d="M7.8 4.6a2.5 2.5 0 0 0-3.3 3.3 2.5 2.5 0 1 0 3.3 3.3l5.1 5.1a2.5 2.5 0 1 0 3.3 3.3 2.5 2.5 0 0 0 3.3-3.3 2.5 2.5 0 1 0-3.3-3.3l-5.1-5.1a2.5 2.5 0 1 0-3.3-3.3z" />;
+
+/* Music -- Instruments and sound. */
+
+export const IconGuitar = (p: IconProps) => <Glyph {...p} d="M14 10l5.5-5.5M18 3l3 3M13.2 7.6c-1.4-.4-3 0-4 1-.8.8-1 1.8-1 2.8-1.3.1-2.6.5-3.5 1.4-2 2-1.7 5.4.6 7.6s5.6 2.6 7.6.6c.9-.9 1.3-2.2 1.4-3.5 1 0 2-.2 2.8-1 1-1 1.4-2.6 1-4M9.5 14.5l1 1" />;
+export const IconPiano = (p: IconProps) => <Glyph {...p} d="M3.5 5h17v14h-17zM7.5 5v7h2V5M14.5 5v7h2V5M8.5 12v7M15.5 12v7M12 5v14" />;
+export const IconDrum = (p: IconProps) => <Glyph {...p} d="M4 8.5c0-1.7 3.6-3 8-3s8 1.3 8 3v7.5c0 1.7-3.6 3-8 3s-8-1.3-8-3zM4 8.5c0 1.7 3.6 3 8 3s8-1.3 8-3M7 11.2v7M17 11.2v7M9 3l3 3M15 3l-3 3" />;
+export const IconSpeaker = (p: IconProps) => <Glyph {...p} d="M6.5 3h11a1.5 1.5 0 0 1 1.5 1.5v15a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19.5v-15A1.5 1.5 0 0 1 6.5 3zM12 11a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0 -7zM12 7.5h.01" />;
+export const IconMetronome = (p: IconProps) => <Glyph {...p} d="M9 3h6l3.5 18h-13zM6 15.5h12M12 15.5l4-9.5" />;
 
 /** A ring that spins: the loading indicator inside a button or a card. */
 export function IconSpinner({ size = "1em", title, className, ...rest }: IconProps) {
