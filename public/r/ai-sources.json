@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-sources",
+  "title": "AI sources",
+  "description": "Numbered citations that match the markers in an answer, with origin and the quoted line, in a sideways row.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/ai-sources.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface AiSource {\n  id: string;\n  title: string;\n  href: string;\n  /** The site or document it comes from: \"docs.example.com\", \"Q3 report.pdf\". */\n  origin: string;\n  /** A short quote the answer relied on. */\n  excerpt?: string;\n}\n\nexport interface AiSourcesProps {\n  sources: readonly AiSource[];\n  title?: string;\n  className?: string;\n}\n\n/**\n * Where an answer came from: numbered sources that match the [1] markers in\n * the text, each with its origin and the line that was used. A row that\n * scrolls sideways, so a long list never pushes the answer down.\n */\nexport function AiSources({ sources, title = \"Sources\", className }: AiSourcesProps) {\n  return (\n    <section data-slot=\"ai-sources\" aria-label={title} className={cn(\"text-sm\", className)}>\n      <h3 className=\"mb-2 text-xs font-medium text-muted-foreground\">{title}</h3>\n      <ol className=\"flex snap-x gap-2 overflow-x-auto pb-1\">\n        {sources.map((source, index) => (\n          <li key={source.id} className=\"w-60 shrink-0 snap-start\">\n            <a href={source.href} className=\"flex h-full flex-col gap-1.5 rounded-xl border border-border p-3 outline-none transition-colors hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n              <span className=\"flex items-center gap-2 text-xs text-muted-foreground\">\n                <span className=\"inline-flex size-4 items-center justify-center rounded bg-muted font-mono text-[0.625rem] text-foreground tabular-nums\">{index + 1}</span>\n                <span className=\"truncate\">{source.origin}</span>\n              </span>\n              <span className=\"line-clamp-2 font-medium leading-snug\">{source.title}</span>\n              {source.excerpt ? <span className=\"line-clamp-2 text-xs text-muted-foreground\">{source.excerpt}</span> : null}\n            </a>\n          </li>\n        ))}\n      </ol>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-sources.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

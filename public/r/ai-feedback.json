@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-feedback",
+  "title": "AI feedback",
+  "description": "Thumbs up or down on an answer, with one optional follow-up of ready-made reasons after a thumbs down.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-feedback.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconThumbsDown, IconThumbsUp } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiFeedbackProps {\n  /** Called once with the rating and, for a thumbs down, the chosen reason. */\n  onFeedback: (feedback: { rating: \"up\" | \"down\"; reason?: string }) => void;\n  reasons?: readonly string[];\n  className?: string;\n}\n\n/**\n * Thumbs up or down on an answer. A thumbs down asks one optional follow-up\n * with ready-made reasons, then thanks the person and gets out of the way.\n */\nexport function AiFeedback({ onFeedback, reasons = [\"Not accurate\", \"Not helpful\", \"Too long\", \"Unsafe\"], className }: AiFeedbackProps) {\n  const [rating, setRating] = useState<\"up\" | \"down\" | null>(null);\n  const [done, setDone] = useState(false);\n  const button = \"inline-flex size-7 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:bg-muted aria-pressed:text-foreground [&_svg]:size-3.5\";\n  function rate(value: \"up\" | \"down\") {\n    setRating(value);\n    if (value === \"up\") {\n      onFeedback({ rating: \"up\" });\n      setDone(true);\n    }\n  }\n  function reason(value?: string) {\n    onFeedback({ rating: \"down\", reason: value });\n    setDone(true);\n  }\n  return (\n    <div data-slot=\"ai-feedback\" className={cn(\"text-sm\", className)}>\n      <div role=\"group\" aria-label=\"Rate this answer\" className=\"flex items-center gap-1\">\n        <button type=\"button\" className={button} aria-pressed={rating === \"up\"} aria-label=\"Good answer\" disabled={done} onClick={() => rate(\"up\")}><IconThumbsUp /></button>\n        <button type=\"button\" className={button} aria-pressed={rating === \"down\"} aria-label=\"Bad answer\" disabled={done} onClick={() => rate(\"down\")}><IconThumbsDown /></button>\n        {done ? <span role=\"status\" className=\"ml-2 text-xs text-muted-foreground\">Thanks for the feedback.</span> : null}\n      </div>\n      {rating === \"down\" && !done ? (\n        <div className=\"mt-2 rounded-xl border border-border p-3\">\n          <p className=\"text-xs text-muted-foreground\">What went wrong?</p>\n          <div className=\"mt-2 flex flex-wrap gap-1.5\">\n            {reasons.map((value) => (\n              <button key={value} type=\"button\" onClick={() => reason(value)} className=\"rounded-full border border-border px-2.5 py-1 text-xs outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\">{value}</button>\n            ))}\n            <button type=\"button\" onClick={() => reason()} className=\"rounded-full px-2.5 py-1 text-xs text-muted-foreground underline-offset-4 hover:underline\">Skip</button>\n          </div>\n        </div>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-feedback.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

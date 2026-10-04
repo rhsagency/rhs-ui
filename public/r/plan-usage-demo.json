@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-usage-demo",
+  "title": "Plan usage demo",
+  "description": "A working preview of Plan usage.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/plan-usage.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/plan-usage-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { PlanUsage } from \"@rhs-ui/application/plan-usage\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-lg p-6\">\n      <PlanUsage\n        plan=\"Team plan\"\n        period=\"Renews on 1 April\"\n        action={<Button size=\"sm\" variant=\"outline\">Upgrade</Button>}\n        lines={[\n          { id: \"seats\", label: \"Seats\", used: 8, limit: 10 },\n          { id: \"storage\", label: \"Storage\", used: 42, limit: 100 },\n          { id: \"runs\", label: \"Automation runs\", used: 5000, limit: 5000 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

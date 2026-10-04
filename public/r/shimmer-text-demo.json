@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer-text-demo",
+  "title": "Shimmer text demo",
+  "description": "A working preview of Shimmer text.",
+  "registryDependencies": [
+    "https://rhsui.com/r/shimmer-text.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/shimmer-text-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ShimmerText } from \"@rhs-ui/motion/shimmer-text\";\n\nexport default function Demo(): React.JSX.Element {\n  const [active, setActive] = useState(true);\n  return (\n    <div className=\"mx-auto flex max-w-xl flex-col items-center gap-6 p-10\">\n      <p className=\"text-lg\">\n        <ShimmerText active={active}>{active ? \"Generating your report…\" : \"Report ready.\"}</ShimmerText>\n      </p>\n      <button type=\"button\" onClick={() => setActive((value) => !value)} className=\"rounded-full border border-border px-4 py-2 text-sm\">\n        {active ? \"Finish\" : \"Start again\"}\n      </button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

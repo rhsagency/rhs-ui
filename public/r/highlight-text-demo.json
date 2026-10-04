@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "highlight-text-demo",
+  "title": "Highlight text demo",
+  "description": "A working preview of Highlight text.",
+  "registryDependencies": [
+    "https://rhsui.com/r/highlight-text.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/highlight-text-demo.tsx",
+      "content": "import { HighlightText } from \"@rhs-ui/motion/highlight-text\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl space-y-6 p-10 text-2xl leading-snug font-medium tracking-[-.02em]\">\n      <p>\n        We build software that is <HighlightText>calm by default</HighlightText> and fast when you need it.\n      </p>\n      <p>\n        Every plan includes <HighlightText variant=\"block\" delay={400}>unlimited guests</HighlightText>.\n      </p>\n      <p>\n        <HighlightText variant=\"underline\" delay={700}>Read the case study</HighlightText> to see how.\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

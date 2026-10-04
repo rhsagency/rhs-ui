@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-in-view",
+  "title": "useInView",
+  "description": "Hooks for entrances: true once an element enters the viewport, and whether the reader prefers reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/use-in-view.ts",
+      "content": "\"use client\";\n\nimport { useEffect, useState, type RefObject } from \"react\";\n\n/**\n * True once the element has entered the viewport (or immediately when the\n * browser has no IntersectionObserver). With `once`, it never turns false\n * again, so an entrance plays one time.\n */\nexport function useInView(ref: RefObject<Element | null>, { once = true, margin = \"0px 0px -10% 0px\" }: { once?: boolean; margin?: string } = {}): boolean {\n  const [inView, setInView] = useState(false);\n  useEffect(() => {\n    const node = ref.current;\n    if (!node) return;\n    if (typeof IntersectionObserver === \"undefined\") {\n      setInView(true);\n      return;\n    }\n    const observer = new IntersectionObserver(\n      ([entry]) => {\n        if (!entry) return;\n        if (entry.isIntersecting) {\n          setInView(true);\n          if (once) observer.disconnect();\n        } else if (!once) setInView(false);\n      },\n      { rootMargin: margin },\n    );\n    observer.observe(node);\n    return () => observer.disconnect();\n  }, [ref, once, margin]);\n  return inView;\n}\n\n/** True when the reader asked for less motion. False on the server. */\nexport function usePrefersReducedMotion(): boolean {\n  const [reduced, setReduced] = useState(false);\n  useEffect(() => {\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    setReduced(query.matches);\n    const change = () => setReduced(query.matches);\n    query.addEventListener(\"change\", change);\n    return () => query.removeEventListener(\"change\", change);\n  }, []);\n  return reduced;\n}\n",
+      "type": "registry:hook",
+      "target": "components/rhs-ui/motion/use-in-view.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "motion"
+  },
+  "categories": [
+    "motion",
+    "motion"
+  ],
+  "type": "registry:hook"
+}

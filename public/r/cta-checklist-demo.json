@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-checklist-demo",
+  "title": "CTA with checklist demo",
+  "description": "A working preview of CTA with checklist.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/cta-checklist.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/cta-checklist-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { CtaChecklist } from \"@rhs-ui/marketing/cta-checklist\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <CtaChecklist\n        eyebrow=\"Start today\"\n        title=\"Everything you need for your first hundred customers.\"\n        description=\"Try every feature for 14 days. Keep your data if you leave.\"\n        actions={<><Button size=\"lg\">Start free trial</Button><Button size=\"lg\" variant=\"outline\">Talk to sales</Button></>}\n        note=\"No card needed for the trial.\"\n        points={[\"Unlimited projects and guests\", \"Invoices in 24 languages\", \"Bank feeds for 2,400 banks\", \"Export to your accountant in one click\", \"Support from real people, 7 days a week\"]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

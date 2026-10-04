@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "countdown-timer",
+  "title": "Countdown timer",
+  "description": "Days, hours, minutes and seconds to a moment, hydration-safe, with a summary for screen readers per minute.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/countdown-timer.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface CountdownTimerProps {\n  /** The moment it counts down to, as an ISO string or a timestamp. */\n  target: string | number;\n  /** What happens then, for screen readers and the finished state: \"Doors open\". */\n  label: string;\n  /** Text shown when the moment has passed. */\n  finished?: string;\n  className?: string;\n}\n\nfunction parts(ms: number) {\n  const total = Math.max(0, Math.floor(ms / 1000));\n  return { days: Math.floor(total / 86400), hours: Math.floor((total % 86400) / 3600), minutes: Math.floor((total % 3600) / 60), seconds: total % 60 };\n}\n\n/**\n * Days, hours, minutes and seconds to a launch or a sale end. Renders a\n * stable placeholder on the server (the server does not know the reader's\n * clock), then ticks every second. Screen readers get one summary that\n * updates per minute, not every tick.\n */\nexport function CountdownTimer({ target, label, finished = \"It has started.\", className }: CountdownTimerProps) {\n  const end = typeof target === \"number\" ? target : Date.parse(target);\n  const [now, setNow] = useState<number | null>(null);\n  useEffect(() => {\n    setNow(Date.now());\n    const timer = window.setInterval(() => setNow(Date.now()), 1000);\n    return () => window.clearInterval(timer);\n  }, []);\n  const left = now === null ? null : end - now;\n  if (left !== null && left <= 0) return <p data-slot=\"countdown-timer\" role=\"status\" className={cn(\"text-sm font-medium\", className)}>{finished}</p>;\n  const value = left === null ? null : parts(left);\n  const units: [keyof ReturnType<typeof parts>, string][] = [[\"days\", \"Days\"], [\"hours\", \"Hours\"], [\"minutes\", \"Minutes\"], [\"seconds\", \"Seconds\"]];\n  return (\n    <div data-slot=\"countdown-timer\" className={cn(\"inline-flex flex-col gap-2\", className)}>\n      <p className=\"sr-only\" aria-live=\"polite\">{value ? `${label} in ${value.days} days, ${value.hours} hours and ${value.minutes} minutes` : label}</p>\n      <div aria-hidden=\"true\" className=\"flex gap-2 sm:gap-3\">\n        {units.map(([key, name]) => (\n          <div key={key} className=\"flex min-w-16 flex-col items-center rounded-xl border border-border bg-card px-3 py-3 sm:min-w-20\">\n            <span className=\"font-mono text-3xl font-medium tabular-nums sm:text-4xl\">{value ? String(value[key]).padStart(2, \"0\") : \"--\"}</span>\n            <span className=\"mt-1 text-[0.6875rem] uppercase tracking-[.14em] text-muted-foreground\">{name}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/countdown-timer.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "application",
+    "data-display"
+  ],
+  "type": "registry:component"
+}

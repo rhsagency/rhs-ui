@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-section-demo",
+  "title": "Newsletter section demo",
+  "description": "A working preview of Newsletter section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/newsletter-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/newsletter-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { NewsletterSection } from \"@rhs-ui/marketing/newsletter-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <NewsletterSection\n        title=\"The Field Notes letter\"\n        description=\"One essay a month on building calm software, plus the three links we could not stop thinking about.\"\n        promise=\"Monthly. Unsubscribe in one click. No tracking pixels.\"\n        onSubmit={() => new Promise((resolve) => setTimeout(resolve, 600))}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

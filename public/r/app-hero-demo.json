@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-hero-demo",
+  "title": "App hero demo",
+  "description": "A working preview of App hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/app-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/app-hero-demo.tsx",
+      "content": "import { IconStar } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { AppHero } from \"@rhs-ui/marketing/app-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <AppHero\n        eyebrow=\"For iPhone and Android\"\n        title=\"Your training plan, in your pocket.\"\n        description=\"Stride builds a running plan around your week and adjusts it when life gets in the way.\"\n        actions={\n          <>\n            <Button size=\"lg\">App Store</Button>\n            <Button size=\"lg\" variant=\"outline\">Google Play</Button>\n          </>\n        }\n        proof={<span className=\"inline-flex items-center gap-1.5 [&_svg]:size-4\"><IconStar /> 4.8 from 12,000 ratings</span>}\n        screen={\n          <div className=\"flex h-full flex-col gap-3 p-4 pt-10 text-xs\">\n            <p className=\"text-muted-foreground\">Tuesday</p>\n            <p className=\"text-lg font-medium leading-tight\">Easy run, 6 km</p>\n            <div className=\"rounded-xl bg-muted p-3\">\n              <p className=\"text-muted-foreground\">Pace</p>\n              <p className=\"text-2xl font-medium tabular-nums\">5:42<span className=\"text-xs text-muted-foreground\"> /km</span></p>\n            </div>\n            <div className=\"flex h-24 items-end gap-1.5 rounded-xl bg-muted p-3\">\n              {[40, 65, 30, 80, 55, 90, 45].map((height, index) => (\n                <span key={index} className=\"flex-1 rounded-sm bg-foreground\" style={{ height: `${height}%` }} />\n              ))}\n            </div>\n            <span className=\"mt-auto rounded-full bg-foreground py-2.5 text-center text-background\">Start run</span>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

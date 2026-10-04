@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-edit",
+  "title": "Inline edit",
+  "description": "Text that becomes a field on click: Enter or blur saves, Escape restores, an empty value is not saved.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/inline-edit.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type KeyboardEvent } from \"react\";\n\nimport { IconEdit } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InlineEditProps {\n  value: string;\n  /** Called with the new value on Enter or blur; reject to keep editing. */\n  onSave: (value: string) => Promise<void> | void;\n  /** Names the field: \"Project name\". */\n  label: string;\n  placeholder?: string;\n  className?: string;\n}\n\n/**\n * Text that becomes a field when clicked: a project name, a title, a note.\n * Enter or leaving the field saves, Escape restores the old value, and an\n * empty value is not saved. The read view is a button, so it is reachable.\n */\nexport function InlineEdit({ value, onSave, label, placeholder = \"Untitled\", className }: InlineEditProps) {\n  const [editing, setEditing] = useState(false);\n  const [draft, setDraft] = useState(value);\n  const [error, setError] = useState(false);\n  const input = useRef<HTMLInputElement>(null);\n  useEffect(() => {\n    if (editing) input.current?.select();\n  }, [editing]);\n  async function save() {\n    const next = draft.trim();\n    if (!next || next === value) {\n      setDraft(value);\n      setEditing(false);\n      return;\n    }\n    try {\n      await onSave(next);\n      setError(false);\n      setEditing(false);\n    } catch {\n      setError(true);\n    }\n  }\n  function key(event: KeyboardEvent<HTMLInputElement>) {\n    if (event.key === \"Enter\") void save();\n    if (event.key === \"Escape\") {\n      setDraft(value);\n      setEditing(false);\n    }\n  }\n  if (editing) {\n    return (\n      <span data-slot=\"inline-edit\" className={cn(\"inline-flex flex-col\", className)}>\n        <input ref={input} aria-label={label} value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={key} onBlur={() => void save()} aria-invalid={error || undefined} className=\"-mx-1.5 rounded-md border border-border bg-background px-1.5 py-0.5 font-[inherit] text-[length:inherit] outline-none focus:ring-[3px] focus:ring-ring/40\" />\n        {error ? <span role=\"alert\" className=\"mt-1 text-xs text-destructive\">Could not save. Try again.</span> : null}\n      </span>\n    );\n  }\n  return (\n    <button type=\"button\" data-slot=\"inline-edit\" onClick={() => { setDraft(value); setEditing(true); }} aria-label={`${label}: ${value || placeholder}. Edit`} className={cn(\"group -mx-1.5 inline-flex items-center gap-2 rounded-md px-1.5 py-0.5 text-left outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\", className)}>\n      <span className={cn(!value && \"text-muted-foreground\")}>{value || placeholder}</span>\n      <span aria-hidden=\"true\" className=\"text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 [&_svg]:size-3.5\"><IconEdit /></span>\n    </button>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/inline-edit.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "application",
+    "forms"
+  ],
+  "type": "registry:component"
+}

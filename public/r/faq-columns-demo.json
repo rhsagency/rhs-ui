@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-columns-demo",
+  "title": "FAQ columns demo",
+  "description": "A working preview of FAQ columns.",
+  "registryDependencies": [
+    "https://rhsui.com/r/faq-columns.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/faq-columns-demo.tsx",
+      "content": "import { FaqColumns } from \"@rhs-ui/marketing/faq-columns\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FaqColumns\n        eyebrow=\"FAQ\"\n        title=\"Good questions, short answers\"\n        description={<>Something else? <a href=\"#contact\">Write to us</a> and a person answers.</>}\n        faqs={[\n          { question: \"Can I cancel at any time?\", answer: \"Yes. Cancel from your account; you keep access until the end of the period you paid for.\" },\n          { question: \"Where is my data stored?\", answer: \"In Frankfurt and Amsterdam, encrypted at rest. Nothing leaves the EU.\" },\n          { question: \"Do you offer discounts?\", answer: \"Nonprofits and schools get 50% off. Ask us with a link to your organisation.\" },\n          { question: \"Is there an API?\", answer: \"A REST API and webhooks on every plan, documented with examples.\" },\n          { question: \"Can I import from another tool?\", answer: \"From CSV and from the five most used tools, with history.\" },\n          { question: \"How does billing work for teams?\", answer: \"Per active member per month. Guests are always free.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

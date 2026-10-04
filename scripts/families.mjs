@@ -7,7 +7,7 @@
  */
 export const FAMILIES = new Set([
   "actions", "forms", "overlay", "navigation", "data-display", "feedback", "layout", "motion", "scroll", "theme",
-  "page-chrome", "hero", "features", "social-proof", "conversion", "account",
+  "page-chrome", "hero", "features", "social-proof", "conversion", "account", "content", "text", "ai",
   "application", "commerce", "dashboard", "models", "icons", "backgrounds", "templates",
 ]);
 

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-spotlight-demo",
+  "title": "Testimonial spotlight demo",
+  "description": "A working preview of Testimonial spotlight.",
+  "registryDependencies": [
+    "https://rhsui.com/r/testimonial-spotlight.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/testimonial-spotlight-demo.tsx",
+      "content": "import { TestimonialSpotlight } from \"@rhs-ui/marketing/testimonial-spotlight\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <TestimonialSpotlight\n        quote=\"We replaced three tools and a weekly status call. Our designers now spend Monday mornings designing, which is the whole point.\"\n        name=\"Mara Lindqvist\"\n        role=\"Head of Design, Fieldwork\"\n        avatar={<span className=\"flex size-full items-center justify-center text-sm font-medium\">ML</span>}\n        result={{ value: \"6 h\", label: \"saved per designer, per week\" }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

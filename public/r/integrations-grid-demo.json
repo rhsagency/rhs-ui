@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "integrations-grid-demo",
+  "title": "Integrations grid demo",
+  "description": "A working preview of Integrations grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/integrations-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/integrations-grid-demo.tsx",
+      "content": "import { IconCalendar, IconCloud, IconCode, IconCreditCard, IconMail, IconMessage } from \"@rhs-ui/icons\";\nimport { IntegrationsGrid } from \"@rhs-ui/marketing/integrations-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <IntegrationsGrid\n        eyebrow=\"Integrations\"\n        title=\"Works with the tools you already pay for\"\n        description=\"Two-way sync, set up in a minute, no code.\"\n        integrations={[\n          { id: \"mail\", name: \"Mail\", category: \"Inbox\", description: \"Turn any email into a task with its thread attached.\", mark: <IconMail />, href: \"#\" },\n          { id: \"chat\", name: \"Team chat\", category: \"Messaging\", description: \"Get a digest in your channel, reply to update work.\", mark: <IconMessage />, href: \"#\" },\n          { id: \"calendar\", name: \"Calendar\", category: \"Scheduling\", description: \"Deadlines and focus blocks in your calendar.\", mark: <IconCalendar />, href: \"#\" },\n          { id: \"billing\", name: \"Billing\", category: \"Finance\", description: \"Invoice tracked time straight from a project.\", mark: <IconCreditCard />, href: \"#\" },\n          { id: \"storage\", name: \"Cloud storage\", category: \"Files\", description: \"Link folders; files stay where they live.\", mark: <IconCloud />, href: \"#\" },\n          { id: \"git\", name: \"Git hosting\", category: \"Engineering\", description: \"Pull requests move tasks to review on their own.\", mark: <IconCode />, href: \"#\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

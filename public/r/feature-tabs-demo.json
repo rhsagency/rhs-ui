@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-tabs-demo",
+  "title": "Feature tabs demo",
+  "description": "A working preview of Feature tabs.",
+  "registryDependencies": [
+    "https://rhsui.com/r/feature-tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-tabs-demo.tsx",
+      "content": "\"use client\";\n\nimport { FeatureTabs } from \"@rhs-ui/marketing/feature-tabs\";\n\nfunction Screen({ rows }: { rows: string[] }) {\n  return (\n    <div className=\"space-y-2 p-6 text-sm\">\n      {rows.map((row, index) => (\n        <p key={row} className=\"flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3\">\n          {row}\n          <span className=\"font-mono text-xs text-muted-foreground tabular-nums\">{String(index + 1).padStart(2, \"0\")}</span>\n        </p>\n      ))}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FeatureTabs\n        eyebrow=\"How teams use it\"\n        title=\"Built for the way your week actually goes\"\n        tabs={[\n          { id: \"plan\", label: \"Plan\", title: \"A plan everyone can read\", description: \"Goals at the top, work underneath, and dates that move when the work moves.\", points: [\"Quarterly goals\", \"Linked tasks\", \"Automatic dates\"], visual: <Screen rows={[\"Launch in Germany\", \"New onboarding\", \"Pricing experiment\"]} /> },\n          { id: \"track\", label: \"Track\", title: \"Progress without the status meeting\", description: \"See what moved since yesterday in one glance, written by the work itself.\", points: [\"Daily digest\", \"Blocked items first\"], visual: <Screen rows={[\"3 tasks done\", \"1 blocked by review\", \"2 due tomorrow\"]} /> },\n          { id: \"review\", label: \"Review\", title: \"Decisions that stay findable\", description: \"Every decision with the reason and the people, linked to the work it changed.\", visual: <Screen rows={[\"Use EU hosting only\", \"Drop the free trial\", \"Hire a support lead\"]} /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

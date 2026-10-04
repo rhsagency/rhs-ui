@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "careers-list-demo",
+  "title": "Careers list demo",
+  "description": "A working preview of Careers list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/careers-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/careers-list-demo.tsx",
+      "content": "\"use client\";\n\nimport { CareersList } from \"@rhs-ui/marketing/careers-list\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <CareersList\n        description=\"We are a remote-first team across Europe. Every role is open to anyone within three hours of Amsterdam time.\"\n        openings={[\n          { id: \"1\", title: \"Senior product designer\", team: \"Design\", location: \"Remote, EU\", type: \"Full-time\", href: \"#\" },\n          { id: \"2\", title: \"Brand designer\", team: \"Design\", location: \"Amsterdam\", type: \"Contract\", href: \"#\" },\n          { id: \"3\", title: \"Staff engineer, platform\", team: \"Engineering\", location: \"Remote, EU\", type: \"Full-time\", href: \"#\" },\n          { id: \"4\", title: \"Front-end engineer\", team: \"Engineering\", location: \"Remote, EU\", type: \"Full-time\", href: \"#\" },\n          { id: \"5\", title: \"Support lead\", team: \"Customer\", location: \"Amsterdam\", type: \"Full-time\", href: \"#\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-table-demo",
+  "title": "Pricing table demo",
+  "description": "A working preview of Pricing table.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/pricing-table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pricing-table-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { PricingTable } from \"@rhs-ui/marketing/pricing-table\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <PricingTable\n        plans={[\n          { id: \"starter\", name: \"Starter\", price: \"€0\", period: \"for up to 3 people\", action: <Button variant=\"outline\" className=\"w-full\">Start free</Button> },\n          { id: \"team\", name: \"Team\", price: \"€12\", period: \"per person, per month\", action: <Button className=\"w-full\">Try Team</Button>, highlighted: true },\n          { id: \"business\", name: \"Business\", price: \"€24\", period: \"per person, per month\", action: <Button variant=\"outline\" className=\"w-full\">Contact sales</Button> },\n        ]}\n        groups={[\n          {\n            title: \"Workspace\",\n            rows: [\n              { feature: \"Projects\", values: { starter: \"5\", team: \"Unlimited\", business: \"Unlimited\" } },\n              { feature: \"File storage\", values: { starter: \"2 GB\", team: \"100 GB\", business: \"1 TB\" } },\n              { feature: \"Guests\", values: { starter: false, team: true, business: true } },\n            ],\n          },\n          {\n            title: \"Security\",\n            rows: [\n              { feature: \"Two-factor sign-in\", values: { starter: true, team: true, business: true } },\n              { feature: \"Single sign-on (SAML)\", values: { starter: false, team: false, business: true } },\n              { feature: \"Audit log\", values: { starter: false, team: \"30 days\", business: \"1 year\" } },\n            ],\n          },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

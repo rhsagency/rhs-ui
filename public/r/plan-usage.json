@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-usage",
+  "title": "Plan usage",
+  "description": "Usage against plan limits as labelled meters, with warnings in text at 80% and 100%.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/plan-usage.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface UsageLine {\n  id: string;\n  label: string;\n  used: number;\n  limit: number;\n  /** How to print a value: \"2.4 GB\", \"1,240 runs\". Defaults to the number. */\n  format?: (value: number) => string;\n}\n\nexport interface PlanUsageProps {\n  plan: string;\n  /** \"Renews on 1 April\". */\n  period?: string;\n  lines: readonly UsageLine[];\n  action?: ReactNode;\n  className?: string;\n}\n\n/**\n * Where a team stands against its plan: one bar per limit, the numbers in\n * words, and a warning in text at 80% and 100%. Bars are meters, so screen\n * readers hear the value and the maximum.\n */\nexport function PlanUsage({ plan, period, lines, action, className }: PlanUsageProps) {\n  return (\n    <section data-slot=\"plan-usage\" aria-label={`${plan} usage`} className={cn(\"rounded-xl border border-border p-5\", className)}>\n      <header className=\"flex flex-wrap items-start justify-between gap-3\">\n        <div>\n          <h3 className=\"text-sm font-medium\">{plan}</h3>\n          {period ? <p className=\"text-xs text-muted-foreground\">{period}</p> : null}\n        </div>\n        {action}\n      </header>\n      <ul className=\"mt-5 space-y-5\">\n        {lines.map((line) => {\n          const ratio = line.limit > 0 ? Math.min(1, line.used / line.limit) : 0;\n          const print = line.format ?? String;\n          const state = ratio >= 1 ? \"full\" : ratio >= 0.8 ? \"near\" : \"ok\";\n          return (\n            <li key={line.id}>\n              <div className=\"flex items-baseline justify-between gap-4 text-sm\">\n                <span>{line.label}</span>\n                <span className=\"text-muted-foreground tabular-nums\">\n                  {print(line.used)} of {print(line.limit)}\n                </span>\n              </div>\n              <div role=\"meter\" aria-label={line.label} aria-valuemin={0} aria-valuemax={line.limit} aria-valuenow={line.used} className=\"mt-2 h-1.5 overflow-hidden rounded-full bg-muted\">\n                <div className={cn(\"h-full rounded-full\", state === \"full\" ? \"bg-destructive\" : state === \"near\" ? \"bg-[var(--color-warning,oklch(0.72_0.16_75))]\" : \"bg-foreground\")} style={{ width: `${ratio * 100}%` }} />\n              </div>\n              {state !== \"ok\" ? <p className={cn(\"mt-1.5 text-xs\", state === \"full\" ? \"text-destructive\" : \"text-muted-foreground\")}>{state === \"full\" ? \"Limit reached.\" : \"Nearly at the limit.\"}</p> : null}\n            </li>\n          );\n        })}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/plan-usage.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "account"
+  },
+  "categories": [
+    "application",
+    "account"
+  ],
+  "type": "registry:component"
+}

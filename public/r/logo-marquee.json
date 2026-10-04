@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-marquee",
+  "title": "Logo marquee",
+  "description": "A drifting row of customer marks that pauses on hover and focus and stands still under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/marquee.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/logo-marquee.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { Marquee } from \"@rhs-ui/primitives/marquee\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface MarqueeLogo {\n  name: string;\n  mark?: ReactNode;\n}\n\nexport interface LogoMarqueeProps {\n  title?: string;\n  logos: readonly MarqueeLogo[];\n  /** Seconds for one pass. */\n  duration?: number;\n  className?: string;\n}\n\n/**\n * A drifting row of customer marks under a quiet line. Built on Marquee, so\n * it pauses on hover and focus and stands still under reduced motion.\n */\nexport function LogoMarquee({ title = \"Trusted by teams at\", logos, duration = 36, className }: LogoMarqueeProps) {\n  return (\n    <section data-slot=\"logo-marquee\" className={cn(\"py-12 sm:py-16\", className)}>\n      <h2 className=\"mb-8 text-center text-sm text-muted-foreground\">{title}</h2>\n      <Marquee label={title} duration={duration}>\n        {logos.map((logo) => (\n          <span key={logo.name} className=\"flex h-10 items-center text-foreground/55 [&_svg]:h-7 [&_svg]:w-auto\">\n            {logo.mark ? (\n              <>\n                <span aria-hidden=\"true\">{logo.mark}</span>\n                <span className=\"sr-only\">{logo.name}</span>\n              </>\n            ) : (\n              <span className=\"text-lg font-semibold tracking-tight whitespace-nowrap\">{logo.name}</span>\n            )}\n          </span>\n        ))}\n      </Marquee>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/logo-marquee.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

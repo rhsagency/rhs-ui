@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cookie-banner",
+  "title": "Cookie banner",
+  "description": "Consent as easy to refuse as to give: equal accept and reject, per-category switches, nothing pre-ticked.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/cookie-banner.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Switch } from \"@rhs-ui/primitives/switch\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CookieCategory {\n  id: string;\n  label: string;\n  description: string;\n  /** Necessary cookies cannot be switched off. */\n  required?: boolean;\n}\n\nexport interface CookieBannerProps {\n  categories: readonly CookieCategory[];\n  /** Called with the ids that were accepted; store the choice yourself. */\n  onDecide: (accepted: string[]) => void;\n  policyHref: string;\n  /** Pin to the bottom of the viewport (default) or render in flow. */\n  position?: \"fixed\" | \"inline\";\n  className?: string;\n}\n\n/**\n * Consent that is as easy to refuse as to give: accept all and reject all\n * are equal buttons, and the details let people choose per category. No\n * box is pre-ticked, which is what the GDPR asks for.\n */\nexport function CookieBanner({ categories, onDecide, policyHref, position = \"fixed\", className }: CookieBannerProps) {\n  const id = useId();\n  const [details, setDetails] = useState(false);\n  const [chosen, setChosen] = useState<Record<string, boolean>>({});\n  const required = categories.filter((category) => category.required).map((category) => category.id);\n  return (\n    <div\n      data-slot=\"cookie-banner\"\n      role=\"dialog\"\n      aria-labelledby={`${id}-title`}\n      className={cn(\"z-50 w-full max-w-xl rounded-2xl border border-border bg-background p-6 shadow-lg\", position === \"fixed\" && \"fixed right-4 bottom-4 left-4 mx-auto sm:left-auto\", className)}\n    >\n      <h2 id={`${id}-title`} className=\"text-base font-medium\">Cookies on this site</h2>\n      <p className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">\n        We use necessary cookies to make the site work, and others only if you allow them. <a href={policyHref} className=\"text-foreground underline underline-offset-4\">Cookie policy</a>\n      </p>\n      {details ? (\n        <ul className=\"mt-5 divide-y divide-border border-y border-border\">\n          {categories.map((category) => (\n            <li key={category.id} className=\"flex items-start justify-between gap-6 py-4\">\n              <label htmlFor={`${id}-${category.id}`} className=\"text-sm\">\n                <span className=\"block font-medium\">{category.label}</span>\n                <span className=\"mt-0.5 block text-muted-foreground\">{category.description}</span>\n              </label>\n              <Switch\n                id={`${id}-${category.id}`}\n                checked={category.required ? true : Boolean(chosen[category.id])}\n                disabled={category.required}\n                onCheckedChange={(value) => setChosen((current) => ({ ...current, [category.id]: value }))}\n              />\n            </li>\n          ))}\n        </ul>\n      ) : null}\n      <div className=\"mt-5 flex flex-wrap gap-2\">\n        <Button variant=\"outline\" onClick={() => onDecide(required)}>Reject all</Button>\n        <Button onClick={() => onDecide(categories.map((category) => category.id))}>Accept all</Button>\n        {details ? (\n          <Button variant=\"ghost\" onClick={() => onDecide([...required, ...Object.keys(chosen).filter((key) => chosen[key])])}>Save choices</Button>\n        ) : (\n          <Button variant=\"ghost\" onClick={() => setDetails(true)}>Choose</Button>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/cookie-banner.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

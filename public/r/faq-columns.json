@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-columns",
+  "title": "FAQ columns",
+  "description": "All answers open in two columns beside the heading, for a short FAQ that should not need clicks.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/faq-columns.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FaqEntry {\n  question: string;\n  answer: ReactNode;\n}\n\nexport interface FaqColumnsProps {\n  eyebrow?: string;\n  title: string;\n  description?: ReactNode;\n  faqs: readonly FaqEntry[];\n  className?: string;\n}\n\n/**\n * Questions and answers all open, in two columns: for the short FAQ where\n * clicking to reveal every answer would only slow people down. The heading\n * sits beside the list on wide screens.\n */\nexport function FaqColumns({ eyebrow, title, description, faqs, className }: FaqColumnsProps) {\n  return (\n    <section data-slot=\"faq-columns\" className={cn(\"grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_2fr] lg:gap-20\", className)}>\n      <header>\n        {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <div className=\"mt-5 text-sm leading-relaxed text-muted-foreground [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4\">{description}</div> : null}\n      </header>\n      <dl className=\"grid gap-x-10 gap-y-10 sm:grid-cols-2\">\n        {faqs.map((faq) => (\n          <div key={faq.question}>\n            <dt className=\"text-base font-medium\">{faq.question}</dt>\n            <dd className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">{faq.answer}</dd>\n          </div>\n        ))}\n      </dl>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/faq-columns.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

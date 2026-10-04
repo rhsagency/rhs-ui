@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-single-demo",
+  "title": "Single-plan pricing demo",
+  "description": "A working preview of Single-plan pricing.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/pricing-single.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pricing-single-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { PricingSingle } from \"@rhs-ui/marketing/pricing-single\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <PricingSingle\n        eyebrow=\"Pricing\"\n        title=\"One price. Everything in it.\"\n        description=\"No tiers to compare and no feature you will need next month locked behind a sales call.\"\n        planName=\"Field Notes Pro\"\n        price=\"€8\"\n        period=\"per month\"\n        action={<Button size=\"lg\">Start 30-day trial</Button>}\n        note=\"Cancel any time. Your notes stay yours.\"\n        features={[\"Unlimited notebooks\", \"Sync across all devices\", \"End-to-end encryption\", \"Export to Markdown and PDF\", \"Priority support\"]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

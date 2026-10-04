@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "changelog-list-demo",
+  "title": "Changelog list demo",
+  "description": "A working preview of Changelog list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/changelog-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/changelog-list-demo.tsx",
+      "content": "import { ChangelogList } from \"@rhs-ui/marketing/changelog-list\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <ChangelogList\n        entries={[\n          { version: \"v2.4.0\", date: \"12 March 2026\", dateTime: \"2026-03-12\", title: \"Shared views and a faster search\", tags: [\"New\", \"Improved\"], body: <><p>Save any filter as a view and share it with your team. Views update live as work moves.</p><ul><li>Search now returns results in under 80 ms on large workspaces.</li><li>Keyboard: <strong>G then V</strong> opens your views.</li></ul></> },\n          { version: \"v2.3.2\", date: \"28 February 2026\", dateTime: \"2026-02-28\", title: \"Export fixes\", tags: [\"Fixed\"], body: <p>CSV exports with more than 10,000 rows no longer time out. Dates now export in your workspace time zone.</p> },\n          { version: \"v2.3.0\", date: \"14 February 2026\", dateTime: \"2026-02-14\", title: \"Guests can comment\", tags: [\"New\"], body: <p>Invite clients as guests: they see what you share and can comment, nothing else. Guests are free on every plan.</p> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

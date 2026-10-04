@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-checklist",
+  "title": "CTA with checklist",
+  "description": "The closing ask beside a checklist of everything included, on one bordered surface.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/cta-checklist.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CtaChecklistProps {\n  eyebrow?: string;\n  title: string;\n  description?: string;\n  /** What you get, three to six short lines. */\n  points: readonly string[];\n  actions: ReactNode;\n  note?: string;\n  className?: string;\n}\n\n/**\n * The close that removes the last doubts: the ask on the left, a checklist of\n * what is included on the right, on one bordered surface.\n */\nexport function CtaChecklist({ eyebrow, title, description, points, actions, note, className }: CtaChecklistProps) {\n  return (\n    <section data-slot=\"cta-checklist\" className={cn(\"grid gap-10 rounded-2xl border border-border bg-card p-8 sm:p-12 lg:grid-cols-2 lg:gap-16\", className)}>\n      <div>\n        {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-5 max-w-md text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        <div className=\"mt-8 flex flex-wrap gap-3\">{actions}</div>\n        {note ? <p className=\"mt-4 text-xs text-muted-foreground\">{note}</p> : null}\n      </div>\n      <ul className=\"flex flex-col justify-center gap-4 border-border lg:border-l lg:pl-16\">\n        {points.map((point) => (\n          <li key={point} className=\"flex gap-3 text-sm\">\n            <span className=\"mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-foreground text-background [&_svg]:size-3\">\n              <IconCheck />\n            </span>\n            {point}\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/cta-checklist.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

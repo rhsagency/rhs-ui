@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shortcut-list",
+  "title": "Shortcut list",
+  "description": "A keyboard cheat sheet in groups, keys right-aligned, with sequences shown as G then P.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/kbd.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/shortcut-list.tsx",
+      "content": "import { Kbd, KbdGroup } from \"@rhs-ui/primitives/kbd\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface Shortcut {\n  /** What it does: \"Open the command palette\". */\n  action: string;\n  /** Keys pressed together, e.g. [\"⌘\", \"K\"]; a sequence uses \"then\": [\"G\", \"then\", \"P\"]. */\n  keys: readonly string[];\n}\n\nexport interface ShortcutListProps {\n  groups: readonly { title: string; shortcuts: readonly Shortcut[] }[];\n  className?: string;\n}\n\n/**\n * The keyboard cheat sheet for a help panel or a dialog: groups of actions\n * with their keys right-aligned. Sequences show \"then\" between keys, so\n * \"G then P\" never reads as a chord.\n */\nexport function ShortcutList({ groups, className }: ShortcutListProps) {\n  return (\n    <div data-slot=\"shortcut-list\" className={cn(\"grid gap-8 sm:grid-cols-2\", className)}>\n      {groups.map((group) => (\n        <section key={group.title}>\n          <h3 className=\"mb-2 text-xs font-medium uppercase tracking-[.14em] text-muted-foreground\">{group.title}</h3>\n          <dl className=\"divide-y divide-border\">\n            {group.shortcuts.map((shortcut) => (\n              <div key={shortcut.action} className=\"flex items-center justify-between gap-4 py-2.5 text-sm\">\n                <dt>{shortcut.action}</dt>\n                <dd>\n                  <KbdGroup>\n                    {shortcut.keys.map((key, index) => (key === \"then\" ? <span key={index} className=\"px-0.5 text-xs text-muted-foreground\">then</span> : <Kbd key={index}>{key}</Kbd>))}\n                  </KbdGroup>\n                </dd>\n              </div>\n            ))}\n          </dl>\n        </section>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/shortcut-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "application",
+    "data-display"
+  ],
+  "type": "registry:component"
+}

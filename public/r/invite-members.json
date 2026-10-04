@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "invite-members",
+  "title": "Invite members",
+  "description": "Invite several people at once as address chips with one role, invalid addresses and the seat limit in words.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/invite-members.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type KeyboardEvent } from \"react\";\n\nimport { IconClose } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InviteMembersProps {\n  roles: readonly { id: string; label: string; description?: string }[];\n  defaultRole?: string;\n  /** Resolve when the invites are sent. */\n  onInvite: (invite: { emails: string[]; role: string }) => Promise<void> | void;\n  /** Seats left on the plan; inviting more is blocked with a message. */\n  seatsLeft?: number;\n  className?: string;\n}\n\nconst EMAIL = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n\n/**\n * Invite several people at once: type or paste addresses (comma, space or\n * Enter makes a chip), pick one role, send. Invalid addresses are marked in\n * words; the seat limit is checked before anything is sent.\n */\nexport function InviteMembers({ roles, defaultRole, onInvite, seatsLeft, className }: InviteMembersProps) {\n  const id = useId();\n  const [emails, setEmails] = useState<string[]>([]);\n  const [draft, setDraft] = useState(\"\");\n  const [role, setRole] = useState(defaultRole ?? roles[0]?.id ?? \"\");\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\">(\"idle\");\n  function commit(text: string) {\n    const parts = text.split(/[\\s,;]+/).map((part) => part.trim()).filter(Boolean);\n    if (parts.length) setEmails((current) => [...new Set([...current, ...parts])]);\n    setDraft(\"\");\n  }\n  function key(event: KeyboardEvent<HTMLInputElement>) {\n    if (event.key === \"Enter\" || event.key === \",\" || event.key === \" \") {\n      event.preventDefault();\n      commit(draft);\n    } else if (event.key === \"Backspace\" && !draft) setEmails((current) => current.slice(0, -1));\n  }\n  const invalid = emails.filter((email) => !EMAIL.test(email));\n  const over = seatsLeft !== undefined && emails.length > seatsLeft;\n  async function send() {\n    if (!emails.length || invalid.length || over) return;\n    setState(\"busy\");\n    await onInvite({ emails, role });\n    setEmails([]);\n    setState(\"done\");\n  }\n  return (\n    <div data-slot=\"invite-members\" className={cn(\"rounded-xl border border-border p-4\", className)}>\n      <label htmlFor={id} className=\"text-sm font-medium\">Invite people</label>\n      <div className=\"mt-2 flex flex-wrap items-center gap-1.5 rounded-lg border border-border bg-background p-1.5 focus-within:ring-[3px] focus-within:ring-ring/40\">\n        {emails.map((email) => {\n          const bad = !EMAIL.test(email);\n          return (\n            <span key={email} className={cn(\"inline-flex items-center gap-1 rounded-md py-0.5 pr-0.5 pl-2 text-xs\", bad ? \"bg-destructive/12 text-destructive\" : \"bg-muted\")}>\n              {email}\n              {bad ? <span className=\"sr-only\"> (not a valid address)</span> : null}\n              <button type=\"button\" aria-label={`Remove ${email}`} onClick={() => setEmails((current) => current.filter((value) => value !== email))} className=\"inline-flex size-5 items-center justify-center rounded hover:bg-background/60 [&_svg]:size-3\"><IconClose /></button>\n            </span>\n          );\n        })}\n        <input\n          id={id}\n          value={draft}\n          onChange={(event) => setDraft(event.target.value)}\n          onKeyDown={key}\n          onBlur={() => draft && commit(draft)}\n          onPaste={(event) => { event.preventDefault(); commit(event.clipboardData.getData(\"text\")); }}\n          placeholder={emails.length ? \"\" : \"name@company.com, another@company.com\"}\n          className=\"min-w-40 flex-1 bg-transparent px-1.5 py-1 text-sm outline-none placeholder:text-muted-foreground\"\n          type=\"email\"\n          multiple\n        />\n      </div>\n      {invalid.length ? <p role=\"alert\" className=\"mt-2 text-xs text-destructive\">{invalid.length === 1 ? \"One address is\" : `${invalid.length} addresses are`} not valid.</p> : null}\n      {over ? <p role=\"alert\" className=\"mt-2 text-xs text-destructive\">Your plan has {seatsLeft} seats left. Remove {emails.length - (seatsLeft ?? 0)} or upgrade.</p> : null}\n      <div className=\"mt-3 flex flex-wrap items-center gap-2\">\n        <Select value={role} onValueChange={setRole}>\n          <SelectTrigger size=\"sm\" aria-label=\"Role\" className=\"w-40\"><SelectValue /></SelectTrigger>\n          <SelectContent>\n            {roles.map((option) => <SelectItem key={option.id} value={option.id} description={option.description}>{option.label}</SelectItem>)}\n          </SelectContent>\n        </Select>\n        <Button size=\"sm\" onClick={send} loading={state === \"busy\"} disabled={!emails.length || invalid.length > 0 || over}>\n          Send {emails.length > 1 ? `${emails.length} invites` : \"invite\"}\n        </Button>\n        {state === \"done\" ? <span role=\"status\" className=\"text-xs text-muted-foreground\">Invites sent.</span> : null}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/invite-members.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "account"
+  },
+  "categories": [
+    "application",
+    "account"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-spotlight",
+  "title": "Testimonial spotlight",
+  "description": "One customer and one large quote, with the person and the result they got beside it.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/testimonial-spotlight.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface TestimonialSpotlightProps {\n  quote: string;\n  name: string;\n  role: string;\n  /** A portrait or a logo, 48px. */\n  avatar?: ReactNode;\n  /** A number the quote is about: \"3x faster close\". */\n  result?: { value: string; label: string };\n  className?: string;\n}\n\n/**\n * One customer, one big quote. For the testimonial that carries the page:\n * the words large and centred, the person underneath, and the result they\n * got beside it when there is one.\n */\nexport function TestimonialSpotlight({ quote, name, role, avatar, result, className }: TestimonialSpotlightProps) {\n  return (\n    <section data-slot=\"testimonial-spotlight\" className={cn(\"py-16 sm:py-24\", className)}>\n      <figure className=\"mx-auto max-w-3xl text-center\">\n        <span aria-hidden=\"true\" className=\"block font-serif text-7xl leading-none text-muted-foreground/40\">&ldquo;</span>\n        <blockquote className=\"-mt-4 text-2xl leading-snug font-medium tracking-[-.03em] text-balance sm:text-3xl\">{quote}</blockquote>\n        <figcaption className=\"mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10\">\n          <span className=\"flex items-center gap-3 text-left\">\n            {avatar ? <span className=\"size-12 shrink-0 overflow-hidden rounded-full bg-muted [&_img]:size-full [&_img]:object-cover\">{avatar}</span> : null}\n            <span>\n              <span className=\"block text-sm font-medium\">{name}</span>\n              <span className=\"block text-sm text-muted-foreground\">{role}</span>\n            </span>\n          </span>\n          {result ? (\n            <span className=\"border-border text-left sm:border-l sm:pl-10\">\n              <span className=\"block text-3xl font-medium tracking-[-.05em] tabular-nums\">{result.value}</span>\n              <span className=\"block text-sm text-muted-foreground\">{result.label}</span>\n            </span>\n          ) : null}\n        </figcaption>\n      </figure>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/testimonial-spotlight.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

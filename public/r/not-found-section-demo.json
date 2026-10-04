@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "not-found-section-demo",
+  "title": "Not found section demo",
+  "description": "A working preview of Not found section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/not-found-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/not-found-section-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { NotFoundSection } from \"@rhs-ui/marketing/not-found-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <NotFoundSection\n        actions={<><Button>Back to home</Button><Button variant=\"outline\">Search the docs</Button></>}\n        suggestions={[\n          { label: \"Getting started\", href: \"#\", description: \"Install and ship your first page\" },\n          { label: \"Pricing\", href: \"#\", description: \"Plans for every team size\" },\n          { label: \"Support\", href: \"#\", description: \"Talk to a person\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

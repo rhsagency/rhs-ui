@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-message",
+  "title": "AI message",
+  "description": "One turn of a conversation: user turns in a bubble, assistant turns as text with copy, regenerate and a streaming caret.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-message.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconCheck, IconCopy, IconRefresh, IconSparkle } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiMessageProps {\n  role: \"user\" | \"assistant\";\n  /** The text of the message, used for copying. */\n  text: string;\n  /** Rendered content; defaults to the text in paragraphs. */\n  children?: ReactNode;\n  /** Who is speaking, for the label above the message. */\n  name?: string;\n  /** Shown while the answer is still arriving: a caret after the text. */\n  streaming?: boolean;\n  onRegenerate?: () => void;\n  className?: string;\n}\n\n/**\n * One turn of a conversation with an assistant. User turns sit right in a\n * bubble; assistant turns sit left without one, like a document, with copy\n * and regenerate under them once the answer is complete.\n */\nexport function AiMessage({ role, text, children, name, streaming = false, onRegenerate, className }: AiMessageProps) {\n  const [copied, setCopied] = useState(false);\n  async function copy() {\n    await navigator.clipboard.writeText(text);\n    setCopied(true);\n    window.setTimeout(() => setCopied(false), 1600);\n  }\n  const body = children ?? text.split(/\\n{2,}/).map((paragraph, index) => <p key={index}>{paragraph}</p>);\n  if (role === \"user\") {\n    return (\n      <div data-slot=\"ai-message\" data-role=\"user\" className={cn(\"flex justify-end\", className)}>\n        <div className=\"max-w-[80%] rounded-2xl rounded-br-md bg-muted px-4 py-2.5 text-sm leading-relaxed [&_p+p]:mt-2\">\n          <span className=\"sr-only\">{name ?? \"You\"}: </span>\n          {body}\n        </div>\n      </div>\n    );\n  }\n  const action = \"inline-flex size-7 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-3.5\";\n  return (\n    <div data-slot=\"ai-message\" data-role=\"assistant\" className={cn(\"flex gap-3\", className)}>\n      <span aria-hidden=\"true\" className=\"mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-border [&_svg]:size-3.5\">\n        <IconSparkle />\n      </span>\n      <div className=\"min-w-0 flex-1\">\n        <p className=\"text-xs font-medium text-muted-foreground\">{name ?? \"Assistant\"}</p>\n        <div aria-live={streaming ? \"polite\" : undefined} aria-busy={streaming} className=\"mt-1 text-sm leading-relaxed [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_code]:font-mono [&_code]:text-[0.8125rem] [&_li]:ml-4 [&_li]:list-disc [&_p+p]:mt-3 [&_ul]:mt-2\">\n          {body}\n          {streaming ? <span aria-hidden=\"true\" className=\"ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 bg-foreground motion-safe:animate-pulse\" /> : null}\n        </div>\n        {streaming ? null : (\n          <div className=\"mt-2 flex gap-1\">\n            <button type=\"button\" onClick={copy} className={action} aria-label={copied ? \"Copied\" : \"Copy answer\"}>\n              {copied ? <IconCheck /> : <IconCopy />}\n            </button>\n            {onRegenerate ? (\n              <button type=\"button\" onClick={onRegenerate} className={action} aria-label=\"Regenerate answer\">\n                <IconRefresh />\n              </button>\n            ) : null}\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-message.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

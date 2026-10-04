@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stats-grid",
+  "title": "Stats grid",
+  "description": "Proof in numbers: large figures with a label and the context that keeps each claim honest.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/stats-grid.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface Stat {\n  value: string;\n  label: string;\n  /** One line of context: \"since launch\", \"median across 4,000 shops\". */\n  detail?: string;\n}\n\nexport interface StatsGridProps {\n  eyebrow?: string;\n  title?: string;\n  description?: string;\n  stats: readonly Stat[];\n  className?: string;\n}\n\n/**\n * Proof in numbers, each with the context that makes it honest. Four cells\n * on desktop, two on a phone; the figure is the visual, the label the claim.\n */\nexport function StatsGrid({ eyebrow, title, description, stats, className }: StatsGridProps) {\n  return (\n    <section data-slot=\"stats-grid\" className={cn(\"py-16 sm:py-24\", className)}>\n      {title ? (\n        <header className=\"mx-auto mb-14 max-w-2xl text-center\">\n          {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n          <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n          {description ? <p className=\"mt-5 text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        </header>\n      ) : null}\n      <dl className=\"grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4\">\n        {stats.map((stat) => (\n          <div key={stat.label} className=\"flex flex-col border-l border-border pl-6\">\n            <dt className=\"mt-3 text-sm font-medium\">{stat.label}</dt>\n            <dd className=\"order-first text-5xl font-medium tracking-[-.06em] tabular-nums\">{stat.value}</dd>\n            {stat.detail ? <dd className=\"mt-1 text-xs text-muted-foreground\">{stat.detail}</dd> : null}\n          </div>\n        ))}\n      </dl>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/stats-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

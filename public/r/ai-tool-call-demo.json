@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-tool-call-demo",
+  "title": "AI tool call demo",
+  "description": "A working preview of AI tool call.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-tool-call.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-tool-call-demo.tsx",
+      "content": "\"use client\";\n\nimport { AiToolCall } from \"@rhs-ui/application/ai-tool-call\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-2xl flex-col gap-3 p-6\">\n      <AiToolCall name=\"Search the help centre\" status=\"done\" summary=\"6 articles found\" input={{ query: \"export timeout\", limit: 6 }} output={[\"Large exports\", \"Export formats\", \"Scheduled exports\"]} />\n      <AiToolCall name=\"Create a ticket\" status=\"running\" summary=\"Writing to the support queue\" input={{ title: \"Exports time out above 10k rows\", priority: \"high\" }} />\n      <AiToolCall name=\"Send email\" status=\"error\" summary=\"The mail service did not answer within 30 s\" input={{ to: \"team@example.com\" }} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

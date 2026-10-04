@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-suggestions",
+  "title": "AI suggestions",
+  "description": "Starting prompts for an empty conversation, as chips or as a two-column grid of cards with icons.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/ai-suggestions.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiSuggestion {\n  id: string;\n  label: string;\n  /** The full prompt sent when chosen; defaults to the label. */\n  prompt?: string;\n  icon?: ReactNode;\n}\n\nexport interface AiSuggestionsProps {\n  suggestions: readonly AiSuggestion[];\n  onSelect: (prompt: string) => void;\n  /** Names the group for screen readers. */\n  label?: string;\n  layout?: \"chips\" | \"grid\";\n  className?: string;\n}\n\n/**\n * Starting points for an empty conversation: short prompts as chips, or as a\n * two-column grid of cards with an icon. Each is a plain button.\n */\nexport function AiSuggestions({ suggestions, onSelect, label = \"Suggested prompts\", layout = \"chips\", className }: AiSuggestionsProps) {\n  return (\n    <div data-slot=\"ai-suggestions\" role=\"group\" aria-label={label} className={cn(layout === \"chips\" ? \"flex flex-wrap gap-2\" : \"grid gap-2 sm:grid-cols-2\", className)}>\n      {suggestions.map((suggestion) => (\n        <button\n          key={suggestion.id}\n          type=\"button\"\n          onClick={() => onSelect(suggestion.prompt ?? suggestion.label)}\n          className={cn(\n            \"inline-flex items-center gap-2 border border-border text-left text-sm transition-colors outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground\",\n            layout === \"chips\" ? \"rounded-full px-3.5 py-1.5\" : \"rounded-xl px-4 py-3\",\n          )}\n        >\n          {suggestion.icon}\n          {suggestion.label}\n        </button>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-suggestions.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

@@ -94,6 +94,24 @@ export function componentPropProblems(src) {
     : [];
 }
 
+/**
+ * A link target is not an identity: two links to the same place (a demo full
+ * of "#", a footer with Privacy in two columns) give React duplicate keys,
+ * and it drops or doubles one of them. Key lists of links on label and href.
+ */
+export function hrefKeyProblems(src) {
+  return /key=\{\w+\.href\}/.test(src) ? ["keys a list on .href alone; two links to the same place collide. Use the label as well."] : [];
+}
+
+/**
+ * Text clipped to its background (bg-clip-text with text-transparent) makes
+ * currentColor transparent too, so a gradient built from currentColor paints
+ * nothing and the text disappears. Use theme tokens in that gradient.
+ */
+export function clippedCurrentColorProblems(src) {
+  return /text-transparent/.test(src) && /bg-\[[^\]]*currentColor/.test(src) ? ["paints a background with currentColor on transparent text; currentColor is transparent there. Use theme tokens."] : [];
+}
+
 /** Tailwind reads classes from the source text: `${variant}:w-max` never appears whole, so it is never generated. */
 export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
@@ -185,6 +203,8 @@ export function checkItems(items) {
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of hrefKeyProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of clippedCurrentColorProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of unlocalisedIntlProblems(src)) p(`${f.path} ${problem}`);
       if (!isExample) for (const problem of componentPropProblems(src)) p(`${f.path} ${problem}`);
       for (const m of src.matchAll(ALIAS_IMPORT)) {
@@ -274,6 +294,8 @@ const selfTests = [
   ["a server module that takes a component prop", componentPropProblems('export interface P { linkAs?: ElementType }').length === 0],
   ["an Intl formatter without a locale", unlocalisedIntlProblems("new Intl.NumberFormat(undefined, { style: 'percent' })").length === 1 && unlocalisedIntlProblems("value.toLocaleString()").length === 1],
   ["an Intl formatter with a locale", unlocalisedIntlProblems("new Intl.NumberFormat(locale, format)").length === 0],
+  ["currentColor under clipped text", clippedCurrentColorProblems('"bg-[linear-gradient(currentColor,transparent)] bg-clip-text text-transparent"').length === 1 && clippedCurrentColorProblems('"bg-[linear-gradient(var(--foreground),transparent)] text-transparent"').length === 0],
+  ["a list keyed on href alone", hrefKeyProblems("<li key={link.href}>").length === 1 && hrefKeyProblems("<li key={`${link.label}-${link.href}`}>").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],
   ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],

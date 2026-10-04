@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-marquee-demo",
+  "title": "Logo marquee demo",
+  "description": "A working preview of Logo marquee.",
+  "registryDependencies": [
+    "https://rhsui.com/r/logo-marquee.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/logo-marquee-demo.tsx",
+      "content": "import { LogoMarquee } from \"@rhs-ui/marketing/logo-marquee\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <LogoMarquee\n        title=\"Teams that ship with us\"\n        logos={[\"Northwind\", \"Halcyon\", \"Fieldwork\", \"Atlas & Co\", \"Meridian\", \"Quanta\", \"Brightline\", \"Oakmont\"].map((name) => ({ name }))}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

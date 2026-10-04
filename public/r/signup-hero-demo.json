@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signup-hero-demo",
+  "title": "Sign-up hero demo",
+  "description": "A working preview of Sign-up hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/avatar.json",
+    "https://rhsui.com/r/signup-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/signup-hero-demo.tsx",
+      "content": "\"use client\";\n\nimport { AvatarGroup, Avatar, AvatarFallback } from \"@rhs-ui/primitives/avatar\";\nimport { SignupHero } from \"@rhs-ui/marketing/signup-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <SignupHero\n        eyebrow=\"Private beta\"\n        title=\"A calmer inbox starts in March.\"\n        description=\"Quill sorts mail into what needs you today and what can wait. Join the beta and get in before the doors open.\"\n        onSubmit={() => new Promise((resolve) => setTimeout(resolve, 700))}\n        privacyNote=\"One email when your invite is ready. Nothing else.\"\n        proof={\n          <>\n            <AvatarGroup>\n              {[\"AK\", \"JM\", \"SR\", \"TB\"].map((initials) => (\n                <Avatar key={initials} size=\"sm\"><AvatarFallback>{initials}</AvatarFallback></Avatar>\n              ))}\n            </AvatarGroup>\n            2,418 people are waiting\n          </>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

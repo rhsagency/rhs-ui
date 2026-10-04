@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spotlight-card-demo",
+  "title": "Spotlight card demo",
+  "description": "A working preview of Spotlight card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/spotlight-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/spotlight-card-demo.tsx",
+      "content": "import { IconLock, IconZap, IconGlobe } from \"@rhs-ui/icons\";\nimport { SpotlightCard } from \"@rhs-ui/motion/spotlight-card\";\n\nexport default function Demo(): React.JSX.Element {\n  const cards = [\n    { icon: <IconZap />, title: \"Instant\", text: \"Every action under 100 ms.\" },\n    { icon: <IconLock />, title: \"Private\", text: \"Encrypted and hosted in the EU.\" },\n    { icon: <IconGlobe />, title: \"Everywhere\", text: \"Web, desktop and phone, in sync.\" },\n  ];\n  return (\n    <div className=\"mx-auto grid max-w-4xl gap-4 p-10 sm:grid-cols-3\">\n      {cards.map((card) => (\n        <SpotlightCard key={card.title}>\n          <div className=\"p-6\">\n            <span className=\"inline-flex size-10 items-center justify-center rounded-lg border border-border [&_svg]:size-5\">{card.icon}</span>\n            <h3 className=\"mt-6 text-base font-medium\">{card.title}</h3>\n            <p className=\"mt-1 text-sm text-muted-foreground\">{card.text}</p>\n          </div>\n        </SpotlightCard>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

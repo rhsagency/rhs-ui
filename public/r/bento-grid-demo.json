@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bento-grid-demo",
+  "title": "Bento grid demo",
+  "description": "A working preview of Bento grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/bento-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/bento-grid-demo.tsx",
+      "content": "import { IconLock, IconZap } from \"@rhs-ui/icons\";\nimport { BentoGrid } from \"@rhs-ui/marketing/bento-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <BentoGrid\n        eyebrow=\"Platform\"\n        title=\"One workspace, every view your team needs\"\n        cells={[\n          {\n            id: \"board\",\n            size: \"large\",\n            title: \"Boards that plan themselves\",\n            description: \"Drag work between stages; dates and owners follow.\",\n            visual: (\n              <div className=\"grid h-full grid-cols-3 gap-3 p-5\">\n                {[\"To do\", \"Doing\", \"Done\"].map((column, index) => (\n                  <div key={column} className=\"space-y-2 rounded-xl bg-background p-3 text-xs\">\n                    <p className=\"text-muted-foreground\">{column}</p>\n                    {Array.from({ length: 3 - index }, (_, card) => <div key={card} className=\"h-10 rounded-lg border border-border\" />)}\n                  </div>\n                ))}\n              </div>\n            ),\n          },\n          { id: \"speed\", title: \"Under 100 ms\", description: \"Every action is instant, even on large teams.\", visual: <div className=\"flex h-full items-center justify-center [&_svg]:size-10\"><IconZap /></div> },\n          { id: \"private\", title: \"Private by default\", description: \"Encrypted, EU-hosted, never used for training.\", visual: <div className=\"flex h-full items-center justify-center [&_svg]:size-10\"><IconLock /></div> },\n          {\n            id: \"reports\",\n            size: \"wide\",\n            title: \"Reports without a spreadsheet\",\n            description: \"Cycle time, throughput and focus, per team.\",\n            visual: (\n              <div className=\"flex h-full items-end gap-2 p-5\">\n                {[30, 55, 42, 70, 64, 88, 76, 95].map((height, index) => <span key={index} className=\"flex-1 rounded-t-md bg-foreground/80\" style={{ height: `${height}%` }} />)}\n              </div>\n            ),\n          },\n          { id: \"api\", title: \"API and webhooks\", description: \"Connect anything in an afternoon.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

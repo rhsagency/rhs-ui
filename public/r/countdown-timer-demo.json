@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "countdown-timer-demo",
+  "title": "Countdown timer demo",
+  "description": "A working preview of Countdown timer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/countdown-timer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/countdown-timer-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CountdownTimer } from \"@rhs-ui/application/countdown-timer\";\n\nexport default function Demo(): React.JSX.Element {\n  // A fixed offset from the first render, so the demo always has something to count.\n  const [target] = useState(() => Date.now() + ((2 * 24 + 5) * 3600 + 42 * 60) * 1000);\n  return (\n    <div className=\"flex flex-col items-center gap-4 p-10\">\n      <p className=\"text-sm text-muted-foreground\">The spring sale ends in</p>\n      <CountdownTimer target={target} label=\"The spring sale ends\" finished=\"The sale has ended.\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

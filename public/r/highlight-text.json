@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "highlight-text",
+  "title": "Highlight text",
+  "description": "A phrase marked as it scrolls into view, as a marker, a block or an underline that wraps over lines.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json"
+  ],
+  "files": [
+    {
+      "path": "registry/motion/highlight-text.tsx",
+      "content": "\"use client\";\n\nimport { useRef, type ReactNode } from \"react\";\n\nimport { useInView } from \"@rhs-ui/motion/use-in-view\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface HighlightTextProps {\n  children: ReactNode;\n  /** A marker under the text, a full block behind it, or an underline. */\n  variant?: \"marker\" | \"block\" | \"underline\";\n  /** Milliseconds before the sweep, for a sequence of highlights. */\n  delay?: number;\n  className?: string;\n}\n\nconst LOOK: Record<NonNullable<HighlightTextProps[\"variant\"]>, string> = {\n  marker: \"bg-[linear-gradient(transparent_58%,color-mix(in_oklch,var(--foreground)_16%,transparent)_58%)]\",\n  block: \"bg-[linear-gradient(color-mix(in_oklch,var(--foreground)_12%,transparent),color-mix(in_oklch,var(--foreground)_12%,transparent))] px-1 -mx-1 rounded-sm\",\n  underline: \"bg-[linear-gradient(currentColor,currentColor)] [background-position:0_100%] pb-0.5\",\n};\n\n/**\n * A phrase that gets marked as it scrolls into view, like a pen sweeping\n * over the words. The sweep is a background-size transition, so it wraps\n * over line breaks and costs nothing; reduced motion shows it marked.\n */\nexport function HighlightText({ children, variant = \"marker\", delay = 150, className }: HighlightTextProps) {\n  const ref = useRef<HTMLElement>(null);\n  const inView = useInView(ref);\n  return (\n    <mark\n      ref={ref}\n      data-slot=\"highlight-text\"\n      style={{ transitionDelay: `${delay}ms` }}\n      className={cn(\n        \"box-decoration-clone bg-transparent bg-no-repeat transition-[background-size] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none [color:inherit]\",\n        LOOK[variant],\n        variant === \"underline\" ? (inView ? \"[background-size:100%_2px]\" : \"[background-size:0%_2px] motion-reduce:[background-size:100%_2px]\") : inView ? \"[background-size:100%_100%]\" : \"[background-size:0%_100%] motion-reduce:[background-size:100%_100%]\",\n        className,\n      )}\n    >\n      {children}\n    </mark>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/highlight-text.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "text"
+  },
+  "categories": [
+    "motion",
+    "text"
+  ],
+  "type": "registry:component"
+}

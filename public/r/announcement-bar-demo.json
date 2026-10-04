@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "announcement-bar-demo",
+  "title": "Announcement bar demo",
+  "description": "A working preview of Announcement bar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/announcement-bar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/announcement-bar-demo.tsx",
+      "content": "\"use client\";\n\nimport { AnnouncementBar } from \"@rhs-ui/marketing/announcement-bar\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10\">\n      <AnnouncementBar href=\"#\" linkLabel=\"See the release\" dismissible className=\"rounded-lg\">\n        Version 3 is here: offline mode and a new editor.\n      </AnnouncementBar>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

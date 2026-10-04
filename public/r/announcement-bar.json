@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "announcement-bar",
+  "title": "Announcement bar",
+  "description": "An inverted strip above the navigation with one piece of news, a link and an optional close button.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/announcement-bar.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconArrowRight, IconClose } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AnnouncementBarProps {\n  children: ReactNode;\n  /** Where the announcement leads. */\n  href?: string;\n  linkLabel?: string;\n  /** Show a close button; `onDismiss` lets you remember the choice. */\n  dismissible?: boolean;\n  onDismiss?: () => void;\n  className?: string;\n}\n\n/**\n * The strip above the navigation for one piece of news. Inverted, centred,\n * one link, and an optional close button that hands the choice back to you\n * to remember.\n */\nexport function AnnouncementBar({ children, href, linkLabel = \"Read more\", dismissible = false, onDismiss, className }: AnnouncementBarProps) {\n  const [open, setOpen] = useState(true);\n  if (!open) return null;\n  return (\n    <div data-slot=\"announcement-bar\" role=\"region\" aria-label=\"Announcement\" className={cn(\"relative flex min-h-10 items-center justify-center bg-foreground px-12 py-2 text-center text-sm text-background\", className)}>\n      <p>\n        {children}\n        {href ? (\n          <a href={href} className=\"group ml-2 inline-flex items-center gap-1 font-medium underline underline-offset-4\">\n            {linkLabel}\n            <span aria-hidden=\"true\" className=\"transition-transform duration-200 group-hover:translate-x-0.5 [&_svg]:size-3.5\"><IconArrowRight /></span>\n          </a>\n        ) : null}\n      </p>\n      {dismissible ? (\n        <button type=\"button\" aria-label=\"Dismiss announcement\" onClick={() => { setOpen(false); onDismiss?.(); }} className=\"absolute right-2 inline-flex size-8 items-center justify-center rounded-full outline-none hover:bg-background/15 focus-visible:ring-2 focus-visible:ring-background [&_svg]:size-4\">\n          <IconClose />\n        </button>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/announcement-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

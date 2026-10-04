@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-section",
+  "title": "Newsletter section",
+  "description": "A newsletter sign-up with what you get and how often, one field and an in-place confirmation.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/newsletter-section.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent } from \"react\";\n\nimport { IconMail } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface NewsletterSectionProps {\n  title: string;\n  description?: string;\n  /** Resolve to thank the reader, reject to show the error. */\n  onSubmit: (email: string) => Promise<void> | void;\n  /** How often and what: \"One email a month. No tracking pixels.\" */\n  promise?: string;\n  cta?: string;\n  className?: string;\n}\n\n/**\n * A newsletter sign-up as its own section: what you will get, how often, and\n * one field. The confirmation replaces the form in place and is announced.\n */\nexport function NewsletterSection({ title, description, onSubmit, promise, cta = \"Subscribe\", className }: NewsletterSectionProps) {\n  const id = useId();\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\" | \"error\">(\"idle\");\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    const email = String(new FormData(event.currentTarget).get(\"email\") ?? \"\").trim();\n    if (!email) return;\n    setState(\"busy\");\n    try {\n      await onSubmit(email);\n      setState(\"done\");\n    } catch {\n      setState(\"error\");\n    }\n  }\n  return (\n    <section data-slot=\"newsletter-section\" className={cn(\"grid gap-8 border-y border-border py-12 sm:py-16 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16\", className)}>\n      <div className=\"flex gap-5\">\n        <span className=\"hidden size-12 shrink-0 items-center justify-center rounded-xl border border-border sm:inline-flex [&_svg]:size-5\">\n          <IconMail />\n        </span>\n        <div>\n          <h2 className=\"text-2xl font-medium tracking-[-.03em] sm:text-3xl\">{title}</h2>\n          {description ? <p className=\"mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground\">{description}</p> : null}\n        </div>\n      </div>\n      <div className=\"w-full lg:w-[26rem]\">\n        {state === \"done\" ? (\n          <p role=\"status\" className=\"rounded-xl bg-muted px-4 py-3 text-sm\">Thanks. Check your inbox to confirm your address.</p>\n        ) : (\n          <form onSubmit={submit} className=\"flex flex-col gap-2 sm:flex-row\">\n            <label htmlFor={id} className=\"sr-only\">Email address</label>\n            <Input id={id} name=\"email\" type=\"email\" required autoComplete=\"email\" placeholder=\"you@company.com\" className=\"h-10 flex-1\" />\n            <Button type=\"submit\" loading={state === \"busy\"} className=\"h-10\">{cta}</Button>\n          </form>\n        )}\n        {state === \"error\" ? <p role=\"alert\" className=\"mt-2 text-sm text-destructive\">That did not work. Please try again.</p> : null}\n        {promise && state !== \"done\" ? <p className=\"mt-2 text-xs text-muted-foreground\">{promise}</p> : null}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/newsletter-section.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

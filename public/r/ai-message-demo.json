@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-message-demo",
+  "title": "AI message demo",
+  "description": "A working preview of AI message.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-message-demo.tsx",
+      "content": "\"use client\";\n\nimport { AiMessage } from \"@rhs-ui/application/ai-message\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-2xl flex-col gap-6 p-6\">\n      <AiMessage role=\"user\" text=\"Can you summarise last week's support tickets in three lines?\" />\n      <AiMessage\n        role=\"assistant\"\n        text=\"Most tickets were about exports timing out. Two customers asked for SSO. Response time held at 11 minutes.\"\n        onRegenerate={() => undefined}\n      >\n        <ul>\n          <li>Most tickets (41 of 96) were about <code>CSV</code> exports timing out.</li>\n          <li>Two enterprise customers asked for single sign-on.</li>\n          <li>Median first response held at 11 minutes.</li>\n        </ul>\n      </AiMessage>\n      <AiMessage role=\"assistant\" text=\"Drafting a reply to the export tickets\" streaming />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

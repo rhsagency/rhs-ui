@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comparison-section",
+  "title": "Comparison section",
+  "description": "The old way against yours, row by row, with marks and words in both columns and topics on a phone.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/comparison-section.tsx",
+      "content": "import { IconCheck, IconClose } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ComparisonRow {\n  topic: string;\n  /** How it goes the old way. */\n  before: string;\n  /** How it goes with you. */\n  after: string;\n}\n\nexport interface ComparisonSectionProps {\n  eyebrow?: string;\n  title: string;\n  beforeLabel?: string;\n  afterLabel: string;\n  rows: readonly ComparisonRow[];\n  className?: string;\n}\n\n/**\n * Before and after, row by row: the way people work now against the way they\n * will with you. Each row names its topic so it reads as a table on a phone\n * too, and both columns carry a mark and words, not colour alone.\n */\nexport function ComparisonSection({ eyebrow, title, beforeLabel = \"The usual way\", afterLabel, rows, className }: ComparisonSectionProps) {\n  return (\n    <section data-slot=\"comparison-section\" className={cn(\"py-16 sm:py-24\", className)}>\n      <header className=\"mx-auto max-w-2xl text-center\">\n        {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n      </header>\n      <div className=\"mt-12 overflow-hidden rounded-2xl border border-border\">\n        <div className=\"hidden grid-cols-[1fr_1.5fr_1.5fr] border-b border-border bg-muted text-sm font-medium md:grid\">\n          <span className=\"p-5\">&nbsp;</span>\n          <span className=\"p-5 text-muted-foreground\">{beforeLabel}</span>\n          <span className=\"p-5\">{afterLabel}</span>\n        </div>\n        <ul className=\"divide-y divide-border\">\n          {rows.map((row) => (\n            <li key={row.topic} className=\"grid gap-3 p-5 md:grid-cols-[1fr_1.5fr_1.5fr] md:gap-0 md:p-0\">\n              <span className=\"text-sm font-medium md:p-5\">{row.topic}</span>\n              <span className=\"flex gap-2.5 text-sm text-muted-foreground md:p-5\">\n                <span className=\"mt-0.5 shrink-0 [&_svg]:size-4\"><IconClose /></span>\n                <span><span className=\"sr-only\">{beforeLabel}: </span>{row.before}</span>\n              </span>\n              <span className=\"flex gap-2.5 text-sm md:p-5\">\n                <span className=\"mt-0.5 shrink-0 [&_svg]:size-4\"><IconCheck /></span>\n                <span><span className=\"sr-only\">{afterLabel}: </span>{row.after}</span>\n              </span>\n            </li>\n          ))}\n        </ul>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/comparison-section.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

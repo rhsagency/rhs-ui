@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-minimal-demo",
+  "title": "Minimal footer demo",
+  "description": "A working preview of Minimal footer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/footer-minimal.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/footer-minimal-demo.tsx",
+      "content": "import { IconAtSign, IconGlobe, IconRss } from \"@rhs-ui/icons\";\nimport { FooterMinimal } from \"@rhs-ui/marketing/footer-minimal\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <FooterMinimal\n        brand={<span className=\"text-base font-semibold tracking-tight\">Northwind</span>}\n        links={[\n          { label: \"Work\", href: \"#\" },\n          { label: \"Studio\", href: \"#\" },\n          { label: \"Journal\", href: \"#\" },\n          { label: \"Contact\", href: \"#\" },\n          { label: \"Privacy\", href: \"#\" },\n        ]}\n        social={[\n          { label: \"Newsletter\", href: \"#\", icon: <IconAtSign /> },\n          { label: \"RSS feed\", href: \"#\", icon: <IconRss /> },\n          { label: \"Website\", href: \"#\", icon: <IconGlobe /> },\n        ]}\n        legal=\"© 2026 Northwind Studio B.V. · KvK 12345678\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

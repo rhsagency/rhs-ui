@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "careers-list",
+  "title": "Careers list",
+  "description": "Open roles grouped by team with a filter row of toggle buttons that show the count per team.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/careers-list.tsx",
+      "content": "\"use client\";\n\nimport { useMemo, useState } from \"react\";\n\nimport { IconArrowUpRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface Opening {\n  id: string;\n  title: string;\n  team: string;\n  location: string;\n  /** \"Full-time\", \"Contract\". */\n  type: string;\n  href: string;\n}\n\nexport interface CareersListProps {\n  title?: string;\n  description?: string;\n  openings: readonly Opening[];\n  className?: string;\n}\n\n/**\n * Open roles grouped by team, with a filter row of teams. Each role is one\n * link with title, location and type; the filter is a set of toggle buttons\n * that say how many roles each team has.\n */\nexport function CareersList({ title = \"Open roles\", description, openings, className }: CareersListProps) {\n  const teams = useMemo(() => [...new Set(openings.map((opening) => opening.team))], [openings]);\n  const [team, setTeam] = useState<string | null>(null);\n  const shown = team ? openings.filter((opening) => opening.team === team) : openings;\n  const grouped = teams.filter((name) => !team || name === team).map((name) => ({ name, roles: shown.filter((opening) => opening.team === name) }));\n  const chip = \"rounded-full border px-3 py-1.5 text-sm transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\";\n  return (\n    <section data-slot=\"careers-list\" className={cn(\"py-16 sm:py-24\", className)}>\n      <h2 className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n      {description ? <p className=\"mt-4 max-w-xl text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      <div role=\"group\" aria-label=\"Filter by team\" className=\"mt-8 flex flex-wrap gap-2\">\n        <button type=\"button\" aria-pressed={team === null} onClick={() => setTeam(null)} className={cn(chip, team === null ? \"border-foreground bg-foreground text-background\" : \"border-border hover:bg-muted\")}>\n          All <span className=\"tabular-nums opacity-60\">{openings.length}</span>\n        </button>\n        {teams.map((name) => (\n          <button key={name} type=\"button\" aria-pressed={team === name} onClick={() => setTeam(name)} className={cn(chip, team === name ? \"border-foreground bg-foreground text-background\" : \"border-border hover:bg-muted\")}>\n            {name} <span className=\"tabular-nums opacity-60\">{openings.filter((opening) => opening.team === name).length}</span>\n          </button>\n        ))}\n      </div>\n      <div className=\"mt-10 flex flex-col gap-10\">\n        {grouped.map((group) => (\n          <div key={group.name}>\n            <h3 className=\"text-xs font-medium uppercase tracking-[.16em] text-muted-foreground\">{group.name}</h3>\n            <ul className=\"mt-3 divide-y divide-border border-y border-border\">\n              {group.roles.map((role) => (\n                <li key={role.id}>\n                  <a href={role.href} className=\"group flex flex-wrap items-center gap-x-6 gap-y-1 py-5 outline-none focus-visible:bg-muted\">\n                    <span className=\"w-full text-base font-medium group-hover:underline group-hover:underline-offset-4 sm:w-auto sm:flex-1\">{role.title}</span>\n                    <span className=\"text-sm text-muted-foreground\">{role.location}</span>\n                    <span className=\"text-sm text-muted-foreground\">{role.type}</span>\n                    <span aria-hidden=\"true\" className=\"transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 [&_svg]:size-4\"><IconArrowUpRight /></span>\n                  </a>\n                </li>\n              ))}\n            </ul>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/careers-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

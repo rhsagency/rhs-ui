@@ -700,6 +700,757 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "ai-message",
+      "type": "registry:component",
+      "title": "AI message",
+      "description": "One turn of a conversation: user turns in a bubble, assistant turns as text with copy, regenerate and a streaming caret.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-message.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-message.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-message-demo",
+      "type": "registry:example",
+      "title": "AI message demo",
+      "description": "A working preview of AI message.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-message.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-message-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-reasoning",
+      "type": "registry:component",
+      "title": "AI reasoning",
+      "description": "The model's reasoning folded away: a live Thinking label, then how long it took, with the steps on a thin rail.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-reasoning.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-reasoning.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-reasoning-demo",
+      "type": "registry:example",
+      "title": "AI reasoning demo",
+      "description": "A working preview of AI reasoning.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-reasoning.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-reasoning-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-suggestions",
+      "type": "registry:component",
+      "title": "AI suggestions",
+      "description": "Starting prompts for an empty conversation, as chips or as a two-column grid of cards with icons.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/ai-suggestions.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-suggestions.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-suggestions-demo",
+      "type": "registry:example",
+      "title": "AI suggestions demo",
+      "description": "A working preview of AI suggestions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/ai-suggestions.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-suggestions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-sources",
+      "type": "registry:component",
+      "title": "AI sources",
+      "description": "Numbered citations that match the markers in an answer, with origin and the quoted line, in a sideways row.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/ai-sources.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-sources.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-sources-demo",
+      "type": "registry:example",
+      "title": "AI sources demo",
+      "description": "A working preview of AI sources.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-sources.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-sources-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-tool-call",
+      "type": "registry:component",
+      "title": "AI tool call",
+      "description": "A tool the assistant used: status in icon and words, a one-line summary, and the raw input and output folded.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-tool-call.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-tool-call.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-tool-call-demo",
+      "type": "registry:example",
+      "title": "AI tool call demo",
+      "description": "A working preview of AI tool call.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-tool-call.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-tool-call-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-model-picker",
+      "type": "registry:component",
+      "title": "AI model picker",
+      "description": "A compact model switch for a prompt box; every option says what it is good for, on the RHS UI Select.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-model-picker.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-model-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-model-picker-demo",
+      "type": "registry:example",
+      "title": "AI model picker demo",
+      "description": "A working preview of AI model picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-model-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-model-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-context-meter",
+      "type": "registry:component",
+      "title": "AI context meter",
+      "description": "How full the conversation is: a small ring and a compact count, with a warning in words at 80%.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/ai-context-meter.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-context-meter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-context-meter-demo",
+      "type": "registry:example",
+      "title": "AI context meter demo",
+      "description": "A working preview of AI context meter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-context-meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-context-meter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-feedback",
+      "type": "registry:component",
+      "title": "AI feedback",
+      "description": "Thumbs up or down on an answer, with one optional follow-up of ready-made reasons after a thumbs down.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-feedback.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-feedback.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-feedback-demo",
+      "type": "registry:example",
+      "title": "AI feedback demo",
+      "description": "A working preview of AI feedback.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-feedback.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-feedback-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "api-key-field",
+      "type": "registry:component",
+      "title": "API key field",
+      "description": "A masked secret with reveal and copy that say what they did, and a rotate that asks for a second click.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/api-key-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/api-key-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "api-key-field-demo",
+      "type": "registry:example",
+      "title": "API key field demo",
+      "description": "A working preview of API key field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/api-key-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/api-key-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "invite-members",
+      "type": "registry:component",
+      "title": "Invite members",
+      "description": "Invite several people at once as address chips with one role, invalid addresses and the seat limit in words.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/invite-members.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/invite-members.tsx"
+        }
+      ]
+    },
+    {
+      "name": "invite-members-demo",
+      "type": "registry:example",
+      "title": "Invite members demo",
+      "description": "A working preview of Invite members.",
+      "registryDependencies": [
+        "https://rhsui.com/r/invite-members.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/invite-members-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "plan-usage",
+      "type": "registry:component",
+      "title": "Plan usage",
+      "description": "Usage against plan limits as labelled meters, with warnings in text at 80% and 100%.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/plan-usage.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/plan-usage.tsx"
+        }
+      ]
+    },
+    {
+      "name": "plan-usage-demo",
+      "type": "registry:example",
+      "title": "Plan usage demo",
+      "description": "A working preview of Plan usage.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/plan-usage.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/plan-usage-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "onboarding-checklist",
+      "type": "registry:component",
+      "title": "Onboarding checklist",
+      "description": "Getting started as a checklist that opens on the first open step, with progress and one action per step.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/onboarding-checklist.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/onboarding-checklist.tsx"
+        }
+      ]
+    },
+    {
+      "name": "onboarding-checklist-demo",
+      "type": "registry:example",
+      "title": "Onboarding checklist demo",
+      "description": "A working preview of Onboarding checklist.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/onboarding-checklist.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/onboarding-checklist-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-edit",
+      "type": "registry:component",
+      "title": "Inline edit",
+      "description": "Text that becomes a field on click: Enter or blur saves, Escape restores, an empty value is not saved.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/inline-edit.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/inline-edit.tsx"
+        }
+      ]
+    },
+    {
+      "name": "inline-edit-demo",
+      "type": "registry:example",
+      "title": "Inline edit demo",
+      "description": "A working preview of Inline edit.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inline-edit.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-edit-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shortcut-list",
+      "type": "registry:component",
+      "title": "Shortcut list",
+      "description": "A keyboard cheat sheet in groups, keys right-aligned, with sequences shown as G then P.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/shortcut-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/shortcut-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shortcut-list-demo",
+      "type": "registry:example",
+      "title": "Shortcut list demo",
+      "description": "A working preview of Shortcut list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shortcut-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shortcut-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-list",
+      "type": "registry:component",
+      "title": "File list",
+      "description": "Files uploading or uploaded: size, a progress bar, an error with retry, and remove or cancel.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/file-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/file-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-list-demo",
+      "type": "registry:example",
+      "title": "File list demo",
+      "description": "A working preview of File list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/file-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filter-bar",
+      "type": "registry:component",
+      "title": "Filter bar",
+      "description": "Filters as toggle chips in labelled groups, active ones as removable tags, clear all and an announced count.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/filter-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/filter-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "filter-bar-demo",
+      "type": "registry:example",
+      "title": "Filter bar demo",
+      "description": "A working preview of Filter bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/filter-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filter-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "countdown-timer",
+      "type": "registry:component",
+      "title": "Countdown timer",
+      "description": "Days, hours, minutes and seconds to a moment, hydration-safe, with a summary for screen readers per minute.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/countdown-timer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/countdown-timer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "countdown-timer-demo",
+      "type": "registry:example",
+      "title": "Countdown timer demo",
+      "description": "A working preview of Countdown timer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/countdown-timer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/countdown-timer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agenda-list",
+      "type": "registry:component",
+      "title": "Agenda list",
+      "description": "The days ahead as a list of events with time, place and people, the current one marked in text.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/application/agenda-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/agenda-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "agenda-list-demo",
+      "type": "registry:example",
+      "title": "Agenda list demo",
+      "description": "A working preview of Agenda list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/agenda-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/agenda-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

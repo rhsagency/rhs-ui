@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-cloud",
+  "title": "Logo cloud",
+  "description": "Customer marks on a hairline grid in the text colour, full strength on hover, named for screen readers.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/logo-cloud.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface Logo {\n  name: string;\n  /** An SVG or image of the mark; the name is used when it is missing. */\n  mark?: ReactNode;\n  href?: string;\n}\n\nexport interface LogoCloudProps {\n  /** One quiet line: \"Trusted by teams at\". */\n  title?: string;\n  logos: readonly Logo[];\n  className?: string;\n}\n\n/**\n * Customer marks on a hairline grid. Marks render in the text colour at\n * reduced strength so a mixed set of brands reads as one row, and full\n * strength on hover. Each cell names the company for screen readers.\n */\nexport function LogoCloud({ title, logos, className }: LogoCloudProps) {\n  return (\n    <section data-slot=\"logo-cloud\" className={cn(\"py-12 sm:py-16\", className)}>\n      {title ? <h2 className=\"mb-8 text-center text-sm text-muted-foreground\">{title}</h2> : null}\n      <ul className=\"grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-6\">\n        {logos.map((logo) => {\n          const body = logo.mark ? <span aria-hidden=\"true\" className=\"[&_svg]:h-7 [&_svg]:w-auto\">{logo.mark}</span> : <span className=\"text-lg font-semibold tracking-tight\">{logo.name}</span>;\n          return (\n            <li key={logo.name} className=\"flex h-24 items-center justify-center bg-background px-6 text-foreground/55 transition-colors duration-200 hover:text-foreground\">\n              {logo.href ? (\n                <a href={logo.href} className=\"flex items-center rounded-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\" aria-label={logo.name}>{body}</a>\n              ) : (\n                <>\n                  {body}\n                  {logo.mark ? <span className=\"sr-only\">{logo.name}</span> : null}\n                </>\n              )}\n            </li>\n          );\n        })}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/logo-cloud.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

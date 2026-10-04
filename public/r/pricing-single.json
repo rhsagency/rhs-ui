@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-single",
+  "title": "Single-plan pricing",
+  "description": "One plan and one price: the pitch beside a price card with the action and everything included.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/pricing-single.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PricingSingleProps {\n  eyebrow?: string;\n  title: string;\n  description?: string;\n  planName: string;\n  price: string;\n  /** \"per month\", \"one-time payment\", \"per seat\". */\n  period: string;\n  features: readonly string[];\n  action: ReactNode;\n  /** Guarantee or terms under the action. */\n  note?: string;\n  className?: string;\n}\n\n/**\n * One plan, one price: for a product that does not need tiers. The pitch on\n * the left, the price card on the right with everything that is included.\n */\nexport function PricingSingle({ eyebrow, title, description, planName, price, period, features, action, note, className }: PricingSingleProps) {\n  return (\n    <section data-slot=\"pricing-single\" className={cn(\"grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_26rem] lg:gap-20\", className)}>\n      <div>\n        {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n        <h2 className=\"text-4xl font-medium tracking-[-.045em] text-balance sm:text-5xl\">{title}</h2>\n        {description ? <p className=\"mt-5 max-w-md text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"rounded-2xl border border-border bg-card p-8\">\n        <p className=\"text-sm font-medium\">{planName}</p>\n        <p className=\"mt-4 flex items-baseline gap-2\">\n          <span className=\"text-5xl font-medium tracking-[-.06em] tabular-nums\">{price}</span>\n          <span className=\"text-sm text-muted-foreground\">{period}</span>\n        </p>\n        <div className=\"mt-6 [&>*]:w-full\">{action}</div>\n        {note ? <p className=\"mt-3 text-center text-xs text-muted-foreground\">{note}</p> : null}\n        <ul className=\"mt-8 space-y-3 border-t border-border pt-6\">\n          {features.map((feature) => (\n            <li key={feature} className=\"flex gap-3 text-sm\">\n              <span className=\"mt-0.5 shrink-0 [&_svg]:size-4\"><IconCheck /></span>\n              {feature}\n            </li>\n          ))}\n        </ul>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/pricing-single.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

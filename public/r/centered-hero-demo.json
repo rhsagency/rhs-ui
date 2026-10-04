@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "centered-hero-demo",
+  "title": "Centered hero demo",
+  "description": "A working preview of Centered hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/centered-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/centered-hero-demo.tsx",
+      "content": "import { IconArrowRight } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { CenteredHero } from \"@rhs-ui/marketing/centered-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <CenteredHero\n        announcement={<>New: shared workspaces <a href=\"#workspaces\">See what changed</a></>}\n        title=\"Plan the work. Ship the work. Skip the meeting.\"\n        description=\"Ledger keeps roadmap, tasks and decisions in one calm place, so a team of eight moves like a team of eight.\"\n        actions={\n          <>\n            <Button size=\"lg\">Start for free <IconArrowRight /></Button>\n            <Button size=\"lg\" variant=\"outline\">Book a demo</Button>\n          </>\n        }\n        note=\"Free for up to three people. No card needed.\"\n        visual={\n          <div className=\"grid grid-cols-[10rem_1fr] gap-px bg-border text-xs\">\n            <div className=\"space-y-2 bg-background p-4\">\n              {[\"Roadmap\", \"This week\", \"Decisions\", \"Archive\"].map((item, index) => (\n                <p key={item} className={index === 1 ? \"rounded-md bg-muted px-2 py-1.5 font-medium\" : \"px-2 py-1.5 text-muted-foreground\"}>{item}</p>\n              ))}\n            </div>\n            <div className=\"space-y-2 bg-background p-4\">\n              {[\"Ship onboarding v2\", \"Review pricing copy\", \"Plan Q4 offsite\", \"Fix export timeouts\"].map((task, index) => (\n                <p key={task} className=\"flex items-center gap-3 rounded-md border border-border px-3 py-2.5\">\n                  <span className={index < 2 ? \"size-3.5 rounded-full bg-foreground\" : \"size-3.5 rounded-full border border-border\"} />\n                  {task}\n                </p>\n              ))}\n            </div>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

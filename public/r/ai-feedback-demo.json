@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-feedback-demo",
+  "title": "AI feedback demo",
+  "description": "A working preview of AI feedback.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-feedback.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-feedback-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { AiFeedback } from \"@rhs-ui/application/ai-feedback\";\n\nexport default function Demo(): React.JSX.Element {\n  const [last, setLast] = useState<string>(\"No feedback yet.\");\n  return (\n    <div className=\"mx-auto max-w-md p-6\">\n      <p className=\"text-sm leading-relaxed\">Your next invoice is due on 1 April and will be €240 for 20 seats.</p>\n      <AiFeedback className=\"mt-3\" onFeedback={(feedback) => setLast(`${feedback.rating}${feedback.reason ? `: ${feedback.reason}` : \"\"}`)} />\n      <p className=\"mt-6 text-xs text-muted-foreground\">Received: {last}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbit-items-demo",
+  "title": "Orbit items demo",
+  "description": "A working preview of Orbit items.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/orbit-items.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/orbit-items-demo.tsx",
+      "content": "import { IconCalendar, IconCloud, IconCode, IconCreditCard, IconDatabase, IconMail, IconMessage, IconSparkle } from \"@rhs-ui/icons\";\nimport { OrbitItems } from \"@rhs-ui/motion/orbit-items\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex justify-center p-10\">\n      <OrbitItems\n        center={<span className=\"[&_svg]:size-8\"><IconSparkle /></span>}\n        items={[\n          { id: \"mail\", label: \"Mail\", node: <IconMail /> },\n          { id: \"chat\", label: \"Chat\", node: <IconMessage /> },\n          { id: \"calendar\", label: \"Calendar\", node: <IconCalendar /> },\n          { id: \"billing\", label: \"Billing\", node: <IconCreditCard /> },\n          { id: \"storage\", label: \"Storage\", node: <IconCloud /> },\n          { id: \"database\", label: \"Database\", node: <IconDatabase /> },\n          { id: \"git\", label: \"Git\", node: <IconCode /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

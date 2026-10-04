@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "centered-hero",
+  "title": "Centered hero",
+  "description": "A centred opening with an announcement pill, the promise, two actions, a note and the product underneath.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/centered-hero.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface CenteredHeroProps {\n  /** A short pill above the title: a release, a launch, a number. */\n  announcement?: ReactNode;\n  title: string;\n  description?: string;\n  /** One or two actions; the first is the one you want clicked. */\n  actions?: ReactNode;\n  /** A line under the actions: \"No card needed\", \"Free for teams of three\". */\n  note?: string;\n  /** A product shot or a live component under the copy. */\n  visual?: ReactNode;\n  className?: string;\n}\n\n/**\n * The classic opening: one centred promise, one line of proof, the action,\n * and the product underneath. The title is an h2 so the page keeps its own h1.\n */\nexport function CenteredHero({ announcement, title, description, actions, note, visual, className }: CenteredHeroProps) {\n  return (\n    <section data-slot=\"centered-hero\" className={cn(\"py-16 text-center sm:py-24\", className)}>\n      {announcement ? (\n        <div className=\"mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs text-muted-foreground [&_a]:font-medium [&_a]:text-foreground\">\n          {announcement}\n        </div>\n      ) : null}\n      <h2 className=\"mx-auto max-w-3xl text-5xl font-medium leading-[1.04] tracking-[-.055em] text-balance sm:text-6xl lg:text-7xl\">{title}</h2>\n      {description ? <p className=\"mx-auto mt-7 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg\">{description}</p> : null}\n      {actions ? <div className=\"mt-9 flex flex-wrap items-center justify-center gap-3\">{actions}</div> : null}\n      {note ? <p className=\"mt-4 text-xs text-muted-foreground\">{note}</p> : null}\n      {visual ? <div className=\"relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-border bg-muted text-left sm:mt-20\">{visual}</div> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/centered-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

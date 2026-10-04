@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agenda-list",
+  "title": "Agenda list",
+  "description": "The days ahead as a list of events with time, place and people, the current one marked in text.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/application/agenda-list.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AgendaEvent {\n  id: string;\n  title: string;\n  /** Already formatted in the reader's zone: \"09:30\". */\n  start: string;\n  end?: string;\n  /** ISO start for the time element. */\n  dateTime: string;\n  location?: string;\n  /** Faces or a count of attendees. */\n  people?: ReactNode;\n  /** Highlight the event that is happening now. */\n  now?: boolean;\n}\n\nexport interface AgendaDay {\n  /** \"Today\", \"Tue 14 April\". */\n  label: string;\n  events: readonly AgendaEvent[];\n}\n\nexport interface AgendaListProps {\n  days: readonly AgendaDay[];\n  className?: string;\n}\n\n/**\n * The days ahead as a list: day headings, then events with time on the left\n * and what, where and who on the right. The current event is marked in text\n * and with a bar. Format times before passing them in.\n */\nexport function AgendaList({ days, className }: AgendaListProps) {\n  return (\n    <div data-slot=\"agenda-list\" className={cn(\"space-y-6\", className)}>\n      {days.map((day) => (\n        <section key={day.label}>\n          <h3 className=\"mb-2 text-xs font-medium uppercase tracking-[.14em] text-muted-foreground\">{day.label}</h3>\n          {day.events.length ? (\n            <ol className=\"divide-y divide-border rounded-xl border border-border\">\n              {day.events.map((event) => (\n                <li key={event.id} className={cn(\"relative grid grid-cols-[4.5rem_1fr] gap-4 p-4\", event.now && \"bg-muted/60\")}>\n                  {event.now ? <span aria-hidden=\"true\" className=\"absolute inset-y-3 left-0 w-0.5 rounded-full bg-foreground\" /> : null}\n                  <time dateTime={event.dateTime} className=\"text-sm tabular-nums\">\n                    {event.start}\n                    {event.end ? <span className=\"block text-xs text-muted-foreground\">{event.end}</span> : null}\n                  </time>\n                  <div className=\"min-w-0\">\n                    <p className=\"text-sm font-medium\">\n                      {event.title}\n                      {event.now ? <span className=\"ml-2 rounded-full bg-foreground px-1.5 py-0.5 text-[0.625rem] font-normal text-background\">Now</span> : null}\n                    </p>\n                    {event.location ? <p className=\"truncate text-xs text-muted-foreground\">{event.location}</p> : null}\n                    {event.people ? <div className=\"mt-2\">{event.people}</div> : null}\n                  </div>\n                </li>\n              ))}\n            </ol>\n          ) : (\n            <p className=\"rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground\">Nothing planned.</p>\n          )}\n        </section>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/agenda-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "application",
+    "data-display"
+  ],
+  "type": "registry:component"
+}

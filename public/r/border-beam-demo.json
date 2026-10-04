@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "border-beam-demo",
+  "title": "Border beam demo",
+  "description": "A working preview of Border beam.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/border-beam.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/border-beam-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { BorderBeam } from \"@rhs-ui/motion/border-beam\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-sm p-10\">\n      <BorderBeam>\n        <div className=\"p-6\">\n          <p className=\"text-xs uppercase tracking-[.18em] text-muted-foreground\">Recommended</p>\n          <p className=\"mt-3 text-sm font-medium\">Team</p>\n          <p className=\"mt-1 text-4xl font-medium tracking-[-.05em]\">€12<span className=\"text-sm font-normal text-muted-foreground\"> / person</span></p>\n          <Button className=\"mt-6 w-full\">Choose Team</Button>\n        </div>\n      </BorderBeam>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

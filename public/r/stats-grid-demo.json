@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stats-grid-demo",
+  "title": "Stats grid demo",
+  "description": "A working preview of Stats grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/stats-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/stats-grid-demo.tsx",
+      "content": "import { StatsGrid } from \"@rhs-ui/marketing/stats-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <StatsGrid\n        eyebrow=\"In numbers\"\n        title=\"Small team, steady results\"\n        stats={[\n          { value: \"4,200\", label: \"Stores on the platform\", detail: \"in 31 countries\" },\n          { value: \"€1.9B\", label: \"Processed last year\", detail: \"up 64% year on year\" },\n          { value: \"11 min\", label: \"Median support reply\", detail: \"seven days a week\" },\n          { value: \"0.4%\", label: \"Monthly churn\", detail: \"average over 2025\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

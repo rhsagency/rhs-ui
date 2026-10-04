@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "underline-link",
+  "title": "Underline link",
+  "description": "A text link whose underline draws itself on hover and focus: grow, from the centre, or swap.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/underline-link.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface UnderlineLinkProps extends ComponentProps<\"a\"> {\n  /** Grow from the left (default), from the centre, or swap: the line leaves right and returns from the left. */\n  effect?: \"grow\" | \"center\" | \"swap\";\n}\n\n/**\n * A text link whose underline draws itself on hover and keyboard focus. The\n * line is a background, so it follows wrapped lines and the text colour;\n * reduced motion shows it without the draw.\n */\nexport function UnderlineLink({ effect = \"grow\", className, ...props }: UnderlineLinkProps) {\n  return (\n    <a\n      data-slot=\"underline-link\"\n      data-effect={effect}\n      className={cn(\n        \"box-decoration-clone bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat pb-0.5 outline-none transition-[background-size] duration-300 ease-out motion-reduce:transition-none focus-visible:rounded-sm focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"[background-size:0%_1px] hover:[background-size:100%_1px] focus-visible:[background-size:100%_1px]\",\n        effect === \"grow\" && \"[background-position:0_100%]\",\n        effect === \"center\" && \"[background-position:50%_100%]\",\n        effect === \"swap\" && \"[background-position:100%_100%] hover:[background-position:0_100%] focus-visible:[background-position:0_100%]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/underline-link.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "text"
+  },
+  "categories": [
+    "motion",
+    "text"
+  ],
+  "type": "registry:component"
+}

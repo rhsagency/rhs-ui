@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "article-layout",
+  "title": "Article layout",
+  "description": "A reading layout with header, byline and cover that styles the plain prose elements you pass in.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/article-layout.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ArticleLayoutProps {\n  category?: string;\n  title: string;\n  lede?: string;\n  author?: { name: string; role?: string; avatar?: string };\n  /** Formatted for the reader, plus the ISO value for the time element. */\n  date?: { label: string; dateTime: string };\n  readingTime?: string;\n  /** A wide image under the header. */\n  cover?: { src: string; alt: string; caption?: string };\n  /** The body: paragraphs, h3 subheads, lists, quotes, figures. */\n  children: ReactNode;\n  className?: string;\n}\n\n/**\n * A reading layout for a post, a case study or a legal page: the header with\n * byline, an optional cover, and prose set at a comfortable measure. Styles\n * the plain elements you pass, so Markdown output works as is.\n */\nexport function ArticleLayout({ category, title, lede, author, date, readingTime, cover, children, className }: ArticleLayoutProps) {\n  return (\n    <article data-slot=\"article-layout\" className={cn(\"py-16 sm:py-20\", className)}>\n      <header className=\"mx-auto max-w-2xl\">\n        {category ? <p className=\"text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{category}</p> : null}\n        <h2 className=\"mt-4 text-4xl font-medium leading-tight tracking-[-.045em] text-balance sm:text-5xl\">{title}</h2>\n        {lede ? <p className=\"mt-6 text-lg leading-relaxed text-pretty text-muted-foreground\">{lede}</p> : null}\n        {author || date ? (\n          <div className=\"mt-8 flex items-center gap-3 border-t border-border pt-6 text-sm\">\n            {author?.avatar ? <img src={author.avatar} alt=\"\" className=\"size-10 rounded-full object-cover\" /> : null}\n            <div>\n              {author ? <p className=\"font-medium\">{author.name}{author.role ? <span className=\"font-normal text-muted-foreground\">, {author.role}</span> : null}</p> : null}\n              <p className=\"text-muted-foreground\">\n                {date ? <time dateTime={date.dateTime}>{date.label}</time> : null}\n                {date && readingTime ? \" · \" : null}\n                {readingTime}\n              </p>\n            </div>\n          </div>\n        ) : null}\n      </header>\n      {cover ? (\n        <figure className=\"mx-auto mt-12 max-w-4xl\">\n          <img src={cover.src} alt={cover.alt} className=\"aspect-[16/9] w-full rounded-2xl bg-muted object-cover\" />\n          {cover.caption ? <figcaption className=\"mt-3 text-center text-xs text-muted-foreground\">{cover.caption}</figcaption> : null}\n        </figure>\n      ) : null}\n      <div\n        className={cn(\n          \"mx-auto mt-12 max-w-2xl text-base leading-[1.75] text-foreground/90\",\n          \"[&_p]:mt-5 [&_h3]:mt-12 [&_h3]:text-xl [&_h3]:font-medium [&_h3]:tracking-[-.02em] [&_h3]:text-foreground\",\n          \"[&_a]:underline [&_a]:underline-offset-4 [&_strong]:font-medium [&_strong]:text-foreground\",\n          \"[&_ul]:mt-5 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-2\",\n          \"[&_blockquote]:mt-8 [&_blockquote]:border-l-2 [&_blockquote]:border-foreground [&_blockquote]:pl-5 [&_blockquote]:text-lg [&_blockquote]:italic\",\n          \"[&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-sm\",\n          \"[&_figure]:mt-8 [&_hr]:my-12 [&_hr]:border-border\",\n        )}\n      >\n        {children}\n      </div>\n    </article>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/article-layout.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

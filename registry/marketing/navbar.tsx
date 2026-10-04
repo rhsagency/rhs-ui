@@ -72,7 +72,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
                   <NavigationMenuContent>
                     <ul className="grid w-[30rem] grid-cols-2 gap-1">
                       {entry.links.map((link) => (
-                        <li key={link.href}>
+                        <li key={`${link.label}-${link.href}`}>
                           <NavigationMenuLink asChild active={link.href === currentHref}>
                             <Link href={link.href} aria-current={current(link.href)}>
                               <span className="font-medium text-foreground">{link.label}</span>
@@ -85,7 +85,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               ) : (
-                <NavigationMenuItem key={entry.href}>
+                <NavigationMenuItem key={`${entry.label}-${entry.href}`}>
                   <NavigationMenuLink asChild active={entry.href === currentHref} className={navigationMenuTriggerStyle}>
                     <Link href={entry.href} aria-current={current(entry.href)}>
                       {entry.label}
@@ -116,7 +116,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
                   <section key={entry.label} className="grid gap-1">
                     <h3 className="px-2 pb-1 font-mono text-[0.6875rem] tracking-wide text-muted-foreground">{entry.label}</h3>
                     {entry.links.map((link) => (
-                      <SheetClose key={link.href} asChild>
+                      <SheetClose key={`${link.label}-${link.href}`} asChild>
                         <Link
                           href={link.href}
                           aria-current={current(link.href)}
@@ -128,7 +128,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
                     ))}
                   </section>
                 ) : (
-                  <SheetClose key={entry.href} asChild>
+                  <SheetClose key={`${entry.label}-${entry.href}`} asChild>
                     <Link
                       href={entry.href}
                       aria-current={current(entry.href)}

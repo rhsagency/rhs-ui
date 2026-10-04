@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-banner",
+  "title": "CTA banner",
+  "description": "A slim call to action between sections, muted or inverted, copy left and actions right.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/cta-banner.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface CtaBannerProps {\n  title: string;\n  description?: string;\n  actions: ReactNode;\n  /** `inverted` turns the band dark in light mode and light in dark mode. */\n  tone?: \"muted\" | \"inverted\";\n  className?: string;\n}\n\n/**\n * A slim call to action between sections: one line of copy on the left, the\n * action on the right, stacking on a phone. Lighter than a closing CTA, for\n * the middle of a long page.\n */\nexport function CtaBanner({ title, description, actions, tone = \"muted\", className }: CtaBannerProps) {\n  return (\n    <section\n      data-slot=\"cta-banner\"\n      className={cn(\n        \"flex flex-col gap-6 rounded-2xl px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10\",\n        tone === \"muted\" ? \"border border-border bg-muted\" : \"bg-foreground text-background [&_[data-slot=cta-banner-description]]:text-background/70\",\n        className,\n      )}\n    >\n      <div className=\"max-w-xl\">\n        <h2 className=\"text-xl font-medium tracking-[-.03em] sm:text-2xl\">{title}</h2>\n        {description ? <p data-slot=\"cta-banner-description\" className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"flex shrink-0 flex-wrap gap-3\">{actions}</div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/cta-banner.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

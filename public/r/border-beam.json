@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "border-beam",
+  "title": "Border beam",
+  "description": "A short light that travels around a card's border to mark the one item that matters.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/border-beam.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface BorderBeamProps {\n  children: ReactNode;\n  /** Seconds for one lap around the border. */\n  duration?: number;\n  /** Length of the beam, as a share of the lap. */\n  length?: number;\n  className?: string;\n}\n\n/**\n * A short light that travels around a card's border, to mark the one item\n * that matters: the recommended plan, the live session. A conic gradient\n * turned with Web Animations; under reduced motion the border stays plain.\n */\nexport function BorderBeam({ children, duration = 6, length = 0.18, className }: BorderBeamProps) {\n  const beam = useRef<HTMLSpanElement>(null);\n  useEffect(() => {\n    const node = beam.current;\n    if (!node || window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    const animation = node.animate([{ transform: \"translate(-50%, -50%) rotate(0turn)\" }, { transform: \"translate(-50%, -50%) rotate(1turn)\" }], { duration: duration * 1000, iterations: Infinity, easing: \"linear\" });\n    return () => animation.cancel();\n  }, [duration]);\n  const stop = Math.round(length * 360);\n  return (\n    <div data-slot=\"border-beam\" className={cn(\"relative isolate overflow-hidden rounded-2xl p-px\", className)}>\n      <span aria-hidden=\"true\" className=\"absolute inset-0 -z-10 bg-border\" />\n      <span\n        ref={beam}\n        aria-hidden=\"true\"\n        className=\"absolute top-1/2 left-1/2 -z-10 aspect-square w-[200%] -translate-x-1/2 -translate-y-1/2 motion-reduce:hidden\"\n        style={{ background: `conic-gradient(from 0deg, transparent 0deg, transparent ${360 - stop}deg, var(--foreground) 360deg)` }}\n      />\n      <div className=\"relative h-full rounded-[calc(1rem-1px)] bg-card\">{children}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/border-beam.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "motion"
+  },
+  "categories": [
+    "motion",
+    "motion"
+  ],
+  "type": "registry:component"
+}

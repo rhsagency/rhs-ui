@@ -240,6 +240,647 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "use-in-view",
+      "type": "registry:hook",
+      "title": "useInView",
+      "description": "Hooks for entrances: true once an element enters the viewport, and whether the reader prefers reduced motion.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/use-in-view.ts",
+          "type": "registry:hook",
+          "target": "components/rhs-ui/motion/use-in-view.ts"
+        }
+      ]
+    },
+    {
+      "name": "typewriter-text",
+      "type": "registry:component",
+      "title": "Typewriter text",
+      "description": "Text that types itself once in view, with a caret; screen readers get the whole sentence at once.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/typewriter-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/typewriter-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typewriter-text-demo",
+      "type": "registry:example",
+      "title": "Typewriter text demo",
+      "description": "A working preview of Typewriter text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/typewriter-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/typewriter-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "word-rotate",
+      "type": "registry:component",
+      "title": "Word rotate",
+      "description": "One slot in a sentence that changes word on a timer, sized to the longest word so the line never reflows.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/word-rotate.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/word-rotate.tsx"
+        }
+      ]
+    },
+    {
+      "name": "word-rotate-demo",
+      "type": "registry:example",
+      "title": "Word rotate demo",
+      "description": "A working preview of Word rotate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/word-rotate.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/word-rotate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scramble-text",
+      "type": "registry:component",
+      "title": "Scramble text",
+      "description": "Text that decodes from random characters on appear or hover, monospaced so it never wobbles.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/scramble-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scramble-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scramble-text-demo",
+      "type": "registry:example",
+      "title": "Scramble text demo",
+      "description": "A working preview of Scramble text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scramble-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scramble-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "highlight-text",
+      "type": "registry:component",
+      "title": "Highlight text",
+      "description": "A phrase marked as it scrolls into view, as a marker, a block or an underline that wraps over lines.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/highlight-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/highlight-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "highlight-text-demo",
+      "type": "registry:example",
+      "title": "Highlight text demo",
+      "description": "A working preview of Highlight text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/highlight-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/highlight-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "split-text",
+      "type": "registry:component",
+      "title": "Split text",
+      "description": "A heading that arrives a word or letter at a time in view: rise, blur or fade, with the sentence read once.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/split-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/split-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "split-text-demo",
+      "type": "registry:example",
+      "title": "Split text demo",
+      "description": "A working preview of Split text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/split-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/split-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shimmer-text",
+      "type": "registry:component",
+      "title": "Shimmer text",
+      "description": "A neutral light sweeping across a loading label, on Web Animations, that settles when the work is done.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/shimmer-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/shimmer-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shimmer-text-demo",
+      "type": "registry:example",
+      "title": "Shimmer text demo",
+      "description": "A working preview of Shimmer text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shimmer-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shimmer-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "underline-link",
+      "type": "registry:component",
+      "title": "Underline link",
+      "description": "A text link whose underline draws itself on hover and focus: grow, from the centre, or swap.",
+      "categories": [
+        "motion",
+        "text"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/underline-link.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/underline-link.tsx"
+        }
+      ]
+    },
+    {
+      "name": "underline-link-demo",
+      "type": "registry:example",
+      "title": "Underline link demo",
+      "description": "A working preview of Underline link.",
+      "registryDependencies": [
+        "https://rhsui.com/r/underline-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/underline-link-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "magnetic",
+      "type": "registry:component",
+      "title": "Magnetic",
+      "description": "Wrap a control and it leans toward a nearby pointer, then springs back; only for a fine pointer.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/magnetic.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/magnetic.tsx"
+        }
+      ]
+    },
+    {
+      "name": "magnetic-demo",
+      "type": "registry:example",
+      "title": "Magnetic demo",
+      "description": "A working preview of Magnetic.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/magnetic.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/magnetic-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tilt-card",
+      "type": "registry:component",
+      "title": "Tilt card",
+      "description": "A surface that tilts toward the pointer in 3D with an optional glare, flat on touch and under reduced motion.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/tilt-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/tilt-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tilt-card-demo",
+      "type": "registry:example",
+      "title": "Tilt card demo",
+      "description": "A working preview of Tilt card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tilt-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tilt-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-card",
+      "type": "registry:component",
+      "title": "Spotlight card",
+      "description": "A card with a soft light that follows the pointer over the surface and the border, like one lamp over a grid.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/spotlight-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/spotlight-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-card-demo",
+      "type": "registry:example",
+      "title": "Spotlight card demo",
+      "description": "A working preview of Spotlight card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spotlight-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/spotlight-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "border-beam",
+      "type": "registry:component",
+      "title": "Border beam",
+      "description": "A short light that travels around a card's border to mark the one item that matters.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/border-beam.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/border-beam.tsx"
+        }
+      ]
+    },
+    {
+      "name": "border-beam-demo",
+      "type": "registry:example",
+      "title": "Border beam demo",
+      "description": "A working preview of Border beam.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/border-beam.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/border-beam-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dock",
+      "type": "registry:component",
+      "title": "Dock",
+      "description": "A row of app icons that swell under the pointer, each a real link or button with a label on hover and focus.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/dock.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/dock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dock-demo",
+      "type": "registry:example",
+      "title": "Dock demo",
+      "description": "A working preview of Dock.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dock.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dock-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "flip-card",
+      "type": "registry:component",
+      "title": "Flip card",
+      "description": "A two-faced card that turns over on click or keyboard; the hidden face is inert.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/flip-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/flip-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "flip-card-demo",
+      "type": "registry:example",
+      "title": "Flip card demo",
+      "description": "A working preview of Flip card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/flip-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/flip-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "orbit-items",
+      "type": "registry:component",
+      "title": "Orbit items",
+      "description": "Marks circling a centre on a thin ring, staying upright, pausing on hover and still under reduced motion.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/orbit-items.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/orbit-items.tsx"
+        }
+      ]
+    },
+    {
+      "name": "orbit-items-demo",
+      "type": "registry:example",
+      "title": "Orbit items demo",
+      "description": "A working preview of Orbit items.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/orbit-items.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/orbit-items-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hover-preview-list",
+      "type": "registry:component",
+      "title": "Hover preview list",
+      "description": "An editorial index of work whose rows are links, with an image that follows the pointer for the row under it.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/hover-preview-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/hover-preview-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-preview-list-demo",
+      "type": "registry:example",
+      "title": "Hover preview list demo",
+      "description": "A working preview of Hover preview list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hover-preview-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hover-preview-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

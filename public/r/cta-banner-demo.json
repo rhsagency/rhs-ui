@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-banner-demo",
+  "title": "CTA banner demo",
+  "description": "A working preview of CTA banner.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/cta-banner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/cta-banner-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { CtaBanner } from \"@rhs-ui/marketing/cta-banner\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10\">\n      <CtaBanner title=\"Moving from another tool?\" description=\"Import projects, people and history in one go. It takes about four minutes.\" actions={<Button>Start the import</Button>} />\n      <CtaBanner tone=\"inverted\" title=\"Ready when your team is.\" actions={<Button variant=\"secondary\">Try it free</Button>} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

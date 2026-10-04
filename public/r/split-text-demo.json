@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-text-demo",
+  "title": "Split text demo",
+  "description": "A working preview of Split text.",
+  "registryDependencies": [
+    "https://rhsui.com/r/split-text.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/split-text-demo.tsx",
+      "content": "import { SplitText } from \"@rhs-ui/motion/split-text\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-3xl space-y-10 p-10\">\n      <SplitText as=\"h2\" text=\"Good design is quiet until it matters.\" className=\"text-4xl font-medium tracking-[-.045em] sm:text-5xl\" />\n      <SplitText as=\"p\" text=\"Sharpening from a blur, one word at a time.\" effect=\"blur\" className=\"text-xl text-muted-foreground\" />\n      <SplitText as=\"p\" text=\"LETTERS\" by=\"letter\" className=\"font-mono text-3xl tracking-[.3em]\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

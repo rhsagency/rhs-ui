@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "word-rotate-demo",
+  "title": "Word rotate demo",
+  "description": "A working preview of Word rotate.",
+  "registryDependencies": [
+    "https://rhsui.com/r/word-rotate.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/word-rotate-demo.tsx",
+      "content": "import { WordRotate } from \"@rhs-ui/motion/word-rotate\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-3xl p-10 text-center\">\n      <h2 className=\"text-4xl font-medium tracking-[-.045em] sm:text-5xl\">\n        Interfaces for <WordRotate words={[\"founders\", \"studios\", \"agencies\", \"product teams\"]} className=\"text-muted-foreground\" />\n      </h2>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

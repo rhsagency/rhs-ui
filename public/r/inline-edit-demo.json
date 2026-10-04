@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-edit-demo",
+  "title": "Inline edit demo",
+  "description": "A working preview of Inline edit.",
+  "registryDependencies": [
+    "https://rhsui.com/r/inline-edit.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/inline-edit-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { InlineEdit } from \"@rhs-ui/application/inline-edit\";\n\nexport default function Demo(): React.JSX.Element {\n  const [name, setName] = useState(\"Spring launch\");\n  return (\n    <div className=\"mx-auto max-w-lg p-10\">\n      <p className=\"text-xs text-muted-foreground\">Project</p>\n      <h2 className=\"mt-1 text-2xl font-medium tracking-[-.03em]\">\n        <InlineEdit label=\"Project name\" value={name} onSave={(value) => new Promise<void>((resolve) => setTimeout(() => { setName(value); resolve(); }, 300))} />\n      </h2>\n      <p className=\"mt-4 text-sm text-muted-foreground\">Click the name, type, then press Enter. Escape cancels.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

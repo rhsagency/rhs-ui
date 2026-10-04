@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "team-grid-demo",
+  "title": "Team grid demo",
+  "description": "A working preview of Team grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/team-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/team-grid-demo.tsx",
+      "content": "import { TeamGrid } from \"@rhs-ui/marketing/team-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <TeamGrid\n        eyebrow=\"The team\"\n        title=\"Eight people, one studio\"\n        description=\"Designers and engineers who have shipped together for a decade.\"\n        members={[\n          { id: \"1\", name: \"Anouk de Wit\", role: \"Founder, design\", links: [{ label: \"LinkedIn\", href: \"#\" }] },\n          { id: \"2\", name: \"Ravi Menon\", role: \"Engineering lead\" },\n          { id: \"3\", name: \"Femke Bos\", role: \"Product designer\" },\n          { id: \"4\", name: \"Luca Romano\", role: \"Front-end engineer\" },\n          { id: \"5\", name: \"Mei Tanaka\", role: \"Brand designer\" },\n          { id: \"6\", name: \"Daan Peters\", role: \"Back-end engineer\" },\n          { id: \"7\", name: \"Sara Haddad\", role: \"Producer\" },\n          { id: \"8\", name: \"Ole Hansen\", role: \"Motion designer\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

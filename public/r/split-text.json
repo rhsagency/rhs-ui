@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-text",
+  "title": "Split text",
+  "description": "A heading that arrives a word or letter at a time in view: rise, blur or fade, with the sentence read once.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json"
+  ],
+  "files": [
+    {
+      "path": "registry/motion/split-text.tsx",
+      "content": "\"use client\";\n\nimport { useRef, type CSSProperties } from \"react\";\n\nimport { useInView } from \"@rhs-ui/motion/use-in-view\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SplitTextProps {\n  text: string;\n  /** Animate per word (calm) or per letter (lively, for short headings). */\n  by?: \"word\" | \"letter\";\n  /** Rise from below, sharpen from a blur, or fade in place. */\n  effect?: \"rise\" | \"blur\" | \"fade\";\n  /** Milliseconds between pieces. */\n  stagger?: number;\n  /** The element to render: h2, p, span. */\n  as?: \"h2\" | \"h3\" | \"h4\" | \"p\" | \"span\";\n  className?: string;\n}\n\nconst START: Record<NonNullable<SplitTextProps[\"effect\"]>, string> = {\n  rise: \"translate-y-[0.6em] opacity-0\",\n  blur: \"opacity-0 blur-[10px]\",\n  fade: \"opacity-0\",\n};\n\n/**\n * A heading that arrives a word (or letter) at a time as it scrolls into\n * view. Screen readers get the sentence once; the pieces are hidden from\n * screen readers, and under reduced motion everything simply stands.\n */\nexport function SplitText({ text, by = \"word\", effect = \"rise\", stagger, as: Tag = \"span\", className }: SplitTextProps) {\n  const ref = useRef<HTMLParagraphElement>(null);\n  const inView = useInView(ref);\n  const pieces = by === \"word\" ? text.split(/(\\s+)/) : Array.from(text);\n  const step = stagger ?? (by === \"word\" ? 70 : 24);\n  let order = 0;\n  return (\n    <Tag ref={ref as React.RefObject<never>} data-slot=\"split-text\" className={cn(Tag === \"span\" ? \"inline-block\" : \"block\", className)}>\n      <span className=\"sr-only\">{text}</span>\n      {pieces.map((piece, index) => {\n        if (/^\\s+$/.test(piece)) return <span key={index} aria-hidden=\"true\">{piece}</span>;\n        const delay = order++ * step;\n        return (\n          <span\n            key={index}\n            aria-hidden=\"true\"\n            style={{ transitionDelay: `${delay}ms` } as CSSProperties}\n            className={cn(\n              \"inline-block whitespace-pre transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-none motion-reduce:transition-none\",\n              inView ? \"translate-y-0 opacity-100 blur-none\" : START[effect],\n            )}\n          >\n            {piece}\n          </span>\n        );\n      })}\n    </Tag>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/split-text.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "text"
+  },
+  "categories": [
+    "motion",
+    "text"
+  ],
+  "type": "registry:component"
+}

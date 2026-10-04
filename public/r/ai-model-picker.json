@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-model-picker",
+  "title": "AI model picker",
+  "description": "A compact model switch for a prompt box; every option says what it is good for, on the RHS UI Select.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-model-picker.tsx",
+      "content": "\"use client\";\n\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiModelOption {\n  id: string;\n  label: string;\n  /** One line on when to pick it: \"Fast, for short answers\". */\n  description?: string;\n  /** \"New\", \"Beta\". */\n  badge?: string;\n}\n\nexport interface AiModelPickerProps {\n  models: readonly AiModelOption[];\n  value: string;\n  onValueChange: (id: string) => void;\n  label?: string;\n  className?: string;\n}\n\n/**\n * The model switch above or inside a prompt box: a compact trigger that\n * shows the current model, and a list where every option says what it is\n * good for. Built on the RHS UI Select, so it is a real listbox.\n */\nexport function AiModelPicker({ models, value, onValueChange, label = \"Model\", className }: AiModelPickerProps) {\n  return (\n    <Select value={value} onValueChange={onValueChange}>\n      <SelectTrigger size=\"sm\" aria-label={label} className={cn(\"w-auto gap-2 border-transparent bg-transparent hover:bg-muted\", className)}>\n        <SelectValue />\n      </SelectTrigger>\n      <SelectContent className=\"min-w-64\">\n        {models.map((model) => (\n          <SelectItem key={model.id} value={model.id} description={model.description}>\n            {model.label}\n            {model.badge ? <span className=\"ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[0.625rem] text-muted-foreground\">{model.badge}</span> : null}\n          </SelectItem>\n        ))}\n      </SelectContent>\n    </Select>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-model-picker.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

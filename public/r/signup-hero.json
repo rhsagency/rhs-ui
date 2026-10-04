@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signup-hero",
+  "title": "Sign-up hero",
+  "description": "A hero whose action is an email field: waitlist, beta or newsletter, with progress and an announced result.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/signup-hero.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent, type ReactNode } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SignupHeroProps {\n  eyebrow?: string;\n  title: string;\n  description?: string;\n  /** Called with the address; resolve to show the thank-you, reject to show the error. */\n  onSubmit: (email: string) => Promise<void> | void;\n  cta?: string;\n  /** Under the field: what happens with the address. */\n  privacyNote?: string;\n  /** Faces, logos or a count that makes the list feel alive. */\n  proof?: ReactNode;\n  successMessage?: string;\n  className?: string;\n}\n\n/**\n * A hero whose action is the form itself: an address and one button, for a\n * waitlist, a beta or a newsletter. The field keeps its label for screen\n * readers, the button shows progress, and the result is announced.\n */\nexport function SignupHero({ eyebrow, title, description, onSubmit, cta = \"Join the list\", privacyNote, proof, successMessage = \"You are on the list. Check your inbox to confirm.\", className }: SignupHeroProps) {\n  const id = useId();\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\" | \"error\">(\"idle\");\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    const email = String(new FormData(event.currentTarget).get(\"email\") ?? \"\").trim();\n    if (!email) return;\n    setState(\"busy\");\n    try {\n      await onSubmit(email);\n      setState(\"done\");\n    } catch {\n      setState(\"error\");\n    }\n  }\n  return (\n    <section data-slot=\"signup-hero\" className={cn(\"mx-auto max-w-2xl py-16 text-center sm:py-24\", className)}>\n      {eyebrow ? <p className=\"mb-6 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n      <h2 className=\"text-5xl font-medium leading-[1.05] tracking-[-.055em] text-balance sm:text-6xl\">{title}</h2>\n      {description ? <p className=\"mx-auto mt-6 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground\">{description}</p> : null}\n      {state === \"done\" ? (\n        <p role=\"status\" className=\"mx-auto mt-9 max-w-md rounded-xl border border-border bg-muted px-5 py-4 text-sm\">{successMessage}</p>\n      ) : (\n        <form onSubmit={submit} className=\"mx-auto mt-9 flex max-w-md flex-col gap-2 sm:flex-row\">\n          <label htmlFor={id} className=\"sr-only\">Email address</label>\n          <Input id={id} name=\"email\" type=\"email\" required autoComplete=\"email\" placeholder=\"you@company.com\" className=\"h-11 flex-1\" aria-describedby={privacyNote ? `${id}-note` : undefined} />\n          <Button type=\"submit\" size=\"lg\" loading={state === \"busy\"}>{cta}</Button>\n        </form>\n      )}\n      {state === \"error\" ? <p role=\"alert\" className=\"mt-3 text-sm text-destructive\">That did not work. Please try again.</p> : null}\n      {privacyNote && state !== \"done\" ? <p id={`${id}-note`} className=\"mt-3 text-xs text-muted-foreground\">{privacyNote}</p> : null}\n      {proof ? <div className=\"mt-10 flex items-center justify-center gap-3 text-sm text-muted-foreground\">{proof}</div> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/signup-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blog-grid",
+  "title": "Blog grid",
+  "description": "Recent posts as cards with image, category, date and excerpt; each card is one stretched link.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/blog-grid.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface BlogPost {\n  id: string;\n  title: string;\n  excerpt: string;\n  href: string;\n  category?: string;\n  /** Already formatted for the reader: \"12 March 2026\". */\n  date: string;\n  /** ISO date for the time element. */\n  dateTime: string;\n  readingTime?: string;\n  image?: { src: string; alt: string };\n}\n\nexport interface BlogGridProps {\n  eyebrow?: string;\n  title: string;\n  posts: readonly BlogPost[];\n  /** A link to the full archive. */\n  allPosts?: { label: string; href: string };\n  className?: string;\n}\n\n/**\n * Recent writing as cards: image, category and date, title and excerpt. The\n * whole card is one link, made with a stretched title link so the text stays\n * selectable and the outline reads well.\n */\nexport function BlogGrid({ eyebrow, title, posts, allPosts, className }: BlogGridProps) {\n  return (\n    <section data-slot=\"blog-grid\" className={cn(\"py-16 sm:py-24\", className)}>\n      <header className=\"flex flex-wrap items-end justify-between gap-6\">\n        <div>\n          {eyebrow ? <p className=\"mb-4 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground\">{eyebrow}</p> : null}\n          <h2 className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n        </div>\n        {allPosts ? <a href={allPosts.href} className=\"text-sm font-medium underline-offset-4 hover:underline\">{allPosts.label}</a> : null}\n      </header>\n      <ul className=\"mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3\">\n        {posts.map((post) => (\n          <li key={post.id}>\n            <article className=\"group relative flex h-full flex-col\">\n              <div className=\"aspect-[16/10] overflow-hidden rounded-xl bg-muted\">\n                {post.image ? <img src={post.image.src} alt={post.image.alt} className=\"size-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none\" /> : null}\n              </div>\n              <p className=\"mt-5 flex flex-wrap items-center gap-x-3 text-xs text-muted-foreground\">\n                {post.category ? <span className=\"font-medium text-foreground\">{post.category}</span> : null}\n                <time dateTime={post.dateTime}>{post.date}</time>\n                {post.readingTime ? <span>{post.readingTime}</span> : null}\n              </p>\n              <h3 className=\"mt-3 text-lg font-medium leading-snug tracking-[-.02em]\">\n                <a href={post.href} className=\"outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-[3px] focus-visible:after:ring-ring/40 group-hover:underline group-hover:underline-offset-4\">{post.title}</a>\n              </h3>\n              <p className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">{post.excerpt}</p>\n            </article>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/blog-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

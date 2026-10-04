@@ -64,7 +64,7 @@ export function FooterSection({ brand, tagline, columns, aside, legal, legalLink
               <h2 className="font-mono text-[0.6875rem] tracking-wide text-muted-foreground uppercase">{column.title}</h2>
               <ul className="grid gap-2.5">
                 {column.links.map((link) => (
-                  <li key={link.href}>{renderLink(link, linkClass)}</li>
+                  <li key={`${link.label}-${link.href}`}>{renderLink(link, linkClass)}</li>
                 ))}
               </ul>
             </div>
@@ -77,7 +77,7 @@ export function FooterSection({ brand, tagline, columns, aside, legal, legalLink
           {legalLinks.length ? (
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {legalLinks.map((link) => (
-                <li key={link.href}>{renderLink(link, cn(linkClass, "text-xs"))}</li>
+                <li key={`${link.label}-${link.href}`}>{renderLink(link, cn(linkClass, "text-xs"))}</li>
               ))}
             </ul>
           ) : null}

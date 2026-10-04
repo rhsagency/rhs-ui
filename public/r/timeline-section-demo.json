@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline-section-demo",
+  "title": "Timeline section demo",
+  "description": "A working preview of Timeline section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/timeline-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/timeline-section-demo.tsx",
+      "content": "import { TimelineSection } from \"@rhs-ui/marketing/timeline-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <TimelineSection\n        eyebrow=\"Roadmap\"\n        title=\"Where we came from, and where we are going\"\n        milestones={[\n          { when: \"2021\", title: \"First customer\", description: \"A bakery in Utrecht, still with us.\" },\n          { when: \"2023\", title: \"Team of eight\", description: \"Our first designer and our first support hire.\" },\n          { when: \"2025\", title: \"1,000 shops\", description: \"Across nine countries, without a sales team.\" },\n          { when: \"Q2 2026\", title: \"Public API\", description: \"Webhooks and a REST API on every plan.\", upcoming: true },\n          { when: \"Q4 2026\", title: \"Offline mode\", description: \"Keep selling when the connection drops.\", upcoming: true },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

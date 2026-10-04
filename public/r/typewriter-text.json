@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typewriter-text",
+  "title": "Typewriter text",
+  "description": "Text that types itself once in view, with a caret; screen readers get the whole sentence at once.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json"
+  ],
+  "files": [
+    {
+      "path": "registry/motion/typewriter-text.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { useInView, usePrefersReducedMotion } from \"@rhs-ui/motion/use-in-view\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TypewriterTextProps {\n  text: string;\n  /** Milliseconds per character. */\n  speed?: number;\n  /** Delay before typing starts, once the text is in view. */\n  delay?: number;\n  /** Show a blinking caret while typing and after. */\n  caret?: boolean;\n  className?: string;\n}\n\n/**\n * Text that types itself once it scrolls into view. Screen readers get the\n * whole sentence at once; the typing is decoration on a hidden copy. Under\n * reduced motion the full text simply stands there.\n */\nexport function TypewriterText({ text, speed = 38, delay = 200, caret = true, className }: TypewriterTextProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const inView = useInView(ref);\n  const reduced = usePrefersReducedMotion();\n  const [count, setCount] = useState(0);\n  useEffect(() => {\n    if (!inView || reduced) return;\n    let index = 0;\n    let timer = window.setTimeout(function tick() {\n      index += 1;\n      setCount(index);\n      if (index < text.length) timer = window.setTimeout(tick, speed);\n    }, delay);\n    return () => window.clearTimeout(timer);\n  }, [inView, reduced, text, speed, delay]);\n  const shown = reduced ? text.length : count;\n  return (\n    <span ref={ref} data-slot=\"typewriter-text\" className={cn(\"relative inline-block\", className)}>\n      <span className=\"sr-only\">{text}</span>\n      <span aria-hidden=\"true\">\n        {/* An invisible full copy reserves the final size, so nothing below jumps while typing. */}\n        <span className=\"invisible\">{text}</span>\n        <span className=\"absolute inset-0\">\n          {text.slice(0, shown)}\n          {caret ? <span className=\"ml-px inline-block h-[1em] w-[2px] translate-y-[.12em] bg-current motion-safe:animate-pulse\" /> : null}\n        </span>\n      </span>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/typewriter-text.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "text"
+  },
+  "categories": [
+    "motion",
+    "text"
+  ],
+  "type": "registry:component"
+}

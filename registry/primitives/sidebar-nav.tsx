@@ -38,7 +38,7 @@ export function SidebarNav({ groups, currentHref, linkAs: Link = "a", label = "M
   const item = (link: SidebarNavLink) => {
     const current = currentHref === link.href || currentHref.startsWith(`${link.href}/`);
     return (
-      <li key={link.href}>
+      <li key={`${link.label}-${link.href}`}>
         <Link
           href={link.href}
           aria-current={current ? "page" : undefined}

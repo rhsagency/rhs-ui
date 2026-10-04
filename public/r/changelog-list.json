@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "changelog-list",
+  "title": "Changelog list",
+  "description": "Releases on a time rail: version and date in a sticky column, tags, title and the story beside them.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/changelog-list.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ChangelogEntry {\n  version: string;\n  /** Formatted for the reader. */\n  date: string;\n  dateTime: string;\n  title: string;\n  body: ReactNode;\n  /** Short labels such as New, Improved, Fixed. */\n  tags?: readonly string[];\n}\n\nexport interface ChangelogListProps {\n  title?: string;\n  entries: readonly ChangelogEntry[];\n  className?: string;\n}\n\n/**\n * Releases on a time rail: the version and date stay in a narrow left column\n * (sticky on wide screens), the story of the release on the right.\n */\nexport function ChangelogList({ title = \"Changelog\", entries, className }: ChangelogListProps) {\n  return (\n    <section data-slot=\"changelog-list\" className={cn(\"py-16 sm:py-24\", className)}>\n      <h2 className=\"mb-12 text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n      <ol className=\"flex flex-col\">\n        {entries.map((entry) => (\n          <li key={entry.version} className=\"grid gap-4 border-t border-border py-10 md:grid-cols-[12rem_1fr] md:gap-12\">\n            <div className=\"md:sticky md:top-24 md:self-start\">\n              <p className=\"font-mono text-sm\">{entry.version}</p>\n              <time dateTime={entry.dateTime} className=\"text-sm text-muted-foreground\">{entry.date}</time>\n            </div>\n            <article>\n              {entry.tags?.length ? (\n                <ul className=\"mb-3 flex flex-wrap gap-2\">\n                  {entry.tags.map((tag) => (\n                    <li key={tag} className=\"rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground\">{tag}</li>\n                  ))}\n                </ul>\n              ) : null}\n              <h3 className=\"text-xl font-medium tracking-[-.02em]\">{entry.title}</h3>\n              <div className=\"mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground [&_li]:ml-4 [&_li]:list-disc [&_strong]:text-foreground\">{entry.body}</div>\n            </article>\n          </li>\n        ))}\n      </ol>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/changelog-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

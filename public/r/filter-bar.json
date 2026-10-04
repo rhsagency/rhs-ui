@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filter-bar",
+  "title": "Filter bar",
+  "description": "Filters as toggle chips in labelled groups, active ones as removable tags, clear all and an announced count.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/filter-bar.tsx",
+      "content": "\"use client\";\n\nimport { IconClose, IconFilter } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FilterOption {\n  id: string;\n  label: string;\n  count?: number;\n}\n\nexport interface FilterGroup {\n  id: string;\n  label: string;\n  options: readonly FilterOption[];\n}\n\nexport interface FilterBarProps {\n  groups: readonly FilterGroup[];\n  /** Selected option ids per group id. */\n  value: Record<string, readonly string[]>;\n  onChange: (value: Record<string, string[]>) => void;\n  /** Results after filtering, announced to screen readers. */\n  resultCount?: number;\n  className?: string;\n}\n\n/**\n * Filters as toggle chips in labelled groups, with the active ones repeated\n * as removable tags and a clear-all. Works for a product grid, a job list or\n * a table; the result count is announced as it changes.\n */\nexport function FilterBar({ groups, value, onChange, resultCount, className }: FilterBarProps) {\n  const toggle = (group: string, option: string) => {\n    const current = value[group] ?? [];\n    const next = current.includes(option) ? current.filter((id) => id !== option) : [...current, option];\n    onChange({ ...Object.fromEntries(Object.entries(value).map(([key, ids]) => [key, [...ids]])), [group]: next });\n  };\n  const active = groups.flatMap((group) => (value[group.id] ?? []).map((id) => ({ group, option: group.options.find((option) => option.id === id) })).filter((entry) => entry.option));\n  return (\n    <div data-slot=\"filter-bar\" className={cn(\"space-y-4\", className)}>\n      <div className=\"flex flex-wrap gap-x-8 gap-y-4\">\n        {groups.map((group) => (\n          <div key={group.id} role=\"group\" aria-label={group.label}>\n            <p className=\"mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground [&_svg]:size-3.5\"><IconFilter />{group.label}</p>\n            <div className=\"flex flex-wrap gap-1.5\">\n              {group.options.map((option) => {\n                const on = (value[group.id] ?? []).includes(option.id);\n                return (\n                  <button key={option.id} type=\"button\" aria-pressed={on} onClick={() => toggle(group.id, option.id)} className={cn(\"rounded-full border px-3 py-1 text-sm outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/40\", on ? \"border-foreground bg-foreground text-background\" : \"border-border hover:bg-muted\")}>\n                    {option.label}\n                    {option.count !== undefined ? <span className=\"ml-1.5 tabular-nums opacity-60\">{option.count}</span> : null}\n                  </button>\n                );\n              })}\n            </div>\n          </div>\n        ))}\n      </div>\n      {active.length || resultCount !== undefined ? (\n        <div className=\"flex flex-wrap items-center gap-2 border-t border-border pt-3 text-sm\">\n          {resultCount !== undefined ? <span role=\"status\" className=\"mr-2 text-muted-foreground tabular-nums\">{resultCount} {resultCount === 1 ? \"result\" : \"results\"}</span> : null}\n          {active.map(({ group, option }) => (\n            <span key={`${group.id}-${option!.id}`} className=\"inline-flex items-center gap-1 rounded-md bg-muted py-0.5 pr-0.5 pl-2 text-xs\">\n              {group.label}: {option!.label}\n              <button type=\"button\" aria-label={`Remove ${group.label} ${option!.label}`} onClick={() => toggle(group.id, option!.id)} className=\"inline-flex size-5 items-center justify-center rounded hover:bg-background [&_svg]:size-3\"><IconClose /></button>\n            </span>\n          ))}\n          {active.length ? <button type=\"button\" onClick={() => onChange({})} className=\"text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline\">Clear all</button> : null}\n        </div>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/filter-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "application",
+    "forms"
+  ],
+  "type": "registry:component"
+}

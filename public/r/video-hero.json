@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "video-hero",
+  "title": "Video hero",
+  "description": "Copy over a muted full-bleed clip with a scrim, a visible pause control and no autoplay under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/video-hero.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ReactNode } from \"react\";\n\nimport { IconPause, IconPlay } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface VideoHeroProps {\n  title: string;\n  description?: string;\n  actions?: ReactNode;\n  /** A muted, looping clip. Without it the poster stands alone. */\n  src?: string;\n  poster: string;\n  /** What the clip shows, for people who cannot see it. */\n  alt: string;\n  className?: string;\n}\n\n/**\n * Copy over a full-bleed clip. The clip is muted, plays inline, never starts\n * under reduced motion, and has a visible pause control (WCAG 2.2.2). The\n * copy sits on a scrim that keeps contrast whatever the frame shows.\n */\nexport function VideoHero({ title, description, actions, src, poster, alt, className }: VideoHeroProps) {\n  const video = useRef<HTMLVideoElement>(null);\n  const [playing, setPlaying] = useState(false);\n  useEffect(() => {\n    const node = video.current;\n    if (!node || !src) return;\n    if (window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    node.play().then(() => setPlaying(true)).catch(() => setPlaying(false));\n  }, [src]);\n  function toggle() {\n    const node = video.current;\n    if (!node) return;\n    if (node.paused) void node.play().then(() => setPlaying(true));\n    else {\n      node.pause();\n      setPlaying(false);\n    }\n  }\n  return (\n    <section data-slot=\"video-hero\" className={cn(\"dark relative isolate overflow-hidden rounded-2xl bg-background text-foreground\", className)}>\n      {src ? (\n        <video ref={video} className=\"absolute inset-0 -z-10 size-full object-cover\" src={src} poster={poster} muted loop playsInline preload=\"metadata\" aria-label={alt} />\n      ) : (\n        <img className=\"absolute inset-0 -z-10 size-full object-cover\" src={poster} alt={alt} />\n      )}\n      <div aria-hidden=\"true\" className=\"absolute inset-0 -z-10 bg-black/55\" />\n      <div className=\"flex min-h-[32rem] flex-col justify-end px-6 py-12 sm:px-12 sm:py-16\">\n        <h2 className=\"max-w-2xl text-5xl font-medium leading-[1.04] tracking-[-.055em] text-balance sm:text-6xl\">{title}</h2>\n        {description ? <p className=\"mt-6 max-w-lg text-base leading-relaxed text-muted-foreground\">{description}</p> : null}\n        {actions ? <div className=\"mt-8 flex flex-wrap gap-3\">{actions}</div> : null}\n      </div>\n      {src ? (\n        <button type=\"button\" onClick={toggle} aria-label={playing ? \"Pause background video\" : \"Play background video\"} className=\"absolute right-4 bottom-4 inline-flex size-10 items-center justify-center rounded-full border border-border bg-background/70 backdrop-blur outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\">\n          {playing ? <IconPause /> : <IconPlay />}\n        </button>\n      ) : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/video-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

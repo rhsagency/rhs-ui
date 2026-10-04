@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-cloud-demo",
+  "title": "Logo cloud demo",
+  "description": "A working preview of Logo cloud.",
+  "registryDependencies": [
+    "https://rhsui.com/r/logo-cloud.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/logo-cloud-demo.tsx",
+      "content": "import { LogoCloud } from \"@rhs-ui/marketing/logo-cloud\";\n\nconst mark = (d: string) => (\n  <svg viewBox=\"0 0 96 28\" fill=\"currentColor\" role=\"img\">\n    <path d={d} />\n  </svg>\n);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <LogoCloud\n        title=\"Trusted by product teams at\"\n        logos={[\n          { name: \"Northwind\", mark: mark(\"M4 6h6l8 12V6h6v16h-6L10 10v12H4z M30 6h20v4H36v3h12v4H36v5h-6z\") },\n          { name: \"Halcyon\" },\n          { name: \"Fieldwork\", mark: mark(\"M14 2a12 12 0 1 1 0 24a12 12 0 0 1 0-24zm0 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z M34 8h6v12h12v4H34z\") },\n          { name: \"Atlas & Co\" },\n          { name: \"Meridian\", mark: mark(\"M2 22L14 4l12 18h-6l-6-9l-6 9z M32 10h28v4H32zm0 8h20v4H32z\") },\n          { name: \"Quanta\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
