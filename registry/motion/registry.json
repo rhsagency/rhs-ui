@@ -881,6 +881,21 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "use-in-view-demo",
+      "type": "registry:example",
+      "title": "useInView demo",
+      "description": "A working preview of useInView.",
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/use-in-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-in-view-demo",
+  "title": "useInView demo",
+  "description": "A working preview of useInView.",
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/use-in-view-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef } from \"react\";\n\nimport { useInView, usePrefersReducedMotion } from \"@rhs-ui/motion/use-in-view\";\nimport { cn } from \"@/lib/utils\";\n\nfunction Card({ index }: { index: number }) {\n  const ref = useRef<HTMLDivElement>(null);\n  const inView = useInView(ref);\n  return (\n    <div\n      ref={ref}\n      style={{ transitionDelay: `${index * 80}ms` }}\n      className={cn(\n        \"rounded-xl border border-border bg-card p-5 transition-[transform,opacity] duration-700 motion-reduce:transition-none\",\n        inView ? \"translate-y-0 opacity-100\" : \"translate-y-6 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100\",\n      )}\n    >\n      <p className=\"text-sm font-medium\">Card {index + 1}</p>\n      <p className=\"mt-1 text-xs text-muted-foreground\">{inView ? \"In view\" : \"Waiting\"}</p>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const reduced = usePrefersReducedMotion();\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">Reduced motion: {reduced ? \"on, so everything stands still\" : \"off\"}</p>\n      <div className=\"grid gap-3 sm:grid-cols-3\">\n        {[0, 1, 2].map((index) => <Card key={index} index={index} />)}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

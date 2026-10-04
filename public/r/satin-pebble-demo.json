@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "satin-pebble-demo",
+  "title": "Satin Pebble demo",
+  "description": "A working preview of Satin Pebble.",
+  "registryDependencies": [
+    "https://rhsui.com/r/satin-pebble.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/satin-pebble-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { satinPebble } from \"@rhs-ui/models/satin-pebble\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={satinPebble} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

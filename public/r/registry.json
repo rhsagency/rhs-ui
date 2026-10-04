@@ -20617,6 +20617,134 @@
       "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB."
     },
     {
+      "name": "pill-capsule-demo",
+      "type": "registry:example",
+      "title": "Pill Capsule demo",
+      "description": "A working preview of Pill Capsule.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pill-capsule.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pill-capsule-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stacked-rings-demo",
+      "type": "registry:example",
+      "title": "Stacked Rings demo",
+      "description": "A working preview of Stacked Rings.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stacked-rings.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stacked-rings-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "soft-sphere-demo",
+      "type": "registry:example",
+      "title": "Soft Sphere demo",
+      "description": "A working preview of Soft Sphere.",
+      "registryDependencies": [
+        "https://rhsui.com/r/soft-sphere.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/soft-sphere-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prism-tower-demo",
+      "type": "registry:example",
+      "title": "Prism Tower demo",
+      "description": "A working preview of Prism Tower.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prism-tower.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prism-tower-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coin-blank-demo",
+      "type": "registry:example",
+      "title": "Coin Blank demo",
+      "description": "A working preview of Coin Blank.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coin-blank.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coin-blank-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "satin-pebble-demo",
+      "type": "registry:example",
+      "title": "Satin Pebble demo",
+      "description": "A working preview of Satin Pebble.",
+      "registryDependencies": [
+        "https://rhsui.com/r/satin-pebble.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/satin-pebble-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ring-torus-duo-demo",
+      "type": "registry:example",
+      "title": "Ring Torus Duo demo",
+      "description": "A working preview of Ring Torus Duo.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ring-torus-duo.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ring-torus-duo-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "gem-octa-demo",
+      "type": "registry:example",
+      "title": "Gem Octa demo",
+      "description": "A working preview of Gem Octa.",
+      "registryDependencies": [
+        "https://rhsui.com/r/gem-octa.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/gem-octa-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "dot-field",
       "type": "registry:component",
       "title": "Dot Field",
@@ -23333,6 +23461,21 @@
       "files": [
         {
           "path": "registry/examples/hover-preview-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "use-in-view-demo",
+      "type": "registry:example",
+      "title": "useInView demo",
+      "description": "A working preview of useInView.",
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/use-in-view-demo.tsx",
           "type": "registry:example"
         }
       ]
