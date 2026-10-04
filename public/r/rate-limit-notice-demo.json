@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rate-limit-notice-demo",
+  "title": "Rate limit notice demo",
+  "description": "A working preview of Rate limit notice.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/rate-limit-notice.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rate-limit-notice-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { RateLimitNotice } from \"@rhs-ui/primitives/rate-limit-notice\";\n\nexport default function Demo(): React.JSX.Element {\n  const [ready, setReady] = useState(false);\n  return (\n    <div className=\"mx-auto grid max-w-md gap-3 p-8\">\n      <RateLimitNotice retryAfter={20} what=\"requesting sign-in codes\" onReady={() => setReady(true)} action={<>Need more exports a day? <a href=\"#plans\">See the Team plan</a>.</>} />\n      <Button disabled={!ready} className=\"justify-self-start\">Send a new code</Button>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

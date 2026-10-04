@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "term-tooltip",
+  "title": "Term tooltip",
+  "description": "Jargon explained in place: the term gets a dotted underline and opens a short definition on click, tap or Enter (not on hover alone, so it works on phones and for keyboards), with a link to the glossary.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/term-tooltip.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\n\nexport interface TermTooltipProps {\n  /** The word in the text. */\n  children: ReactNode;\n  /** The term as a heading in the popover, if it differs from the text. */\n  term?: string;\n  definition: ReactNode;\n  /** \"Read more in the glossary\". */\n  href?: string;\n}\n\n/**\n * Jargon explained in place: the term gets a dotted underline and opens a\n * short definition on click, tap or Enter (not on hover alone, so it works\n * on phones and for keyboards), with a link to the glossary. For pricing\n * pages, docs and legal text.\n */\nexport function TermTooltip({ children, term, definition, href }: TermTooltipProps) {\n  return (\n    <Popover>\n      <PopoverTrigger className=\"cursor-help rounded-sm underline decoration-dotted decoration-from-font underline-offset-4 outline-none hover:decoration-solid focus-visible:ring-[3px] focus-visible:ring-ring/40\">{children}</PopoverTrigger>\n      <PopoverContent side=\"top\" className=\"w-72 text-sm\">\n        <p className=\"font-medium\">{term ?? children}</p>\n        <div className=\"mt-1 leading-relaxed text-muted-foreground\">{definition}</div>\n        {href ? <a href={href} className=\"mt-2 inline-block text-xs font-medium underline underline-offset-4\">Read more in the glossary</a> : null}\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/term-tooltip.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "unit-input-demo",
+  "title": "Unit input demo",
+  "description": "A working preview of Unit input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/unit-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/unit-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { UnitInput } from \"@rhs-ui/primitives/unit-input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState(\"2.4\");\n  const [unit, setUnit] = useState(\"kg\");\n  return (\n    <div className=\"mx-auto grid max-w-xs gap-4 p-8\">\n      <UnitInput label=\"Parcel weight\" value={value} onValueChange={setValue} unit={unit} onUnitChange={setUnit} units={[{ value: \"kg\", label: \"kg\" }, { value: \"g\", label: \"g\" }, { value: \"lb\", label: \"lb\" }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

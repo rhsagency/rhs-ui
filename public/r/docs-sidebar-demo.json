@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "docs-sidebar-demo",
+  "title": "Docs sidebar demo",
+  "description": "A working preview of Docs sidebar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/docs-sidebar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/docs-sidebar-demo.tsx",
+      "content": "\"use client\";\n\nimport { DocsSidebar } from \"@rhs-ui/primitives/docs-sidebar\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-xs p-8\">\n      <DocsSidebar\n        current=\"#forms-validation\"\n        sections={[\n          { title: \"Getting started\", pages: [{ title: \"Introduction\", href: \"#intro\" }, { title: \"Installation\", href: \"#install\" }, { title: \"Theming\", href: \"#theming\" }] },\n          {\n            title: \"Guides\",\n            pages: [\n              { title: \"Forms\", pages: [{ title: \"Fields\", href: \"#forms-fields\" }, { title: \"Validation\", href: \"#forms-validation\" }, { title: \"Server actions\", href: \"#forms-actions\", badge: \"New\" }] },\n              { title: \"Data\", pages: [{ title: \"Tables\", href: \"#tables\" }, { title: \"Charts\", href: \"#charts\" }] },\n              { title: \"Dark mode\", href: \"#dark-mode\" },\n            ],\n          },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "session-timeout-demo",
+  "title": "Session timeout demo",
+  "description": "A working preview of Session timeout.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/session-timeout.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/session-timeout-demo.tsx",
+      "content": "\"use client\";\n\nimport { useCallback, useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { SessionTimeout } from \"@rhs-ui/primitives/session-timeout\";\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(false);\n  const [state, setState] = useState(\"Signed in\");\n  const signOut = useCallback(() => { setOpen(false); setState(\"Signed out\"); }, []);\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-sm flex-col items-center justify-center gap-3 p-8 text-sm\">\n      <p className=\"text-muted-foreground\">{state}</p>\n      <Button variant=\"outline\" onClick={() => { setState(\"Signed in\"); setOpen(true); }}>Simulate an idle session</Button>\n      <SessionTimeout open={open} seconds={90} onStay={() => { setOpen(false); setState(\"Session extended\"); }} onSignOut={signOut} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

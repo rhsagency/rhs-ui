@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-tree-demo",
+  "title": "Checkbox tree demo",
+  "description": "A working preview of Checkbox tree.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checkbox-tree.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkbox-tree-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { CheckboxTree } from \"@rhs-ui/primitives/checkbox-tree\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string[]>([\"projects.read\", \"projects.write\", \"billing.read\"]);\n  return (\n    <div className=\"mx-auto max-w-sm p-8\">\n      <CheckboxTree\n        label=\"Permissions for the Editor role\"\n        value={value}\n        onValueChange={setValue}\n        defaultExpanded={[\"projects\", \"billing\"]}\n        nodes={[\n          { id: \"projects\", label: \"Projects\", children: [{ id: \"projects.read\", label: \"View projects\" }, { id: \"projects.write\", label: \"Edit projects\" }, { id: \"projects.delete\", label: \"Delete projects\" }] },\n          { id: \"billing\", label: \"Billing\", children: [{ id: \"billing.read\", label: \"View invoices\" }, { id: \"billing.manage\", label: \"Change the plan\" }] },\n          { id: \"members\", label: \"Members\", children: [{ id: \"members.invite\", label: \"Invite people\" }, { id: \"members.remove\", label: \"Remove people\" }] },\n        ]}\n      />\n      <p className=\"mt-4 text-xs text-muted-foreground\">{value.length} permissions selected</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

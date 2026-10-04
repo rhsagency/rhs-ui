@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cart-drawer",
+  "title": "Cart drawer",
+  "description": "The bag that slides in from the side after \"add to bag\": the lines with quantity and remove (the house cart line), progress to free shipping, the subtotal and checkout pinned to the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/cart-line.json",
+    "https://rhsui.com/r/shipping-progress.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/sheet.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/cart-drawer.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { CartLine } from \"@rhs-ui/commerce/cart-line\";\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { ShippingProgress } from \"@rhs-ui/commerce/shipping-progress\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from \"@rhs-ui/primitives/sheet\";\n\nexport interface CartDrawerLine {\n  id: string;\n  title: string;\n  variant?: string;\n  quantity: number;\n  price: Money;\n  image?: { src: string; alt: string };\n  href?: string;\n}\n\nexport interface CartDrawerProps {\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  /** The bag button in the header. */\n  trigger?: ReactNode;\n  lines: readonly CartDrawerLine[];\n  onQuantityChange: (id: string, quantity: number) => void;\n  onRemove: (id: string) => void;\n  /** Free shipping from this subtotal, in cents. */\n  freeShippingFrom?: number;\n  checkoutHref: string;\n  locale?: string;\n}\n\n/**\n * The bag that slides in from the side after \"add to bag\": the lines with\n * quantity and remove (the house cart line), progress to free shipping, the\n * subtotal and checkout pinned to the bottom. Totals are summed in cents,\n * and an empty bag says so with a way back to shopping.\n */\nexport function CartDrawer({ open, onOpenChange, trigger, lines, onQuantityChange, onRemove, freeShippingFrom, checkoutHref, locale = \"en-GB\" }: CartDrawerProps) {\n  const currency = lines[0]?.price.currency ?? \"EUR\";\n  const subtotal = { amount: lines.reduce((sum, line) => sum + line.price.amount * line.quantity, 0), currency };\n  const count = lines.reduce((sum, line) => sum + line.quantity, 0);\n  return (\n    <Sheet open={open} onOpenChange={onOpenChange}>\n      {trigger ? <SheetTrigger asChild>{trigger}</SheetTrigger> : null}\n      <SheetContent className=\"flex w-full flex-col sm:max-w-md\">\n        <SheetHeader>\n          <SheetTitle>Your bag</SheetTitle>\n          <SheetDescription>{count ? `${count} ${count === 1 ? \"item\" : \"items\"}` : \"Nothing in here yet.\"}</SheetDescription>\n        </SheetHeader>\n        {lines.length ? (\n          <>\n            {freeShippingFrom !== undefined ? <div className=\"px-5\"><ShippingProgress subtotal={subtotal} threshold={{ amount: freeShippingFrom, currency }} locale={locale} /></div> : null}\n            <ul className=\"relative min-h-0 flex-1 divide-y divide-border overflow-y-auto px-5\">\n              {lines.map((line) => (\n                <li key={line.id} className=\"py-4\">\n                  <CartLine title={line.title} variant={line.variant} image={line.image} price={line.price} quantity={line.quantity} href={line.href} locale={locale} onQuantityChange={(quantity) => onQuantityChange(line.id, quantity)} onRemove={() => onRemove(line.id)} />\n                </li>\n              ))}\n            </ul>\n            <SheetFooter className=\"border-t border-border\">\n              <p className=\"flex justify-between text-sm\"><span className=\"text-muted-foreground\">Subtotal</span><span className=\"font-medium tabular-nums\" suppressHydrationWarning>{formatMoney(subtotal, locale)}</span></p>\n              <p className=\"text-xs text-muted-foreground\">Shipping and tax are worked out at checkout.</p>\n              <Button asChild size=\"lg\" className=\"w-full\"><a href={checkoutHref}>Checkout</a></Button>\n            </SheetFooter>\n          </>\n        ) : (\n          <div className=\"flex flex-1 flex-col items-center justify-center gap-3 p-8 text-center text-sm text-muted-foreground\">\n            Your bag is empty.\n            <Button variant=\"outline\" onClick={() => onOpenChange?.(false)}>Keep shopping</Button>\n          </div>\n        )}\n      </SheetContent>\n    </Sheet>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/cart-drawer.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

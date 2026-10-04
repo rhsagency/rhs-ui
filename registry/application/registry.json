@@ -1939,6 +1939,176 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "ai-diff-suggestion",
+      "type": "registry:component",
+      "title": "AI diff suggestion",
+      "description": "An AI edit shown as a change, not a replacement: removed words struck through, added words marked, the reason in one line, and accept or reject.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-diff-suggestion.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-diff-suggestion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-diff-suggestion-demo",
+      "type": "registry:example",
+      "title": "AI diff suggestion demo",
+      "description": "A working preview of AI diff suggestion.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-diff-suggestion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-diff-suggestion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-answer-compare",
+      "type": "registry:component",
+      "title": "AI answer compare",
+      "description": "Two answers to the same prompt side by side, for preference feedback or a model bake-off: pick the better one or call a tie, and the choice locks with a check.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-answer-compare.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-answer-compare.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-answer-compare-demo",
+      "type": "registry:example",
+      "title": "AI answer compare demo",
+      "description": "A working preview of AI answer compare.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-answer-compare.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-answer-compare-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-conversation-list",
+      "type": "registry:component",
+      "title": "AI conversation list",
+      "description": "The history sidebar of a chat product: a new-chat button, a search over past titles, and the conversations under date headings with the open one marked.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-conversation-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-conversation-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-conversation-list-demo",
+      "type": "registry:example",
+      "title": "AI conversation list demo",
+      "description": "A working preview of AI conversation list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-conversation-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-conversation-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ai-quota-banner",
+      "type": "registry:component",
+      "title": "AI quota banner",
+      "description": "The usage line above a chat composer: how many messages are left today as a meter, a calm note until the last fifth, a clear one when it runs out, when it resets, and the way to more.",
+      "categories": [
+        "application",
+        "ai"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ai-quota-banner.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ai-quota-banner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ai-quota-banner-demo",
+      "type": "registry:example",
+      "title": "AI quota banner demo",
+      "description": "A working preview of AI quota banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ai-quota-banner.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ai-quota-banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

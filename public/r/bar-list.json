@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bar-list",
+  "title": "Bar list",
+  "description": "Top pages, referrers, countries: each row a soft bar behind the label, sized against the largest, the value at the end.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/bar-list.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface BarListItem {\n  name: string;\n  value: number;\n  href?: string;\n}\n\nexport interface BarListProps {\n  items: readonly BarListItem[];\n  /** Column headings: \"Page\", \"Visitors\". */\n  labels?: [string, string];\n  format?: Intl.NumberFormatOptions;\n  locale?: string;\n  /** Show this many rows, largest first. */\n  limit?: number;\n  className?: string;\n}\n\n/**\n * Top pages, referrers, countries: each row a soft bar behind the label,\n * sized against the largest, the value at the end. A real list, sorted\n * largest first, with links when the rows lead somewhere. The bars are\n * decoration; the numbers are text.\n */\nexport function BarList({ items, labels, format, locale = \"en-GB\", limit, className }: BarListProps) {\n  const sorted = [...items].sort((a, b) => b.value - a.value).slice(0, limit);\n  const max = Math.max(1, ...sorted.map((item) => item.value));\n  const number = new Intl.NumberFormat(locale, format);\n  return (\n    <div data-slot=\"bar-list\" className={cn(\"grid gap-1.5\", className)}>\n      {labels ? <div aria-hidden=\"true\" className=\"flex justify-between px-2 text-xs text-muted-foreground\"><span>{labels[0]}</span><span>{labels[1]}</span></div> : null}\n      <ul className=\"grid gap-1\">\n        {sorted.map((item) => {\n          const row = (\n            <>\n              <span aria-hidden=\"true\" className=\"absolute inset-y-0 left-0 rounded-md bg-foreground/[0.08]\" style={{ width: `${(item.value / max) * 100}%` }} />\n              <span className=\"relative truncate\">{item.name}</span>\n              <span className=\"relative shrink-0 font-medium tabular-nums\" suppressHydrationWarning>{number.format(item.value)}</span>\n            </>\n          );\n          return (\n            <li key={`${item.name}-${item.href ?? \"\"}`}>\n              {item.href ? (\n                <a href={item.href} className=\"relative flex items-center justify-between gap-4 rounded-md px-2 py-1.5 text-sm outline-none hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/40\">{row}</a>\n              ) : (\n                <span className=\"relative flex items-center justify-between gap-4 rounded-md px-2 py-1.5 text-sm\">{row}</span>\n              )}\n            </li>\n          );\n        })}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/bar-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

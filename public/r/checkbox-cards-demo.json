@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-cards-demo",
+  "title": "Checkbox cards demo",
+  "description": "A working preview of Checkbox cards.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/checkbox-cards.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkbox-cards-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCalendar, IconCode, IconMail, IconMessages } from \"@rhs-ui/icons\";\nimport { CheckboxCards } from \"@rhs-ui/primitives/checkbox-cards\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string[]>([\"calendar\"]);\n  return (\n    <div className=\"mx-auto max-w-xl p-8\">\n      <CheckboxCards\n        legend=\"Connect your tools\"\n        max={3}\n        value={value}\n        onValueChange={setValue}\n        options={[\n          { value: \"calendar\", label: \"Calendar\", description: \"Due dates on your calendar\", icon: <IconCalendar /> },\n          { value: \"email\", label: \"Email\", description: \"Turn emails into tasks\", icon: <IconMail /> },\n          { value: \"chat\", label: \"Chat\", description: \"Updates where you talk\", icon: <IconMessages /> },\n          { value: \"git\", label: \"Git\", description: \"Link pull requests\", icon: <IconCode /> },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

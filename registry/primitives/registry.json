@@ -6826,6 +6826,1537 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "color-swatches",
+      "type": "registry:ui",
+      "title": "Color swatches",
+      "description": "A fixed palette to pick from: label colours, theme accents, product finishes.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/color-swatches.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/color-swatches.tsx"
+        }
+      ]
+    },
+    {
+      "name": "color-swatches-demo",
+      "type": "registry:example",
+      "title": "Color swatches demo",
+      "description": "A working preview of Color swatches.",
+      "registryDependencies": [
+        "https://rhsui.com/r/color-swatches.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/color-swatches-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-trigger",
+      "type": "registry:ui",
+      "title": "File trigger",
+      "description": "A single file field that looks like the rest of the form: a button to choose, then the file's name and size with a remove button, and a refusal in words when it is too big.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/file-trigger.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/file-trigger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-trigger-demo",
+      "type": "registry:example",
+      "title": "File trigger demo",
+      "description": "A working preview of File trigger.",
+      "registryDependencies": [
+        "https://rhsui.com/r/file-trigger.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-trigger-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-cards",
+      "type": "registry:ui",
+      "title": "Checkbox cards",
+      "description": "Pick several from a few rich options: interests, add-ons, integrations to install.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/checkbox-cards.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/checkbox-cards.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-cards-demo",
+      "type": "registry:example",
+      "title": "Checkbox cards demo",
+      "description": "A working preview of Checkbox cards.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/checkbox-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-cards-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "key-value-editor",
+      "type": "registry:ui",
+      "title": "Key value editor",
+      "description": "Edit a list of keys and values, like environment variables, headers or metadata: rows of two fields, add and remove, secret values masked with a reveal toggle per row, and duplicate or malformed keys flagged in words on the row they belong to.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/key-value-editor.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/key-value-editor.tsx"
+        }
+      ]
+    },
+    {
+      "name": "key-value-editor-demo",
+      "type": "registry:example",
+      "title": "Key value editor demo",
+      "description": "A working preview of Key value editor.",
+      "registryDependencies": [
+        "https://rhsui.com/r/key-value-editor.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/key-value-editor-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "editable-list",
+      "type": "registry:ui",
+      "title": "Editable list",
+      "description": "A list people type straight into: agenda points, recipe steps, answer options.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/editable-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/editable-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "editable-list-demo",
+      "type": "registry:example",
+      "title": "Editable list demo",
+      "description": "A working preview of Editable list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/editable-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/editable-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-tree",
+      "type": "registry:ui",
+      "title": "Checkbox tree",
+      "description": "Permissions, categories or folders to pick as a tree: ticking a parent ticks everything under it, a partly ticked group shows the mixed state (and says so to screen readers through the real indeterminate checkbox), and groups fold open and closed.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/checkbox-tree.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/checkbox-tree.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-tree-demo",
+      "type": "registry:example",
+      "title": "Checkbox tree demo",
+      "description": "A working preview of Checkbox tree.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox-tree.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-tree-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "duration-input",
+      "type": "registry:ui",
+      "title": "Duration input",
+      "description": "A duration as hours and minutes (and days if you want them), each its own small number field under one group label, so nobody has to type \"1:30\" or \"90\" and guess the unit.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/duration-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/duration-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "duration-input-demo",
+      "type": "registry:example",
+      "title": "Duration input demo",
+      "description": "A working preview of Duration input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/duration-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/duration-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "unit-input",
+      "type": "registry:ui",
+      "title": "Unit input",
+      "description": "A number with its unit as one field: weight in kg or lb, size in px or %, a timeout in seconds or minutes.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/unit-input.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/unit-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "unit-input-demo",
+      "type": "registry:example",
+      "title": "Unit input demo",
+      "description": "A working preview of Unit input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/unit-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/unit-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "consent-checkboxes",
+      "type": "registry:ui",
+      "title": "Consent checkboxes",
+      "description": "The consent lines under a sign-up or checkout form, done the way the GDPR expects: one checkbox per purpose, required ones marked as required, the optional ones (newsletter, research) never ticked for people, and a missing required consent explained on its own line after a submit.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/consent-checkboxes.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/consent-checkboxes.tsx"
+        }
+      ]
+    },
+    {
+      "name": "consent-checkboxes-demo",
+      "type": "registry:example",
+      "title": "Consent checkboxes demo",
+      "description": "A working preview of Consent checkboxes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/consent-checkboxes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/consent-checkboxes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-card",
+      "type": "registry:ui",
+      "title": "File card",
+      "description": "One file as a card: a thumbnail or a type icon picked from the extension, the name truncated in the middle so the extension stays visible, size and date, and your actions.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/file-card.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/file-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-card-demo",
+      "type": "registry:example",
+      "title": "File card demo",
+      "description": "A working preview of File card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/file-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "link-preview",
+      "type": "registry:ui",
+      "title": "Link preview",
+      "description": "The card a link unfolds into in a chat or a feed: the page's image, its title and description and the site, all one link that opens in a new tab and says so.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/link-preview.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/link-preview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "link-preview-demo",
+      "type": "registry:example",
+      "title": "Link preview demo",
+      "description": "A working preview of Link preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/link-preview.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/link-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-list",
+      "type": "registry:ui",
+      "title": "Data list",
+      "description": "The phone-friendly cousin of a table: one row per record with media, a title and a line, and the important number or status on the right, each row a link with a chevron when there is a detail page.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/data-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/data-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-list-demo",
+      "type": "registry:example",
+      "title": "Data list demo",
+      "description": "A working preview of Data list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/data-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/data-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "weather-widget",
+      "type": "registry:ui",
+      "title": "Weather widget",
+      "description": "Weather at a glance for an event page, a booking or a dashboard: now large with the condition in words, then a short forecast row with icons, highs and lows.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/weather-widget.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/weather-widget.tsx"
+        }
+      ]
+    },
+    {
+      "name": "weather-widget-demo",
+      "type": "registry:example",
+      "title": "Weather widget demo",
+      "description": "A working preview of Weather widget.",
+      "registryDependencies": [
+        "https://rhsui.com/r/weather-widget.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/weather-widget-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "map-card",
+      "type": "registry:ui",
+      "title": "Map card",
+      "description": "Where to find you, as a card: a map (yours, or a calm placeholder grid with a pin, so no third-party map loads until you choose one), the address as a real address element and a directions link.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/map-card.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/map-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "map-card-demo",
+      "type": "registry:example",
+      "title": "Map card demo",
+      "description": "A working preview of Map card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/map-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/map-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "metric-delta",
+      "type": "registry:ui",
+      "title": "Metric delta",
+      "description": "The little change chip next to a number: arrow, signed percentage and a calm or warning tone decided by whether the change is good for this metric, not by its sign.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/metric-delta.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/metric-delta.tsx"
+        }
+      ]
+    },
+    {
+      "name": "metric-delta-demo",
+      "type": "registry:example",
+      "title": "Metric delta demo",
+      "description": "A working preview of Metric delta.",
+      "registryDependencies": [
+        "https://rhsui.com/r/metric-delta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/metric-delta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tag-cloud",
+      "type": "registry:ui",
+      "title": "Tag cloud",
+      "description": "Topics weighted by use, for a blog or a knowledge base: four type sizes on a log scale so one huge tag does not dwarf the rest, alphabetical so people can scan, and each tag a link with its count in the accessible name (\"Pricing, 24 posts\").",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/tag-cloud.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/tag-cloud.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tag-cloud-demo",
+      "type": "registry:example",
+      "title": "Tag cloud demo",
+      "description": "A working preview of Tag cloud.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tag-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tag-cloud-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "term-tooltip",
+      "type": "registry:ui",
+      "title": "Term tooltip",
+      "description": "Jargon explained in place: the term gets a dotted underline and opens a short definition on click, tap or Enter (not on hover alone, so it works on phones and for keyboards), with a link to the glossary.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/term-tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/term-tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "term-tooltip-demo",
+      "type": "registry:example",
+      "title": "Term tooltip demo",
+      "description": "A working preview of Term tooltip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/term-tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/term-tooltip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "timeline-horizontal",
+      "type": "registry:ui",
+      "title": "Timeline horizontal",
+      "description": "A roadmap or project plan along one line: done milestones solid, the current one ringed and marked as the current step, the rest hollow, with the line drawn solid up to where you are.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/timeline-horizontal.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/timeline-horizontal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "timeline-horizontal-demo",
+      "type": "registry:example",
+      "title": "Timeline horizontal demo",
+      "description": "A working preview of Timeline horizontal.",
+      "registryDependencies": [
+        "https://rhsui.com/r/timeline-horizontal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/timeline-horizontal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-search",
+      "type": "registry:ui",
+      "title": "Empty search",
+      "description": "The \"no results\" state that helps: it repeats what was searched, shows the filters that narrowed it to nothing with one button to clear them, offers close searches, and ends with a way to a human.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/empty-search.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/empty-search.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-search-demo",
+      "type": "registry:example",
+      "title": "Empty search demo",
+      "description": "A working preview of Empty search.",
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-search.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/empty-search-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-confirm",
+      "type": "registry:ui",
+      "title": "Inline confirm",
+      "description": "A two-step button for small destructive actions in a row: the first press turns it into \"Delete this row?",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/inline-confirm.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-confirm.tsx"
+        }
+      ]
+    },
+    {
+      "name": "inline-confirm-demo",
+      "type": "registry:example",
+      "title": "Inline confirm demo",
+      "description": "A working preview of Inline confirm.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inline-confirm.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-confirm-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "error-panel",
+      "type": "registry:ui",
+      "title": "Error panel",
+      "description": "The fallback for a failed section or an error boundary: what happened in plain words, what to do, retry, and a reference id with a copy button for support.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/error-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/error-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "error-panel-demo",
+      "type": "registry:example",
+      "title": "Error panel demo",
+      "description": "A working preview of Error panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/error-panel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/error-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "session-timeout",
+      "type": "registry:ui",
+      "title": "Session timeout",
+      "description": "The warning before an idle session ends (WCAG 2.2.1): a dialog with the time left counting down, \"Stay signed in\" as the default action and sign out as the other, and a sign-out of its own when the time is up.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/session-timeout.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/session-timeout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "session-timeout-demo",
+      "type": "registry:example",
+      "title": "Session timeout demo",
+      "description": "A working preview of Session timeout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/session-timeout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/session-timeout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rate-limit-notice",
+      "type": "registry:ui",
+      "title": "Rate limit notice",
+      "description": "What to show after a 429 instead of a bare error: what was limited, a live countdown to when it works again (from the Retry-After header), and a call back when the wait is over so the button can come back by itself.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/rate-limit-notice.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rate-limit-notice.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rate-limit-notice-demo",
+      "type": "registry:example",
+      "title": "Rate limit notice demo",
+      "description": "A working preview of Rate limit notice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/rate-limit-notice.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rate-limit-notice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "save-indicator",
+      "type": "registry:ui",
+      "title": "Save indicator",
+      "description": "The quiet \"Saving… / Saved\" line next to a document title, the way editors that autosave do it: a spinner while saving, a check with how long ago, offline when changes are kept locally, and an error with retry.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/save-indicator.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/save-indicator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "save-indicator-demo",
+      "type": "registry:example",
+      "title": "Save indicator demo",
+      "description": "A working preview of Save indicator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/save-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/save-indicator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feedback-widget",
+      "type": "registry:ui",
+      "title": "Feedback widget",
+      "description": "\"Was this helpful?\" at the bottom of a doc or help article: thumbs up or down as pressed buttons, then an optional line of feedback (asking what was missing when it was a no), and a thank-you that replaces the widget.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/feedback-widget.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/feedback-widget.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feedback-widget-demo",
+      "type": "registry:example",
+      "title": "Feedback widget demo",
+      "description": "A working preview of Feedback widget.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feedback-widget.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feedback-widget-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mega-menu",
+      "type": "registry:ui",
+      "title": "Mega menu",
+      "description": "The desktop navigation of a bigger marketing site: top-level items that open wide panels with columns of links (icon, title and a line each) and a featured card, on the house navigation menu, so arrow keys, Escape and the moving viewport come for free.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/navigation-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/mega-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/mega-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mega-menu-demo",
+      "type": "registry:example",
+      "title": "Mega menu demo",
+      "description": "A working preview of Mega menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/mega-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mega-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "vertical-tabs",
+      "type": "registry:ui",
+      "title": "Vertical tabs",
+      "description": "Tabs down the side for settings pages and long forms: a vertical tablist (up and down arrows move) beside the panel, each tab with an icon and an optional line, collapsing to a horizontal scroll row on a phone.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/vertical-tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/vertical-tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "vertical-tabs-demo",
+      "type": "registry:example",
+      "title": "Vertical tabs demo",
+      "description": "A working preview of Vertical tabs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/vertical-tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/vertical-tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "search-trigger",
+      "type": "registry:ui",
+      "title": "Search trigger",
+      "description": "The search field in a header that is really a button: it opens your command palette, shows the right shortcut for the platform (⌘K on a Mac, Ctrl K elsewhere, worked out after load so the server and browser agree), and listens for that shortcut anywhere on the page.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/search-trigger.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/search-trigger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "search-trigger-demo",
+      "type": "registry:example",
+      "title": "Search trigger demo",
+      "description": "A working preview of Search trigger.",
+      "registryDependencies": [
+        "https://rhsui.com/r/search-trigger.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/search-trigger-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "docs-sidebar",
+      "type": "registry:ui",
+      "title": "Docs sidebar",
+      "description": "The left column of a documentation site: section titles, pages, and nested groups that fold open, with the current page marked (aria-current) and its group open from the start.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/docs-sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/docs-sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "docs-sidebar-demo",
+      "type": "registry:example",
+      "title": "Docs sidebar demo",
+      "description": "A working preview of Docs sidebar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/docs-sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/docs-sidebar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "page-size-pagination",
+      "type": "registry:ui",
+      "title": "Page size pagination",
+      "description": "The footer of a data table: rows per page (the house select), \"21 to 40 of 312 orders\", and previous and next.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/page-size-pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/page-size-pagination.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-size-pagination-demo",
+      "type": "registry:example",
+      "title": "Page size pagination demo",
+      "description": "A working preview of Page size pagination.",
+      "registryDependencies": [
+        "https://rhsui.com/r/page-size-pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/page-size-pagination-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:ui",
+      "title": "User menu",
+      "description": "The avatar menu in an app's corner: who is signed in (name and email), account links in groups, and sign out last and apart.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/user-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/user-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "user-menu-demo",
+      "type": "registry:example",
+      "title": "User menu demo",
+      "description": "A working preview of User menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/user-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/user-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "lightbox",
+      "type": "registry:ui",
+      "title": "Lightbox",
+      "description": "A full-screen viewer for any set of images: dark backdrop, the picture as large as fits, caption and \"3 of 12\" underneath, previous and next as buttons and with the arrow keys, and a modal dialog so focus stays in and Escape closes.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/lightbox.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/lightbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lightbox-demo",
+      "type": "registry:example",
+      "title": "Lightbox demo",
+      "description": "A working preview of Lightbox.",
+      "registryDependencies": [
+        "https://rhsui.com/r/lightbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/lightbox-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fullscreen-dialog",
+      "type": "registry:ui",
+      "title": "Fullscreen dialog",
+      "description": "A task that needs the whole screen: an editor, a long form, a preview.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/fullscreen-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/fullscreen-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fullscreen-dialog-demo",
+      "type": "registry:example",
+      "title": "Fullscreen dialog demo",
+      "description": "A working preview of Fullscreen dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/fullscreen-dialog.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fullscreen-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "popover-form",
+      "type": "registry:ui",
+      "title": "Popover form",
+      "description": "A one-field edit in place: rename a file, set a target, add a label.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/popover-form.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/popover-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover-form-demo",
+      "type": "registry:example",
+      "title": "Popover form demo",
+      "description": "A working preview of Popover form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/popover-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/popover-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "split-view",
+      "type": "registry:ui",
+      "title": "Split view",
+      "description": "The list-and-detail layout of mail, chat and admin apps: side by side on wide screens, and on a phone one at a time, the detail with a back button when something is selected.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/split-view.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/split-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "split-view-demo",
+      "type": "registry:example",
+      "title": "Split view demo",
+      "description": "A working preview of Split view.",
+      "registryDependencies": [
+        "https://rhsui.com/r/split-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/split-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "auto-grid",
+      "type": "registry:ui",
+      "title": "Auto grid",
+      "description": "A responsive grid with no breakpoints: give it the smallest width a card may have and it fits as many columns as there is room for, in a page, a sidebar or a dialog alike (it reads its own width, not the viewport's).",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/auto-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/auto-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "auto-grid-demo",
+      "type": "registry:example",
+      "title": "Auto grid demo",
+      "description": "A working preview of Auto grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/auto-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/auto-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

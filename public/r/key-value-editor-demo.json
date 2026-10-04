@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "key-value-editor-demo",
+  "title": "Key value editor demo",
+  "description": "A working preview of Key value editor.",
+  "registryDependencies": [
+    "https://rhsui.com/r/key-value-editor.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/key-value-editor-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { KeyValueEditor, type KeyValuePair } from \"@rhs-ui/primitives/key-value-editor\";\n\nexport default function Demo(): React.JSX.Element {\n  const [pairs, setPairs] = useState<KeyValuePair[]>([\n    { id: \"1\", key: \"API_URL\", value: \"https://api.example.com\" },\n    { id: \"2\", key: \"API_KEY\", value: \"sk_test_placeholder_value\", secret: true },\n    { id: \"3\", key: \"api-region\", value: \"eu-west\" },\n  ]);\n  return (\n    <div className=\"mx-auto max-w-xl p-8\">\n      <p className=\"mb-3 text-sm font-medium\">Environment variables</p>\n      <KeyValueEditor pairs={pairs} onPairsChange={setPairs} keyPattern={/^[A-Z][A-Z0-9_]*$/} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

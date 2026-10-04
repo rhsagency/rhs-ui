@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "promo-bar",
+  "title": "Promo bar",
+  "description": "The thin band above a shop's header: one message, or a few that rotate slowly with arrows to step through them.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/promo-bar.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState, type ReactNode } from \"react\";\n\nimport { usePrefersReducedMotion } from \"@rhs-ui/motion/use-in-view\";\nimport { IconChevronLeft, IconChevronRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PromoBarProps {\n  /** One to four short messages: \"Free delivery over €50\", \"New: the linen collection\". */\n  messages: readonly ReactNode[];\n  /** Seconds per message when there are several. */\n  interval?: number;\n  className?: string;\n}\n\n/**\n * The thin band above a shop's header: one message, or a few that rotate\n * slowly with arrows to step through them. Rotation pauses on hover and\n * focus and never runs under reduced motion; screen readers get every\n * message in a list rather than a moving target.\n */\nexport function PromoBar({ messages, interval = 5, className }: PromoBarProps) {\n  const reduced = usePrefersReducedMotion();\n  const [index, setIndex] = useState(0);\n  const [paused, setPaused] = useState(false);\n  const many = messages.length > 1;\n  useEffect(() => {\n    if (!many || paused || reduced) return;\n    const timer = setTimeout(() => setIndex((value) => (value + 1) % messages.length), interval * 1000);\n    return () => clearTimeout(timer);\n  }, [index, many, paused, reduced, interval, messages.length]);\n  const step = (delta: number) => setIndex((value) => (value + delta + messages.length) % messages.length);\n  const arrow = \"inline-flex size-7 items-center justify-center rounded-full outline-none hover:bg-background/15 focus-visible:ring-2 focus-visible:ring-background/60 [&_svg]:size-4\";\n  return (\n    <aside data-slot=\"promo-bar\" aria-label=\"Offers\" onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)} className={cn(\"relative flex items-center justify-center gap-2 bg-foreground px-3 py-2 text-center text-xs text-background [&_a]:underline [&_a]:underline-offset-2\", className)}>\n      {many ? <button type=\"button\" onClick={() => step(-1)} aria-label=\"Previous offer\" className={arrow}><IconChevronLeft /></button> : null}\n      <ul className=\"sr-only\">{messages.map((message, i) => <li key={i}>{message}</li>)}</ul>\n      <p aria-hidden=\"true\" key={index} className=\"min-w-0 flex-1 truncate motion-safe:animate-rhs-fade-in sm:flex-none\">{messages[index]}</p>\n      {many ? <button type=\"button\" onClick={() => step(1)} aria-label=\"Next offer\" className={arrow}><IconChevronRight /></button> : null}\n    </aside>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/promo-bar.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+    }
+  },
+  "css": {
+    "@keyframes rhs-fade-in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-search-demo",
+  "title": "Empty search demo",
+  "description": "A working preview of Empty search.",
+  "registryDependencies": [
+    "https://rhsui.com/r/empty-search.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/empty-search-demo.tsx",
+      "content": "\"use client\";\n\nimport { EmptySearch } from \"@rhs-ui/primitives/empty-search\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"p-8\">\n      <EmptySearch\n        query=\"invoce template\"\n        filters={[\"Templates\", \"Free only\"]}\n        onClearFilters={() => undefined}\n        suggestions={[{ label: \"invoice template\", href: \"#invoice-template\" }, { label: \"quote template\", href: \"#quote\" }, { label: \"receipt\", href: \"#receipt\" }]}\n        action={<>Still stuck? <a href=\"#support\" className=\"font-medium underline underline-offset-4\">Ask support</a>, we reply within a day.</>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

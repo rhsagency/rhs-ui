@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "realtime-counter-demo",
+  "title": "Realtime counter demo",
+  "description": "A working preview of Realtime counter.",
+  "registryDependencies": [
+    "https://rhsui.com/r/realtime-counter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/realtime-counter-demo.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { RealtimeCounter } from \"@rhs-ui/dashboard/realtime-counter\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState(214);\n  useEffect(() => {\n    const timer = setInterval(() => setValue((v) => Math.max(150, v + Math.round((Math.sin(Date.now() / 3000) + 0.2) * 6))), 3000);\n    return () => clearInterval(timer);\n  }, []);\n  return (\n    <div className=\"mx-auto max-w-xs p-8\">\n      <RealtimeCounter label=\"Visitors right now\" value={value} footnote=\"Updated every 3 seconds\" breakdown={[{ label: \"/pricing\", value: Math.round(value * 0.31) }, { label: \"/\", value: Math.round(value * 0.27) }, { label: \"/blog/four-day-week\", value: Math.round(value * 0.14) }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "weather-widget",
+  "title": "Weather widget",
+  "description": "Weather at a glance for an event page, a booking or a dashboard: now large with the condition in words, then a short forecast row with icons, highs and lows.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/weather-widget.tsx",
+      "content": "import { IconCloud, IconCloudLightning, IconCloudRain, IconCloudSnow, IconCloudSun, IconSun, IconWind } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport type WeatherKind = \"clear\" | \"partly\" | \"cloudy\" | \"rain\" | \"storm\" | \"snow\" | \"wind\";\n\nexport interface WeatherDay {\n  /** \"Mon\", \"Today\". */\n  day: string;\n  kind: WeatherKind;\n  high: number;\n  low: number;\n}\n\nexport interface WeatherWidgetProps {\n  place: string;\n  now: { temperature: number; kind: WeatherKind; feelsLike?: number; wind?: string };\n  days: readonly WeatherDay[];\n  /** \"°C\" or \"°F\"; the numbers are yours, already in that unit. */\n  unit?: string;\n  className?: string;\n}\n\nconst ICON = { clear: IconSun, partly: IconCloudSun, cloudy: IconCloud, rain: IconCloudRain, storm: IconCloudLightning, snow: IconCloudSnow, wind: IconWind } as const;\nconst WORD = { clear: \"Clear\", partly: \"Partly cloudy\", cloudy: \"Cloudy\", rain: \"Rain\", storm: \"Thunderstorms\", snow: \"Snow\", wind: \"Windy\" } as const;\n\n/**\n * Weather at a glance for an event page, a booking or a dashboard: now\n * large with the condition in words, then a short forecast row with icons,\n * highs and lows. Every icon has its word for screen readers; the data is\n * yours (an API call on your side), never fetched from here.\n */\nexport function WeatherWidget({ place, now, days, unit = \"°C\", className }: WeatherWidgetProps) {\n  const Now = ICON[now.kind];\n  return (\n    <section data-slot=\"weather-widget\" aria-label={`Weather in ${place}`} className={cn(\"relative rounded-3xl border border-border p-5\", className)}>\n      <div className=\"flex items-start justify-between gap-4\">\n        <div>\n          <p className=\"text-sm text-muted-foreground\">{place}</p>\n          <p className=\"mt-1 text-5xl font-medium tracking-tight tabular-nums\">{Math.round(now.temperature)}{unit}</p>\n          <p className=\"mt-1 text-sm\">{WORD[now.kind]}{now.feelsLike !== undefined ? <span className=\"text-muted-foreground\">, feels like {Math.round(now.feelsLike)}{unit}</span> : null}</p>\n          {now.wind ? <p className=\"text-xs text-muted-foreground\">Wind {now.wind}</p> : null}\n        </div>\n        <Now aria-hidden=\"true\" className=\"size-14 text-muted-foreground\" />\n      </div>\n      <ol className=\"mt-5 grid grid-cols-5 gap-1 border-t border-border pt-4 text-center\">\n        {days.slice(0, 5).map((day) => {\n          const Icon = ICON[day.kind];\n          return (\n            <li key={day.day} className=\"grid justify-items-center gap-1.5 text-xs\">\n              <span className=\"text-muted-foreground\">{day.day}</span>\n              <Icon aria-hidden=\"true\" className=\"size-5\" />\n              <span className=\"sr-only\">{WORD[day.kind]}</span>\n              <span className=\"tabular-nums\"><span className=\"font-medium\">{Math.round(day.high)}°</span> <span className=\"text-muted-foreground\">{Math.round(day.low)}°</span></span>\n            </li>\n          );\n        })}\n      </ol>\n    </section>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/weather-widget.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

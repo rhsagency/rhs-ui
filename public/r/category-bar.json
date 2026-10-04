@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "category-bar",
+  "title": "Category bar",
+  "description": "A score on a scale of named bands: a health score, a credit rating, a performance grade.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/category-bar.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface CategoryBand {\n  /** Upper bound of the band. */\n  to: number;\n  label: string;\n}\n\nexport interface CategoryBarProps {\n  label: string;\n  value: number;\n  /** Bands from low to high: [{ to: 50, label: \"Poor\" }, { to: 80, label: \"Fair\" }, { to: 100, label: \"Good\" }]. */\n  bands: readonly CategoryBand[];\n  /** Where the bar starts. */\n  min?: number;\n  /** How the value reads. */\n  suffix?: string;\n  className?: string;\n}\n\n/**\n * A score on a scale of named bands: a health score, a credit rating, a\n * performance grade. The bands step in shade, a marker sits at the value,\n * and the band it falls in is said in words under it (\"72, Fair\"), so\n * nobody has to read the colour.\n */\nexport function CategoryBar({ label, value, bands, min = 0, suffix = \"\", className }: CategoryBarProps) {\n  const max = bands.at(-1)?.to ?? 100;\n  const span = max - min || 1;\n  const band = bands.find((b) => value <= b.to) ?? bands.at(-1);\n  const at = Math.min(100, Math.max(0, ((value - min) / span) * 100));\n  let from = min;\n  return (\n    <figure data-slot=\"category-bar\" className={cn(\"grid gap-2\", className)}>\n      <figcaption className=\"flex items-baseline justify-between text-sm\">\n        <span className=\"font-medium\">{label}</span>\n        <span><span className=\"font-medium tabular-nums\">{value}{suffix}</span> <span className=\"text-muted-foreground\">{band?.label}</span></span>\n      </figcaption>\n      <div aria-hidden=\"true\" className=\"relative pt-3\">\n        <span className=\"absolute top-0 -translate-x-1/2 border-x-[5px] border-t-[6px] border-x-transparent border-t-foreground\" style={{ left: `${at}%` }} />\n        <div className=\"flex h-2.5 gap-0.5 overflow-clip rounded-full\">\n          {bands.map((b, index) => {\n            const width = ((b.to - from) / span) * 100;\n            from = b.to;\n            return <span key={b.label} className=\"h-full bg-foreground\" style={{ width: `${width}%`, opacity: 0.18 + (index / Math.max(1, bands.length - 1)) * 0.62 }} />;\n          })}\n        </div>\n        <div className=\"mt-1.5 flex text-[10px] text-muted-foreground\">\n          {(() => { let start = min; return bands.map((b) => { const width = ((b.to - start) / span) * 100; start = b.to; return <span key={b.label} style={{ width: `${width}%` }} className=\"truncate\">{b.label}</span>; }); })()}\n        </div>\n      </div>\n    </figure>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/category-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-size-pagination-demo",
+  "title": "Page size pagination demo",
+  "description": "A working preview of Page size pagination.",
+  "registryDependencies": [
+    "https://rhsui.com/r/page-size-pagination.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/page-size-pagination-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { PageSizePagination } from \"@rhs-ui/primitives/page-size-pagination\";\n\nexport default function Demo(): React.JSX.Element {\n  const [page, setPage] = useState(2);\n  const [size, setSize] = useState(20);\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <div className=\"mb-4 h-32 rounded-xl border border-dashed border-border\" aria-hidden=\"true\" />\n      <PageSizePagination page={page} pageSize={size} total={312} noun=\"orders\" onPageChange={setPage} onPageSizeChange={setSize} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

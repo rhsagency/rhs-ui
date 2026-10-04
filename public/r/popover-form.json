@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-form",
+  "title": "Popover form",
+  "description": "A one-field edit in place: rename a file, set a target, add a label.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/popover.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/popover-form.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent, type ReactNode } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@rhs-ui/primitives/popover\";\n\nexport interface PopoverFormProps {\n  /** The trigger: \"Rename\", an edit icon. */\n  children: ReactNode;\n  label: string;\n  defaultValue?: string;\n  /** Resolve to close, reject with an Error to show its message. */\n  onSubmit: (value: string) => Promise<void> | void;\n  submitLabel?: string;\n  placeholder?: string;\n}\n\n/**\n * A one-field edit in place: rename a file, set a target, add a label. A\n * popover with the field focused and its text selected, Enter saves and\n * Escape cancels, and an error stays in the popover next to the field\n * instead of closing it and losing what was typed.\n */\nexport function PopoverForm({ children, label, defaultValue = \"\", onSubmit, submitLabel = \"Save\", placeholder }: PopoverFormProps) {\n  const id = useId();\n  const [open, setOpen] = useState(false);\n  const [busy, setBusy] = useState(false);\n  const [error, setError] = useState<string | null>(null);\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    const value = String(new FormData(event.currentTarget).get(\"value\") ?? \"\").trim();\n    if (!value) return;\n    setBusy(true);\n    setError(null);\n    try {\n      await onSubmit(value);\n      setOpen(false);\n    } catch (reason) {\n      setError(reason instanceof Error ? reason.message : \"That did not save. Try again.\");\n    } finally {\n      setBusy(false);\n    }\n  }\n  return (\n    <Popover open={open} onOpenChange={(next) => { setOpen(next); setError(null); }}>\n      <PopoverTrigger asChild>{children}</PopoverTrigger>\n      <PopoverContent align=\"start\" className=\"w-72\">\n        <form onSubmit={submit} className=\"grid gap-2\">\n          <label htmlFor={id} className=\"text-sm font-medium\">{label}</label>\n          <Input id={id} name=\"value\" defaultValue={defaultValue} placeholder={placeholder} autoFocus onFocus={(event) => event.currentTarget.select()} aria-invalid={error ? true : undefined} aria-describedby={error ? `${id}-error` : undefined} />\n          {error ? <p id={`${id}-error`} role=\"alert\" className=\"text-xs text-destructive\">{error}</p> : null}\n          <div className=\"flex justify-end gap-2 pt-1\">\n            <Button type=\"button\" size=\"sm\" variant=\"ghost\" onClick={() => setOpen(false)}>Cancel</Button>\n            <Button type=\"submit\" size=\"sm\" loading={busy}>{submitLabel}</Button>\n          </div>\n        </form>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/popover-form.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "overlay"
+  },
+  "categories": [
+    "primitives",
+    "overlay"
+  ],
+  "type": "registry:ui"
+}

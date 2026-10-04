@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mega-menu-demo",
+  "title": "Mega menu demo",
+  "description": "A working preview of Mega menu.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/mega-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/mega-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconBook, IconBriefcase, IconChartBar, IconCode, IconLayers, IconMegaphone, IconRocket, IconWorkflow } from \"@rhs-ui/icons\";\nimport { MegaMenu } from \"@rhs-ui/primitives/mega-menu\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto flex min-h-[28rem] max-w-5xl items-start gap-6 p-6\">\n      <span className=\"inline-flex h-9 items-center gap-2 font-medium\"><IconLayers className=\"size-5\" />Ledger</span>\n      <MegaMenu\n        sections={[\n          {\n            label: \"Product\",\n            columns: [\n              { title: \"Plan\", links: [{ label: \"Roadmaps\", href: \"#roadmaps\", description: \"Outcomes the company can read.\", icon: <IconRocket /> }, { label: \"Cycles\", href: \"#cycles\", description: \"Two-week sprints that stay honest.\", icon: <IconWorkflow /> }] },\n              { title: \"Measure\", links: [{ label: \"Reports\", href: \"#reports\", description: \"Throughput, without a spreadsheet.\", icon: <IconChartBar /> }, { label: \"API\", href: \"#api\", description: \"Everything, scriptable.\", icon: <IconCode /> }] },\n            ],\n            featured: { eyebrow: \"New\", title: \"Releases that write their own notes\", description: \"Group finished work and publish the changelog.\", href: \"#releases\" },\n          },\n          {\n            label: \"Solutions\",\n            columns: [{ links: [{ label: \"Agencies\", href: \"#agencies\", description: \"Client work, shared calmly.\", icon: <IconBriefcase /> }, { label: \"Marketing teams\", href: \"#marketing\", description: \"Campaigns on one calendar.\", icon: <IconMegaphone /> }] }, { links: [{ label: \"Guides\", href: \"#guides\", description: \"How teams set it up.\", icon: <IconBook /> }] }],\n          },\n          { label: \"Pricing\", href: \"#pricing\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

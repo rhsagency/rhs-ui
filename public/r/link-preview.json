@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link-preview",
+  "title": "Link preview",
+  "description": "The card a link unfolds into in a chat or a feed: the page's image, its title and description and the site, all one link that opens in a new tab and says so.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/link-preview.tsx",
+      "content": "import { IconExternal } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface LinkPreviewProps {\n  href: string;\n  title: string;\n  description?: string;\n  /** The page's share image, fetched and proxied on your side. */\n  image?: string;\n  /** Shown instead of the full URL: \"example.com\". */\n  site?: string;\n  /** \"row\" for chat messages, \"card\" for feeds. */\n  layout?: \"row\" | \"card\";\n  className?: string;\n}\n\n/**\n * The card a link unfolds into in a chat or a feed: the page's image, its\n * title and description and the site, all one link that opens in a new tab\n * and says so. You fetch the metadata server-side (never from the browser,\n * so no tracking pixels load) and pass it in.\n */\nexport function LinkPreview({ href, title, description, image, site, layout = \"card\", className }: LinkPreviewProps) {\n  const host = site ?? (() => { try { return new URL(href).hostname.replace(/^www\\./, \"\"); } catch { return href; } })();\n  return (\n    <a data-slot=\"link-preview\" href={href} target=\"_blank\" rel=\"noopener noreferrer\" className={cn(\"group relative flex overflow-clip rounded-2xl border border-border bg-background outline-none transition-colors hover:bg-muted/40 focus-visible:ring-[3px] focus-visible:ring-ring/40\", layout === \"card\" ? \"max-w-sm flex-col\" : \"max-w-lg\", className)}>\n      {image ? <span className={cn(\"block shrink-0 bg-muted\", layout === \"card\" ? \"aspect-[1.91/1]\" : \"w-28\")}><img src={image} alt=\"\" className=\"size-full object-cover\" /></span> : null}\n      <span className=\"min-w-0 flex-1 p-3.5\">\n        <span className=\"flex items-center gap-1.5 text-xs text-muted-foreground\">{host}<IconExternal aria-hidden=\"true\" className=\"size-3\" /><span className=\"sr-only\">(opens in a new tab)</span></span>\n        <span className=\"mt-1 line-clamp-2 block text-sm font-medium text-balance group-hover:underline group-hover:underline-offset-4\">{title}</span>\n        {description ? <span className=\"mt-1 line-clamp-2 block text-xs leading-relaxed text-muted-foreground\">{description}</span> : null}\n      </span>\n    </a>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/link-preview.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

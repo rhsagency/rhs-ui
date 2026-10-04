@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-size-pagination",
+  "title": "Page size pagination",
+  "description": "The footer of a data table: rows per page (the house select), \"21 to 40 of 312 orders\", and previous and next.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/page-size-pagination.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\n\nimport { IconChevronLeft, IconChevronRight } from \"@rhs-ui/icons\";\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PageSizePaginationProps {\n  /** 1-based page. */\n  page: number;\n  pageSize: number;\n  total: number;\n  onPageChange: (page: number) => void;\n  onPageSizeChange: (size: number) => void;\n  sizes?: readonly number[];\n  /** \"rows\", \"orders\". */\n  noun?: string;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * The footer of a data table: rows per page (the house select), \"21 to 40\n * of 312 orders\", and previous and next. Changing the page size keeps the\n * first visible row on screen instead of jumping back to page one.\n */\nexport function PageSizePagination({ page, pageSize, total, onPageChange, onPageSizeChange, sizes = [10, 20, 50, 100], noun = \"rows\", locale = \"en-GB\", className }: PageSizePaginationProps) {\n  const id = useId();\n  const number = new Intl.NumberFormat(locale);\n  const pages = Math.max(1, Math.ceil(total / pageSize));\n  const first = total ? (page - 1) * pageSize + 1 : 0;\n  const last = Math.min(total, page * pageSize);\n  const button = \"inline-flex size-8 items-center justify-center rounded-md border border-border outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-4\";\n  return (\n    <nav data-slot=\"page-size-pagination\" aria-label=\"Pagination\" className={cn(\"flex flex-wrap items-center justify-between gap-3 text-sm\", className)}>\n      <div className=\"flex items-center gap-2 text-muted-foreground\">\n        <span id={id}>Rows per page</span>\n        <Select value={String(pageSize)} onValueChange={(next) => { const size = Number(next); onPageSizeChange(size); onPageChange(Math.max(1, Math.floor((first - 1) / size) + 1)); }}>\n          <SelectTrigger aria-labelledby={id} className=\"h-8 w-20\"><SelectValue /></SelectTrigger>\n          <SelectContent>{sizes.map((size) => <SelectItem key={size} value={String(size)}>{size}</SelectItem>)}</SelectContent>\n        </Select>\n      </div>\n      <p aria-live=\"polite\" className=\"text-muted-foreground tabular-nums\">{number.format(first)} to {number.format(last)} of {number.format(total)} {noun}</p>\n      <div className=\"flex gap-1\">\n        <button type=\"button\" onClick={() => onPageChange(page - 1)} disabled={page <= 1} aria-label=\"Previous page\" className={button}><IconChevronLeft /></button>\n        <button type=\"button\" onClick={() => onPageChange(page + 1)} disabled={page >= pages} aria-label=\"Next page\" className={button}><IconChevronRight /></button>\n      </div>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/page-size-pagination.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

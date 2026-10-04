@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-card",
+  "title": "Chart card",
+  "description": "The frame every dashboard chart sits in: title, headline number, period switch (a real radio group of pills), actions, the chart and a source line.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/chart-card.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ChartCardProps {\n  title: string;\n  /** The headline number and its change. */\n  value?: ReactNode;\n  /** Period switches: [{ value: \"7d\", label: \"7 days\" }, ...]. */\n  periods?: readonly { value: string; label: string }[];\n  period?: string;\n  onPeriodChange?: (period: string) => void;\n  /** Download, menu or link. */\n  actions?: ReactNode;\n  /** The chart: any of the dashboard charts. */\n  children: ReactNode;\n  /** \"Source: Stripe, updated 5 min ago\". */\n  footnote?: ReactNode;\n  className?: string;\n}\n\n/**\n * The frame every dashboard chart sits in: title, headline number, period\n * switch (a real radio group of pills), actions, the chart and a source\n * line. One frame for all charts keeps a dashboard consistent without each\n * chart reinventing its header.\n */\nexport function ChartCard({ title, value, periods = [], period, onPeriodChange, actions, children, footnote, className }: ChartCardProps) {\n  return (\n    <section data-slot=\"chart-card\" aria-label={title} className={cn(\"rounded-2xl border border-border bg-background p-5\", className)}>\n      <header className=\"flex flex-wrap items-start justify-between gap-3\">\n        <div>\n          <h3 className=\"text-sm text-muted-foreground\">{title}</h3>\n          {value ? <div className=\"mt-1 text-2xl font-medium tracking-tight\">{value}</div> : null}\n        </div>\n        <div className=\"flex items-center gap-2\">\n          {periods.length ? (\n            <div role=\"radiogroup\" aria-label=\"Period\" className=\"flex rounded-lg bg-muted p-0.5 text-xs\">\n              {periods.map((option) => (\n                <label key={option.value} className=\"relative cursor-pointer rounded-md px-2.5 py-1 has-[:checked]:bg-background has-[:checked]:font-medium has-[:checked]:shadow-sm has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\">\n                  <input type=\"radio\" name={`${title}-period`} checked={period === option.value} onChange={() => onPeriodChange?.(option.value)} className=\"sr-only\" />\n                  {option.label}\n                </label>\n              ))}\n            </div>\n          ) : null}\n          {actions}\n        </div>\n      </header>\n      <div className=\"mt-5\">{children}</div>\n      {footnote ? <p className=\"mt-3 text-xs text-muted-foreground\">{footnote}</p> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/chart-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

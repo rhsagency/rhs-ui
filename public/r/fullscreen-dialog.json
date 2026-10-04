@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fullscreen-dialog",
+  "title": "Fullscreen dialog",
+  "description": "A task that needs the whole screen: an editor, a long form, a preview.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/fullscreen-dialog.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { IconClose } from \"@rhs-ui/icons\";\nimport { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from \"@rhs-ui/primitives/dialog\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FullscreenDialogProps {\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  trigger?: ReactNode;\n  title: string;\n  description?: string;\n  /** The main action in the header: \"Save\", \"Publish\". */\n  action?: ReactNode;\n  children: ReactNode;\n  className?: string;\n}\n\n/**\n * A task that needs the whole screen: an editor, a long form, a preview. A\n * modal dialog filling the viewport with a sticky header (close, title and\n * the main action) and a scrolling body. On a phone it is the natural\n * pattern; on a desktop it keeps people focused on one job.\n */\nexport function FullscreenDialog({ open, onOpenChange, trigger, title, description, action, children, className }: FullscreenDialogProps) {\n  return (\n    <Dialog open={open} onOpenChange={onOpenChange}>\n      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}\n      <DialogContent showCloseButton={false} className={cn(\"top-0 left-0 flex h-dvh max-h-none w-screen max-w-none translate-x-0 translate-y-0 flex-col gap-0 rounded-none border-0 p-0 sm:max-w-none\", className)}>\n        <header className=\"flex items-center gap-3 border-b border-border px-4 py-3 sm:px-6\">\n          <DialogClose aria-label=\"Close\" className=\"inline-flex size-9 items-center justify-center rounded-full outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-5\"><IconClose /></DialogClose>\n          <div className=\"min-w-0 flex-1\">\n            <DialogTitle className=\"truncate text-base font-medium\">{title}</DialogTitle>\n            {description ? <DialogDescription className=\"truncate text-xs text-muted-foreground\">{description}</DialogDescription> : null}\n          </div>\n          {action}\n        </header>\n        <div className=\"relative min-h-0 flex-1 overflow-y-auto\">{children}</div>\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/fullscreen-dialog.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "overlay"
+  },
+  "categories": [
+    "primitives",
+    "overlay"
+  ],
+  "type": "registry:ui"
+}

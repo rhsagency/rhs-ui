@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline-horizontal-demo",
+  "title": "Timeline horizontal demo",
+  "description": "A working preview of Timeline horizontal.",
+  "registryDependencies": [
+    "https://rhsui.com/r/timeline-horizontal.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/timeline-horizontal-demo.tsx",
+      "content": "import { TimelineHorizontal } from \"@rhs-ui/primitives/timeline-horizontal\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl p-8\">\n      <TimelineHorizontal\n        label=\"2026 roadmap\"\n        milestones={[\n          { id: \"1\", when: \"Q1 2026\", title: \"Decision log\", description: \"Shipped to every workspace.\", status: \"done\" },\n          { id: \"2\", when: \"Q2 2026\", title: \"Guest links\", description: \"Share read-only with clients.\", status: \"done\" },\n          { id: \"3\", when: \"Q2 2026\", title: \"Onboarding v2\", description: \"In beta with 50 teams.\", status: \"current\" },\n          { id: \"4\", when: \"Q3 2026\", title: \"Mobile app\", description: \"iOS first, Android after.\", status: \"next\" },\n          { id: \"5\", when: \"Q4 2026\", title: \"SSO for everyone\", description: \"Down from the Business plan.\", status: \"next\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

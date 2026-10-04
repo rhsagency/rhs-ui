@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "period-compare",
+  "title": "Period compare",
+  "description": "The control row above a dashboard: the period (the house select) and a switch to compare with the previous one, labelled with what it compares against.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/select.json",
+    "https://rhsui.com/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/dashboard/period-compare.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\n\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { Switch } from \"@rhs-ui/primitives/switch\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PeriodCompareValue {\n  period: string;\n  compare: boolean;\n}\n\nexport interface PeriodCompareProps {\n  periods: readonly { value: string; label: string }[];\n  value: PeriodCompareValue;\n  onValueChange: (value: PeriodCompareValue) => void;\n  /** What the comparison is against, in words: \"Previous period\", \"Same period last year\". */\n  compareLabel?: string;\n  className?: string;\n}\n\n/**\n * The control row above a dashboard: the period (the house select) and a\n * switch to compare with the previous one, labelled with what it compares\n * against. One value object for both, so the charts below read the same\n * state.\n */\nexport function PeriodCompare({ periods, value, onValueChange, compareLabel = \"Compare to previous period\", className }: PeriodCompareProps) {\n  const id = useId();\n  return (\n    <div data-slot=\"period-compare\" className={cn(\"flex flex-wrap items-center gap-4\", className)}>\n      <Select value={value.period} onValueChange={(period) => onValueChange({ ...value, period })}>\n        <SelectTrigger aria-label=\"Period\" className=\"h-9 w-44\"><SelectValue /></SelectTrigger>\n        <SelectContent>{periods.map((period) => <SelectItem key={period.value} value={period.value}>{period.label}</SelectItem>)}</SelectContent>\n      </Select>\n      <div className=\"flex items-center gap-2 text-sm\">\n        <Switch id={id} checked={value.compare} onCheckedChange={(compare) => onValueChange({ ...value, compare })} />\n        <label htmlFor={id} className=\"text-muted-foreground\">{compareLabel}</label>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/period-compare.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}

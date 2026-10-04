@@ -852,6 +852,251 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "bar-list",
+      "type": "registry:component",
+      "title": "Bar list",
+      "description": "Top pages, referrers, countries: each row a soft bar behind the label, sized against the largest, the value at the end.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/bar-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/bar-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bar-list-demo",
+      "type": "registry:example",
+      "title": "Bar list demo",
+      "description": "A working preview of Bar list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bar-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bar-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "category-bar",
+      "type": "registry:component",
+      "title": "Category bar",
+      "description": "A score on a scale of named bands: a health score, a credit rating, a performance grade.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/category-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/category-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "category-bar-demo",
+      "type": "registry:example",
+      "title": "Category bar demo",
+      "description": "A working preview of Category bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/category-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/category-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sparkline-table",
+      "type": "registry:component",
+      "title": "Sparkline table",
+      "description": "Many metrics side by side, each with a tiny trend line: products by revenue, regions by signups, campaigns by clicks.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/sparkline-table.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/sparkline-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sparkline-table-demo",
+      "type": "registry:example",
+      "title": "Sparkline table demo",
+      "description": "A working preview of Sparkline table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sparkline-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sparkline-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "realtime-counter",
+      "type": "registry:component",
+      "title": "Realtime counter",
+      "description": "A live number for an analytics or ops screen: a pulsing dot (still under reduced motion) that says it is live, the number large, and a short breakdown below.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/realtime-counter.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/realtime-counter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "realtime-counter-demo",
+      "type": "registry:example",
+      "title": "Realtime counter demo",
+      "description": "A working preview of Realtime counter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/realtime-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/realtime-counter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chart-card",
+      "type": "registry:component",
+      "title": "Chart card",
+      "description": "The frame every dashboard chart sits in: title, headline number, period switch (a real radio group of pills), actions, the chart and a source line.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/chart-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/chart-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart-card-demo",
+      "type": "registry:example",
+      "title": "Chart card demo",
+      "description": "A working preview of Chart card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bar-list.json",
+        "https://rhsui.com/r/chart-card.json",
+        "https://rhsui.com/r/metric-delta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chart-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "period-compare",
+      "type": "registry:component",
+      "title": "Period compare",
+      "description": "The control row above a dashboard: the period (the house select) and a switch to compare with the previous one, labelled with what it compares against.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/period-compare.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/period-compare.tsx"
+        }
+      ]
+    },
+    {
+      "name": "period-compare-demo",
+      "type": "registry:example",
+      "title": "Period compare demo",
+      "description": "A working preview of Period compare.",
+      "registryDependencies": [
+        "https://rhsui.com/r/period-compare.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/period-compare-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

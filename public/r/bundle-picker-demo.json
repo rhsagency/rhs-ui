@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bundle-picker-demo",
+  "title": "Bundle picker demo",
+  "description": "A working preview of Bundle picker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/bundle-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/bundle-picker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BundlePicker } from \"@rhs-ui/commerce/bundle-picker\";\n\nconst art = (fill: string, shape: string) => \"data:image/svg+xml;utf8,\" + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='${fill}'/>${shape}</svg>`);\n\nexport default function Demo(): React.JSX.Element {\n  const [selected, setSelected] = useState<string[]>([\"beans\", \"filter\"]);\n  const [added, setAdded] = useState<number | null>(null);\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <BundlePicker\n        discount={0.1}\n        selected={selected}\n        onSelectedChange={setSelected}\n        onAdd={(ids) => setAdded(ids.length)}\n        items={[\n          { id: \"dripper\", title: \"Ceramic dripper\", locked: true, price: { amount: 3200, currency: \"EUR\" }, image: { src: art(\"#e4e0d8\", \"<path d='M50 70h100l-30 70H80z' fill='#8b8377'/>\"), alt: \"Ceramic dripper\" } },\n          { id: \"beans\", title: \"Single-origin beans, 500 g\", price: { amount: 1895, currency: \"EUR\" }, image: { src: art(\"#d7d1c6\", \"<ellipse cx='100' cy='100' rx='45' ry='60' fill='#4b4036'/>\"), alt: \"Coffee beans\" } },\n          { id: \"filter\", title: \"Paper filters, 100\", price: { amount: 650, currency: \"EUR\" }, image: { src: art(\"#efece6\", \"<path d='M60 60h80l-25 80H85z' fill='#d8d1c3'/>\"), alt: \"Paper filters\" } },\n        ]}\n      />\n      <p role=\"status\" className=\"mt-3 text-sm text-muted-foreground\">{added ? `${added} items added to your bag.` : \"\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

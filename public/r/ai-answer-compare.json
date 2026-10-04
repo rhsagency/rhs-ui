@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-answer-compare",
+  "title": "AI answer compare",
+  "description": "Two answers to the same prompt side by side, for preference feedback or a model bake-off: pick the better one or call a tie, and the choice locks with a check.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-answer-compare.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CompareAnswer {\n  id: string;\n  /** \"Response A\", or the model's name when you show it. */\n  label: string;\n  body: ReactNode;\n}\n\nexport interface AiAnswerCompareProps {\n  prompt: string;\n  answers: readonly [CompareAnswer, CompareAnswer];\n  /** Called with the preferred answer, or \"tie\". */\n  onPick: (choice: string) => void;\n  className?: string;\n}\n\n/**\n * Two answers to the same prompt side by side, for preference feedback or a\n * model bake-off: pick the better one or call a tie, and the choice locks\n * with a check. Stacked on a phone; the pick is a radio group, so it is one\n * decision, said as one.\n */\nexport function AiAnswerCompare({ prompt, answers, onPick, className }: AiAnswerCompareProps) {\n  const id = useId();\n  const [choice, setChoice] = useState<string | null>(null);\n  const pick = (value: string) => {\n    setChoice(value);\n    onPick(value);\n  };\n  const option = \"relative inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm has-[:checked]:border-foreground has-[:checked]:bg-foreground has-[:checked]:text-background has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40 [&_svg]:size-3.5\";\n  return (\n    <section data-slot=\"ai-answer-compare\" aria-label=\"Compare two answers\" className={cn(\"grid gap-4\", className)}>\n      <p className=\"rounded-xl bg-muted/60 px-4 py-3 text-sm\"><span className=\"text-muted-foreground\">Prompt: </span>{prompt}</p>\n      <div className=\"grid gap-3 md:grid-cols-2\">\n        {answers.map((answer) => (\n          <article key={answer.id} aria-label={answer.label} className={cn(\"rounded-2xl border p-4 transition-colors\", choice === answer.id ? \"border-foreground\" : \"border-border\")}>\n            <p className=\"flex items-center justify-between text-xs font-medium text-muted-foreground\">{answer.label}{choice === answer.id ? <IconCheck aria-hidden=\"true\" className=\"size-4 text-foreground\" /> : null}</p>\n            <div className=\"mt-2 text-sm leading-relaxed\">{answer.body}</div>\n          </article>\n        ))}\n      </div>\n      <fieldset className=\"flex flex-wrap items-center gap-2\">\n        <legend className=\"mr-2 float-left py-1.5 text-sm font-medium\">Which is better?</legend>\n        {[...answers.map((answer) => ({ value: answer.id, label: answer.label })), { value: \"tie\", label: \"About the same\" }].map((item) => (\n          <label key={item.value} className={option}>\n            <input type=\"radio\" name={id} value={item.value} checked={choice === item.value} onChange={() => pick(item.value)} className=\"sr-only\" />\n            {choice === item.value ? <IconCheck aria-hidden=\"true\" /> : null}{item.label}\n          </label>\n        ))}\n      </fieldset>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-answer-compare.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

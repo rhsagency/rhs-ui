@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-trigger",
+  "title": "File trigger",
+  "description": "A single file field that looks like the rest of the form: a button to choose, then the file's name and size with a remove button, and a refusal in words when it is too big.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/file-trigger.tsx",
+      "content": "\"use client\";\n\nimport { useId, useRef, useState } from \"react\";\n\nimport { IconClose, IconPaperclip } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FileTriggerProps {\n  /** Called with the chosen file, or null when it is removed. */\n  onFileChange: (file: File | null) => void;\n  /** Accepted types, as for the input: \".pdf,image/*\". */\n  accept?: string;\n  /** Largest file in bytes; bigger files are refused with the reason in words. */\n  maxSize?: number;\n  label?: string;\n  /** The field's name, for a plain form submit. */\n  name?: string;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * A single file field that looks like the rest of the form: a button to\n * choose, then the file's name and size with a remove button, and a refusal\n * in words when it is too big. The real file input stays in the form, so\n * FormData and server actions get the file.\n */\nexport function FileTrigger({ onFileChange, accept, maxSize, label = \"Attach a file\", name, locale = \"en-GB\", className }: FileTriggerProps) {\n  const id = useId();\n  const input = useRef<HTMLInputElement>(null);\n  const [file, setFile] = useState<File | null>(null);\n  const [error, setError] = useState<string | null>(null);\n  const size = new Intl.NumberFormat(locale, { style: \"unit\", unit: \"megabyte\", maximumFractionDigits: 1 });\n  function choose(next: File | null) {\n    if (next && maxSize && next.size > maxSize) {\n      setError(`${next.name} is ${size.format(next.size / 1e6)}; the limit is ${size.format(maxSize / 1e6)}.`);\n      if (input.current) input.current.value = \"\";\n      return;\n    }\n    setError(null);\n    setFile(next);\n    onFileChange(next);\n  }\n  return (\n    <div data-slot=\"file-trigger\" className={cn(\"relative grid gap-1.5\", className)}>\n      <input ref={input} id={id} type=\"file\" name={name} accept={accept} className=\"peer sr-only\" onChange={(event) => choose(event.target.files?.[0] ?? null)} aria-describedby={error ? `${id}-error` : undefined} />\n      {file ? (\n        <div className=\"flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm\">\n          <IconPaperclip aria-hidden=\"true\" className=\"size-4 shrink-0 text-muted-foreground\" />\n          <span className=\"min-w-0 flex-1 truncate\">{file.name}</span>\n          <span className=\"shrink-0 text-xs text-muted-foreground tabular-nums\" suppressHydrationWarning>{size.format(file.size / 1e6)}</span>\n          <button type=\"button\" onClick={() => { if (input.current) input.current.value = \"\"; choose(null); }} aria-label={`Remove ${file.name}`} className=\"inline-flex size-6 items-center justify-center rounded text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\"><IconClose className=\"size-3.5\" /></button>\n        </div>\n      ) : (\n        <label htmlFor={id} className=\"inline-flex h-9 cursor-pointer items-center gap-2 justify-self-start rounded-md border border-border px-3 text-sm outline-none hover:bg-muted peer-focus-visible:ring-[3px] peer-focus-visible:ring-ring/40\">\n          <IconPaperclip aria-hidden=\"true\" className=\"size-4\" />{label}\n        </label>\n      )}\n      {error ? <p id={`${id}-error`} role=\"alert\" className=\"text-xs text-destructive\">{error}</p> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/file-trigger.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

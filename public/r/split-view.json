@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-view",
+  "title": "Split view",
+  "description": "The list-and-detail layout of mail, chat and admin apps: side by side on wide screens, and on a phone one at a time, the detail with a back button when something is selected.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/split-view.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconArrowLeft } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SplitViewProps {\n  /** The list: inbox, contacts, orders. */\n  list: ReactNode;\n  /** The selected item, or null for none. */\n  detail: ReactNode | null;\n  /** Shown in the detail pane when nothing is selected (wide screens). */\n  empty?: ReactNode;\n  /** Back from the detail to the list on a phone. */\n  onBack?: () => void;\n  backLabel?: string;\n  className?: string;\n}\n\n/**\n * The list-and-detail layout of mail, chat and admin apps: side by side on\n * wide screens, and on a phone one at a time, the detail with a back button\n * when something is selected. Both panes scroll on their own. You keep the\n * selection (in the URL, ideally), the layout follows it.\n */\nexport function SplitView({ list, detail, empty, onBack, backLabel = \"Back\", className }: SplitViewProps) {\n  const selected = detail !== null;\n  return (\n    <div data-slot=\"split-view\" className={cn(\"grid h-full min-h-0 md:grid-cols-[minmax(16rem,22rem)_1fr]\", className)}>\n      <div className={cn(\"relative min-h-0 overflow-y-auto border-border md:block md:border-r\", selected && \"hidden\")}>{list}</div>\n      <div className={cn(\"relative min-h-0 overflow-y-auto\", !selected && \"hidden md:block\")}>\n        {selected ? (\n          <>\n            {onBack ? <button type=\"button\" onClick={onBack} className=\"m-3 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 md:hidden [&_svg]:size-4\"><IconArrowLeft aria-hidden=\"true\" />{backLabel}</button> : null}\n            {detail}\n          </>\n        ) : (\n          <div className=\"flex h-full items-center justify-center p-8 text-sm text-muted-foreground\">{empty ?? \"Select an item to see it here.\"}</div>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/split-view.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

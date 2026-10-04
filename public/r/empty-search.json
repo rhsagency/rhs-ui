@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-search",
+  "title": "Empty search",
+  "description": "The \"no results\" state that helps: it repeats what was searched, shows the filters that narrowed it to nothing with one button to clear them, offers close searches, and ends with a way to a human.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/empty-search.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconSearch } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface EmptySearchProps {\n  /** What was searched for. */\n  query: string;\n  /** Filters that are on, so people see why nothing matched. */\n  filters?: readonly string[];\n  /** Clear the filters (and keep the query). */\n  onClearFilters?: () => void;\n  /** Spelling fixes or nearby searches, as links or buttons. */\n  suggestions?: readonly { label: string; href: string }[];\n  /** A last resort: \"Ask support\", \"Request this\". */\n  action?: ReactNode;\n  className?: string;\n}\n\n/**\n * The \"no results\" state that helps: it repeats what was searched, shows\n * the filters that narrowed it to nothing with one button to clear them,\n * offers close searches, and ends with a way to a human. Announced as a\n * status, so screen reader users hear the outcome of their search.\n */\nexport function EmptySearch({ query, filters = [], onClearFilters, suggestions = [], action, className }: EmptySearchProps) {\n  return (\n    <div data-slot=\"empty-search\" role=\"status\" className={cn(\"mx-auto max-w-md py-12 text-center\", className)}>\n      <span className=\"mx-auto inline-flex size-12 items-center justify-center rounded-full bg-muted [&_svg]:size-5\"><IconSearch aria-hidden=\"true\" /></span>\n      <p className=\"mt-4 text-lg font-medium text-balance\">No results for “{query}”</p>\n      {filters.length ? (\n        <div className=\"mt-3 text-sm text-muted-foreground\">\n          <p>With these filters on: {filters.join(\", \")}.</p>\n          {onClearFilters ? <button type=\"button\" onClick={onClearFilters} className=\"mt-2 font-medium text-foreground underline underline-offset-4\">Clear filters and search again</button> : null}\n        </div>\n      ) : <p className=\"mt-2 text-sm text-muted-foreground\">Check the spelling, or try a broader word.</p>}\n      {suggestions.length ? (\n        <div className=\"mt-6\">\n          <p className=\"text-xs text-muted-foreground\">Try instead</p>\n          <ul className=\"mt-2 flex flex-wrap justify-center gap-2\">\n            {suggestions.map((suggestion) => <li key={`${suggestion.href}-${suggestion.label}`}><a href={suggestion.href} className=\"inline-flex rounded-full border border-border px-3 py-1 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\">{suggestion.label}</a></li>)}\n          </ul>\n        </div>\n      ) : null}\n      {action ? <div className=\"mt-8 border-t border-border pt-6 text-sm\">{action}</div> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/empty-search.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

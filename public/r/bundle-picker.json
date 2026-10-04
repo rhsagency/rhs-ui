@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bundle-picker",
+  "title": "Bundle picker",
+  "description": "\"Frequently bought together\": the product and two or three companions with plus signs between them, a checkbox per companion, and the bundle total with its saving worked out in cents, so the add button always says exactly what it will add and for how much.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/bundle-picker.tsx",
+      "content": "\"use client\";\n\nimport { IconPlus } from \"@rhs-ui/icons\";\nimport { formatMoney, type Money } from \"@rhs-ui/commerce/money\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Checkbox } from \"@rhs-ui/primitives/checkbox\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface BundleItem {\n  id: string;\n  title: string;\n  price: Money;\n  image: { src: string; alt: string };\n  /** The product on the page is always in the bundle. */\n  locked?: boolean;\n}\n\nexport interface BundlePickerProps {\n  title?: string;\n  items: readonly BundleItem[];\n  selected: readonly string[];\n  onSelectedChange: (ids: string[]) => void;\n  /** Discount on the bundle as a fraction, when two or more are picked. */\n  discount?: number;\n  onAdd: (ids: string[]) => void;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * \"Frequently bought together\": the product and two or three companions\n * with plus signs between them, a checkbox per companion, and the bundle\n * total with its saving worked out in cents, so the add button always says\n * exactly what it will add and for how much.\n */\nexport function BundlePicker({ title = \"Frequently bought together\", items, selected, onSelectedChange, discount = 0, onAdd, locale = \"en-GB\", className }: BundlePickerProps) {\n  const ids = items.filter((item) => item.locked || selected.includes(item.id)).map((item) => item.id);\n  const currency = items[0]?.price.currency ?? \"EUR\";\n  const full = items.filter((item) => ids.includes(item.id)).reduce((sum, item) => sum + item.price.amount, 0);\n  const off = ids.length >= 2 ? Math.round(full * discount) : 0;\n  const money = (amount: number) => formatMoney({ amount, currency }, locale);\n  return (\n    <section data-slot=\"bundle-picker\" aria-label={title} className={cn(\"rounded-2xl border border-border p-5\", className)}>\n      <h3 className=\"font-medium\">{title}</h3>\n      <ul className=\"mt-4 flex flex-wrap items-center gap-2\">\n        {items.map((item, index) => (\n          <li key={item.id} className=\"flex items-center gap-2\">\n            {index > 0 ? <IconPlus aria-hidden=\"true\" className=\"size-4 text-muted-foreground\" /> : null}\n            <span className={cn(\"relative block size-20 overflow-clip rounded-xl bg-muted transition-opacity\", !ids.includes(item.id) && \"opacity-40\")}><img src={item.image.src} alt={item.image.alt} className=\"size-full object-cover\" /></span>\n          </li>\n        ))}\n      </ul>\n      <ul className=\"mt-4 grid gap-2 text-sm\">\n        {items.map((item) => (\n          <li key={item.id} className=\"flex items-center gap-2.5\">\n            <Checkbox id={`bundle-${item.id}`} checked={ids.includes(item.id)} disabled={item.locked} onCheckedChange={(on) => onSelectedChange(on === true ? [...selected, item.id] : selected.filter((id) => id !== item.id))} />\n            <label htmlFor={`bundle-${item.id}`} className={cn(\"flex-1\", item.locked ? \"cursor-default\" : \"cursor-pointer\")}>{item.locked ? <span className=\"font-medium\">This item: </span> : null}{item.title}</label>\n            <span className=\"tabular-nums\" suppressHydrationWarning>{money(item.price.amount)}</span>\n          </li>\n        ))}\n      </ul>\n      <div className=\"mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4\">\n        <p className=\"text-sm\">\n          <span className=\"text-muted-foreground\">Total </span>\n          <span className=\"text-lg font-medium tabular-nums\" suppressHydrationWarning>{money(full - off)}</span>\n          {off ? <span className=\"ml-2 text-xs text-muted-foreground line-through\" suppressHydrationWarning><span className=\"sr-only\">was </span>{money(full)}</span> : null}\n        </p>\n        <Button onClick={() => onAdd(ids)}>Add {ids.length} to bag</Button>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/bundle-picker.tsx"
+    },
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  currency: string;\n}\n\n/**\n * Formats money for the reader's locale. Node and the browser can differ in\n * their number data, so text rendered with it carries suppressHydrationWarning.\n */\nexport function formatMoney(money: Money, locale = \"en-GB\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

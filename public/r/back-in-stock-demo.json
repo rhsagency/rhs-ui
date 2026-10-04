@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "back-in-stock-demo",
+  "title": "Back in stock demo",
+  "description": "A working preview of Back in stock.",
+  "registryDependencies": [
+    "https://rhsui.com/r/back-in-stock.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/back-in-stock-demo.tsx",
+      "content": "\"use client\";\n\nimport { BackInStock } from \"@rhs-ui/commerce/back-in-stock\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-sm p-8\">\n      <BackInStock product=\"the Linen apron in Stone, size M\" expected=\"Expected around 22 April\" onSubscribe={() => new Promise<void>((resolve) => setTimeout(resolve, 600))} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

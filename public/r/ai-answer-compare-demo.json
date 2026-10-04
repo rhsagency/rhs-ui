@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-answer-compare-demo",
+  "title": "AI answer compare demo",
+  "description": "A working preview of AI answer compare.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ai-answer-compare.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ai-answer-compare-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { AiAnswerCompare } from \"@rhs-ui/application/ai-answer-compare\";\n\nexport default function Demo(): React.JSX.Element {\n  const [choice, setChoice] = useState<string | null>(null);\n  return (\n    <div className=\"mx-auto max-w-3xl p-8\">\n      <AiAnswerCompare\n        prompt=\"Write a one-line subject for an email about a price increase.\"\n        onPick={setChoice}\n        answers={[\n          { id: \"a\", label: \"Response A\", body: \"Our prices change on 1 June: here is what it means for you.\" },\n          { id: \"b\", label: \"Response B\", body: \"IMPORTANT UPDATE regarding your subscription pricing!!!\" },\n        ]}\n      />\n      <p role=\"status\" className=\"mt-4 text-xs text-muted-foreground\">{choice ? `Thanks, recorded: ${choice === \"tie\" ? \"a tie\" : `response ${choice.toUpperCase()}`}.` : \"\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

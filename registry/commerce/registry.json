@@ -1175,6 +1175,380 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "cart-drawer",
+      "type": "registry:component",
+      "title": "Cart drawer",
+      "description": "The bag that slides in from the side after \"add to bag\": the lines with quantity and remove (the house cart line), progress to free shipping, the subtotal and checkout pinned to the bottom.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/cart-line.json",
+        "https://rhsui.com/r/shipping-progress.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/cart-drawer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/cart-drawer.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "cart-drawer-demo",
+      "type": "registry:example",
+      "title": "Cart drawer demo",
+      "description": "A working preview of Cart drawer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cart-drawer.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cart-drawer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkout-steps",
+      "type": "registry:component",
+      "title": "Checkout steps",
+      "description": "The step header of a checkout: Bag, Details, Shipping, Payment.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/checkout-steps.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/checkout-steps.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkout-steps-demo",
+      "type": "registry:example",
+      "title": "Checkout steps demo",
+      "description": "A working preview of Checkout steps.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checkout-steps.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checkout-steps-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filter-sidebar",
+      "type": "registry:component",
+      "title": "Filter sidebar",
+      "description": "The filter column of a product listing: facets as collapsible groups of checkboxes with the count each would leave, options that lead nowhere disabled rather than hidden, a count of ticked filters per group and one \"clear all\".",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/filter-sidebar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/filter-sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "filter-sidebar-demo",
+      "type": "registry:example",
+      "title": "Filter sidebar demo",
+      "description": "A working preview of Filter sidebar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/filter-sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filter-sidebar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sort-menu",
+      "type": "registry:component",
+      "title": "Sort menu",
+      "description": "\"Sort by\" above a product grid or a list: a compact trigger that reads the current order (\"Sort: Newest\"), a menu of radio items with the chosen one checked.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/sort-menu.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/sort-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sort-menu-demo",
+      "type": "registry:example",
+      "title": "Sort menu demo",
+      "description": "A working preview of Sort menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sort-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sort-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bundle-picker",
+      "type": "registry:component",
+      "title": "Bundle picker",
+      "description": "\"Frequently bought together\": the product and two or three companions with plus signs between them, a checkbox per companion, and the bundle total with its saving worked out in cents, so the add button always says exactly what it will add and for how much.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/bundle-picker.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/bundle-picker.tsx"
+        },
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
+    },
+    {
+      "name": "bundle-picker-demo",
+      "type": "registry:example",
+      "title": "Bundle picker demo",
+      "description": "A working preview of Bundle picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bundle-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bundle-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "promo-bar",
+      "type": "registry:component",
+      "title": "Promo bar",
+      "description": "The thin band above a shop's header: one message, or a few that rotate slowly with arrows to step through them.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/promo-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/promo-bar.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      }
+    },
+    {
+      "name": "promo-bar-demo",
+      "type": "registry:example",
+      "title": "Promo bar demo",
+      "description": "A working preview of Promo bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/promo-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/promo-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "back-in-stock",
+      "type": "registry:component",
+      "title": "Back in stock",
+      "description": "In place of \"add to bag\" when a variant is sold out: one email field to be told when it is back, the expected date when there is one, and a confirmation that names the exact variant.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/back-in-stock.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/back-in-stock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "back-in-stock-demo",
+      "type": "registry:example",
+      "title": "Back in stock demo",
+      "description": "A working preview of Back in stock.",
+      "registryDependencies": [
+        "https://rhsui.com/r/back-in-stock.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/back-in-stock-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "loyalty-points",
+      "type": "registry:component",
+      "title": "Loyalty points",
+      "description": "A loyalty balance people understand at a glance: the points, what they can get now, how far the next reward is in points and as a bar, and how points are earned.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/loyalty-points.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/loyalty-points.tsx"
+        }
+      ]
+    },
+    {
+      "name": "loyalty-points-demo",
+      "type": "registry:example",
+      "title": "Loyalty points demo",
+      "description": "A working preview of Loyalty points.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/loyalty-points.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/loyalty-points-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

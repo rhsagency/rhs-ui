@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ai-diff-suggestion",
+  "title": "AI diff suggestion",
+  "description": "An AI edit shown as a change, not a replacement: removed words struck through, added words marked, the reason in one line, and accept or reject.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/ai-diff-suggestion.tsx",
+      "content": "import { IconCheck, IconClose, IconSparkle } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface AiDiffSuggestionProps {\n  /** The text as it is now. */\n  before: string;\n  /** What the model suggests instead. */\n  after: string;\n  /** Why: \"Shorter and in your brand voice.\" */\n  reason?: string;\n  onAccept: () => void;\n  onReject: () => void;\n  className?: string;\n}\n\n/** A word-level diff: common words stay, removed words and added words are marked. */\nexport function wordDiff(before: string, after: string): { kind: \"same\" | \"add\" | \"remove\"; text: string }[] {\n  const a = before.split(/(\\s+)/);\n  const b = after.split(/(\\s+)/);\n  const lcs = Array.from({ length: a.length + 1 }, () => new Array<number>(b.length + 1).fill(0));\n  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) lcs[i]![j] = a[i] === b[j] ? lcs[i + 1]![j + 1]! + 1 : Math.max(lcs[i + 1]![j]!, lcs[i]![j + 1]!);\n  const out: { kind: \"same\" | \"add\" | \"remove\"; text: string }[] = [];\n  let i = 0;\n  let j = 0;\n  while (i < a.length && j < b.length) {\n    if (a[i] === b[j]) { out.push({ kind: \"same\", text: a[i]! }); i++; j++; }\n    else if (lcs[i + 1]![j]! >= lcs[i]![j + 1]!) out.push({ kind: \"remove\", text: a[i++]! });\n    else out.push({ kind: \"add\", text: b[j++]! });\n  }\n  while (i < a.length) out.push({ kind: \"remove\", text: a[i++]! });\n  while (j < b.length) out.push({ kind: \"add\", text: b[j++]! });\n  return out;\n}\n\n/**\n * An AI edit shown as a change, not a replacement: removed words struck\n * through, added words marked, the reason in one line, and accept or reject.\n * Changes are spoken as \"removed\" and \"added\" so the review works without\n * seeing the colours.\n */\nexport function AiDiffSuggestion({ before, after, reason, onAccept, onReject, className }: AiDiffSuggestionProps) {\n  const parts = wordDiff(before, after);\n  return (\n    <div data-slot=\"ai-diff-suggestion\" className={cn(\"rounded-2xl border border-border p-4\", className)}>\n      <p className=\"flex items-center gap-1.5 text-xs font-medium text-muted-foreground\"><IconSparkle aria-hidden=\"true\" className=\"size-3.5\" />Suggested edit{reason ? <span className=\"font-normal\">: {reason}</span> : null}</p>\n      <p className=\"mt-3 text-sm leading-relaxed\">\n        {parts.map((part, index) =>\n          part.kind === \"same\" ? <span key={index}>{part.text}</span> : part.kind === \"remove\" ? (\n            /^\\s+$/.test(part.text) ? null : <del key={index} className=\"rounded bg-destructive/10 px-0.5 text-destructive decoration-destructive/60\"><span className=\"sr-only\">removed: </span>{part.text}</del>\n          ) : (\n            /^\\s+$/.test(part.text) ? <span key={index}>{part.text}</span> : <ins key={index} className=\"rounded bg-foreground/10 px-0.5 no-underline\"><span className=\"sr-only\">added: </span>{part.text}</ins>\n          ),\n        )}\n      </p>\n      <div className=\"mt-4 flex gap-2\">\n        <Button size=\"sm\" onClick={onAccept}><IconCheck /> Accept</Button>\n        <Button size=\"sm\" variant=\"ghost\" onClick={onReject}><IconClose /> Reject</Button>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/ai-diff-suggestion.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "ai"
+  },
+  "categories": [
+    "application",
+    "ai"
+  ],
+  "type": "registry:component"
+}

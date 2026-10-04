@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkout-steps-demo",
+  "title": "Checkout steps demo",
+  "description": "A working preview of Checkout steps.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checkout-steps.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkout-steps-demo.tsx",
+      "content": "import { CheckoutSteps } from \"@rhs-ui/commerce/checkout-steps\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-8\">\n      <CheckoutSteps current={2} steps={[{ id: \"bag\", label: \"Bag\", href: \"#bag\" }, { id: \"details\", label: \"Details\", href: \"#details\" }, { id: \"shipping\", label: \"Shipping\" }, { id: \"payment\", label: \"Payment\" }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

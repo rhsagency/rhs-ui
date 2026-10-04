@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "auto-grid",
+  "title": "Auto grid",
+  "description": "A responsive grid with no breakpoints: give it the smallest width a card may have and it fits as many columns as there is room for, in a page, a sidebar or a dialog alike (it reads its own width, not the viewport's).",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/auto-grid.tsx",
+      "content": "import type { CSSProperties, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface AutoGridProps {\n  children: ReactNode;\n  /** The narrowest a column may get, in rem; the grid fits as many as the width allows. */\n  min?: number;\n  gap?: \"sm\" | \"md\" | \"lg\";\n  /** \"fill\" keeps empty tracks so a short last row does not stretch; \"fit\" lets items grow into them. */\n  mode?: \"fill\" | \"fit\";\n  className?: string;\n}\n\nconst GAP = { sm: \"gap-3\", md: \"gap-5\", lg: \"gap-8\" } as const;\n\n/**\n * A responsive grid with no breakpoints: give it the smallest width a card\n * may have and it fits as many columns as there is room for, in a page, a\n * sidebar or a dialog alike (it reads its own width, not the viewport's).\n * Never narrower than the screen, so it cannot cause sideways scroll.\n */\nexport function AutoGrid({ children, min = 16, gap = \"md\", mode = \"fill\", className }: AutoGridProps) {\n  return (\n    <div\n      data-slot=\"auto-grid\"\n      style={{ \"--auto-grid-min\": `${min}rem` } as CSSProperties}\n      className={cn(\"grid\", mode === \"fill\" ? \"[grid-template-columns:repeat(auto-fill,minmax(min(var(--auto-grid-min),100%),1fr))]\" : \"[grid-template-columns:repeat(auto-fit,minmax(min(var(--auto-grid-min),100%),1fr))]\", GAP[gap], className)}\n    >\n      {children}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/auto-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

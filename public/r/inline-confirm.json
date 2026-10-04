@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-confirm",
+  "title": "Inline confirm",
+  "description": "A two-step button for small destructive actions in a row: the first press turns it into \"Delete this row?",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/inline-confirm.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ReactNode } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InlineConfirmProps {\n  /** The button's label: \"Delete\". */\n  children: ReactNode;\n  /** The question in place of the button: \"Delete this row?\" */\n  question: string;\n  confirmLabel?: string;\n  onConfirm: () => Promise<void> | void;\n  /** Seconds before the question folds back on its own. */\n  timeout?: number;\n  size?: \"sm\" | \"default\";\n  className?: string;\n}\n\n/**\n * A two-step button for small destructive actions in a row: the first press\n * turns it into \"Delete this row? Yes / No\" right where it was, focus moves\n * to No (the safe choice), and the question folds back by itself after a\n * few seconds. Lighter than a popover, safer than a single click.\n */\nexport function InlineConfirm({ children, question, confirmLabel = \"Yes\", onConfirm, timeout = 6, size = \"sm\", className }: InlineConfirmProps) {\n  const [asking, setAsking] = useState(false);\n  const [busy, setBusy] = useState(false);\n  const no = useRef<HTMLButtonElement>(null);\n  const trigger = useRef<HTMLButtonElement>(null);\n  useEffect(() => {\n    if (!asking) return;\n    no.current?.focus();\n    const timer = setTimeout(() => setAsking(false), timeout * 1000);\n    return () => clearTimeout(timer);\n  }, [asking, timeout]);\n  async function confirm() {\n    setBusy(true);\n    try {\n      await onConfirm();\n    } finally {\n      setBusy(false);\n      setAsking(false);\n    }\n  }\n  if (!asking) return <Button ref={trigger} variant=\"ghost\" size={size} className={className} onClick={() => setAsking(true)}>{children}</Button>;\n  return (\n    <span data-slot=\"inline-confirm\" role=\"group\" aria-label={question} className={cn(\"inline-flex items-center gap-1.5 rounded-lg bg-destructive/10 py-0.5 pr-0.5 pl-2.5 text-sm\", className)}>\n      <span className=\"text-destructive\">{question}</span>\n      <Button size={size} variant=\"destructive\" loading={busy} onClick={confirm}>{confirmLabel}</Button>\n      <Button ref={no} size={size} variant=\"ghost\" onClick={() => { setAsking(false); requestAnimationFrame(() => trigger.current?.focus()); }}>No</Button>\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/inline-confirm.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

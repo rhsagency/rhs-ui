@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag-cloud",
+  "title": "Tag cloud",
+  "description": "Topics weighted by use, for a blog or a knowledge base: four type sizes on a log scale so one huge tag does not dwarf the rest, alphabetical so people can scan, and each tag a link with its count in the accessible name (\"Pricing, 24 posts\").",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/tag-cloud.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface CloudTag {\n  label: string;\n  /** How often it appears; drives the size. */\n  count: number;\n  href: string;\n}\n\nexport interface TagCloudProps {\n  tags: readonly CloudTag[];\n  label?: string;\n  /** Show the count after each tag. */\n  showCounts?: boolean;\n  className?: string;\n}\n\n/**\n * Topics weighted by use, for a blog or a knowledge base: four type sizes\n * on a log scale so one huge tag does not dwarf the rest, alphabetical so\n * people can scan, and each tag a link with its count in the accessible\n * name (\"Pricing, 24 posts\").\n */\nexport function TagCloud({ tags, label = \"Topics\", showCounts = false, className }: TagCloudProps) {\n  const counts = tags.map((tag) => Math.log(tag.count + 1));\n  const min = Math.min(...counts);\n  const max = Math.max(...counts);\n  const step = (count: number) => (max === min ? 1 : Math.round(((Math.log(count + 1) - min) / (max - min)) * 3));\n  const SIZES = [\"text-xs text-muted-foreground\", \"text-sm\", \"text-base font-medium\", \"text-xl font-medium tracking-tight\"];\n  return (\n    <nav data-slot=\"tag-cloud\" aria-label={label} className={className}>\n      <ul className=\"flex flex-wrap items-baseline gap-x-4 gap-y-2\">\n        {[...tags].sort((a, b) => a.label.localeCompare(b.label)).map((tag) => (\n          <li key={`${tag.href}-${tag.label}`}>\n            <a href={tag.href} aria-label={`${tag.label}, ${tag.count} ${tag.count === 1 ? \"post\" : \"posts\"}`} className={cn(\"rounded-sm underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/40\", SIZES[step(tag.count)])}>\n              {tag.label}\n              {showCounts ? <sup className=\"ml-0.5 text-[10px] font-normal text-muted-foreground\">{tag.count}</sup> : null}\n            </a>\n          </li>\n        ))}\n      </ul>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/tag-cloud.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

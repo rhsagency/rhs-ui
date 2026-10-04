@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "duration-input",
+  "title": "Duration input",
+  "description": "A duration as hours and minutes (and days if you want them), each its own small number field under one group label, so nobody has to type \"1:30\" or \"90\" and guess the unit.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/duration-input.tsx",
+      "content": "import { useId } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface DurationInputProps {\n  /** Total minutes. */\n  value: number;\n  onValueChange: (minutes: number) => void;\n  label: string;\n  /** Show a days field too, for long durations. */\n  days?: boolean;\n  /** Quick picks in minutes: [15, 30, 60]. */\n  presets?: readonly number[];\n  className?: string;\n}\n\nconst split = (minutes: number, withDays: boolean) => {\n  const d = withDays ? Math.floor(minutes / 1440) : 0;\n  const rest = minutes - d * 1440;\n  return { d, h: Math.floor(rest / 60), m: rest % 60 };\n};\n\nexport function formatDuration(minutes: number): string {\n  const h = Math.floor(minutes / 60);\n  const m = minutes % 60;\n  return [h ? `${h} h` : \"\", m || !h ? `${m} min` : \"\"].filter(Boolean).join(\" \");\n}\n\n/**\n * A duration as hours and minutes (and days if you want them), each its own\n * small number field under one group label, so nobody has to type \"1:30\" or\n * \"90\" and guess the unit. Presets fill it in one tap; the value you get is\n * total minutes.\n */\nexport function DurationInput({ value, onValueChange, label, days = false, presets = [], className }: DurationInputProps) {\n  const id = useId();\n  const parts = split(value, days);\n  const set = (patch: Partial<typeof parts>) => {\n    const next = { ...parts, ...patch };\n    onValueChange(Math.max(0, next.d * 1440 + next.h * 60 + next.m));\n  };\n  const field = (key: \"d\" | \"h\" | \"m\", unit: string, max?: number) => (\n    <label className=\"relative flex items-center rounded-md border border-input bg-background focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/40\">\n      <input type=\"number\" inputMode=\"numeric\" min={0} max={max} value={parts[key]} onChange={(event) => set({ [key]: Math.min(max ?? Infinity, Math.max(0, Number(event.target.value) || 0)) })} className=\"h-9 w-14 bg-transparent pl-3 text-sm tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none\" aria-label={unit} />\n      <span aria-hidden=\"true\" className=\"pr-3 text-xs text-muted-foreground\">{unit === \"hours\" ? \"h\" : unit === \"minutes\" ? \"min\" : \"d\"}</span>\n    </label>\n  );\n  return (\n    <fieldset data-slot=\"duration-input\" aria-describedby={`${id}-total`} className={cn(\"grid gap-2\", className)}>\n      <legend className=\"text-sm font-medium\">{label}</legend>\n      <div className=\"flex flex-wrap items-center gap-2\">\n        {days ? field(\"d\", \"days\") : null}\n        {field(\"h\", \"hours\", days ? 23 : undefined)}\n        {field(\"m\", \"minutes\", 59)}\n        {presets.length ? (\n          <span className=\"ml-1 flex flex-wrap gap-1\">\n            {presets.map((preset) => (\n              <button key={preset} type=\"button\" onClick={() => onValueChange(preset)} aria-pressed={value === preset} className=\"rounded-full border border-border px-2.5 py-1 text-xs outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background\">{formatDuration(preset)}</button>\n            ))}\n          </span>\n        ) : null}\n      </div>\n      <p id={`${id}-total`} className=\"text-xs text-muted-foreground\">Total: {formatDuration(value)}</p>\n    </fieldset>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/duration-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

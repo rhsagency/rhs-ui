@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feedback-widget-demo",
+  "title": "Feedback widget demo",
+  "description": "A working preview of Feedback widget.",
+  "registryDependencies": [
+    "https://rhsui.com/r/feedback-widget.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feedback-widget-demo.tsx",
+      "content": "\"use client\";\n\nimport { FeedbackWidget } from \"@rhs-ui/primitives/feedback-widget\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-xl border-t border-border p-8\">\n      <FeedbackWidget onSubmit={() => new Promise<void>((resolve) => setTimeout(resolve, 500))} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

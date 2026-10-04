@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "consent-checkboxes-demo",
+  "title": "Consent checkboxes demo",
+  "description": "A working preview of Consent checkboxes.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/consent-checkboxes.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/consent-checkboxes-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { ConsentCheckboxes, consentComplete, type ConsentItem } from \"@rhs-ui/primitives/consent-checkboxes\";\n\nconst ITEMS: ConsentItem[] = [\n  { id: \"terms\", required: true, label: <>I agree to the <a href=\"#terms\">terms of service</a> and have read the <a href=\"#privacy\">privacy policy</a>.</> },\n  { id: \"news\", label: \"Send me the monthly product newsletter.\" },\n  { id: \"research\", label: \"You may invite me to research interviews, at most twice a year.\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<string[]>([]);\n  const [tried, setTried] = useState(false);\n  const [done, setDone] = useState(false);\n  return (\n    <form className=\"mx-auto grid max-w-md gap-4 p-8\" onSubmit={(event) => { event.preventDefault(); setTried(true); setDone(consentComplete(ITEMS, value)); }}>\n      <ConsentCheckboxes items={ITEMS} value={value} onValueChange={setValue} showErrors={tried} />\n      <Button type=\"submit\" className=\"justify-self-start\">Create account</Button>\n      <p role=\"status\" className=\"text-sm text-muted-foreground\">{done ? \"Account created.\" : \"\"}</p>\n    </form>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

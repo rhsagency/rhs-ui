@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "category-bar-demo",
+  "title": "Category bar demo",
+  "description": "A working preview of Category bar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/category-bar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/category-bar-demo.tsx",
+      "content": "import { CategoryBar } from \"@rhs-ui/dashboard/category-bar\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-md gap-8 p-8\">\n      <CategoryBar label=\"Account health\" value={72} bands={[{ to: 40, label: \"At risk\" }, { to: 70, label: \"Watch\" }, { to: 90, label: \"Healthy\" }, { to: 100, label: \"Champion\" }]} />\n      <CategoryBar label=\"Performance score\" value={94} bands={[{ to: 49, label: \"Poor\" }, { to: 89, label: \"Needs work\" }, { to: 100, label: \"Good\" }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

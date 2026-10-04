@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "map-card",
+  "title": "Map card",
+  "description": "Where to find you, as a card: a map (yours, or a calm placeholder grid with a pin, so no third-party map loads until you choose one), the address as a real address element and a directions link.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/map-card.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconNavigation, IconPin } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface MapCardProps {\n  name: string;\n  /** The address, a line each. */\n  address: readonly string[];\n  /** A static map image or your own map component. Drawn as a quiet grid when left out. */\n  map?: ReactNode;\n  /** Directions in the visitor's map app: a geo: or maps URL. */\n  directionsHref: string;\n  /** Opening hours or a note: \"Parking behind the building\". */\n  note?: ReactNode;\n  className?: string;\n}\n\n/**\n * Where to find you, as a card: a map (yours, or a calm placeholder grid\n * with a pin, so no third-party map loads until you choose one), the\n * address as a real address element and a directions link. For contact\n * pages and event pages.\n */\nexport function MapCard({ name, address, map, directionsHref, note, className }: MapCardProps) {\n  return (\n    <article data-slot=\"map-card\" className={cn(\"overflow-clip rounded-3xl border border-border bg-background\", className)}>\n      <div className=\"relative aspect-[16/9] bg-muted\">\n        {map ?? (\n          <svg aria-hidden=\"true\" viewBox=\"0 0 320 180\" preserveAspectRatio=\"xMidYMid slice\" className=\"size-full text-foreground\">\n            {Array.from({ length: 12 }, (_, i) => <line key={`v${i}`} x1={i * 30} x2={i * 30 - 20} y1=\"0\" y2=\"180\" stroke=\"currentColor\" strokeOpacity=\"0.07\" strokeWidth={i % 4 === 0 ? 8 : 2} />)}\n            {Array.from({ length: 7 }, (_, i) => <line key={`h${i}`} x1=\"0\" x2=\"320\" y1={i * 30} y2={i * 30 + 12} stroke=\"currentColor\" strokeOpacity=\"0.07\" strokeWidth={i % 3 === 0 ? 8 : 2} />)}\n          </svg>\n        )}\n        {map ? null : <span className=\"absolute top-1/2 left-1/2 inline-flex size-10 -translate-x-1/2 -translate-y-full items-center justify-center rounded-full bg-foreground text-background shadow-lg [&_svg]:size-5\"><IconPin aria-hidden=\"true\" /></span>}\n      </div>\n      <div className=\"flex items-start justify-between gap-4 p-5\">\n        <div>\n          <h3 className=\"font-medium\">{name}</h3>\n          <address className=\"mt-1 text-sm leading-relaxed text-muted-foreground not-italic\">{address.map((line) => <span key={line} className=\"block\">{line}</span>)}</address>\n          {note ? <p className=\"mt-2 text-xs text-muted-foreground\">{note}</p> : null}\n        </div>\n        <a href={directionsHref} className=\"inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-4\"><IconNavigation aria-hidden=\"true\" />Directions</a>\n      </div>\n    </article>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/map-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feedback-widget",
+  "title": "Feedback widget",
+  "description": "\"Was this helpful?\" at the bottom of a doc or help article: thumbs up or down as pressed buttons, then an optional line of feedback (asking what was missing when it was a no), and a thank-you that replaces the widget.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/feedback-widget.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\n\nimport { IconThumbsDown, IconThumbsUp } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FeedbackWidgetProps {\n  /** \"Was this page helpful?\" */\n  question?: string;\n  /** Resolve when stored. The comment is optional and may be empty. */\n  onSubmit: (vote: \"up\" | \"down\", comment: string) => Promise<void> | void;\n  className?: string;\n}\n\n/**\n * \"Was this helpful?\" at the bottom of a doc or help article: thumbs up or\n * down as pressed buttons, then an optional line of feedback (asking what\n * was missing when it was a no), and a thank-you that replaces the widget.\n * One click is enough; the comment is never required.\n */\nexport function FeedbackWidget({ question = \"Was this page helpful?\", onSubmit, className }: FeedbackWidgetProps) {\n  const id = useId();\n  const [vote, setVote] = useState<\"up\" | \"down\" | null>(null);\n  const [comment, setComment] = useState(\"\");\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\">(\"idle\");\n  async function send(nextVote: \"up\" | \"down\", text: string) {\n    setState(\"busy\");\n    try {\n      await onSubmit(nextVote, text);\n    } finally {\n      setState(\"done\");\n    }\n  }\n  if (state === \"done\") return <p data-slot=\"feedback-widget\" role=\"status\" className={cn(\"text-sm text-muted-foreground\", className)}>Thanks for letting us know.</p>;\n  const thumb = \"inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background [&_svg]:size-4\";\n  return (\n    <div data-slot=\"feedback-widget\" className={cn(\"grid gap-3\", className)}>\n      <div className=\"flex flex-wrap items-center gap-3\">\n        <p className=\"text-sm font-medium\">{question}</p>\n        <button type=\"button\" aria-pressed={vote === \"up\"} onClick={() => setVote(\"up\")} className={thumb}><IconThumbsUp aria-hidden=\"true\" />Yes</button>\n        <button type=\"button\" aria-pressed={vote === \"down\"} onClick={() => setVote(\"down\")} className={thumb}><IconThumbsDown aria-hidden=\"true\" />No</button>\n      </div>\n      {vote ? (\n        <form onSubmit={(event) => { event.preventDefault(); void send(vote, comment.trim()); }} className=\"grid max-w-md gap-2\">\n          <label htmlFor={id} className=\"text-sm text-muted-foreground\">{vote === \"down\" ? \"What was missing or wrong? (optional)\" : \"Anything we could add? (optional)\"}</label>\n          <Textarea id={id} value={comment} onChange={(event) => setComment(event.target.value)} rows={3} maxLength={1000} />\n          <Button type=\"submit\" size=\"sm\" loading={state === \"busy\"} className=\"justify-self-start\">Send</Button>\n        </form>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/feedback-widget.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

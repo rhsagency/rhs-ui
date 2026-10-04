@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "vertical-tabs",
+  "title": "Vertical tabs",
+  "description": "Tabs down the side for settings pages and long forms: a vertical tablist (up and down arrows move) beside the panel, each tab with an icon and an optional line, collapsing to a horizontal scroll row on a phone.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/vertical-tabs.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { Tabs as TabsPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface VerticalTab {\n  value: string;\n  label: string;\n  icon?: ReactNode;\n  description?: string;\n  content: ReactNode;\n}\n\nexport interface VerticalTabsProps {\n  tabs: readonly VerticalTab[];\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  label: string;\n  className?: string;\n}\n\n/**\n * Tabs down the side for settings pages and long forms: a vertical tablist\n * (up and down arrows move) beside the panel, each tab with an icon and an\n * optional line, collapsing to a horizontal scroll row on a phone. Radix\n * Tabs underneath, so selection and focus follow the ARIA pattern.\n */\nexport function VerticalTabs({ tabs, value, defaultValue, onValueChange, label, className }: VerticalTabsProps) {\n  return (\n    <TabsPrimitive.Root data-slot=\"vertical-tabs\" orientation=\"vertical\" value={value} defaultValue={defaultValue ?? tabs[0]?.value} onValueChange={onValueChange} className={cn(\"grid gap-6 md:grid-cols-[14rem_1fr]\", className)}>\n      <TabsPrimitive.List aria-label={label} className=\"relative -mx-1 flex gap-1 overflow-x-auto px-1 pb-1 md:mx-0 md:flex-col md:overflow-visible md:px-0\">\n        {tabs.map((tab) => (\n          <TabsPrimitive.Trigger key={tab.value} value={tab.value} className=\"flex shrink-0 items-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-muted-foreground outline-none hover:bg-muted/60 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 data-[state=active]:bg-muted data-[state=active]:text-foreground [&_svg]:mt-0.5 [&_svg]:size-4 [&_svg]:shrink-0\">\n            {tab.icon}\n            <span>\n              <span className=\"block font-medium whitespace-nowrap\">{tab.label}</span>\n              {tab.description ? <span className=\"hidden text-xs text-muted-foreground md:block\">{tab.description}</span> : null}\n            </span>\n          </TabsPrimitive.Trigger>\n        ))}\n      </TabsPrimitive.List>\n      {tabs.map((tab) => (\n        <TabsPrimitive.Content key={tab.value} value={tab.value} className=\"min-w-0 outline-none\">{tab.content}</TabsPrimitive.Content>\n      ))}\n    </TabsPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/vertical-tabs.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

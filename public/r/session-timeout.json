@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "session-timeout",
+  "title": "Session timeout",
+  "description": "The warning before an idle session ends (WCAG 2.2.1): a dialog with the time left counting down, \"Stay signed in\" as the default action and sign out as the other, and a sign-out of its own when the time is up.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/alert-dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/session-timeout.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\nimport { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from \"@rhs-ui/primitives/alert-dialog\";\n\nexport interface SessionTimeoutProps {\n  /** Show the warning; you decide when, from your session's expiry. */\n  open: boolean;\n  /** Seconds left when the warning opens. */\n  seconds: number;\n  /** Refresh the session. */\n  onStay: () => void;\n  /** Sign out now, or when the countdown ends. */\n  onSignOut: () => void;\n}\n\n/**\n * The warning before an idle session ends (WCAG 2.2.1): a dialog with the\n * time left counting down, \"Stay signed in\" as the default action and sign\n * out as the other, and a sign-out of its own when the time is up. The\n * countdown is announced once a minute, not every second.\n */\nexport function SessionTimeout({ open, seconds, onStay, onSignOut }: SessionTimeoutProps) {\n  const [left, setLeft] = useState(seconds);\n  useEffect(() => {\n    if (!open) return;\n    setLeft(seconds);\n    const timer = setInterval(() => setLeft((value) => Math.max(0, value - 1)), 1000);\n    return () => clearInterval(timer);\n  }, [open, seconds]);\n  useEffect(() => {\n    if (open && left === 0) onSignOut();\n  }, [open, left, onSignOut]);\n  const time = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, \"0\")}`;\n  const spoken = left >= 60 ? `${Math.ceil(left / 60)} minutes` : \"less than a minute\";\n  return (\n    <AlertDialog open={open}>\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>Are you still there?</AlertDialogTitle>\n          <AlertDialogDescription>For your security we sign you out after a while without activity. Anything you saved stays saved.</AlertDialogDescription>\n        </AlertDialogHeader>\n        <p className=\"text-center text-4xl font-medium tracking-tight tabular-nums\" aria-hidden=\"true\">{time}</p>\n        <p className=\"sr-only\" aria-live=\"polite\">{`You will be signed out in ${spoken}.`}</p>\n        <AlertDialogFooter>\n          <AlertDialogCancel onClick={onSignOut}>Sign out</AlertDialogCancel>\n          <AlertDialogAction onClick={onStay}>Stay signed in</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/session-timeout.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

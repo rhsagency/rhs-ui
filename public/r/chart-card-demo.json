@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-card-demo",
+  "title": "Chart card demo",
+  "description": "A working preview of Chart card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/bar-list.json",
+    "https://rhsui.com/r/chart-card.json",
+    "https://rhsui.com/r/metric-delta.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/chart-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BarList } from \"@rhs-ui/dashboard/bar-list\";\nimport { ChartCard } from \"@rhs-ui/dashboard/chart-card\";\nimport { MetricDelta } from \"@rhs-ui/primitives/metric-delta\";\n\nconst DATA: Record<string, { name: string; value: number }[]> = {\n  \"7d\": [{ name: \"Search\", value: 5820 }, { name: \"Direct\", value: 3110 }, { name: \"Social\", value: 1450 }, { name: \"Email\", value: 920 }],\n  \"30d\": [{ name: \"Search\", value: 24100 }, { name: \"Direct\", value: 13900 }, { name: \"Social\", value: 7200 }, { name: \"Email\", value: 3600 }],\n};\n\nexport default function Demo(): React.JSX.Element {\n  const [period, setPeriod] = useState(\"7d\");\n  const total = (DATA[period] ?? []).reduce((sum, row) => sum + row.value, 0);\n  return (\n    <div className=\"mx-auto max-w-lg p-8\">\n      <ChartCard\n        title=\"Visitors by source\"\n        value={<span className=\"flex items-center gap-2 tabular-nums\">{total.toLocaleString(\"en-GB\")} <MetricDelta change={period === \"7d\" ? 0.06 : 0.11} /></span>}\n        periods={[{ value: \"7d\", label: \"7 days\" }, { value: \"30d\", label: \"30 days\" }]}\n        period={period}\n        onPeriodChange={setPeriod}\n        footnote=\"Source: site analytics, updated 5 min ago\"\n      >\n        <BarList items={DATA[period] ?? []} />\n      </ChartCard>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

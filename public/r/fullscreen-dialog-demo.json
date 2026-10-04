@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fullscreen-dialog-demo",
+  "title": "Fullscreen dialog demo",
+  "description": "A working preview of Fullscreen dialog.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/fullscreen-dialog.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/fullscreen-dialog-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { FullscreenDialog } from \"@rhs-ui/primitives/fullscreen-dialog\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\n\nexport default function Demo(): React.JSX.Element {\n  const [open, setOpen] = useState(false);\n  return (\n    <div className=\"mx-auto flex min-h-64 max-w-sm items-center justify-center p-8\">\n      <FullscreenDialog\n        open={open}\n        onOpenChange={setOpen}\n        trigger={<Button>Write a post</Button>}\n        title=\"New post\"\n        description=\"Draft, saved on this device\"\n        action={<Button size=\"sm\" onClick={() => setOpen(false)}>Publish</Button>}\n      >\n        <div className=\"mx-auto grid max-w-2xl gap-4 p-6\">\n          <label htmlFor=\"fs-title\" className=\"text-sm font-medium\">Title</label>\n          <Input id=\"fs-title\" defaultValue=\"What happened when we closed on Fridays\" />\n          <label htmlFor=\"fs-body\" className=\"text-sm font-medium\">Body</label>\n          <Textarea id=\"fs-body\" rows={14} defaultValue=\"Six months ago we tried a four-day week...\" />\n        </div>\n      </FullscreenDialog>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

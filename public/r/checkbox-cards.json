@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-cards",
+  "title": "Checkbox cards",
+  "description": "Pick several from a few rich options: interests, add-ons, integrations to install.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/checkbox-cards.tsx",
+      "content": "\"use client\";\n\nimport { useId, type ReactNode } from \"react\";\n\nimport { IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface CheckboxCardOption {\n  value: string;\n  label: string;\n  description?: string;\n  icon?: ReactNode;\n  disabled?: boolean;\n}\n\nexport interface CheckboxCardsProps {\n  legend: string;\n  options: readonly CheckboxCardOption[];\n  value: readonly string[];\n  onValueChange: (value: string[]) => void;\n  /** Most that can be picked; the rest disable once it is reached, and the hint says so. */\n  max?: number;\n  columns?: 1 | 2 | 3;\n  name?: string;\n  className?: string;\n}\n\n/**\n * Pick several from a few rich options: interests, add-ons, integrations\n * to install. Real checkboxes under one legend, cards that outline and\n * check when chosen, and an optional maximum that is explained in words\n * when it is reached instead of silently refusing the click.\n */\nexport function CheckboxCards({ legend, options, value, onValueChange, max, columns = 2, name, className }: CheckboxCardsProps) {\n  const id = useId();\n  const full = max !== undefined && value.length >= max;\n  const toggle = (option: string) => onValueChange(value.includes(option) ? value.filter((item) => item !== option) : [...value, option]);\n  return (\n    <fieldset data-slot=\"checkbox-cards\" aria-describedby={max !== undefined ? `${id}-hint` : undefined} className={cn(\"grid gap-3\", className)}>\n      <legend className=\"text-sm font-medium\">{legend}</legend>\n      {max !== undefined ? <p id={`${id}-hint`} className=\"-mt-1 text-xs text-muted-foreground\" aria-live=\"polite\">{full ? `You picked ${max}, the most for this plan.` : `Pick up to ${max}.`}</p> : null}\n      <div className={cn(\"grid gap-2\", columns === 2 && \"sm:grid-cols-2\", columns === 3 && \"sm:grid-cols-3\")}>\n        {options.map((option) => {\n          const checked = value.includes(option.value);\n          const disabled = option.disabled || (full && !checked);\n          return (\n            <label key={option.value} className={cn(\"relative flex cursor-pointer items-start gap-3 rounded-2xl border border-border p-4 transition-colors has-[:checked]:border-foreground has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\", disabled ? \"cursor-not-allowed opacity-50\" : \"hover:bg-muted/50\")}>\n              <input type=\"checkbox\" name={name} value={option.value} checked={checked} disabled={disabled} onChange={() => toggle(option.value)} className=\"sr-only\" />\n              {option.icon ? <span className=\"inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted [&_svg]:size-4.5\">{option.icon}</span> : null}\n              <span className=\"min-w-0 flex-1\">\n                <span className=\"block text-sm font-medium\">{option.label}</span>\n                {option.description ? <span className=\"mt-0.5 block text-sm text-muted-foreground\">{option.description}</span> : null}\n              </span>\n              <span aria-hidden=\"true\" className={cn(\"inline-flex size-5 shrink-0 items-center justify-center rounded-md border border-border [&_svg]:size-3.5\", checked && \"border-foreground bg-foreground text-background\")}>{checked ? <IconCheck /> : null}</span>\n            </label>\n          );\n        })}\n      </div>\n    </fieldset>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/checkbox-cards.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "unit-input",
+  "title": "Unit input",
+  "description": "A number with its unit as one field: weight in kg or lb, size in px or %, a timeout in seconds or minutes.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/unit-input.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\n\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface UnitInputProps {\n  value: string;\n  onValueChange: (value: string) => void;\n  unit: string;\n  onUnitChange: (unit: string) => void;\n  /** The units to choose from: [{ value: \"kg\", label: \"kg\" }, ...]. */\n  units: readonly { value: string; label: string }[];\n  label: string;\n  /** Numeric keyboard and the decimal sign of the locale. */\n  inputMode?: \"decimal\" | \"numeric\";\n  placeholder?: string;\n  className?: string;\n}\n\n/**\n * A number with its unit as one field: weight in kg or lb, size in px or %,\n * a timeout in seconds or minutes. The unit picker is the house select (no\n * native dropdown) joined to the input, and both share one label so a\n * screen reader hears \"Weight, 12, kilograms\".\n */\nexport function UnitInput({ value, onValueChange, unit, onUnitChange, units, label, inputMode = \"decimal\", placeholder, className }: UnitInputProps) {\n  const id = useId();\n  return (\n    <div data-slot=\"unit-input\" className={cn(\"grid gap-1.5\", className)}>\n      <label htmlFor={id} id={`${id}-label`} className=\"text-sm font-medium\">{label}</label>\n      <div className=\"flex rounded-md border border-input bg-background shadow-xs focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/40\">\n        <input id={id} value={value} onChange={(event) => onValueChange(event.target.value)} inputMode={inputMode} placeholder={placeholder} className=\"h-9 min-w-0 flex-1 bg-transparent px-3 text-sm tabular-nums outline-none\" />\n        <Select value={unit} onValueChange={onUnitChange}>\n          <SelectTrigger aria-labelledby={`${id}-label`} aria-label={`${label} unit`} className=\"h-9 w-auto gap-1 rounded-l-none border-0 border-l border-border bg-muted/40 shadow-none focus-visible:ring-0\">\n            <SelectValue />\n          </SelectTrigger>\n          <SelectContent align=\"end\">\n            {units.map((option) => <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>)}\n          </SelectContent>\n        </Select>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/unit-input.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

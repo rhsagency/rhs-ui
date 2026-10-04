@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "duration-input-demo",
+  "title": "Duration input demo",
+  "description": "A working preview of Duration input.",
+  "registryDependencies": [
+    "https://rhsui.com/r/duration-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/duration-input-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { DurationInput } from \"@rhs-ui/primitives/duration-input\";\n\nexport default function Demo(): React.JSX.Element {\n  const [minutes, setMinutes] = useState(90);\n  return (\n    <div className=\"mx-auto max-w-md p-8\">\n      <DurationInput label=\"Meeting length\" value={minutes} onValueChange={setMinutes} presets={[15, 30, 60]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

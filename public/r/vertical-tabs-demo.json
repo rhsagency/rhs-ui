@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "vertical-tabs-demo",
+  "title": "Vertical tabs demo",
+  "description": "A working preview of Vertical tabs.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/vertical-tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/vertical-tabs-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconBell, IconCreditCard, IconShield, IconUser } from \"@rhs-ui/icons\";\nimport { VerticalTabs } from \"@rhs-ui/primitives/vertical-tabs\";\n\nconst panel = (title: string, text: string) => (\n  <div className=\"rounded-2xl border border-border p-6\">\n    <h3 className=\"text-lg font-medium\">{title}</h3>\n    <p className=\"mt-2 text-sm text-muted-foreground\">{text}</p>\n  </div>\n);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl p-8\">\n      <VerticalTabs\n        label=\"Settings\"\n        tabs={[\n          { value: \"profile\", label: \"Profile\", description: \"Name, photo, language\", icon: <IconUser />, content: panel(\"Profile\", \"How you appear to your team.\") },\n          { value: \"notifications\", label: \"Notifications\", description: \"Email and push\", icon: <IconBell />, content: panel(\"Notifications\", \"Choose what reaches you, and when.\") },\n          { value: \"security\", label: \"Security\", description: \"Password, two-step\", icon: <IconShield />, content: panel(\"Security\", \"Sign-in methods and active sessions.\") },\n          { value: \"billing\", label: \"Billing\", description: \"Plan and invoices\", icon: <IconCreditCard />, content: panel(\"Billing\", \"Your plan, payment method and invoices.\") },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

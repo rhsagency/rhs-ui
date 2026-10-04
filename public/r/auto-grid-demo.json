@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "auto-grid-demo",
+  "title": "Auto grid demo",
+  "description": "A working preview of Auto grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/auto-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/auto-grid-demo.tsx",
+      "content": "import { AutoGrid } from \"@rhs-ui/primitives/auto-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-4xl gap-8 p-8\">\n      <AutoGrid min={12}>\n        {[\"Roadmaps\", \"Cycles\", \"Decisions\", \"Releases\", \"Reports\"].map((name) => (\n          <div key={name} className=\"rounded-2xl border border-border p-5\">\n            <p className=\"font-medium\">{name}</p>\n            <p className=\"mt-1 text-sm text-muted-foreground\">Columns appear as the space allows.</p>\n          </div>\n        ))}\n      </AutoGrid>\n      <div className=\"max-w-sm rounded-2xl bg-muted/50 p-4\">\n        <p className=\"mb-3 text-xs text-muted-foreground\">The same grid in a narrow sidebar:</p>\n        <AutoGrid min={8} gap=\"sm\">\n          {[\"A\", \"B\", \"C\", \"D\"].map((name) => <div key={name} className=\"flex h-16 items-center justify-center rounded-xl border border-border bg-background text-sm\">{name}</div>)}\n        </AutoGrid>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

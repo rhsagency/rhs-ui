@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "term-tooltip-demo",
+  "title": "Term tooltip demo",
+  "description": "A working preview of Term tooltip.",
+  "registryDependencies": [
+    "https://rhsui.com/r/term-tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/term-tooltip-demo.tsx",
+      "content": "\"use client\";\n\nimport { TermTooltip } from \"@rhs-ui/primitives/term-tooltip\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-lg p-10 text-base leading-relaxed\">\n      <p>\n        Every plan includes <TermTooltip definition=\"Single sign-on: people sign in with the account your company already manages, like Microsoft or Google.\" href=\"#sso\">SSO</TermTooltip> and a 99.9% <TermTooltip term=\"Service level agreement\" definition=\"Our promise in writing about uptime. If we miss it, you get credit back on your next invoice.\" href=\"#sla\">SLA</TermTooltip>, billed per active seat.\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

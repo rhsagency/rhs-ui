@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-trigger-demo",
+  "title": "File trigger demo",
+  "description": "A working preview of File trigger.",
+  "registryDependencies": [
+    "https://rhsui.com/r/file-trigger.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/file-trigger-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { FileTrigger } from \"@rhs-ui/primitives/file-trigger\";\n\nexport default function Demo(): React.JSX.Element {\n  const [file, setFile] = useState<File | null>(null);\n  return (\n    <div className=\"mx-auto grid max-w-sm gap-3 p-8\">\n      <p className=\"text-sm font-medium\">Your CV</p>\n      <FileTrigger accept=\".pdf,.docx\" maxSize={5_000_000} label=\"Choose a PDF or Word file\" name=\"cv\" onFileChange={setFile} />\n      <p className=\"text-xs text-muted-foreground\">{file ? \"Ready to send with the form.\" : \"Up to 5 MB.\"}</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

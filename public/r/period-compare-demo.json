@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "period-compare-demo",
+  "title": "Period compare demo",
+  "description": "A working preview of Period compare.",
+  "registryDependencies": [
+    "https://rhsui.com/r/period-compare.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/period-compare-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { PeriodCompare, type PeriodCompareValue } from \"@rhs-ui/dashboard/period-compare\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<PeriodCompareValue>({ period: \"30d\", compare: true });\n  return (\n    <div className=\"mx-auto grid max-w-lg gap-4 p-8\">\n      <PeriodCompare value={value} onValueChange={setValue} periods={[{ value: \"7d\", label: \"Last 7 days\" }, { value: \"30d\", label: \"Last 30 days\" }, { value: \"q\", label: \"This quarter\" }, { value: \"y\", label: \"This year\" }]} />\n      <p className=\"text-xs text-muted-foreground\">Charts show {value.period}{value.compare ? \", against the period before\" : \"\"}.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

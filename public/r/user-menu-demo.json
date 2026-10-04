@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-menu-demo",
+  "title": "User menu demo",
+  "description": "A working preview of User menu.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/user-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/user-menu-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconCreditCard, IconHelp, IconKeyboard, IconSettings, IconUser } from \"@rhs-ui/icons\";\nimport { UserMenu } from \"@rhs-ui/primitives/user-menu\";\n\nexport default function Demo(): React.JSX.Element {\n  const [signedOut, setSignedOut] = useState(false);\n  return (\n    <div className=\"mx-auto flex min-h-80 max-w-md items-start justify-end gap-3 p-8\">\n      {signedOut ? <p className=\"text-sm text-muted-foreground\">Signed out. <button type=\"button\" className=\"underline underline-offset-4\" onClick={() => setSignedOut(false)}>Sign in again</button></p> : null}\n      <UserMenu\n        name=\"Anouk de Wit\"\n        email=\"anouk@example.com\"\n        onSignOut={() => setSignedOut(true)}\n        groups={[\n          [{ label: \"Profile\", icon: <IconUser />, href: \"#profile\" }, { label: \"Settings\", icon: <IconSettings />, href: \"#settings\", shortcut: \"⌘,\" }, { label: \"Billing\", icon: <IconCreditCard />, href: \"#billing\" }],\n          [{ label: \"Keyboard shortcuts\", icon: <IconKeyboard />, onSelect: () => undefined, shortcut: \"?\" }, { label: \"Help centre\", icon: <IconHelp />, href: \"#help\" }],\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

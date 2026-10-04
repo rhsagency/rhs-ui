@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "realtime-counter",
+  "title": "Realtime counter",
+  "description": "A live number for an analytics or ops screen: a pulsing dot (still under reduced motion) that says it is live, the number large, and a short breakdown below.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/realtime-counter.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface RealtimeCounterProps {\n  /** \"Visitors right now\". */\n  label: string;\n  value: number;\n  /** Small breakdown under the number: top pages, countries. */\n  breakdown?: readonly { label: string; value: number }[];\n  /** \"Updated every 10 s\". */\n  footnote?: ReactNode;\n  locale?: string;\n  className?: string;\n}\n\n/**\n * A live number for an analytics or ops screen: a pulsing dot (still under\n * reduced motion) that says it is live, the number large, and a short\n * breakdown below. You push new values in; the region is polite, so screen\n * readers hear the number when it settles, not every tick.\n */\nexport function RealtimeCounter({ label, value, breakdown = [], footnote, locale = \"en-GB\", className }: RealtimeCounterProps) {\n  const number = new Intl.NumberFormat(locale);\n  return (\n    <section data-slot=\"realtime-counter\" aria-label={label} className={cn(\"relative rounded-2xl border border-border p-5\", className)}>\n      <p className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n        <span aria-hidden=\"true\" className=\"relative inline-flex size-2\">\n          <span className=\"absolute inset-0 rounded-full bg-foreground/60 motion-safe:animate-ping\" />\n          <span className=\"relative inline-block size-2 rounded-full bg-foreground\" />\n        </span>\n        {label}\n        <span className=\"sr-only\">(live)</span>\n      </p>\n      <p aria-live=\"polite\" aria-atomic=\"true\" className=\"mt-2 text-5xl font-medium tracking-tight tabular-nums\" suppressHydrationWarning>{number.format(value)}</p>\n      {breakdown.length ? (\n        <ul className=\"mt-4 grid gap-1.5 border-t border-border pt-3 text-sm\">\n          {breakdown.map((row) => <li key={row.label} className=\"flex justify-between gap-4\"><span className=\"truncate text-muted-foreground\">{row.label}</span><span className=\"tabular-nums\" suppressHydrationWarning>{number.format(row.value)}</span></li>)}\n        </ul>\n      ) : null}\n      {footnote ? <p className=\"mt-3 text-xs text-muted-foreground\">{footnote}</p> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/realtime-counter.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "dashboard"
+  },
+  "categories": [
+    "dashboard",
+    "dashboard"
+  ],
+  "type": "registry:component"
+}
