@@ -5,7 +5,7 @@ export interface SegmentOption { value: string; label: string; disabled?: boolea
 export interface SegmentedControlProps { label: string; options: readonly SegmentOption[]; value: string; onValueChange: (value: string) => void; className?: string }
 export function SegmentedControl({ label, options, value, onValueChange, className }: SegmentedControlProps): React.JSX.Element {
   const id = useId(); const root = useRef<HTMLDivElement>(null);
-  return <div ref={root} data-slot="segmented-control" role="radiogroup" aria-label={label} className={cn("inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-border bg-muted p-1",className)} onKeyDown={(event) => {
+  return <div ref={root} data-slot="segmented-control" role="radiogroup" aria-label={label} className={cn("relative inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-border bg-muted p-1",className)} onKeyDown={(event) => {
     if (!["ArrowRight","ArrowLeft","ArrowUp","ArrowDown","Home","End"].includes(event.key)) return;
     event.preventDefault(); const enabled = options.filter(item=>!item.disabled); if (!enabled.length) return;
     const index = enabled.findIndex(item=>item.value===value);

@@ -25,7 +25,7 @@ export function AiSources({ sources, title = "Sources", className }: AiSourcesPr
   return (
     <section data-slot="ai-sources" aria-label={title} className={cn("text-sm", className)}>
       <h3 className="mb-2 text-xs font-medium text-muted-foreground">{title}</h3>
-      <ol className="flex snap-x gap-2 overflow-x-auto pb-1">
+      <ol className="relative flex snap-x gap-2 overflow-x-auto pb-1">
         {sources.map((source, index) => (
           <li key={source.id} className="w-60 shrink-0 snap-start">
             <a href={source.href} className="flex h-full flex-col gap-1.5 rounded-xl border border-border p-3 outline-none transition-colors hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40">

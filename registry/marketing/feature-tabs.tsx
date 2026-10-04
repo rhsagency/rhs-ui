@@ -35,7 +35,7 @@ export function FeatureTabs({ eyebrow, title, tabs, className }: FeatureTabsProp
         <h2 className="text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl">{title}</h2>
       </header>
       <Tabs value={value} onValueChange={setValue} className="mt-12">
-        <TabsList variant="pill" className="mx-auto max-w-full overflow-x-auto">
+        <TabsList variant="pill" className="relative mx-auto max-w-full overflow-x-auto">
           {tabs.map((tab) => (
             <TabsTrigger key={tab.id} value={tab.id}>{tab.label}</TabsTrigger>
           ))}

@@ -37,7 +37,7 @@ export function ContextMenuContent({ className, ...props }: ComponentProps<typeo
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Content
         data-slot="context-menu-content"
-        className={cn(panelSurface, "max-h-(--radix-context-menu-content-available-height) min-w-[12rem] origin-(--radix-context-menu-content-transform-origin) overflow-x-hidden overflow-y-auto p-1", className)}
+        className={cn(panelSurface, "relative max-h-(--radix-context-menu-content-available-height) min-w-[12rem] origin-(--radix-context-menu-content-transform-origin) overflow-x-hidden overflow-y-auto p-1", className)}
         {...props}
       />
     </ContextMenuPrimitive.Portal>

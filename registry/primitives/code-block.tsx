@@ -49,7 +49,7 @@ export function CodeBlock({ code, filename, language, showLineNumbers = false, h
           <span aria-live="polite">{copied === "done" ? "Copied" : copied === "failed" ? "Copy failed" : "Copy"}</span>
         </button>
       </figcaption>
-      <pre className="overflow-x-auto py-3 font-mono text-[0.8125rem] leading-6" tabIndex={0}>
+      <pre className="relative overflow-x-auto py-3 font-mono text-[0.8125rem] leading-6" tabIndex={0}>
         <code>
           {lines.map((line, index) => (
             <span key={index} className={cn("flex px-4", highlight.includes(index + 1) && "bg-foreground/[0.06] shadow-[inset_2px_0_0] shadow-foreground")}>

@@ -50,7 +50,7 @@ export function ActivityHeatmap({ days, unit, end, weeks = 26, label, locale = "
   const dayName = (date: string) => new Intl.DateTimeFormat(locale, { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(parse(date));
   return (
     <figure data-slot="activity-heatmap" className={cn("grid gap-3", className)}>
-      <div aria-hidden="true" className="flex gap-[3px] overflow-x-auto pb-1">
+      <div aria-hidden="true" className="relative flex gap-[3px] overflow-x-auto pb-1">
         {columns.map((column, c) => (
           <div key={c} className="grid grid-rows-7 gap-[3px]">
             {column.map((cell, r) =>

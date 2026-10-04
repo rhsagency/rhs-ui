@@ -53,13 +53,13 @@ export function AiToolCall({ name, status, input, output, summary, className }: 
             {input !== undefined ? (
               <div>
                 <p className="mb-1 text-xs text-muted-foreground">Input</p>
-                <pre className="max-h-48 overflow-auto rounded-lg bg-muted p-3 font-mono text-xs">{format(input)}</pre>
+                <pre className="relative max-h-48 overflow-auto rounded-lg bg-muted p-3 font-mono text-xs">{format(input)}</pre>
               </div>
             ) : null}
             {output !== undefined ? (
               <div>
                 <p className="mb-1 text-xs text-muted-foreground">Output</p>
-                <pre className="max-h-48 overflow-auto rounded-lg bg-muted p-3 font-mono text-xs">{format(output)}</pre>
+                <pre className="relative max-h-48 overflow-auto rounded-lg bg-muted p-3 font-mono text-xs">{format(output)}</pre>
               </div>
             ) : null}
           </div>

@@ -47,7 +47,7 @@ export function Carousel({ children, label, perView = 1, className }: CarouselPr
       <div
         ref={track}
         className={cn(
-          "grid snap-x snap-mandatory auto-cols-[85%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] motion-reduce:scroll-auto [&::-webkit-scrollbar]:hidden",
+          "relative grid snap-x snap-mandatory auto-cols-[85%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] motion-reduce:scroll-auto [&::-webkit-scrollbar]:hidden",
           perView === 2 && "md:auto-cols-[calc((100%-1rem)/2)]",
           perView === 3 && "md:auto-cols-[calc((100%-2rem)/3)]",
           perView === 1 && "md:auto-cols-[100%]",

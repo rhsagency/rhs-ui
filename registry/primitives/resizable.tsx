@@ -55,7 +55,7 @@ export function Resizable({ start, end, orientation = "horizontal", defaultSize 
   };
   return (
     <div ref={box} data-slot="resizable" data-orientation={orientation} className={cn("flex overflow-hidden rounded-lg border border-border", horizontal ? "flex-row" : "flex-col", className)}>
-      <div className="min-h-0 min-w-0 overflow-auto" style={{ flexBasis: `${current}%` }}>
+      <div className="relative min-h-0 min-w-0 overflow-auto" style={{ flexBasis: `${current}%` }}>
         {start}
       </div>
       <div
@@ -77,7 +77,7 @@ export function Resizable({ start, end, orientation = "horizontal", defaultSize 
         <span className={cn("absolute z-10 rounded-full border border-border bg-background shadow-xs transition-colors group-hover:border-foreground/40 group-focus-visible:border-ring", horizontal ? "h-8 w-2" : "h-2 w-8")} />
         <span className={cn("absolute", horizontal ? "inset-y-0 -inset-x-2" : "inset-x-0 -inset-y-2")} />
       </div>
-      <div className="min-h-0 min-w-0 flex-1 overflow-auto">{end}</div>
+      <div className="relative min-h-0 min-w-0 flex-1 overflow-auto">{end}</div>
     </div>
   );
 }

@@ -110,7 +110,7 @@ export function Navbar({ brand, items, actions, currentHref, linkAs: Link = "a",
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription className="sr-only">Every page of this site, grouped as in the top bar.</SheetDescription>
             </SheetHeader>
-            <nav aria-label="Main" className="grid gap-6 overflow-y-auto p-5">
+            <nav aria-label="Main" className="relative grid gap-6 overflow-y-auto p-5">
               {items.map((entry) =>
                 isMenu(entry) ? (
                   <section key={entry.label} className="grid gap-1">

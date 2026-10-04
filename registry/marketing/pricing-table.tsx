@@ -45,7 +45,7 @@ export function PricingTable({ title = "Compare plans", plans, groups, className
   return (
     <section data-slot="pricing-table" className={cn("py-16 sm:py-24", className)}>
       <h2 className="mb-10 text-center text-3xl font-medium tracking-[-.04em] sm:text-4xl">{title}</h2>
-      <div className="overflow-x-auto rounded-2xl border border-border">
+      <div className="relative overflow-x-auto rounded-2xl border border-border">
         <table className="w-full min-w-[40rem] border-collapse text-left">
           <thead>
             <tr className="border-b border-border">

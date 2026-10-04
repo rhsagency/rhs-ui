@@ -66,7 +66,7 @@ export function ProductGallery({ images, zoom = true, className }: ProductGaller
         ))}
       </div>
       {images.length > 1 ? (
-        <div role="tablist" aria-label="Product images" onKeyDown={onKeyDown} className="flex gap-2 overflow-x-auto p-0.5">
+        <div role="tablist" aria-label="Product images" onKeyDown={onKeyDown} className="relative flex gap-2 overflow-x-auto p-0.5">
           {images.map((image, at) => (
             <button
               key={image.src}

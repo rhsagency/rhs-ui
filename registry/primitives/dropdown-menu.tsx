@@ -42,7 +42,7 @@ export function DropdownMenuContent({ className, sideOffset = 6, align = "start"
         align={align}
         className={cn(
           panelSurface,
-          "max-h-(--radix-dropdown-menu-content-available-height) min-w-[12rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto p-1",
+          "relative max-h-(--radix-dropdown-menu-content-available-height) min-w-[12rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto p-1",
           className,
         )}
         {...props}

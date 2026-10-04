@@ -112,6 +112,19 @@ export function clippedCurrentColorProblems(src) {
   return /text-transparent/.test(src) && /bg-\[[^\]]*currentColor/.test(src) ? ["paints a background with currentColor on transparent text; currentColor is transparent there. Use theme tokens."] : [];
 }
 
+/**
+ * A scroll container that is not positioned does not clip absolutely
+ * positioned descendants: the sr-only labels in a wide pricing table then
+ * stick out past it and widen the whole page on a phone. Every
+ * overflow-auto / -x-auto / -y-auto class list also positions the element.
+ */
+export function unpositionedScrollProblems(src) {
+  const lists = [...src.matchAll(/["'`]([^"'`]*\boverflow-(?:x-|y-)?auto\b[^"'`]*)["'`]/g)].map((match) => match[1]);
+  return lists.some((list) => !/(^|\s)(relative|absolute|fixed|sticky)(\s|$)/.test(list))
+    ? ["has a scroll container (overflow-auto) without relative; absolutely positioned children such as sr-only text escape it and widen the page"]
+    : [];
+}
+
 /** Tailwind reads classes from the source text: `${variant}:w-max` never appears whole, so it is never generated. */
 export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
@@ -205,6 +218,7 @@ export function checkItems(items) {
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of hrefKeyProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clippedCurrentColorProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of unpositionedScrollProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of unlocalisedIntlProblems(src)) p(`${f.path} ${problem}`);
       if (!isExample) for (const problem of componentPropProblems(src)) p(`${f.path} ${problem}`);
       for (const m of src.matchAll(ALIAS_IMPORT)) {
@@ -294,6 +308,7 @@ const selfTests = [
   ["a server module that takes a component prop", componentPropProblems('export interface P { linkAs?: ElementType }').length === 0],
   ["an Intl formatter without a locale", unlocalisedIntlProblems("new Intl.NumberFormat(undefined, { style: 'percent' })").length === 1 && unlocalisedIntlProblems("value.toLocaleString()").length === 1],
   ["an Intl formatter with a locale", unlocalisedIntlProblems("new Intl.NumberFormat(locale, format)").length === 0],
+  ["a scroll container that is not positioned", unpositionedScrollProblems('<div className="overflow-x-auto rounded-2xl">').length === 1 && unpositionedScrollProblems('<div className="relative overflow-x-auto">').length === 0],
   ["currentColor under clipped text", clippedCurrentColorProblems('"bg-[linear-gradient(currentColor,transparent)] bg-clip-text text-transparent"').length === 1 && clippedCurrentColorProblems('"bg-[linear-gradient(var(--foreground),transparent)] text-transparent"').length === 0],
   ["a list keyed on href alone", hrefKeyProblems("<li key={link.href}>").length === 1 && hrefKeyProblems("<li key={`${link.label}-${link.href}`}>").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],

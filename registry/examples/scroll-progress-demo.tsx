@@ -11,7 +11,7 @@ const PARAGRAPHS = [
 
 export default function Demo(): React.JSX.Element {
   return (
-    <div className="h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-background">
+    <div className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-background">
       <ScrollProgress source="nearest" />
       <article className="mx-auto max-w-prose px-6 py-10">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">Scroll inside this panel</p>

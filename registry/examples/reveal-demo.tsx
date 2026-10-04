@@ -11,7 +11,7 @@ const EFFECTS: readonly { effect: RevealEffect; note: string }[] = [
 
 export default function Demo(): React.JSX.Element {
   return (
-    <div className="h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40">
+    <div className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40">
       <div className="grid min-h-[22rem] place-items-center px-6 text-center">
         <div>
           <p className="text-xs uppercase tracking-widest text-muted-foreground">Scroll inside this panel</p>
