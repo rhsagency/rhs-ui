@@ -34,6 +34,9 @@ export function selectProblems(html) {
 }
 
 export const headingProblems = (html) => /<h1[\s>]/.test(html);
+/** A page template is a page: exactly one h1, like any page it becomes. */
+export const pageHeadingProblems = (html) => (html.match(/<h1[\s>]/g) ?? []).length !== 1;
+const pageDemos = new Set(registry.items.filter((item) => item.categories?.[0] === "templates").map((item) => `${item.name}-demo`));
 
 const entry = [
   'import { createElement } from "react";',
@@ -61,8 +64,10 @@ for (const [name, Demo] of DEMOS) {
   try {
     const html = render(Demo);
     if (!html.trim()) failures.push(`${name}: rendered nothing`);
-    // A demo is not a page: rhsui.com shows many on one page, which has its own h1.
-    if (headingProblems(html)) failures.push(`${name}: renders an h1; a demo uses h2 and below`);
+    // A demo is not a page: rhsui.com shows many on one page, which has its own h1. A page template is the exception.
+    if (pageDemos.has(name)) {
+      if (pageHeadingProblems(html)) failures.push(`${name}: a page template renders exactly one h1`);
+    } else if (headingProblems(html)) failures.push(`${name}: renders an h1; a demo uses h2 and below`);
     for (const problem of selectProblems(html)) failures.push(`${name}: ${problem}`);
   } catch (error) {
     failures.push(`${name}: throws during server rendering: ${error instanceof Error ? error.message.split("\n")[0] : error}`);
@@ -74,6 +79,9 @@ assert.equal(selectProblems('<select name="country"><option>NL</option></select>
 assert.equal(selectProblems('<select aria-hidden="true" tabindex="-1" name="country"></select>').length, 0);
 assert.equal(headingProblems('<section><h1 class="x">Hero</h1></section>'), true);
 assert.equal(headingProblems("<h2>Section</h2><header>no heading</header>"), false);
+assert.equal(pageHeadingProblems("<h1>One</h1><h2>Two</h2>"), false);
+assert.equal(pageHeadingProblems("<h2>None</h2>"), true);
+assert.equal(pageHeadingProblems("<h1>One</h1><h1>Two</h1>"), true);
 
 for (const failure of failures) console.log(`FAIL ${failure}`);
 if (failures.length) {

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "architecture-studio",
+  "title": "Architecture studio",
+  "description": "An architecture practice: grid-paper opening, a statement that reveals as you read, project plates, process, history and people.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/architect-grid.json",
+    "https://rhsui.com/r/footer-minimal.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/process-section.json",
+    "https://rhsui.com/r/reveal.json",
+    "https://rhsui.com/r/team-grid.json",
+    "https://rhsui.com/r/text-reveal.json",
+    "https://rhsui.com/r/timeline-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/templates/architecture-studio.tsx",
+      "content": "import { ArchitectGrid } from \"@rhs-ui/backgrounds/architect-grid\";\nimport { IconArrowUpRight, IconMail, IconPin } from \"@rhs-ui/icons\";\nimport { FooterMinimal } from \"@rhs-ui/marketing/footer-minimal\";\nimport { ProcessSection } from \"@rhs-ui/marketing/process-section\";\nimport { TeamGrid } from \"@rhs-ui/marketing/team-grid\";\nimport { TimelineSection } from \"@rhs-ui/marketing/timeline-section\";\nimport { Reveal } from \"@rhs-ui/motion/reveal\";\nimport { TextReveal } from \"@rhs-ui/motion/text-reveal\";\n\nexport interface ArchitectureStudioProps {\n  name?: string;\n}\n\nconst plan = (shape: string) => \"data:image/svg+xml;utf8,\" + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560'><rect width='800' height='560' fill='#e6e3dd'/>${shape}</svg>`);\n\nconst PROJECTS = [\n  { id: \"1\", title: \"House on the dike\", place: \"Zeeland, 2025\", image: plan(\"<path d='M150 400 L400 180 L650 400Z' fill='#3b3e42'/><rect x='150' y='400' width='500' height='60' fill='#8b857a'/>\") },\n  { id: \"2\", title: \"Library extension\", place: \"Deventer, 2024\", image: plan(\"<rect x='160' y='160' width='220' height='280' fill='#3b3e42'/><rect x='380' y='240' width='260' height='200' fill='#8b857a'/>\") },\n  { id: \"3\", title: \"Courtyard housing\", place: \"Rotterdam, 2023\", image: plan(\"<rect x='140' y='140' width='520' height='300' fill='none' stroke='#3b3e42' stroke-width='40'/>\") },\n  { id: \"4\", title: \"Boathouse\", place: \"Loosdrecht, 2022\", image: plan(\"<path d='M120 380 H680 L600 260 H200Z' fill='#3b3e42'/>\") },\n];\n\n/**\n * An architecture practice: a grid-paper opening, a statement that reveals\n * as you read, projects as large plates, how a commission runs, the studio's\n * history and its people. Typographic, slow and spacious.\n */\nexport function ArchitectureStudio({ name = \"Atelier Veld\" }: ArchitectureStudioProps): React.JSX.Element {\n  return (\n    <div data-slot=\"architecture-studio\" className=\"bg-background text-foreground\">\n      <ArchitectGrid className=\"border-b border-border\">\n        <header className=\"mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-sm\">\n          <a href=\"#top\" className=\"font-medium tracking-[0.2em] uppercase\">{name}</a>\n          <nav aria-label=\"Main\" className=\"flex gap-6 text-muted-foreground\"><a href=\"#projects\">Projects</a><a href=\"#studio\">Studio</a><a href=\"#contact\">Contact</a></nav>\n        </header>\n        <section id=\"top\" className=\"mx-auto max-w-6xl px-6 pt-24 pb-32\">\n          <h1 className=\"max-w-5xl text-6xl font-light leading-[1.02] tracking-[-0.04em] sm:text-8xl\">Buildings that age well.</h1>\n          <p className=\"mt-8 max-w-md text-muted-foreground\">An architecture practice in Amsterdam: homes, libraries and small public buildings, designed to be loved for a hundred years.</p>\n        </section>\n      </ArchitectGrid>\n      <section className=\"mx-auto max-w-4xl px-6 py-28\">\n        <TextReveal as=\"p\" className=\"text-center text-3xl leading-snug font-light tracking-tight sm:text-4xl\" text=\"We draw slowly, build with what the place already has, and leave room for the people who will change the building after us.\" />\n      </section>\n      <section id=\"projects\" className=\"mx-auto max-w-6xl px-6 pb-24\">\n        <h2 className=\"mb-10 text-xs uppercase tracking-[0.2em] text-muted-foreground\">Selected projects</h2>\n        <ul className=\"grid gap-x-8 gap-y-16 md:grid-cols-2\">\n          {PROJECTS.map((project, index) => (\n            <Reveal asChild key={project.id} order={index % 2}>\n              <li className={index % 2 ? \"md:mt-24\" : \"\"}>\n                <a href=\"#contact\" className=\"group block\">\n                  <img src={project.image} alt={`${project.title}, ${project.place}`} className=\"aspect-[10/7] w-full object-cover\" />\n                  <span className=\"mt-4 flex items-baseline justify-between gap-4\">\n                    <span className=\"text-xl font-light tracking-tight group-hover:underline group-hover:underline-offset-4\">{project.title}</span>\n                    <span className=\"inline-flex items-center gap-1 text-sm text-muted-foreground\">{project.place}<IconArrowUpRight size={14} /></span>\n                  </span>\n                </a>\n              </li>\n            </Reveal>\n          ))}\n        </ul>\n      </section>\n      <section className=\"border-y border-border bg-muted/40\">\n        <div className=\"mx-auto max-w-6xl px-6\">\n          <ProcessSection title=\"How a commission runs\" steps={[{ id: \"listen\", title: \"Listen\", description: \"Weeks on site before a line is drawn.\" }, { id: \"sketch\", title: \"Sketch\", description: \"Three directions, by hand, in a model.\" }, { id: \"detail\", title: \"Detail\", description: \"Every junction drawn, with the builder at the table.\" }, { id: \"build\", title: \"Build\", description: \"On site weekly until the keys are handed over.\" }]} />\n        </div>\n      </section>\n      <div id=\"studio\" className=\"mx-auto max-w-6xl px-6\">\n        <TimelineSection eyebrow=\"The studio\" title=\"Twenty years, forty buildings\" milestones={[{ when: \"2006\", title: \"Founded\", description: \"Two architects in a canal house attic.\" }, { when: \"2014\", title: \"First public building\", description: \"A library in Deventer, still our favourite.\" }, { when: \"2023\", title: \"Twelve people\", description: \"Architects, a model maker and an engineer.\" }, { when: \"2027\", title: \"A school\", description: \"Our first school, in timber.\", upcoming: true }]} />\n        <TeamGrid title=\"The people\" members={[{ id: \"1\", name: \"Ilse Veld\", role: \"Founding architect\" }, { id: \"2\", name: \"Bram de Jong\", role: \"Architect\" }, { id: \"3\", name: \"Yara Haddad\", role: \"Model maker\" }, { id: \"4\", name: \"Kees Mulder\", role: \"Structural engineer\" }]} />\n      </div>\n      <section id=\"contact\" className=\"border-t border-border\">\n        <div className=\"mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-2\">\n          <h2 className=\"text-4xl font-light tracking-tight\">Have a site in mind?</h2>\n          <ul className=\"space-y-3 text-sm\">\n            <li className=\"flex items-center gap-2\"><IconMail size={16} /><a href=\"mailto:studio@example.com\" className=\"underline underline-offset-4\">studio@example.com</a></li>\n            <li className=\"flex items-center gap-2\"><IconPin size={16} />Prinsengracht 200, Amsterdam</li>\n          </ul>\n        </div>\n      </section>\n      <div className=\"mx-auto max-w-6xl px-6\"><FooterMinimal brand={<span className=\"tracking-[0.2em] uppercase\">{name}</span>} links={[{ label: \"Projects\", href: \"#projects\" }, { label: \"Studio\", href: \"#studio\" }]} legal={`© 2026 ${name}. Illustrative template.`} /></div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/templates/architecture-studio.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.7.0",
+    "since": "0.7.0",
+    "status": "stable",
+    "eyebrow": "Atelier Veld / Architecture",
+    "features": [
+      "Grid-paper opening",
+      "Reading reveal statement",
+      "Staggered project plates",
+      "Process and history"
+    ],
+    "family": "templates"
+  },
+  "categories": [
+    "templates",
+    "templates"
+  ],
+  "type": "registry:block"
+}

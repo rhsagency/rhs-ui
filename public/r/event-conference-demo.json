@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "event-conference-demo",
+  "title": "Conference demo",
+  "description": "The Conference template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/event-conference.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/event-conference-demo.tsx",
+      "content": "\"use client\";\n\nimport { EventConference } from \"@rhs-ui/templates/event-conference\";\n\nexport default function Demo(): React.JSX.Element {\n  return <EventConference />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-demo",
+  "title": "Newsletter demo",
+  "description": "The Newsletter template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/newsletter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/newsletter-demo.tsx",
+      "content": "\"use client\";\n\nimport { Newsletter } from \"@rhs-ui/templates/newsletter\";\n\n/** A pause that stands in for a network call in the demo. */\nconst settle = () => new Promise<void>((resolve) => setTimeout(resolve, 500));\n\nexport default function Demo(): React.JSX.Element {\n  return <Newsletter onSubscribe={settle} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

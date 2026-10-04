@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "careers-demo",
+  "title": "Careers demo",
+  "description": "The Careers template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/careers.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/careers-demo.tsx",
+      "content": "\"use client\";\n\nimport { Careers } from \"@rhs-ui/templates/careers\";\n\nexport default function Demo(): React.JSX.Element {\n  return <Careers />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

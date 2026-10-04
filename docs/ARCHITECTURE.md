@@ -43,7 +43,7 @@ components/rhs-ui/<category>/<name>.tsx  where the CLI installs it in your proje
 | `motion` | scroll reveals and parallax |
 | `backgrounds` | living canvases on one engine |
 | `models` | 3D recipes and the model viewer |
-| `templates` | complete starters (Pro) |
+| `templates` | complete page templates built from the free items (more in Pro) |
 
 A multi-file item is a folder with an `index.tsx`: `registry/icons/`
 installs as `components/rhs-ui/icons/` and imports as `@rhs-ui/icons`.

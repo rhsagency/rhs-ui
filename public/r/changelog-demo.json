@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "changelog-demo",
+  "title": "Changelog demo",
+  "description": "The Changelog template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/changelog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/changelog-demo.tsx",
+      "content": "\"use client\";\n\nimport { Changelog } from \"@rhs-ui/templates/changelog\";\n\n/** A pause that stands in for a network call in the demo. */\nconst settle = () => new Promise<void>((resolve) => setTimeout(resolve, 500));\n\nexport default function Demo(): React.JSX.Element {\n  return <Changelog onSubscribe={settle} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

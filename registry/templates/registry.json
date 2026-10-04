@@ -1,0 +1,676 @@
+{
+  "items": [
+    {
+      "name": "studio-portfolio",
+      "type": "registry:block",
+      "title": "Studio portfolio",
+      "description": "Big typography, a living line study and an intentionally quiet project gallery. A complete home for an independent practice.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Aperture / Editorial",
+        "features": [
+          "Filterable projects",
+          "Services & process",
+          "Contact section",
+          "Responsive layout"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/closing-cta.json",
+        "https://rhsui.com/r/contour-field.json",
+        "https://rhsui.com/r/process-section.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/studio-portfolio.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/studio-portfolio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "studio-portfolio-demo",
+      "type": "registry:example",
+      "title": "Studio portfolio demo",
+      "description": "The Studio portfolio template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/studio-portfolio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/studio-portfolio-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:block",
+      "title": "Newsletter",
+      "description": "A creator's home for a newsletter: a halftone hero with a sign-up that confirms, who reads it, the latest issues, reader quotes, the author and a closing sign-up.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Small Bets / Creator",
+        "features": [
+          "Sign-up with success and error states",
+          "Latest issues list",
+          "Reader quotes",
+          "Closing sign-up band"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/halftone-wave.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/testimonial-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/newsletter.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/newsletter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-demo",
+      "type": "registry:example",
+      "title": "Newsletter demo",
+      "description": "The Newsletter template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agency-services",
+      "type": "registry:block",
+      "title": "Agency",
+      "description": "A studio or agency site: a big statement on a contour field, services, selected work in a carousel, the way you work, clients and a contact form with a budget choice.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Northbound / Studio",
+        "features": [
+          "Services with deliverables",
+          "Work carousel with results",
+          "Process in three steps",
+          "Contact form with budget"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/carousel.json",
+        "https://rhsui.com/r/contour-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/marquee.json",
+        "https://rhsui.com/r/process-section.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/text-reveal.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/agency-services.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/agency-services.tsx"
+        }
+      ]
+    },
+    {
+      "name": "agency-services-demo",
+      "type": "registry:example",
+      "title": "Agency demo",
+      "description": "The Agency template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/agency-services.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/agency-services-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "type": "registry:block",
+      "title": "Changelog",
+      "description": "A changelog with the latest release first: dates, headlines, summaries and changes tagged new, improved or fixed with a filter, a reading bar and a subscribe box.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Outline / Product updates",
+        "features": [
+          "Releases with tagged changes",
+          "Filter by new, improved, fixed",
+          "Sticky version and date",
+          "Subscribe that confirms"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/scroll-progress.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/changelog.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/changelog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "changelog-demo",
+      "type": "registry:example",
+      "title": "Changelog demo",
+      "description": "The Changelog template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/changelog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/changelog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pricing-page",
+      "type": "registry:block",
+      "title": "Pricing page",
+      "description": "A full pricing page: plans with a monthly and yearly toggle, customers, a comparison table grouped by theme, an enterprise band and billing questions.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Canvas / Pricing",
+        "features": [
+          "Plans with a yearly toggle",
+          "Grouped comparison table",
+          "Enterprise band",
+          "Billing questions"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/dot-field.json",
+        "https://rhsui.com/r/faq-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/marquee.json",
+        "https://rhsui.com/r/pricing-section.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/pricing-page.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/pricing-page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-page-demo",
+      "type": "registry:example",
+      "title": "Pricing page demo",
+      "description": "The Pricing page template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pricing-page.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pricing-page-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "architecture-studio",
+      "type": "registry:block",
+      "title": "Architecture studio",
+      "description": "An architecture practice: grid-paper opening, a statement that reveals as you read, project plates, process, history and people.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Atelier Veld / Architecture",
+        "features": [
+          "Grid-paper opening",
+          "Reading reveal statement",
+          "Staggered project plates",
+          "Process and history"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/architect-grid.json",
+        "https://rhsui.com/r/footer-minimal.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/process-section.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/team-grid.json",
+        "https://rhsui.com/r/text-reveal.json",
+        "https://rhsui.com/r/timeline-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/architecture-studio.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/architecture-studio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "architecture-studio-demo",
+      "type": "registry:example",
+      "title": "Architecture studio demo",
+      "description": "The Architecture studio template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/architecture-studio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/architecture-studio-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "restaurant",
+      "type": "registry:block",
+      "title": "Restaurant",
+      "description": "A warm, grainy home for a restaurant: the story in one line, the menu in tabs, a real reservation form with date, time and guests, and hours and address.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Olive & Ash / Hospitality",
+        "features": [
+          "Menu in tabs with dotted leaders",
+          "Reservation with date picker and time list",
+          "Confirmation in place",
+          "Hours and address"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/date-picker.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/film-grain.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/text-reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/restaurant.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/restaurant.tsx"
+        }
+      ]
+    },
+    {
+      "name": "restaurant-demo",
+      "type": "registry:example",
+      "title": "Restaurant demo",
+      "description": "The Restaurant template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/restaurant.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/restaurant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "event-conference",
+      "type": "registry:block",
+      "title": "Conference",
+      "description": "A bold event site on a warp field: date and place, speakers, a programme per day, tickets with one sold out, sponsors and the questions people ask.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Frontier / Events",
+        "features": [
+          "Speaker grid",
+          "Programme per day in tabs",
+          "Ticket tiers with sold-out state",
+          "Sponsor marquee and FAQ"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/faq-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/marquee.json",
+        "https://rhsui.com/r/particle-network.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/event-conference.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/event-conference.tsx"
+        }
+      ]
+    },
+    {
+      "name": "event-conference-demo",
+      "type": "registry:example",
+      "title": "Conference demo",
+      "description": "The Conference template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/event-conference.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/event-conference-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "online-course",
+      "type": "registry:block",
+      "title": "Online course",
+      "description": "A course sales page with a sketched hero, the curriculum as modules with lesson times and free previews, the teacher, reviews, one price and a reading progress bar.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Interface Craft / Education",
+        "features": [
+          "Curriculum with lesson times",
+          "Free-preview lessons",
+          "Teacher and reviews",
+          "One-price enrolment that confirms"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/faq-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/scroll-progress.json",
+        "https://rhsui.com/r/sketch-lines.json",
+        "https://rhsui.com/r/testimonial-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/online-course.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/online-course.tsx"
+        }
+      ]
+    },
+    {
+      "name": "online-course-demo",
+      "type": "registry:example",
+      "title": "Online course demo",
+      "description": "The Online course template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/online-course.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/online-course-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "law-firm",
+      "type": "registry:block",
+      "title": "Law firm",
+      "description": "A law firm on one page: serif opening, practice areas, numbers, partners, a client quote, plain answers and intake.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Linden & Vos / Legal",
+        "features": [
+          "Practice areas",
+          "Partners",
+          "Plain-language FAQ",
+          "Confidential intake form"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/contact-section.json",
+        "https://rhsui.com/r/faq-columns.json",
+        "https://rhsui.com/r/feature-grid.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/stats-grid.json",
+        "https://rhsui.com/r/team-grid.json",
+        "https://rhsui.com/r/testimonial-spotlight.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/law-firm.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/law-firm.tsx"
+        }
+      ]
+    },
+    {
+      "name": "law-firm-demo",
+      "type": "registry:example",
+      "title": "Law firm demo",
+      "description": "The Law firm template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/law-firm.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/law-firm-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "podcast",
+      "type": "registry:block",
+      "title": "Podcast",
+      "description": "A podcast site: the show and listen links, a player with a scrubber, episodes that load into it, quotes and show notes.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Slow Build / Audio",
+        "features": [
+          "Player with scrubber",
+          "Episodes that load into the player",
+          "Listen links and RSS",
+          "Show notes newsletter"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/footer-minimal.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/newsletter-section.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/testimonial-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/podcast.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/podcast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "podcast-demo",
+      "type": "registry:example",
+      "title": "Podcast demo",
+      "description": "The Podcast template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/podcast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/podcast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "careers",
+      "type": "registry:block",
+      "title": "Careers",
+      "description": "A careers page: why work here, open roles with a team filter and live search, benefits, how hiring works and an open application.",
+      "categories": [
+        "templates",
+        "templates"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "eyebrow": "Outline / Hiring",
+        "features": [
+          "Roles with team filter and search",
+          "Empty state when nothing matches",
+          "Benefits grid",
+          "Hiring steps"
+        ]
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/feature-grid.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/plus-grid.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/stepper.json",
+        "https://rhsui.com/r/text-reveal.json"
+      ],
+      "files": [
+        {
+          "path": "registry/templates/careers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/templates/careers.tsx"
+        }
+      ]
+    },
+    {
+      "name": "careers-demo",
+      "type": "registry:example",
+      "title": "Careers demo",
+      "description": "The Careers template with demo content.",
+      "registryDependencies": [
+        "https://rhsui.com/r/careers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/careers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
+}

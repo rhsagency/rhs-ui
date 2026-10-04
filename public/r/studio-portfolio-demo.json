@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "studio-portfolio-demo",
+  "title": "Studio portfolio demo",
+  "description": "The Studio portfolio template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/studio-portfolio.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/studio-portfolio-demo.tsx",
+      "content": "\"use client\";\n\nimport { StudioPortfolio } from \"@rhs-ui/templates/studio-portfolio\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <StudioPortfolio\n      name=\"Aperture\"\n      contactHref=\"mailto:hello@example.com\"\n      projects={[\n        { id: \"forma\", title: \"Forma\", category: \"Identity\", description: \"A quieter identity for everyday objects.\", mark: \"f.\", href: \"#studio-about\" },\n        { id: \"index\", title: \"Index\", category: \"Digital\", description: \"A clear digital home for good ideas.\", mark: \"[i]\", href: \"#studio-about\" },\n        { id: \"field\", title: \"Field Notes\", category: \"Identity\", description: \"An independent perspective, in print.\", mark: \"fn\", href: \"#studio-about\" },\n        { id: \"arc\", title: \"Arc Studio\", category: \"Digital\", description: \"A considered portfolio for a growing practice.\", mark: \"a/r\", href: \"#studio-about\" },\n      ]}\n    />\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

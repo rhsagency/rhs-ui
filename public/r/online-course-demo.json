@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "online-course-demo",
+  "title": "Online course demo",
+  "description": "The Online course template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/online-course.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/online-course-demo.tsx",
+      "content": "\"use client\";\n\nimport { OnlineCourse } from \"@rhs-ui/templates/online-course\";\n\n/** A pause that stands in for a network call in the demo. */\nconst settle = () => new Promise<void>((resolve) => setTimeout(resolve, 500));\n\nexport default function Demo(): React.JSX.Element {\n  return <OnlineCourse onEnrol={settle} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

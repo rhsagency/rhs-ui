@@ -11,6 +11,13 @@ own `meta.version` and are listed when they change.
   widgets (players, invoice preview, leaderboard, switchers and more), the application,
   AI, commerce and dashboard components, the account flows and the larger sections.
   Copies you installed before stay yours under MIT.
+- Icons: 400 stay free (323 interface glyphs and 77 animated icons for the everyday
+  controls); 206 library glyphs and 380 animated icons moved to Pro.
+- Backgrounds: 21 stay free on the engine; 18 richer scenes moved to Pro.
+- New free: six 3D models (light bulb, key ring, paper plane, hourglass, coffee cup,
+  padlock) and twelve page templates (studio portfolio, newsletter, agency services,
+  changelog, pricing page, architecture studio, restaurant, event conference, online
+  course, law firm, podcast, careers), each built only from free items.
 
 ## Unreleased (0.5.0)
 

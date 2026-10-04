@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "restaurant-demo",
+  "title": "Restaurant demo",
+  "description": "The Restaurant template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/restaurant.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/restaurant-demo.tsx",
+      "content": "\"use client\";\n\nimport { Restaurant } from \"@rhs-ui/templates/restaurant\";\n\n/** A pause that stands in for a network call in the demo. */\nconst settle = () => new Promise<void>((resolve) => setTimeout(resolve, 500));\n\nexport default function Demo(): React.JSX.Element {\n  return <Restaurant onReserve={settle} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

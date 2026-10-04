@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agency-services-demo",
+  "title": "Agency demo",
+  "description": "The Agency template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/agency-services.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/agency-services-demo.tsx",
+      "content": "\"use client\";\n\nimport { AgencyServices } from \"@rhs-ui/templates/agency-services\";\n\n/** A pause that stands in for a network call in the demo. */\nconst settle = () => new Promise<void>((resolve) => setTimeout(resolve, 500));\n\nexport default function Demo(): React.JSX.Element {\n  return <AgencyServices onContact={settle} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

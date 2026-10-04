@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "architecture-studio-demo",
+  "title": "Architecture studio demo",
+  "description": "The Architecture studio template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/architecture-studio.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/architecture-studio-demo.tsx",
+      "content": "\"use client\";\n\nimport { ArchitectureStudio } from \"@rhs-ui/templates/architecture-studio\";\n\nexport default function Demo(): React.JSX.Element {\n  return <ArchitectureStudio />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

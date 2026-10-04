@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-page-demo",
+  "title": "Pricing page demo",
+  "description": "The Pricing page template with demo content.",
+  "registryDependencies": [
+    "https://rhsui.com/r/pricing-page.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pricing-page-demo.tsx",
+      "content": "\"use client\";\n\nimport { PricingPage } from \"@rhs-ui/templates/pricing-page\";\n\n/** A plan choice in the demo: say what was chosen, next to the pricing. */\nconst announcePlan = (id: string, interval: string) => {\n  document.getElementById(\"plan-status\")?.remove();\n  const status = document.createElement(\"p\");\n  status.id = \"plan-status\";\n  status.setAttribute(\"role\", \"status\");\n  status.textContent = `Selected ${id}, billed ${interval}. Demo only.`;\n  document.querySelector('[data-slot=\"pricing-section\"]')?.append(status);\n};\n\nexport default function Demo(): React.JSX.Element {\n  return <PricingPage onSelectPlan={announcePlan} />;\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
