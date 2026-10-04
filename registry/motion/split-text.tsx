@@ -13,8 +13,8 @@ export interface SplitTextProps {
   effect?: "rise" | "blur" | "fade";
   /** Milliseconds between pieces. */
   stagger?: number;
-  /** The element to render: h2, p, span. */
-  as?: "h2" | "h3" | "h4" | "p" | "span";
+  /** The element to render: h1 for a page title, h2 to h4, p or span. */
+  as?: "h1" | "h2" | "h3" | "h4" | "p" | "span";
   className?: string;
 }
 
