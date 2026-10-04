@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export interface AppHeroProps {
+  /** The title's element: "h2" inside a page that has its own h1 (the default), "h1" when the hero opens the page. */
+  titleAs?: "h1" | "h2";
   eyebrow?: string;
   title: string;
   description?: string;
@@ -20,12 +22,12 @@ export interface AppHeroProps {
  * a device frame on the other. The frame is drawn in CSS, so it follows the
  * theme and never needs a picture of a phone.
  */
-export function AppHero({ eyebrow, title, description, actions, proof, screen, className }: AppHeroProps) {
+export function AppHero({ eyebrow, title, description, actions, proof, screen, titleAs: Title = "h2", className }: AppHeroProps) {
   return (
     <section data-slot="app-hero" className={cn("grid items-center gap-14 py-16 md:grid-cols-[1.2fr_1fr] lg:py-24", className)}>
       <div>
         {eyebrow ? <p className="mb-6 text-xs font-medium uppercase tracking-[.18em] text-muted-foreground">{eyebrow}</p> : null}
-        <h2 className="max-w-xl text-5xl font-medium leading-[1.05] tracking-[-.055em] text-balance sm:text-6xl">{title}</h2>
+        <Title className="max-w-xl text-5xl font-medium leading-[1.05] tracking-[-.055em] text-balance sm:text-6xl">{title}</Title>
         {description ? <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">{description}</p> : null}
         {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
         {proof ? <div className="mt-6 text-sm text-muted-foreground">{proof}</div> : null}

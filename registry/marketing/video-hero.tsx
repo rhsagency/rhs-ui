@@ -6,6 +6,8 @@ import { IconPause, IconPlay } from "@rhs-ui/icons";
 import { cn } from "@/lib/utils";
 
 export interface VideoHeroProps {
+  /** The title's element: "h2" inside a page that has its own h1 (the default), "h1" when the hero opens the page. */
+  titleAs?: "h1" | "h2";
   title: string;
   description?: string;
   actions?: ReactNode;
@@ -22,7 +24,7 @@ export interface VideoHeroProps {
  * under reduced motion, and has a visible pause control (WCAG 2.2.2). The
  * copy sits on a scrim that keeps contrast whatever the frame shows.
  */
-export function VideoHero({ title, description, actions, src, poster, alt, className }: VideoHeroProps) {
+export function VideoHero({ title, description, actions, src, poster, alt, titleAs: Title = "h2", className }: VideoHeroProps) {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
@@ -49,7 +51,7 @@ export function VideoHero({ title, description, actions, src, poster, alt, class
       )}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/55" />
       <div className="flex min-h-[32rem] flex-col justify-end px-6 py-12 sm:px-12 sm:py-16">
-        <h2 className="max-w-2xl text-5xl font-medium leading-[1.04] tracking-[-.055em] text-balance sm:text-6xl">{title}</h2>
+        <Title className="max-w-2xl text-5xl font-medium leading-[1.04] tracking-[-.055em] text-balance sm:text-6xl">{title}</Title>
         {description ? <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">{description}</p> : null}
         {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
       </div>
