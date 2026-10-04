@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quote-request",
+  "title": "Quote request",
+  "description": "Ask for a price in one go: which jobs, a few words about the situation, where it is and how to reach them.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/checkbox-cards.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/label.json",
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/quote-request.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type FormEvent } from \"react\";\n\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { CheckboxCards, type CheckboxCardOption } from \"@rhs-ui/primitives/checkbox-cards\";\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { Label } from \"@rhs-ui/primitives/label\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface QuoteRequest {\n  services: string[];\n  details: string;\n  postcode: string;\n  name: string;\n  email: string;\n}\n\nexport interface QuoteRequestProps {\n  title: string;\n  description?: string;\n  /** What they can ask a price for; pick one or more. */\n  services: readonly CheckboxCardOption[];\n  onSubmit: (request: QuoteRequest) => Promise<void> | void;\n  /** Under the button: how fast you send a quote. */\n  note?: string;\n  className?: string;\n}\n\n/**\n * Ask for a price in one go: which jobs, a few words about the situation,\n * where it is and how to reach them. For tradespeople and studios; the\n * service cards are real checkboxes, and at least one must be chosen.\n */\nexport function QuoteRequest({ title, description, services, onSubmit, note, className }: QuoteRequestProps) {\n  const id = useId();\n  const [chosen, setChosen] = useState<string[]>([]);\n  const [state, setState] = useState<\"idle\" | \"busy\" | \"done\" | \"error\" | \"empty\">(\"idle\");\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    if (chosen.length === 0) {\n      setState(\"empty\");\n      return;\n    }\n    const data = new FormData(event.currentTarget);\n    setState(\"busy\");\n    try {\n      await onSubmit({ services: chosen, details: String(data.get(\"details\") ?? \"\"), postcode: String(data.get(\"postcode\") ?? \"\"), name: String(data.get(\"name\") ?? \"\"), email: String(data.get(\"email\") ?? \"\") });\n      setState(\"done\");\n    } catch {\n      setState(\"error\");\n    }\n  }\n  return (\n    <section data-slot=\"quote-request\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"mx-auto mt-10 max-w-3xl rounded-3xl border border-border bg-card p-6 sm:p-8\">\n        {state === \"done\" ? (\n          <p role=\"status\" className=\"py-10 text-center text-sm\">Thanks, your request is in. You will have a quote in your inbox soon.</p>\n        ) : (\n          <form onSubmit={submit} className=\"grid gap-6\">\n            <CheckboxCards legend=\"What should we price?\" options={services} value={chosen} onValueChange={(next) => { setChosen(next); if (state === \"empty\") setState(\"idle\"); }} columns={2} name=\"services\" />\n            {state === \"empty\" ? <p role=\"alert\" className=\"-mt-3 text-sm text-destructive\">Pick at least one job.</p> : null}\n            <div className=\"grid gap-2\">\n              <Label htmlFor={`${id}-details`}>Tell us about it</Label>\n              <Textarea id={`${id}-details`} name=\"details\" rows={4} placeholder=\"Size, current state, anything we should know\" />\n            </div>\n            <div className=\"grid gap-5 sm:grid-cols-[10rem_1fr_1fr]\">\n              <div className=\"grid gap-2\">\n                <Label htmlFor={`${id}-postcode`}>Postcode</Label>\n                <Input id={`${id}-postcode`} name=\"postcode\" required autoComplete=\"postal-code\" />\n              </div>\n              <div className=\"grid gap-2\">\n                <Label htmlFor={`${id}-name`}>Name</Label>\n                <Input id={`${id}-name`} name=\"name\" required autoComplete=\"name\" />\n              </div>\n              <div className=\"grid gap-2\">\n                <Label htmlFor={`${id}-email`}>Email</Label>\n                <Input id={`${id}-email`} name=\"email\" type=\"email\" required autoComplete=\"email\" />\n              </div>\n            </div>\n            <Button type=\"submit\" loading={state === \"busy\"} className=\"w-full sm:w-auto sm:justify-self-start\">Request a quote</Button>\n            {state === \"error\" ? <p role=\"alert\" className=\"text-sm text-destructive\">That did not send. Please try again.</p> : null}\n            {note ? <p className=\"text-xs text-muted-foreground\">{note}</p> : null}\n          </form>\n        )}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/quote-request.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

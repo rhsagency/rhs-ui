@@ -3474,6 +3474,943 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "price-list",
+      "type": "registry:block",
+      "title": "Price list",
+      "description": "The price list of a salon, a practice or a craftsman: groups of services with a dotted leader to the price, the duration or unit beside the name, and the small print underneath.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/price-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/price-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "price-list-demo",
+      "type": "registry:example",
+      "title": "Price list demo",
+      "description": "A working preview of Price list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "menu-section",
+      "type": "registry:block",
+      "title": "Menu section",
+      "description": "A restaurant menu on the web, not a PDF: courses as tabs (arrow keys move), dishes with a line of description and the price, dietary marks that are spelled out for screen readers and explained in a legend, and the allergen note at the end.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/menu-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/menu-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menu-section-demo",
+      "type": "registry:example",
+      "title": "Menu section demo",
+      "description": "A working preview of Menu section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/menu-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/menu-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-list",
+      "type": "registry:block",
+      "title": "Service list",
+      "description": "What a business does, as a numbered list of services: number, title, a line of what is included, the starting price, and an arrow to the service page.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "service-list-demo",
+      "type": "registry:example",
+      "title": "Service list demo",
+      "description": "A working preview of Service list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "location-section",
+      "type": "registry:block",
+      "title": "Location section",
+      "description": "\"Where to find us\" for a local business: address as a real address element, phone and email as tap-to-call and mail links, directions, and a slot for opening hours or parking, beside a map.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/location-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/location-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "location-section-demo",
+      "type": "registry:example",
+      "title": "Location section demo",
+      "description": "A working preview of Location section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/opening-hours.json",
+        "https://rhsui.com/r/location-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/location-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "portfolio-grid",
+      "type": "registry:block",
+      "title": "Portfolio grid",
+      "description": "Selected work for a studio or a freelancer: filter chips by discipline, a grid of covers with title, client and year, and wide projects across two columns.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/portfolio-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/portfolio-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "portfolio-grid-demo",
+      "type": "registry:example",
+      "title": "Portfolio grid demo",
+      "description": "A working preview of Portfolio grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/portfolio-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/portfolio-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "faq-tabs",
+      "type": "registry:block",
+      "title": "Faq tabs",
+      "description": "Questions sorted by topic: pill tabs for Billing, Account, Security and so on, each with its own accordion of questions.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/faq-tabs.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/faq-tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "faq-tabs-demo",
+      "type": "registry:example",
+      "title": "Faq tabs demo",
+      "description": "A working preview of Faq tabs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/faq-tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/faq-tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "job-detail",
+      "type": "registry:block",
+      "title": "Job detail",
+      "description": "A job posting that respects the reader: the facts first with icons (team, place, hours, salary), a short intro, what you will do and what you bring as scannable lists, and apply both on top and at the bottom.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/job-detail.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/job-detail.tsx"
+        }
+      ]
+    },
+    {
+      "name": "job-detail-demo",
+      "type": "registry:example",
+      "title": "Job detail demo",
+      "description": "A working preview of Job detail.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/job-detail.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/job-detail-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "event-schedule",
+      "type": "registry:block",
+      "title": "Event schedule",
+      "description": "The programme of a conference or a course: a tab per day, then the slots in order with time, title, speakers and room, breaks quieter than talks, and the time zone said once.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/event-schedule.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/event-schedule.tsx"
+        }
+      ]
+    },
+    {
+      "name": "event-schedule-demo",
+      "type": "registry:example",
+      "title": "Event schedule demo",
+      "description": "A working preview of Event schedule.",
+      "registryDependencies": [
+        "https://rhsui.com/r/event-schedule.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/event-schedule-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "speaker-grid",
+      "type": "registry:block",
+      "title": "Speaker grid",
+      "description": "The speakers of an event: portraits in a grid with name, role and the talk they give, each linking to their session.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/speaker-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/speaker-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "speaker-grid-demo",
+      "type": "registry:example",
+      "title": "Speaker grid demo",
+      "description": "A working preview of Speaker grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/speaker-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/speaker-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-hero",
+      "type": "registry:block",
+      "title": "Testimonial hero",
+      "description": "An opening that lets a customer make the promise: the headline and the action on the left, a large quote card with a portrait on the right.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/testimonial-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonial-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-hero-demo",
+      "type": "registry:example",
+      "title": "Testimonial hero demo",
+      "description": "A working preview of Testimonial hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/testimonial-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "minimal-hero",
+      "type": "registry:block",
+      "title": "Minimal hero",
+      "description": "Type and nothing else, for studios, architects and portfolios: one statement as large as the screen allows, a quiet subtitle, a couple of text links with arrows, and a meta line pinned at the bottom of a tall section.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/minimal-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/minimal-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "minimal-hero-demo",
+      "type": "registry:example",
+      "title": "Minimal hero demo",
+      "description": "A working preview of Minimal hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/minimal-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/minimal-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collage-hero",
+      "type": "registry:block",
+      "title": "Collage hero",
+      "description": "An opening built from real photos: the promise on the left and a collage of three to five pictures on the right, the first one large and the rest staggered around it.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/collage-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/collage-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collage-hero-demo",
+      "type": "registry:example",
+      "title": "Collage hero demo",
+      "description": "A working preview of Collage hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collage-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/collage-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-numbers",
+      "type": "registry:block",
+      "title": "Feature numbers",
+      "description": "Reasons as a numbered list, set like an editorial spread: large outlined numerals, a title and a short paragraph each, in two columns on wide screens.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/feature-numbers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-numbers.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-numbers-demo",
+      "type": "registry:example",
+      "title": "Feature numbers demo",
+      "description": "A working preview of Feature numbers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-numbers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-numbers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "problem-solution",
+      "type": "registry:block",
+      "title": "Problem solution",
+      "description": "Before and after, row by row: the way it is now on the left with a cross, the way it works with you on the right with a check, each pair on one line so the change reads straight across.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/problem-solution.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/problem-solution.tsx"
+        }
+      ]
+    },
+    {
+      "name": "problem-solution-demo",
+      "type": "registry:example",
+      "title": "Problem solution demo",
+      "description": "A working preview of Problem solution.",
+      "registryDependencies": [
+        "https://rhsui.com/r/problem-solution.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/problem-solution-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sticky-feature-list",
+      "type": "registry:block",
+      "title": "Sticky feature list",
+      "description": "A long feature list next to an intro that stays put: on wide screens the heading sticks while the list scrolls past, so the promise stays in view the whole way down.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/sticky-feature-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sticky-feature-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sticky-feature-list-demo",
+      "type": "registry:example",
+      "title": "Sticky feature list demo",
+      "description": "A working preview of Sticky feature list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/sticky-feature-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sticky-feature-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-image-cards",
+      "type": "registry:block",
+      "title": "Feature image cards",
+      "description": "Features shown rather than told: a card per feature with a picture on top, a title and a line, and an optional link at the bottom.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/feature-image-cards.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-image-cards.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-image-cards-demo",
+      "type": "registry:example",
+      "title": "Feature image cards demo",
+      "description": "A working preview of Feature image cards.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-image-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-image-cards-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "social-posts",
+      "type": "registry:block",
+      "title": "Social posts",
+      "description": "What people post about you, as cards in columns: the person, their handle, the network as a word (no brand logos to licence), the text and the date.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/social-posts.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/social-posts.tsx"
+        }
+      ]
+    },
+    {
+      "name": "social-posts-demo",
+      "type": "registry:example",
+      "title": "Social posts demo",
+      "description": "A working preview of Social posts.",
+      "registryDependencies": [
+        "https://rhsui.com/r/social-posts.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/social-posts-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-photo",
+      "type": "registry:block",
+      "title": "Testimonial photo",
+      "description": "One customer, big: their photo filling half the section and their words set large next to it, with an optional star rating.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/testimonial-photo.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonial-photo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-photo-demo",
+      "type": "registry:example",
+      "title": "Testimonial photo demo",
+      "description": "A working preview of Testimonial photo.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonial-photo.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-photo-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "logo-stats",
+      "type": "registry:block",
+      "title": "Logo stats",
+      "description": "Social proof in one band: a row of customer logos and, under a rule, the three or four numbers that matter.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/logo-stats.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/logo-stats.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-stats-demo",
+      "type": "registry:example",
+      "title": "Logo stats demo",
+      "description": "A working preview of Logo stats.",
+      "registryDependencies": [
+        "https://rhsui.com/r/logo-stats.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/logo-stats-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cta-image-band",
+      "type": "registry:block",
+      "title": "Cta image band",
+      "description": "A closing call to action over a full-bleed photo: a dark scrim from the left keeps the text readable on any picture, in both themes, because the text is always light on the scrim, not on the theme.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/cta-image-band.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cta-image-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cta-image-band-demo",
+      "type": "registry:example",
+      "title": "Cta image band demo",
+      "description": "A working preview of Cta image band.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/cta-image-band.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cta-image-band-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "callback-request",
+      "type": "registry:block",
+      "title": "Callback request",
+      "description": "\"We call you\": a name, a phone number and a time that suits, for people who would rather talk than type.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/callback-request.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/callback-request.tsx"
+        }
+      ]
+    },
+    {
+      "name": "callback-request-demo",
+      "type": "registry:example",
+      "title": "Callback request demo",
+      "description": "A working preview of Callback request.",
+      "registryDependencies": [
+        "https://rhsui.com/r/callback-request.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/callback-request-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quote-request",
+      "type": "registry:block",
+      "title": "Quote request",
+      "description": "Ask for a price in one go: which jobs, a few words about the situation, where it is and how to reach them.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox-cards.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/quote-request.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/quote-request.tsx"
+        }
+      ]
+    },
+    {
+      "name": "quote-request-demo",
+      "type": "registry:example",
+      "title": "Quote request demo",
+      "description": "A working preview of Quote request.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/quote-request.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quote-request-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

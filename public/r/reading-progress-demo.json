@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reading-progress-demo",
+  "title": "Reading progress demo",
+  "description": "A working preview of Reading progress.",
+  "registryDependencies": [
+    "https://rhsui.com/r/reading-progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/reading-progress-demo.tsx",
+      "content": "\"use client\";\n\nimport { ReadingProgress } from \"@rhs-ui/primitives/reading-progress\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"relative mx-auto max-w-2xl p-6\">\n      <ReadingProgress target=\"reading-progress-article\" className=\"absolute\" />\n      <article id=\"reading-progress-article\" className=\"grid gap-4 text-sm leading-relaxed text-muted-foreground\">\n        <h2 className=\"text-2xl font-medium tracking-tight text-foreground\">Why quiet software wins</h2>\n        <p>Scroll this page: the bar at the top fills as you read the article and stops at its end, not at the footer.</p>\n        <p>Every notification costs a little attention. Most tools spend it freely, because a ping is the cheapest way to look busy.</p>\n        <p>We tried the opposite: one summary on Monday, and nothing after six. Usage went up, not down.</p>\n      </article>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "social-posts",
+  "title": "Social posts",
+  "description": "What people post about you, as cards in columns: the person, their handle, the network as a word (no brand logos to licence), the text and the date.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/social-posts.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface SocialPost {\n  id: string;\n  author: string;\n  handle: string;\n  /** Where it was posted, shown as text: \"LinkedIn\", \"Instagram\". */\n  network: string;\n  text: string;\n  /** Machine date for the time element. */\n  date: string;\n  dateLabel: string;\n  href?: string;\n  avatar?: string;\n}\n\nexport interface SocialPostsProps {\n  title: string;\n  description?: string;\n  posts: readonly SocialPost[];\n  className?: string;\n}\n\nfunction initials(name: string) {\n  return name.split(/\\s+/).map((part) => part[0]).join(\"\").slice(0, 2).toUpperCase();\n}\n\n/**\n * What people post about you, as cards in columns: the person, their\n * handle, the network as a word (no brand logos to licence), the text and\n * the date. A card with a link opens the original post.\n */\nexport function SocialPosts({ title, description, posts, className }: SocialPostsProps) {\n  return (\n    <section data-slot=\"social-posts\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base text-muted-foreground\">{description}</p> : null}\n      </div>\n      <ul className=\"mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3\">\n        {posts.map((post) => {\n          const body = (\n            <>\n              <span className=\"flex items-center gap-3\">\n                {post.avatar ? (\n                  <img src={post.avatar} alt=\"\" className=\"size-10 rounded-full object-cover\" />\n                ) : (\n                  <span aria-hidden=\"true\" className=\"inline-flex size-10 items-center justify-center rounded-full bg-muted text-xs font-medium\">{initials(post.author)}</span>\n                )}\n                <span className=\"min-w-0 flex-1\">\n                  <span className=\"block truncate text-sm font-medium\">{post.author}</span>\n                  <span className=\"block truncate text-xs text-muted-foreground\">{post.handle}</span>\n                </span>\n                <span className=\"shrink-0 rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground\">{post.network}</span>\n              </span>\n              <span className=\"mt-4 block text-sm leading-relaxed whitespace-pre-line\">{post.text}</span>\n              <time dateTime={post.date} className=\"mt-4 block text-xs text-muted-foreground\">{post.dateLabel}</time>\n            </>\n          );\n          return (\n            <li key={post.id} className=\"mb-5 break-inside-avoid\">\n              {post.href ? (\n                <a href={post.href} className=\"block rounded-2xl border border-border bg-card p-5 outline-none hover:border-foreground/30 focus-visible:ring-[3px] focus-visible:ring-ring/40\">{body}</a>\n              ) : (\n                <div className=\"rounded-2xl border border-border bg-card p-5\">{body}</div>\n              )}\n            </li>\n          );\n        })}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/social-posts.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

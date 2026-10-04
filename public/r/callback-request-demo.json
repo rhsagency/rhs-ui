@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "callback-request-demo",
+  "title": "Callback request demo",
+  "description": "A working preview of Callback request.",
+  "registryDependencies": [
+    "https://rhsui.com/r/callback-request.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/callback-request-demo.tsx",
+      "content": "\"use client\";\n\nimport { CallbackRequest } from \"@rhs-ui/marketing/callback-request\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"px-6\">\n      <CallbackRequest\n        title=\"Rather talk it through?\"\n        description=\"Leave your number and we call you, on a weekday, at a time that suits.\"\n        slots={[\n          { value: \"morning\", title: \"Morning\", description: \"9 to 12\" },\n          { value: \"afternoon\", title: \"Afternoon\", description: \"12 to 17\" },\n          { value: \"evening\", title: \"Evening\", description: \"17 to 20\" },\n        ]}\n        onSubmit={() => new Promise((resolve) => setTimeout(resolve, 600))}\n        note=\"We only use your number for this call.\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-image-band-demo",
+  "title": "Cta image band demo",
+  "description": "A working preview of Cta image band.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/cta-image-band.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/cta-image-band-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { CtaImageBand } from \"@rhs-ui/marketing/cta-image-band\";\n\nconst photo = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 500'><rect width='1200' height='500' fill='#7b8a7a'/><path d='M0 380 300 220 520 330 780 160 1200 360V500H0z' fill='#4f5d4e'/><circle cx='980' cy='110' r='60' fill='#e8e2c8'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <CtaImageBand\n        title=\"Your next trip starts with one question.\"\n        description=\"Tell us where you want to go. We plan the route, the stays and the quiet places in between.\"\n        actions={<><Button size=\"lg\" className=\"bg-white text-neutral-900 hover:bg-white/90\">Plan my trip</Button><Button size=\"lg\" variant=\"ghost\" className=\"text-white hover:bg-white/10 hover:text-white\">See routes</Button></>}\n        image={<img src={photo} alt=\"\" />}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-image-band",
+  "title": "Cta image band",
+  "description": "A closing call to action over a full-bleed photo: a dark scrim from the left keeps the text readable on any picture, in both themes, because the text is always light on the scrim, not on the theme.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/cta-image-band.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface CtaImageBandProps {\n  title: string;\n  description?: string;\n  actions: ReactNode;\n  /** The photo behind the text: always visible, never animated in. */\n  image: ReactNode;\n  className?: string;\n}\n\n/**\n * A closing call to action over a full-bleed photo: a dark scrim from the\n * left keeps the text readable on any picture, in both themes, because the\n * text is always light on the scrim, not on the theme.\n */\nexport function CtaImageBand({ title, description, actions, image, className }: CtaImageBandProps) {\n  return (\n    <section data-slot=\"cta-image-band\" className={cn(\"relative isolate my-16 overflow-clip rounded-3xl\", className)}>\n      <div className=\"absolute inset-0 -z-10 bg-neutral-800 [&_img]:size-full [&_img]:object-cover\">{image}</div>\n      <div aria-hidden=\"true\" className=\"absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/55 to-black/10\" />\n      <div className=\"max-w-xl px-6 py-16 text-white sm:px-12 sm:py-24\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-5xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base leading-relaxed text-white/80\">{description}</p> : null}\n        <div className=\"mt-8 flex flex-wrap gap-3\">{actions}</div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/cta-image-band.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

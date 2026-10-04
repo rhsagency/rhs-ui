@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "event-schedule",
+  "title": "Event schedule",
+  "description": "The programme of a conference or a course: a tab per day, then the slots in order with time, title, speakers and room, breaks quieter than talks, and the time zone said once.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/event-schedule.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ScheduleSlot {\n  id: string;\n  /** \"09:30\". */\n  start: string;\n  end: string;\n  title: string;\n  /** Speaker names, comma separated by you. */\n  speakers?: string;\n  /** \"Main stage\", \"Room B\". */\n  room?: string;\n  kind?: \"talk\" | \"workshop\" | \"break\";\n}\n\nexport interface ScheduleDay {\n  id: string;\n  /** \"Day 1, Thu 12 June\". */\n  label: string;\n  slots: readonly ScheduleSlot[];\n}\n\nexport interface EventScheduleProps {\n  title: string;\n  days: readonly ScheduleDay[];\n  /** \"All times in CEST.\" Say the time zone once. */\n  timezoneNote: string;\n  className?: string;\n}\n\n/**\n * The programme of a conference or a course: a tab per day, then the slots\n * in order with time, title, speakers and room, breaks quieter than talks,\n * and the time zone said once. Each slot is a list item with its times as\n * text, so the order reads the same without the layout.\n */\nexport function EventSchedule({ title, days, timezoneNote, className }: EventScheduleProps) {\n  const [day, setDay] = useState(days[0]?.id ?? \"\");\n  const current = days.find((d) => d.id === day);\n  return (\n    <section data-slot=\"event-schedule\" className={cn(\"mx-auto max-w-4xl py-16 sm:py-20\", className)}>\n      <div className=\"flex flex-wrap items-end justify-between gap-4\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n        <p className=\"text-sm text-muted-foreground\">{timezoneNote}</p>\n      </div>\n      <div role=\"group\" aria-label=\"Day\" className=\"mt-6 flex flex-wrap gap-2\">\n        {days.map((d) => <button key={d.id} type=\"button\" aria-pressed={d.id === day} onClick={() => setDay(d.id)} className=\"rounded-full border border-border px-4 py-1.5 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background\">{d.label}</button>)}\n      </div>\n      <ol aria-label={current?.label} className=\"mt-6 divide-y divide-border border-y border-border\">\n        {current?.slots.map((slot) => (\n          <li key={slot.id} className={cn(\"grid gap-1 py-4 sm:grid-cols-[8rem_1fr_9rem] sm:gap-6\", slot.kind === \"break\" && \"text-muted-foreground\")}>\n            <p className=\"text-sm tabular-nums\">{slot.start} to {slot.end}</p>\n            <div>\n              <p className={cn(slot.kind === \"break\" ? \"text-sm\" : \"font-medium\")}>{slot.title}{slot.kind === \"workshop\" ? <span className=\"ml-2 rounded-full border border-border px-2 py-0.5 text-[11px] font-normal\">Workshop</span> : null}</p>\n              {slot.speakers ? <p className=\"mt-0.5 text-sm text-muted-foreground\">{slot.speakers}</p> : null}\n            </div>\n            {slot.room ? <p className=\"text-sm text-muted-foreground sm:text-right\">{slot.room}</p> : <span />}\n          </li>\n        ))}\n      </ol>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/event-schedule.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

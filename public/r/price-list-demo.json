@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "price-list-demo",
+  "title": "Price list demo",
+  "description": "A working preview of Price list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/price-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/price-list-demo.tsx",
+      "content": "import { PriceList } from \"@rhs-ui/marketing/price-list\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6\">\n      <PriceList\n        title=\"Prices\"\n        description=\"Book online or call us. We confirm every appointment by text.\"\n        footnote=\"All prices include 21% VAT. Students get 10% off on weekdays.\"\n        groups={[\n          { title: \"Haircuts\", items: [{ name: \"Cut and style\", detail: \"45 min\", price: \"€38\" }, { name: \"Short cut\", detail: \"30 min\", price: \"€29\" }, { name: \"Children up to 12\", detail: \"20 min\", price: \"€19\" }] },\n          { title: \"Colour\", items: [{ name: \"Full colour\", detail: \"90 min\", price: \"from €72\", note: \"Price depends on length.\" }, { name: \"Highlights\", detail: \"120 min\", price: \"from €95\" }, { name: \"Toner\", detail: \"30 min\", price: \"€25\" }] },\n          { title: \"Beard\", items: [{ name: \"Beard trim\", detail: \"20 min\", price: \"€18\" }, { name: \"Hot towel shave\", detail: \"40 min\", price: \"€32\" }] },\n          { title: \"Extras\", items: [{ name: \"Wash and blow-dry\", detail: \"30 min\", price: \"€22\" }, { name: \"Treatment\", detail: \"15 min\", price: \"€12\" }] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

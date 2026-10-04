@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "article-meta-demo",
+  "title": "Article meta demo",
+  "description": "A working preview of Article meta.",
+  "registryDependencies": [
+    "https://rhsui.com/r/article-meta.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/article-meta-demo.tsx",
+      "content": "import { ArticleMeta } from \"@rhs-ui/primitives/article-meta\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-6\">\n      <h2 className=\"text-3xl font-medium tracking-[-.04em]\">Why quiet software wins</h2>\n      <ArticleMeta className=\"mt-4\" author=\"Noor Bakker\" authorHref=\"#author\" date=\"2026-10-04\" dateLabel=\"4 October 2026\" readingTime={6} category=\"Product\" categoryHref=\"#product\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "minimal-hero",
+  "title": "Minimal hero",
+  "description": "Type and nothing else, for studios, architects and portfolios: one statement as large as the screen allows, a quiet subtitle, a couple of text links with arrows, and a meta line pinned at the bottom of a tall section.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/minimal-hero.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MinimalHeroProps {\n  /** The title's element: \"h2\" (the default) inside a page, \"h1\" when this opens the page. */\n  titleAs?: \"h1\" | \"h2\";\n  /** A short statement, set very large. */\n  title: string;\n  /** One quiet line under it. */\n  subtitle?: string;\n  /** A text link or two, not buttons: this hero whispers. */\n  links?: readonly { label: string; href: string }[];\n  /** A small line at the bottom: location, year, availability. */\n  meta?: ReactNode;\n  className?: string;\n}\n\n/**\n * Type and nothing else, for studios, architects and portfolios: one\n * statement as large as the screen allows, a quiet subtitle, a couple of\n * text links with arrows, and a meta line pinned at the bottom of a tall\n * section. The restraint is the design.\n */\nexport function MinimalHero({ titleAs: Title = \"h2\", title, subtitle, links = [], meta, className }: MinimalHeroProps) {\n  return (\n    <section data-slot=\"minimal-hero\" className={cn(\"flex min-h-[70svh] flex-col justify-between gap-16 py-16\", className)}>\n      <div className=\"max-w-5xl\">\n        <Title className=\"text-5xl leading-[.98] font-medium tracking-[-.06em] text-balance sm:text-7xl lg:text-8xl\">{title}</Title>\n        {subtitle ? <p className=\"mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground\">{subtitle}</p> : null}\n        {links.length ? (\n          <ul className=\"mt-8 flex flex-wrap gap-x-8 gap-y-3 text-base\">\n            {links.map((link) => <li key={`${link.href}-${link.label}`}><a href={link.href} className=\"underline decoration-1 underline-offset-[6px] hover:decoration-2\">{link.label} →</a></li>)}\n          </ul>\n        ) : null}\n      </div>\n      {meta ? <div className=\"flex flex-wrap justify-between gap-4 border-t border-border pt-4 text-sm text-muted-foreground\">{meta}</div> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/minimal-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

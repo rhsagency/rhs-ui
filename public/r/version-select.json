@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "version-select",
+  "title": "Version select",
+  "description": "Which version of the docs you are reading, in the sidebar header: the house select (never a native one), compact, with the latest release marked in the list and a warning colour on the trigger when you are on an older one.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/version-select.tsx",
+      "content": "\"use client\";\n\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@rhs-ui/primitives/select\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface DocsVersion {\n  value: string;\n  /** \"v2.4\" */\n  label: string;\n  /** Released, or \"Unreleased\"; shown under the option. */\n  note?: string;\n  latest?: boolean;\n}\n\nexport interface VersionSelectProps {\n  versions: readonly DocsVersion[];\n  value: string;\n  onValueChange: (value: string) => void;\n  /** Names the control for screen readers. */\n  label?: string;\n  className?: string;\n}\n\n/**\n * Which version of the docs you are reading, in the sidebar header: the\n * house select (never a native one), compact, with the latest release\n * marked in the list and a warning colour on the trigger when you are on\n * an older one.\n */\nexport function VersionSelect({ versions, value, onValueChange, label = \"Documentation version\", className }: VersionSelectProps) {\n  const current = versions.find((version) => version.value === value);\n  const old = current ? !current.latest : false;\n  return (\n    <Select value={value} onValueChange={onValueChange}>\n      <SelectTrigger size=\"sm\" aria-label={label} data-old={old || undefined} className={cn(\"w-36 font-mono text-xs data-[old]:border-[color-mix(in_oklch,var(--color-warning,oklch(0.72_0.16_75))_60%,transparent)]\", className)}>\n        <SelectValue>{current?.label}</SelectValue>\n      </SelectTrigger>\n      <SelectContent>\n        {versions.map((version) => (\n          <SelectItem key={version.value} value={version.value} description={version.latest ? `Latest${version.note ? `, ${version.note}` : \"\"}` : version.note} className=\"font-mono text-xs\">\n            {version.label}\n          </SelectItem>\n        ))}\n      </SelectContent>\n    </Select>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/version-select.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "forms"
+  },
+  "categories": [
+    "primitives",
+    "forms"
+  ],
+  "type": "registry:ui"
+}

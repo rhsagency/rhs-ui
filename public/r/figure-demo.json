@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "figure-demo",
+  "title": "Figure demo",
+  "description": "A working preview of Figure.",
+  "registryDependencies": [
+    "https://rhsui.com/r/figure.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/figure-demo.tsx",
+      "content": "import { Figure } from \"@rhs-ui/primitives/figure\";\n\nconst photo = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'><rect width='800' height='450' fill='#c9cfc4'/><path d='M0 330 220 200 400 290 600 150 800 300V450H0z' fill='#7f8c78'/><circle cx='640' cy='100' r='44' fill='#f1ecd8'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl p-6\">\n      <Figure ratio=\"16/9\" caption=\"The ridge above the valley, an hour before sunset.\" credit=\"Photo: Jip de Graaf\">\n        <img src={photo} alt=\"Green hills under a low sun\" />\n      </Figure>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

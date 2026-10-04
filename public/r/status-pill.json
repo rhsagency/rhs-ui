@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-pill",
+  "title": "Status pill",
+  "description": "The little \"All systems operational\" link in a footer or a docs header: a coloured dot that pulses gently while things are fine, and a sentence that says the state in words, so colour is never the only signal.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/status-pill.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport type ServiceStatus = \"operational\" | \"degraded\" | \"outage\" | \"maintenance\";\n\nconst STATUS: Record<ServiceStatus, { dot: string; text: string }> = {\n  operational: { dot: \"bg-[var(--color-success,oklch(0.62_0.15_150))]\", text: \"All systems operational\" },\n  degraded: { dot: \"bg-[var(--color-warning,oklch(0.72_0.16_75))]\", text: \"Some systems degraded\" },\n  outage: { dot: \"bg-destructive\", text: \"Major outage\" },\n  maintenance: { dot: \"bg-[oklch(0.62_0.13_250)]\", text: \"Scheduled maintenance\" },\n};\n\nexport interface StatusPillProps {\n  status: ServiceStatus;\n  /** Overrides the default sentence for the status. */\n  label?: string;\n  /** Your status page. */\n  href?: string;\n  className?: string;\n}\n\n/**\n * The little \"All systems operational\" link in a footer or a docs header:\n * a coloured dot that pulses gently while things are fine, and a sentence\n * that says the state in words, so colour is never the only signal.\n */\nexport function StatusPill({ status, label, href, className }: StatusPillProps) {\n  const tone = STATUS[status];\n  const body = (\n    <>\n      <span aria-hidden=\"true\" className=\"relative inline-flex size-2\">\n        {status === \"operational\" ? <span className={cn(\"absolute inset-0 rounded-full opacity-60 motion-safe:animate-ping\", tone.dot)} /> : null}\n        <span className={cn(\"relative inline-flex size-2 rounded-full\", tone.dot)} />\n      </span>\n      {label ?? tone.text}\n    </>\n  );\n  const style = cn(\"inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs\", className);\n  return href ? (\n    <a href={href} data-slot=\"status-pill\" className={cn(style, \"outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40\")}>{body}</a>\n  ) : (\n    <span data-slot=\"status-pill\" className={style}>{body}</span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/status-pill.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

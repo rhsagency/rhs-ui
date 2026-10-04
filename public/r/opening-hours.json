@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "opening-hours",
+  "title": "Opening hours",
+  "description": "Opening hours as every local business needs them: the week as a definition list with today marked in words and weight, closed days said as \"Closed\", an open-now line with a dot that also says it in words, and room for holiday exceptions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/opening-hours.tsx",
+      "content": "import { IconClock } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface OpeningDay {\n  /** \"Monday\". */\n  day: string;\n  /** \"09:00 to 18:00\", or null for closed. */\n  hours: string | null;\n}\n\nexport interface OpeningHoursProps {\n  days: readonly OpeningDay[];\n  /** Index of today in days, worked out on your side in the business's time zone. */\n  today?: number;\n  /** \"Open now, until 18:00\" or \"Closed, opens Tuesday 09:00\": your words, from your clock. */\n  status?: { open: boolean; text: string };\n  /** Holidays and exceptions: \"Closed on 27 April (King's Day)\". */\n  note?: string;\n  className?: string;\n}\n\n/**\n * Opening hours as every local business needs them: the week as a\n * definition list with today marked in words and weight, closed days said\n * as \"Closed\", an open-now line with a dot that also says it in words, and\n * room for holiday exceptions. Pair with the business's own clock for now.\n */\nexport function OpeningHours({ days, today, status, note, className }: OpeningHoursProps) {\n  return (\n    <section data-slot=\"opening-hours\" aria-label=\"Opening hours\" className={cn(\"relative rounded-2xl border border-border p-5\", className)}>\n      <h3 className=\"flex items-center gap-2 text-sm font-medium\"><IconClock aria-hidden=\"true\" className=\"size-4\" />Opening hours</h3>\n      {status ? <p className=\"mt-2 flex items-center gap-2 text-sm\"><span aria-hidden=\"true\" className={cn(\"size-2 rounded-full\", status.open ? \"bg-foreground\" : \"border border-muted-foreground\")} />{status.text}</p> : null}\n      <dl className=\"mt-4 grid gap-1.5 text-sm\">\n        {days.map((day, index) => (\n          <div key={day.day} className={cn(\"flex justify-between gap-4 rounded-md px-2 py-1\", index === today && \"bg-muted font-medium\")}>\n            <dt>{day.day}{index === today ? <span className=\"sr-only\"> (today)</span> : null}</dt>\n            <dd className={cn(\"tabular-nums\", !day.hours && \"text-muted-foreground\")}>{day.hours ?? \"Closed\"}</dd>\n          </div>\n        ))}\n      </dl>\n      {note ? <p className=\"mt-3 text-xs text-muted-foreground\">{note}</p> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/opening-hours.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

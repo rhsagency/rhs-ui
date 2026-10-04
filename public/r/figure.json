@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "figure",
+  "title": "Figure",
+  "description": "An image in an article with its caption and credit: a figure element so the caption belongs to the picture, rounded media, and an optional wide mode that reaches past the reading column on large screens.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/figure.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FigureProps {\n  /** The image, video or diagram: always visible, never animated in. */\n  children: ReactNode;\n  caption?: ReactNode;\n  /** Photographer or source, set apart after the caption. */\n  credit?: string;\n  /** Wider than the text column on large screens. */\n  wide?: boolean;\n  /** Frame ratio; the media is cropped to fill it. Leave out to keep the media's own shape. */\n  ratio?: \"16/9\" | \"4/3\" | \"1/1\" | \"3/4\";\n  className?: string;\n}\n\nconst RATIO: Record<NonNullable<FigureProps[\"ratio\"]>, string> = { \"16/9\": \"aspect-video\", \"4/3\": \"aspect-[4/3]\", \"1/1\": \"aspect-square\", \"3/4\": \"aspect-[3/4]\" };\n\n/**\n * An image in an article with its caption and credit: a figure element so\n * the caption belongs to the picture, rounded media, and an optional wide\n * mode that reaches past the reading column on large screens.\n */\nexport function Figure({ children, caption, credit, wide = false, ratio, className }: FigureProps) {\n  return (\n    <figure data-slot=\"figure\" className={cn(\"my-10\", wide && \"lg:-mx-24\", className)}>\n      <div className={cn(\"overflow-clip rounded-2xl bg-muted [&_img]:w-full [&_video]:w-full\", ratio && cn(RATIO[ratio], \"[&_img]:h-full [&_img]:object-cover [&_video]:h-full [&_video]:object-cover\"))}>{children}</div>\n      {caption || credit ? (\n        <figcaption className={cn(\"mt-3 text-sm text-muted-foreground\", wide && \"lg:px-24\")}>\n          {caption}\n          {credit ? <span className=\"ml-1.5 text-xs tracking-wide uppercase opacity-80\">{credit}</span> : null}\n        </figcaption>\n      ) : null}\n    </figure>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/figure.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "layout"
+  },
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

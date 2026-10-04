@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-numbers-demo",
+  "title": "Feature numbers demo",
+  "description": "A working preview of Feature numbers.",
+  "registryDependencies": [
+    "https://rhsui.com/r/feature-numbers.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/feature-numbers-demo.tsx",
+      "content": "import { FeatureNumbers } from \"@rhs-ui/marketing/feature-numbers\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6\">\n      <FeatureNumbers\n        title=\"Four reasons teams stay.\"\n        description=\"We asked 140 customers why they renewed. These came up the most.\"\n        features={[\n          { title: \"It stays fast\", description: \"Every screen under 100 ms, even with ten thousand tasks. Speed is a feature people feel every day.\" },\n          { title: \"Decisions have a home\", description: \"The why lives next to the work, so new people catch up by reading, not by asking.\" },\n          { title: \"It is quiet\", description: \"No notifications after six, a Monday summary instead of a hundred pings.\" },\n          { title: \"Support answers\", description: \"A median first reply of eight minutes, from people who build the product.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

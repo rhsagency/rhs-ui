@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-hero-demo",
+  "title": "Testimonial hero demo",
+  "description": "A working preview of Testimonial hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/testimonial-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/testimonial-hero-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { TestimonialHero } from \"@rhs-ui/marketing/testimonial-hero\";\n\nconst photo = \"data:image/svg+xml;utf8,\" + encodeURIComponent(\"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='#d8d3c9'/><circle cx='100' cy='85' r='40' fill='#8d877c'/><path d='M30 200 Q100 120 170 200Z' fill='#8d877c'/></svg>\");\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <TestimonialHero\n        title=\"Coaching for founders who are tired of being tired.\"\n        description=\"Twelve weeks, one hour a week, and a plan you will actually keep.\"\n        actions={<><Button size=\"lg\">Book an intro call</Button><Button size=\"lg\" variant=\"outline\">How it works</Button></>}\n        quote=\"I sleep again, I say no to the right things, and the company grew anyway. Best money I spent this year.\"\n        name=\"Tom Becker\"\n        role=\"Founder, Studio Becker\"\n        photo={<img src={photo} alt=\"\" />}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

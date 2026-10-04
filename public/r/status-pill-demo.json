@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-pill-demo",
+  "title": "Status pill demo",
+  "description": "A working preview of Status pill.",
+  "registryDependencies": [
+    "https://rhsui.com/r/status-pill.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/status-pill-demo.tsx",
+      "content": "import { StatusPill } from \"@rhs-ui/primitives/status-pill\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex min-h-40 flex-wrap items-center justify-center gap-3 p-6\">\n      <StatusPill status=\"operational\" href=\"#status\" />\n      <StatusPill status=\"degraded\" label=\"Search is slow\" />\n      <StatusPill status=\"outage\" />\n      <StatusPill status=\"maintenance\" label=\"Maintenance Sunday 02:00\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "opening-hours-demo",
+  "title": "Opening hours demo",
+  "description": "A working preview of Opening hours.",
+  "registryDependencies": [
+    "https://rhsui.com/r/opening-hours.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/opening-hours-demo.tsx",
+      "content": "import { OpeningHours } from \"@rhs-ui/primitives/opening-hours\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-xs p-8\">\n      <OpeningHours\n        today={1}\n        status={{ open: true, text: \"Open now, until 18:00\" }}\n        note=\"Closed on 27 April (King's Day).\"\n        days={[\n          { day: \"Monday\", hours: null },\n          { day: \"Tuesday\", hours: \"09:00 to 18:00\" },\n          { day: \"Wednesday\", hours: \"09:00 to 18:00\" },\n          { day: \"Thursday\", hours: \"09:00 to 21:00\" },\n          { day: \"Friday\", hours: \"09:00 to 18:00\" },\n          { day: \"Saturday\", hours: \"10:00 to 17:00\" },\n          { day: \"Sunday\", hours: null },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

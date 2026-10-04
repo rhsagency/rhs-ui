@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "service-list",
+  "title": "Service list",
+  "description": "What a business does, as a numbered list of services: number, title, a line of what is included, the starting price, and an arrow to the service page.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/service-list.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconArrowRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ServiceItem {\n  href: string;\n  title: string;\n  description: string;\n  /** \"From €450\", \"Quote on request\". */\n  price?: string;\n  icon?: ReactNode;\n}\n\nexport interface ServiceListProps {\n  title: string;\n  description?: string;\n  services: readonly ServiceItem[];\n  className?: string;\n}\n\n/**\n * What a business does, as a numbered list of services: number, title, a\n * line of what is included, the starting price, and an arrow to the service\n * page. Reads like a menu of work for craftsmen, agencies and consultants;\n * each row is a single link.\n */\nexport function ServiceList({ title, description, services, className }: ServiceListProps) {\n  return (\n    <section data-slot=\"service-list\" className={cn(\"py-16 sm:py-20\", className)}>\n      <div className=\"grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16\">\n        <div>\n          <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n          {description ? <p className=\"mt-3 text-base text-muted-foreground\">{description}</p> : null}\n        </div>\n        <ol className=\"divide-y divide-border border-y border-border\">\n          {services.map((service, index) => (\n            <li key={`${service.href}-${service.title}`}>\n              <a href={service.href} className=\"group grid grid-cols-[2.5rem_1fr_auto] items-start gap-4 py-5 outline-none focus-visible:bg-muted/60\">\n                <span className=\"pt-0.5 font-mono text-sm text-muted-foreground tabular-nums\">{String(index + 1).padStart(2, \"0\")}</span>\n                <span>\n                  <span className=\"flex items-center gap-2 text-lg font-medium tracking-tight [&_svg]:size-5\">{service.icon}{service.title}</span>\n                  <span className=\"mt-1 block text-sm leading-relaxed text-muted-foreground\">{service.description}</span>\n                  {service.price ? <span className=\"mt-2 block text-sm font-medium\">{service.price}</span> : null}\n                </span>\n                <IconArrowRight aria-hidden=\"true\" className=\"mt-1.5 size-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground motion-reduce:transition-none\" />\n              </a>\n            </li>\n          ))}\n        </ol>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/service-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

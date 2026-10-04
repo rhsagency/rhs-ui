@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pill-nav-demo",
+  "title": "Pill nav demo",
+  "description": "A working preview of Pill nav.",
+  "registryDependencies": [
+    "https://rhsui.com/r/pill-nav.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/pill-nav-demo.tsx",
+      "content": "import { PillNav } from \"@rhs-ui/primitives/pill-nav\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex min-h-40 items-center justify-center p-6\">\n      <PillNav\n        label=\"Project sections\"\n        current=\"#issues\"\n        links={[\n          { href: \"#overview\", label: \"Overview\" },\n          { href: \"#issues\", label: \"Issues\", count: 12 },\n          { href: \"#members\", label: \"Members\", count: 8 },\n          { href: \"#billing\", label: \"Billing\" },\n          { href: \"#settings\", label: \"Settings\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

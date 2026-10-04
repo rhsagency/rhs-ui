@@ -8357,6 +8357,668 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "opening-hours",
+      "type": "registry:ui",
+      "title": "Opening hours",
+      "description": "Opening hours as every local business needs them: the week as a definition list with today marked in words and weight, closed days said as \"Closed\", an open-now line with a dot that also says it in words, and room for holiday exceptions.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/opening-hours.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/opening-hours.tsx"
+        }
+      ]
+    },
+    {
+      "name": "opening-hours-demo",
+      "type": "registry:example",
+      "title": "Opening hours demo",
+      "description": "A working preview of Opening hours.",
+      "registryDependencies": [
+        "https://rhsui.com/r/opening-hours.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/opening-hours-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "social-share",
+      "type": "registry:ui",
+      "title": "Social share",
+      "description": "Share this page: copy the link, the device's own share sheet where there is one, and plain links to the networks you pick, named in text rather than with brand logos.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/social-share.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/social-share.tsx"
+        }
+      ]
+    },
+    {
+      "name": "social-share-demo",
+      "type": "registry:example",
+      "title": "Social share demo",
+      "description": "A working preview of Social share.",
+      "registryDependencies": [
+        "https://rhsui.com/r/social-share.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/social-share-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "article-meta",
+      "type": "registry:ui",
+      "title": "Article meta",
+      "description": "The line under an article title: who wrote it, when, how long it takes and where it is filed.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/article-meta.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/article-meta.tsx"
+        }
+      ]
+    },
+    {
+      "name": "article-meta-demo",
+      "type": "registry:example",
+      "title": "Article meta demo",
+      "description": "A working preview of Article meta.",
+      "registryDependencies": [
+        "https://rhsui.com/r/article-meta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/article-meta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toc-mobile",
+      "type": "registry:ui",
+      "title": "Toc mobile",
+      "description": "\"On this page\" for small screens: a closed bar above the article that opens into the list of headings.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/toc-mobile.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/toc-mobile.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toc-mobile-demo",
+      "type": "registry:example",
+      "title": "Toc mobile demo",
+      "description": "A working preview of Toc mobile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/toc-mobile.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/toc-mobile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "announcement-pill",
+      "type": "registry:ui",
+      "title": "Announcement pill",
+      "description": "The small rounded link above a hero title that points at the latest news: a filled tag, one line of text and an arrow that nudges on hover.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/announcement-pill.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/announcement-pill.tsx"
+        }
+      ]
+    },
+    {
+      "name": "announcement-pill-demo",
+      "type": "registry:example",
+      "title": "Announcement pill demo",
+      "description": "A working preview of Announcement pill.",
+      "registryDependencies": [
+        "https://rhsui.com/r/announcement-pill.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/announcement-pill-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "version-select",
+      "type": "registry:ui",
+      "title": "Version select",
+      "description": "Which version of the docs you are reading, in the sidebar header: the house select (never a native one), compact, with the latest release marked in the list and a warning colour on the trigger when you are on an older one.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/version-select.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/version-select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "version-select-demo",
+      "type": "registry:example",
+      "title": "Version select demo",
+      "description": "A working preview of Version select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/version-select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/version-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "copy-command",
+      "type": "registry:ui",
+      "title": "Copy command",
+      "description": "An install line with a package-manager switch and a copy button: pick pnpm, npm, yarn or bun and the command follows.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/copy-command.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/copy-command.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-command-demo",
+      "type": "registry:example",
+      "title": "Copy command demo",
+      "description": "A working preview of Copy command.",
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-command.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/copy-command-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-pill",
+      "type": "registry:ui",
+      "title": "Status pill",
+      "description": "The little \"All systems operational\" link in a footer or a docs header: a coloured dot that pulses gently while things are fine, and a sentence that says the state in words, so colour is never the only signal.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/status-pill.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/status-pill.tsx"
+        }
+      ]
+    },
+    {
+      "name": "status-pill-demo",
+      "type": "registry:example",
+      "title": "Status pill demo",
+      "description": "A working preview of Status pill.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-pill.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-pill-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "theme-switcher",
+      "type": "registry:ui",
+      "title": "Theme switcher",
+      "description": "Light, dark or follow the system, as three joined toggles for a footer or a settings page.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/theme-switcher.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/theme-switcher.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-switcher-demo",
+      "type": "registry:example",
+      "title": "Theme switcher demo",
+      "description": "A working preview of Theme switcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/theme-switcher.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/theme-switcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contact-links",
+      "type": "registry:ui",
+      "title": "Contact links",
+      "description": "The ways to reach a small business, each one tappable: the phone dials, the email opens mail, WhatsApp opens a chat, the address opens maps.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/contact-links.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/contact-links.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contact-links-demo",
+      "type": "registry:example",
+      "title": "Contact links demo",
+      "description": "A working preview of Contact links.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-links.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-links-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "countdown-inline",
+      "type": "registry:ui",
+      "title": "Countdown inline",
+      "description": "A one-line countdown for a sale or a deadline: \"Ends in 2d 04:13:22\", ticking every second in tabular numbers so it does not jitter.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/countdown-inline.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/countdown-inline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "countdown-inline-demo",
+      "type": "registry:example",
+      "title": "Countdown inline demo",
+      "description": "A working preview of Countdown inline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/countdown-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/countdown-inline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-cue",
+      "type": "registry:ui",
+      "title": "Scroll cue",
+      "description": "The hint at the bottom of a full-height hero that there is more below: a small word and a chevron that drifts down, as a real link to the next section so it also works as a skip.",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/scroll-cue.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/scroll-cue.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-cue-demo",
+      "type": "registry:example",
+      "title": "Scroll cue demo",
+      "description": "A working preview of Scroll cue.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-cue.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-cue-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "figure",
+      "type": "registry:ui",
+      "title": "Figure",
+      "description": "An image in an article with its caption and credit: a figure element so the caption belongs to the picture, rounded media, and an optional wide mode that reaches past the reading column on large screens.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/figure.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/figure.tsx"
+        }
+      ]
+    },
+    {
+      "name": "figure-demo",
+      "type": "registry:example",
+      "title": "Figure demo",
+      "description": "A working preview of Figure.",
+      "registryDependencies": [
+        "https://rhsui.com/r/figure.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/figure-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reading-progress",
+      "type": "registry:ui",
+      "title": "Reading progress",
+      "description": "A thin bar across the top that fills as you read: measured against the article when you name it, so comments and the footer do not count.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/reading-progress.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/reading-progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reading-progress-demo",
+      "type": "registry:example",
+      "title": "Reading progress demo",
+      "description": "A working preview of Reading progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reading-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reading-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fact-chips",
+      "type": "registry:ui",
+      "title": "Fact chips",
+      "description": "The scannable alternative to a paragraph: the facts of a class, a room or a product as a row of chips, an icon and two or three words each.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/fact-chips.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/fact-chips.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fact-chips-demo",
+      "type": "registry:example",
+      "title": "Fact chips demo",
+      "description": "A working preview of Fact chips.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/fact-chips.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fact-chips-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pill-nav",
+      "type": "registry:ui",
+      "title": "Pill nav",
+      "description": "Sub-pages as a row of pills, for the top of a section with a few pages (Overview, Members, Billing).",
+      "categories": [
+        "primitives",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.6.0",
+        "since": "0.6.0",
+        "status": "stable"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/pill-nav.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pill-nav.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pill-nav-demo",
+      "type": "registry:example",
+      "title": "Pill nav demo",
+      "description": "A working preview of Pill nav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pill-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pill-nav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

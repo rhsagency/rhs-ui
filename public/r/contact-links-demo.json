@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "contact-links-demo",
+  "title": "Contact links demo",
+  "description": "A working preview of Contact links.",
+  "registryDependencies": [
+    "https://rhsui.com/r/contact-links.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/contact-links-demo.tsx",
+      "content": "import { ContactLinks } from \"@rhs-ui/primitives/contact-links\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid min-h-40 place-items-center gap-8 p-6\">\n      <ContactLinks phone=\"+31 6 1234 5678\" email=\"hello@example.com\" whatsapp=\"31612345678\" address=\"Stationsweg 12, 3901 AB Veenendaal\" mapsHref=\"#map\" />\n      <ContactLinks orientation=\"horizontal\" phone=\"+31 6 1234 5678\" email=\"hello@example.com\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

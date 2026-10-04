@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "job-detail",
+  "title": "Job detail",
+  "description": "A job posting that respects the reader: the facts first with icons (team, place, hours, salary), a short intro, what you will do and what you bring as scannable lists, and apply both on top and at the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/job-detail.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconBriefcase, IconClock, IconEuro, IconPin } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface JobDetailProps {\n  /** The title's element: \"h1\" (the default) on the job page itself, \"h2\" inside a preview. */\n  titleAs?: \"h1\" | \"h2\";\n  title: string;\n  team: string;\n  location: string;\n  /** \"Full-time, 32 to 40 hours\". */\n  hours: string;\n  /** \"€4,200 to €5,400 a month\": honest salary ranges get more good applicants. */\n  salary?: string;\n  intro: string;\n  sections: readonly { title: string; points: readonly string[] }[];\n  /** The apply button or form link. */\n  apply: ReactNode;\n  /** \"Questions? Ask Sara, our recruiter, at sara@example.com.\" */\n  contact?: ReactNode;\n  className?: string;\n}\n\n/**\n * A job posting that respects the reader: the facts first with icons (team,\n * place, hours, salary), a short intro, what you will do and what you bring\n * as scannable lists, and apply both on top and at the bottom. Pair it with\n * JobPosting structured data on the page.\n */\nexport function JobDetail({ titleAs: Title = \"h1\", title, team, location, hours, salary, intro, sections, apply, contact, className }: JobDetailProps) {\n  const facts = [\n    { icon: <IconBriefcase />, text: team },\n    { icon: <IconPin />, text: location },\n    { icon: <IconClock />, text: hours },\n    ...(salary ? [{ icon: <IconEuro />, text: salary }] : []),\n  ];\n  return (\n    <article data-slot=\"job-detail\" className={cn(\"mx-auto max-w-3xl py-16\", className)}>\n      <header className=\"border-b border-border pb-8\">\n        <Title className=\"text-4xl font-medium tracking-[-.05em] text-balance sm:text-5xl\">{title}</Title>\n        <ul aria-label=\"About the role\" className=\"mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground\">\n          {facts.map((fact) => <li key={fact.text} className=\"flex items-center gap-2 [&_svg]:size-4\">{fact.icon}{fact.text}</li>)}\n        </ul>\n        <div className=\"mt-8\">{apply}</div>\n      </header>\n      <p className=\"mt-8 text-lg leading-relaxed text-pretty\">{intro}</p>\n      {sections.map((section) => (\n        <section key={section.title} className=\"mt-10\">\n          <h2 className=\"text-xl font-medium tracking-tight\">{section.title}</h2>\n          <ul className=\"mt-4 grid gap-2.5\">\n            {section.points.map((point) => <li key={point} className=\"flex gap-3 text-base leading-relaxed\"><span aria-hidden=\"true\" className=\"mt-2.5 size-1.5 shrink-0 rounded-full bg-foreground\" />{point}</li>)}\n          </ul>\n        </section>\n      ))}\n      <footer className=\"mt-12 grid gap-4 rounded-3xl bg-muted/60 p-6 sm:p-8\">\n        <p className=\"text-lg font-medium\">Sound like you?</p>\n        <div>{apply}</div>\n        {contact ? <p className=\"text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4\">{contact}</p> : null}\n      </footer>\n    </article>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/job-detail.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

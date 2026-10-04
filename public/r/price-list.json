@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "price-list",
+  "title": "Price list",
+  "description": "The price list of a salon, a practice or a craftsman: groups of services with a dotted leader to the price, the duration or unit beside the name, and the small print underneath.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/price-list.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface PriceListItem {\n  name: string;\n  /** \"45 min\", \"per m²\". */\n  detail?: string;\n  /** Formatted: \"€35\", \"from €80\". */\n  price: string;\n  note?: string;\n}\n\nexport interface PriceListGroup {\n  title: string;\n  items: readonly PriceListItem[];\n}\n\nexport interface PriceListProps {\n  title: string;\n  description?: string;\n  groups: readonly PriceListGroup[];\n  /** Small print: \"Prices include VAT.\" */\n  footnote?: string;\n  className?: string;\n}\n\n/**\n * The price list of a salon, a practice or a craftsman: groups of services\n * with a dotted leader to the price, the duration or unit beside the name,\n * and the small print underneath. Two columns of groups on wide screens,\n * one on a phone; each group a definition list.\n */\nexport function PriceList({ title, description, groups, footnote, className }: PriceListProps) {\n  return (\n    <section data-slot=\"price-list\" className={cn(\"py-16 sm:py-20\", className)}>\n      <div className=\"max-w-xl\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-3 text-base text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"mt-10 grid gap-x-16 gap-y-10 md:grid-cols-2\">\n        {groups.map((group) => (\n          <div key={group.title}>\n            <h3 className=\"border-b border-foreground pb-2 text-xs font-medium tracking-[.14em] uppercase\">{group.title}</h3>\n            <dl className=\"mt-2 grid\">\n              {group.items.map((item) => (\n                <div key={item.name} className=\"py-2.5\">\n                  <div className=\"flex items-baseline gap-2\">\n                    <dt className=\"font-medium\">{item.name}{item.detail ? <span className=\"ml-2 text-sm font-normal text-muted-foreground\">{item.detail}</span> : null}</dt>\n                    <span aria-hidden=\"true\" className=\"min-w-6 flex-1 translate-y-[-3px] border-b border-dotted border-muted-foreground/50\" />\n                    <dd className=\"font-medium tabular-nums\">{item.price}</dd>\n                  </div>\n                  {item.note ? <p className=\"mt-0.5 text-xs text-muted-foreground\">{item.note}</p> : null}\n                </div>\n              ))}\n            </dl>\n          </div>\n        ))}\n      </div>\n      {footnote ? <p className=\"mt-8 text-xs text-muted-foreground\">{footnote}</p> : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/price-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "conversion"
+  },
+  "categories": [
+    "marketing",
+    "conversion"
+  ],
+  "type": "registry:block"
+}

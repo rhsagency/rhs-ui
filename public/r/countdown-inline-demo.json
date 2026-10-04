@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "countdown-inline-demo",
+  "title": "Countdown inline demo",
+  "description": "A working preview of Countdown inline.",
+  "registryDependencies": [
+    "https://rhsui.com/r/countdown-inline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/countdown-inline-demo.tsx",
+      "content": "\"use client\";\n\nimport { CountdownInline } from \"@rhs-ui/primitives/countdown-inline\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex min-h-40 flex-col items-center justify-center gap-3 p-6\">\n      <p className=\"rounded-full border border-border px-4 py-1.5\"><CountdownInline until=\"2030-01-01T00:00:00+01:00\" label=\"Early-bird ends in\" /></p>\n      <CountdownInline until=\"2020-01-01T00:00:00+01:00\" endedLabel=\"The early-bird price has ended\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

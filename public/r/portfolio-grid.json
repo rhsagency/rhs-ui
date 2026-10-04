@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "portfolio-grid",
+  "title": "Portfolio grid",
+  "description": "Selected work for a studio or a freelancer: filter chips by discipline, a grid of covers with title, client and year, and wide projects across two columns.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/portfolio-grid.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface PortfolioProject {\n  href: string;\n  title: string;\n  client: string;\n  /** \"Branding\", \"Website\": used for the filter. */\n  category: string;\n  year: string;\n  /** The cover; always visible, it only scales on hover. */\n  image: ReactNode;\n  /** Span two columns on wide screens. */\n  wide?: boolean;\n}\n\nexport interface PortfolioGridProps {\n  title: string;\n  projects: readonly PortfolioProject[];\n  className?: string;\n}\n\n/**\n * Selected work for a studio or a freelancer: filter chips by discipline,\n * a grid of covers with title, client and year, and wide projects across two\n * columns. Every card is one link; the filter is a group of toggle buttons\n * with the count announced.\n */\nexport function PortfolioGrid({ title, projects, className }: PortfolioGridProps) {\n  const [filter, setFilter] = useState<string | null>(null);\n  const categories = [...new Set(projects.map((p) => p.category))];\n  const shown = projects.filter((p) => !filter || p.category === filter);\n  const chip = \"rounded-full border border-border px-3 py-1.5 text-sm outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background\";\n  return (\n    <section data-slot=\"portfolio-grid\" className={cn(\"relative py-16 sm:py-20\", className)}>\n      <div className=\"flex flex-wrap items-end justify-between gap-4\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n        <div role=\"group\" aria-label=\"Discipline\" className=\"flex flex-wrap gap-2\">\n          <button type=\"button\" aria-pressed={filter === null} onClick={() => setFilter(null)} className={chip}>All</button>\n          {categories.map((c) => <button key={c} type=\"button\" aria-pressed={filter === c} onClick={() => setFilter(c)} className={chip}>{c}</button>)}\n        </div>\n      </div>\n      <p role=\"status\" className=\"sr-only\">{shown.length} projects</p>\n      <ul className=\"relative mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3\">\n        {shown.map((project) => (\n          <li key={`${project.href}-${project.title}`} className={cn(project.wide && \"lg:col-span-2\")}>\n            <a href={project.href} className=\"group block outline-none\">\n              <span className=\"block aspect-[4/3] overflow-clip rounded-2xl bg-muted ring-offset-4 ring-offset-background group-focus-visible:ring-[3px] group-focus-visible:ring-ring/50 [&_img]:size-full [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03] motion-reduce:[&_img]:transition-none\">{project.image}</span>\n              <span className=\"mt-3 flex items-baseline justify-between gap-3\">\n                <span className=\"font-medium\">{project.title}</span>\n                <span className=\"text-sm text-muted-foreground tabular-nums\">{project.year}</span>\n              </span>\n              <span className=\"text-sm text-muted-foreground\">{project.client} · {project.category}</span>\n            </a>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/portfolio-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

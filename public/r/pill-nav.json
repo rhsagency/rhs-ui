@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pill-nav",
+  "title": "Pill nav",
+  "description": "Sub-pages as a row of pills, for the top of a section with a few pages (Overview, Members, Billing).",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/pill-nav.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nexport interface PillNavLink {\n  href: string;\n  label: string;\n  /** A count after the label: open issues, unread items. */\n  count?: number;\n}\n\nexport interface PillNavProps {\n  links: readonly PillNavLink[];\n  /** The href of the page you are on; it gets aria-current. */\n  current: string;\n  /** Names the navigation: \"Account sections\". */\n  label: string;\n  className?: string;\n}\n\n/**\n * Sub-pages as a row of pills, for the top of a section with a few pages\n * (Overview, Members, Billing). Real links with aria-current on the page\n * you are on; the row scrolls sideways on a phone instead of wrapping.\n */\nexport function PillNav({ links, current, label, className }: PillNavProps) {\n  return (\n    <nav data-slot=\"pill-nav\" aria-label={label} className={cn(\"relative -mx-1 overflow-x-auto px-1 py-1 [scrollbar-width:none]\", className)}>\n      <ul className=\"flex w-max gap-1 rounded-full bg-muted p-1\">\n        {links.map((link) => (\n          <li key={`${link.href}-${link.label}`}>\n            <a\n              href={link.href}\n              aria-current={link.href === current ? \"page\" : undefined}\n              className=\"inline-flex h-8 items-center gap-1.5 rounded-full px-3.5 text-sm whitespace-nowrap text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-[current=page]:bg-background aria-[current=page]:font-medium aria-[current=page]:text-foreground aria-[current=page]:shadow-xs\"\n            >\n              {link.label}\n              {link.count !== undefined ? <span className=\"rounded-full bg-foreground/10 px-1.5 text-[11px] tabular-nums\">{link.count}</span> : null}\n            </a>\n          </li>\n        ))}\n      </ul>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/pill-nav.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "navigation"
+  },
+  "categories": [
+    "primitives",
+    "navigation"
+  ],
+  "type": "registry:ui"
+}

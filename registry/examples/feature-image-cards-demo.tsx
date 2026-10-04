@@ -1,0 +1,19 @@
+import { FeatureImageCards } from "@rhs-ui/marketing/feature-image-cards";
+
+const art = (fill: string, shape: string) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='${fill}'/>${shape}</svg>`);
+
+export default function Demo(): React.JSX.Element {
+  return (
+    <div className="mx-auto max-w-6xl px-6">
+      <FeatureImageCards
+        title="Built for the way kitchens work."
+        description="From the walk-in to the pass, every step has a screen made for it."
+        features={[
+          { title: "Prep lists", description: "Tomorrow's prep calculated from bookings and par levels.", href: "#prep", image: <img src={art("#e7e2d8", "<rect x='80' y='60' width='240' height='180' rx='16' fill='#c9c1b2'/><rect x='110' y='95' width='140' height='14' rx='7' fill='#8d877c'/><rect x='110' y='125' width='180' height='14' rx='7' fill='#8d877c'/>")} alt="A prep list on a tablet" /> },
+          { title: "Stock counts", description: "Count by shelf on a phone, with last week's numbers as a guide.", href: "#stock", image: <img src={art("#d6dbe0", "<rect x='60' y='70' width='120' height='160' rx='12' fill='#9aa3ad'/><rect x='220' y='70' width='120' height='160' rx='12' fill='#9aa3ad'/>")} alt="Shelves in a walk-in fridge" /> },
+          { title: "Allergen cards", description: "Every dish with its fourteen allergens, printed or on screen.", href: "#allergens", image: <img src={art("#ece6dc", "<circle cx='200' cy='150' r='80' fill='#cfc6b6'/><circle cx='200' cy='150' r='40' fill='#a69c8a'/>")} alt="A plated dish" /> },
+        ]}
+      />
+    </div>
+  );
+}

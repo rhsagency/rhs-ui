@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "problem-solution",
+  "title": "Problem solution",
+  "description": "Before and after, row by row: the way it is now on the left with a cross, the way it works with you on the right with a check, each pair on one line so the change reads straight across.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/problem-solution.tsx",
+      "content": "import { IconCheck, IconClose } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ProblemSolutionProps {\n  title: string;\n  description?: string;\n  /** \"Without us\" side. */\n  beforeLabel?: string;\n  afterLabel?: string;\n  /** Pairs: the pain and how it changes. */\n  rows: readonly { before: string; after: string }[];\n  className?: string;\n}\n\n/**\n * Before and after, row by row: the way it is now on the left with a cross,\n * the way it works with you on the right with a check, each pair on one\n * line so the change reads straight across. Two lists with headings, so it\n * is clear without the icons too.\n */\nexport function ProblemSolution({ title, description, beforeLabel = \"Today\", afterLabel = \"With us\", rows, className }: ProblemSolutionProps) {\n  return (\n    <section data-slot=\"problem-solution\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base text-muted-foreground\">{description}</p> : null}\n      </div>\n      <div className=\"mt-12 grid overflow-clip rounded-3xl border border-border md:grid-cols-2\">\n        <div className=\"bg-muted/50 p-6 sm:p-8\">\n          <h3 className=\"text-sm font-medium tracking-[.1em] text-muted-foreground uppercase\">{beforeLabel}</h3>\n          <ul className=\"mt-5 grid gap-4\">\n            {rows.map((row) => <li key={row.before} className=\"flex gap-3 text-sm leading-relaxed text-muted-foreground\"><IconClose aria-hidden=\"true\" className=\"mt-0.5 size-4 shrink-0\" />{row.before}</li>)}\n          </ul>\n        </div>\n        <div className=\"p-6 sm:p-8\">\n          <h3 className=\"text-sm font-medium tracking-[.1em] uppercase\">{afterLabel}</h3>\n          <ul className=\"mt-5 grid gap-4\">\n            {rows.map((row) => <li key={row.after} className=\"flex gap-3 text-sm leading-relaxed\"><IconCheck aria-hidden=\"true\" className=\"mt-0.5 size-4 shrink-0\" />{row.after}</li>)}\n          </ul>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/problem-solution.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

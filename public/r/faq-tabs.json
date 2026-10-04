@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-tabs",
+  "title": "Faq tabs",
+  "description": "Questions sorted by topic: pill tabs for Billing, Account, Security and so on, each with its own accordion of questions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/accordion.json",
+    "https://rhsui.com/r/tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/faq-tabs.tsx",
+      "content": "\"use client\";\n\nimport { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@rhs-ui/primitives/accordion\";\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from \"@rhs-ui/primitives/tabs\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FaqTabGroup {\n  id: string;\n  label: string;\n  items: readonly { question: string; answer: string }[];\n}\n\nexport interface FaqTabsProps {\n  title: string;\n  description?: string;\n  groups: readonly FaqTabGroup[];\n  className?: string;\n}\n\n/**\n * Questions sorted by topic: pill tabs for Billing, Account, Security and\n * so on, each with its own accordion of questions. For longer FAQs where\n * one list would be a wall; the tabs move with the arrow keys and every\n * answer opens in place.\n */\nexport function FaqTabs({ title, description, groups, className }: FaqTabsProps) {\n  return (\n    <section data-slot=\"faq-tabs\" className={cn(\"mx-auto max-w-3xl py-16 sm:py-20\", className)}>\n      <h2 className=\"text-center text-3xl font-medium tracking-[-.04em] sm:text-4xl\">{title}</h2>\n      {description ? <p className=\"mt-3 text-center text-base text-muted-foreground\">{description}</p> : null}\n      <Tabs defaultValue={groups[0]?.id} className=\"mt-8 items-center\">\n        <TabsList variant=\"pill\" aria-label=\"Topics\" className=\"relative max-w-full overflow-x-auto\">\n          {groups.map((group) => <TabsTrigger key={group.id} value={group.id}>{group.label}</TabsTrigger>)}\n        </TabsList>\n        {groups.map((group) => (\n          <TabsContent key={group.id} value={group.id} className=\"mt-4 w-full\">\n            <Accordion type=\"single\" collapsible className=\"border-t border-border\">\n              {group.items.map((item) => (\n                <AccordionItem key={item.question} value={item.question}>\n                  <AccordionTrigger className=\"text-base\">{item.question}</AccordionTrigger>\n                  <AccordionContent>{item.answer}</AccordionContent>\n                </AccordionItem>\n              ))}\n            </Accordion>\n          </TabsContent>\n        ))}\n      </Tabs>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/faq-tabs.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

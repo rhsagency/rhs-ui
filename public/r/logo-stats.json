@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-stats",
+  "title": "Logo stats",
+  "description": "Social proof in one band: a row of customer logos and, under a rule, the three or four numbers that matter.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/logo-stats.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface LogoStatsProps {\n  /** One line above the logos: \"Trusted by 2,400 teams\". */\n  title: string;\n  /** Logos as images or SVGs, each with its own accessible name. */\n  logos: readonly { name: string; logo: ReactNode }[];\n  stats: readonly { value: string; label: string }[];\n  className?: string;\n}\n\n/**\n * Social proof in one band: a row of customer logos and, under a rule, the\n * three or four numbers that matter. The logos are greyed so no single\n * brand shouts; the numbers are a description list, value with its label.\n */\nexport function LogoStats({ title, logos, stats, className }: LogoStatsProps) {\n  return (\n    <section data-slot=\"logo-stats\" className={cn(\"py-14 sm:py-20\", className)}>\n      <h2 className=\"text-center text-sm text-muted-foreground\">{title}</h2>\n      <ul className=\"mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-muted-foreground [&_img]:h-7 [&_img]:w-auto [&_svg]:h-7 [&_svg]:w-auto\">\n        {logos.map((logo) => <li key={logo.name} className=\"opacity-80 grayscale\">{logo.logo}</li>)}\n      </ul>\n      <dl className=\"mt-12 grid grid-cols-2 gap-y-8 border-t border-border pt-10 text-center md:grid-cols-4\">\n        {stats.map((stat) => (\n          <div key={stat.label} className=\"flex flex-col-reverse px-2\">\n            <dt className=\"mt-1 text-sm text-muted-foreground\">{stat.label}</dt>\n            <dd className=\"text-3xl font-medium tracking-[-.04em] tabular-nums sm:text-4xl\">{stat.value}</dd>\n          </div>\n        ))}\n      </dl>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/logo-stats.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

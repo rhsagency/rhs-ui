@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reading-progress",
+  "title": "Reading progress",
+  "description": "A thin bar across the top that fills as you read: measured against the article when you name it, so comments and the footer do not count.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/reading-progress.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ReadingProgressProps {\n  /** The id of the article to measure; the whole page when left out. */\n  target?: string;\n  className?: string;\n}\n\n/**\n * A thin bar across the top that fills as you read: measured against the\n * article when you name it, so comments and the footer do not count. It\n * writes a transform on scroll (no re-render per frame) and is decorative,\n * hidden from screen readers, who have their own sense of position.\n */\nexport function ReadingProgress({ target, className }: ReadingProgressProps) {\n  const bar = useRef<HTMLDivElement>(null);\n  useEffect(() => {\n    let frame = 0;\n    function measure() {\n      frame = 0;\n      const node = target ? document.getElementById(target) : document.documentElement;\n      if (!node || !bar.current) return;\n      const rect = node.getBoundingClientRect();\n      const total = target ? rect.height - window.innerHeight : node.scrollHeight - window.innerHeight;\n      const done = target ? -rect.top : window.scrollY;\n      const ratio = total > 0 ? Math.min(1, Math.max(0, done / total)) : 1;\n      bar.current.style.transform = `scaleX(${ratio})`;\n    }\n    function schedule() {\n      if (!frame) frame = requestAnimationFrame(measure);\n    }\n    measure();\n    window.addEventListener(\"scroll\", schedule, { passive: true });\n    window.addEventListener(\"resize\", schedule);\n    return () => {\n      cancelAnimationFrame(frame);\n      window.removeEventListener(\"scroll\", schedule);\n      window.removeEventListener(\"resize\", schedule);\n    };\n  }, [target]);\n  return (\n    <div data-slot=\"reading-progress\" aria-hidden=\"true\" className={cn(\"pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5\", className)}>\n      <div ref={bar} className=\"h-full origin-left scale-x-0 bg-foreground\" />\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/reading-progress.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "feedback"
+  },
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

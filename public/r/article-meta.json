@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "article-meta",
+  "title": "Article meta",
+  "description": "The line under an article title: who wrote it, when, how long it takes and where it is filed.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/article-meta.tsx",
+      "content": "import { IconClock } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ArticleMetaProps {\n  author: string;\n  authorHref?: string;\n  avatar?: string;\n  /** Machine date for the time element. */\n  date: string;\n  /** The date as readers see it: \"4 October 2026\". */\n  dateLabel: string;\n  /** Minutes to read. */\n  readingTime?: number;\n  category?: string;\n  categoryHref?: string;\n  className?: string;\n}\n\nfunction initials(name: string) {\n  return name.split(/\\s+/).map((part) => part[0]).join(\"\").slice(0, 2).toUpperCase();\n}\n\n/**\n * The line under an article title: who wrote it, when, how long it takes\n * and where it is filed. One row on wide screens, wrapping cleanly on a\n * phone, with a real time element for the date.\n */\nexport function ArticleMeta({ author, authorHref, avatar, date, dateLabel, readingTime, category, categoryHref, className }: ArticleMetaProps) {\n  const link = \"rounded-sm underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/40\";\n  return (\n    <div data-slot=\"article-meta\" className={cn(\"flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground\", className)}>\n      <span className=\"flex items-center gap-2.5 text-foreground\">\n        {avatar ? (\n          <img src={avatar} alt=\"\" className=\"size-8 rounded-full object-cover\" />\n        ) : (\n          <span aria-hidden=\"true\" className=\"inline-flex size-8 items-center justify-center rounded-full bg-muted text-[11px] font-medium\">{initials(author)}</span>\n        )}\n        {authorHref ? <a href={authorHref} className={cn(\"font-medium\", link)}>{author}</a> : <span className=\"font-medium\">{author}</span>}\n      </span>\n      <time dateTime={date}>{dateLabel}</time>\n      {readingTime ? (\n        <span className=\"inline-flex items-center gap-1.5\"><IconClock aria-hidden=\"true\" className=\"size-3.5\" />{readingTime} min read</span>\n      ) : null}\n      {category ? (\n        categoryHref ? <a href={categoryHref} className={cn(\"rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground\", link)}>{category}</a> : <span className=\"rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground\">{category}</span>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/article-meta.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "family": "data-display"
+  },
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

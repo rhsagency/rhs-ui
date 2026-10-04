@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feature-image-cards",
+  "title": "Feature image cards",
+  "description": "Features shown rather than told: a card per feature with a picture on top, a title and a line, and an optional link at the bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/feature-image-cards.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconArrowRight } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ImageCardFeature {\n  title: string;\n  description: string;\n  /** The picture on top: always visible, never animated in. */\n  image: ReactNode;\n  href?: string;\n  linkLabel?: string;\n}\n\nexport interface FeatureImageCardsProps {\n  title: string;\n  description?: string;\n  features: readonly ImageCardFeature[];\n  className?: string;\n}\n\n/**\n * Features shown rather than told: a card per feature with a picture on top,\n * a title and a line, and an optional link at the bottom. Three across on\n * wide screens; the link text names the feature for screen readers.\n */\nexport function FeatureImageCards({ title, description, features, className }: FeatureImageCardsProps) {\n  return (\n    <section data-slot=\"feature-image-cards\" className={cn(\"py-16 sm:py-24\", className)}>\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <h2 className=\"text-3xl font-medium tracking-[-.04em] text-balance sm:text-4xl\">{title}</h2>\n        {description ? <p className=\"mt-4 text-base text-muted-foreground\">{description}</p> : null}\n      </div>\n      <ul className=\"mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n        {features.map((feature) => (\n          <li key={feature.title} className=\"flex flex-col overflow-clip rounded-3xl border border-border bg-card\">\n            <div className=\"aspect-[4/3] bg-muted [&_img]:size-full [&_img]:object-cover\">{feature.image}</div>\n            <div className=\"flex flex-1 flex-col p-6\">\n              <h3 className=\"text-lg font-medium tracking-tight\">{feature.title}</h3>\n              <p className=\"mt-2 flex-1 text-sm leading-relaxed text-muted-foreground\">{feature.description}</p>\n              {feature.href ? (\n                <a href={feature.href} className=\"mt-5 inline-flex items-center gap-1.5 self-start rounded-sm text-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n                  {feature.linkLabel ?? \"Learn more\"}<span className=\"sr-only\"> about {feature.title}</span>\n                  <IconArrowRight aria-hidden=\"true\" className=\"size-3.5\" />\n                </a>\n              ) : null}\n            </div>\n          </li>\n        ))}\n      </ul>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/feature-image-cards.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "features"
+  },
+  "categories": [
+    "marketing",
+    "features"
+  ],
+  "type": "registry:block"
+}

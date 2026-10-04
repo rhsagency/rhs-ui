@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collage-hero-demo",
+  "title": "Collage hero demo",
+  "description": "A working preview of Collage hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/collage-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/collage-hero-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { CollageHero } from \"@rhs-ui/marketing/collage-hero\";\n\nconst art = (fill: string, shape: string, w = 400, h = 500) => \"data:image/svg+xml;utf8,\" + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${w} ${h}'><rect width='${w}' height='${h}' fill='${fill}'/>${shape}</svg>`);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <CollageHero\n        eyebrow=\"Boxing school, Ede\"\n        title=\"Train hard. Stay humble. Come as you are.\"\n        description=\"Classes for beginners and fighters, six days a week, with coaches who know your name.\"\n        actions={<><Button size=\"lg\">Book a free trial</Button><Button size=\"lg\" variant=\"outline\">Timetable</Button></>}\n        images={[\n          <img key=\"1\" src={art(\"#2f3236\", \"<circle cx='200' cy='200' r='90' fill='#6f747b'/><rect x='120' y='300' width='160' height='160' rx='20' fill='#6f747b'/>\")} alt=\"A coach holding pads in the gym\" />,\n          <img key=\"2\" src={art(\"#d8d3c9\", \"<rect x='120' y='150' width='160' height='200' rx='30' fill='#8d877c'/>\", 300, 300)} alt=\"Gloves on a bench\" />,\n          <img key=\"3\" src={art(\"#bdb6aa\", \"<circle cx='150' cy='150' r='70' fill='#3a3c40'/>\", 300, 300)} alt=\"A heavy bag\" />,\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

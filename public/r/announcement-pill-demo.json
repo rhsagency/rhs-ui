@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "announcement-pill-demo",
+  "title": "Announcement pill demo",
+  "description": "A working preview of Announcement pill.",
+  "registryDependencies": [
+    "https://rhsui.com/r/announcement-pill.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/announcement-pill-demo.tsx",
+      "content": "import { AnnouncementPill } from \"@rhs-ui/primitives/announcement-pill\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"flex min-h-40 flex-col items-center justify-center gap-4 p-6\">\n      <AnnouncementPill tag=\"New\" text=\"Scroll sections are in RHS UI Pro\" href=\"#pro\" />\n      <AnnouncementPill tag=\"v0.6\" text=\"300 free components and 33 templates\" href=\"#changelog\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menu-section",
+  "title": "Menu section",
+  "description": "A restaurant menu on the web, not a PDF: courses as tabs (arrow keys move), dishes with a line of description and the price, dietary marks that are spelled out for screen readers and explained in a legend, and the allergen note at the end.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/menu-section.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface MenuDish {\n  name: string;\n  description?: string;\n  price: string;\n  /** Short marks the kitchen uses: \"V\" vegetarian, \"VG\" vegan, \"GF\" gluten-free, \"N\" nuts. */\n  tags?: readonly string[];\n}\n\nexport interface MenuCourse {\n  id: string;\n  title: string;\n  dishes: readonly MenuDish[];\n}\n\nexport interface MenuSectionProps {\n  title: string;\n  courses: readonly MenuCourse[];\n  /** What the tags mean, shown once: { V: \"Vegetarian\", ... }. */\n  legend?: Readonly<Record<string, string>>;\n  /** \"Ask us about allergens.\" */\n  footnote?: string;\n  className?: string;\n}\n\n/**\n * A restaurant menu on the web, not a PDF: courses as tabs (arrow keys\n * move), dishes with a line of description and the price, dietary marks\n * that are spelled out for screen readers and explained in a legend, and\n * the allergen note at the end. Text, so it is searchable and translatable.\n */\nexport function MenuSection({ title, courses, legend = {}, footnote, className }: MenuSectionProps) {\n  const [active, setActive] = useState(courses[0]?.id ?? \"\");\n  const course = courses.find((c) => c.id === active);\n  function keys(event: React.KeyboardEvent<HTMLDivElement>) {\n    const index = courses.findIndex((c) => c.id === active);\n    const next = event.key === \"ArrowRight\" ? index + 1 : event.key === \"ArrowLeft\" ? index - 1 : null;\n    if (next === null) return;\n    event.preventDefault();\n    const target = courses[(next + courses.length) % courses.length];\n    if (!target) return;\n    setActive(target.id);\n    (event.currentTarget.querySelector(`[data-course=\"${target.id}\"]`) as HTMLElement | null)?.focus();\n  }\n  return (\n    <section data-slot=\"menu-section\" className={cn(\"mx-auto max-w-3xl py-16 sm:py-20\", className)}>\n      <h2 className=\"text-center text-4xl font-medium tracking-tight\">{title}</h2>\n      <div role=\"tablist\" aria-label=\"Courses\" onKeyDown={keys} className=\"relative mt-8 flex justify-center-safe gap-1 overflow-x-auto\">\n        {courses.map((c) => (\n          <button key={c.id} data-course={c.id} type=\"button\" role=\"tab\" id={`menu-tab-${c.id}`} aria-selected={c.id === active} aria-controls={`menu-panel-${c.id}`} tabIndex={c.id === active ? 0 : -1} onClick={() => setActive(c.id)} className=\"shrink-0 rounded-full px-4 py-1.5 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-selected:bg-foreground aria-selected:text-background\">{c.title}</button>\n        ))}\n      </div>\n      {course ? (\n        <ul id={`menu-panel-${course.id}`} role=\"tabpanel\" aria-labelledby={`menu-tab-${course.id}`} className=\"relative mt-8 divide-y divide-border\">\n          {course.dishes.map((dish) => (\n            <li key={dish.name} className=\"flex justify-between gap-6 py-4\">\n              <div>\n                <p className=\"font-medium\">\n                  {dish.name}\n                  {dish.tags?.map((tag) => <span key={tag}><abbr title={legend[tag] ?? tag} aria-hidden=\"true\" className=\"ml-2 rounded border border-border px-1 text-[10px] font-normal tracking-wide text-muted-foreground no-underline\">{tag}</abbr><span className=\"sr-only\">, {legend[tag] ?? tag}</span></span>)}\n                </p>\n                {dish.description ? <p className=\"mt-1 text-sm leading-relaxed text-muted-foreground\">{dish.description}</p> : null}\n              </div>\n              <p className=\"shrink-0 font-medium tabular-nums\">{dish.price}</p>\n            </li>\n          ))}\n        </ul>\n      ) : null}\n      {Object.keys(legend).length || footnote ? (\n        <p className=\"mt-6 text-center text-xs text-muted-foreground\">\n          {Object.entries(legend).map(([tag, meaning]) => `${tag}: ${meaning}`).join(\" · \")}{footnote ? <><br />{footnote}</> : null}\n        </p>\n      ) : null}\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/menu-section.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "content"
+  },
+  "categories": [
+    "marketing",
+    "content"
+  ],
+  "type": "registry:block"
+}

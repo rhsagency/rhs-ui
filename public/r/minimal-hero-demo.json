@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "minimal-hero-demo",
+  "title": "Minimal hero demo",
+  "description": "A working preview of Minimal hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/minimal-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/minimal-hero-demo.tsx",
+      "content": "import { MinimalHero } from \"@rhs-ui/marketing/minimal-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <MinimalHero\n        title=\"We design buildings that age well.\"\n        subtitle=\"An architecture studio in Rotterdam, working on homes, schools and the spaces between them.\"\n        links={[{ label: \"See the work\", href: \"#work\" }, { label: \"Studio\", href: \"#studio\" }]}\n        meta={<><span>Rotterdam, since 2011</span><span>Taking on projects for 2027</span></>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

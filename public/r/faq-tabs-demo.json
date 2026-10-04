@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-tabs-demo",
+  "title": "Faq tabs demo",
+  "description": "A working preview of Faq tabs.",
+  "registryDependencies": [
+    "https://rhsui.com/r/faq-tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/faq-tabs-demo.tsx",
+      "content": "\"use client\";\n\nimport { FaqTabs } from \"@rhs-ui/marketing/faq-tabs\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"px-6\">\n      <FaqTabs\n        title=\"Frequently asked\"\n        description=\"Pick a topic. Still stuck? We answer email within a working day.\"\n        groups={[\n          { id: \"billing\", label: \"Billing\", items: [{ question: \"Can I pay by invoice?\", answer: \"Yes, annual plans can be paid by bank transfer with a 30-day term.\" }, { question: \"Do you charge VAT?\", answer: \"Prices exclude VAT for businesses in the EU with a valid VAT number.\" }] },\n          { id: \"account\", label: \"Account\", items: [{ question: \"Can I change my email address?\", answer: \"Yes, under Settings, Profile. We send a confirmation to the new address.\" }] },\n          { id: \"security\", label: \"Security\", items: [{ question: \"Where is my data stored?\", answer: \"In the EU, in two regions, encrypted at rest and in transit.\" }, { question: \"Do you support two-step sign-in?\", answer: \"Yes, with an authenticator app or a security key.\" }] },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

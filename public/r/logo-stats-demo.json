@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-stats-demo",
+  "title": "Logo stats demo",
+  "description": "A working preview of Logo stats.",
+  "registryDependencies": [
+    "https://rhsui.com/r/logo-stats.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/logo-stats-demo.tsx",
+      "content": "import { LogoStats } from \"@rhs-ui/marketing/logo-stats\";\n\nfunction Wordmark({ name, weight = 600 }: { name: string; weight?: number }): React.JSX.Element {\n  return (\n    <svg role=\"img\" aria-label={name} viewBox=\"0 0 140 28\" className=\"h-7 w-auto\">\n      <text x=\"0\" y=\"21\" fontSize=\"20\" fontWeight={weight} fill=\"currentColor\" letterSpacing=\"-0.5\">{name}</text>\n    </svg>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6\">\n      <LogoStats\n        title=\"Trusted by 2,400 teams across Europe\"\n        logos={[\n          { name: \"Northwind\", logo: <Wordmark name=\"Northwind\" /> },\n          { name: \"Halcyon\", logo: <Wordmark name=\"Halcyon\" weight={500} /> },\n          { name: \"Kestrel\", logo: <Wordmark name=\"Kestrel\" weight={700} /> },\n          { name: \"Polder\", logo: <Wordmark name=\"Polder\" /> },\n          { name: \"Lumen\", logo: <Wordmark name=\"Lumen\" weight={500} /> },\n        ]}\n        stats={[\n          { value: \"2,400\", label: \"Teams\" },\n          { value: \"99.98%\", label: \"Uptime last year\" },\n          { value: \"8 min\", label: \"Median first reply\" },\n          { value: \"4.8/5\", label: \"Average rating\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

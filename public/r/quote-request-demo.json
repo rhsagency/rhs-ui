@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quote-request-demo",
+  "title": "Quote request demo",
+  "description": "A working preview of Quote request.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/quote-request.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/quote-request-demo.tsx",
+      "content": "\"use client\";\n\nimport { IconBathtub, IconBricks, IconPaintRoller, IconUtensils } from \"@rhs-ui/icons\";\nimport { QuoteRequest } from \"@rhs-ui/marketing/quote-request\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"px-6\">\n      <QuoteRequest\n        title=\"What does it cost? Ask us.\"\n        description=\"A clear quote within two working days, without a sales visit unless you want one.\"\n        services={[\n          { value: \"kitchen\", label: \"Kitchen\", description: \"Design, build and fitting\", icon: <IconUtensils /> },\n          { value: \"bathroom\", label: \"Bathroom\", description: \"Including tiling\", icon: <IconBathtub /> },\n          { value: \"plaster\", label: \"Plastering\", description: \"Walls and ceilings\", icon: <IconPaintRoller /> },\n          { value: \"masonry\", label: \"Masonry\", description: \"Repairs and new walls\", icon: <IconBricks /> },\n        ]}\n        onSubmit={() => new Promise((resolve) => setTimeout(resolve, 600))}\n        note=\"We use your details only for this quote.\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

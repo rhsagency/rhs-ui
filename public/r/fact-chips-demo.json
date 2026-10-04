@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fact-chips-demo",
+  "title": "Fact chips demo",
+  "description": "A working preview of Fact chips.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/fact-chips.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/fact-chips-demo.tsx",
+      "content": "import { IconClock, IconDumbbell, IconParking, IconShower, IconUsers } from \"@rhs-ui/icons\";\nimport { FactChips } from \"@rhs-ui/primitives/fact-chips\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-xl gap-6 p-6\">\n      <FactChips\n        label=\"Class details\"\n        facts={[\n          { icon: <IconClock />, label: \"60 min\" },\n          { icon: <IconUsers />, label: \"Up to 12 people\" },\n          { icon: <IconDumbbell />, label: \"All levels\" },\n          { icon: <IconShower />, label: \"Showers\" },\n          { icon: <IconParking />, label: \"Free parking\" },\n        ]}\n      />\n      <FactChips size=\"sm\" facts={[{ icon: <IconClock />, label: \"45 min\" }, { icon: <IconUsers />, label: \"Small group\" }]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

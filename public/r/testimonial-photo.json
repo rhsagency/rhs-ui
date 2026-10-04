@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-photo",
+  "title": "Testimonial photo",
+  "description": "One customer, big: their photo filling half the section and their words set large next to it, with an optional star rating.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/testimonial-photo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { IconStar } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TestimonialPhotoProps {\n  quote: string;\n  name: string;\n  role?: string;\n  /** A portrait or a photo of their work: always visible, never animated in. */\n  photo: ReactNode;\n  /** Out of five; shown as stars with the number for screen readers. */\n  rating?: number;\n  /** Put the photo on the right instead. */\n  reverse?: boolean;\n  className?: string;\n}\n\n/**\n * One customer, big: their photo filling half the section and their words\n * set large next to it, with an optional star rating. A figure with a\n * blockquote and caption, so the name belongs to the quote.\n */\nexport function TestimonialPhoto({ quote, name, role, photo, rating, reverse = false, className }: TestimonialPhotoProps) {\n  return (\n    <figure data-slot=\"testimonial-photo\" className={cn(\"grid items-center gap-10 py-16 sm:py-20 md:grid-cols-2 md:gap-16\", className)}>\n      <div className={cn(\"aspect-[4/5] overflow-clip rounded-3xl bg-muted [&_img]:size-full [&_img]:object-cover\", reverse && \"md:order-2\")}>{photo}</div>\n      <div>\n        {rating !== undefined ? (\n          <p className=\"flex items-center gap-1\">\n            {Array.from({ length: 5 }, (_, index) => (\n              <IconStar key={index} aria-hidden=\"true\" className={cn(\"size-4\", index < Math.round(rating) ? \"fill-current\" : \"opacity-30\")} />\n            ))}\n            <span className=\"sr-only\">Rated {rating} out of 5</span>\n          </p>\n        ) : null}\n        <blockquote className=\"mt-5 text-2xl leading-snug font-medium tracking-[-.025em] text-balance sm:text-3xl\">“{quote}”</blockquote>\n        <figcaption className=\"mt-8 border-t border-border pt-5 text-sm\">\n          <span className=\"block font-medium\">{name}</span>\n          {role ? <span className=\"block text-muted-foreground\">{role}</span> : null}\n        </figcaption>\n      </div>\n    </figure>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/testimonial-photo.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.6.0",
+    "since": "0.6.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

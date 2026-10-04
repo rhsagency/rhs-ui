@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "problem-solution-demo",
+  "title": "Problem solution demo",
+  "description": "A working preview of Problem solution.",
+  "registryDependencies": [
+    "https://rhsui.com/r/problem-solution.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/problem-solution-demo.tsx",
+      "content": "import { ProblemSolution } from \"@rhs-ui/marketing/problem-solution\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl px-6\">\n      <ProblemSolution\n        title=\"From status meetings to shipped work.\"\n        rows={[\n          { before: \"A Monday meeting to find out where things stand\", after: \"Status is on the roadmap, always current\" },\n          { before: \"Decisions buried in chat threads\", after: \"A decision log next to the work it changed\" },\n          { before: \"Release notes written from memory\", after: \"Notes drafted from the finished tasks\" },\n          { before: \"Clients emailing for updates\", after: \"A read-only link that answers them\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

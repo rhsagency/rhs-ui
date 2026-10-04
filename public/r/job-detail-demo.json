@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "job-detail-demo",
+  "title": "Job detail demo",
+  "description": "A working preview of Job detail.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/job-detail.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/job-detail-demo.tsx",
+      "content": "import { Button } from \"@rhs-ui/primitives/button\";\nimport { JobDetail } from \"@rhs-ui/marketing/job-detail\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"px-6\">\n      <JobDetail\n        titleAs=\"h2\"\n        title=\"Senior product designer\"\n        team=\"Design\"\n        location=\"Utrecht or remote in the EU\"\n        hours=\"Full-time, 32 to 40 hours\"\n        salary=\"€4,800 to €6,000 a month\"\n        intro=\"We are looking for a designer who likes calm software and the hard work it takes to make something simple.\"\n        sections={[\n          { title: \"What you will do\", points: [\"Own the design of planning and reporting, from research to release.\", \"Work in a team of four with two engineers and a PM.\", \"Write down your decisions; we read them.\"] },\n          { title: \"What you bring\", points: [\"Five or more years designing software people use daily.\", \"Examples of work you would defend in detail.\", \"Comfort with saying no to features.\"] },\n          { title: \"What we offer\", points: [\"A four-day week option.\", \"€1,500 a year for learning.\", \"Thirty days of holiday.\"] },\n        ]}\n        apply={<Button size=\"lg\">Apply in 5 minutes</Button>}\n        contact={<>Questions? Write to <a href=\"mailto:jobs@example.com\">jobs@example.com</a>.</>}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
