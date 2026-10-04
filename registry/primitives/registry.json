@@ -5775,48 +5775,6 @@
       ]
     },
     {
-      "name": "split-view",
-      "type": "registry:ui",
-      "title": "Split view",
-      "description": "The list-and-detail layout of mail, chat and admin apps: side by side on wide screens, and on a phone one at a time, the detail with a back button when something is selected.",
-      "categories": [
-        "primitives",
-        "layout"
-      ],
-      "meta": {
-        "tier": "free",
-        "version": "0.6.0",
-        "since": "0.6.0",
-        "status": "stable"
-      },
-      "dependencies": [],
-      "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
-      ],
-      "files": [
-        {
-          "path": "registry/primitives/split-view.tsx",
-          "type": "registry:ui",
-          "target": "components/rhs-ui/primitives/split-view.tsx"
-        }
-      ]
-    },
-    {
-      "name": "split-view-demo",
-      "type": "registry:example",
-      "title": "Split view demo",
-      "description": "A working preview of Split view.",
-      "registryDependencies": [
-        "https://rhsui.com/r/split-view.json"
-      ],
-      "files": [
-        {
-          "path": "registry/examples/split-view-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
       "name": "auto-grid",
       "type": "registry:ui",
       "title": "Auto grid",
