@@ -14,7 +14,7 @@ import { FREE_BACKGROUNDS } from "./free-painters.mjs";
 const root = path.resolve(import.meta.dirname, "..", "..");
 const pascal = (name) => name.split("-").map((part) => part[0].toUpperCase() + part.slice(1)).join("");
 /** The mood of the backgrounds that existed before this generator, for the gallery filter. */
-const EXISTING_MOODS = { "dot-field": "calm", "contour-field": "organic", "orbit-field": "cosmic", "architect-grid": "technical", "flow-field": "organic", "particle-network": "technical", "beam-grid": "technical", "signal-bars": "data", "warp-field": "cosmic" };
+const EXISTING_MOODS = { "dot-field": "calm", "contour-field": "organic", "orbit-field": "cosmic", "architect-grid": "technical", "flow-field": "organic", "particle-network": "technical", "beam-grid": "technical", "signal-bars": "data" };
 export const MOODS = ["calm", "technical", "cosmic", "organic", "data"];
 
 for (const item of FREE_BACKGROUNDS) {

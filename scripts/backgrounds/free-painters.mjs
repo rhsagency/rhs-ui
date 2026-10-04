@@ -25,39 +25,6 @@ export const FREE_BACKGROUNDS = [
   }`,
   },
   {
-    name: "wave-mesh", title: "Wave Mesh", mood: "technical",
-    description: "A wireframe landscape rolling toward you, ridges rising and settling as it comes.",
-    tagline: "The ground keeps moving.", use: "Launches, hardware, product reveals",
-    body: `
-  const rows = 26, cols = 36, horizon = height * 0.28;
-  const travel = time * 0.6, shift = Math.floor(travel), fraction = travel - shift;
-  const grid: { x: number; y: number; depth: number }[][] = [];
-  for (let r = 0; r < rows; r++) {
-    const depth = ((r + fraction) / rows) ** 2;
-    const row = r - shift;
-    const base = horizon + depth * (height - horizon) * 1.05;
-    const spread = 0.35 + depth * 1.1;
-    grid.push(Array.from({ length: cols + 1 }, (_, c) => {
-      const u = c / cols - 0.5;
-      const lift = (Math.sin(u * 9 + time * 0.8 + row * 0.35) + Math.cos(u * 4 - time * 0.5 + row * 0.2)) * 18 * depth;
-      return { x: width * 0.5 + u * width * spread, y: base - lift, depth };
-    }));
-  }
-  for (const line of grid) {
-    ctx.globalAlpha = 0.05 + line[0]!.depth * 0.42;
-    ctx.beginPath();
-    line.forEach((point, c) => (c ? ctx.lineTo(point.x, point.y) : ctx.moveTo(point.x, point.y)));
-    ctx.stroke();
-  }
-  for (let c = 0; c <= cols; c++) {
-    for (let r = 1; r < rows; r++) {
-      const a = grid[r - 1]![c]!, b = grid[r]![c]!;
-      ctx.globalAlpha = 0.04 + b.depth * 0.3;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    }
-  }`,
-  },
-  {
     name: "hex-pulse", title: "Hex Pulse", mood: "technical",
     description: "A honeycomb that lights up in rings spreading from the centre.",
     tagline: "Built cell by cell.", use: "Infrastructure, security, platforms",
@@ -79,23 +46,6 @@ export const FREE_BACKGROUNDS = [
   }`,
   },
   {
-    name: "isometric-blocks", title: "Isometric Blocks", mood: "technical",
-    description: "An isometric field of tiles lifting and settling in slow waves.",
-    tagline: "Stack it up.", use: "Developer tools, data, architecture",
-    body: `
-  const s = 22, rise = s * 0.58;
-  for (let gy = -2; gy < height / rise + 3; gy++) {
-    for (let gx = -2; gx < width / (s * 2) + 2; gx++) {
-      const x = gx * s * 2 + (gy % 2 ? s : 0), y = gy * rise;
-      const lift = (Math.sin(gx * 0.6 + time) + Math.cos(gy * 0.4 - time * 0.7)) * 6;
-      ctx.globalAlpha = 0.1 + (lift + 12) / 24 * 0.35;
-      ctx.beginPath();
-      ctx.moveTo(x, y - lift - rise); ctx.lineTo(x + s, y - lift); ctx.lineTo(x, y - lift + rise); ctx.lineTo(x - s, y - lift);
-      ctx.closePath(); ctx.stroke();
-    }
-  }`,
-  },
-  {
     name: "moire-rings", title: "Moire Rings", mood: "calm",
     description: "Two sets of fine circles sliding past each other, making slow interference patterns.",
     tagline: "Look a little closer.", use: "Editorial, art direction, optics",
@@ -105,62 +55,6 @@ export const FREE_BACKGROUNDS = [
   ctx.globalAlpha = 0.22;
   for (const cx of [width * 0.45 + offset, width * 0.55 - offset]) {
     for (let r = 6; r < reach; r += 7) { ctx.beginPath(); ctx.arc(cx, height * 0.5, r, 0, Math.PI * 2); ctx.stroke(); }
-  }`,
-  },
-  {
-    name: "spiral-arms", title: "Spiral Arms", mood: "cosmic",
-    description: "A three-armed galaxy of points turning slowly around its core.",
-    tagline: "Think bigger.", use: "Space, science, ambitious launches",
-    body: `
-  const cx = width * 0.5, cy = height * 0.5, reach = Math.hypot(width, height) * 0.5;
-  for (let i = 0; i < 760; i++) {
-    const t = i / 760;
-    const a = t * 9 + (i % 3) * ((Math.PI * 2) / 3) - time * 0.25 + Math.sin(i * 12.9898) * 0.35;
-    ctx.globalAlpha = (1 - t) * 0.55 + 0.05;
-    ctx.fillRect(cx + Math.cos(a) * t * reach * 0.95, cy + Math.sin(a) * t * reach * 0.6, 1.5, 1.5);
-  }`,
-  },
-  {
-    name: "glyph-rain", title: "Glyph Rain", mood: "technical",
-    description: "Columns of code characters falling at their own pace, bright at the head.",
-    tagline: "Ship it.", use: "Developer tools, APIs, security",
-    body: `
-  const size = 14, cols = Math.ceil(width / size), rows = height / size;
-  const chars = "01<>/{}[]=+*";
-  ctx.font = (size - 2) + "px ui-monospace, SFMono-Regular, Menlo, monospace";
-  ctx.textBaseline = "top";
-  for (let c = 0; c < cols; c++) {
-    const speed = 4 + ((c * 7) % 5), length = 8 + ((c * 13) % 10);
-    const head = Math.floor((time * speed + c * 3.7) % (rows + length));
-    for (let k = 0; k < length; k++) {
-      const row = head - k;
-      if (row < 0 || row > rows) continue;
-      ctx.globalAlpha = k === 0 ? 0.9 : (1 - k / length) * 0.35;
-      ctx.fillText(chars.charAt((c * 31 + row * 17 + Math.floor(time * 3)) % chars.length), c * size, row * size);
-    }
-  }`,
-  },
-  {
-    name: "radar-sweep", title: "Radar Sweep", mood: "data",
-    description: "A radar scope with a sweeping beam that lights up targets as it passes.",
-    tagline: "Nothing gets missed.", use: "Monitoring, security, logistics",
-    body: `
-  const cx = width * 0.5, cy = height * 0.5, R = Math.min(width, height) * 0.46;
-  ctx.globalAlpha = 0.18;
-  for (let k = 1; k <= 4; k++) { ctx.beginPath(); ctx.arc(cx, cy, (R * k) / 4, 0, Math.PI * 2); ctx.stroke(); }
-  ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R); ctx.stroke();
-  const angle = (time * 1.1) % (Math.PI * 2);
-  for (let k = 0; k < 40; k++) {
-    const b = angle - k * 0.02;
-    ctx.globalAlpha = (1 - k / 40) * 0.35;
-    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(b) * R, cy + Math.sin(b) * R); ctx.stroke();
-  }
-  for (const [bx, by] of [[0.3, 0.62], [0.71, 0.28], [0.55, 0.8], [0.18, 0.35], [0.85, 0.55]] as const) {
-    const x = cx + (bx - 0.5) * 1.6 * R, y = cy + (by - 0.5) * 1.6 * R;
-    let since = (angle - Math.atan2(y - cy, x - cx)) % (Math.PI * 2);
-    if (since < 0) since += Math.PI * 2;
-    ctx.globalAlpha = Math.max(0, 1 - since / 2.5) * 0.9;
-    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
   }`,
   },
   {
@@ -201,91 +95,6 @@ export const FREE_BACKGROUNDS = [
       ctx.fillRect(x, Math.abs(hy) * height, size, size);
     }
   });`,
-  },
-  {
-    name: "ribbon-flow", title: "Ribbon Flow", mood: "organic",
-    description: "Silk ribbons of fine threads sweeping across the surface, twisting as they turn.",
-    tagline: "Effortless, on purpose.", use: "Beauty, lifestyle, premium brands",
-    body: `
-  for (let k = 0; k < 4; k++) {
-    for (let i = 0; i < 14; i++) {
-      ctx.globalAlpha = 0.07 + (1 - Math.abs(i - 7) / 7) * 0.2;
-      ctx.beginPath();
-      for (let x = -10; x <= width + 10; x += 8) {
-        const u = x / width;
-        const center = height * (0.2 + k * 0.2) + Math.sin(u * 3 + time * 0.4 + k) * height * 0.12;
-        const twist = 1 + Math.sin(u * 4 + time + k) * 0.8;
-        const y = center + (i - 7) * 3 * twist;
-        if (x === -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-    }
-  }`,
-  },
-  {
-    name: "circuit-trace", title: "Circuit Trace", mood: "technical",
-    description: "Board traces with right-angle turns and signals racing along them to their pads.",
-    tagline: "Everything, wired.", use: "Hardware, IoT, developer platforms",
-    helpers: `
-function seeded(seed: number): () => number {
-  return () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-}
-const random = seeded(11);
-/** Fourteen traces in grid units: a start point and five turns each. */
-const TRACES = Array.from({ length: 14 }, () => {
-  let x = Math.floor(random() * 40), y = Math.floor(random() * 24);
-  const points: [number, number][] = [[x, y]];
-  let horizontal = random() > 0.5;
-  for (let s = 0; s < 5; s++) {
-    const step = Math.floor(random() * 6) + 2;
-    if (horizontal) x += random() > 0.5 ? step : -step; else y += random() > 0.5 ? step : -step;
-    points.push([x, y]);
-    horizontal = !horizontal;
-  }
-  return points;
-});`,
-    body: `
-  const cell = 24;
-  for (const [index, trace] of TRACES.entries()) {
-    const points = trace.map(([gx, gy]) => [gx * cell, gy * cell] as const);
-    ctx.globalAlpha = 0.2;
-    ctx.beginPath();
-    points.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
-    ctx.stroke();
-    for (const [x, y] of [points[0]!, points[points.length - 1]!]) { ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.stroke(); }
-    const lengths = points.slice(1).map(([x, y], i) => Math.abs(x - points[i]![0]) + Math.abs(y - points[i]![1]));
-    const total = lengths.reduce((a, b) => a + b, 0);
-    let along = ((time * 90 + index * 57) % (total + 160)) - 40;
-    for (let i = 0; i < lengths.length && along >= 0; i++) {
-      if (along <= lengths[i]!) {
-        const [x0, y0] = points[i]!, [x1, y1] = points[i + 1]!, f = along / lengths[i]!;
-        ctx.globalAlpha = 0.95;
-        ctx.beginPath(); ctx.arc(x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, 2.2, 0, Math.PI * 2); ctx.fill();
-        break;
-      }
-      along -= lengths[i]!;
-    }
-  }`,
-  },
-  {
-    name: "double-helix", title: "Double Helix", mood: "organic",
-    description: "Two strands winding around each other with rungs between them, turning in depth.",
-    tagline: "In the details.", use: "Biotech, health, research",
-    body: `
-  const mid = height * 0.5, amp = height * 0.22;
-  for (let x = 0; x < width; x += 24) {
-    const a = x * 0.018 + time;
-    ctx.globalAlpha = 0.15;
-    ctx.beginPath(); ctx.moveTo(x, mid + Math.sin(a) * amp); ctx.lineTo(x, mid + Math.sin(a + Math.PI) * amp); ctx.stroke();
-  }
-  for (const strand of [0, Math.PI]) {
-    for (let x = 0; x < width; x += 6) {
-      const a = x * 0.018 + time + strand;
-      const depth = (Math.cos(a) + 1) / 2;
-      ctx.globalAlpha = 0.2 + depth * 0.7;
-      ctx.beginPath(); ctx.arc(x, mid + Math.sin(a) * amp, 0.8 + depth * 1.8, 0, Math.PI * 2); ctx.fill();
-    }
-  }`,
   },
   {
     name: "ridge-lines", title: "Ridge Lines", mood: "data",
@@ -345,20 +154,6 @@ const TRACES = Array.from({ length: 14 }, () => {
   }`,
   },
   {
-    name: "rising-bubbles", title: "Rising Bubbles", mood: "calm",
-    description: "Bubbles drifting upward and swaying, fading as they reach the surface.",
-    tagline: "Light as air.", use: "Drinks, wellness, playful brands",
-    body: `
-  for (let i = 0; i < 44; i++) {
-    const h1 = Math.abs(Math.sin(i * 12.9898) * 43758.5453) % 1, h2 = Math.abs(Math.sin(i * 78.233) * 12543.891) % 1;
-    const speed = 18 + h2 * 30, radius = 3 + h1 * 9;
-    const y = height + 30 - ((time * speed + h2 * height * 1.3) % (height + 60));
-    const x = h1 * width + Math.sin(time + i) * 12;
-    ctx.globalAlpha = Math.min(1, y / (height * 0.5)) * 0.4;
-    ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.stroke();
-  }`,
-  },
-  {
     name: "fireflies", title: "Fireflies", mood: "calm",
     description: "Soft points of light wandering in loose loops and blinking on and off.",
     tagline: "A little magic.", use: "Evening modes, hospitality, storytelling",
@@ -371,71 +166,6 @@ const TRACES = Array.from({ length: 14 }, () => {
     for (const [r, a] of [[10, 0.06], [5, 0.15], [1.8, 0.9]] as const) {
       ctx.globalAlpha = a * glow;
       ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-    }
-  }`,
-  },
-  {
-    name: "depth-tunnel", title: "Depth Tunnel", mood: "cosmic",
-    description: "Rounded frames rushing toward you out of a vanishing point, twisting as they come.",
-    tagline: "Go deeper.", use: "Gaming, events, immersive launches",
-    body: `
-  const cx = width * 0.5, cy = height * 0.5, reach = Math.hypot(width, height) * 0.62;
-  for (let k = 0; k < 18; k++) {
-    const z = (k / 18 + time * 0.12) % 1;
-    const size = z ** 2.2 * reach;
-    ctx.save(); ctx.translate(cx, cy); ctx.rotate(z * 0.6 + time * 0.05);
-    ctx.globalAlpha = z * 0.6;
-    ctx.beginPath(); ctx.roundRect(-size, -size * 0.62, size * 2, size * 1.24, size * 0.08); ctx.stroke();
-    ctx.restore();
-  }`,
-  },
-  {
-    name: "lissajous", title: "Lissajous", mood: "cosmic",
-    description: "Four harmonic curves slowly changing phase, like an oscilloscope drawing music.",
-    tagline: "In harmony.", use: "Audio, science, mathematics",
-    body: `
-  const curves = [[3, 2], [5, 4], [3, 4], [5, 6]] as const;
-  curves.forEach(([a, b], index) => {
-    const scale = 0.18 + index * 0.07;
-    ctx.globalAlpha = 0.18 + index * 0.08;
-    ctx.beginPath();
-    for (let i = 0; i <= 320; i++) {
-      const t = (i / 320) * Math.PI * 2;
-      const x = width * 0.5 + Math.sin(a * t + time * 0.3 + index) * width * scale;
-      const y = height * 0.5 + Math.sin(b * t) * height * scale * 1.2;
-      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-    }
-    ctx.stroke();
-  });`,
-  },
-  {
-    name: "sunflower", title: "Sunflower", mood: "calm",
-    description: "A golden-angle spiral of points turning slowly, a wave of growth running out from the centre.",
-    tagline: "Grown, not made.", use: "Nature, food, sustainability",
-    body: `
-  const count = 540, c = Math.min(width, height) / (2.1 * Math.sqrt(count));
-  const golden = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < count; i++) {
-    const r = c * Math.sqrt(i), a = i * golden + time * 0.1;
-    const swell = (Math.sin(Math.sqrt(i) * 0.9 - time * 2) + 1) / 2;
-    ctx.globalAlpha = 0.25 + swell * 0.55;
-    ctx.beginPath(); ctx.arc(width * 0.5 + Math.cos(a) * r, height * 0.5 + Math.sin(a) * r, 0.8 + swell * 1.6, 0, Math.PI * 2); ctx.fill();
-  }`,
-  },
-  {
-    name: "ascii-field", title: "ASCII Field", mood: "technical",
-    description: "A field of characters whose density follows a drifting pattern, like a terminal dreaming.",
-    tagline: "Text, all the way down.", use: "Developer tools, retro, terminals",
-    body: `
-  const cw = 16, ch = 22, ramp = " .:-=+*#%@";
-  ctx.font = "13px ui-monospace, SFMono-Regular, Menlo, monospace";
-  ctx.textBaseline = "top";
-  ctx.globalAlpha = 0.5;
-  for (let y = 0; y < height; y += ch) {
-    for (let x = 0; x < width; x += cw) {
-      const v = (Math.sin(x * 0.011 + time * 0.7) + Math.sin(y * 0.017 - time * 0.5) + Math.sin((x + y) * 0.007 + time * 0.3) + 3) / 6;
-      const glyph = ramp[Math.min(ramp.length - 1, Math.floor(v * ramp.length))]!;
-      if (glyph !== " ") ctx.fillText(glyph, x, y);
     }
   }`,
   },
@@ -459,81 +189,6 @@ const TRACES = Array.from({ length: 14 }, () => {
       ctx.globalAlpha = 0.12 + light * 0.8;
       ctx.beginPath(); ctx.arc(x, y, 1 + light * 1.8, 0, Math.PI * 2); ctx.fill();
     }
-  }`,
-  },
-  {
-    name: "oscilloscope", title: "Oscilloscope", mood: "data",
-    description: "A measuring grid with three waveforms tracing through it, one bright, two faint.",
-    tagline: "Measured, not guessed.", use: "Hardware, audio, analytics",
-    body: `
-  ctx.globalAlpha = 0.1;
-  ctx.beginPath();
-  for (let i = 1; i < 10; i++) { const x = (width * i) / 10; ctx.moveTo(x, 0); ctx.lineTo(x, height); }
-  for (let i = 1; i < 6; i++) { const y = (height * i) / 6; ctx.moveTo(0, y); ctx.lineTo(width, y); }
-  ctx.stroke();
-  ([[0.8, 1.5, 1], [0.45, 1, 1.7], [0.25, 1, 2.6]] as const).forEach(([alpha, line, ratio]) => {
-    ctx.globalAlpha = alpha; ctx.lineWidth = line;
-    ctx.beginPath();
-    for (let x = 0; x <= width; x += 3) {
-      const u = x / width;
-      const y = height * 0.5 + (Math.sin(u * 12 * ratio + time * 2) * 0.6 + Math.sin(u * 31 - time * 1.3) * 0.2) * height * 0.28;
-      if (x) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-    }
-    ctx.stroke();
-  });`,
-  },
-  {
-    name: "live-chart", title: "Live Chart", mood: "data",
-    description: "Graph paper with a line chart drawing itself, holding, then starting over.",
-    tagline: "Watch it grow.", use: "Dashboards, finance, growth stories",
-    helpers: `
-/** A fixed random walk, so the chart tells the same good story every time. */
-const VALUES = (() => {
-  let seed = 7, value = 0.35;
-  return Array.from({ length: 60 }, () => {
-    seed = (seed * 16807) % 2147483647;
-    value = Math.min(0.92, Math.max(0.08, value + (seed / 2147483647 - 0.42) * 0.09));
-    return value;
-  });
-})();`,
-    body: `
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (let x = 0; x < width; x += 12) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, height); }
-  for (let y = 0; y < height; y += 12) { ctx.moveTo(0, y + 0.5); ctx.lineTo(width, y + 0.5); }
-  ctx.globalAlpha = 0.06; ctx.stroke();
-  ctx.beginPath();
-  for (let x = 0; x < width; x += 60) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, height); }
-  for (let y = 0; y < height; y += 60) { ctx.moveTo(0, y + 0.5); ctx.lineTo(width, y + 0.5); }
-  ctx.globalAlpha = 0.12; ctx.stroke();
-  const cycle = (time * 0.16) % 1.3;
-  const shown = Math.min(1, cycle) * (VALUES.length - 1);
-  const fade = cycle > 1.15 ? 1 - (cycle - 1.15) / 0.15 : 1;
-  ctx.globalAlpha = 0.9 * fade; ctx.lineWidth = 2;
-  ctx.beginPath();
-  for (let i = 0; i <= shown; i++) {
-    const x = width * 0.06 + (i / (VALUES.length - 1)) * width * 0.88, y = height * (1 - VALUES[i]!) ;
-    if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-  }
-  ctx.stroke();`,
-  },
-  {
-    name: "polygon-bloom", title: "Polygon Bloom", mood: "cosmic",
-    description: "Nested polygons from triangle to octagon, each turning its own way.",
-    tagline: "Every angle covered.", use: "Crypto, design tools, geometry",
-    body: `
-  const cx = width * 0.5, cy = height * 0.5, reach = Math.min(width, height) * 0.46;
-  for (let k = 0; k < 12; k++) {
-    const sides = 3 + (k % 6), radius = reach * ((k + 1) / 12);
-    const spin = time * 0.15 * (k % 2 ? 1 : -1) * (1 + k * 0.08);
-    ctx.globalAlpha = 0.12 + (k / 12) * 0.3;
-    ctx.beginPath();
-    for (let i = 0; i <= sides; i++) {
-      const a = spin + (i / sides) * Math.PI * 2;
-      const x = cx + Math.cos(a) * radius, y = cy + Math.sin(a) * radius;
-      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-    }
-    ctx.stroke();
   }`,
   },
   {
@@ -568,22 +223,6 @@ const VALUES = (() => {
     const x = ((h1 * (width + 100) - y * 0.2) % (width + 100) + width + 100) % (width + 100) - 50;
     ctx.globalAlpha = 0.12 + h2 * 0.25;
     ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - length * 0.2, y + length); ctx.stroke();
-  }`,
-  },
-  {
-    name: "light-curtain", title: "Light Curtain", mood: "organic",
-    description: "Hanging threads of light swaying like an aurora curtain.",
-    tagline: "Let it glow.", use: "Night modes, music, luxury",
-    body: `
-  for (let x = 0; x < width; x += 6) {
-    const u = x / width;
-    const top = height * (0.12 + 0.08 * Math.sin(u * 5 + time * 0.4));
-    const length = height * (0.3 + 0.28 * (Math.sin(u * 9 - time * 0.6) + 1) / 2);
-    const strength = (Math.sin(u * 14 + time) + 1) / 2;
-    for (let s = 0; s < 3; s++) {
-      ctx.globalAlpha = (0.08 + strength * 0.3) * (1 - s / 3);
-      ctx.beginPath(); ctx.moveTo(x, top + (length * s) / 3); ctx.lineTo(x, top + (length * (s + 1)) / 3); ctx.stroke();
-    }
   }`,
   },
 ];
