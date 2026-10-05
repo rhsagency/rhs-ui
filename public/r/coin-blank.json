@@ -21,6 +21,7 @@
     "since": "0.4.0",
     "status": "stable",
     "preview": "inline",
+    "niche": "finance-crypto",
     "family": "models"
   },
   "docs": "Pass this editable primitive recipe to ModelViewer to explore or export it as GLB.",

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "potted-plant-demo",
+  "title": "Potted plant demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/potted-plant.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/potted-plant-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { pottedPlant } from \"@rhs-ui/models/potted-plant\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={pottedPlant} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

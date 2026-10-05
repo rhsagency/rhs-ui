@@ -27,6 +27,7 @@
     "since": "0.7.0",
     "status": "stable",
     "preview": "inline",
+    "niche": "food-drink",
     "family": "models"
   },
   "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests.",

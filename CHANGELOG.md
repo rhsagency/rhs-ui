@@ -18,6 +18,16 @@ own `meta.version` and are listed when they change.
   padlock) and twelve page templates (studio portfolio, newsletter, agency services,
   changelog, pricing page, architecture studio, restaurant, event conference, online
   course, law firm, podcast, careers), each built only from free items.
+- Twenty-four new free 3D models, each one object: gold bar, piggy bank, leather
+  wallet, donut, apple, cupcake, coffee mug, wine glass, dumbbell, tennis ball,
+  basketball, brick, hammer, paint bucket, house key, potted plant, pill bottle, tooth,
+  pencil, book stack, graduation cap, shopping cart, parcel box and suitcase. Every
+  model names its niche in `meta.niche` (finance and crypto, food and drink, fitness,
+  trades, home, health, work, retail, travel and more).
+- The model viewer frames every model the same way: centred, filling 80% of the frame
+  in every orientation, with an orthographic camera, so long and sparse models no
+  longer look tiny next to compact ones.
+
 
 ## Unreleased (0.5.0)
 

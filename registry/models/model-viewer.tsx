@@ -93,24 +93,56 @@ export function ModelViewer({ model, poster, className, active = false }: ModelV
         }
         if (disposed) { geometries.forEach((geometry) => geometry.dispose()); materials.forEach((material) => material.dispose()); environment.dispose(); renderer.dispose(); return; }
       }
-      const bounds = new T.Box3().setFromObject(group);
+      const bounds = new T.Box3().setFromObject(group, true);
       const center = bounds.getCenter(new T.Vector3());
       group.position.sub(center);
+      const normalScale = 2 / Math.max(...bounds.getSize(new T.Vector3()).toArray());
+      group.position.multiplyScalar(normalScale);
+      group.scale.setScalar(normalScale);
       const pivot = new T.Group();
       pivot.add(group); scene.add(pivot);
-      const extent = bounds.getSize(new T.Vector3()).length();
-      const camera = new T.PerspectiveCamera(35, 1, 0.1, 100);
-      camera.position.set(0, extent * 0.12, extent * 1.55);
+      const camera = new T.OrthographicCamera(-2, 2, 2, -2, .1, 100);
+      camera.position.set(0, .8, 10);
       camera.lookAt(0, 0, 0);
+      camera.updateMatrixWorld(true);
+      // Cache actual vertices, including nested asset transforms. Box corners
+      // overestimate sparse assemblies and make equally framed models look tiny.
+      group.updateWorldMatrix(true, true);
+      const points: import("three").Vector3[] = [];
+      group.traverse((object) => {
+        if (!(object instanceof T.Mesh)) return;
+        const positions = object.geometry.getAttribute("position");
+        for (let i = 0; i < positions.count; i++) points.push(new T.Vector3().fromBufferAttribute(positions, i).applyMatrix4(object.matrixWorld));
+      });
+      const fitMatrix = new T.Matrix4(), point = new T.Vector3();
+      let aspect = 1;
       pivot.rotation.set(0.12, -0.35, 0);
       container.appendChild(renderer.domElement);
       renderer.domElement.setAttribute("aria-hidden", "true");
       renderer.domElement.className = "absolute inset-0 size-full";
-      const render = (): void => { if (!disposed && !document.hidden) renderer.render(scene, camera); };
+      const render = (): void => {
+        if (disposed || document.hidden) return;
+        pivot.updateMatrix();
+        fitMatrix.multiplyMatrices(camera.matrixWorldInverse, pivot.matrix);
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        for (const vertex of points) {
+          point.copy(vertex).applyMatrix4(fitMatrix);
+          minX = Math.min(minX, point.x); maxX = Math.max(maxX, point.x);
+          minY = Math.min(minY, point.y); maxY = Math.max(maxY, point.y);
+        }
+        // Every orientation gets the same 80% longest-axis occupancy and a
+        // centred silhouette, including elongated models and offset assemblies.
+        const height = Math.max(maxY - minY, (maxX - minX) / aspect) / .8;
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+        camera.left = cx - height * aspect / 2; camera.right = cx + height * aspect / 2;
+        camera.top = cy + height / 2; camera.bottom = cy - height / 2;
+        camera.updateProjectionMatrix();
+        renderer.render(scene, camera);
+      };
       const resize = new ResizeObserver(() => {
         const { width, height } = container.getBoundingClientRect();
         if (!width || !height) return;
-        renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); render();
+        renderer.setSize(width, height, false); aspect = width / height; render();
       });
       resize.observe(container);
       const turn = (amount: number): void => { pivot.rotation.y += amount; render(); };

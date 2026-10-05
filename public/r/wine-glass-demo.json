@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wine-glass-demo",
+  "title": "Wine glass demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/wine-glass.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/wine-glass-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { wineGlass } from \"@rhs-ui/models/wine-glass\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={wineGlass} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

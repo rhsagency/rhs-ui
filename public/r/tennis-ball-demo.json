@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tennis-ball-demo",
+  "title": "Tennis ball demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/tennis-ball.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/tennis-ball-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { tennisBall } from \"@rhs-ui/models/tennis-ball\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={tennisBall} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

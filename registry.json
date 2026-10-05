@@ -12864,6 +12864,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -12909,6 +12910,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -12954,6 +12956,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -12998,6 +13001,7 @@
         "version": "0.4.0",
         "since": "0.4.0",
         "status": "stable",
+        "niche": "abstract",
         "family": "models"
       },
       "registryDependencies": [
@@ -13042,6 +13046,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "health-care",
         "family": "models"
       },
       "dependencies": [],
@@ -13071,6 +13076,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13100,6 +13106,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13129,6 +13136,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13158,6 +13166,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "finance-crypto",
         "family": "models"
       },
       "dependencies": [],
@@ -13187,6 +13196,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13216,6 +13226,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13245,6 +13256,7 @@
         "since": "0.4.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "abstract",
         "family": "models"
       },
       "dependencies": [],
@@ -13402,6 +13414,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "home-real-estate",
         "family": "models"
       },
       "dependencies": [],
@@ -13436,6 +13449,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "home-real-estate",
         "family": "models"
       },
       "dependencies": [],
@@ -13470,6 +13484,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "travel-leisure",
         "family": "models"
       },
       "dependencies": [],
@@ -13504,6 +13519,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "work-education",
         "family": "models"
       },
       "dependencies": [],
@@ -13538,6 +13554,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "food-drink",
         "family": "models"
       },
       "dependencies": [],
@@ -13572,6 +13589,7 @@
         "since": "0.7.0",
         "status": "stable",
         "preview": "inline",
+        "niche": "home-real-estate",
         "family": "models"
       },
       "dependencies": [],
@@ -13684,6 +13702,1230 @@
       "files": [
         {
           "path": "registry/examples/padlock-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "gold-bar",
+      "title": "Gold bar",
+      "description": "A single cast gold bar with tapered sides, polished bevels and a blank assay panel.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "finance-crypto",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/gold-bar.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/gold-bar.ts"
+        },
+        {
+          "path": "registry/models/assets/goldBar.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/goldBar.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "gold-bar-demo",
+      "type": "registry:example",
+      "title": "Gold bar demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/gold-bar.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/gold-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "piggy-bank",
+      "title": "Piggy bank",
+      "description": "A glazed ceramic piggy bank with a coin slot, tiny feet and a curled tail.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "finance-crypto",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/piggy-bank.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/piggy-bank.ts"
+        },
+        {
+          "path": "registry/models/assets/piggyBank.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/piggyBank.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "piggy-bank-demo",
+      "type": "registry:example",
+      "title": "Piggy bank demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/piggy-bank.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/piggy-bank-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wallet-leather",
+      "title": "Wallet leather",
+      "description": "A folded leather wallet with saddle stitching and a brass snap closure.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "finance-crypto",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/wallet-leather.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/wallet-leather.ts"
+        },
+        {
+          "path": "registry/models/assets/walletLeather.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/walletLeather.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "wallet-leather-demo",
+      "type": "registry:example",
+      "title": "Wallet leather demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/wallet-leather.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wallet-leather-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "donut",
+      "title": "Donut",
+      "description": "A baked ring donut with strawberry glaze and individually placed sugar sprinkles.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "food-drink",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/donut.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/donut.ts"
+        },
+        {
+          "path": "registry/models/assets/donut.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/donut.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "donut-demo",
+      "type": "registry:example",
+      "title": "Donut demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/donut.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/donut-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "apple",
+      "title": "Apple",
+      "description": "A gently lobed red apple with a woody stem and a fresh green leaf.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "food-drink",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/apple.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/apple.ts"
+        },
+        {
+          "path": "registry/models/assets/apple.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/apple.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "apple-demo",
+      "type": "registry:example",
+      "title": "Apple demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/apple.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/apple-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cupcake",
+      "title": "Cupcake",
+      "description": "A pleated cupcake with spiralled vanilla frosting and a small cherry.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "food-drink",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/cupcake.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/cupcake.ts"
+        },
+        {
+          "path": "registry/models/assets/cupcake.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/cupcake.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "cupcake-demo",
+      "type": "registry:example",
+      "title": "Cupcake demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cupcake.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cupcake-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coffee-mug",
+      "title": "Coffee mug",
+      "description": "A hollow blue stoneware mug with a generous handle and dark coffee.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "food-drink",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/coffee-mug.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/coffee-mug.ts"
+        },
+        {
+          "path": "registry/models/assets/coffeeMug.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/coffeeMug.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "coffee-mug-demo",
+      "type": "registry:example",
+      "title": "Coffee mug demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coffee-mug.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coffee-mug-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wine-glass",
+      "title": "Wine glass",
+      "description": "A clear hollow wine glass with a slender stem and a softly turned foot.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "food-drink",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/wine-glass.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/wine-glass.ts"
+        },
+        {
+          "path": "registry/models/assets/wineGlass.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/wineGlass.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "wine-glass-demo",
+      "type": "registry:example",
+      "title": "Wine glass demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/wine-glass.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wine-glass-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dumbbell",
+      "title": "Dumbbell",
+      "description": "A single hexagonal rubber dumbbell with a ribbed steel grip.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "fitness-sport",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/dumbbell.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/dumbbell.ts"
+        },
+        {
+          "path": "registry/models/assets/dumbbell.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/dumbbell.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "dumbbell-demo",
+      "type": "registry:example",
+      "title": "Dumbbell demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dumbbell.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dumbbell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tennis-ball",
+      "title": "Tennis ball",
+      "description": "An olive felt tennis ball with a continuous curved ivory seam.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "fitness-sport",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/tennis-ball.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/tennis-ball.ts"
+        },
+        {
+          "path": "registry/models/assets/tennisBall.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/tennisBall.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "tennis-ball-demo",
+      "type": "registry:example",
+      "title": "Tennis ball demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tennis-ball.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tennis-ball-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "basketball",
+      "title": "Basketball",
+      "description": "A warm leather basketball traced with recessed dark panel channels.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "fitness-sport",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/basketball.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/basketball.ts"
+        },
+        {
+          "path": "registry/models/assets/basketball.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/basketball.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "basketball-demo",
+      "type": "registry:example",
+      "title": "Basketball demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/basketball.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/basketball-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "brick",
+      "title": "Brick",
+      "description": "A single fired clay brick with three recessed cores and subtle face markings.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "trades-construction",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/brick.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/brick.ts"
+        },
+        {
+          "path": "registry/models/assets/brick.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/brick.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "brick-demo",
+      "type": "registry:example",
+      "title": "Brick demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/brick.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/brick-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hammer",
+      "title": "Hammer",
+      "description": "A forged claw hammer with a hickory shaft and a rounded rubber grip.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "trades-construction",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/hammer.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/hammer.ts"
+        },
+        {
+          "path": "registry/models/assets/hammer.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/hammer.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "hammer-demo",
+      "type": "registry:example",
+      "title": "Hammer demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hammer.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hammer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "paint-bucket",
+      "title": "Paint bucket",
+      "description": "An open steel paint tin with a rolled lip, blue paint and a wire bail.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "trades-construction",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/paint-bucket.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/paint-bucket.ts"
+        },
+        {
+          "path": "registry/models/assets/paintBucket.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/paintBucket.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "paint-bucket-demo",
+      "type": "registry:example",
+      "title": "Paint bucket demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/paint-bucket.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/paint-bucket-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "house-key",
+      "title": "House key",
+      "description": "A brass house key with an oval bow, milled blade and distinct cut teeth.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "home-real-estate",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/house-key.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/house-key.ts"
+        },
+        {
+          "path": "registry/models/assets/houseKey.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/houseKey.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "house-key-demo",
+      "type": "registry:example",
+      "title": "House key demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/house-key.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/house-key-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "potted-plant",
+      "title": "Potted plant",
+      "description": "A leafy houseplant rooted in a hollow terracotta pot.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "home-real-estate",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/potted-plant.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/potted-plant.ts"
+        },
+        {
+          "path": "registry/models/assets/pottedPlant.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/pottedPlant.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "potted-plant-demo",
+      "type": "registry:example",
+      "title": "Potted plant demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/potted-plant.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/potted-plant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pill-bottle",
+      "title": "Pill bottle",
+      "description": "An amber medicine bottle with a fluted safety cap and a blank medical label.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "health-care",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/pill-bottle.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/pill-bottle.ts"
+        },
+        {
+          "path": "registry/models/assets/pillBottle.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/pillBottle.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "pill-bottle-demo",
+      "type": "registry:example",
+      "title": "Pill bottle demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pill-bottle.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pill-bottle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooth",
+      "title": "Tooth",
+      "description": "An ivory molar with four rounded cusps and two tapered roots.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "health-care",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/tooth.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/tooth.ts"
+        },
+        {
+          "path": "registry/models/assets/tooth.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/tooth.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "tooth-demo",
+      "type": "registry:example",
+      "title": "Tooth demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tooth.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tooth-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pencil",
+      "title": "Pencil",
+      "description": "A hexagonal yellow pencil with exposed cedar, graphite point and crimped eraser.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "work-education",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/pencil.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/pencil.ts"
+        },
+        {
+          "path": "registry/models/assets/pencil.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/pencil.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "pencil-demo",
+      "type": "registry:example",
+      "title": "Pencil demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pencil.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pencil-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "book-stack",
+      "title": "Book stack",
+      "description": "A compact stack of three clothbound books with visible page edges.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "work-education",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/book-stack.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/book-stack.ts"
+        },
+        {
+          "path": "registry/models/assets/bookStack.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/bookStack.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "book-stack-demo",
+      "type": "registry:example",
+      "title": "Book stack demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/book-stack.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/book-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "graduation-cap",
+      "title": "Graduation cap",
+      "description": "A dark mortarboard with a draped gold cord and a strand tassel.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "work-education",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/graduation-cap.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/graduation-cap.ts"
+        },
+        {
+          "path": "registry/models/assets/graduationCap.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/graduationCap.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "graduation-cap-demo",
+      "type": "registry:example",
+      "title": "Graduation cap demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/graduation-cap.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/graduation-cap-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shopping-cart",
+      "title": "Shopping cart",
+      "description": "A wire shopping cart with an open basket, push handle and four casters.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "retail-commerce",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/shopping-cart.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/shopping-cart.ts"
+        },
+        {
+          "path": "registry/models/assets/shoppingCart.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/shoppingCart.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "shopping-cart-demo",
+      "type": "registry:example",
+      "title": "Shopping cart demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shopping-cart.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shopping-cart-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "parcel-box",
+      "title": "Parcel box",
+      "description": "A kraft parcel sealed with paper tape and an unprinted shipping label.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "retail-commerce",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/parcel-box.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/parcel-box.ts"
+        },
+        {
+          "path": "registry/models/assets/parcelBox.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/parcelBox.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "parcel-box-demo",
+      "type": "registry:example",
+      "title": "Parcel box demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/parcel-box.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/parcel-box-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "suitcase",
+      "title": "Suitcase",
+      "description": "A ribbed hard-shell suitcase with spinner wheels and an extended telescopic handle.",
+      "type": "registry:component",
+      "categories": [
+        "models"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.7.0",
+        "since": "0.7.0",
+        "status": "stable",
+        "niche": "travel-leisure",
+        "preview": "inline",
+        "family": "models"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/models/suitcase.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/models/suitcase.ts"
+        },
+        {
+          "path": "registry/models/assets/suitcase.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/models/assets/suitcase.ts"
+        }
+      ],
+      "docs": "Pass this recipe to ModelViewer. Explore in 3D loads the renderer on demand; Download GLB exports the actual geometry and materials. No textures or external model requests."
+    },
+    {
+      "name": "suitcase-demo",
+      "type": "registry:example",
+      "title": "Suitcase demo",
+      "description": "An interactive example with real state changes and accessible controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/suitcase.json",
+        "https://rhsui.com/r/model-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/suitcase-demo.tsx",
           "type": "registry:example"
         }
       ]

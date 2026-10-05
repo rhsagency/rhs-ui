@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "apple-demo",
+  "title": "Apple demo",
+  "description": "An interactive example with real state changes and accessible controls.",
+  "registryDependencies": [
+    "https://rhsui.com/r/apple.json",
+    "https://rhsui.com/r/model-viewer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/apple-demo.tsx",
+      "content": "\"use client\";\nimport { ModelViewer } from \"@rhs-ui/models/model-viewer\";\nimport { apple } from \"@rhs-ui/models/apple\";\nexport default function ModelDemo(): React.JSX.Element { return <div className=\"w-full max-w-sm p-4\"><ModelViewer model={apple} /></div>; }\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
