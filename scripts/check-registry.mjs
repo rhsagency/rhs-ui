@@ -126,6 +126,17 @@ export function unpositionedScrollProblems(src) {
     : [];
 }
 
+/**
+ * A font family the consumer's Tailwind theme does not have renders nothing:
+ * `font-heading` looks right on rhsui.com, whose theme defines it, and falls
+ * back silently everywhere else. Items inherit the page's font; the defaults
+ * every Tailwind project has (sans, serif, mono) are the only families allowed.
+ */
+export function nonPortableFontProblems(src) {
+  const found = [...new Set([...src.matchAll(/(?<![\w-])font-(heading|display|body|brand|title)(?![\w-])/g)].map((m) => m[0]))];
+  return found.length ? [`uses ${found.join(", ")}, a font family a consumer's theme does not define; inherit the page font instead`] : [];
+}
+
 /** Tailwind reads classes from the source text: `${variant}:w-max` never appears whole, so it is never generated. */
 export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
@@ -223,6 +234,7 @@ export function checkItems(items, read = readSource) {
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of nonPortableFontProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of hrefKeyProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clippedCurrentColorProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of unpositionedScrollProblems(src)) p(`${f.path} ${problem}`);
@@ -353,6 +365,7 @@ const selfTests = [
   ],
   ["a list keyed on href alone", hrefKeyProblems("<li key={link.href}>").length === 1 && hrefKeyProblems("<li key={`${link.label}-${link.href}`}>").length === 0],
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
+  ["a font family only rhsui.com defines", nonPortableFontProblems('<h2 className="font-heading text-4xl">').length === 1 && nonPortableFontProblems('<p className="font-mono font-medium">').length === 0],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],
   ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],
   ["an animated icon without a glyph or with a stale usage", animatedMetaProblems({ meta: { motion: "trigger", usage: "<IconOldAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 2],

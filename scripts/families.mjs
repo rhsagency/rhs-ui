@@ -6,8 +6,8 @@
  * library without a list of names.
  */
 export const FAMILIES = new Set([
-  "actions", "forms", "overlay", "navigation", "data-display", "feedback", "layout", "motion", "scroll", "theme",
-  "page-chrome", "hero", "features", "social-proof", "conversion", "account", "content", "text", "ai",
+  "actions", "forms", "overlay", "navigation", "data-display", "tables", "feedback", "layout", "media", "motion", "scroll", "theme",
+  "page-chrome", "hero", "features", "social-proof", "conversion", "auth", "account", "app-shell", "content", "text", "ai",
   "application", "commerce", "dashboard", "models", "icons", "backgrounds", "templates",
 ]);
 

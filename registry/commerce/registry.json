@@ -101,6 +101,31 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "money",
+      "type": "registry:internal",
+      "title": "Money",
+      "description": "Money in minor units with its currency, and the helpers every commerce item shares: format for a locale, sum and multiply without drift.",
+      "categories": [
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/money.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/commerce/money.ts"
+        }
+      ]
     }
   ]
 }

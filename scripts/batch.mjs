@@ -78,6 +78,9 @@ function manifestProblems(manifest) {
       continue;
     }
     if (!names.has(`${item.name}-demo`)) p(`has no demo; add ${item.name}-demo to the batch`);
+    // Builders work side by side: a file named after something else (a shared helper) can be overwritten by another batch.
+    const own = `registry/${item.categories?.[0]}/${item.name}`;
+    for (const f of item.files ?? []) if (f.path !== `${own}.tsx` && f.path !== `${own}.ts` && !f.path.startsWith(`${own}/`)) p(`${f.path}: an item's files are ${own}.tsx or live in the folder ${own}/`);
     if (item.meta?.tier !== "free") p('meta.tier must be "free"');
     if (!["inline", "frame"].includes(item.meta?.preview)) p('meta.preview must be "inline" (a component) or "frame" (a section, anything fixed or sticky)');
   }

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "money",
+  "title": "Money",
+  "description": "Money in minor units with its currency, and the helpers every commerce item shares: format for a locale, sum and multiply without drift.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/commerce/money.ts",
+      "content": "/** Money as it travels through the commerce items: an amount in minor units plus its currency. */\nexport interface Money {\n  /** In minor units: 3900 is 39.00. Integers, so sums never drift. */\n  amount: number;\n  /** ISO 4217 code: \"EUR\", \"USD\", \"GBP\". */\n  currency: string;\n}\n\n/**\n * Formats money for a locale. The locale is always passed, so the server and\n * the browser render the same text and hydration never trips over it.\n */\nexport function formatMoney(money: Money, locale = \"en-US\"): string {\n  return new Intl.NumberFormat(locale, { style: \"currency\", currency: money.currency }).format(money.amount / 100);\n}\n\n/** Adds amounts of one currency; mixing currencies is a bug, so it throws. */\nexport function sumMoney(items: readonly Money[], currency: string): Money {\n  return {\n    currency,\n    amount: items.reduce((total, item) => {\n      if (item.currency !== currency) throw new Error(`sumMoney: ${item.currency} in a ${currency} sum`);\n      return total + item.amount;\n    }, 0),\n  };\n}\n\n/** Multiplies a unit price by a quantity, in minor units. */\nexport function multiplyMoney(money: Money, quantity: number): Money {\n  return { currency: money.currency, amount: Math.round(money.amount * quantity) };\n}\n",
+      "type": "registry:lib",
+      "target": "components/rhs-ui/commerce/money.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "commerce"
+  },
+  "categories": [
+    "commerce"
+  ],
+  "type": "registry:internal"
+}
