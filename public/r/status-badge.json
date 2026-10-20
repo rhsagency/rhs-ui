@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-badge",
+  "title": "Status badge",
+  "description": "A badge for a record's state with a glyph and a word, so draft, paid, overdue and archived read without colour.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/badge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/status-badge.tsx",
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { IconAlertCircle, IconArchive, IconCheck, IconCircle, IconCircleDot, IconClock, IconClose, IconEye, IconPause, IconUndo } from \"@rhs-ui/icons\";\nimport { Badge, type BadgeProps } from \"@rhs-ui/primitives/badge\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * How loudly a status speaks, in fill and weight rather than hue: `quiet` is\n * a muted fill, `outline` a hairline, `soft` a light fill, `strong` a solid\n * one in semibold, and `critical` the destructive token.\n */\nexport type StatusEmphasis = \"quiet\" | \"outline\" | \"soft\" | \"strong\" | \"critical\";\n\nexport interface StatusDefinition {\n  /** The word. */\n  label: string;\n  /** A small glyph drawn before the word, such as `<IconClock />`. It is decorative: the word is the status. */\n  glyph?: ReactNode;\n  /** Defaults to `outline`. */\n  emphasis?: StatusEmphasis;\n  /** Extra classes for this status only, such as `border-dashed`. */\n  className?: string;\n}\n\n/** The vocabulary StatusBadge knows. Spread it into your own map to add statuses: `{ ...defaultStatuses, shipped: { ... } }`. */\nexport const defaultStatuses: Readonly<Record<string, StatusDefinition>> = {\n  draft: { label: \"Draft\", glyph: <IconCircle />, emphasis: \"outline\", className: \"border-dashed text-muted-foreground\" },\n  pending: { label: \"Pending\", glyph: <IconClock />, emphasis: \"outline\" },\n  \"in-review\": { label: \"In review\", glyph: <IconEye />, emphasis: \"outline\" },\n  approved: { label: \"Approved\", glyph: <IconCheck />, emphasis: \"soft\" },\n  active: { label: \"Active\", glyph: <IconCircleDot />, emphasis: \"strong\" },\n  paused: { label: \"Paused\", glyph: <IconPause />, emphasis: \"quiet\" },\n  paid: { label: \"Paid\", glyph: <IconCheck />, emphasis: \"soft\" },\n  overdue: { label: \"Overdue\", glyph: <IconAlertCircle />, emphasis: \"critical\" },\n  failed: { label: \"Failed\", glyph: <IconClose />, emphasis: \"critical\", className: \"bg-destructive text-destructive-foreground\" },\n  refunded: { label: \"Refunded\", glyph: <IconUndo />, emphasis: \"soft\" },\n  archived: { label: \"Archived\", glyph: <IconArchive />, emphasis: \"quiet\" },\n};\n\nconst EMPHASIS: Record<StatusEmphasis, { variant: BadgeProps[\"variant\"]; className?: string }> = {\n  quiet: { variant: \"muted\" },\n  outline: { variant: \"outline\" },\n  soft: { variant: \"secondary\" },\n  strong: { variant: \"default\", className: \"font-semibold\" },\n  // Darkened toward the foreground so the small red word reaches 4.5:1 on its pale fill.\n  critical: { variant: \"destructive\", className: \"font-semibold text-[color:color-mix(in_oklch,var(--destructive),var(--foreground)_30%)]\" },\n};\n\nconst SIZES = {\n  sm: \"\",\n  md: \"h-6 gap-1.5 px-2.5 text-[0.8125rem] [&>svg]:size-3.5\",\n  lg: \"h-7 gap-1.5 px-3 text-sm [&>svg]:size-4\",\n  dot: \"size-5 gap-0 px-0 [&>svg]:size-3\",\n} as const;\n\nexport interface StatusBadgeProps extends Omit<ComponentProps<\"span\">, \"children\"> {\n  /** A key from the vocabulary (draft, pending, in-review, approved, active, paused, paid, overdue, failed, refunded, archived) or any string. \"In review\" and \"in_review\" find the same entry. */\n  status: string;\n  /** The word to show instead of the vocabulary's. */\n  label?: string;\n  /** Your own statuses, by key. They win over the defaults with the same key; spread `defaultStatuses` to keep the rest. */\n  statuses?: Readonly<Record<string, StatusDefinition>>;\n  /** 20px, 24px or 28px with the word, or `dot`: only the glyph in a 20px circle, with the word kept for screen readers and in a title. */\n  size?: \"sm\" | \"md\" | \"lg\" | \"dot\";\n}\n\nconst keyOf = (status: string) => status.trim().toLowerCase().replace(/[\\s_]+/g, \"-\");\nconst humanise = (status: string) => {\n  const words = status.trim().replace(/[-_]+/g, \" \");\n  return words.charAt(0).toUpperCase() + words.slice(1);\n};\n\n/**\n * A record's state as a glyph and a word: draft, paid, overdue, archived.\n * States are told apart by glyph, fill, weight and wording, never by colour\n * alone, and only failed and overdue use the destructive token. The text is\n * the status, so a screen reader needs nothing extra; the compact `dot` size\n * keeps the word as hidden text for dense tables. It composes the Badge, so\n * spacing, radius and focus match the rest of the kit.\n */\nexport function StatusBadge({ status, label, statuses, size = \"md\", className, ...props }: StatusBadgeProps) {\n  const key = keyOf(status);\n  const known = statuses?.[key] ?? statuses?.[status] ?? defaultStatuses[key];\n  const text = label ?? known?.label ?? humanise(status);\n  const look = EMPHASIS[known?.emphasis ?? \"outline\"];\n  const dot = size === \"dot\";\n  return (\n    <Badge\n      data-slot=\"status-badge\"\n      data-status={key}\n      data-size={size}\n      variant={look.variant}\n      title={dot ? text : undefined}\n      className={cn(SIZES[size], look.className, known?.className, className)}\n      {...props}\n    >\n      {known?.glyph ?? (dot ? <span aria-hidden=\"true\" className=\"size-1.5 rounded-full bg-current\" /> : null)}\n      {dot ? <span className=\"sr-only\">{text}</span> : text}\n    </Badge>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/status-badge.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "Pass any string as status; known keys get their glyph and emphasis, others get a neutral outline. Extend the vocabulary with statuses, spreading defaultStatuses. The text is the status; the dot size keeps an sr-only label.",
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

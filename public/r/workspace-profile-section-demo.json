@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "workspace-profile-section-demo",
+  "title": "Workspace profile section demo",
+  "description": "A working preview of Workspace profile section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/workspace-profile-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/workspace-profile-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { WorkspaceProfileSection, type Workspace } from \"@rhs-ui/application/workspace-profile-section\";\n\nconst INITIAL: Workspace = {\n  name: \"Northwind Studio\",\n  slug: \"northwind-studio\",\n  timeZone: \"Europe/Amsterdam\",\n  language: \"en\",\n  id: \"ws_4f9k2m8q1xz7\",\n};\n\n// In this preview these addresses are \"taken\".\nconst TAKEN = new Set([\"northwind\", \"kestrel\", \"halcyon\", \"polder\"]);\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [workspace, setWorkspace] = useState(INITIAL);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-12 sm:px-6\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">In this preview the addresses northwind, kestrel, halcyon and polder are already taken.</p>\n      <WorkspaceProfileSection\n        workspace={workspace}\n        baseUrl=\"app.kestrel.dev\"\n        onCheckSlug={async (slug) => {\n          await wait(350);\n          return !TAKEN.has(slug);\n        }}\n        onSave={async (changes) => {\n          await wait(800);\n          setWorkspace((current) => ({ ...current, ...changes }));\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

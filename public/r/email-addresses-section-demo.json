@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "email-addresses-section-demo",
+  "title": "Email addresses section demo",
+  "description": "A working preview of Email addresses section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/email-addresses-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/email-addresses-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { EmailAddressesSection, type EmailAddress } from \"@rhs-ui/application/email-addresses-section\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [emails, setEmails] = useState<EmailAddress[]>([\n    { address: \"ana.reyes@northwind.io\", primary: true, verified: true },\n    { address: \"ana@halcyon.studio\", primary: false, verified: true },\n    { address: \"areyes@kestrel.email\", primary: false, verified: false },\n  ]);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-10 sm:px-6\">\n      <EmailAddressesSection\n        emails={emails}\n        onAdd={async (address) => {\n          await wait(700);\n          if (address.toLowerCase() === \"taken@northwind.io\") throw new Error(\"That address belongs to another account.\");\n          setEmails((list) => [...list, { address, primary: false, verified: false }]);\n        }}\n        onMakePrimary={async (address) => {\n          await wait(500);\n          setEmails((list) => list.map((email) => ({ ...email, primary: email.address === address })));\n        }}\n        onRemove={async (address) => {\n          await wait(600);\n          setEmails((list) => list.filter((email) => email.address !== address));\n        }}\n        onResend={() => wait(800)}\n      />\n      <p className=\"mt-3 text-center text-xs text-muted-foreground\">Try adding taken@northwind.io to see an address that is refused.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

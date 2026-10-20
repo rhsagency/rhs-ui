@@ -169,6 +169,1201 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "email-addresses-section",
+      "type": "registry:block",
+      "title": "Email addresses section",
+      "description": "The email addresses on an account: which one is primary, which are verified, add another, make one primary or remove it, each step explained in the row.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/email-addresses-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/email-addresses-section.tsx"
+        }
+      ],
+      "docs": "Controlled: keep emails in state and update it in each callback. Every callback may return a promise; the row shows a busy state and a rejection is shown in words. Throw an Error with a message from onAdd to explain why an address was refused; the other callbacks show a general message. The primary address cannot be removed and the row says why; removing any other address asks inside the row."
+    },
+    {
+      "name": "email-addresses-section-demo",
+      "type": "registry:example",
+      "title": "Email addresses section demo",
+      "description": "A working preview of Email addresses section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/email-addresses-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/email-addresses-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "public-profile-section",
+      "type": "registry:block",
+      "title": "Public profile section",
+      "description": "Edit how others see you: picture, display name, @username with a live availability hint, bio with a counter, links, and a preview that updates as you type.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/file-trigger.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/public-profile-section/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/public-profile-section/index.tsx"
+        },
+        {
+          "path": "registry/application/public-profile-section/profile.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/public-profile-section/profile.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "docs": "profile is the saved profile; the draft lives inside until Save, and a new profile passed back replaces it. onSave receives the cleaned-up draft and, when a new picture was chosen, the File to upload as the second argument (profile.avatar of a new picture is only a temporary preview address: store the real URL you get back). onCheckUsername(username) resolves true when the name is free and is only asked for names that follow the rules and differ from the saved one."
+    },
+    {
+      "name": "public-profile-section-demo",
+      "type": "registry:example",
+      "title": "Public profile section demo",
+      "description": "A working preview of Public profile section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/public-profile-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/public-profile-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "appearance-settings",
+      "type": "registry:block",
+      "title": "Appearance settings",
+      "description": "Choose how the interface looks: three theme preview cards, a density choice with a live sample list, and an optional font choice, all applied at once.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/appearance-settings/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/appearance-settings/index.tsx"
+        },
+        {
+          "path": "registry/application/appearance-settings/options.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/appearance-settings/options.ts"
+        }
+      ],
+      "docs": "Controlled: keep value in state, update it in onChange and apply theme, density and font yourself. The theme previews paint their own palette, so each one is true on any page theme. Leave systemTheme out and System reads the browser; pass fonts={[]} to hide the font choice."
+    },
+    {
+      "name": "appearance-settings-demo",
+      "type": "registry:example",
+      "title": "Appearance settings demo",
+      "description": "A working preview of Appearance settings.",
+      "registryDependencies": [
+        "https://rhsui.com/r/appearance-settings.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/appearance-settings-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "accessibility-preferences",
+      "type": "registry:block",
+      "title": "Accessibility preferences",
+      "description": "The settings people reach for first: text size with a live sample, motion, contrast, underlined links and keyboard hints, each applied at once.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/settings-row.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/accessibility-preferences/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/accessibility-preferences/index.tsx"
+        },
+        {
+          "path": "registry/application/accessibility-preferences/steps.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/accessibility-preferences/steps.ts"
+        }
+      ],
+      "docs": "textSize is an index into TEXT_SIZE_STEPS (from steps.ts): apply its scale to your root font size. motion and contrast are plain values for a data attribute or a CSS variable; applying them is yours. Leave systemMotion out and Follow system reads prefers-reduced-motion from the browser."
+    },
+    {
+      "name": "accessibility-preferences-demo",
+      "type": "registry:example",
+      "title": "Accessibility preferences demo",
+      "description": "A working preview of Accessibility preferences.",
+      "registryDependencies": [
+        "https://rhsui.com/r/accessibility-preferences.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/accessibility-preferences-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "language-region-section",
+      "type": "registry:block",
+      "title": "Language and region section",
+      "description": "Language, country, time zone and formats in one card, with a live sample line showing the date, time and number exactly as they will read.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/country-select.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/language-region-section/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/language-region-section/index.tsx"
+        },
+        {
+          "path": "registry/application/language-region-section/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/language-region-section/format.ts"
+        }
+      ],
+      "docs": "value is the saved setting; the draft lives inside until Save, and a new value passed back replaces it. The preview is formatted with Intl from the draft, always with a time zone, at a fixed moment (sampleDate, a date or an ISO string) so server and browser render the same text. languages are written in their own names; timeZones are IANA ids, grouped by their offset at that moment; locale is the language the country names are shown in."
+    },
+    {
+      "name": "language-region-section-demo",
+      "type": "registry:example",
+      "title": "Language and region section demo",
+      "description": "A working preview of Language and region section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/language-region-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/language-region-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "privacy-settings-section",
+      "type": "registry:block",
+      "title": "Privacy settings section",
+      "description": "Who can see your profile and what you share: visibility as choice cards, then switches for activity, search and analytics, each saying what it changes for others.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/settings-row.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/privacy-settings-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/privacy-settings-section.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "docs": "Controlled: keep value in state and set it in onChange. Changes apply at once; return a promise from onChange and the status line shows Saving, then the confirmation or an error. Applying the settings (who may read the profile, robots tags, analytics) is yours."
+    },
+    {
+      "name": "privacy-settings-section-demo",
+      "type": "registry:example",
+      "title": "Privacy settings section demo",
+      "description": "A working preview of Privacy settings section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/privacy-settings-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/privacy-settings-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "connected-accounts",
+      "type": "registry:block",
+      "title": "Connected accounts",
+      "description": "The sign-in providers linked to an account: who is connected, as whom and since when, with connect and disconnect per row and a guard on the last way in.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inline-confirm.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/connected-accounts.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/connected-accounts.tsx"
+        }
+      ],
+      "docs": "An account counts as connected once it has an identity or a connection date. Without canDisconnect, the only connected provider is protected; pass your own rule when a password or passkey also counts as a way in. protectedHint says how to add another way in: a tooltip on the protected provider, and plain text under the row on touch screens and in narrow rows where a tooltip cannot open. Dates are shown in the timeZone you pass (default UTC) so server and browser agree."
+    },
+    {
+      "name": "connected-accounts-demo",
+      "type": "registry:example",
+      "title": "Connected accounts demo",
+      "description": "A working preview of Connected accounts.",
+      "registryDependencies": [
+        "https://rhsui.com/r/connected-accounts.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/connected-accounts-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-export-section",
+      "type": "registry:block",
+      "title": "Data export section",
+      "description": "The right of access without a support ticket: pick what to include and a format, request the export, and follow earlier ones by status and expiry.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/checkbox-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/data-export-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/data-export-section.tsx"
+        }
+      ],
+      "docs": "Data in, callbacks out: pass the groups, the earlier exports and onRequest. While an export is preparing (or onRequest is pending) the button rests and the card says it will email the person; add the new export to `exports` with status \"preparing\" and flip it to \"ready\" with a size, expiresAt and href when it is done. Dates use the locale and timeZone props (UTC by default); pass `now` to pin the relative \"Expires in 5 days\". title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "data-export-section-demo",
+      "type": "registry:example",
+      "title": "Data export section demo",
+      "description": "A working preview of Data export section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/data-export-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/data-export-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "billing-details-section",
+      "type": "registry:block",
+      "title": "Billing details section",
+      "description": "What appears on invoices: company, address, a tax number checked for format and live, billing emails as chips and a reference, saved as one block.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/country-select.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/tag-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/billing-details-section/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/billing-details-section/index.tsx"
+        },
+        {
+          "path": "registry/application/billing-details-section/tax-ids.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/billing-details-section/tax-ids.ts"
+        }
+      ],
+      "docs": "onSave may return a message (shown by the Save button), an object of messages keyed by field (shown against the fields), or nothing. onValidateTaxId resolves true or false for the live \"Valid\" or \"Could not verify\"; it runs once the number has the right shape. taxIdLabels adds or changes a country's label, example and pattern over the built-in table in tax-ids.ts. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "billing-details-section-demo",
+      "type": "registry:example",
+      "title": "Billing details section demo",
+      "description": "A working preview of Billing details section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/billing-details-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/billing-details-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "email-preference-center",
+      "type": "registry:block",
+      "title": "Email preference center",
+      "description": "The page behind 'manage your emails': a frequency per list, a pause for 30 days, and unsubscribe from everything behind one inline confirmation.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/inline-confirm.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/email-preference-center.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/email-preference-center.tsx"
+        }
+      ],
+      "docs": "Works without a signed-in session: pass the address (it is shown partly masked) and save each change from onChange, which may return a promise. A list's frequencies default to Off, Weekly and Monthly. Up to four steps sit side by side (on a phone, long labels become a menu) and more than four are always a menu. The value \"off\" is what Unsubscribe from everything sets. Leave out onPause, onResume or onUnsubscribeAll to drop that part of the page. Controlled with value, or uncontrolled with defaultValue. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "email-preference-center-demo",
+      "type": "registry:example",
+      "title": "Email preference center demo",
+      "description": "A working preview of Email preference center.",
+      "registryDependencies": [
+        "https://rhsui.com/r/email-preference-center.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/email-preference-center-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "workspace-profile-section",
+      "type": "registry:block",
+      "title": "Workspace profile section",
+      "description": "A workspace's name, URL, default time zone and language, with a live preview of the address, a warning before links change and a save that lights up.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/workspace-profile-section/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workspace-profile-section/index.tsx"
+        },
+        {
+          "path": "registry/application/workspace-profile-section/defaults.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workspace-profile-section/defaults.ts"
+        }
+      ],
+      "docs": "The slug is limited to lowercase letters, numbers and hyphens as you type. onCheckSlug resolves true when an address is free; it is asked after a pause in typing and only for an address that differs from the saved one. Changing the slug shows a warning in words before saving. timeZones takes IANA names, listed in the order you pass them, and languages takes { value, label } pairs; both lists are searchable (a language is also found by its name in `locale`, so \"German\" finds Deutsch) and have sensible defaults in defaults.ts. While Save runs the fields are locked. Pass the saved workspace back as `workspace` after onSave and the form follows. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "workspace-profile-section-demo",
+      "type": "registry:example",
+      "title": "Workspace profile section demo",
+      "description": "A working preview of Workspace profile section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/workspace-profile-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/workspace-profile-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "branding-settings",
+      "type": "registry:block",
+      "title": "Branding settings",
+      "description": "How a workspace looks to its customers: logos for light and dark, an icon and a brand colour with a contrast check, and live page and email previews.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/color-picker.json",
+        "https://rhsui.com/r/file-trigger.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/branding-settings/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/branding-settings/index.tsx"
+        },
+        {
+          "path": "registry/application/branding-settings/color.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/branding-settings/color.ts"
+        }
+      ],
+      "docs": "Images are URLs: onUpload receives the chosen file (only SVG and PNG get that far) and resolves to the address it can be shown from, and Save hands back the same four values. An address that turns out not to draw is taken back with a message, so a broken image is never saved. The colour is checked against white and black text (minContrast 4.5 is WCAG AA, 7 is AAA) and against a white page; one that fails is not applied and the reason is shown. colors sets the swatches. The previews are drawn on literal white, because they show the customer's page, not your product. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "branding-settings-demo",
+      "type": "registry:example",
+      "title": "Branding settings demo",
+      "description": "A working preview of Branding settings.",
+      "registryDependencies": [
+        "https://rhsui.com/r/branding-settings.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/branding-settings-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "authenticator-setup",
+      "type": "registry:block",
+      "title": "Authenticator setup",
+      "description": "Two-step sign-in setup in one card: scan the QR code or type the key, then confirm with the first six-digit code. It works without a camera.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/otp-input.json",
+        "https://rhsui.com/r/result-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/authenticator-setup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/authenticator-setup.tsx"
+        }
+      ],
+      "docs": "The block draws no QR code: pass your own SVG or image in qr (draw it from the otpauth address with a QR library). It is wrapped with alt text that carries the key, so setup works without a camera, and it sits on a white tile, so keep it dark on light. onVerify resolves true or false; a wrong code is announced and cleared. After success the card shows what you pass as next, usually a button to the recovery codes, and the focus moves to that confirmation so the button is one Tab away. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "authenticator-setup-demo",
+      "type": "registry:example",
+      "title": "Authenticator setup demo",
+      "description": "A working preview of Authenticator setup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/authenticator-setup.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/authenticator-setup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recovery-codes-section",
+      "type": "registry:block",
+      "title": "Recovery codes section",
+      "description": "Recovery codes shown once with copy, download and print, and a checkbox people must tick to confirm they saved them before they can continue.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/inline-confirm.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/recovery-codes-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/recovery-codes-section.tsx"
+        }
+      ],
+      "docs": "Codes of any length work: they sit two to a row while the longest fits and one to a row when it does not. Pass plain strings for fresh codes, or { code, used } to show which were spent (they are struck through and read Used). With onContinue the block asks for \"I have saved these codes\" and keeps Continue locked until it is ticked; with onRegenerate a new set is offered behind an inline confirmation, and the new codes come back through `codes`. Print hides everything on the page except a plain sheet of the unused codes. Without onDownload the block saves recovery-codes.txt itself. title, description and headingLevel (2 or 3) rename the heading and set its level."
+    },
+    {
+      "name": "recovery-codes-section-demo",
+      "type": "registry:example",
+      "title": "Recovery codes section demo",
+      "description": "A working preview of Recovery codes section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recovery-codes-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recovery-codes-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "transfer-ownership-card",
+      "type": "registry:block",
+      "title": "Transfer ownership card",
+      "description": "Hand a workspace to another member: pick the new owner, read what changes, and confirm by typing the workspace name in a dialog that names what you are giving away.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/transfer-ownership-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/transfer-ownership-card.tsx"
+        }
+      ],
+      "docs": "members are the people you would allow as the new owner; a member with disabledReason is listed but cannot be chosen. onTransfer(memberId) may be async: resolve to nothing when it worked, or resolve to (or throw) a message when it failed, and the card keeps the choice and shows it. Leave consequences out for a default list that names the new owner, and confirmDescription out for the default dialog text; say what is true for your product in both. onCancel adds a Cancel button for flows the person can leave."
+    },
+    {
+      "name": "transfer-ownership-card-demo",
+      "type": "registry:example",
+      "title": "Transfer ownership card demo",
+      "description": "A working preview of Transfer ownership card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/transfer-ownership-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/transfer-ownership-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "early-access-features",
+      "type": "registry:block",
+      "title": "Early access features",
+      "description": "Let people opt into previews: each feature with an Alpha or Beta badge, a switch, what changes and how to undo it, and links to give feedback.",
+      "categories": [
+        "application",
+        "account"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/early-access-features.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/early-access-features.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "docs": "Controlled: keep features in state and update enabled in onToggle. Return a promise from onToggle and the switch moves at once and stays busy until it settles; if it rejects, the switch goes back and the row says so. effect and undo are the words shown after a switch is turned on. A feature with disabledReason is locked and says why in text."
+    },
+    {
+      "name": "early-access-features-demo",
+      "type": "registry:example",
+      "title": "Early access features demo",
+      "description": "A working preview of Early access features.",
+      "registryDependencies": [
+        "https://rhsui.com/r/early-access-features.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/early-access-features-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bulk-select-menu",
+      "type": "registry:component",
+      "title": "Bulk select menu",
+      "description": "The header checkbox with a menu for choosing what to select: all, none, unread, starred, with the mixed state and the count in words.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/bulk-select-menu.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/bulk-select-menu.tsx"
+        }
+      ],
+      "docs": "Controlled: derive state (none, some or all) from your own selection and keep the selection in your callbacks. The checkbox runs onSelectAll when nothing is selected and onSelectNone otherwise. Each criterion shows the number it would select and is disabled at 0. After every choice a polite message says what was selected."
+    },
+    {
+      "name": "bulk-select-menu-demo",
+      "type": "registry:example",
+      "title": "Bulk select menu demo",
+      "description": "A working preview of Bulk select menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bulk-select-menu.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bulk-select-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "copy-as-menu",
+      "type": "registry:component",
+      "title": "Copy as menu",
+      "description": "Copy the same thing in the format the next tool wants: a split button whose menu offers Markdown, JSON, cURL or plain text and remembers the last choice.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/copy-as-menu/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/copy-as-menu/index.tsx"
+        },
+        {
+          "path": "registry/application/copy-as-menu/clipboard.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/copy-as-menu/clipboard.ts"
+        }
+      ],
+      "docs": "Each format's serialize() runs only when someone copies in that format, and may return a promise. Pass format and onFormatChange to keep the last choice yourself (in local storage, say), or defaultFormat to leave it to the button. Picking a format in the menu copies in it at once. Set as on a format when it reads badly after Copy as: \"plain text\" for Plain text. Formats carry functions, so build them in a client component."
+    },
+    {
+      "name": "copy-as-menu-demo",
+      "type": "registry:example",
+      "title": "Copy as menu demo",
+      "description": "A working preview of Copy as menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-as-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/copy-as-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "add-to-calendar-button",
+      "type": "registry:component",
+      "title": "Add to calendar button",
+      "description": "Adds an event to the calendar people use, Google, Outlook, Apple or an .ics file, built from one event object with the time zone handled.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/add-to-calendar-button/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/add-to-calendar-button/index.tsx"
+        },
+        {
+          "path": "registry/application/add-to-calendar-button/calendar.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/add-to-calendar-button/calendar.ts"
+        }
+      ],
+      "docs": "A start without an offset (2026-11-12T19:00) is read in the event's timeZone; a Date or a string ending in Z or +01:00 is an exact moment. Give end or durationMinutes (default 60). All-day events take a date, and end is the last day. buildIcs, buildGoogleUrl and buildOutlookUrl are pure functions in calendar.ts that return null for an event that cannot be read. Pass uid so an edited event updates the first one in the calendar."
+    },
+    {
+      "name": "add-to-calendar-button-demo",
+      "type": "registry:example",
+      "title": "Add to calendar button demo",
+      "description": "A working preview of Add to calendar button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/add-to-calendar-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/add-to-calendar-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "directions-button",
+      "type": "registry:component",
+      "title": "Directions button",
+      "description": "Get directions in the maps app people use: Apple Maps on iPhone, Google Maps elsewhere, Waze if they prefer, and the address to copy as a fallback.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/directions-button/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/directions-button/index.tsx"
+        },
+        {
+          "path": "registry/application/directions-button/directions.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/directions-button/directions.ts"
+        }
+      ],
+      "docs": "Give the destination an address (with its name, so the pin is labelled) or latitude and longitude; a name alone is not enough and disables the button with the reason. Without apps, Apple Maps comes first on iPhone and iPad and Google Maps elsewhere, decided after mount. Waze only drives. The link builders in directions.ts are pure and return null for a place that cannot be used."
+    },
+    {
+      "name": "directions-button-demo",
+      "type": "registry:example",
+      "title": "Directions button demo",
+      "description": "A working preview of Directions button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/directions-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/directions-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "save-contact-button",
+      "type": "registry:component",
+      "title": "Save contact button",
+      "description": "Save a person or business to the address book: it builds a vCard in the browser from one contact object and downloads it, with no server involved.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/save-contact-button/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/save-contact-button/index.tsx"
+        },
+        {
+          "path": "registry/application/save-contact-button/vcard.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/save-contact-button/vcard.ts"
+        }
+      ],
+      "docs": "The file is a vCard 3.0 with escaped text, lines folded at 75 octets and labelled phone, email and address types. On an iPhone it opens the Add Contact sheet. The accessible name adds who it is for, and a contact without a name disables the button with the reason. buildVCard in vcard.ts is pure and returns null without a name, so the same text can become a QR code."
+    },
+    {
+      "name": "save-contact-button-demo",
+      "type": "registry:example",
+      "title": "Save contact button demo",
+      "description": "A working preview of Save contact button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/save-contact-button.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/save-contact-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "follow-button",
+      "type": "registry:component",
+      "title": "Follow button",
+      "description": "Follow, Following and Requested in one button: optimistic, with a follower count, a clear way to unfollow and a rollback message when the request fails.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/follow-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/follow-button.tsx"
+        }
+      ],
+      "docs": "Controlled: keep status and count in state and update both in onFollow and onUnfollow before they resolve. The button answers at once and rolls back with a message if the promise rejects; presses are ignored while a request is pending. Resolve onFollow with \"requested\" when the account needs approval, or pass isPrivate to ask for it up front; unfollowing a private account asks once. defaultStatus leaves the status to the button, and the count then stays as given for that starting status and moves with the button. The error line is wider than the button and widens the control with it, so where you right-align the button pass className=\"items-end\" (or sm:items-end) and it keeps its right edge when a request fails. The accessible name stays \"Follow <name>\" and aria-pressed carries the state, while the visible word changes to Following or Requested."
+    },
+    {
+      "name": "follow-button-demo",
+      "type": "registry:example",
+      "title": "Follow button demo",
+      "description": "A working preview of Follow button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/follow-button.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/follow-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

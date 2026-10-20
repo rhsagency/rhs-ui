@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drag-scroll-demo",
+  "title": "Drag scroll demo",
+  "description": "A working preview of Drag scroll.",
+  "registryDependencies": [
+    "https://rhsui.com/r/drag-scroll.json",
+    "https://rhsui.com/r/segmented-control.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/drag-scroll-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SegmentedControl } from \"@rhs-ui/application/segmented-control\";\nimport { IconArmchair, IconBathtub, IconChefHat, IconFountainPen, IconLamp, IconSuitcase, IconTent, IconVase } from \"@rhs-ui/icons\";\nimport { DragScroll } from \"@rhs-ui/motion/drag-scroll\";\n\nconst ROOMS = [\n  { name: \"Lighting\", count: 42, icon: <IconLamp /> },\n  { name: \"Seating\", count: 67, icon: <IconArmchair /> },\n  { name: \"Kitchen\", count: 118, icon: <IconChefHat /> },\n  { name: \"Outdoor\", count: 35, icon: <IconTent /> },\n  { name: \"Stationery\", count: 54, icon: <IconFountainPen /> },\n  { name: \"Bath\", count: 29, icon: <IconBathtub /> },\n  { name: \"Travel\", count: 23, icon: <IconSuitcase /> },\n  { name: \"Decor\", count: 91, icon: <IconVase /> },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [snap, setSnap] = useState(\"free\");\n  return (\n    <div className=\"w-full max-w-3xl\">\n      <div className=\"flex flex-wrap items-end justify-between gap-x-6 gap-y-3\">\n        <div>\n          <h2 className=\"text-sm font-medium\">Shop by room</h2>\n          <p className=\"mt-1 text-xs text-muted-foreground\">Drag with the mouse, swipe on touch, or focus the strip and use the arrow keys.</p>\n        </div>\n        <div className=\"flex flex-wrap items-center gap-x-3 gap-y-1.5\">\n          <span className=\"text-xs text-muted-foreground\" aria-hidden=\"true\">\n            Snapping\n          </span>\n          <SegmentedControl\n            label=\"Snapping\"\n            value={snap}\n            onValueChange={setSnap}\n            options={[\n              { value: \"free\", label: \"Free\" },\n              { value: \"start\", label: \"Start\" },\n              { value: \"center\", label: \"Centre\" },\n            ]}\n          />\n        </div>\n      </div>\n\n      <DragScroll label=\"Collections\" snap={snap === \"start\" ? \"start\" : snap === \"center\" ? \"center\" : false} arrows className=\"mt-5\">\n        {ROOMS.map((room) => (\n          <a\n            key={room.name}\n            href=\"#shop\"\n            onClick={(event) => event.preventDefault()}\n            className=\"group/card block w-56 rounded-xl border border-border bg-card p-3 shadow-xs outline-none transition-colors hover:border-[color-mix(in_oklch,var(--border),var(--foreground)_18%)] focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n          >\n            <span className=\"grid aspect-[4/3] place-items-center rounded-lg bg-muted text-muted-foreground transition-colors group-hover/card:text-foreground [&>svg]:size-10\" aria-hidden=\"true\">\n              {room.icon}\n            </span>\n            <span className=\"mt-3 block text-sm font-medium tracking-[-0.01em]\">{room.name}</span>\n            <span className=\"block text-xs text-muted-foreground tabular-nums\">{room.count} products</span>\n          </a>\n        ))}\n      </DragScroll>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

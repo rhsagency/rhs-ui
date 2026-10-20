@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fade-in",
+  "title": "Fade in",
+  "description": "A wrapper that fades and lifts its content in once when it enters view, with direction, delay and duration. Visible without JavaScript and under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/fade-in.tsx",
+      "content": "\"use client\";\n\nimport { useLayoutEffect, useRef, useState, useSyncExternalStore, type AnimationEvent, type ComponentProps, type CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FadeInProps extends Omit<ComponentProps<\"div\">, \"ref\"> {\n  /** The way the block travels as it arrives: `up` rises into place, `left` slides in from the right. */\n  direction?: \"up\" | \"down\" | \"left\" | \"right\" | \"none\";\n  /** Travel in pixels. */\n  distance?: number;\n  /** Milliseconds to wait once the block is visible: the way to line a row of them up. */\n  delay?: number;\n  /** Milliseconds the entrance takes. */\n  duration?: number;\n  /** Play once (the default), or play again every time the block comes back into view. */\n  once?: boolean;\n  /** How much of the block (0 to 1) must be on screen before it plays. */\n  amount?: number;\n  /** The element to render. */\n  as?: \"div\" | \"section\" | \"article\" | \"aside\" | \"figure\" | \"header\" | \"footer\" | \"li\" | \"p\" | \"span\";\n}\n\nconst noSubscription = (): (() => void) => () => {};\n\n/** True when this instance was created in the browser, false while it is hydrating server HTML. */\nfunction useCreatedInBrowser(): boolean {\n  const browser = useSyncExternalStore(noSubscription, () => true, () => false);\n  const [created] = useState(browser);\n  return created;\n}\n\n/**\n * A once-only entrance for any block: it fades in and rises a few pixels the\n * first time it is on screen, on its own clock. Reveal follows the scroll;\n * FadeIn plays and is done, which suits cards and copy the reader will not\n * scrub. The server renders it fully visible, so there is no hidden content\n * without JavaScript and none before hydration; a block that is already on\n * screen when the page hydrates simply stays, and one that mounts in the\n * browser (a route change, a conditional) always plays. Only opacity and\n * transform move, so layout never shifts, and reduced motion and print show\n * everything at rest.\n */\nexport function FadeIn({ direction = \"up\", distance = 16, delay = 0, duration = 600, once = true, amount = 0.2, as = \"div\", className, style, onAnimationEnd, ...props }: FadeInProps) {\n  const Tag = as as \"div\";\n  const ref = useRef<HTMLDivElement>(null);\n  const created = useCreatedInBrowser();\n  const [phase, setPhase] = useState<\"idle\" | \"hidden\" | \"shown\" | \"done\">(\"idle\");\n  const playing = useRef(false);\n  const last = useRef<IntersectionObserverEntry | null>(null);\n\n  useLayoutEffect(() => {\n    const node = ref.current;\n    if (!node || typeof IntersectionObserver === \"undefined\" || window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    // A block taller than the window can never show a large share of itself, so cap what we wait for.\n    const room = Math.min(1, window.innerHeight / Math.max(node.getBoundingClientRect().height, 1));\n    const needed = Math.min(amount, room * 0.9);\n    let seen = false;\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const entry = entries[entries.length - 1];\n        if (!entry) return;\n        last.current = entry;\n        if (!seen && !created) {\n          // Already on screen from the server HTML: leave it be.\n          seen = true;\n          if (entry.isIntersecting) {\n            if (once) observer.disconnect();\n            return;\n          }\n          setPhase(\"hidden\");\n          return;\n        }\n        seen = true;\n        if (entry.isIntersecting && entry.intersectionRatio >= needed - 0.001) {\n          playing.current = true;\n          setPhase(\"shown\");\n          if (once) observer.disconnect();\n        } else if (!once && !entry.isIntersecting && !playing.current) setPhase(\"hidden\");\n      },\n      { threshold: needed > 0 ? [0, needed] : [0] },\n    );\n    if (created) setPhase(\"hidden\"); // before the first paint, so the block never flashes\n    observer.observe(node);\n    return () => observer.disconnect();\n  }, [created, once, amount]);\n\n  const x = direction === \"left\" ? distance : direction === \"right\" ? -distance : 0;\n  const y = direction === \"up\" ? distance : direction === \"down\" ? -distance : 0;\n  const vars = { \"--rhs-fade-x\": `${x}px`, \"--rhs-fade-y\": `${y}px`, \"--rhs-fade-duration\": `${duration}ms`, \"--rhs-fade-delay\": `${delay}ms` } as CSSProperties;\n\n  return (\n    <Tag\n      ref={ref}\n      data-slot=\"fade-in\"\n      data-state={phase === \"idle\" || phase === \"done\" ? undefined : phase}\n      className={cn(\n        \"data-[state=hidden]:opacity-0\",\n        // The keyframes name comes from the theme, the timing from this element's own variables. A var() inside the theme\n        // value would resolve on :root, and every block would share one delay and one duration. `rhs-enter` is this item's\n        // own name: `rhs-fade-in` belongs to the overlays of dialog and sheet, which declare it as a plain 160ms fade.\n        \"data-[state=shown]:[animation:var(--animate-rhs-enter)_var(--rhs-fade-duration,600ms)_cubic-bezier(0.22,1,0.36,1)_var(--rhs-fade-delay,0ms)_backwards]\",\n        \"motion-reduce:animate-none! motion-reduce:opacity-100! print:animate-none! print:opacity-100!\",\n        className,\n      )}\n      style={{ ...vars, ...style }}\n      onAnimationEnd={(event: AnimationEvent<HTMLDivElement>) => {\n        onAnimationEnd?.(event);\n        if (event.target !== event.currentTarget) return;\n        playing.current = false;\n        // Done: hand the element back to its own styles. If it left the screen while it was still arriving, hide it again for the next visit.\n        setPhase(!once && last.current && !last.current.isIntersecting ? \"hidden\" : \"done\");\n      }}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/fade-in.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-enter": "rhs-enter"
+    }
+  },
+  "css": {
+    "@keyframes rhs-enter": {
+      "from": {
+        "opacity": "0",
+        "transform": "translate3d(var(--rhs-fade-x, 0px), var(--rhs-fade-y, 16px), 0)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "motion"
+  },
+  "docs": "Reveal is tied to the scroll position; FadeIn plays on its own clock, which suits cards and copy the reader will not scrub. The server renders the block fully visible, so nothing is hidden without JavaScript or before hydration. A block that is already on screen when the page hydrates stays as it is; one that mounts in the browser, such as a route change or a conditional, always plays. Use delay to line a row of blocks up. Only opacity and transform move, so layout never shifts, and reduced motion and print show everything at rest.",
+  "categories": [
+    "motion",
+    "motion"
+  ],
+  "type": "registry:component"
+}

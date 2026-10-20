@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "early-access-features-demo",
+  "title": "Early access features demo",
+  "description": "A working preview of Early access features.",
+  "registryDependencies": [
+    "https://rhsui.com/r/early-access-features.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/early-access-features-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\n\nimport { EarlyAccessFeatures, type EarlyAccessFeature } from \"@rhs-ui/application/early-access-features\";\n\nconst INITIAL: EarlyAccessFeature[] = [\n  {\n    id: \"command-bar\",\n    name: \"Command bar\",\n    description: \"Jump to any project, person or setting with Cmd K, and run actions without leaving the keyboard.\",\n    stage: \"beta\",\n    enabled: true,\n    feedbackHref: \"#feedback-command-bar\",\n    docsHref: \"#docs-command-bar\",\n  },\n  {\n    id: \"meeting-notes\",\n    name: \"Meeting notes\",\n    description: \"Turns a recording into notes and action items a few minutes after the call ends.\",\n    stage: \"alpha\",\n    enabled: false,\n    effect: \"Recordings you upload are summarised automatically, and the notes land in the project.\",\n    undo: \"Switch it off to stop; notes already made stay where they are.\",\n    feedbackHref: \"#feedback-meeting-notes\",\n    docsHref: \"#docs-meeting-notes\",\n  },\n  {\n    id: \"offline-mode\",\n    name: \"Offline mode\",\n    description: \"Keep editing on the train and sync everything once you are back online.\",\n    stage: \"alpha\",\n    enabled: false,\n    effect: \"Your last 30 days of projects are kept on this device.\",\n    feedbackHref: \"#feedback-offline-mode\",\n    docsHref: \"#docs-offline-mode\",\n  },\n  {\n    id: \"audit-trail\",\n    name: \"Audit trail\",\n    description: \"See who changed what and when, with filters and a CSV export.\",\n    stage: \"beta\",\n    enabled: false,\n    disabledReason: \"Needs the Team plan\",\n    docsHref: \"#docs-audit-trail\",\n  },\n];\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [features, setFeatures] = useState(INITIAL);\n  // Offline mode fails the first time it is switched on, so the rollback can be seen.\n  const failedOnce = useRef(false);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-12 sm:px-6\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">Offline mode fails the first time you switch it on, to show the rollback. The second try works.</p>\n      <EarlyAccessFeatures\n        features={features}\n        onToggle={async (id, enabled) => {\n          await wait(500);\n          if (id === \"offline-mode\" && enabled && !failedOnce.current) {\n            failedOnce.current = true;\n            throw new Error(\"The device storage check failed.\");\n          }\n          setFeatures((current) => current.map((feature) => (feature.id === id ? { ...feature, enabled } : feature)));\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

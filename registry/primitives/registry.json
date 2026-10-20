@@ -6390,6 +6390,1021 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "undo-redo-buttons",
+      "type": "registry:ui",
+      "title": "Undo and redo buttons",
+      "description": "The undo and redo pair of any editor: dimmed when there is nothing to step through, the next step named in the tooltip, and the shortcuts bound for you.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/undo-redo-buttons.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/undo-redo-buttons.tsx"
+        }
+      ],
+      "docs": "You own the history: keep it in a reducer or your editor and wire onUndo and onRedo. Pass the next step as undoLabel (\"Undo: Move layer\"); it becomes the tooltip and what a screen reader hears afterwards. The keys are ignored inside fields; pass scope to listen only inside an editor."
+    },
+    {
+      "name": "undo-redo-buttons-demo",
+      "type": "registry:example",
+      "title": "Undo and redo buttons demo",
+      "description": "A working preview of Undo and redo buttons.",
+      "registryDependencies": [
+        "https://rhsui.com/r/undo-redo-buttons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/undo-redo-buttons-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "zoom-controls",
+      "type": "registry:ui",
+      "title": "Zoom controls",
+      "description": "Zoom out, the current level, zoom in and fit: one compact control for images, maps, documents and canvases, with keyboard shortcuts and limits.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/zoom-controls.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/zoom-controls.tsx"
+        }
+      ],
+      "docs": "value is a scale (1 is 100 percent); presets are in percent. The keys work while focus is inside the parent of the controls, or inside scope, so the browser's own zoom keeps working elsewhere. onFit adds Fit to screen: you know the content size, so you work out the scale."
+    },
+    {
+      "name": "zoom-controls-demo",
+      "type": "registry:example",
+      "title": "Zoom controls demo",
+      "description": "A working preview of Zoom controls.",
+      "registryDependencies": [
+        "https://rhsui.com/r/zoom-controls.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/zoom-controls-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "record-navigator",
+      "type": "registry:ui",
+      "title": "Record navigator",
+      "description": "Previous and next through a queue of records, with the position in words, keyboard shortcuts and the reason a button is off at either end.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/record-navigator.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/record-navigator.tsx"
+        }
+      ],
+      "docs": "index counts from zero. Leave total out while a list is loading and the text reads \"3 of many\". With loop the buttons stay on at the ends and you wrap the index yourself. J and K are ignored while typing. For pages of rows use Pagination."
+    },
+    {
+      "name": "record-navigator-demo",
+      "type": "registry:example",
+      "title": "Record navigator demo",
+      "description": "A working preview of Record navigator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/record-navigator.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/record-navigator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "floating-action-button",
+      "type": "registry:ui",
+      "title": "Floating action button",
+      "description": "The round primary action pinned to a corner: it extends to show its label, shrinks to the icon on scroll, and clears the bottom bar and safe area.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/floating-action-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/floating-action-button.tsx"
+        }
+      ],
+      "docs": "It is fixed to the viewport; pass className=\"absolute\" to pin it inside a positioned container. Give scrollTarget the ref of the element that scrolls when the page does not. offset lifts it over a bottom navigation, and visible hides it while a dialog is open. With href, disabled dims the link, takes it out of the tab order and stops the navigation."
+    },
+    {
+      "name": "floating-action-button-demo",
+      "type": "registry:example",
+      "title": "Floating action button demo",
+      "description": "A working preview of Floating action button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/floating-action-button.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/bottom-nav.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/floating-action-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "speed-dial",
+      "type": "registry:ui",
+      "title": "Speed dial",
+      "description": "A floating action that fans out three to five related actions on press, each labelled, reachable by keyboard and closing on Escape or an outside tap.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/speed-dial.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/speed-dial.tsx"
+        }
+      ],
+      "docs": "The first action is the one nearest the trigger. Arrow keys move, Home and End jump, typing a letter finds an action, Escape closes. Like the floating action button it is fixed to the viewport; pass className=\"absolute\" to keep it inside a container. direction=\"left\" hangs each label above its button, so it needs short labels, and three actions take about 260px of width: on a phone use two or three."
+    },
+    {
+      "name": "speed-dial-demo",
+      "type": "registry:example",
+      "title": "Speed dial demo",
+      "description": "A working preview of Speed dial.",
+      "registryDependencies": [
+        "https://rhsui.com/r/speed-dial.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/speed-dial-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "overflow-actions",
+      "type": "registry:ui",
+      "title": "Overflow actions",
+      "description": "A row of actions that moves whatever does not fit into a More menu, by priority, measured on resize, so a toolbar works at every width.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/overflow-actions.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/overflow-actions.tsx"
+        }
+      ],
+      "docs": "Give it the width of its container (it is a block, w-full). pinned actions never move; a lower priority leaves first. Use separatorBefore to keep groups in the menu, and onOverflowChange to learn which ids moved."
+    },
+    {
+      "name": "overflow-actions-demo",
+      "type": "registry:example",
+      "title": "Overflow actions demo",
+      "description": "A working preview of Overflow actions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/overflow-actions.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/overflow-actions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hold-to-confirm-button",
+      "type": "registry:ui",
+      "title": "Hold to confirm button",
+      "description": "A destructive action you have to hold to trigger: a fill runs across the button, releasing early cancels, and a keyboard and screen reader path exists.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/hold-to-confirm-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/hold-to-confirm-button.tsx"
+        }
+      ],
+      "docs": "onConfirm runs once. A quick press is the other way in: it says \"Press again to confirm\" and a second press within three seconds confirms. Keep label honest about the gesture (\"Hold to delete project\"); the button is as wide as its longest state."
+    },
+    {
+      "name": "hold-to-confirm-button-demo",
+      "type": "registry:example",
+      "title": "Hold to confirm button demo",
+      "description": "A working preview of Hold to confirm button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hold-to-confirm-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hold-to-confirm-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "resend-button",
+      "type": "registry:ui",
+      "title": "Resend button",
+      "description": "A Resend code button with a cooldown: a live countdown while waiting, sending and sent states, and an attempt limit that says what to do next.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/resend-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/resend-button.tsx"
+        }
+      ],
+      "docs": "onResend returns a promise; a rejection shows its message and does not start the timer. maxAttempts counts resends made with this button, and startCooling begins in the waiting state right after the first send. The countdown is announced only at the start, at 10 seconds and at 0, and the button's name stays \"Resend code\" (labels.ready) while it waits, so a screen reader is not told the time every second."
+    },
+    {
+      "name": "resend-button-demo",
+      "type": "registry:example",
+      "title": "Resend button demo",
+      "description": "A working preview of Resend button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/resend-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/otp-input.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/resend-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "heading-anchor-link",
+      "type": "registry:ui",
+      "title": "Heading anchor link",
+      "description": "The # beside a heading that lets a section be linked to: it copies the URL with the fragment, says so, and works from the keyboard.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/heading-anchor-link.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/heading-anchor-link.tsx"
+        }
+      ],
+      "docs": "The id goes on the heading; without one no link is drawn. offset is the height of a sticky header, as scroll-margin-top. The link is a sibling of the heading, so the heading's own name stays clean for screen readers, and it is named after its heading (label takes {heading}), so a list of links tells them apart."
+    },
+    {
+      "name": "heading-anchor-link-demo",
+      "type": "registry:example",
+      "title": "Heading anchor link demo",
+      "description": "A working preview of Heading anchor link.",
+      "registryDependencies": [
+        "https://rhsui.com/r/heading-anchor-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/heading-anchor-link-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "paste-button",
+      "type": "registry:ui",
+      "title": "Paste button",
+      "description": "Paste from the clipboard with one press: it asks permission, checks the text, and says what it pasted, why it refused, or how to allow access.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/paste-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/paste-button.tsx"
+        }
+      ],
+      "docs": "The clipboard is read only when the button is pressed. Pass targetRef to fill and focus an input, and validate to refuse text with a reason. Where the browser blocks or lacks readText it focuses the field and says to press Ctrl V; pass read for a native shell."
+    },
+    {
+      "name": "paste-button-demo",
+      "type": "registry:example",
+      "title": "Paste button demo",
+      "description": "A working preview of Paste button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/paste-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/paste-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "autoplay-toggle",
+      "type": "registry:ui",
+      "title": "Autoplay toggle",
+      "description": "The pause control moving content must have: one button to stop and start a carousel, ticker or video, with a hook that also holds it on hover, focus and hidden tabs.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-play-pause.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/tooltip.json",
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/autoplay-toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/autoplay-toggle.tsx"
+        }
+      ],
+      "docs": "label says what it controls and is part of the name (Pause testimonials, Play testimonials). Let useAutoplay own the state, spread contentProps on the moving content and read running in the timer; there is no aria-pressed because the name already follows the state."
+    },
+    {
+      "name": "autoplay-toggle-demo",
+      "type": "registry:example",
+      "title": "Autoplay toggle demo",
+      "description": "A working preview of Autoplay toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/autoplay-toggle.json",
+        "https://rhsui.com/r/marquee.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/autoplay-toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "insert-between-button",
+      "type": "registry:ui",
+      "title": "Insert between button",
+      "description": "The plus that appears between two items so you can insert one right there: on hover and focus, always on touch, and reachable by keyboard.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/insert-between-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/insert-between-button.tsx"
+        }
+      ],
+      "docs": "index is the position the new item takes; the name reads Insert step between 2 and 3 (pass between for real names). Put one in every gap of your list, and move focus to the new item in onInsert."
+    },
+    {
+      "name": "insert-between-button-demo",
+      "type": "registry:example",
+      "title": "Insert between button demo",
+      "description": "A working preview of Insert between button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/insert-between-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/insert-between-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "swap-button",
+      "type": "registry:ui",
+      "title": "Swap button",
+      "description": "Swap two values with one press, like origin and destination or from and to: the icon turns, both fields trade places, and it says what changed.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/swap-button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/swap-button/index.tsx"
+        },
+        {
+          "path": "registry/primitives/swap-button/swap-values.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/swap-button/swap-values.ts"
+        }
+      ],
+      "docs": "Give it labelA, labelB and the current values so it can say what changed. With seam it centres on its parent, which must be relative, and reaches (size minus gap) / 2 into each field: leave a 20px gap between fields padded 16px (gap-5) so it clears their text and its focus ring has room. swapValues(state, 'from', 'to') is a pure helper for the common two-field state."
+    },
+    {
+      "name": "swap-button-demo",
+      "type": "registry:example",
+      "title": "Swap button demo",
+      "description": "A working preview of Swap button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/swap-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/swap-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:ui",
+      "title": "Status badge",
+      "description": "A badge for a record's state with a glyph and a word, so draft, paid, overdue and archived read without colour.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/status-badge.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/status-badge.tsx"
+        }
+      ],
+      "docs": "Pass any string as status; known keys get their glyph and emphasis, others get a neutral outline. Extend the vocabulary with statuses, spreading defaultStatuses. The text is the status; the dot size keeps an sr-only label."
+    },
+    {
+      "name": "status-badge-demo",
+      "type": "registry:example",
+      "title": "Status badge demo",
+      "description": "A working preview of Status badge.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-badge-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "Chip",
+      "description": "A compact pill that is static, selectable or removable, with an icon or avatar: the unit behind filters, picks and attributes.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/chip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/chip.tsx"
+        }
+      ],
+      "docs": "toggle chips are buttons with aria-pressed and a check. An input chip's remove button is named Remove <label>; Backspace or Delete on it removes the chip and focus moves to its neighbour. Pass removeLabel when the label is not plain text."
+    },
+    {
+      "name": "chip-demo",
+      "type": "registry:example",
+      "title": "Chip demo",
+      "description": "A working preview of Chip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chip.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tag-list",
+      "type": "registry:ui",
+      "title": "Tag list",
+      "description": "A row of tags that never breaks the layout: it shows what fits, then a '+3' button that opens the rest.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/tag-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/tag-list.tsx"
+        }
+      ],
+      "docs": "Give the list a width to fit into (a table column or max-w class), then fit shows what fits and max caps the count; before it has measured, the server HTML shows only the whole tags that fit one line. The group is named like Design, Research and 3 more. Tags with an href are links; others call onTagSelect."
+    },
+    {
+      "name": "tag-list-demo",
+      "type": "registry:example",
+      "title": "Tag list demo",
+      "description": "A working preview of Tag list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tag-list.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tag-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "formatted-number",
+      "type": "registry:ui",
+      "title": "Formatted number",
+      "description": "Numbers formatted for the reader: compact (1.2K), percent, unit or currency, in tabular figures with the full value kept for assistive technology.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/formatted-number/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/formatted-number/index.tsx"
+        },
+        {
+          "path": "registry/primitives/formatted-number/tip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/formatted-number/tip.tsx"
+        }
+      ],
+      "docs": "The Intl style option is called format here, because style belongs to CSS. percent takes a fraction (0.12 is 12%); currency needs currency and unit needs unit, which the types enforce, and if Intl still refuses a code it writes a plain decimal with the code. Compact figures keep the full number in the accessible name and a tooltip that opens on hover and on a tap; add focusable for a keyboard tab stop. null and NaN show the placeholder."
+    },
+    {
+      "name": "formatted-number-demo",
+      "type": "registry:example",
+      "title": "Formatted number demo",
+      "description": "A working preview of Formatted number.",
+      "registryDependencies": [
+        "https://rhsui.com/r/formatted-number.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/formatted-number-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "money-amount",
+      "type": "registry:ui",
+      "title": "Money amount",
+      "description": "An amount of money with currency, sign and meaning in words, for credits, debits and refunds, in tabular figures.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/money-amount.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/money-amount.tsx"
+        }
+      ],
+      "docs": "amount is an integer in minor units (1250 is 12.50; JPY has none); a fraction is rounded to the nearest minor unit. direction credit, debit, refund or auto (the sign of the amount) decides the sign, the weight and the sr-only word. A currency code Intl rejects is written as digits and the code. Meaning never depends on red and green."
+    },
+    {
+      "name": "money-amount-demo",
+      "type": "registry:example",
+      "title": "Money amount demo",
+      "description": "A working preview of Money amount.",
+      "registryDependencies": [
+        "https://rhsui.com/r/money-amount.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/money-amount-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "link-card",
+      "type": "registry:ui",
+      "title": "Link card",
+      "description": "A card that is one link: icon or image, title, description and an arrow, with a focus ring around the whole card.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/link-card.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/link-card.tsx"
+        }
+      ],
+      "docs": "The title is the only link, stretched over the card. With asChild, pass your framework link as the child (a Next Link with no text and its own href); the title is added inside it. external adds an arrow and a hidden opens in a new tab."
+    },
+    {
+      "name": "link-card-demo",
+      "type": "registry:example",
+      "title": "Link card demo",
+      "description": "A working preview of Link card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/link-card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/link-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "due-date-label",
+      "type": "registry:ui",
+      "title": "Due date label",
+      "description": "A due date in words that matter: 'Due today', 'Due in 3 days' or 'Overdue by 2 days', with an icon that carries the urgency.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/due-date-label.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/due-date-label.tsx"
+        }
+      ],
+      "docs": "Days are compared as calendar days in timeZone, so a task due today never reads overdue at 00:01. A date-only string like 2026-10-24 is a calendar date and never shifts. The full date is in a tooltip that opens on hover and on a tap; add focusable for a keyboard tab stop, or showDate to write it into the line (Due in 3 days · Fri 23 Oct) for phones and print. Pass now for tests; otherwise it reads the browser clock after hydration."
+    },
+    {
+      "name": "due-date-label-demo",
+      "type": "registry:example",
+      "title": "Due date label demo",
+      "description": "A working preview of Due date label.",
+      "registryDependencies": [
+        "https://rhsui.com/r/due-date-label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/due-date-label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-code",
+      "type": "registry:ui",
+      "title": "Inline code",
+      "description": "Code inside a sentence: a quiet mono chip that wraps cleanly, with an optional click to copy.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/inline-code/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-code/index.tsx"
+        },
+        {
+          "path": "registry/primitives/inline-code/copyable.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-code/copyable.tsx"
+        },
+        {
+          "path": "registry/primitives/inline-code/shared.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-code/shared.tsx"
+        }
+      ],
+      "docs": "It inherits the surrounding font size. copyable turns the chip into a Copy button; pass value when the children are not plain text. Your other props land on the code, or on the button when it is copyable. Plain inline code is a Server Component; only the copyable part is a client module."
+    },
+    {
+      "name": "inline-code-demo",
+      "type": "registry:example",
+      "title": "Inline code demo",
+      "description": "A working preview of Inline code.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inline-code.json",
+        "https://rhsui.com/r/callout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-code-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

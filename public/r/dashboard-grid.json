@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dashboard-grid",
+  "title": "Dashboard grid",
+  "description": "A 12-column grid for dashboard widgets: sizes by name, rows of one fixed height so tall and short widgets line up, and one column on a phone.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/dashboard/dashboard-grid.tsx",
+      "content": "import type { ComponentProps, CSSProperties, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/** A widget's width as a share of the grid's columns on a desktop: 3 of 12, 4, 6, 8 and 12. */\nconst SHARE = { sm: 0.25, md: 1 / 3, lg: 0.5, wide: 2 / 3, full: 1 } as const;\n\nexport type DashboardGridSize = keyof typeof SHARE;\n\n/** A number is pixels; a string is any CSS length. */\nconst length = (value: number | string): string => (typeof value === \"number\" ? `${value}px` : value);\n\nexport interface DashboardGridProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** Names the dashboard for screen readers: \"Sales overview\". */\n  label: string;\n  /** Columns when the grid is wide. A tablet gets half as many, a phone one. */\n  columns?: number;\n  /** The height of one row. A number is pixels, a string any CSS length. A row grows when its content needs more. */\n  rowHeight?: number | string;\n  /** The space between widgets, in the same units. */\n  gap?: number | string;\n  /** Fill the holes a tall widget leaves by pulling later widgets up. The look can then differ from the DOM order, which is what a screen reader keeps. */\n  dense?: boolean;\n  /** The widgets, each a `DashboardGrid.Widget`. */\n  children: ReactNode;\n}\n\nexport interface DashboardGridWidgetProps extends Omit<ComponentProps<\"section\">, \"aria-label\"> {\n  /** Names the widget for screen readers. Every widget is a region, so people can jump between them. */\n  label: string;\n  /** A width by name: sm is a quarter of the grid, md a third, lg a half, wide two thirds, full all of it. */\n  size?: DashboardGridSize;\n  /** A width in columns instead of a name, for a wide grid. On a tablet a span of 4 or less takes half the row, more takes all of it. */\n  span?: number;\n  /** How many rows tall on a tablet and wider: a row is the grid's `rowHeight`. On a phone a widget is as tall as its content. */\n  rowSpan?: number;\n}\n\n/**\n * A grid for dashboard widgets that nobody has to write grid-template for.\n * Wide, it has twelve columns; widgets take a size by name (sm, md, lg, wide,\n * full) or a span, and a height in rows of one fixed height, so tall and\n * short widgets line up. From 896px wide it has twelve columns, from 672px\n * six, and below that one, in DOM order, as tall as their content. Those\n * widths are the grid's own, not the screen's, so it adapts beside a sidebar\n * too. Every widget is a labelled region. It only lays things out; the cards,\n * tables and charts inside are yours, and a widget's only child grows to\n * fill it.\n */\nexport function DashboardGrid({ label, columns = 12, rowHeight = 112, gap = 16, dense = false, className, style, children, ...props }: DashboardGridProps) {\n  const wide = Math.max(1, Math.round(columns));\n  const medium = Math.max(1, Math.ceil(wide / 2));\n  const vars = {\n    \"--dg-gap\": length(gap),\n    \"--dg-row\": length(rowHeight),\n    \"--dg-columns\": wide,\n    \"--dg-tablet\": medium,\n    \"--dg-template-wide\": `repeat(${wide}, minmax(0, 1fr))`,\n    \"--dg-template-tablet\": `repeat(${medium}, minmax(0, 1fr))`,\n  } as CSSProperties;\n  return (\n    <div data-slot=\"dashboard-grid\" className={cn(\"@container w-full\", className)} style={{ ...vars, ...style }} {...props}>\n      <div\n        role=\"group\"\n        aria-label={label}\n        data-dense={dense || undefined}\n        className=\"grid grid-cols-1 auto-rows-[minmax(var(--dg-row),auto)] gap-(--dg-gap) @2xl:grid-cols-(--dg-template-tablet) @4xl:grid-cols-(--dg-template-wide) data-[dense]:grid-flow-dense\"\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n\n/** One place on the grid: a labelled region that spans columns and rows. */\nexport function DashboardGridWidget({ label, size = \"md\", span, rowSpan = 1, className, style, children, ...props }: DashboardGridWidgetProps) {\n  const half = span === undefined ? size === \"sm\" || size === \"md\" : span <= 4;\n  const vars = {\n    \"--dg-span-wide\": span === undefined ? `calc(var(--dg-columns) * ${SHARE[size]})` : Math.max(1, Math.round(span)),\n    \"--dg-span-tablet\": half ? \"calc(var(--dg-tablet) / 2)\" : \"var(--dg-tablet)\",\n    \"--dg-rows\": Math.max(1, Math.round(rowSpan)),\n  } as CSSProperties;\n  return (\n    <section\n      aria-label={label}\n      data-slot=\"dashboard-grid-widget\"\n      data-size={span === undefined ? size : undefined}\n      className={cn(\"col-span-1 min-w-0 @2xl:col-span-(--dg-span-tablet) @2xl:row-span-(--dg-rows) @4xl:col-span-(--dg-span-wide) *:only:h-full\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    >\n      {children}\n    </section>\n  );\n}\n\nDashboardGrid.Widget = DashboardGridWidget;\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/dashboard/dashboard-grid.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "layout"
+  },
+  "docs": "It lays out and nothing else, and it needs no client code. Breakpoints follow the grid's own width (container queries), so it adapts beside a sidebar: twelve columns from 896px, six from 672px, one below. Give every Widget a `label`: each becomes a region. A widget's only child fills it. Row spans apply from the tablet layout up; on a phone a widget is as tall as its content. With `dense` the visual order can differ from the DOM order.",
+  "categories": [
+    "dashboard",
+    "layout"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "target-pace-card-demo",
+  "title": "Target pace card demo",
+  "description": "A working preview of Target pace card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/slider.json",
+    "https://rhsui.com/r/target-pace-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/target-pace-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { TargetPaceCard } from \"@rhs-ui/dashboard/target-pace-card\";\nimport { Slider } from \"@rhs-ui/primitives/slider\";\n\nconst EUR: Intl.NumberFormatOptions = { style: \"currency\", currency: \"EUR\", maximumFractionDigits: 0 };\nconst COUNT: Intl.NumberFormatOptions = { maximumFractionDigits: 0 };\n\nexport default function Demo(): React.JSX.Element {\n  const [day, setDay] = useState([20]);\n  const today = day[0] ?? 20;\n\n  return (\n    <div className=\"grid w-full max-w-3xl gap-6\">\n      <div className=\"grid gap-3 rounded-xl border border-border px-5 py-4 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-6\">\n        <div>\n          <p className=\"text-sm font-medium\">Move today</p>\n          <p className=\"text-xs text-muted-foreground\">Same revenue, another day of October: the tick and the verdict follow.</p>\n        </div>\n        <Slider value={day} onValueChange={setDay} min={1} max={31} step={1} thumbLabels={[\"Day of October\"]} />\n        <output aria-live=\"polite\" className=\"text-sm text-muted-foreground tabular-nums sm:w-24 sm:text-right\">\n          {today} October\n        </output>\n      </div>\n\n      <div className=\"grid gap-6 sm:grid-cols-2\">\n        <TargetPaceCard\n          label=\"Revenue this month\"\n          value={16700}\n          target={25000}\n          start=\"2026-10-01\"\n          end=\"2026-10-31\"\n          now={`2026-10-${String(today).padStart(2, \"0\")}`}\n          format={EUR}\n          locale=\"en-IE\"\n        />\n        <TargetPaceCard label=\"Sign-ups this quarter\" value={340} target={2000} start=\"2026-10-01\" end=\"2026-12-31\" now=\"2026-10-20\" format={COUNT} locale=\"en-IE\" />\n        <TargetPaceCard label=\"Annual plan upgrades in October\" value={128} target={120} start=\"2026-10-01\" end=\"2026-10-31\" now=\"2026-10-20\" format={COUNT} locale=\"en-IE\" />\n        <TargetPaceCard label=\"Newsletter subscribers this quarter\" value={860} target={4000} start=\"2026-10-01\" end=\"2026-12-31\" now=\"2026-10-20\" format={COUNT} locale=\"en-IE\" />\n        <TargetPaceCard label=\"Black Friday revenue\" value={0} target={40000} start=\"2026-11-27\" end=\"2026-11-30\" now=\"2026-10-20\" format={EUR} locale=\"en-IE\" />\n        <TargetPaceCard label=\"Sign-ups last quarter\" value={1840} target={2000} start=\"2026-07-01\" end=\"2026-09-30\" now=\"2026-10-20\" format={COUNT} locale=\"en-IE\" />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

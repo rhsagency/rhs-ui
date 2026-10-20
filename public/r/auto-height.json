@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "auto-height",
+  "title": "Auto height",
+  "description": "A container that glides to its new height when its content changes, for form steps, inline errors and swapped panels, without ever clipping a focus ring.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/auto-height.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, type ComponentProps, type ReactNode } from \"react\";\n\nexport interface AutoHeightProps extends Omit<ComponentProps<\"div\">, \"ref\" | \"children\"> {\n  /** The content whose height changes. */\n  children: ReactNode;\n  /** Milliseconds the height takes to settle. */\n  duration?: number;\n  /** The element to render. */\n  as?: \"div\" | \"section\" | \"article\" | \"aside\" | \"li\" | \"form\" | \"fieldset\";\n  /** Switch the animation off and let the height change at once. */\n  disabled?: boolean;\n}\n\n/**\n * A container that glides to its new height instead of jumping, for form\n * steps, inline errors, swapped panels and anything else that grows or\n * shrinks. It watches its content with a ResizeObserver, so it follows images\n * that load and text that wraps as well as your own state changes. Height is\n * only pinned while it moves: afterwards it is `auto` again and overflow is\n * released, so focus rings and shadows are never clipped. Reduced motion\n * applies the change at once.\n */\nexport function AutoHeight({ children, duration = 260, as = \"div\", disabled = false, className, ...props }: AutoHeightProps) {\n  const Tag = as as \"div\";\n  const outer = useRef<HTMLDivElement>(null);\n  const inner = useRef<HTMLDivElement>(null);\n  const settled = useRef(0);\n  const timer = useRef(0);\n  const latest = useRef({ duration, disabled });\n\n  useEffect(() => {\n    latest.current = { duration, disabled };\n  });\n\n  useEffect(() => {\n    const box = outer.current;\n    const content = inner.current;\n    if (!box || !content || typeof ResizeObserver === \"undefined\") return;\n    settled.current = box.getBoundingClientRect().height;\n    const release = (): void => {\n      box.style.height = \"\";\n      box.style.overflow = \"\";\n      box.style.transition = \"\";\n      settled.current = box.getBoundingClientRect().height;\n    };\n    const observer = new ResizeObserver(() => {\n      const { duration: ms, disabled: off } = latest.current;\n      const moving = box.style.height !== \"\";\n      // Where the box is now: its last settled height, or wherever a running glide has got to.\n      const from = moving ? box.getBoundingClientRect().height : settled.current;\n      window.clearTimeout(timer.current);\n      box.style.transition = \"none\";\n      box.style.height = \"\";\n      const to = box.getBoundingClientRect().height;\n      if (off || ms <= 0 || window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches || Math.abs(to - from) < 1) {\n        release();\n        return;\n      }\n      box.style.height = `${from}px`;\n      box.style.overflow = \"clip\";\n      void box.offsetHeight;\n      box.style.transition = `height ${ms}ms cubic-bezier(0.22, 1, 0.36, 1)`;\n      box.style.height = `${to}px`;\n      settled.current = to;\n      timer.current = window.setTimeout(release, ms + 60);\n    });\n    observer.observe(content);\n    return () => {\n      observer.disconnect();\n      window.clearTimeout(timer.current);\n    };\n  }, []);\n\n  return (\n    <Tag ref={outer} data-slot=\"auto-height\" className={className} {...props}>\n      <div ref={inner} data-slot=\"auto-height-content\" className=\"flow-root\">\n        {children}\n      </div>\n    </Tag>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/auto-height.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "motion"
+  },
+  "docs": "Wrap the part of a layout whose height changes. A ResizeObserver watches the content, so it follows your own state, images that load and text that wraps. Height is pinned only while it moves; afterwards it is auto again and overflow is released, so focus rings and shadows are never clipped. Give it aria-live=\"polite\" when what appears is a message (an inline error), and keep the element mounted so the region exists before its content does. Reduced motion applies the change at once; pass disabled to turn the glide off.",
+  "categories": [
+    "motion",
+    "motion"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modifier-group-demo",
+  "title": "Modifier group demo",
+  "description": "A working preview of Modifier group.",
+  "registryDependencies": [
+    "https://rhsui.com/r/modifier-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/modifier-group-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { ModifierGroup } from \"@rhs-ui/commerce/modifier-group\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [pastry, setPastry] = useState<string[]>([]);\n  const shared = { currency: \"EUR\", locale: \"en-GB\" } as const;\n\n  return (\n    <div className=\"grid w-full max-w-4xl items-start gap-x-8 gap-y-9 md:grid-cols-2\">\n      <Example caption=\"One choice, required: a check appears once it is satisfied\">\n        <ModifierGroup\n          {...shared}\n          title=\"Size\"\n          min={1}\n          defaultValue={[\"medium\"]}\n          options={[\n            { id: \"small\", label: \"Small\", description: \"8 oz\" },\n            { id: \"medium\", label: \"Medium\", description: \"12 oz\", price: 60 },\n            { id: \"large\", label: \"Large\", description: \"16 oz\", price: 120 },\n          ]}\n        />\n      </Example>\n\n      <Example caption=\"One choice, optional: it can be cleared again\">\n        <ModifierGroup\n          {...shared}\n          title=\"Milk\"\n          defaultValue={[\"oat\"]}\n          options={[\n            { id: \"whole\", label: \"Whole milk\" },\n            { id: \"oat\", label: \"Oat\", price: 50 },\n            { id: \"almond\", label: \"Almond\", price: 50 },\n            { id: \"soy\", label: \"Soy\", price: 50, disabled: true, note: \"Sold out\" },\n          ]}\n        />\n      </Example>\n\n      <Example caption=\"Up to 2: at the maximum the rest lock and say why\">\n        <ModifierGroup\n          {...shared}\n          title=\"Extras\"\n          max={2}\n          defaultValue={[\"shot\", \"vanilla\"]}\n          options={[\n            { id: \"shot\", label: \"Extra shot\", price: 80 },\n            { id: \"vanilla\", label: \"Vanilla syrup\", price: 50 },\n            { id: \"caramel\", label: \"Caramel drizzle\", price: 50 },\n            { id: \"cream\", label: \"Whipped cream\", price: 40 },\n          ]}\n        />\n      </Example>\n\n      <Example caption=\"A required group after a failed Add to order\">\n        <ModifierGroup\n          {...shared}\n          title=\"Choose a pastry\"\n          min={1}\n          max={2}\n          invalid\n          value={pastry}\n          onChange={setPastry}\n          options={[\n            { id: \"croissant\", label: \"Butter croissant\", description: \"Baked at 7:00\", price: 280 },\n            { id: \"bun\", label: \"Cardamom bun\", price: 320 },\n            { id: \"financier\", label: \"Almond financier\", price: 250 },\n          ]}\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

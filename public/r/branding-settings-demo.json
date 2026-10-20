@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "branding-settings-demo",
+  "title": "Branding settings demo",
+  "description": "A working preview of Branding settings.",
+  "registryDependencies": [
+    "https://rhsui.com/r/branding-settings.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/branding-settings-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BrandingSettings, type BrandingValue } from \"@rhs-ui/application/branding-settings\";\n\n// Wordmarks and an icon drawn as SVG, so the preview needs no files.\nconst svg = (width: number, height: number, body: string) =>\n  `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"${width}\" height=\"${height}\" viewBox=\"0 0 ${width} ${height}\">${body}</svg>`)}`;\n\nconst wordmark = (ink: string) =>\n  svg(\n    150,\n    28,\n    `<path d=\"M3 24V4l15 20V4\" fill=\"none\" stroke=\"${ink}\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"30\" y=\"21.5\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"20\" font-weight=\"700\" letter-spacing=\"-0.6\" fill=\"${ink}\">Northwind</text>`,\n  );\n\nconst ICON = svg(128, 128, `<rect width=\"128\" height=\"128\" rx=\"28\" fill=\"#111111\"/><path d=\"M40 92V36l48 56V36\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>`);\n\nconst INITIAL: BrandingValue = { logoLight: wordmark(\"#111111\"), logoDark: wordmark(\"#fafafa\"), icon: ICON, color: \"#1d4ed8\" };\n\n// The last swatch is too light to stand out on a white page: pick it to see how a refusal reads.\nconst SWATCHES = [\"#111111\", \"#1d4ed8\", \"#0e7490\", \"#0f766e\", \"#15803d\", \"#ea580c\", \"#b91c1c\", \"#be185d\", \"#475569\", \"#facc15\"];\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState(INITIAL);\n  return (\n    <div className=\"mx-auto w-full max-w-3xl px-4 py-12 sm:px-6\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">Choose a logo file to see the previews follow. The pale yellow swatch is too light for a white page, so it is refused with the reason.</p>\n      <BrandingSettings\n        value={value}\n        name=\"Northwind\"\n        colors={SWATCHES}\n        // A real app would send the file to storage and resolve to its address; here the browser keeps it.\n        onUpload={async (_kind, file) => {\n          await wait(900);\n          return URL.createObjectURL(file);\n        }}\n        onSave={async (next) => {\n          await wait(800);\n          setValue(next);\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

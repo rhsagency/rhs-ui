@@ -126,6 +126,997 @@
           "target": "components/rhs-ui/commerce/money.ts"
         }
       ]
+    },
+    {
+      "name": "pay-button",
+      "type": "registry:component",
+      "title": "Pay button",
+      "description": "The checkout button with its whole life: the amount on it, locked until the form is valid, processing, the bank step, paid, and failed with a safe retry.",
+      "categories": [
+        "commerce",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/pay-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/pay-button.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-pay-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-pay-in": "rhs-pay-in 180ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "Send every press's attempt id to your server as the idempotency key. Pass disabledReason while the form is invalid, status from your payment provider (or let the promise from onPay drive it), and call step.authenticating() when the bank asks for a confirmation. Inside a checkout form use type=\"submit\"."
+    },
+    {
+      "name": "pay-button-demo",
+      "type": "registry:example",
+      "title": "Pay button demo",
+      "description": "A working preview of Pay button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pay-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pay-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-tile",
+      "type": "registry:component",
+      "title": "Product tile",
+      "description": "A quiet product tile for editorial grids: one link, a picture that swaps on hover, the name and the price, with a skeleton and no buttons.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-tile.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-tile.tsx"
+        }
+      ],
+      "docs": "Prices are minor units with a currency, and locale should always be passed so the price matches on the server and in the browser. The tile holds no button, so it is safe in a carousel; set priority on the first row and pass renderImage to use next/image. ProductTileSkeleton keeps the grid steady while data loads."
+    },
+    {
+      "name": "product-tile-demo",
+      "type": "registry:example",
+      "title": "Product tile demo",
+      "description": "A working preview of Product tile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-tile.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-tile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-row-card",
+      "type": "registry:component",
+      "title": "Product row card",
+      "description": "A list-view product card for search results: picture, title, rating and facts, then the price block, stock in words and the actions.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-row-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-row-card.tsx"
+        }
+      ],
+      "docs": "Prices are Money in minor units. The title is the stretched link; Add to cart and your wishlist control stay separate controls above it. onAddToCart may return a promise to show the busy state, and ProductRowCardSkeleton stands in while a list loads. On a phone the price block stacks above a full-width Add to cart that is 40px high, so give a wishlist control the same height."
+    },
+    {
+      "name": "product-row-card-demo",
+      "type": "registry:example",
+      "title": "Product row card demo",
+      "description": "A working preview of Product row card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-row-card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-row-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mini-product-row",
+      "type": "registry:component",
+      "title": "Mini product row",
+      "description": "A one-line product reference for suggestions, bundles and pickers: thumbnail, name, option and price, as a link, a button or a plain row.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/media-object.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/mini-product-row.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/mini-product-row.tsx"
+        }
+      ],
+      "docs": "Give it href for a link or onClick for a button; with neither it is a plain row. trailing stays a separate control above the stretched link, so a checkbox or a remove button is safe. selected adds a check and aria-pressed (button) or aria-current (link)."
+    },
+    {
+      "name": "mini-product-row-demo",
+      "type": "registry:example",
+      "title": "Mini product row demo",
+      "description": "A working preview of Mini product row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/mini-product-row.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mini-product-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "base-price",
+      "type": "registry:component",
+      "title": "Base price",
+      "description": "The required price per 100 g or per litre, worked out from the pack size and price, converted, rounded half up and formatted for the locale.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/base-price.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/base-price.tsx"
+        }
+      ],
+      "docs": "Pass the price of the pack in minor units, how much one pack holds and its unit; the base price is worked out here, rounded half up to the cent. Give it an id and point the price's aria-describedby at it. computeBasePrice is exported for sorting or analytics."
+    },
+    {
+      "name": "base-price-demo",
+      "type": "registry:example",
+      "title": "Base price demo",
+      "description": "A working preview of Base price.",
+      "registryDependencies": [
+        "https://rhsui.com/r/base-price.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/base-price-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-range",
+      "type": "registry:component",
+      "title": "Price range",
+      "description": "A price for products with variants: 'From 19', '19 to 39' or one price, with sale ranges handled and struck through.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/price-range.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-range.tsx"
+        }
+      ],
+      "docs": "min and max are minor units. variant=\"from\" shows the lowest price after a word; variant=\"range\" shows both ends with Intl formatRange. cents=\"auto\" drops .00 when every figure is whole. The compare-at range is struck through only when it is higher."
+    },
+    {
+      "name": "price-range-demo",
+      "type": "registry:example",
+      "title": "Price range demo",
+      "description": "A working preview of Price range.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-range.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-range-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quantity-stepper",
+      "type": "registry:component",
+      "title": "Quantity stepper",
+      "description": "A quantity control for carts: minus, plus and a typed value, with pack steps, a stock cap, hold to repeat and remove at one.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/quantity-stepper.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/quantity-stepper.tsx"
+        }
+      ],
+      "docs": "Controlled (value, onChange) or uncontrolled (defaultValue). min defaults to 1 and every value is min plus whole steps. stockLimit and max cap it; removeAtMin turns the minus into a trash button that calls onRemove. A press steps when it is released, so a scroll that starts on a button changes nothing; holding repeats, and neither a hold nor a key repeat ever removes the line. busy ignores presses and covers the number with a spinner without changing the size."
+    },
+    {
+      "name": "quantity-stepper-demo",
+      "type": "registry:example",
+      "title": "Quantity stepper demo",
+      "description": "A working preview of Quantity stepper.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quantity-stepper.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quantity-stepper-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "add-to-cart-button",
+      "type": "registry:component",
+      "title": "Add to cart button",
+      "description": "The buy button with its commerce states: select an option, adding, added with View cart, failed with retry, sold out and pre-order.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/add-to-cart-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/add-to-cart-button.tsx"
+        }
+      ],
+      "docs": "onAdd may return a promise: the button is busy until it settles, says Added beside a View cart link, or shows an inline error that retries. Pass missingOption while a variant is unchosen, soldOut with onNotify for Notify me, preorder for a ship date, or drive it with status."
+    },
+    {
+      "name": "add-to-cart-button-demo",
+      "type": "registry:example",
+      "title": "Add to cart button demo",
+      "description": "A working preview of Add to cart button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/add-to-cart-button.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/add-to-cart-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-info-tabs",
+      "type": "registry:component",
+      "title": "Product info tabs",
+      "description": "Description, details, shipping and reviews as tabs on desktop and an accordion on a phone, from the same content.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-info-tabs.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-info-tabs.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-panel-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(3px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-panel-in": "rhs-panel-in 200ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "Give every section a short id: the URL hash #id opens it, and the hash follows the open section. Closed panels stay in the document. Below the breakpoint (768 px by default) the sections become a single-open accordion whose headings use headingLevel. The server renders the tabs, so until the page is interactive a small inline style hides the tab row under the breakpoint and a phone never paints a row that does not fit (a strict style-src policy blocks that rule; the row then scrolls inside itself)."
+    },
+    {
+      "name": "product-info-tabs-demo",
+      "type": "registry:example",
+      "title": "Product info tabs demo",
+      "description": "A working preview of Product info tabs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-info-tabs.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-info-tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fit-scale",
+      "type": "registry:component",
+      "title": "Fit scale",
+      "description": "Where an item runs, from small to large, as a five-point scale with the marker placed from review data.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/fit-scale.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/fit-scale.tsx"
+        }
+      ],
+      "docs": "value is the average fit from 1 (runs small) to 5 (runs large). Without a value, or with a count of 0, it renders nothing. Pass labels for another language: the sentence uses {fit} and {count}."
+    },
+    {
+      "name": "fit-scale-demo",
+      "type": "registry:example",
+      "title": "Fit scale demo",
+      "description": "A working preview of Fit scale.",
+      "registryDependencies": [
+        "https://rhsui.com/r/fit-scale.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fit-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shipping-estimator",
+      "type": "registry:component",
+      "title": "Shipping estimator",
+      "description": "Country and postcode in, delivery options out: the cart's shipping estimator with prices, arrival windows and a postcode check per country.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/country-select.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/shipping-estimator/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipping-estimator/index.tsx"
+        },
+        {
+          "path": "registry/commerce/shipping-estimator/postcodes.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipping-estimator/postcodes.ts"
+        }
+      ],
+      "docs": "onEstimate gets a country and a postcode that already match the country's format, and returns the options: an empty list means you do not ship there, a rejection shows a retry message. Amounts are in minor units. Pass onSelect and the list becomes a radio group; it is called with null when the choice no longer stands (the country or postcode was edited, or a new estimate started), so clear whatever you stored. Pass defaultOptions to restore an earlier estimate. postcodes.ts exports the format rules, so the same check can run on your server."
+    },
+    {
+      "name": "shipping-estimator-demo",
+      "type": "registry:example",
+      "title": "Shipping estimator demo",
+      "description": "A working preview of Shipping estimator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shipping-estimator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shipping-estimator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-line",
+      "type": "registry:component",
+      "title": "Order line",
+      "description": "A read-only order line: picture, name, option, quantity times unit price, line total and a per-line status, read out as one sentence.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/media-object.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-line.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-line.tsx"
+        }
+      ],
+      "docs": "Amounts are in minor units. compareAtAmount draws a struck price, discount adds a line and takes its amount off the total. Put lines in a <ul>; use as=\"div\" outside a list. Pass statusLabel to translate the chip."
+    },
+    {
+      "name": "order-line-demo",
+      "type": "registry:example",
+      "title": "Order line demo",
+      "description": "A working preview of Order line.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-line.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-line-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-card",
+      "type": "registry:component",
+      "title": "Order card",
+      "description": "An order in a customer's history: number, date, status, thumbnails, total and the next step as a button, with the whole card linking to the order.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-card.tsx"
+        }
+      ],
+      "docs": "Dates are ISO strings, read in timeZone (UTC by default) and written out in locale. The action that fits the status is chosen for you (track, reorder); give order.actions to choose your own (up to three; the first is the main button, and on a compact card they wrap to a second line when the row is narrow). The buttons sit above a stretched link. Give an action an address with actionHrefs and it is a link that needs no JavaScript; for the others pass onAction from a client component."
+    },
+    {
+      "name": "order-card-demo",
+      "type": "registry:example",
+      "title": "Order card demo",
+      "description": "A working preview of Order card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-lookup",
+      "type": "registry:component",
+      "title": "Order lookup",
+      "description": "Where is my order? An order number and email form for guests, with answers that never reveal who has orders.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-lookup.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-lookup.tsx"
+        }
+      ],
+      "docs": "onLookup resolves with whatever should appear under the form, or with null when nothing matches: a missing order and a wrong email give the same words. Reject for a failure on your side. The answer under the form goes away as soon as a field is edited. Rate-limit the endpoint behind it; the form cannot do that for you."
+    },
+    {
+      "name": "order-lookup-demo",
+      "type": "registry:example",
+      "title": "Order lookup demo",
+      "description": "A working preview of Order lookup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-lookup.json",
+        "https://rhsui.com/r/order-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-lookup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "modifier-group",
+      "type": "registry:component",
+      "title": "Modifier group",
+      "description": "Options with rules for products and menus: required, pick one or up to N, price add-ons and a polite count of what is chosen.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/modifier-group.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/modifier-group.tsx"
+        }
+      ],
+      "docs": "max 1 (the default) draws radios, anything more draws checkboxes that lock at the maximum; pass Infinity for no limit. min of 1 or more marks the group Required. Prices are in minor units. The message for a missing choice shows after the first change, or at once with invalid."
+    },
+    {
+      "name": "modifier-group-demo",
+      "type": "registry:example",
+      "title": "Modifier group demo",
+      "description": "A working preview of Modifier group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/modifier-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/modifier-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "view-cart-bar",
+      "type": "registry:component",
+      "title": "View cart bar",
+      "description": "A bar pinned to the bottom with item count, total and a View cart button, rising when the first item is added and resting above the footer.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/view-cart-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/view-cart-bar.tsx"
+        }
+      ],
+      "docs": "It is sticky, not fixed: render it as the last child of your page's main content, and it stays on the bottom edge of the screen while you scroll, then rests above the footer. total is in minor units. Use hidden on the cart page itself."
+    },
+    {
+      "name": "view-cart-bar-demo",
+      "type": "registry:example",
+      "title": "View cart bar demo",
+      "description": "A working preview of View cart bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/view-cart-bar.json",
+        "https://rhsui.com/r/add-stepper.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/view-cart-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "promo-tile",
+      "type": "registry:component",
+      "title": "Promo tile",
+      "description": "A promotional tile for a product grid: a picture, a short headline and one action, one or two columns wide, with words on a solid plate.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/promo-tile.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/promo-tile.tsx"
+        }
+      ],
+      "docs": "Put it in a grid next to product cards and add grid-flow-dense to the grid, so a wide tile never leaves a gap. span={2} applies from the sm breakpoint up; on a phone every tile is one column, and it fits its own track whether the grid has one column there or two. The picture is decorative unless you give it alt text, and a screen reader hears \"Promotion\" first."
+    },
+    {
+      "name": "promo-tile-demo",
+      "type": "registry:example",
+      "title": "Promo tile demo",
+      "description": "A working preview of Promo tile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/promo-tile.json",
+        "https://rhsui.com/r/product-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/promo-tile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cart-issues",
+      "type": "registry:component",
+      "title": "Cart issues",
+      "description": "The problems in a cart that need fixing before checkout: unavailable lines, price changes and minimums, each with its one fix.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/cart-issues/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/cart-issues/index.tsx"
+        },
+        {
+          "path": "registry/commerce/cart-issues/issues.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/cart-issues/issues.ts"
+        }
+      ],
+      "docs": "Remove an issue from the list when you have fixed it or the shopper has dismissed it, and keep the component mounted when the list is empty: focus moves to the next action, or to the status line when the last one is gone. Everything blocks except a price change, unless you set blocking. Point your checkout button's aria-describedby at the region's id, or print summarizeCartIssues(issues).reason (from cart-issues/issues, which also runs on the server) next to it. onBlockingChange reports the change."
+    },
+    {
+      "name": "cart-issues-demo",
+      "type": "registry:example",
+      "title": "Cart issues demo",
+      "description": "A working preview of Cart issues.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cart-issues.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cart-issues-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rating-inline",
+      "type": "registry:component",
+      "title": "Rating inline",
+      "description": "Stars drawn to the exact average, the score and the review count in one line, linking to the reviews, for product titles and cards.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/rating-inline.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rating-inline.tsx"
+        }
+      ],
+      "docs": "Give it the average and the count; a count of zero shows emptyText (\"No reviews yet\"), or nothing with emptyText={null}. With href the whole line is a link. Pass label to translate the sentence a screen reader hears. To collect a rating use the Rating primitive."
+    },
+    {
+      "name": "rating-inline-demo",
+      "type": "registry:example",
+      "title": "Rating inline demo",
+      "description": "A working preview of Rating inline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rating-inline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "add-stepper",
+      "type": "registry:component",
+      "title": "Add stepper",
+      "description": "An Add button that turns into minus, count and plus in the same footprint once something is in the cart, as in ordering apps.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/add-stepper.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/add-stepper.tsx"
+        }
+      ],
+      "docs": "Controlled with value and onChange, or uncontrolled with defaultValue; zero means not in the cart. stockLimit and max disable plus and print the reason under the control, without taking room, so leave a line of space there; busy keeps the width and the focus while your cart updates. Minus at min removes the item. Always pass label: it is in every accessible name."
+    },
+    {
+      "name": "add-stepper-demo",
+      "type": "registry:example",
+      "title": "Add stepper demo",
+      "description": "A working preview of Add stepper.",
+      "registryDependencies": [
+        "https://rhsui.com/r/add-stepper.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/add-stepper-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

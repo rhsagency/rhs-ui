@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fade-in-demo",
+  "title": "Fade in demo",
+  "description": "A working preview of Fade in.",
+  "registryDependencies": [
+    "https://rhsui.com/r/fade-in.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/fade-in-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconBell, IconRefresh, IconReceipt, IconTruck, IconUserPlus } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { FadeIn, type FadeInProps } from \"@rhs-ui/motion/fade-in\";\n\nconst CARDS: readonly { direction: NonNullable<FadeInProps[\"direction\"]>; delay: number; title: string; body: string; icon: React.ReactNode }[] = [\n  { direction: \"up\", delay: 0, title: \"Order #4821 shipped\", body: \"The courier collected it at 09:12. Arrives Thursday.\", icon: <IconTruck /> },\n  { direction: \"left\", delay: 90, title: \"Invoice INV-2041 paid\", body: \"€1,240.00 received from Kestrel Outfitters.\", icon: <IconReceipt /> },\n  { direction: \"right\", delay: 180, title: \"Back in stock\", body: \"The Halcyon desk lamp can be ordered again.\", icon: <IconBell /> },\n  { direction: \"down\", delay: 270, title: \"New customer\", body: \"Oak Lane Interiors created an account today.\", icon: <IconUserPlus /> },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [run, setRun] = useState(0);\n  return (\n    <div className=\"w-full max-w-3xl\">\n      <div className=\"flex items-start justify-between gap-4\">\n        <div>\n          <h2 className=\"text-sm font-medium\">Four ways to arrive</h2>\n          <p className=\"mt-1 text-xs text-muted-foreground\">Each block plays once when it is on screen, on its own clock.</p>\n        </div>\n        <Button variant=\"outline\" size=\"sm\" onClick={() => setRun((n) => n + 1)}>\n          <IconRefresh />\n          Replay\n        </Button>\n      </div>\n\n      <div key={run} className=\"mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2\">\n        {CARDS.map((card) => (\n          <FadeIn key={card.direction} direction={card.direction} delay={card.delay} distance={20} className=\"min-w-0 rounded-xl border border-border bg-card p-4 shadow-xs\">\n            <p className=\"font-mono text-xs text-muted-foreground\">direction=&quot;{card.direction}&quot;</p>\n            <div className=\"mt-3 flex items-start gap-3\">\n              <span className=\"grid size-9 shrink-0 place-items-center rounded-lg bg-muted text-foreground [&>svg]:size-4\" aria-hidden=\"true\">\n                {card.icon}\n              </span>\n              <div className=\"min-w-0\">\n                <h3 className=\"text-sm font-medium\">{card.title}</h3>\n                <p className=\"mt-0.5 text-sm text-muted-foreground\">{card.body}</p>\n              </div>\n            </div>\n          </FadeIn>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

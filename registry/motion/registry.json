@@ -280,6 +280,944 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "top-loading-bar",
+      "type": "registry:component",
+      "title": "Top loading bar",
+      "description": "A thin bar across the top that races to 80 percent while a page or action is pending, then sweeps to the end and fades. Work shorter than a delay never shows it.",
+      "categories": [
+        "motion",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/top-loading-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/top-loading-bar.tsx"
+        }
+      ],
+      "docs": "Pass active from a router transition, a form action or a pending flag; mount one bar near the top of the layout. It is fixed to the viewport by default: give it className=\"absolute\" inside a relatively positioned panel. The bar waits delay milliseconds (150 by default) before it shows, so fast work never flashes it, and it is announced once as a polite status with the label you give it. Under reduced motion it is a still line that appears and disappears. Switch tone to destructive just before a failing run ends."
+    },
+    {
+      "name": "top-loading-bar-demo",
+      "type": "registry:example",
+      "title": "Top loading bar demo",
+      "description": "A working preview of Top loading bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/top-loading-bar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/top-loading-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "count-up",
+      "type": "registry:component",
+      "title": "Count up",
+      "description": "A number that counts up from zero the first time it is mostly on screen, with prefix, suffix, decimals and locale, and the final value in the page from the start.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/count-up.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/count-up.tsx"
+        }
+      ],
+      "docs": "The final value is in the page from the first render, in text for screen readers, search engines and print; the visible digits sit in a box as wide as that value, so nothing shifts while they run. It counts when 40 percent of the number is on screen. A number that is already on screen when the page hydrates keeps its final value, one that mounts in the browser always counts. Reduced motion and browsers without IntersectionObserver show the final value at once. Pass your application locale."
+    },
+    {
+      "name": "count-up-demo",
+      "type": "registry:example",
+      "title": "Count up demo",
+      "description": "A working preview of Count up.",
+      "registryDependencies": [
+        "https://rhsui.com/r/count-up.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/count-up-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fill-bar",
+      "type": "registry:component",
+      "title": "Fill bar",
+      "description": "A labelled bar that fills to its value when it scrolls into view, for skills, quotas and survey results, built on Progress so the real value is always in the page.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/fill-bar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/fill-bar.tsx"
+        }
+      ],
+      "docs": "It renders the Progress primitive, so the progressbar role, its name and the true value are present from the first render and only the drawing animates. Give bars in a group an increasing order to land them in sequence. format is percent, value or fraction; pass valueText for anything else (\"7.2 of 10 GB\"). Use tone=\"muted\" for the rows that are not the point and tone=\"destructive\" for a limit that has been hit, and say so in the value text too. A value past max draws a full bar and one below zero an empty bar, while the text still shows the real number. Reduced motion, and a bar already on screen when the page hydrates, show the final width at once."
+    },
+    {
+      "name": "fill-bar-demo",
+      "type": "registry:example",
+      "title": "Fill bar demo",
+      "description": "A working preview of Fill bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/fill-bar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fill-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fade-in",
+      "type": "registry:component",
+      "title": "Fade in",
+      "description": "A wrapper that fades and lifts its content in once when it enters view, with direction, delay and duration. Visible without JavaScript and under reduced motion.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/fade-in.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/fade-in.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-enter": {
+          "from": {
+            "opacity": "0",
+            "transform": "translate3d(var(--rhs-fade-x, 0px), var(--rhs-fade-y, 16px), 0)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translate3d(0, 0, 0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-enter": "rhs-enter"
+        }
+      },
+      "docs": "Reveal is tied to the scroll position; FadeIn plays on its own clock, which suits cards and copy the reader will not scrub. The server renders the block fully visible, so nothing is hidden without JavaScript or before hydration. A block that is already on screen when the page hydrates stays as it is; one that mounts in the browser, such as a route change or a conditional, always plays. Use delay to line a row of blocks up. Only opacity and transform move, so layout never shifts, and reduced motion and print show everything at rest."
+    },
+    {
+      "name": "fade-in-demo",
+      "type": "registry:example",
+      "title": "Fade in demo",
+      "description": "A working preview of Fade in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/fade-in.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fade-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stagger-list",
+      "type": "registry:component",
+      "title": "Stagger list",
+      "description": "A list whose items enter one after another when it scrolls into view, with a step, a cap on the wait and real list semantics that stay intact.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/stagger-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/stagger-list.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-stagger-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translate3d(var(--rhs-stagger-x, 0px), var(--rhs-stagger-y, 14px), 0)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translate3d(0, 0, 0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-stagger-in": "rhs-stagger-in"
+        }
+      },
+      "docs": "Render it as ul or ol and give it li children; it adds no wrapper, and a ul or ol carries an explicit role=\"list\", so assistive technology (Safari with VoiceOver included) still announces the list and its item count. Each child waits index times step milliseconds, never longer than maxDelay. Any element can be an item. The server renders every item visible; a list already on screen when the page hydrates stays as it is, one that mounts in the browser always plays. Reduced motion and print show every item at once."
+    },
+    {
+      "name": "stagger-list-demo",
+      "type": "registry:example",
+      "title": "Stagger list demo",
+      "description": "A working preview of Stagger list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stagger-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stagger-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "crossfade",
+      "type": "registry:component",
+      "title": "Crossfade",
+      "description": "Swap content with a soft crossfade and no layout jump: tab panels, loaded states and changing values, with the leaving content made inert.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/crossfade.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/crossfade.tsx"
+        }
+      ],
+      "docs": "Render the content for the current key as children and change activeKey when it changes; the previous content stays mounted just long enough to fade out. Old and new share one grid cell, so during the fade the box is as tall as the taller of the two. When the heights differ, wrap Crossfade in AutoHeight so the rest of the page glides to the new height instead of snapping once the fade ends. The leaving content is inert and hidden from assistive technology the moment it starts leaving. Pass moveFocus to move focus to the new content after a change. mode=\"wait\" lets the old content leave before the new arrives. Reduced motion swaps instantly."
+    },
+    {
+      "name": "crossfade-demo",
+      "type": "registry:example",
+      "title": "Crossfade demo",
+      "description": "A working preview of Crossfade.",
+      "registryDependencies": [
+        "https://rhsui.com/r/crossfade.json",
+        "https://rhsui.com/r/auto-height.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/crossfade-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "auto-height",
+      "type": "registry:component",
+      "title": "Auto height",
+      "description": "A container that glides to its new height when its content changes, for form steps, inline errors and swapped panels, without ever clipping a focus ring.",
+      "categories": [
+        "motion",
+        "motion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/auto-height.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/auto-height.tsx"
+        }
+      ],
+      "docs": "Wrap the part of a layout whose height changes. A ResizeObserver watches the content, so it follows your own state, images that load and text that wraps. Height is pinned only while it moves; afterwards it is auto again and overflow is released, so focus rings and shadows are never clipped. Give it aria-live=\"polite\" when what appears is a message (an inline error), and keep the element mounted so the region exists before its content does. Reduced motion applies the change at once; pass disabled to turn the glide off."
+    },
+    {
+      "name": "auto-height-demo",
+      "type": "registry:example",
+      "title": "Auto height demo",
+      "description": "A working preview of Auto height.",
+      "registryDependencies": [
+        "https://rhsui.com/r/auto-height.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/auto-height-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sticky-section-header",
+      "type": "registry:component",
+      "title": "Sticky section header",
+      "description": "Section headings that stick under the page header while their section scrolls, with a hairline and solid background only when stuck.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/sticky-section-header.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/sticky-section-header.tsx"
+        }
+      ],
+      "docs": "Put one header at the top of each section, as a direct child of the section: it sticks while its section is in view and the next one pushes it away. It is native position: sticky, so Page Down, find in page and screen magnifiers behave. Set offset to the height of a fixed navbar above. Sticking needs no overflow: hidden between the header and its scroll area; use overflow: clip instead. Give the scroll area a scroll-padding-top equal to the header height so focused items are never hidden behind it."
+    },
+    {
+      "name": "sticky-section-header-demo",
+      "type": "registry:example",
+      "title": "Sticky section header demo",
+      "description": "A working preview of Sticky section header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sticky-section-header.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sticky-section-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-focus-list",
+      "type": "registry:component",
+      "title": "Scroll focus list",
+      "description": "A list where the item at the reading line is at full strength and the rest step back, for steps, features and long lists, always at readable contrast.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/scroll-focus-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scroll-focus-list.tsx"
+        }
+      ],
+      "docs": "It watches a thin band at lineAt (0.45 by default) with an IntersectionObserver, in the nearest scrolling box or the page, so there is no scroll listener. The row at the line gets aria-current and data-active; render lets you draw your own rows and read that state. Other rows step back only as far as your muted-foreground, never lighter, so contrast stays at AA, and the description of the current row steps up toward your foreground; dim sets how far. Space the rows with the --rhs-focus-gap variable, and leave room above the first and below the last so each can reach the line. Under reduced motion the other rows are not dimmed, and without JavaScript nothing is."
+    },
+    {
+      "name": "scroll-focus-list-demo",
+      "type": "registry:example",
+      "title": "Scroll focus list demo",
+      "description": "A working preview of Scroll focus list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-focus-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-focus-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "edge-fade-scroller",
+      "type": "registry:component",
+      "title": "Edge fade scroller",
+      "description": "A scroll container that fades its edges only where there is more to scroll, for chip rows, menus and long lists, and never covers text.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/edge-fade-scroller.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/edge-fade-scroller.tsx"
+        }
+      ],
+      "docs": "The fade is a CSS mask, so it works on any background and never covers text or catches a click. Its width follows the scroll position, so it grows as you leave an edge and is gone when nothing overflows. Scrolling stays native: keyboard, wheel and touch are untouched, and an item focused with the keyboard scrolls to a spot clear of the fade. When nothing inside is focusable, pass label to make the box a labelled region you can scroll with the keyboard; its focus ring is drawn outside the fade. onReachEnd fires once each time the end is reached, for loading the next page. Give a horizontal row a flex layout through className."
+    },
+    {
+      "name": "edge-fade-scroller-demo",
+      "type": "registry:example",
+      "title": "Edge fade scroller demo",
+      "description": "A working preview of Edge fade scroller.",
+      "registryDependencies": [
+        "https://rhsui.com/r/edge-fade-scroller.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/edge-fade-scroller-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "drag-scroll",
+      "type": "registry:component",
+      "title": "Drag scroll",
+      "description": "A horizontal strip you can drag with a mouse, with optional snap and edge arrows, and full keyboard support. Touch keeps its native scroll.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/drag-scroll.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/drag-scroll.tsx"
+        }
+      ],
+      "docs": "Mouse and pen drag the strip with a short glide when released; a drag never clicks the item under it. Touch keeps native scrolling. The strip is a focusable region named by label: arrow keys move by an item, Home and End jump to the ends. The wheel moves it sideways only while the pointer is over it, no modifier is held and there is room that way, so the page is never trapped. snap settles on the start or centre of an item. arrows adds previous and next buttons, shown only on devices with a fine pointer and only where there is more to scroll. className styles the wrapper; other props go to the strip."
+    },
+    {
+      "name": "drag-scroll-demo",
+      "type": "registry:example",
+      "title": "Drag scroll demo",
+      "description": "A working preview of Drag scroll.",
+      "registryDependencies": [
+        "https://rhsui.com/r/drag-scroll.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/drag-scroll-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-aware-header",
+      "type": "registry:component",
+      "title": "Scroll aware header",
+      "description": "A sticky header that hides on the way down and returns on the way up, or condenses, or turns solid, without trapping focus or shifting the page.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/scroll-aware-header.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scroll-aware-header.tsx"
+        }
+      ],
+      "docs": "Make it a direct child of the page or scroll area it should stick in. behavior=\"hide\" slides away while scrolling down and returns on scroll up; condense shrinks its padding and gains a hairline; solid turns from transparent to solid. It never hides at the top, while anything inside it has focus, or while a menu in it is open (an element with aria-expanded=\"true\"). Tabbing into a hidden header brings it back. Only transform animates for hide, and condensing trades padding for margin so the page below never moves. Set the padding with --rhs-header-py and --rhs-header-py-condensed. Scroll handling is passive and runs once per frame; reduced motion toggles instantly."
+    },
+    {
+      "name": "scroll-aware-header-demo",
+      "type": "registry:example",
+      "title": "Scroll aware header demo",
+      "description": "A working preview of Scroll aware header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-aware-header.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-aware-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reading-time-left",
+      "type": "registry:component",
+      "title": "Reading time left",
+      "description": "A reading-time readout that counts down as you read an article, from its real word count, ending in a quiet Done. Screen readers hear the total once and are never interrupted.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/reading-time-left.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/reading-time-left.tsx"
+        }
+      ],
+      "docs": "Point target at the article with a ref or a CSS selector: its words are counted and the reader's position through it drives the readout. It shows the total at the top (\"3 min read\"), counts the minutes left, and ends on Done. It redraws at most once a second and is never announced; a screen reader gets the total once. It renders no text on the server. It pairs with Scroll progress rather than replacing it. Translate it with labels (use {minutes} for the number) or take over completely with format."
+    },
+    {
+      "name": "reading-time-left-demo",
+      "type": "registry:example",
+      "title": "Reading time left demo",
+      "description": "A working preview of Reading time left.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reading-time-left.json",
+        "https://rhsui.com/r/scroll-progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reading-time-left-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-away",
+      "type": "registry:component",
+      "title": "Scroll away",
+      "description": "The exit counterpart to Reveal: hero text and headers fade, lift and soften as they scroll off the top, in pure CSS with no scroll handler.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/scroll-away.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/scroll-away.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-scroll-away": {
+          "to": {
+            "opacity": "0",
+            "transform": "var(--away-transform)",
+            "filter": "var(--away-filter)"
+          }
+        },
+        "@keyframes rhs-scroll-away-inert": {
+          "to": {
+            "pointer-events": "none"
+          }
+        }
+      },
+      "docs": "Pure CSS on a view timeline: nothing is hidden before hydration, and reduced motion or a browser without scroll timelines leaves the content fully visible. It ends invisible and, once it has, ignores the pointer, so a link you can still see always works and one that has gone cannot be pressed. Pair it with Reveal (Reveal outside, ScrollAway inside) for something that arrives and leaves with the scroll. It owns opacity, transform and filter while it runs; put your own on a child. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-scroll-away": "rhs-scroll-away",
+          "animate-rhs-scroll-away-inert": "rhs-scroll-away-inert"
+        }
+      }
+    },
+    {
+      "name": "scroll-away-demo",
+      "type": "registry:example",
+      "title": "Scroll away demo",
+      "description": "A working preview of Scroll away: three effects leaving at the same moment in one scrolling panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-away.json",
+        "https://rhsui.com/r/reveal.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scroll-away-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "render-on-view",
+      "type": "registry:component",
+      "title": "Render on view",
+      "description": "Mounts heavy content such as a map, a chart or an embed only when it nears the viewport, holding its space so nothing shifts.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/render-on-view.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/render-on-view.tsx"
+        }
+      ],
+      "docs": "Give it the height the content will have, as minHeight or ratio, so the page does not jump when it arrives. Keep headings, landmarks and anything a crawler must read outside it, and use forceRender for print, bots and tests. With once off the content unmounts again when it is far away and the space it measured is kept. Inside a scrolling panel the margin cannot reach past the panel's own edge, so content there mounts as it enters the panel."
+    },
+    {
+      "name": "render-on-view-demo",
+      "type": "registry:example",
+      "title": "Render on view demo",
+      "description": "A working preview of Render on view, with a counter of the sections rendered so far.",
+      "registryDependencies": [
+        "https://rhsui.com/r/render-on-view.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/render-on-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stick-to-bottom",
+      "type": "registry:component",
+      "title": "Stick to bottom",
+      "description": "A scroll area for chats and logs that follows new content while you are at the end, and offers a Jump to latest button once you scroll up.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/stick-to-bottom.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/stick-to-bottom.tsx"
+        }
+      ],
+      "docs": "Give it a height with className (h-80, or h-full inside a flex column). It follows only while the reader is at the end: scroll up and it lets go, and the button counts what arrived (pass newCount to count yourself, for example when you trim old items). Items are announced politely, and only while it follows; while the reader is away, the count of what arrived is announced as a status instead, at most every few seconds. Growth that arrives later, such as an image that loads, is followed too. A stream that updates many times a second reads best with behavior=\"instant\". To pull the reader to the end after they send something, scroll an element at the end of your list into view. Under reduced motion every jump is instant."
+    },
+    {
+      "name": "stick-to-bottom-demo",
+      "type": "registry:example",
+      "title": "Stick to bottom demo",
+      "description": "A working preview of Stick to bottom: a live support chat and a streaming build log.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stick-to-bottom.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stick-to-bottom-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "snap-pages",
+      "type": "registry:component",
+      "title": "Snap pages",
+      "description": "Full-height sections that snap into place as you scroll, with a dot rail and keyboard paging, on native CSS scroll snap.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/motion/snap-pages.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/snap-pages.tsx"
+        }
+      ],
+      "docs": "One screen tall by default (h-dvh); give it h-full to fill a parent. Give each page its own className for a background, and flex items-center to centre what it holds. Keep the right edge of a page free for the dot rail, around 4rem on a phone. A page taller than the screen scrolls normally and the keys follow it: Page Down moves on only when its end is in view. Reduced motion softens mandatory snapping to proximity and switches off gliding."
+    },
+    {
+      "name": "snap-pages-demo",
+      "type": "registry:example",
+      "title": "Snap pages demo",
+      "description": "A working preview of Snap pages: a four-page product story in a framed viewer, one page taller than the screen.",
+      "registryDependencies": [
+        "https://rhsui.com/r/snap-pages.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/snap-pages-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "view-video",
+      "type": "registry:component",
+      "title": "View video",
+      "description": "A muted video that plays while it is mostly in view and rests when it is not, with a pause button that is always there and a poster.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/view-video.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/view-video.tsx"
+        }
+      ],
+      "docs": "For loops and product demos with no sound: the video is always muted and inline. Give it a poster that matches the first frame, so playback starts without a jump, and a label that says what the clip shows. Pass sources with WebM first and MP4 as the fallback. It plays at half visible (threshold), rests off screen and in a background tab, and a pause you press sticks until you press play. Under reduced motion it never starts by itself. Only metadata loads until the video is a screen away. onPlayingChange tells you when it starts and stops, for a status label or analytics. The control stays a dark disc with a light glyph in every theme, so it reads over any frame."
+    },
+    {
+      "name": "view-video-demo",
+      "type": "registry:example",
+      "title": "View video demo",
+      "description": "A working preview of View video: a product tour that plays while in view, with a status pill that shows it resting.",
+      "registryDependencies": [
+        "https://rhsui.com/r/view-video.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/view-video-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "smooth-scroll",
+      "type": "registry:component",
+      "title": "Smooth scroll",
+      "description": "Optional eased, inertial scrolling for the page or one box, on Lenis, that never fights the browser: scrollbar, Page keys and anchors still work.",
+      "categories": [
+        "motion",
+        "scroll"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "lenis@^1.3.26"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/use-in-view.json"
+      ],
+      "files": [
+        {
+          "path": "registry/motion/smooth-scroll.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/motion/smooth-scroll.tsx"
+        }
+      ],
+      "css": {
+        "@layer base": {
+          ".lenis.lenis-smooth iframe": {
+            "pointer-events": "none"
+          }
+        }
+      },
+      "docs": "Wrap the app once for page scrolling, or wrap one box with root={false} and give it a height. It eases the wheel only, and turns itself off on touch screens, under reduced motion and when enabled is false; scrollTo then falls back to a plain jump, so a button that calls it never goes dead. It lets go when the scrollbar, Page Down or an anchor takes the scroll mid-ease, pauses while a dialog locks the page, and leaves nested scrollers, menus and dialogs alone; mark any other area with data-lenis-prevent. Do not combine it with CSS scroll-behavior: smooth or scroll snap on the same scroller. Use one page-level provider, and read scrollTo and active with useSmoothScroll."
+    },
+    {
+      "name": "smooth-scroll-demo",
+      "type": "registry:example",
+      "title": "Smooth scroll demo",
+      "description": "A working preview of Smooth scroll, easing the wheel inside a reading panel with a switch to compare.",
+      "registryDependencies": [
+        "https://rhsui.com/r/smooth-scroll.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/smooth-scroll-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

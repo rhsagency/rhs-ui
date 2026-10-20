@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fit-scale-demo",
+  "title": "Fit scale demo",
+  "description": "A working preview of Fit scale.",
+  "registryDependencies": [
+    "https://rhsui.com/r/fit-scale.json",
+    "https://rhsui.com/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/fit-scale-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { Slider } from \"@rhs-ui/primitives/slider\";\nimport { FitScale } from \"@rhs-ui/commerce/fit-scale\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\n/** The card a fit scale usually sits in on a product page, under the size picker. */\nfunction Card({ children }: { children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid gap-4 rounded-xl border border-border bg-card p-4 shadow-xs\">\n      <h2 className=\"text-sm font-medium\">Fit</h2>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [fit, setFit] = useState(3.6);\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 gap-x-8 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))]\">\n      <Example caption=\"Most reviewers say it runs small\">\n        <Card>\n          <FitScale value={1.2} count={38} />\n        </Card>\n      </Example>\n\n      <Example caption=\"True to size, with the reviews it comes from\">\n        <Card>\n          <FitScale value={3.1} count={214} />\n        </Card>\n      </Example>\n\n      <Example caption=\"Runs large\">\n        <Card>\n          <FitScale value={4.7} count={87} />\n        </Card>\n      </Example>\n\n      <Example caption=\"Move the average: the marker slides between points, and the words say slightly\">\n        <Card>\n          <FitScale value={fit} count={612} />\n          <div className=\"grid gap-2 border-t border-border pt-4\">\n            <p className=\"flex items-baseline justify-between text-xs text-muted-foreground\">\n              Average fit from reviews\n              <span className=\"font-medium text-foreground tabular-nums\">{fit.toFixed(1)}</span>\n            </p>\n            <Slider min={1} max={5} step={0.1} value={[fit]} onValueChange={(next) => setFit(Math.round((next[0] ?? 3) * 10) / 10)} thumbLabels={[\"Average fit\"]} />\n          </div>\n        </Card>\n      </Example>\n\n      <Example caption=\"Compact, for a product card: the sentence stays available to a screen reader\">\n        <div className=\"rounded-xl border border-border bg-card p-4 shadow-xs\">\n          <FitScale compact value={2.4} count={61} />\n        </div>\n      </Example>\n\n      <Example caption=\"No reviews yet: it renders nothing, not a fake middle\">\n        <div className=\"grid min-h-24 place-items-center rounded-xl border border-dashed border-border p-4 text-center text-xs text-muted-foreground\">\n          <FitScale count={0} />\n          <span>Nothing here until there is data.</span>\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

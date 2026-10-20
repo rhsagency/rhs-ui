@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-inline-demo",
+  "title": "Rating inline demo",
+  "description": "A working preview of Rating inline.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rating-inline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rating-inline-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { RatingInline } from \"@rhs-ui/commerce/rating-inline\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start justify-items-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-3xl gap-x-12 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]\">\n      <Example caption=\"Under a product name, linking to the reviews\">\n        <div className=\"grid gap-1.5\">\n          <h2 className=\"text-xl font-semibold tracking-[-0.03em]\">Linen shirt</h2>\n          <RatingInline value={4.6} count={128} href=\"#reviews\" />\n          <p className=\"mt-1 text-lg font-medium tabular-nums\">€48.00</p>\n        </div>\n      </Example>\n\n      <Example caption=\"Three sizes\">\n        <div className=\"grid gap-3\">\n          <RatingInline size=\"sm\" value={4.6} count={128} />\n          <RatingInline value={4.6} count={128} />\n          <RatingInline size=\"lg\" value={4.6} count={128} />\n        </div>\n      </Example>\n\n      <Example caption=\"Fractions are drawn, not rounded\">\n        <div className=\"grid gap-3\">\n          <RatingInline value={5} count={42} />\n          <RatingInline value={4.5} count={210} />\n          <RatingInline value={3.2} count={17} />\n          <RatingInline value={1.8} count={9} />\n        </div>\n      </Example>\n\n      <Example caption=\"Above a thousand the count is shortened, and the name keeps the full number\">\n        <div className=\"grid gap-3\">\n          <RatingInline value={4.8} count={1284} />\n          <RatingInline value={4.7} count={12400} />\n          <RatingInline value={4.9} count={1} />\n        </div>\n      </Example>\n\n      <Example caption=\"Without the count on screen\">\n        <RatingInline value={4.4} count={86} hideCount />\n      </Example>\n\n      <Example caption=\"With no reviews: a line of words, or a link to write the first one. Never five empty stars.\">\n        <div className=\"grid gap-3\">\n          <RatingInline count={0} />\n          <RatingInline count={0} href=\"#write\" emptyText=\"Be the first to review\" />\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

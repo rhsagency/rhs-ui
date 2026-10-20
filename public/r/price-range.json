@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "price-range",
+  "title": "Price range",
+  "description": "A price for products with variants: 'From 19', '19 to 39' or one price, with sale ranges handled and struck through.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/commerce/price-range.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface PriceRangeLabels {\n  /** Starts the \"from\" style: \"From 19\". */\n  from?: string;\n  /** Joins the two ends when a screen reader reads a range: \"19 to 39\". */\n  to?: string;\n  /** Said before a price that is on sale. */\n  sale?: string;\n  /** Said before the struck-through price. */\n  regular?: string;\n}\n\nexport interface PriceRangeProps extends Omit<ComponentProps<\"span\">, \"children\"> {\n  /** The lowest variant price, in minor units: 1900 is 19.00. */\n  min: number;\n  /** The highest variant price, in minor units. Leave it out, or make it equal to `min`, for a single price. */\n  max?: number;\n  /** The lowest regular price, in minor units. Together with `compareAtMax` it makes the struck-through range. */\n  compareAtMin?: number;\n  /** The highest regular price, in minor units. */\n  compareAtMax?: number;\n  /** ISO 4217 code: \"EUR\", \"USD\", \"GBP\". */\n  currency?: string;\n  /** Always pass your application locale, so the server and the browser print the same text. */\n  locale?: string;\n  /** \"from\" shows the lowest price after a word (\"From 19\"); \"range\" shows both ends (\"19 to 39\"). */\n  variant?: \"from\" | \"range\";\n  /** \"auto\" drops the cents when every figure is a whole amount (\"19\"); \"always\" keeps them (\"19.00\"). */\n  cents?: \"auto\" | \"always\";\n  /** The words around the figures, for another language. */\n  labels?: PriceRangeLabels;\n}\n\ntype RangeFormat = Intl.NumberFormat & { formatRange?: (start: number, end: number) => string };\n\nconst isAmount = (value: number | undefined): value is number => typeof value === \"number\" && Number.isFinite(value) && value >= 0;\n\n/** The figure as people see it, and as a screen reader should say it when the two differ (a dash is not read as \"to\"). */\nfunction Figure({ visible, spoken, as: Tag = \"span\", className }: { visible: string; spoken?: string; as?: \"span\" | \"s\"; className?: string }) {\n  return (\n    <Tag className={className}>\n      <span aria-hidden={spoken ? true : undefined}>{visible}</span>\n      {spoken ? <span className=\"sr-only\">{spoken}</span> : null}\n    </Tag>\n  );\n}\n\n/**\n * The price of a product that comes in variants: one price when they all cost\n * the same, \"From 19\" or \"19 to 39\" when they do not, and the regular range\n * struck through when it is on sale. Ranges are formatted with\n * Intl.NumberFormat formatRange in the reader's locale, figures are tabular,\n * and visually hidden \"Sale price\" and \"Regular price\" labels mean the\n * strike-through is never the only signal.\n */\nexport function PriceRange({ min, max = min, compareAtMin, compareAtMax, currency = \"EUR\", locale = \"en-US\", variant = \"from\", cents = \"auto\", labels, className, ...props }: PriceRangeProps) {\n  if (!isAmount(min) || !isAmount(max)) return null;\n  const words = { from: \"From\", to: \"to\", sale: \"Sale price\", regular: \"Regular price\", ...labels };\n  const low = Math.min(min, max);\n  const high = Math.max(min, max);\n  const regular = [compareAtMin, compareAtMax].filter(isAmount).filter((amount) => amount > 0);\n  const regularLow = regular.length ? Math.min(...regular) : undefined;\n  const regularHigh = regular.length ? Math.max(...regular) : undefined;\n  const onSale = regularLow !== undefined && regularHigh !== undefined && (regularLow > low || regularHigh > high);\n\n  const whole = cents === \"auto\" && [low, high, ...(onSale ? [regularLow, regularHigh] : [])].every((amount) => amount % 100 === 0);\n  const format: RangeFormat = new Intl.NumberFormat(locale, { style: \"currency\", currency, ...(whole ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : {}) });\n  const one = (minor: number) => format.format(minor / 100);\n  const span = (a: number, b: number) => ({\n    visible: format.formatRange ? format.formatRange(a / 100, b / 100) : `${one(a)} – ${one(b)}`,\n    spoken: `${one(a)} ${words.to} ${one(b)}`,\n  });\n\n  const now = low === high ? { visible: one(low) } : variant === \"from\" ? { visible: `${words.from} ${one(low)}` } : span(low, high);\n  const was = !onSale || regularLow === undefined || regularHigh === undefined ? null : regularLow === regularHigh || variant === \"from\" ? { visible: one(regularLow) } : span(regularLow, regularHigh);\n\n  return (\n    <span data-slot=\"price-range\" data-on-sale={onSale || undefined} className={cn(\"inline-flex flex-wrap items-baseline gap-x-2 tabular-nums\", className)} {...props}>\n      {onSale ? <span className=\"sr-only\">{words.sale}: </span> : null}\n      <Figure {...now} className=\"font-medium text-foreground\" />\n      {was ? (\n        <>\n          <span className=\"sr-only\">{words.regular}: </span>\n          <Figure {...was} as=\"s\" className=\"text-[0.875em] text-muted-foreground\" />\n        </>\n      ) : null}\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/price-range.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "commerce"
+  },
+  "docs": "min and max are minor units. variant=\"from\" shows the lowest price after a word; variant=\"range\" shows both ends with Intl formatRange. cents=\"auto\" drops .00 when every figure is whole. The compare-at range is struck through only when it is higher.",
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

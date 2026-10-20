@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "greeting-header-demo",
+  "title": "Greeting header demo",
+  "description": "A working preview of Greeting header.",
+  "registryDependencies": [
+    "https://rhsui.com/r/greeting-header.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/greeting-header-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { GreetingHeader } from \"@rhs-ui/dashboard/greeting-header\";\nimport { IconPlus } from \"@rhs-ui/icons\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <section className=\"border-t border-border py-9 first:border-t-0 first:pt-0 last:pb-0\">\n      <p className=\"mb-5 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </section>\n  );\n}\n\n// 12:30 UTC on Tuesday 20 October 2026: afternoon in Amsterdam, early morning in Los Angeles.\nconst SERVER_CLOCK = \"2026-10-20T12:30:00Z\";\n\nconst waiting = [\n  { count: 3, one: \"order to ship\", other: \"orders to ship\", href: \"#orders\" },\n  { count: 2, one: \"ticket waiting\", other: \"tickets waiting\", href: \"#tickets\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto w-full max-w-5xl px-4 py-10 sm:px-6\">\n      <Example caption=\"12:30 UTC on the server, read for a reader in Amsterdam\">\n        <GreetingHeader\n          name=\"Anna\"\n          headingAs=\"h2\"\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n          now={SERVER_CLOCK}\n          summary={waiting}\n          action={{ label: \"New order\", href: \"#new-order\", icon: <IconPlus /> }}\n        />\n      </Example>\n      <Example caption=\"The same 12:30 UTC, read for a reader in Los Angeles: still morning\">\n        <GreetingHeader\n          name=\"Dana\"\n          headingAs=\"h2\"\n          locale=\"en-GB\"\n          timeZone=\"America/Los_Angeles\"\n          now={SERVER_CLOCK}\n          summary={[\n            { count: 1, one: \"order to ship\", other: \"orders to ship\", href: \"#orders\" },\n            { count: 0, one: \"ticket waiting\", other: \"tickets waiting\", href: \"#tickets\" },\n            { count: 12, one: \"review to approve\", other: \"reviews to approve\", href: \"#reviews\" },\n          ]}\n          action={{ label: \"New order\", href: \"#new-order\", icon: <IconPlus /> }}\n        />\n      </Example>\n      <Example caption=\"21:50 in Amsterdam, with nothing waiting\">\n        <GreetingHeader\n          name=\"Anna\"\n          headingAs=\"h2\"\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n          now=\"2026-10-20T19:50:00Z\"\n          summary={[\n            { count: 0, one: \"order to ship\", other: \"orders to ship\", href: \"#orders\" },\n            { count: 0, one: \"ticket waiting\", other: \"tickets waiting\", href: \"#tickets\" },\n          ]}\n          action={{ label: \"New order\", href: \"#new-order\", icon: <IconPlus /> }}\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

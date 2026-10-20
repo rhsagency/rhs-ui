@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fit-scale",
+  "title": "Fit scale",
+  "description": "Where an item runs, from small to large, as a five-point scale with the marker placed from review data.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/commerce/fit-scale.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FitScaleLabels {\n  /** The name of the scale for assistive technology. */\n  title?: string;\n  /** The left end of the scale. */\n  small?: string;\n  /** The middle of the scale. */\n  trueToSize?: string;\n  /** The right end of the scale. */\n  large?: string;\n  /** The verdict that fills {fit} in the sentence, from the smallest fit to the largest. */\n  verdicts?: readonly [string, string, string, string, string];\n  /** The sentence under the scale. {fit} and {count} are filled in. */\n  summary?: string;\n  /** The sentence for a single review. */\n  summaryOne?: string;\n  /** The sentence when no review count is given. */\n  summaryNoCount?: string;\n}\n\nexport interface FitScaleProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** The average reported fit from 1 (runs small) to 5 (runs large); 3 is true to size. Without it nothing renders. */\n  value?: number;\n  /** How many reviews the average comes from. It is said in the sentence under the scale. */\n  count?: number;\n  /** Always pass your application locale, so the review count is formatted the same on the server and in the browser. */\n  locale?: string;\n  /** The words, for another language. */\n  labels?: FitScaleLabels;\n  /** A smaller scale without the sentence; the sentence stays available to assistive technology. */\n  compact?: boolean;\n}\n\nconst WORDS = {\n  title: \"Fit\",\n  small: \"Runs small\",\n  trueToSize: \"True to size\",\n  large: \"Runs large\",\n  verdicts: [\"it runs small\", \"it runs slightly small\", \"true to size\", \"it runs slightly large\", \"it runs large\"],\n  summary: \"Most customers say {fit}, based on {count} reviews\",\n  summaryOne: \"One customer says {fit}, based on 1 review\",\n  summaryNoCount: \"Most customers say {fit}\",\n} as const satisfies Required<FitScaleLabels>;\n\n/**\n * Where an item runs, from small to large, as a five-point scale with a marker\n * at the average fit reported in reviews. The position is explained in words\n * under the scale, the scale is a meter for assistive technology, and without\n * data it renders nothing instead of a fake mid-point.\n */\nexport function FitScale({ value, count, locale = \"en-US\", labels, compact = false, className, ...props }: FitScaleProps) {\n  if (typeof value !== \"number\" || !Number.isFinite(value) || value < 1 || value > 5 || count === 0) return null;\n  const words = { ...WORDS, ...labels };\n  // 1.5, 2.5, 3.5 and 4.5 are the borders of the five verdicts.\n  const zone = Math.min(4, Math.max(0, Math.round(value) - 1));\n  const template = count === undefined ? words.summaryNoCount : count === 1 ? words.summaryOne : words.summary;\n  const sentence = template.replace(\"{fit}\", words.verdicts[zone] ?? \"\").replace(\"{count}\", count === undefined ? \"\" : new Intl.NumberFormat(locale).format(count));\n  // Five segments with 4px gaps: the marker sits on the middle of its segment and slides between the middles.\n  const along = value - 1;\n  const left = `calc((100% - 16px) / 5 * ${along + 0.5} + ${along * 4}px)`;\n  // The end labels and the middle one carry weight only when the marker is in their zone.\n  const emphasis = (index: number) => (zone === index ? \"font-medium text-foreground\" : \"\");\n\n  return (\n    <div data-slot=\"fit-scale\" data-compact={compact || undefined} className={cn(\"grid gap-2.5 text-xs text-muted-foreground\", className)} {...props}>\n      <div role=\"meter\" aria-label={words.title} aria-valuemin={1} aria-valuemax={5} aria-valuenow={value} aria-valuetext={sentence} className={cn(\"relative\", compact ? \"h-4\" : \"h-5\")}>\n        <div aria-hidden=\"true\" className={cn(\"absolute inset-x-0 top-1/2 flex -translate-y-1/2 gap-1\", compact ? \"h-1\" : \"h-1.5\")}>\n          {[0, 1, 2, 3, 4].map((segment) => (\n            <span key={segment} className={cn(\"flex-1 rounded-full\", segment === 2 ? \"bg-foreground/25\" : \"bg-foreground/12\")} />\n          ))}\n        </div>\n        <span\n          aria-hidden=\"true\"\n          style={{ left }}\n          className={cn(\n            \"absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-background bg-foreground shadow-sm ring-1 ring-foreground/25 transition-[left] duration-500 ease-out motion-reduce:transition-none\",\n            compact ? \"size-3.5 border-2\" : \"size-5 border-[3px]\",\n          )}\n        />\n      </div>\n      <div aria-hidden=\"true\" className={cn(\"grid grid-cols-3 gap-2\", compact && \"text-[0.6875rem]\")}>\n        <span className={cn(\"text-left\", emphasis(0))}>{words.small}</span>\n        <span className={cn(\"text-center\", emphasis(2))}>{words.trueToSize}</span>\n        <span className={cn(\"text-right\", emphasis(4))}>{words.large}</span>\n      </div>\n      {compact ? null : <p className=\"text-pretty\">{sentence}.</p>}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/fit-scale.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "commerce"
+  },
+  "docs": "value is the average fit from 1 (runs small) to 5 (runs large). Without a value, or with a count of 0, it renders nothing. Pass labels for another language: the sentence uses {fit} and {count}.",
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

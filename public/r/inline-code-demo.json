@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-code-demo",
+  "title": "Inline code demo",
+  "description": "A working preview of Inline code.",
+  "registryDependencies": [
+    "https://rhsui.com/r/inline-code.json",
+    "https://rhsui.com/r/callout.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/inline-code-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { Callout } from \"@rhs-ui/primitives/callout\";\nimport { InlineCode } from \"@rhs-ui/primitives/inline-code\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-2xl gap-10\">\n      <Example caption=\"In running text it stays quiet and legible\">\n        <p className=\"text-[0.9375rem] leading-7\">\n          Add the button with <InlineCode>pnpm dlx shadcn@latest add https://rhsui.com/r/button.json</InlineCode>, then import <InlineCode>Button</InlineCode> from{\" \"}\n          <InlineCode>@/components/rhs-ui/primitives/button</InlineCode>. Pass <InlineCode>asChild</InlineCode> to render a link and <InlineCode>loading</InlineCode> to show a spinner while a request runs.\n        </p>\n      </Example>\n\n      <Example caption=\"Copyable: the chip is a button, and a check confirms the copy\">\n        <p className=\"text-[0.9375rem] leading-7\">\n          Start the dev server with <InlineCode copyable>pnpm dev</InlineCode> and open <InlineCode copyable>http://localhost:3000</InlineCode>. Your project key is{\" \"}\n          <InlineCode copyable>kst_live_7Hq2xN9v</InlineCode>; keep it out of the repo.\n        </p>\n      </Example>\n\n      <Example caption=\"It inherits the size of its surroundings\">\n        <div className=\"grid gap-5 rounded-xl border border-border bg-card p-5 shadow-xs\">\n          <h2 className=\"text-2xl font-semibold tracking-[-0.03em]\">\n            Use <InlineCode>useAutoplay</InlineCode> for carousels\n          </h2>\n          <dl className=\"grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 text-sm\">\n            <dt className=\"text-muted-foreground\">Install</dt>\n            <dd>\n              <InlineCode>npm i @northwind/ui</InlineCode>\n            </dd>\n            <dt className=\"text-muted-foreground\">Import</dt>\n            <dd>\n              <InlineCode>{\"import { Button } from \\\"@northwind/ui\\\"\"}</InlineCode>\n            </dd>\n          </dl>\n          <Callout tone=\"tip\" title=\"Set a stable id\">\n            Give each item a stable <InlineCode size=\"sm\">id</InlineCode> instead of its index, so reordering never remounts it.\n          </Callout>\n        </div>\n      </Example>\n\n      <Example caption=\"Long strings break at slashes, dots and underscores\">\n        <div className=\"w-60 max-w-full rounded-xl border border-border bg-card p-4 text-sm leading-7 shadow-xs\">\n          Edit <InlineCode>src/components/rhs-ui/primitives/paste_button.test.tsx</InlineCode> and run the suite again.\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

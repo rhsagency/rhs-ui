@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-away",
+  "title": "Scroll away",
+  "description": "The exit counterpart to Reveal: hero text and headers fade, lift and soften as they scroll off the top, in pure CSS with no scroll handler.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/scroll-away.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport type ScrollAwayEffect = \"fade\" | \"lift\" | \"scale\";\n\n/** Where each effect ends. All of them end invisible; they differ in how they get there. */\nfunction endTransform(effect: ScrollAwayEffect, distance: number): string {\n  switch (effect) {\n    case \"lift\": return `translate3d(0, ${-distance}px, 0)`;\n    case \"scale\": return `translate3d(0, ${-Math.round(distance / 3)}px, 0) scale(0.9)`;\n    default: return \"none\";\n  }\n}\n\n/**\n * Two animations on one view timeline, longhands only (the `animation`\n * shorthand would reset the timeline). The first dims, moves and softens the\n * element. The second only switches pointer events off, stepping at the very\n * end of the range, so a link that has faded out cannot be pressed by mistake\n * while one that is still visible always can. Gated twice: reduced motion and\n * a browser without scroll timelines both leave the element as it is.\n */\nconst scrollAwayClass = [\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-name:var(--animate-rhs-scroll-away),var(--animate-rhs-scroll-away-inert)]\",\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-timeline:view(),view()]\",\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-range:var(--away-range),var(--away-range)]\",\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-fill-mode:both,both]\",\n  \"motion-safe:supports-[animation-timeline:view()]:[animation-timing-function:linear,step-end]\",\n].join(\" \");\n\nexport interface ScrollAwayProps extends ComponentProps<\"div\"> {\n  /** How it leaves. `fade` only dims, `lift` rises as it dims, `scale` shrinks away. */\n  effect?: ScrollAwayEffect;\n  /** Travel in pixels for `lift`, a third of it for `scale`. */\n  distance?: number;\n  /** Blur in pixels reached by the time it is gone: 0 stays sharp, 6 to 10 softens it. */\n  blur?: number;\n  /** When it runs, as CSS `animation-range`. The default starts as the element reaches the top of the screen and ends when 80% of it has gone. */\n  range?: string;\n  /** Put the effect on your own element (a heading, a link) instead of a wrapping div. */\n  asChild?: boolean;\n}\n\n/**\n * The exit counterpart to Reveal: content that fades, lifts and softens as it\n * scrolls off the top, so a hero or a page header makes way instead of being\n * cut by the edge of the screen. Pure CSS on a view timeline, no scroll\n * handler and no layout shift; the server renders the element at rest, and\n * reduced motion or a browser without scroll timelines keeps it fully visible.\n */\nexport function ScrollAway({ effect = \"lift\", distance = 64, blur = 0, range = \"exit 0% exit 80%\", asChild = false, className, style, ...props }: ScrollAwayProps) {\n  const Comp = asChild ? Slot.Root : \"div\";\n  const vars = {\n    \"--away-transform\": endTransform(effect, distance),\n    \"--away-filter\": blur > 0 ? `blur(${blur}px)` : \"none\",\n    \"--away-range\": range,\n  } as CSSProperties;\n  return <Comp data-slot=\"scroll-away\" data-effect={effect} className={cn(scrollAwayClass, className)} style={{ ...vars, ...style }} {...props} />;\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/scroll-away.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-scroll-away": "rhs-scroll-away",
+      "animate-rhs-scroll-away-inert": "rhs-scroll-away-inert"
+    }
+  },
+  "css": {
+    "@keyframes rhs-scroll-away": {
+      "to": {
+        "opacity": "0",
+        "transform": "var(--away-transform)",
+        "filter": "var(--away-filter)"
+      }
+    },
+    "@keyframes rhs-scroll-away-inert": {
+      "to": {
+        "pointer-events": "none"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "scroll"
+  },
+  "docs": "Pure CSS on a view timeline: nothing is hidden before hydration, and reduced motion or a browser without scroll timelines leaves the content fully visible. It ends invisible and, once it has, ignores the pointer, so a link you can still see always works and one that has gone cannot be pressed. Pair it with Reveal (Reveal outside, ScrollAway inside) for something that arrives and leaves with the scroll. It owns opacity, transform and filter while it runs; put your own on a child. Clip a parent with overflow: clip, never overflow: hidden: a hidden overflow makes that parent the scroll container the timeline follows, and the animation stands still.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

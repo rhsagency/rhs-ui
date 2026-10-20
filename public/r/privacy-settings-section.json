@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "privacy-settings-section",
+  "title": "Privacy settings section",
+  "description": "Who can see your profile and what you share: visibility as choice cards, then switches for activity, search and analytics, each saying what it changes for others.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/callout.json",
+    "https://rhsui.com/r/card.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/radio-cards.json",
+    "https://rhsui.com/r/settings-row.json",
+    "https://rhsui.com/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/privacy-settings-section.tsx",
+      "content": "\"use client\";\n\nimport { useId, useRef, useState, type ReactNode } from \"react\";\n\nimport { IconAlertCircle, IconArrowUpRight, IconCheckCircle, IconGlobe, IconLock, IconUsers } from \"@rhs-ui/icons\";\nimport { Callout } from \"@rhs-ui/primitives/callout\";\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from \"@rhs-ui/primitives/card\";\nimport { RadioCards } from \"@rhs-ui/primitives/radio-cards\";\nimport { SettingsRow } from \"@rhs-ui/primitives/settings-row\";\nimport { Switch } from \"@rhs-ui/primitives/switch\";\nimport { cn } from \"@/lib/utils\";\n\nexport type ProfileVisibility = \"public\" | \"members\" | \"private\";\n\nexport interface PrivacySettings {\n  /** Who can open the profile page. */\n  visibility: ProfileVisibility;\n  /** Show recent edits, comments and publications on the profile. */\n  showActivity: boolean;\n  /** Let search engines list the profile (public profiles only). */\n  searchEngines: boolean;\n  /** Share anonymous product usage with the team. */\n  shareUsage: boolean;\n}\n\nexport interface PrivacySettingsSectionProps {\n  /** The current settings. Controlled: update it in onChange. */\n  value: PrivacySettings;\n  /** Called for every change, at once; there is no save button. May return a promise: the status line says Saving and then confirms or fails. */\n  onChange: (next: PrivacySettings) => void | Promise<void>;\n  /** Where the privacy policy lives. */\n  policyHref: string;\n  title?: string;\n  description?: string;\n  /** Heading level of the title; 2 for a page section, 3 inside another section. */\n  headingLevel?: 2 | 3;\n  className?: string;\n}\n\ntype Status = { kind: \"idle\" | \"saving\" | \"saved\" | \"error\"; text: string };\n\nconst VISIBILITY: readonly { value: ProfileVisibility; title: string; description: string; icon: ReactNode; said: string }[] = [\n  { value: \"public\", title: \"Public\", description: \"Anyone with the link can open your profile, signed in or not.\", icon: <IconGlobe />, said: \"Your profile is now public.\" },\n  { value: \"members\", title: \"Members only\", description: \"Only people who are signed in to an account can open your profile.\", icon: <IconUsers />, said: \"Your profile is now visible to members only.\" },\n  { value: \"private\", title: \"Only me\", description: \"Nobody else can open your profile page.\", icon: <IconLock />, said: \"Your profile is now visible only to you.\" },\n];\n\nconst SWITCHES = [\n  {\n    key: \"showActivity\",\n    label: \"Show my activity\",\n    on: \"People who can open your profile see what you edited, commented on and published lately.\",\n    off: \"Your recent edits and comments stay hidden. Others only see your name, picture and bio.\",\n    saidOn: \"Your activity is now shown on your profile.\",\n    saidOff: \"Your activity is now hidden from your profile.\",\n  },\n  {\n    key: \"searchEngines\",\n    label: \"Appear in search engines\",\n    on: \"Search engines may list your profile page in their results.\",\n    off: \"Your page asks search engines not to list it. Results that already exist can take weeks to fade.\",\n    saidOn: \"Search engines may now list your profile.\",\n    saidOff: \"Search engines are now asked not to list your profile.\",\n  },\n  {\n    key: \"shareUsage\",\n    label: \"Share usage data to improve the product\",\n    on: \"We see which features you open, never what you write or upload. It helps us decide what to fix next.\",\n    off: \"Nothing about how you use the product is shared with us. Fixes may reach you a little later.\",\n    saidOn: \"Usage data sharing is now on.\",\n    saidOff: \"Usage data sharing is now off.\",\n  },\n] as const;\n\n/**\n * Privacy controls that explain themselves: who can see the profile as three\n * choice cards, then a switch each for activity, search engines and usage\n * data, with a line that says what the current state means for other people.\n * Every change applies at once and is confirmed in a polite status line;\n * choosing \"Only me\" adds a note about work that is still shared with others.\n */\nexport function PrivacySettingsSection({\n  value,\n  onChange,\n  policyHref,\n  title = \"Privacy\",\n  description = \"Choose who can see your profile and what you share. Every change applies at once.\",\n  headingLevel = 2,\n  className,\n}: PrivacySettingsSectionProps) {\n  const id = useId();\n  const Heading = headingLevel === 3 ? \"h3\" : \"h2\";\n  const ticket = useRef(0);\n  const [status, setStatus] = useState<Status>({ kind: \"idle\", text: \"Changes save as you make them.\" });\n\n  async function apply(next: PrivacySettings, said: string) {\n    const mine = ++ticket.current;\n    setStatus({ kind: \"saving\", text: \"Saving…\" });\n    try {\n      await onChange(next);\n      if (mine === ticket.current) setStatus({ kind: \"saved\", text: said });\n    } catch {\n      if (mine === ticket.current) setStatus({ kind: \"error\", text: \"Could not save that change. Try again.\" });\n    }\n  }\n\n  // What a switch cannot do while the profile is closed, said next to the switch.\n  const notes: Partial<Record<(typeof SWITCHES)[number][\"key\"], string>> = {\n    showActivity: value.visibility === \"private\" ? \"Nobody else can open your profile right now, so this changes nothing yet.\" : undefined,\n    searchEngines: value.visibility === \"public\" ? undefined : `Only public profiles are listed, so this has no effect while your profile is ${value.visibility === \"members\" ? \"for members only\" : \"only yours\"}.`,\n  };\n\n  return (\n    <Card data-slot=\"privacy-settings-section\" role=\"group\" aria-labelledby={`${id}-title`} className={cn(\"@container gap-0 pb-0\", className)}>\n      <CardHeader className=\"pb-6\">\n        <CardTitle asChild>\n          <Heading id={`${id}-title`} className=\"text-base\">{title}</Heading>\n        </CardTitle>\n        <CardDescription className=\"text-pretty\">{description}</CardDescription>\n      </CardHeader>\n      <CardContent className=\"pb-6\">\n        <p className=\"mb-3 text-sm font-medium\">Profile visibility</p>\n        <RadioCards\n          label=\"Profile visibility\"\n          value={value.visibility}\n          onValueChange={(next) => {\n            const chosen = VISIBILITY.find((option) => option.value === next);\n            if (chosen) void apply({ ...value, visibility: chosen.value }, chosen.said);\n          }}\n          options={VISIBILITY.map(({ value: optionValue, title: optionTitle, description: optionDescription, icon }) => ({ value: optionValue, title: optionTitle, description: optionDescription, icon }))}\n        />\n        {value.visibility === \"private\" ? (\n          <Callout tone=\"note\" title=\"Only you can open your profile\" className=\"mt-3 motion-safe:animate-rhs-in\">\n            Teammates can still open work you have shared with them, and workspace admins can see your name and email.\n          </Callout>\n        ) : null}\n      </CardContent>\n      <div className=\"divide-y divide-border border-t border-border px-6\">\n        {SWITCHES.map((item) => {\n          const on = value[item.key];\n          const switchId = `${id}-${item.key}`;\n          return (\n            <SettingsRow\n              key={item.key}\n              label={item.label}\n              htmlFor={switchId}\n              className=\"grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-x-8\"\n              description={\n                <span id={`${switchId}-description`}>\n                  {on ? item.on : item.off}\n                  {notes[item.key] ? <span className=\"mt-1 block text-xs\">{notes[item.key]}</span> : null}\n                </span>\n              }\n            >\n              <Switch\n                id={switchId}\n                checked={on}\n                aria-describedby={`${switchId}-description`}\n                onCheckedChange={(next) => void apply({ ...value, [item.key]: next }, next ? item.saidOn : item.saidOff)}\n              />\n            </SettingsRow>\n          );\n        })}\n      </div>\n      <div className=\"flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-b-xl border-t border-border bg-muted/40 px-6 py-3.5\">\n        <p role=\"status\" aria-live=\"polite\" className={cn(\"flex items-center gap-2 text-sm\", status.kind === \"error\" ? \"font-medium text-destructive\" : \"text-muted-foreground\")}>\n          {status.kind === \"saved\" ? <IconCheckCircle className=\"size-4 shrink-0 text-foreground\" /> : null}\n          {status.kind === \"error\" ? <IconAlertCircle className=\"size-4 shrink-0\" /> : null}\n          <span>{status.text}</span>\n        </p>\n        <a\n          href={policyHref}\n          className=\"inline-flex items-center gap-1 rounded-md text-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n        >\n          Read the privacy policy\n          <IconArrowUpRight className=\"size-3.5\" />\n        </a>\n      </div>\n    </Card>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/application/privacy-settings-section.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(4px) scale(0.98)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "account"
+  },
+  "docs": "Controlled: keep value in state and set it in onChange. Changes apply at once; return a promise from onChange and the status line shows Saving, then the confirmation or an error. Applying the settings (who may read the profile, robots tags, analytics) is yours.",
+  "categories": [
+    "application",
+    "account"
+  ],
+  "type": "registry:block"
+}

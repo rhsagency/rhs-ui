@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "connected-accounts-demo",
+  "title": "Connected accounts demo",
+  "description": "A working preview of Connected accounts.",
+  "registryDependencies": [
+    "https://rhsui.com/r/connected-accounts.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/connected-accounts-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ConnectedAccounts, type ConnectedAccount } from \"@rhs-ui/application/connected-accounts\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\n/** Who each provider says you are once you connect it again. */\nconst identities: Record<string, string> = {\n  google: \"ana@acme.com\",\n  linkedin: \"Ana Reyes\",\n  microsoft: \"ana.reyes@acme.onmicrosoft.com\",\n  apple: \"Private relay address\",\n};\n\n/** Connect and disconnect after a short wait, the way a real round trip would feel. */\nfunction handlers(setAccounts: React.Dispatch<React.SetStateAction<ConnectedAccount[]>>) {\n  return {\n    onConnect: async (id: string) => {\n      await wait(800);\n      setAccounts((list) => list.map((item) => (item.id === id ? { ...item, identity: identities[id], connectedAt: new Date().toISOString() } : item)));\n    },\n    onDisconnect: async (id: string) => {\n      await wait(700);\n      setAccounts((list) => list.map((item) => (item.id === id ? { id: item.id, name: item.name } : item)));\n    },\n  };\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [accounts, setAccounts] = useState<ConnectedAccount[]>([\n    { id: \"google\", name: \"Google\", identity: \"ana@acme.com\", connectedAt: \"2026-03-14T09:12:00Z\" },\n    { id: \"linkedin\", name: \"LinkedIn\", identity: \"Ana Reyes\", connectedAt: \"2025-11-02T16:40:00Z\" },\n    { id: \"microsoft\", name: \"Microsoft\" },\n    { id: \"apple\", name: \"Apple\" },\n  ]);\n  const [single, setSingle] = useState<ConnectedAccount[]>([\n    { id: \"google\", name: \"Google\", identity: \"ana@acme.com\", connectedAt: \"2026-03-14T09:12:00Z\" },\n    { id: \"microsoft\", name: \"Microsoft\" },\n    { id: \"apple\", name: \"Apple\" },\n  ]);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-10 sm:px-6\">\n      <ConnectedAccounts accounts={accounts} timeZone=\"Europe/Amsterdam\" {...handlers(setAccounts)} />\n      <p className=\"mt-3 text-center text-xs text-muted-foreground\">Disconnect one of two and the other becomes your only way in.</p>\n      <ConnectedAccounts className=\"mt-12\" accounts={single} title=\"Sign-in accounts\" timeZone=\"Europe/Amsterdam\" {...handlers(setSingle)} />\n      <p className=\"mt-3 text-center text-xs text-muted-foreground\">With one way in, it stays protected until you connect another.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

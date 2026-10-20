@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cookie-declaration-demo",
+  "title": "Cookie declaration demo",
+  "description": "A working preview of Cookie declaration.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/cookie-declaration.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/cookie-declaration-demo.tsx",
+      "content": "import { CookieDeclaration } from \"@rhs-ui/marketing/cookie-declaration\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10\">\n      <CookieDeclaration\n        title=\"Cookie declaration\"\n        caption=\"The cookies and similar storage used on northwind.example. We check this list every quarter, and our banner links here.\"\n        updated=\"2026-10-04\"\n        locale=\"en-GB\"\n        consent={\n          <>\n            <div>\n              <p className=\"text-xs text-muted-foreground\">Your consent ID</p>\n              <p className=\"mt-1 text-sm font-medium tabular-nums select-all\">7F3A-92C1-D04E</p>\n            </div>\n            <Button variant=\"outline\">Change my choice</Button>\n          </>\n        }\n        categories={[\n          {\n            title: \"Necessary\",\n            description: \"The site cannot work without these. They keep you signed in and remember your choices, and they do not track you.\",\n            required: true,\n            cookies: [\n              { name: \"nw_session\", provider: \"Northwind\", purpose: \"Keeps you signed in as you move between pages.\", duration: \"Session\", type: \"HTTP\" },\n              { name: \"nw_csrf\", provider: \"Northwind\", purpose: \"Protects forms against requests sent from other sites.\", duration: \"Session\", type: \"HTTP\" },\n              { name: \"nw_consent\", provider: \"Northwind\", purpose: \"Remembers the choices you made in the cookie banner.\", duration: \"1 year\", type: \"HTTP\" },\n            ],\n          },\n          {\n            title: \"Preferences\",\n            description: \"Remember your settings, so the site looks the way you left it.\",\n            cookies: [\n              { name: \"nw_locale\", provider: \"Northwind\", purpose: \"Remembers your language and region.\", duration: \"1 year\", type: \"HTTP\" },\n              { name: \"nw_theme\", provider: \"Northwind\", purpose: \"Remembers whether you chose the light or dark theme.\", duration: \"Until cleared\", type: \"Local storage\" },\n            ],\n          },\n          {\n            title: \"Analytics\",\n            description: \"Show us which pages are used, without identifying you.\",\n            cookies: [\n              { name: \"_hly_id\", provider: \"Halcyon Analytics\", purpose: \"A random id, so repeat visits are counted once.\", duration: \"13 months\", type: \"HTTP\" },\n              { name: \"hly_beacon\", provider: \"Halcyon Analytics\", purpose: \"Counts a page view when scripts are blocked.\", duration: \"Session\", type: \"Pixel\" },\n            ],\n          },\n          {\n            title: \"Marketing\",\n            description: \"Used to show our ads on other sites. We do not use any.\",\n            cookies: [],\n          },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

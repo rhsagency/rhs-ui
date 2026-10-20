@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sticky-section-header",
+  "title": "Sticky section header",
+  "description": "Section headings that stick under the page header while their section scrolls, with a hairline and solid background only when stuck.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/sticky-section-header.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ComponentProps, type CSSProperties, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface StickySectionHeaderProps extends Omit<ComponentProps<\"div\">, \"ref\"> {\n  /** The heading text: \"March 2026\", \"B\", \"Notifications\". */\n  children: ReactNode;\n  /** Something to put at the end of the bar, outside the heading: a count, a link, an action. */\n  aside?: ReactNode;\n  /** Pixels to stop short of the top of the scroll area, for a fixed navbar above. */\n  offset?: number;\n  /** The heading level of the text. */\n  level?: 2 | 3 | 4 | 5 | 6;\n  /** The element of the bar itself. */\n  as?: \"div\" | \"header\" | \"li\";\n}\n\nfunction scrollParent(node: HTMLElement): HTMLElement | null {\n  for (let parent = node.parentElement; parent; parent = parent.parentElement) {\n    const { overflowY } = getComputedStyle(parent);\n    if (overflowY === \"auto\" || overflowY === \"scroll\" || overflowY === \"overlay\") return parent;\n  }\n  return null;\n}\n\n/**\n * The heading of a section in a long grouped list: a changelog by month,\n * contacts by letter, a settings page. It sticks to the top of the scroll\n * area while its section is in view and the next heading pushes it away.\n * It is plain `position: sticky`, so Page Down, find in page and screen\n * magnifiers behave, and the heading keeps its level. A sentinel and one\n * IntersectionObserver tell it when it is stuck, so the bottom hairline and\n * the solid background appear only then, with no scroll handler.\n */\nexport function StickySectionHeader({ children, aside, offset = 0, level = 2, as = \"div\", className, style, ...props }: StickySectionHeaderProps) {\n  const Tag = as as \"div\";\n  const Heading = `h${level}` as \"h2\";\n  const bar = useRef<HTMLDivElement>(null);\n  const sentinel = useRef<HTMLSpanElement>(null);\n  const [stuck, setStuck] = useState(false);\n\n  useEffect(() => {\n    const node = bar.current;\n    const probe = sentinel.current;\n    if (!node || !probe || typeof IntersectionObserver === \"undefined\") return;\n    // The probe sits `offset` + 1 pixels above the bar, so it crosses the top edge of the scroll area exactly when the bar\n    // reaches its stuck position. The observed area is everything above that edge (a very tall margin on top, the whole\n    // height cut from the bottom): \"intersecting\" then simply means \"stuck\", and it still flips when a jump of the scroll\n    // position skips the visible area altogether.\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const entry = entries[entries.length - 1];\n        if (entry) setStuck(entry.isIntersecting);\n      },\n      { root: scrollParent(node), rootMargin: \"100000px 0px -100% 0px\", threshold: 0 },\n    );\n    observer.observe(probe);\n    return () => observer.disconnect();\n  }, []);\n\n  return (\n    <Tag\n      ref={bar}\n      data-slot=\"sticky-section-header\"\n      data-stuck={stuck}\n      className={cn(\n        \"sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-transparent py-3 transition-[background-color,border-color] duration-150 motion-reduce:transition-none\",\n        \"data-[stuck=true]:border-border data-[stuck=true]:bg-background\",\n        className,\n      )}\n      style={{ top: offset, ...style } as CSSProperties}\n      {...props}\n    >\n      <span ref={sentinel} aria-hidden=\"true\" className=\"pointer-events-none absolute inset-x-0 h-px\" style={{ top: -(Math.max(0, offset) + 1) }} />\n      <Heading className=\"min-w-0 text-sm font-medium tracking-[-0.01em]\">{children}</Heading>\n      {aside ? <div className=\"shrink-0 text-xs text-muted-foreground\">{aside}</div> : null}\n    </Tag>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/sticky-section-header.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "scroll"
+  },
+  "docs": "Put one header at the top of each section, as a direct child of the section: it sticks while its section is in view and the next one pushes it away. It is native position: sticky, so Page Down, find in page and screen magnifiers behave. Set offset to the height of a fixed navbar above. Sticking needs no overflow: hidden between the header and its scroll area; use overflow: clip instead. Give the scroll area a scroll-padding-top equal to the header height so focused items are never hidden behind it.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

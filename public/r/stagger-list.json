@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stagger-list",
+  "title": "Stagger list",
+  "description": "A list whose items enter one after another when it scrolls into view, with a step, a cap on the wait and real list semantics that stay intact.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/motion/stagger-list.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ComponentProps, type CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface StaggerListProps extends Omit<ComponentProps<\"ul\">, \"ref\"> {\n  /** Milliseconds between one item starting and the next. */\n  step?: number;\n  /** The longest any item waits, so a long list never makes anyone wait. */\n  maxDelay?: number;\n  /** Milliseconds each item takes to arrive. */\n  duration?: number;\n  /** The way items travel as they arrive: `up` rises into place, `left` slides in from the right. */\n  direction?: \"up\" | \"down\" | \"left\" | \"right\" | \"none\";\n  /** Travel in pixels. */\n  distance?: number;\n  /** Play once (the default), or play again every time the list comes back into view. */\n  once?: boolean;\n  /** The element to render. Use `ul` or `ol` for list semantics and give it `li` children. */\n  as?: \"ul\" | \"ol\" | \"div\" | \"section\" | \"dl\";\n}\n\nconst noSubscription = (): (() => void) => () => {};\n\n/** True when this instance was created in the browser, false while it is hydrating server HTML. */\nfunction useCreatedInBrowser(): boolean {\n  const browser = useSyncExternalStore(noSubscription, () => true, () => false);\n  const [created] = useState(browser);\n  return created;\n}\n\n/**\n * A list whose items arrive one after another when it scrolls into view. It\n * renders the element you choose and leaves its children alone, so a ul or ol\n * keeps its role and its item count for assistive technology (it carries an\n * explicit role=\"list\", because Safari with VoiceOver drops the semantics of a\n * list that has no bullets). Each child gets an index-based delay that is\n * capped by `maxDelay`. The server renders every\n * item visible, so nothing is hidden before hydration or without JavaScript;\n * a list already on screen when the page hydrates stays as it is, and one that\n * mounts in the browser always plays. Reduced motion and print show every\n * item at once.\n */\nexport function StaggerList({ step = 70, maxDelay = 560, duration = 500, direction = \"up\", distance = 14, once = true, as = \"ul\", className, style, ...props }: StaggerListProps) {\n  const Tag = as as \"ul\";\n  const ref = useRef<HTMLUListElement>(null);\n  const created = useCreatedInBrowser();\n  const [phase, setPhase] = useState<\"idle\" | \"hidden\" | \"shown\" | \"done\">(\"idle\");\n\n  useLayoutEffect(() => {\n    const node = ref.current;\n    if (!node || typeof IntersectionObserver === \"undefined\" || window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n    // A list taller than the window can never show a large share of itself, so cap what we wait for.\n    const room = Math.min(1, window.innerHeight / Math.max(node.getBoundingClientRect().height, 1));\n    const needed = Math.min(0.15, room * 0.9);\n    let seen = false;\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const entry = entries[entries.length - 1];\n        if (!entry) return;\n        if (!seen && !created) {\n          // Already on screen from the server HTML: leave it be.\n          seen = true;\n          if (entry.isIntersecting) {\n            if (once) observer.disconnect();\n            return;\n          }\n          setPhase(\"hidden\");\n          return;\n        }\n        seen = true;\n        if (entry.isIntersecting && entry.intersectionRatio >= needed - 0.001) {\n          setPhase(\"shown\");\n          if (once) observer.disconnect();\n        } else if (!once && !entry.isIntersecting) setPhase(\"hidden\");\n      },\n      { threshold: [0, needed] },\n    );\n    if (created) setPhase(\"hidden\"); // before the first paint, so the items never flash\n    observer.observe(node);\n    return () => observer.disconnect();\n  }, [created, once]);\n\n  // The delay of each child rides on the child itself, so any element can be an item.\n  useLayoutEffect(() => {\n    const list = ref.current;\n    if (!list || phase === \"idle\") return;\n    Array.from(list.children).forEach((child, index) => (child as HTMLElement).style.setProperty(\"--rhs-stagger-delay\", `${Math.min(index * step, maxDelay)}ms`));\n  });\n\n  // Done: hand the items back to their own styles, so a child with an animation of its own is not overridden for good.\n  useEffect(() => {\n    if (phase !== \"shown\") return;\n    const id = window.setTimeout(() => setPhase(\"done\"), maxDelay + duration + 80);\n    return () => window.clearTimeout(id);\n  }, [phase, maxDelay, duration]);\n\n  const x = direction === \"left\" ? distance : direction === \"right\" ? -distance : 0;\n  const y = direction === \"up\" ? distance : direction === \"down\" ? -distance : 0;\n  const vars = { \"--rhs-stagger-x\": `${x}px`, \"--rhs-stagger-y\": `${y}px`, \"--rhs-stagger-duration\": `${duration}ms` } as CSSProperties;\n\n  return (\n    <Tag\n      ref={ref}\n      data-slot=\"stagger-list\"\n      data-state={phase === \"idle\" || phase === \"done\" ? undefined : phase}\n      role={as === \"ul\" || as === \"ol\" ? \"list\" : undefined}\n      className={cn(\n        \"[&[data-state=hidden]>*]:opacity-0\",\n        // The keyframes name comes from the theme, the timing from each item: --rhs-stagger-delay is set on the item itself and\n        // the duration is inherited from the list. A var() inside the theme value would resolve on :root, so no item would\n        // ever get a delay of its own.\n        \"[&[data-state=shown]>*]:[animation:var(--animate-rhs-stagger-in)_var(--rhs-stagger-duration,500ms)_cubic-bezier(0.22,1,0.36,1)_var(--rhs-stagger-delay,0ms)_backwards]\",\n        \"motion-reduce:[&>*]:animate-none! motion-reduce:[&>*]:opacity-100! print:[&>*]:animate-none! print:[&>*]:opacity-100!\",\n        className,\n      )}\n      style={{ ...vars, ...style }}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/stagger-list.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-stagger-in": "rhs-stagger-in"
+    }
+  },
+  "css": {
+    "@keyframes rhs-stagger-in": {
+      "from": {
+        "opacity": "0",
+        "transform": "translate3d(var(--rhs-stagger-x, 0px), var(--rhs-stagger-y, 14px), 0)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "motion"
+  },
+  "docs": "Render it as ul or ol and give it li children; it adds no wrapper, and a ul or ol carries an explicit role=\"list\", so assistive technology (Safari with VoiceOver included) still announces the list and its item count. Each child waits index times step milliseconds, never longer than maxDelay. Any element can be an item. The server renders every item visible; a list already on screen when the page hydrates stays as it is, one that mounts in the browser always plays. Reduced motion and print show every item at once.",
+  "categories": [
+    "motion",
+    "motion"
+  ],
+  "type": "registry:component"
+}

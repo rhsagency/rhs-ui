@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "queue-summary-demo",
+  "title": "Queue summary demo",
+  "description": "A working preview of Queue summary.",
+  "registryDependencies": [
+    "https://rhsui.com/r/queue-summary.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/queue-summary-demo.tsx",
+      "content": "import { QueueSummary, type Queue } from \"@rhs-ui/dashboard/queue-summary\";\n\nconst QUEUES: readonly Queue[] = [\n  { label: \"Orders to ship\", count: 124, href: \"#orders?status=unfulfilled\", urgent: true },\n  { label: \"Tickets unanswered\", count: 7, href: \"#tickets?status=open\" },\n  { label: \"Reviews to moderate\", count: 0, href: \"#reviews?status=pending\" },\n  { label: \"Returns to inspect\", count: 12, href: \"#returns?status=received\" },\n];\n\nconst FEW: readonly Queue[] = [\n  { label: \"Drafts to publish\", count: 3, href: \"#drafts\" },\n  { label: \"Comments to approve\", count: 0, href: \"#comments\" },\n  { label: \"Payouts to review\", count: 2, href: \"#payouts\", urgent: true },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-4xl gap-10\">\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Over 99 reads 99+ and keeps its exact number for screen readers. Zero is quiet. Urgent says so in words.</p>\n        <QueueSummary queues={QUEUES} />\n      </section>\n\n      <section className=\"grid items-start gap-8 md:grid-cols-2\">\n        <div className=\"grid gap-3\">\n          <p className=\"text-xs text-muted-foreground\">Loading</p>\n          <QueueSummary queues={[]} loading />\n        </div>\n        <div className=\"grid gap-3\">\n          <p className=\"text-xs text-muted-foreground\">A narrow column wraps to two, three queues</p>\n          <QueueSummary queues={FEW} />\n        </div>\n      </section>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

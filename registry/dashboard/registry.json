@@ -1,0 +1,931 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "metric-strip",
+      "type": "registry:component",
+      "title": "Metric strip",
+      "description": "A joined strip of three to five metrics: label, a figure that eases to new values, the change in an arrow and a word, and an honest dash when data is missing.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/metric-strip.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/metric-strip.tsx"
+        }
+      ],
+      "docs": "Pass three to five metrics. `change` is a ratio (0.042 is up 4.2 percent); `null` means there is nothing to compare with, and `value: null` means no data, with `missing` saying why. Keep `format` objects stable so figures ease instead of restarting. While `loading`, pass the metrics you already have and the skeleton draws the same rows, so the strip keeps its height."
+    },
+    {
+      "name": "metric-strip-demo",
+      "type": "registry:example",
+      "title": "Metric strip demo",
+      "description": "A working preview of Metric strip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/metric-strip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/metric-strip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "target-pace-card",
+      "type": "registry:component",
+      "title": "Target pace card",
+      "description": "A goal with a deadline: the current value, a bar with a tick where an even pace would be today, the verdict in words and the daily rate still needed.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/target-pace-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/target-pace-card.tsx"
+        }
+      ],
+      "docs": "Dates are calendar days in `timeZone`. Pass `now` from the server so the verdict is the same on the server and in the browser. Today counts as half a day, so the answer does not drift while the page is open. Far ahead reads as words (\"Well ahead of pace\"), never as a four-digit percentage."
+    },
+    {
+      "name": "target-pace-card-demo",
+      "type": "registry:example",
+      "title": "Target pace card demo",
+      "description": "A working preview of Target pace card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/target-pace-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/target-pace-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "attention-list",
+      "type": "registry:component",
+      "title": "Attention list",
+      "description": "What needs a person right now: severity in a shape and a word, the time and one action per row, a dismissal you can undo, or a calm all-clear.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/attention-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/attention-list.tsx"
+        }
+      ],
+      "docs": "Mount one Toaster (the toast item) once in your app: dismissing a row shows an Undo toast through it. Drop the item from `items` in `onDismiss` and put it back in `onUndoDismiss`."
+    },
+    {
+      "name": "attention-list-demo",
+      "type": "registry:example",
+      "title": "Attention list demo",
+      "description": "A working preview of Attention list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/attention-list.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/attention-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recent-orders-card",
+      "type": "registry:component",
+      "title": "Recent orders card",
+      "description": "The latest orders as a dashboard widget: number, customer, date, status in an icon and a word, and the total. A real table that stacks on phones.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/recent-orders-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/recent-orders-card.tsx"
+        }
+      ],
+      "docs": "Totals are in major units. Pressing an order number runs `onOpen`; call `event.preventDefault()` there to route yourself instead of following `href`. Below 672px of card width the table turns into stacked rows. A long name or address ends in an ellipsis, with the full text in a title, so the total never leaves the card."
+    },
+    {
+      "name": "recent-orders-card-demo",
+      "type": "registry:example",
+      "title": "Recent orders card demo",
+      "description": "A working preview of Recent orders card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recent-orders-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recent-orders-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "transaction-list",
+      "type": "registry:component",
+      "title": "Transaction list",
+      "description": "A statement grouped by day with sticky headings and daily totals. Money in has a plus and the word Received, pending is marked in words, never colour.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/transaction-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/transaction-list.tsx"
+        }
+      ],
+      "docs": "Amounts are signed numbers in major units: positive is money in. Set `maxHeight` to scroll inside the list with the day headings sticky. Pass `timeZone` so a day ends at the same midnight everywhere."
+    },
+    {
+      "name": "transaction-list-demo",
+      "type": "registry:example",
+      "title": "Transaction list demo",
+      "description": "A working preview of Transaction list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/transaction-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/transaction-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "queue-summary",
+      "type": "registry:component",
+      "title": "Queue summary",
+      "description": "The to-do strip of an admin home: counters for work waiting, each a link to its filtered list, with a 99+ cap, a quiet zero and a text marker for urgent.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/queue-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/queue-summary.tsx"
+        }
+      ],
+      "docs": "Each tile is a link, so pass the filtered list as `href`. Counts above `limit` read 99+ and keep the exact number in the accessible name; a count of zero shows quietly."
+    },
+    {
+      "name": "queue-summary-demo",
+      "type": "registry:example",
+      "title": "Queue summary demo",
+      "description": "A working preview of Queue summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/queue-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/queue-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "monitor-list",
+      "type": "registry:component",
+      "title": "Monitor list",
+      "description": "Uptime monitors with the state in a shape and a word, host, response time and time in state. Down sorts first, rows pause from a menu, focus stays put.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/monitor-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/monitor-list.tsx"
+        }
+      ],
+      "docs": "While focus is in the list or a row menu is open the rows keep their order, so a refresh never moves what you are pressing. Pass a stable `now` so durations agree between server and browser."
+    },
+    {
+      "name": "monitor-list-demo",
+      "type": "registry:example",
+      "title": "Monitor list demo",
+      "description": "A working preview of Monitor list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/monitor-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/monitor-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "action-tiles",
+      "type": "registry:component",
+      "title": "Action tiles",
+      "description": "The things people do most as a grid of tiles: icon, label, shortcut hint, real links or buttons, and a disabled reason in a tooltip that keeps focus.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/action-tiles.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/action-tiles.tsx"
+        }
+      ],
+      "docs": "The shortcut is a hint: bind the keys yourself. A disabled tile stays in the tab order with aria-disabled and explains itself in a tooltip and, on touch screens where there is no hover, in place of its description (a dense tile shows it under the label). Pass icons as elements, for example `<IconFilePlus />`."
+    },
+    {
+      "name": "action-tiles-demo",
+      "type": "registry:example",
+      "title": "Action tiles demo",
+      "description": "A working preview of Action tiles.",
+      "registryDependencies": [
+        "https://rhsui.com/r/action-tiles.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/action-tiles-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "balance-card",
+      "type": "registry:component",
+      "title": "Balance card",
+      "description": "An account balance for fintech and marketplaces: the available and pending split, next payout, actions, a hide toggle and an overdrawn state in words.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/balance-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/balance-card.tsx"
+        }
+      ],
+      "docs": "Figures are in major units. `hidden` is controlled and `defaultHidden` is not; `onToggleHidden` reports the new state. Hidden figures never reach the DOM as text. A date-only `nextPayout.date` (\"2026-10-23\") is a calendar day and reads the same in every time zone."
+    },
+    {
+      "name": "balance-card-demo",
+      "type": "registry:example",
+      "title": "Balance card demo",
+      "description": "A working preview of Balance card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/balance-card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/balance-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "top-movers-list",
+      "type": "registry:component",
+      "title": "Top movers list",
+      "description": "The biggest risers and fallers over a period, with value, change in percent and amount and the direction in words; flat items and tiny bases are left out.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/top-movers-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/top-movers-list.tsx"
+        }
+      ],
+      "docs": "Pass candidates for each half with the current and the previous value: the list drops flat items and anything that started below `minBase`, and ranks by percent or amount."
+    },
+    {
+      "name": "top-movers-list-demo",
+      "type": "registry:example",
+      "title": "Top movers list demo",
+      "description": "A working preview of Top movers list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/top-movers-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/top-movers-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "next-up-card",
+      "type": "registry:component",
+      "title": "Next up card",
+      "description": "The next thing on your day: title, time range, place, who is in it and a countdown in words, with Join or Directions and a calm all-clear.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/next-up-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/next-up-card/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/next-up-card/schedule.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/next-up-card/schedule.ts"
+        }
+      ],
+      "docs": "Pass `now` from the server for a stable first render; without it the card reads the clock in the browser and ticks once a minute. The countdown is plain text, not a live region, so a screen reader is not interrupted. Join needs `event.link`, Directions needs `event.place`; give `directionsHref` for your own maps link."
+    },
+    {
+      "name": "next-up-card-demo",
+      "type": "registry:example",
+      "title": "Next up card demo",
+      "description": "A working preview of Next up card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/next-up-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/next-up-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "greeting-header",
+      "type": "registry:component",
+      "title": "Greeting header",
+      "description": "A dashboard welcome: a greeting that follows the hour in your time zone, today's date, one sentence from your counts with links, and a primary action.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/greeting-header.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/greeting-header.tsx"
+        }
+      ],
+      "docs": "Needs no client code: it renders from props, so it works in a Server Component when the action is a link. Always pass `timeZone` (the user's, not the server's) and, for a stable first render, `now` from the server. A count of zero drops out of the sentence; with none left it says you are all caught up."
+    },
+    {
+      "name": "greeting-header-demo",
+      "type": "registry:example",
+      "title": "Greeting header demo",
+      "description": "A working preview of Greeting header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/greeting-header.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/greeting-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "on-call-card",
+      "type": "registry:component",
+      "title": "On-call card",
+      "description": "Who is on call now and next: shift end times in your time zone, a handover flagged in words, an escalation contact and a Page button that asks for a reason.",
+      "categories": [
+        "dashboard",
+        "dashboard"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/on-call-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/on-call-card/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/on-call-card/rota.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/on-call-card/rota.ts"
+        }
+      ],
+      "docs": "Page asks for a reason first and waits for `onPage` to settle; reject the promise to show the failure and keep the reason. With no `current` shift the card says Nobody is on call and offers to page the escalation contact. Pass `now` for a stable first render."
+    },
+    {
+      "name": "on-call-card-demo",
+      "type": "registry:example",
+      "title": "On-call card demo",
+      "description": "A working preview of On-call card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/on-call-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/on-call-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "facet-filter",
+      "type": "registry:component",
+      "title": "Facet filter",
+      "description": "A filter button that opens a searchable checklist with row counts; picks show on the button as chips or a count, with Clear filter at the foot.",
+      "categories": [
+        "dashboard",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/facet-filter.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/facet-filter.tsx"
+        }
+      ],
+      "docs": "Counts are yours to compute: pass how many rows each option would leave given the other filters. Options at zero stay in place, dimmed, so the list never reshuffles while people click. The button's accessible name lists the picks, and on a narrow screen long names in the chips give way with an ellipsis. The list is a multi-select checklist named after the filter, and each option says whether it is checked. Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`."
+    },
+    {
+      "name": "facet-filter-demo",
+      "type": "registry:example",
+      "title": "Facet filter demo",
+      "description": "A working preview of Facet filter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/facet-filter.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/facet-filter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filter-row",
+      "type": "registry:component",
+      "title": "Filter row",
+      "description": "The row of controls above a list: search, your filters and a Reset that counts what is active, folding into one Filters button and a sheet on a phone.",
+      "categories": [
+        "dashboard",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/filter-row.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/filter-row.tsx"
+        }
+      ],
+      "docs": "Your filters are rendered once and moved between the row and the sheet, so they keep their state, an open panel included. Server rendered, the markup already has the phone's shape at the default 640px (CSS decides until the page is interactive); another `collapseBelow` applies once it is. Reset calls `onReset`, and clearing your filters is yours to do; Done only closes the sheet. Keep the filters controlled so a page reload can restore them. A facet filter's button sizes to its picks, so the controls after it make room when they change."
+    },
+    {
+      "name": "filter-row-demo",
+      "type": "registry:example",
+      "title": "Filter row demo",
+      "description": "A working preview of Filter row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/facet-filter.json",
+        "https://rhsui.com/r/filter-row.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filter-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dashboard-grid",
+      "type": "registry:component",
+      "title": "Dashboard grid",
+      "description": "A 12-column grid for dashboard widgets: sizes by name, rows of one fixed height so tall and short widgets line up, and one column on a phone.",
+      "categories": [
+        "dashboard",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/dashboard/dashboard-grid.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/dashboard-grid.tsx"
+        }
+      ],
+      "docs": "It lays out and nothing else, and it needs no client code. Breakpoints follow the grid's own width (container queries), so it adapts beside a sidebar: twelve columns from 896px, six from 672px, one below. Give every Widget a `label`: each becomes a region. A widget's only child fills it. Row spans apply from the tablet layout up; on a phone a widget is as tall as its content. With `dense` the visual order can differ from the DOM order."
+    },
+    {
+      "name": "dashboard-grid-demo",
+      "type": "registry:example",
+      "title": "Dashboard grid demo",
+      "description": "A working preview of Dashboard grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/dashboard-grid.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dashboard-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "metric-definition-popover",
+      "type": "registry:component",
+      "title": "Metric definition popover",
+      "description": "Explain a number where it is shown: an info button that opens the metric's definition, formula, source, freshness and owner, so people stop asking what it means.",
+      "categories": [
+        "dashboard",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/metric-definition-popover.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/metric-definition-popover.tsx"
+        }
+      ],
+      "docs": "The panel is not in the page until it is opened, so it costs nothing on a table with fifty metrics. Pass `refreshedAt` and, when a source is stale after a different time, `staleAfterHours`. `now` is only for demos and tests. Long names, formulas and table names wrap inside the panel. Focus lands on the panel; Tab then reaches the close button, the copy button and the owner link."
+    },
+    {
+      "name": "metric-definition-popover-demo",
+      "type": "registry:example",
+      "title": "Metric definition popover demo",
+      "description": "A working preview of Metric definition popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/metric-definition-popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/metric-definition-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "crosstab-table",
+      "type": "registry:component",
+      "title": "Crosstab table",
+      "description": "One measure by two dimensions with row, column and grand totals, read as a real table and with an optional five-step shading that never hides the number.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/crosstab-table.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/crosstab-table.tsx"
+        }
+      ],
+      "docs": "`totals=\"row\"` adds a Total column (the sum of each row), `\"column\"` adds a Total row (the sum of each column), `\"both\"` adds both and the grand total. Cells with no value show a dash and are left out of totals and shading. Give `format` as Intl options to use it from a Server Component. The table sits in a labelled region you can focus, so a sideways scroll works with the keyboard."
+    },
+    {
+      "name": "crosstab-table-demo",
+      "type": "registry:example",
+      "title": "Crosstab table demo",
+      "description": "A working preview of Crosstab table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/crosstab-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/crosstab-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "weighted-scorecard",
+      "type": "registry:component",
+      "title": "Weighted scorecard",
+      "description": "A decision matrix: weighted criteria down the side, options across, a 1 to 5 score in each cell and weighted totals that name the winner or call a tie.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/weighted-scorecard.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/weighted-scorecard.tsx"
+        }
+      ],
+      "docs": "Weights can be any positive numbers; they are shown as shares that add up to 100 percent. No option is called the winner until every cell is scored. Controlled with `scores` and `onScoreChange`, or uncontrolled with `defaultScores`. `readOnly` shows plain numbers. On a phone the columns shrink so up to four options sit side by side, the winner badge shortens to Top or Tied, and the criterion descriptions stay for screen readers only. Like Crosstab table it sits in a focusable, labelled region so a sideways scroll works with the keyboard."
+    },
+    {
+      "name": "weighted-scorecard-demo",
+      "type": "registry:example",
+      "title": "Weighted scorecard demo",
+      "description": "A working preview of Weighted scorecard.",
+      "registryDependencies": [
+        "https://rhsui.com/r/weighted-scorecard.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/weighted-scorecard-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
+}

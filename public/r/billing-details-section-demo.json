@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "billing-details-section-demo",
+  "title": "Billing details section demo",
+  "description": "A working preview of Billing details section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/billing-details-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/billing-details-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BillingDetailsSection, type BillingDetails } from \"@rhs-ui/application/billing-details-section\";\n\nconst INITIAL: BillingDetails = {\n  company: \"Northwind Trading B.V.\",\n  line1: \"Keizersgracht 241\",\n  line2: \"Floor 3\",\n  postalCode: \"1016 EA\",\n  city: \"Amsterdam\",\n  country: \"NL\",\n  taxId: \"NL859123456B01\",\n  emails: [\"finance@northwind.example\", \"ap@northwind.example\"],\n  reference: \"PO-2291\",\n};\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [details, setDetails] = useState(INITIAL);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-12 sm:px-6\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">In this preview a Dutch VAT number is valid when it ends in B01, and any other number of the right shape cannot be verified.</p>\n      <BillingDetailsSection\n        value={details}\n        // The lookup here is a stand-in, as the note above says: a Dutch number ending in B01 is \"valid\", every other number cannot be verified.\n        onValidateTaxId={async (country, id) => {\n          await wait(250);\n          return country === \"NL\" && id.endsWith(\"B01\");\n        }}\n        onSave={async (next) => {\n          await wait(800);\n          setDetails(next);\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

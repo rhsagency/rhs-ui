@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "privacy-settings-section-demo",
+  "title": "Privacy settings section demo",
+  "description": "A working preview of Privacy settings section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/privacy-settings-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/privacy-settings-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { PrivacySettingsSection, type PrivacySettings } from \"@rhs-ui/application/privacy-settings-section\";\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<PrivacySettings>({ visibility: \"members\", showActivity: true, searchEngines: false, shareUsage: true });\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-10 sm:px-6\">\n      <PrivacySettingsSection\n        value={value}\n        policyHref=\"#privacy\"\n        onChange={async (next) => {\n          setValue(next);\n          await new Promise<void>((resolve) => setTimeout(resolve, 450));\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

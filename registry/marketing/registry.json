@@ -3575,6 +3575,873 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "blog-index-sidebar",
+      "type": "registry:block",
+      "title": "Blog index with sidebar",
+      "description": "A blog front page in two columns: your post list beside a sticky sidebar of search, topics with counts, popular posts and a slot for a sign-up.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/blog-index-sidebar/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/blog-index-sidebar/index.tsx"
+        },
+        {
+          "path": "registry/marketing/blog-index-sidebar/sticky-aside.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/blog-index-sidebar/sticky-aside.tsx"
+        }
+      ],
+      "docs": "Pass a PostFeed, a BlogList or your own list as children. Give searchAction for a plain GET form, or onSearch inside a Client Component; it also gets an empty string when the field is cleared, so reset your list there. The sidebar sticks under your header, and one taller than the window pins by its bottom edge so the last widget stays in view. Set --sticky-top to your header's height, for example className=\"[--sticky-top:4rem]\"."
+    },
+    {
+      "name": "blog-index-sidebar-demo",
+      "type": "registry:example",
+      "title": "Blog index with sidebar demo",
+      "description": "A working preview of Blog index with sidebar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/blog-index-sidebar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/post-feed.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/empty-search.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/blog-index-sidebar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "post-feed",
+      "type": "registry:block",
+      "title": "Post feed",
+      "description": "Posts as a reading feed: author, date and read time, then title, standfirst and topic chips, with a square thumbnail on the right.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/post-feed.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/post-feed.tsx"
+        }
+      ],
+      "docs": "Dates arrive formatted, with the ISO value in dateTime. Rows without an image keep the same measure. Pass a LoadMore, a pager or a link as loadMore, and renderImage to plug in next/image."
+    },
+    {
+      "name": "post-feed-demo",
+      "type": "registry:example",
+      "title": "Post feed demo",
+      "description": "A working preview of Post feed.",
+      "registryDependencies": [
+        "https://rhsui.com/r/post-feed.json",
+        "https://rhsui.com/r/load-more.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/post-feed-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "docs-page-layout",
+      "type": "registry:block",
+      "title": "Docs page layout",
+      "description": "A three-column documentation page: your sidebar, the article with breadcrumbs and meta, and an on-this-page rail that tracks your place.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/breadcrumb.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/docs-page-layout/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/docs-page-layout/index.tsx"
+        },
+        {
+          "path": "registry/marketing/docs-page-layout/on-this-page.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/docs-page-layout/on-this-page.tsx"
+        }
+      ],
+      "docs": "Give every heading in children an id that matches an entry in toc. Plain h2, h3, p, ul, ol, pre and table elements are styled for you; long URLs and keys break instead of widening a phone, and a table wider than the screen scrolls on its own (give it tabIndex={0}). Below xl the rail becomes a disclosure; below lg put the sidebar in your own mobile menu. Set --sticky-top to your header's height."
+    },
+    {
+      "name": "docs-page-layout-demo",
+      "type": "registry:example",
+      "title": "Docs page layout demo",
+      "description": "A working preview of Docs page layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/docs-page-layout.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/pager-nav.json",
+        "https://rhsui.com/r/sidebar-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/docs-page-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "how-to-guide",
+      "type": "registry:block",
+      "title": "How-to guide",
+      "description": "A step-by-step guide: time and difficulty up front, a tick-off checklist of what you need, numbered steps with pictures and tips, and a closing summary.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/how-to-guide.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/how-to-guide.tsx"
+        }
+      ],
+      "docs": "Each step is an anchor (#step-4) a reader can link to. Use tip for a hint and warning for a step that can go wrong. Pass plain strings in requirements for one list, or groups with a title for columns."
+    },
+    {
+      "name": "how-to-guide-demo",
+      "type": "registry:example",
+      "title": "How-to guide demo",
+      "description": "A working preview of How-to guide.",
+      "registryDependencies": [
+        "https://rhsui.com/r/how-to-guide.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/how-to-guide-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "troubleshooting-guide",
+      "type": "registry:block",
+      "title": "Troubleshooting guide",
+      "description": "Problems listed by what the user sees, each opening to the likely cause and numbered fix steps with code or a screenshot, grouped by area.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/code-block.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/troubleshooting-guide/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/troubleshooting-guide/index.tsx"
+        },
+        {
+          "path": "registry/marketing/troubleshooting-guide/problem-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/troubleshooting-guide/problem-list.tsx"
+        },
+        {
+          "path": "registry/marketing/troubleshooting-guide/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/troubleshooting-guide/types.ts"
+        }
+      ],
+      "docs": "Problem ids are the anchors support replies link to: a link that targets one opens it, and opening one writes its id to the address bar (syncHash={false} turns that off). The Still stuck? link adds the symptom to supportHref as ?symptom=. Areas are h2 and problems h3, so place it under your page h1."
+    },
+    {
+      "name": "troubleshooting-guide-demo",
+      "type": "registry:example",
+      "title": "Troubleshooting guide demo",
+      "description": "A working preview of Troubleshooting guide.",
+      "registryDependencies": [
+        "https://rhsui.com/r/troubleshooting-guide.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/troubleshooting-guide-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "faq-sidebar-categories",
+      "type": "registry:block",
+      "title": "FAQ with category sidebar",
+      "description": "A long FAQ with a sticky category list on the left and every question open on the right, each answer with its own link to share.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/faq-sidebar-categories/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/faq-sidebar-categories/index.tsx"
+        },
+        {
+          "path": "registry/marketing/faq-sidebar-categories/category-nav.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/faq-sidebar-categories/category-nav.tsx"
+        },
+        {
+          "path": "registry/marketing/faq-sidebar-categories/copy-link-button.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/faq-sidebar-categories/copy-link-button.tsx"
+        }
+      ],
+      "docs": "Question and category ids are stable anchors; a link to one highlights it on arrival. onCopyLink fires after a permalink was copied, inside a Client Component. Set --sticky-top to your header's height."
+    },
+    {
+      "name": "faq-sidebar-categories-demo",
+      "type": "registry:example",
+      "title": "FAQ with category sidebar demo",
+      "description": "A working preview of FAQ with category sidebar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/faq-sidebar-categories.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/faq-sidebar-categories-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "about-story",
+      "type": "registry:block",
+      "title": "About story",
+      "description": "The story of a company in long form: a large statement, two columns of text beside a tall picture, and a strip of the facts that anchor it.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/aspect-ratio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/about-story.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/about-story.tsx"
+        }
+      ],
+      "docs": "Three paragraphs read best, and on a phone the picture follows the first one. Draw the picture at 4 to 5. Pass renderImage to plug in next/image."
+    },
+    {
+      "name": "about-story-demo",
+      "type": "registry:example",
+      "title": "About story demo",
+      "description": "A working preview of About story.",
+      "registryDependencies": [
+        "https://rhsui.com/r/about-story.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/about-story-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "team-by-department",
+      "type": "registry:block",
+      "title": "Team by department",
+      "description": "The whole team as a roster: departments as sections with head counts, people as compact rows with portrait, name, role, place and a link.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/auto-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/team-by-department.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/team-by-department.tsx"
+        }
+      ],
+      "docs": "Names link only when you pass an href. Without a photo the initials show as a monogram. Turn showLocation off for a roster of one office."
+    },
+    {
+      "name": "team-by-department-demo",
+      "type": "registry:example",
+      "title": "Team by department demo",
+      "description": "A working preview of Team by department.",
+      "registryDependencies": [
+        "https://rhsui.com/r/team-by-department.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/team-by-department-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "leadership-bios",
+      "type": "registry:block",
+      "title": "Leadership bios",
+      "description": "Large portraits and full bios for founders, partners or a board: one person per row, with earlier roles and links.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/leadership-bios.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/leadership-bios.tsx"
+        }
+      ],
+      "docs": "Pass two to six members. A portrait is drawn at 4:5 and cropped from the centre; leave photo out and a monogram keeps the row's height; it also stays behind a photo that fails to load, so use opaque images. alternate puts the portrait on the right of every second row from 768px up, and a phone always shows it first. Set external on links to other sites, and pass linkAs={Link} for internal ones. Words come from labels."
+    },
+    {
+      "name": "leadership-bios-demo",
+      "type": "registry:example",
+      "title": "Leadership bios demo",
+      "description": "A working preview of Leadership bios.",
+      "registryDependencies": [
+        "https://rhsui.com/r/leadership-bios.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/leadership-bios-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "search-results-list",
+      "type": "registry:block",
+      "title": "Search results list",
+      "description": "The body of a site search page: result count, type filters with counts as links, results with path and marked snippet, and pagination.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/empty-search.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/search-results-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/search-results-list.tsx"
+        }
+      ],
+      "docs": "total counts the results of the current filter across all pages; results holds this page only. Every filter and page is a URL (filters[].href, pageHref), so it works as plain HTML, and the snippet is plain text with the query's words marked, never injected HTML. Mark the filter that is on with current: true. Pass labels to translate the count line and the pager, linkAs={Link} for your router, and a filtersLabel of its own for each list on a page."
+    },
+    {
+      "name": "search-results-list-demo",
+      "type": "registry:example",
+      "title": "Search results list demo",
+      "description": "A working preview of Search results list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/search-results-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/search-results-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sitemap-page",
+      "type": "registry:block",
+      "title": "Sitemap page",
+      "description": "A human sitemap: every section as a block with its pages as a nested list, so people and crawlers have a second way to find a page.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/sitemap-page.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sitemap-page.tsx"
+        }
+      ],
+      "docs": "Pass sections with nested pages; an entry without href is a group and renders as text. Two levels read best: anything deeper folds into a details element, and open: true keeps the branch of the current page open. The navigation is named Sitemap; rename it with label when a page has more than one. Pass labels to translate the page counts and linkAs={Link} for your router."
+    },
+    {
+      "name": "sitemap-page-demo",
+      "type": "registry:example",
+      "title": "Sitemap page demo",
+      "description": "A working preview of Sitemap page.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sitemap-page.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sitemap-page-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "help-article-list",
+      "type": "registry:block",
+      "title": "Help article list",
+      "description": "A help centre collection: its title and article count, then articles grouped by section with a one-line summary each.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/help-article-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/help-article-list.tsx"
+        }
+      ],
+      "docs": "count defaults to the number of articles and updated is an ISO date. With more than three sections a jump row of anchors appears; give two lists on one page their own idPrefix. contact is your own node for the Can't find it? aside, so say how to reach a person there. Rows carry no dates on purpose. Pass labels to translate the counts and the date, and linkAs={Link} for your router. The aside sits beside its heading once its column is 768px wide, whatever the screen, and your contact node can use container variants such as @3xl: for the same reason."
+    },
+    {
+      "name": "help-article-list-demo",
+      "type": "registry:example",
+      "title": "Help article list demo",
+      "description": "A working preview of Help article list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/help-article-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/help-article-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "imprint-details",
+      "type": "registry:block",
+      "title": "Imprint details",
+      "description": "The legal entity facts a site is expected to show: name, address, register and VAT numbers, who represents it, how to reach it.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/imprint-details.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/imprint-details.tsx"
+        }
+      ],
+      "docs": "Every field of entity is optional, and a field you leave out leaves no dash behind. Add more titled lists (editorial responsibility, a data protection officer) with sections. Give title to use it as the whole page; without it the groups start at headingLevel. Pass labels to translate the headings and terms, for example Impressum for a German site."
+    },
+    {
+      "name": "imprint-details-demo",
+      "type": "registry:example",
+      "title": "Imprint details demo",
+      "description": "A working preview of Imprint details.",
+      "registryDependencies": [
+        "https://rhsui.com/r/imprint-details.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/imprint-details-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cookie-declaration",
+      "type": "registry:block",
+      "title": "Cookie declaration",
+      "description": "The full list of cookies and similar storage by category, with provider, purpose, lifetime and type, to sit behind your banner.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/cookie-declaration.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cookie-declaration.tsx"
+        }
+      ],
+      "docs": "List every cookie and similar storage by category, and keep empty categories: they say None. Write durations in words, such as Session or 13 months. consent is a slot for the visitor's consent id and your Change my choice button, because that needs your consent tool. Below 768px each table becomes stacked cards with the same five labels. Pass labels to translate the column heads."
+    },
+    {
+      "name": "cookie-declaration-demo",
+      "type": "registry:example",
+      "title": "Cookie declaration demo",
+      "description": "A working preview of Cookie declaration.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/cookie-declaration.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cookie-declaration-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "privacy-at-a-glance",
+      "type": "registry:block",
+      "title": "Privacy at a glance",
+      "description": "Your data practices on one screen: what you collect, why, how long you keep it and who gets it, plus how to use each right.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/privacy-at-a-glance.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/privacy-at-a-glance.tsx"
+        }
+      ],
+      "docs": "Every card carries the same four lines, so people can compare kinds of data. Each right links to where it is used, such as a settings page or a form. Pass icons from the icons item as nodes. policyHref is required: the summary always points to the full policy and never replaces it. Pass labels to translate the four line labels and the footer. The rights row takes its columns from how many rights there are and from the width of its column, so no row ends on a tile of its own."
+    },
+    {
+      "name": "privacy-at-a-glance-demo",
+      "type": "registry:example",
+      "title": "Privacy at a glance demo",
+      "description": "A working preview of Privacy at a glance.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/privacy-at-a-glance.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/privacy-at-a-glance-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "key-dates-list",
+      "type": "registry:block",
+      "title": "Key dates list",
+      "description": "Term dates, deadlines and closures as a clear list of dates and ranges, with the next one marked in words.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/key-dates-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/key-dates-list.tsx"
+        }
+      ],
+      "docs": "Dates are calendar days, sorted by their first day; a range is written once with both ends in time elements. Pass today as an ISO date for stable rendering, otherwise the current day in timeZone is used. groupBy is month, term (each date names its term) or none, and calendar is a slot for an Add to calendar link on each row. A day-first locale such as en-GB writes 24 Dec, a month-first one Dec 24. labels translates the markers. The layout follows the width of its column, not the screen: dates, labels and types sit in three columns from 672px, the month or term moves beside its rows from 896px, and below that each date stacks."
+    },
+    {
+      "name": "key-dates-list-demo",
+      "type": "registry:example",
+      "title": "Key dates list demo",
+      "description": "A working preview of Key dates list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/key-dates-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/key-dates-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "support-sla-table",
+      "type": "registry:block",
+      "title": "Support and SLA table",
+      "description": "What support you get on each plan: priority levels, first response and target resolution times, channels and hours, in a real table.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/support-sla-table.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/support-sla-table.tsx"
+        }
+      ],
+      "docs": "Write times the way people say them (\"1 hour\", \"Next business day\") and say in notes whether they run in business or calendar hours. A plan's rows follow the order of priorities, and null says the plan does not cover that priority. Set hours once, or per plan. The table becomes one card per plan below 768px for two plans, 1024px for three and 1280px for more, so nothing hides in a horizontal scroll. labels translates the row and column labels."
+    },
+    {
+      "name": "support-sla-table-demo",
+      "type": "registry:example",
+      "title": "Support and SLA table demo",
+      "description": "A working preview of Support and SLA table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/support-sla-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/support-sla-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "code-of-conduct",
+      "type": "registry:block",
+      "title": "Code of conduct",
+      "description": "A community code of conduct people will read: the promise, expected and unacceptable behaviour in pairs, how to report, and what happens next.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/code-of-conduct.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/code-of-conduct.tsx"
+        }
+      ],
+      "docs": "Give each behaviour a title and a one-line example. report.contact is the first link after the promise, so it is easy to find in a bad moment: an https link opens in a new tab and shows an arrow, a mailto or tel link stays plain. Every section and every behaviour has an anchor (#conduct-reporting); set idPrefix when a page holds two codes. scope says where the code applies, and labels translates the headings. The layout follows the width of its column, not the screen: the two lists sit side by side from 672px and the three reporting facts from 896px, so the contact never breaks across lines."
+    },
+    {
+      "name": "code-of-conduct-demo",
+      "type": "registry:example",
+      "title": "Code of conduct demo",
+      "description": "A working preview of Code of conduct.",
+      "registryDependencies": [
+        "https://rhsui.com/r/code-of-conduct.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/code-of-conduct-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

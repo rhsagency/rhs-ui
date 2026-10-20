@@ -19,6 +19,39 @@ own `meta.version` and are listed when they change.
 - Nine new heroes: `open-source-hero`, `watch-demo-hero`, `two-path-hero`,
   `three-steps-hero`, `integration-hero`, `prompt-hero`, `desktop-download-hero`,
   `release-hero` and `overlap-cards-hero`.
+- A new category, **dashboard** (19 items): `metric-strip`, `target-pace-card`,
+  `attention-list`, `recent-orders-card`, `transaction-list`, `queue-summary`,
+  `monitor-list`, `action-tiles`, `balance-card`, `top-movers-list`, `next-up-card`,
+  `greeting-header`, `on-call-card`, `facet-filter`, `filter-row`, `dashboard-grid`,
+  `metric-definition-popover`, `crosstab-table` and `weighted-scorecard`.
+- Application, 22 items: account and workspace settings sections (`email-addresses-section`,
+  `public-profile-section`, `appearance-settings`, `accessibility-preferences`,
+  `language-region-section`, `privacy-settings-section`, `connected-accounts`,
+  `data-export-section`, `billing-details-section`, `email-preference-center`,
+  `workspace-profile-section`, `branding-settings`, `authenticator-setup`,
+  `recovery-codes-section`, `transfer-ownership-card`, `early-access-features`) and
+  actions (`bulk-select-menu`, `copy-as-menu`, `add-to-calendar-button`,
+  `directions-button`, `save-contact-button`, `follow-button`).
+- Commerce, 20 items: `pay-button`, `product-tile`, `product-row-card`, `mini-product-row`,
+  `base-price`, `price-range`, `quantity-stepper`, `add-to-cart-button`,
+  `product-info-tabs`, `fit-scale`, `shipping-estimator`, `order-line`, `order-card`,
+  `order-lookup`, `modifier-group`, `view-cart-bar`, `promo-tile`, `cart-issues`,
+  `rating-inline` and `add-stepper`.
+- Marketing, 18 content pages and sections: `blog-index-sidebar`, `post-feed`,
+  `docs-page-layout`, `how-to-guide`, `troubleshooting-guide`, `faq-sidebar-categories`,
+  `about-story`, `team-by-department`, `leadership-bios`, `search-results-list`,
+  `sitemap-page`, `help-article-list`, `imprint-details`, `cookie-declaration`,
+  `privacy-at-a-glance`, `key-dates-list`, `support-sla-table` and `code-of-conduct`.
+- Motion, 19 items: `top-loading-bar`, `count-up`, `fill-bar`, `fade-in`, `stagger-list`,
+  `crossfade`, `auto-height`, `sticky-section-header`, `scroll-focus-list`,
+  `edge-fade-scroller`, `drag-scroll`, `scroll-aware-header`, `reading-time-left`,
+  `scroll-away`, `render-on-view`, `stick-to-bottom`, `snap-pages`, `view-video` and
+  `smooth-scroll`.
+- Primitives, 21 items: `undo-redo-buttons`, `zoom-controls`, `record-navigator`,
+  `floating-action-button`, `speed-dial`, `overflow-actions`, `hold-to-confirm-button`,
+  `resend-button`, `heading-anchor-link`, `paste-button`, `autoplay-toggle`,
+  `insert-between-button`, `swap-button`, `status-badge`, `chip`, `tag-list`,
+  `formatted-number`, `money-amount`, `link-card`, `due-date-label` and `inline-code`.
 
 ## Unreleased (0.7.0)
 

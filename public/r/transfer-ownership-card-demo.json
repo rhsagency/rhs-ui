@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transfer-ownership-card-demo",
+  "title": "Transfer ownership card demo",
+  "description": "A working preview of Transfer ownership card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/transfer-ownership-card.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/transfer-ownership-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { TransferOwnershipCard, type TransferMember } from \"@rhs-ui/application/transfer-ownership-card\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst MEMBERS: TransferMember[] = [\n  { id: \"u_mara\", name: \"Mara Jansen\", email: \"mara@kestrel.dev\", role: \"Admin\" },\n  { id: \"u_theo\", name: \"Theo Okonkwo\", email: \"theo@kestrel.dev\", role: \"Admin\" },\n  { id: \"u_ines\", name: \"Ines Carvalho\", email: \"ines@kestrel.dev\", role: \"Member\" },\n  { id: \"u_daan\", name: \"Daan Verhoeven\", email: \"daan@kestrel.dev\", role: \"Member\" },\n  { id: \"u_lena\", name: \"Lena Fischer\", email: \"lena@kestrel.dev\", role: \"Member\", disabledReason: \"Invite not accepted yet\" },\n];\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  // A new key starts the card over, so the preview can be tried again.\n  const [round, setRound] = useState(0);\n  const [cancelled, setCancelled] = useState(false);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-12 sm:px-6\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">In this preview, transferring to Daan Verhoeven fails: the choice stays and the message shows. Anyone else works.</p>\n      <TransferOwnershipCard\n        key={round}\n        members={MEMBERS}\n        workspaceName=\"Kestrel Studio\"\n        defaultMemberId=\"u_mara\"\n        consequences={[\n          \"You become an Admin of Kestrel Studio and keep access to everything.\",\n          \"The new owner receives billing and can delete the workspace.\",\n          \"Members, projects and settings stay exactly as they are.\",\n        ]}\n        onTransfer={async (memberId) => {\n          await wait(900);\n          if (memberId === \"u_daan\") return \"Daan Verhoeven has not verified their email yet. Ask them to confirm it from their inbox, then try again.\";\n        }}\n        onCancel={() => setCancelled(true)}\n      />\n      <div className=\"mt-4 flex min-h-9 items-center justify-between gap-4\">\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">\n          {cancelled ? \"Cancelled. Nothing was changed.\" : \"\"}\n        </p>\n        <Button\n          type=\"button\"\n          variant=\"ghost\"\n          size=\"sm\"\n          onClick={() => {\n            setRound((current) => current + 1);\n            setCancelled(false);\n          }}\n        >\n          Start over\n        </Button>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

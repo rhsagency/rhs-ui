@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "next-up-card-demo",
+  "title": "Next up card demo",
+  "description": "A working preview of Next up card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/next-up-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/next-up-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { NextUpCard, type NextUpEvent } from \"@rhs-ui/dashboard/next-up-card\";\n\nconst ZONE = \"Europe/Amsterdam\";\n\nconst review: NextUpEvent = {\n  id: \"checkout-review\",\n  title: \"Design review: Checkout redesign\",\n  start: \"2026-10-20T14:30:00+02:00\",\n  end: \"2026-10-20T15:15:00+02:00\",\n  place: \"Room Vondel, Keizersgracht 62\",\n  link: \"https://meet.example.com/halcyon/checkout-review\",\n  attendees: [{ name: \"Anna de Vries\" }, { name: \"Mo Haddad\" }, { name: \"Priya Nair\" }, { name: \"Tom Jansen\" }, { name: \"Sofia Marin\" }],\n};\n\nconst visit: NextUpEvent = {\n  id: \"kestrel-visit\",\n  title: \"Supplier visit: Kestrel Foods\",\n  start: \"2026-10-21T09:00:00+02:00\",\n  end: \"2026-10-21T10:30:00+02:00\",\n  place: \"Kestrel Foods, Havenstraat 14, Rotterdam\",\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [joined, setJoined] = useState<string | null>(null);\n  const common = { timeZone: ZONE, locale: \"en-GB\", onJoin: (event: NextUpEvent) => setJoined(event.title) } as const;\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-x-8 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))]\">\n      <Example caption=\"25 minutes before it starts\">\n        <NextUpCard event={review} now=\"2026-10-20T14:05:00+02:00\" {...common} />\n      </Example>\n      <Example caption=\"Twenty minutes in\">\n        <NextUpCard event={review} now=\"2026-10-20T14:50:00+02:00\" {...common} />\n      </Example>\n      <Example caption=\"The next event is tomorrow, in person\">\n        <NextUpCard event={visit} now=\"2026-10-20T16:10:00+02:00\" {...common} />\n      </Example>\n      <Example caption=\"After the last event of the day\">\n        <NextUpCard event={review} now=\"2026-10-20T16:10:00+02:00\" {...common} />\n      </Example>\n      <p role=\"status\" className=\"col-span-full min-h-5 text-sm text-muted-foreground\">\n        {joined ? `Joining ${joined}.` : \"\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

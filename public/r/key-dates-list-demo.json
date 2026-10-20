@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "key-dates-list-demo",
+  "title": "Key dates list demo",
+  "description": "A working preview of Key dates list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/key-dates-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/key-dates-list-demo.tsx",
+      "content": "import { KeyDatesList } from \"@rhs-ui/marketing/key-dates-list\";\n\nconst calendar = (\n  <a href=\"#calendar\" className=\"text-foreground\">\n    Add to calendar\n  </a>\n);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">Grouped by month, on 20 October: two dates have passed and the half-term is next</p>\n      <KeyDatesList\n        today=\"2026-10-20\"\n        locale=\"en-GB\"\n        dates={[\n          { start: \"2026-09-01\", label: \"Autumn term begins\", note: \"Pupils in years 1 to 6 start at 08:45.\", type: \"Term\" },\n          { start: \"2026-10-08\", label: \"Open evening\", note: \"Meet the teachers and see the classrooms, 18:00 to 20:00.\", type: \"Event\" },\n          { start: \"2026-10-26\", end: \"2026-10-30\", label: \"Autumn half-term\", note: \"School is closed. Clubs start again on Monday 2 November.\", type: \"Holiday\", calendar },\n          { start: \"2026-11-12\", label: \"Parents' evening\", note: \"Ten-minute slots, booked online from 29 October.\", type: \"Event\", href: \"#parents-evening\", calendar },\n          { start: \"2026-11-23\", end: \"2026-12-04\", label: \"Mock exams, years 10 and 11\", note: \"Timetables go home on 9 November.\", type: \"Exam\" },\n          { start: \"2026-12-11\", label: \"Applications for 2027 entry close\", note: \"Forms must arrive by 15:00.\", type: \"Deadline\", href: \"#applications\" },\n          { start: \"2026-12-21\", end: \"2027-01-01\", label: \"Winter holiday\", type: \"Holiday\" },\n          { start: \"2027-01-04\", label: \"Spring term begins\", note: \"Pupils in years 1 to 6 start at 08:45.\", type: \"Term\" },\n        ]}\n      />\n\n      <p className=\"mt-16 mb-6 text-xs text-muted-foreground\">Grouped by term, on 22 December: the closure is under way and the new block is next</p>\n      <KeyDatesList\n        today=\"2026-12-22\"\n        locale=\"en-GB\"\n        groupBy=\"term\"\n        headingLevel={3}\n        dates={[\n          { start: \"2026-12-21\", end: \"2027-01-03\", term: \"Winter block\", label: \"Studio closed\", note: \"Online classes continue on the usual days.\", type: \"Closed\" },\n          { start: \"2027-01-11\", term: \"Spring block\", label: \"Spring block starts\", note: \"Ten weeks. Booking opens on 4 January.\", type: \"Term\", calendar },\n          { start: \"2027-02-15\", end: \"2027-02-19\", term: \"Spring block\", label: \"Half-term week\", note: \"A reduced timetable, mornings only.\", type: \"Changed hours\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

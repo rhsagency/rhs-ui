@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link-card",
+  "title": "Link card",
+  "description": "A card that is one link: icon or image, title, description and an arrow, with a focus ring around the whole card.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/card.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/link-card.tsx",
+      "content": "import { useId, type ComponentProps, type ReactNode } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { IconArrowRight, IconArrowUpRight } from \"@rhs-ui/icons\";\nimport { Card, CardDescription } from \"@rhs-ui/primitives/card\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface LinkCardProps extends Omit<ComponentProps<\"div\">, \"title\"> {\n  /** Where it goes. With `asChild`, put the href on your own link instead. */\n  href?: string;\n  /** The title, and the text of the card's one link. */\n  title: string;\n  /** One or two lines under the title. Linked to the link with aria-describedby, so a screen reader hears both. */\n  description?: ReactNode;\n  /** A glyph or small drawing in a tile above (or beside) the text: `<IconBook />`. Ignored when there is an image. */\n  icon?: ReactNode;\n  /** A picture for the card. It is decorative unless you give it an alt, because the title already names the card. */\n  image?: { src: string; alt?: string };\n  /** Opens in a new tab: adds an up-right arrow and a visually hidden \"(opens in a new tab)\". */\n  external?: boolean;\n  /** Icon or image above the text (default), or beside it. */\n  orientation?: \"vertical\" | \"horizontal\";\n  /** The heading element for the title. Pick the level the page outline needs, or `p` for no heading. */\n  as?: \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"p\";\n  /** Render the link as your own element, such as a framework link: pass it as the only child, with no text, and give it its own href. The title and the arrow go inside it. */\n  asChild?: boolean;\n  /** With `asChild`: your link. */\n  children?: ReactNode;\n}\n\n/**\n * A card that is one link: a tile or picture, the title, a line or two of\n * description and an arrow. The title is the single link and is stretched over\n * the whole card, so there is one tab stop, no interactive element inside\n * another, and the focus ring goes around the card. External links add an\n * up-right arrow and a hidden \"opens in a new tab\". The arrow nudges on hover\n * unless reduced motion is on. For docs home pages, resource lists and\n * navigation grids.\n */\nexport function LinkCard({ href, title, description, icon, image, external = false, orientation = \"vertical\", as: Heading = \"h3\", asChild = false, children, className, ...props }: LinkCardProps) {\n  const descriptionId = useId();\n  const Link = asChild ? Slot.Root : \"a\";\n  const Arrow = external ? IconArrowUpRight : IconArrowRight;\n  const horizontal = orientation === \"horizontal\";\n  // Only the attributes that have a value. With asChild they are merged into your link, and an `href: undefined`\n  // would overwrite the href of a wrapper that spreads its props after its own (`<a href={to} {...props} />`).\n  const linkProps: ComponentProps<\"a\"> = {};\n  if (href !== undefined) linkProps.href = href;\n  if (external) {\n    linkProps.target = \"_blank\";\n    linkProps.rel = \"noopener noreferrer\";\n  }\n  if (description) linkProps[\"aria-describedby\"] = descriptionId;\n  return (\n    <Card\n      data-slot=\"link-card\"\n      data-orientation={orientation}\n      className={cn(\n        \"group/link-card relative gap-4 transition-[border-color,background-color,box-shadow] duration-200\",\n        \"hover:border-[color-mix(in_oklch,var(--border),var(--foreground)_28%)] hover:bg-muted/40\",\n        \"has-[:focus-visible]:border-ring has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/40\",\n        horizontal ? \"flex-row items-start p-4 sm:p-5\" : \"p-5\",\n        className,\n      )}\n      {...props}\n    >\n      {image ? (\n        // eslint-disable-next-line @next/next/no-img-element -- framework-neutral; pass your own markup through asChild if you need next/image\n        <img src={image.src} alt={image.alt ?? \"\"} loading=\"lazy\" decoding=\"async\" className={cn(\"rounded-lg border border-border bg-muted object-cover\", horizontal ? \"aspect-square w-20 shrink-0 sm:aspect-[4/3] sm:w-36\" : \"aspect-[16/9] w-full\")} />\n      ) : icon ? (\n        <span aria-hidden=\"true\" className=\"grid size-10 shrink-0 place-items-center rounded-lg border border-border bg-background text-foreground transition-colors duration-200 group-hover/link-card:border-[color-mix(in_oklch,var(--border),var(--foreground)_28%)] [&_svg]:size-5\">\n          {icon}\n        </span>\n      ) : null}\n      <div className=\"flex min-w-0 flex-1 flex-col gap-1\">\n        <Heading className=\"text-[0.9375rem] leading-snug font-semibold tracking-[-0.01em]\">\n          <Link {...linkProps} className=\"outline-none after:absolute after:inset-0 after:rounded-xl after:content-['']\">\n            {asChild ? <Slot.Slottable>{children}</Slot.Slottable> : null}\n            {title}\n            {external ? <span className=\"sr-only\"> (opens in a new tab)</span> : null}\n            <Arrow aria-hidden=\"true\" className={cn(\"ml-1.5 inline-block size-4 align-[-0.2em] text-muted-foreground transition-[translate,color] duration-200 group-hover/link-card:translate-x-0.5 group-hover/link-card:text-foreground motion-reduce:transition-none motion-reduce:group-hover/link-card:translate-x-0\", external && \"group-hover/link-card:-translate-y-0.5 motion-reduce:group-hover/link-card:translate-y-0\")} />\n          </Link>\n        </Heading>\n        {description ? (\n          <CardDescription id={descriptionId} className=\"leading-relaxed\">\n            {description}\n          </CardDescription>\n        ) : null}\n      </div>\n    </Card>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/link-card.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "The title is the only link, stretched over the card. With asChild, pass your framework link as the child (a Next Link with no text and its own href); the title is added inside it. external adds an arrow and a hidden opens in a new tab.",
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

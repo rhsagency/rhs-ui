@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fill-bar-demo",
+  "title": "Fill bar demo",
+  "description": "A working preview of Fill bar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/fill-bar.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/fill-bar-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconRefresh } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { FillBar } from \"@rhs-ui/motion/fill-bar\";\n\nconst SURVEY = [\n  { label: \"Very easy\", value: 54 },\n  { label: \"Easy\", value: 28 },\n  { label: \"Neutral\", value: 11 },\n  { label: \"Hard\", value: 5 },\n  { label: \"Very hard\", value: 2 },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [run, setRun] = useState(0);\n  return (\n    <div className=\"w-full max-w-3xl\">\n      <div className=\"flex items-start justify-between gap-4\">\n        <div>\n          <h2 className=\"text-sm font-medium\">Fill on view</h2>\n          <p className=\"mt-1 text-xs text-muted-foreground\">Bars fill once, in turn, when they scroll into view.</p>\n        </div>\n        <Button variant=\"outline\" size=\"sm\" onClick={() => setRun((n) => n + 1)}>\n          <IconRefresh />\n          Replay\n        </Button>\n      </div>\n\n      <div key={run} className=\"mt-5 grid grid-cols-1 gap-4 md:grid-cols-2\">\n        <section aria-labelledby=\"fill-bar-quota\" className=\"min-w-0 rounded-xl border border-border bg-card p-5 shadow-xs\">\n          <h3 id=\"fill-bar-quota\" className=\"text-sm font-medium\">\n            Plan usage\n          </h3>\n          <p className=\"mt-0.5 text-xs text-muted-foreground\">Northwind Pro, renews on 1 November.</p>\n          <div className=\"mt-5 grid gap-[1.375rem]\">\n            <FillBar label=\"Storage\" value={7.2} max={10} valueText=\"7.2 of 10 GB\" order={0} />\n            <FillBar label=\"API requests\" value={8420} max={10000} format=\"fraction\" order={1} />\n            <FillBar label=\"Webhook deliveries\" value={41903} max={50000} format=\"fraction\" order={2} />\n            <FillBar label=\"Seats\" value={12} max={12} valueText=\"12 of 12, full\" tone=\"destructive\" order={3} />\n          </div>\n        </section>\n\n        <section aria-labelledby=\"fill-bar-survey\" className=\"min-w-0 rounded-xl border border-border bg-card p-5 shadow-xs\">\n          <h3 id=\"fill-bar-survey\" className=\"text-sm font-medium\">\n            How was onboarding?\n          </h3>\n          <p className=\"mt-0.5 text-xs text-muted-foreground\">Survey of 1,204 new customers.</p>\n          <div className=\"mt-5 grid gap-3.5\">\n            {SURVEY.map((row, index) => (\n              <FillBar key={row.label} label={row.label} value={row.value} order={index} tone={index === 0 ? \"default\" : \"muted\"} />\n            ))}\n          </div>\n        </section>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

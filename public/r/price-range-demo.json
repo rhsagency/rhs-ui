@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "price-range-demo",
+  "title": "Price range demo",
+  "description": "A working preview of Price range.",
+  "registryDependencies": [
+    "https://rhsui.com/r/price-range.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/price-range-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { PriceRange } from \"@rhs-ui/commerce/price-range\";\n\nfunction Card({ name, note, hint, children }: { name: string; note: string; hint: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid content-start gap-3 rounded-xl border border-border bg-card p-4 shadow-xs\">\n      <div>\n        <h2 className=\"text-sm font-medium\">{name}</h2>\n        <p className=\"text-xs text-muted-foreground\">{note}</p>\n      </div>\n      <div className=\"text-lg tracking-[-0.02em]\">{children}</div>\n      <code className=\"font-mono text-[0.6875rem] break-words text-muted-foreground\">{hint}</code>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 gap-4 [grid-template-columns:repeat(auto-fit,minmax(min(100%,13.5rem),1fr))]\">\n      <Card name=\"Halcyon pendant\" note=\"One size, one price\" hint=\"min={12900}\">\n        <PriceRange min={12900} locale=\"en-GB\" />\n      </Card>\n      <Card name=\"Linen cushion\" note=\"Three sizes\" hint=\"min={2900} max={5900}\">\n        <PriceRange min={2900} max={5900} locale=\"en-GB\" />\n      </Card>\n      <Card name=\"Linen cushion\" note=\"The same, as a range\" hint='variant=\"range\"'>\n        <PriceRange min={2900} max={5900} variant=\"range\" locale=\"en-GB\" />\n      </Card>\n      <Card name=\"Arc table lamp\" note=\"Two finishes, on sale\" hint=\"compareAtMin and compareAtMax\">\n        <PriceRange min={10400} max={12900} compareAtMin={12900} compareAtMax={15900} variant=\"range\" locale=\"en-GB\" />\n      </Card>\n      <Card name=\"Chef's knife\" note=\"Cents show when a figure has them\" hint=\"min={4950} max={8950}\">\n        <PriceRange min={4950} max={8950} locale=\"en-GB\" />\n      </Card>\n      <Card name=\"Linnen kussen\" note=\"Dutch, with its own words\" hint='locale=\"nl-NL\" labels={{ from }}'>\n        <PriceRange min={2900} max={5900} locale=\"nl-NL\" labels={{ from: \"Vanaf\" }} />\n      </Card>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

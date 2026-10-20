@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "imprint-details-demo",
+  "title": "Imprint details demo",
+  "description": "A working preview of Imprint details.",
+  "registryDependencies": [
+    "https://rhsui.com/r/imprint-details.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/imprint-details-demo.tsx",
+      "content": "import { ImprintDetails } from \"@rhs-ui/marketing/imprint-details\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">A full imprint page</p>\n      <ImprintDetails\n        title=\"Imprint\"\n        description=\"The legal details of the company behind Northwind, as the law in the Netherlands and Germany expects to find them.\"\n        locale=\"en-GB\"\n        updated=\"2026-03-12\"\n        entity={{\n          legalName: \"Northwind Software B.V.\",\n          legalForm: \"Private limited company (besloten vennootschap)\",\n          address: [\"Keizersgracht 120\", \"1015 CW Amsterdam\", \"The Netherlands\"],\n          register: { label: \"KVK number\", number: \"81234567\", name: \"Chamber of Commerce, Amsterdam\" },\n          vatId: \"NL862348975B01\",\n          managingDirector: [\"Anouk de Wit\", \"Ravi Menon\"],\n          email: \"legal@northwind.example\",\n          phone: \"+31 20 555 0142\",\n          authority: { name: \"Authority for Consumers and Markets\", href: \"https://example.com/authority\" },\n          disputes: {\n            label: \"Consumer complaints board\",\n            href: \"https://example.com/complaints\",\n            note: \"We are willing to take part in dispute resolution before this board.\",\n          },\n        }}\n        sections={[\n          {\n            title: \"Editorial responsibility\",\n            items: [\n              { term: \"Responsible for content\", value: \"Anouk de Wit, at the address above\" },\n              { term: \"Photography\", value: \"Studio Vale, Utrecht\" },\n            ],\n          },\n        ]}\n      />\n\n      <p className=\"mt-16 mb-8 border-t border-border pt-8 text-xs text-muted-foreground\">Only what a small studio has: empty fields leave no dashes behind</p>\n      <ImprintDetails\n        headingLevel={3}\n        entity={{\n          legalName: \"Studio Vale\",\n          address: \"Oudegracht 48, 3511 AE Utrecht\",\n          email: \"hello@studiovale.example\",\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

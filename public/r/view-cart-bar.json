@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "view-cart-bar",
+  "title": "View cart bar",
+  "description": "A bar pinned to the bottom with item count, total and a View cart button, rising when the first item is added and resting above the footer.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/animated-price.json",
+    "https://rhsui.com/r/money.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/commerce/view-cart-bar.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ComponentProps } from \"react\";\n\nimport { IconArrowRight, IconBag } from \"@rhs-ui/icons\";\nimport { AnimatedPrice } from \"@rhs-ui/commerce/animated-price\";\nimport { formatMoney } from \"@rhs-ui/commerce/money\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ViewCartBarProps extends Omit<ComponentProps<\"div\">, \"children\" | \"hidden\"> {\n  /** Items in the cart. The bar rises when it goes above zero and goes away at zero. */\n  count: number;\n  /** The cart total in minor units: 4250 is 42.50. It counts to its new value when it changes. */\n  total: number;\n  /** Called when the button is pressed. */\n  onView?: () => void;\n  /** ISO 4217 code for the total. */\n  currency?: string;\n  /** Locale for the total and the announcement. Always passed, so server and browser agree. */\n  locale?: string;\n  /** Keeps the bar away whatever the count, for example on the cart page itself. */\n  hidden?: boolean;\n  /** The button's text. */\n  label?: string;\n  /** What one and many things are called: `{ one: \"article\", other: \"articles\" }`. */\n  noun?: { one: string; other: string };\n  /** Classes for the row inside the bar, to match the width of your content. Defaults to a centred 48rem with 1rem of padding, like a `max-w-3xl px-4` page column. */\n  contentClassName?: string;\n}\n\n/**\n * A persistent summary for ordering flows: how many items are in the cart,\n * the total, and a View cart button. It rises from the bottom edge when the\n * first item arrives, counts the total to its new value when it changes, and\n * says what happened politely (\"Cart updated, 3 items, 42.50 euros\"). At zero\n * it folds away and leaves the tab order. It is `sticky`, not `fixed`: render\n * it as the last child of your page's main content, before the footer, and it\n * stays on the bottom edge of the screen while you scroll, then comes to rest\n * above the footer instead of covering it. On a phone it clears the home\n * indicator.\n */\nexport function ViewCartBar({ count, total, onView, currency = \"EUR\", locale = \"en-US\", hidden = false, label = \"View cart\", noun = { one: \"item\", other: \"items\" }, className, contentClassName, ...props }: ViewCartBarProps) {\n  const open = count > 0 && !hidden;\n  const name = count === 1 ? noun.one : noun.other;\n  const tally = new Intl.NumberFormat(locale).format(count);\n  const [announcement, setAnnouncement] = useState(\"\");\n  const last = useRef(`${count}|${total}`);\n\n  // Say what changed, once, after it has changed. The first render says nothing.\n  useEffect(() => {\n    const key = `${count}|${total}`;\n    if (last.current === key) return;\n    last.current = key;\n    if (hidden) return;\n    setAnnouncement(count > 0 ? `Cart updated, ${tally} ${name}, ${formatMoney({ amount: total, currency }, locale)}` : \"Cart is empty\");\n  }, [count, total, currency, locale, name, tally, hidden]);\n\n  return (\n    <div\n      data-slot=\"view-cart-bar\"\n      data-open={open || undefined}\n      className={cn(\n        \"pointer-events-none sticky bottom-0 z-40 grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out data-[open]:grid-rows-[1fr] motion-reduce:transition-none\",\n        className,\n      )}\n      {...props}\n    >\n      <span role=\"status\" className=\"sr-only\">\n        {announcement}\n      </span>\n      <div className=\"min-h-0 overflow-hidden\">\n        <div\n          inert={!open}\n          className={cn(\n            \"pointer-events-auto border-t border-border bg-background pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-[translate,opacity] duration-300 ease-out motion-reduce:transition-none\",\n            open ? \"translate-y-0 opacity-100\" : \"translate-y-full opacity-0\",\n          )}\n        >\n          <div className={cn(\"mx-auto flex max-w-3xl items-center justify-between gap-4 px-4\", contentClassName)}>\n            <div className=\"flex shrink-0 items-center gap-3\">\n              <span aria-hidden=\"true\" className=\"grid size-10 shrink-0 place-items-center rounded-lg bg-muted text-foreground\">\n                <IconBag size={20} />\n              </span>\n              <div className=\"min-w-0\">\n                <p className=\"text-xs text-muted-foreground tabular-nums\">\n                  {tally} {name}\n                </p>\n                <p className=\"text-base leading-tight font-semibold tracking-[-0.01em]\">\n                  <AnimatedPrice value={total / 100} currency={currency} locale={locale} />\n                </p>\n              </div>\n            </div>\n            {/* The total never gives way: a long label is the one that is shortened. */}\n            <Button type=\"button\" size=\"lg\" onClick={onView} className=\"min-w-0 shrink\">\n              <span className=\"truncate\">{label}</span>\n              <IconArrowRight />\n            </Button>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/commerce/view-cart-bar.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "commerce"
+  },
+  "docs": "It is sticky, not fixed: render it as the last child of your page's main content, and it stays on the bottom edge of the screen while you scroll, then rests above the footer. total is in minor units. Use hidden on the cart page itself.",
+  "categories": [
+    "commerce",
+    "commerce"
+  ],
+  "type": "registry:component"
+}

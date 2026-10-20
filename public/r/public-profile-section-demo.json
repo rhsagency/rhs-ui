@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "public-profile-section-demo",
+  "title": "Public profile section demo",
+  "description": "A working preview of Public profile section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/public-profile-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/public-profile-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { PublicProfileSection, type PublicProfile } from \"@rhs-ui/application/public-profile-section\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\n/** A drawn portrait, so the demo needs no photo and no network. */\nconst portrait =\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent(\n    \"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' fill='#dcd8d0'/><path d='M18 120c2-26 20-40 42-40s40 14 42 40z' fill='#5f5a52'/><circle cx='60' cy='46' r='20' fill='#8c867a'/><path d='M38 44c2-14 12-22 24-22s20 8 21 20c-6-8-14-12-24-12s-16 4-21 14z' fill='#3d3a35'/></svg>\",\n  );\n\nconst TAKEN = [\"admin\", \"halcyon\", \"kestrel\", \"northwind\", \"mara\"];\n\nexport default function Demo(): React.JSX.Element {\n  const [profile, setProfile] = useState<PublicProfile>({\n    avatar: portrait,\n    displayName: \"Mara Okafor\",\n    username: \"mara_okafor\",\n    bio: \"Product designer at Halcyon. I make calm interfaces for busy teams and write about it on Sundays.\",\n    links: [\n      { id: \"portfolio\", label: \"Portfolio\", url: \"https://maraokafor.studio\" },\n      { id: \"journal\", label: \"Journal\", url: \"https://journal.maraokafor.studio/notes\" },\n    ],\n  });\n  return (\n    <div className=\"mx-auto w-full max-w-5xl px-4 py-10 sm:px-6\">\n      <PublicProfileSection\n        profile={profile}\n        onCheckUsername={async (name) => {\n          await wait(600);\n          return !TAKEN.includes(name.toLowerCase());\n        }}\n        onSave={async (next) => {\n          await wait(800);\n          setProfile(next);\n        }}\n      />\n      <p className=\"mt-3 text-center text-xs text-muted-foreground\">Try the usernames admin or halcyon to see a name that is taken.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

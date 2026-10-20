@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "swap-button",
+  "title": "Swap button",
+  "description": "Swap two values with one press, like origin and destination or from and to: the icon turns, both fields trade places, and it says what changed.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/swap-button/index.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useId, useRef, useState, type ComponentProps } from \"react\";\n\nimport { IconArrowLeftRight } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@rhs-ui/primitives/tooltip\";\nimport { cn } from \"@/lib/utils\";\n\ntype Value = string | number | null | undefined;\n\nexport interface SwapButtonProps extends Omit<ComponentProps<\"button\">, \"children\" | \"onClick\" | \"title\" | \"aria-label\" | \"disabled\"> {\n  /** Called when the button is pressed. Exchange your two values here; `swapValues` does it for a state object. */\n  onSwap: () => void;\n  /** The name of the first field (\"From\"), for the button's name and the message after a press. */\n  labelA?: string;\n  /** The name of the second field (\"To\"). */\n  labelB?: string;\n  /** The first field's value now, so the message can say what it became. Leave both values out and the message only says the fields were swapped. */\n  valueA?: Value;\n  /** The second field's value now. */\n  valueB?: Value;\n  /** `horizontal` sits between side-by-side fields; `vertical` sits between stacked ones and turns the arrows to point up and down. */\n  orientation?: \"horizontal\" | \"vertical\";\n  /** Always disabled. With both values empty the button disables itself and says why. */\n  disabled?: boolean;\n  /** 32, 36 or 44px. */\n  size?: \"sm\" | \"default\" | \"lg\";\n  /**\n   * Centre the button on its parent, which must be `relative`, so it sits on the seam between two fields.\n   * It reaches (size minus gap) / 2 into each field, so keep that at least 8px less than the field's padding on that axis:\n   * with 16px of padding a 20px gap suits the default 36px button (`gap-5`), 16px suits `sm` and 28px suits `lg`;\n   * stacked fields padded 12px need 28px for the default size. Then it never touches their text, and its focus ring has room.\n   */\n  seam?: boolean;\n}\n\nconst SIZES = { sm: \"size-8\", default: \"size-9\", lg: \"size-11\" } as const;\nconst empty = (value: Value) => value === null || value === undefined || (typeof value === \"string\" && value.trim() === \"\");\nconst say = (value: Value) => (empty(value) ? \"empty\" : String(value));\n\n/**\n * The small round button between two related fields: from and to, origin and\n * destination, you send and they receive. The arrows make a half turn when it\n * is pressed (instantly under reduced motion), both values trade places in\n * your state, and a polite message says what changed (\"Swapped: From is now\n * Paris, To is now Berlin\"). Its name is built from the fields (\"Swap From and\n * To\"). With both fields empty it disables itself and tells you why, on hover\n * and focus and to a screen reader. With `seam` it centres on the line between\n * two fields; give them a gap wide enough (see `seam`) and it covers neither\n * one's text.\n */\nexport function SwapButton({ onSwap, labelA, labelB, valueA, valueB, orientation = \"horizontal\", disabled = false, size = \"default\", seam = false, className, ...props }: SwapButtonProps) {\n  const [turns, setTurns] = useState(0);\n  const [message, setMessage] = useState(\"\");\n  const timer = useRef<number>(undefined);\n  const reasonId = useId();\n  useEffect(() => () => window.clearTimeout(timer.current), []);\n\n  const vertical = orientation === \"vertical\";\n  const bothEmpty = valueA !== undefined && valueB !== undefined && empty(valueA) && empty(valueB);\n  const blocked = disabled || bothEmpty;\n  const name = labelA && labelB ? `Swap ${labelA} and ${labelB}` : \"Swap values\";\n  const reason = bothEmpty ? \"Nothing to swap yet: both fields are empty.\" : undefined;\n\n  function press() {\n    if (blocked) return;\n    onSwap();\n    setTurns((count) => count + 1);\n    const first = labelA ?? \"first\";\n    const second = labelB ?? \"second\";\n    setMessage(valueA !== undefined && valueB !== undefined ? `Swapped: ${first} is now ${say(valueB)}, ${second} is now ${say(valueA)}` : `Swapped ${labelA && labelB ? `${labelA} and ${labelB}` : \"the two values\"}`);\n    window.clearTimeout(timer.current);\n    timer.current = window.setTimeout(() => setMessage(\"\"), 6000);\n  }\n\n  // The messages come first and are sr-only, so the button is the last child: a Button Group can then join it.\n  return (\n    <>\n      <span role=\"status\" className=\"sr-only\">\n        {message}\n      </span>\n      {reason ? (\n        <span id={reasonId} className=\"sr-only\">\n          {reason}\n        </span>\n      ) : null}\n      <TooltipProvider delayDuration={250}>\n        <Tooltip>\n          <TooltipTrigger asChild>\n            <Button\n              data-slot=\"swap-button\"\n              data-orientation={orientation}\n              type=\"button\"\n              variant=\"outline\"\n              size=\"icon\"\n              aria-label={name}\n              aria-disabled={bothEmpty || undefined}\n              aria-describedby={reason ? reasonId : undefined}\n              disabled={disabled}\n              onClick={press}\n              className={cn(\n                \"rounded-full bg-background shadow-xs\",\n                SIZES[size],\n                seam && \"absolute inset-0 z-10 m-auto\",\n                bothEmpty && \"cursor-not-allowed opacity-50 hover:border-border hover:bg-background active:translate-y-0\",\n                className,\n              )}\n              {...props}\n            >\n              <IconArrowLeftRight\n                className=\"size-4 transition-[rotate] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none\"\n                style={{ rotate: `${(vertical ? 90 : 0) + turns * 180}deg` }}\n              />\n            </Button>\n          </TooltipTrigger>\n          <TooltipContent side={vertical ? \"right\" : \"top\"}>{reason ?? name}</TooltipContent>\n        </Tooltip>\n      </TooltipProvider>\n    </>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/swap-button/index.tsx"
+    },
+    {
+      "path": "registry/primitives/swap-button/swap-values.ts",
+      "content": "/**\n * Exchanges two fields of a state object and returns a new object, so the\n * common two-field swap is one line:\n *\n *     setRoute((route) => swapValues(route, \"from\", \"to\"));\n *\n * Pure, and in its own module so a Server Component can import it too.\n */\nexport function swapValues<T extends object, A extends keyof T, B extends keyof T>(state: T, a: A, b: B): T {\n  return { ...state, [a]: state[b], [b]: state[a] };\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/swap-button/swap-values.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "actions"
+  },
+  "docs": "Give it labelA, labelB and the current values so it can say what changed. With seam it centres on its parent, which must be relative, and reaches (size minus gap) / 2 into each field: leave a 20px gap between fields padded 16px (gap-5) so it clears their text and its focus ring has room. swapValues(state, 'from', 'to') is a pure helper for the common two-field state.",
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

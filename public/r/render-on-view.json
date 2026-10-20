@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "render-on-view",
+  "title": "Render on view",
+  "description": "Mounts heavy content such as a map, a chart or an embed only when it nears the viewport, holding its space so nothing shifts.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/use-in-view.json",
+    "https://rhsui.com/r/skeleton.json"
+  ],
+  "files": [
+    {
+      "path": "registry/motion/render-on-view.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ComponentPropsWithoutRef, type ReactNode } from \"react\";\nimport { flushSync } from \"react-dom\";\n\nimport { useInView } from \"@rhs-ui/motion/use-in-view\";\nimport { Skeleton } from \"@rhs-ui/primitives/skeleton\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RenderOnViewProps extends Omit<ComponentPropsWithoutRef<\"div\">, \"children\"> {\n  /** The expensive part: a map, a chart, an embed. Nothing of it renders until the placeholder is near the screen. */\n  children: ReactNode;\n  /** What stands in until then. Defaults to a quiet skeleton that fills the reserved space. */\n  fallback?: ReactNode;\n  /** Height to hold, in pixels or any CSS length. Match what the content will measure and nothing shifts when it arrives. */\n  minHeight?: number | string;\n  /** Hold the height by proportion instead, as width / height (16 / 9). Wins over `minHeight`. */\n  ratio?: number;\n  /** How early to start, as a CSS `rootMargin`. The default is one screen above and below, so it is ready on arrival. */\n  rootMargin?: string;\n  /** Keep the content once it has rendered. Turn it off to unmount it again when it is far away; the space is kept. */\n  once?: boolean;\n  /** Called each time the content mounts, for analytics or to start a clock. */\n  onVisible?: () => void;\n  /** Render now, for print, crawlers and tests. Printing renders everything on its own as well. */\n  forceRender?: boolean;\n}\n\n/**\n * Holds back heavy content (a map, a chart, an embed) until it is about to be\n * seen. The placeholder reserves the final height, so the page never jumps,\n * and the content mounts a screen early, so it is ready when the reader gets\n * there. A browser without IntersectionObserver renders at once. Keep headings\n * and landmarks outside it: only the expensive part waits, and the outline of\n * the page is always complete.\n */\nexport function RenderOnView({ children, fallback, minHeight = 192, ratio, rootMargin = \"100% 0px\", once = true, onVisible, forceRender = false, className, style, ...props }: RenderOnViewProps) {\n  const ref = useRef<HTMLDivElement>(null);\n  const near = useInView(ref, { once, margin: rootMargin });\n  const [printing, setPrinting] = useState(false);\n  const [held, setHeld] = useState<number>();\n  const mounted = forceRender || printing || near;\n  const notify = useRef(onVisible);\n\n  useEffect(() => {\n    notify.current = onVisible;\n  });\n  useEffect(() => {\n    if (mounted) notify.current?.();\n  }, [mounted]);\n\n  // Print preview happens before the next scroll event: mount everything first.\n  useEffect(() => {\n    const show = () => flushSync(() => setPrinting(true));\n    window.addEventListener(\"beforeprint\", show);\n    return () => window.removeEventListener(\"beforeprint\", show);\n  }, []);\n\n  // When the content can unmount, remember how tall it was so the space stays.\n  useEffect(() => {\n    const node = ref.current;\n    if (!node || !mounted || once || ratio || typeof ResizeObserver === \"undefined\") return;\n    const observer = new ResizeObserver(() => setHeld(node.offsetHeight));\n    observer.observe(node);\n    return () => observer.disconnect();\n  }, [mounted, once, ratio]);\n\n  return (\n    <div\n      ref={ref}\n      data-slot=\"render-on-view\"\n      data-state={mounted ? \"ready\" : \"waiting\"}\n      aria-busy={mounted ? undefined : true}\n      className={cn(\"relative rounded-lg\", className)}\n      // While the content is there its own height decides, so the measure can fall as well as rise; the last measure only holds the space once it has gone.\n      style={ratio ? { aspectRatio: ratio, ...style } : { minHeight: mounted ? minHeight : (held ?? minHeight), ...style }}\n      {...props}\n    >\n      {mounted ? children : (fallback ?? <Skeleton className=\"absolute inset-0 rounded-[inherit]\" />)}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/motion/render-on-view.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "scroll"
+  },
+  "docs": "Give it the height the content will have, as minHeight or ratio, so the page does not jump when it arrives. Keep headings, landmarks and anything a crawler must read outside it, and use forceRender for print, bots and tests. With once off the content unmounts again when it is far away and the space it measured is kept. Inside a scrolling panel the margin cannot reach past the panel's own edge, so content there mounts as it enters the panel.",
+  "categories": [
+    "motion",
+    "scroll"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "recovery-codes-section-demo",
+  "title": "Recovery codes section demo",
+  "description": "A working preview of Recovery codes section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/recovery-codes-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/recovery-codes-section-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { RecoveryCodesSection, type RecoveryCode } from \"@rhs-ui/application/recovery-codes-section\";\n\nconst FRESH = [\"7KQ4-M9XP\", \"B2VD-8HTR\", \"Y6NC-3WJF\", \"X9LA-5ZEG\", \"D4SM-R7UK\", \"H8PT-2QCN\", \"W3JB-6XYV\", \"F5GR-9DLM\", \"N7EZ-4TAH\", \"C2KU-8VSP\"];\n\nconst IN_USE: RecoveryCode[] = [\n  { code: \"R4TG-7JCW\", used: true },\n  { code: \"M9DX-2BKQ\", used: true },\n  { code: \"P6HV-5SNE\" },\n  { code: \"L3ZA-8YUF\" },\n  { code: \"G7QB-4WTD\", used: true },\n  { code: \"K2FN-9RXM\" },\n  { code: \"T8CE-3LHJ\" },\n  { code: \"V5UP-6ADY\", used: true },\n  { code: \"E4MS-7GZB\" },\n  { code: \"J9WR-2NQK\" },\n];\n\n// Letters and digits without the ones that look alike (0 and O, 1 and I).\nconst ALPHABET = \"ABCDEFGHJKLMNPQRSTUVWXYZ23456789\";\nconst piece = () => Array.from({ length: 4 }, () => ALPHABET[Math.floor(Math.random() * ALPHABET.length)]).join(\"\");\nconst freshSet = () => Array.from({ length: 10 }, () => `${piece()}-${piece()}`);\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nfunction Caption({ children }: { children: string }): React.JSX.Element {\n  return <p className=\"mb-3 text-xs font-medium tracking-wide text-muted-foreground uppercase\">{children}</p>;\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [existing, setExisting] = useState<readonly (string | RecoveryCode)[]>(IN_USE);\n  const [continued, setContinued] = useState(false);\n  return (\n    <div className=\"mx-auto w-full max-w-xl space-y-14 px-4 py-12 sm:px-6\">\n      <div>\n        <Caption>Right after two-step sign-in is set up</Caption>\n        <RecoveryCodesSection codes={FRESH} onContinue={() => setContinued(true)} />\n        <p role=\"status\" className=\"mt-3 min-h-5 text-sm text-muted-foreground\">\n          {continued ? \"Continue pressed: on to the account.\" : \"\"}\n        </p>\n      </div>\n      <div>\n        <Caption>In account settings, some codes spent</Caption>\n        <RecoveryCodesSection\n          codes={existing}\n          onRegenerate={async () => {\n            await wait(600);\n            setExisting(freshSet());\n          }}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

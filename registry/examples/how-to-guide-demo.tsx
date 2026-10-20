@@ -1,0 +1,92 @@
+import { IconCalendarCheck, IconClock, IconGauge } from "@rhs-ui/icons";
+import { HowToGuide } from "@rhs-ui/marketing/how-to-guide";
+
+const art = (body: string) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='#e7e3db'/>${body}</svg>`);
+
+/** Eight fuses in two rows; the sixth is switched off and outlined. */
+const FUSES = Array.from({ length: 8 }, (_, index) => {
+  const x = 255 + (index % 4) * 78;
+  const y = 86 + Math.floor(index / 4) * 176;
+  const off = index === 5;
+  const frame = off ? `<rect x='${x - 9}' y='${y - 9}' width='74' height='146' rx='16' fill='none' stroke='#2b2d31' stroke-width='3.5' stroke-dasharray='8 7'/>` : "";
+  return `${frame}<rect x='${x}' y='${y}' width='56' height='128' rx='11' fill='#d9d4c9'/><rect x='${x + 9}' y='${y + (off ? 70 : 10)}' width='38' height='48' rx='9' fill='${off ? "#2b2d31" : "#8f939a"}'/><rect x='${x + 9}' y='${y + 142}' width='38' height='7' rx='3.5' fill='#c9c3b7'/>`;
+}).join("");
+
+const IMAGES = {
+  fuses: art(`<rect x='196' y='34' width='408' height='432' rx='26' fill='#c9c3b7'/><rect x='216' y='54' width='368' height='392' rx='15' fill='#f2efe9'/>${FUSES}`),
+  oldBell: art(
+    "<rect x='600' width='200' height='500' fill='#bdb6a9'/><rect x='584' width='18' height='500' fill='#8d877c'/><rect y='436' width='600' height='64' fill='#d3cdc1'/><ellipse cx='330' cy='96' rx='30' ry='20' fill='#8f887b'/><ellipse cx='330' cy='99' rx='22' ry='13' fill='#3a3830'/><path d='M322 104C300 190 262 214 276 292' fill='none' stroke='#2b2d31' stroke-width='8' stroke-linecap='round'/><path d='M338 104C362 190 398 214 384 292' fill='none' stroke='#8f939a' stroke-width='8' stroke-linecap='round'/><g transform='rotate(-9 330 360)'><rect x='262' y='284' width='136' height='170' rx='26' fill='#f4f1ea' stroke='#bdb6a9' stroke-width='5'/><circle cx='330' cy='372' r='34' fill='#d3cdc1'/><circle cx='330' cy='372' r='12' fill='#a39d91'/><circle cx='282' cy='304' r='5' fill='#bdb6a9'/><circle cx='378' cy='304' r='5' fill='#bdb6a9'/></g><rect x='452' y='448' width='128' height='34' rx='17' fill='#2b2d31'/><rect x='474' y='456' width='10' height='18' rx='5' fill='#4a4d52'/><rect x='496' y='456' width='10' height='18' rx='5' fill='#4a4d52'/><rect x='578' y='459' width='96' height='12' rx='6' fill='#8f939a'/><path d='M670 457l22 8-22 8z' fill='#8f939a'/>",
+  ),
+  bracket: art(
+    "<rect y='430' width='800' height='70' fill='#d3cdc1'/><rect x='170' y='116' width='460' height='46' rx='12' fill='#2b2d31'/><rect x='370' y='124' width='60' height='30' rx='8' fill='#f2efe9'/><circle cx='400' cy='139' r='10' fill='#8f939a'/><rect x='338' y='190' width='124' height='210' rx='22' fill='#f4f1ea' stroke='#bdb6a9' stroke-width='4'/><circle cx='400' cy='232' r='13' fill='#d3cdc1'/><circle cx='400' cy='358' r='13' fill='#d3cdc1'/><path d='M400 170v250M300 232h200M300 358h200' stroke='#8d877c' stroke-width='2' stroke-dasharray='6 6' fill='none'/><circle cx='400' cy='232' r='4' fill='#2b2d31'/><circle cx='400' cy='358' r='4' fill='#2b2d31'/>",
+  ),
+  terminals: art(
+    "<rect x='170' y='120' width='460' height='290' rx='30' fill='#2b2d31'/><rect x='200' y='150' width='400' height='230' rx='18' fill='#383b40'/><rect x='260' y='230' width='110' height='96' rx='14' fill='#d8d3c8'/><rect x='430' y='230' width='110' height='96' rx='14' fill='#d8d3c8'/><circle cx='315' cy='278' r='26' fill='#8f939a'/><circle cx='485' cy='278' r='26' fill='#8f939a'/><path d='M299 278h32M469 278h32' stroke='#2b2d31' stroke-width='6' stroke-linecap='round'/><path d='M315 230V70M485 230V90' stroke='#2b2d31' stroke-width='9' stroke-linecap='round' fill='none'/><path d='M485 230V120' stroke='#9aa0a8' stroke-width='9' stroke-linecap='round'/>",
+  ),
+  fitted: art(
+    "<rect x='560' width='240' height='500' fill='#bdb6a9'/><rect x='544' width='18' height='500' fill='#8d877c'/><rect y='430' width='544' height='70' fill='#d3cdc1'/><rect x='260' y='60' width='156' height='344' rx='40' fill='#2b2d31'/><circle cx='338' cy='140' r='30' fill='#17181a'/><circle cx='338' cy='140' r='15' fill='#383b40'/><circle cx='331' cy='133' r='5' fill='#8f939a'/><circle cx='338' cy='290' r='44' fill='none' stroke='#f3f1ec' stroke-width='9'/><circle cx='338' cy='290' r='15' fill='#f3f1ec'/><circle cx='338' cy='290' r='62' fill='none' stroke='#f3f1ec' stroke-opacity='.25' stroke-width='3'/>",
+  ),
+};
+
+export default function Demo(): React.JSX.Element {
+  return (
+    <div className="mx-auto max-w-4xl px-6">
+      <HowToGuide
+        titleAs="h2"
+        eyebrow="Setup guide"
+        title="Install your Halcyon doorbell"
+        description="Replace a wired doorbell with a smart one in about forty minutes, with a drill and a screwdriver and no electrician."
+        facts={[
+          { label: "Time needed", value: "40 minutes", icon: <IconClock /> },
+          { label: "Difficulty", value: "Easy", icon: <IconGauge /> },
+          { label: "Last tested", value: "14 October 2026", icon: <IconCalendarCheck /> },
+        ]}
+        requirements={[
+          { title: "Tools", items: ["Phillips screwdriver (PH1)", "Drill with a 6 mm bit", "Spirit level", "Pencil"] },
+          { title: "Have ready", items: ["The doorbell, plate, screws and plugs from the box", "The Halcyon app on your phone", "Your Wi-Fi password"] },
+        ]}
+        steps={[
+          {
+            title: "Switch off the doorbell circuit",
+            body: "Find the fuse that feeds your doorbell and switch it off. If you are not sure which one it is, switch off the whole house; it takes a minute and removes the doubt.",
+            image: { src: IMAGES.fuses, alt: "A fuse box with eight switches, the sixth one switched off", caption: "The doorbell is often on a small fuse labelled bel, doorbell or low voltage." },
+            tip: "Press the old bell once. If nothing rings, the circuit is off.",
+          },
+          {
+            title: "Take the old doorbell off the wall",
+            body: "Unscrew the cover, then the two screws behind it. Pull the wires out slowly and tape them to the wall so they cannot slip back into the hole.",
+            image: { src: IMAGES.oldBell, alt: "An old round doorbell on the wall with two wires hanging out and a screwdriver next to it" },
+            tip: "Take a photo of the wiring before you disconnect anything.",
+          },
+          {
+            title: "Mark and drill the new holes",
+            body: "Hold the mounting plate against the wall about 120 cm above the ground and use the spirit level to make it straight. Mark both holes, drill them with the 6 mm bit and push in the wall plugs.",
+            image: { src: IMAGES.bracket, alt: "A mounting plate on the wall with a spirit level above it and two marked screw holes" },
+            tip: "On brick, drill 35 mm deep. On wood you do not need the plugs at all.",
+          },
+          {
+            title: "Connect the two wires",
+            body: "Loosen the two terminal screws, slide one wire under each and tighten them again. It does not matter which wire goes where.",
+            image: { src: IMAGES.terminals, alt: "The back of the doorbell with two terminals and a wire fitted to each", caption: "Tug each wire gently. If it moves, tighten the screw a little more." },
+            warning: "Check that the fuse is still off before you touch the wires.",
+          },
+          {
+            title: "Fit the doorbell and switch the power on",
+            body: "Click the doorbell onto the plate until it locks, then switch the fuse back on. The ring around the button glows white for two seconds, and that is how you know it is alive.",
+            image: { src: IMAGES.fitted, alt: "The finished doorbell on the wall beside the door, its button ringed with light" },
+          },
+          {
+            title: "Connect it to the app",
+            body: "Open the Halcyon app, tap Add a device and hold your phone against the doorbell. Pick your Wi-Fi network, type its password and give the doorbell a name, such as Front door.",
+          },
+        ]}
+        done={{
+          title: "Your doorbell is on the wall and online",
+          body: "It now rings on your phone wherever you are, and the old bell is out of your life.",
+          items: ["Mounted level and secure", "Connected to your Wi-Fi", "Ringing on your phone", "Ready for motion zones"],
+        }}
+        next={{ title: "Set up motion zones and quiet hours", href: "#motion-zones", description: "Choose what the camera watches, and when it stays silent." }}
+      />
+    </div>
+  );
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "insert-between-button",
+  "title": "Insert between button",
+  "description": "The plus that appears between two items so you can insert one right there: on hover and focus, always on touch, and reachable by keyboard.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/insert-between-button.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\n\nimport { IconPlus } from \"@rhs-ui/icons\";\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@rhs-ui/primitives/tooltip\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InsertBetweenButtonProps extends Omit<ComponentProps<\"button\">, \"children\" | \"onClick\" | \"title\" | \"aria-label\"> {\n  /** Called with `index` when the gap is pressed. Insert your item there, then move focus to it. */\n  onInsert: (index: number) => void;\n  /** The position the new item takes in the list, from 0. The gap sits between the item now at `index - 1` and the one at `index`, so it is named \"between `index` and `index + 1`\" counting from 1. */\n  index: number;\n  /** What it does, shown in a tooltip: \"Insert step here\". A trailing \"here\" is replaced by the position in the accessible name: \"Insert step between 2 and 3\". */\n  label?: string;\n  /** The neighbours' own names for the accessible name, instead of their numbers: [\"Welcome email\", \"Product tour\"]. */\n  between?: readonly [string, string];\n  /** The direction of the line. `horizontal` (default) crosses a gap between stacked items; `vertical` sits between items in a row. */\n  orientation?: \"horizontal\" | \"vertical\";\n  /** Keep the line and the plus in view. They always are on touch screens, where there is no hover. */\n  alwaysVisible?: boolean;\n}\n\n// The line and the plus come into view together: on hover, on keyboard focus, when pinned open, and always on a coarse pointer.\n// These rules live on the button and reach down to its two parts; the parts only carry their hidden state.\nconst REVEAL = [\n  \"[&:is(:hover,:focus-visible,[data-visible=true])>[data-part]]:opacity-100\",\n  \"[@media(pointer:coarse)]:[&>[data-part]]:opacity-100\",\n  \"motion-safe:[&:is(:hover,:focus-visible,[data-visible=true])>[data-part=plus]]:scale-100\",\n  \"motion-safe:[@media(pointer:coarse)]:[&>[data-part=plus]]:scale-100\",\n].join(\" \");\nconst REVEAL_ACROSS = {\n  horizontal: \"motion-safe:[&:is(:hover,:focus-visible,[data-visible=true])>[data-part=line]]:scale-x-100 motion-safe:[@media(pointer:coarse)]:[&>[data-part=line]]:scale-x-100\",\n  vertical: \"motion-safe:[&:is(:hover,:focus-visible,[data-visible=true])>[data-part=line]]:scale-y-100 motion-safe:[@media(pointer:coarse)]:[&>[data-part=line]]:scale-y-100\",\n} as const;\n\nconst LINE = \"pointer-events-none absolute bg-[color-mix(in_oklch,var(--border),var(--foreground)_22%)] opacity-0 transition-[opacity,scale] duration-200 motion-reduce:transition-opacity\";\nconst LINE_ACROSS = {\n  horizontal: \"inset-x-0 top-1/2 h-px -translate-y-1/2 motion-safe:scale-x-0\",\n  vertical: \"inset-y-0 left-1/2 w-px -translate-x-1/2 motion-safe:scale-y-0\",\n} as const;\nconst PLUS = [\n  \"relative grid size-6 place-items-center rounded-full border border-border bg-background text-muted-foreground opacity-0 shadow-xs motion-safe:scale-50\",\n  \"transition-[opacity,scale,background-color,border-color,color,box-shadow] duration-200 motion-reduce:transition-[opacity,background-color,border-color,color,box-shadow]\",\n  \"hover:border-foreground hover:bg-foreground hover:text-background\",\n  \"group-focus-visible/insert:border-ring group-focus-visible/insert:ring-[3px] group-focus-visible/insert:ring-ring/40\",\n].join(\" \");\n\n/**\n * The plus between two items that adds one right there: for builders, step\n * lists, timelines and form editors where a new item goes in the middle, not\n * only at the end. It is a hairline across the gap with a small round button\n * in the middle that grows into view on hover and on keyboard focus, and stays\n * in view on touch screens. The whole gap is the hit target, so the plus is\n * easy to reach, and the button is a real tab stop named by its position\n * (\"Insert step between 2 and 3\"). Under reduced motion the reveal is a plain\n * fade.\n */\nexport function InsertBetweenButton({ onInsert, index, label = \"Insert here\", between, orientation = \"horizontal\", alwaysVisible = false, className, ...props }: InsertBetweenButtonProps) {\n  const horizontal = orientation === \"horizontal\";\n  const [before, after] = between ?? [String(index), String(index + 1)];\n  const action = label.replace(/\\s*\\bhere\\b\\s*$/i, \"\").trim() || \"Insert\";\n  return (\n    <TooltipProvider delayDuration={500}>\n      <Tooltip>\n        <TooltipTrigger asChild>\n          <button\n            data-slot=\"insert-between-button\"\n            data-orientation={orientation}\n            data-visible={alwaysVisible || undefined}\n            type=\"button\"\n            aria-label={`${action} between ${before} and ${after}`}\n            onClick={() => onInsert(index)}\n            className={cn(\n              \"group/insert relative flex shrink-0 cursor-pointer items-center justify-center outline-none\",\n              horizontal ? \"h-8 w-full\" : \"min-h-12 w-8 self-stretch\",\n              REVEAL,\n              REVEAL_ACROSS[orientation],\n              className,\n            )}\n            {...props}\n          >\n            <span data-part=\"line\" aria-hidden=\"true\" className={cn(LINE, LINE_ACROSS[orientation])} />\n            <span data-part=\"plus\" aria-hidden=\"true\" className={PLUS}>\n              <IconPlus className=\"size-3.5\" />\n            </span>\n          </button>\n        </TooltipTrigger>\n        <TooltipContent side={horizontal ? \"top\" : \"right\"}>{label}</TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/insert-between-button.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "actions"
+  },
+  "docs": "index is the position the new item takes; the name reads Insert step between 2 and 3 (pass between for real names). Put one in every gap of your list, and move focus to the new item in onInsert.",
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

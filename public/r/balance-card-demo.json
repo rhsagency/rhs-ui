@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "balance-card-demo",
+  "title": "Balance card demo",
+  "description": "A working preview of Balance card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/balance-card.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/balance-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BalanceCard } from \"@rhs-ui/dashboard/balance-card\";\nimport { IconArrowUp, IconPlus } from \"@rhs-ui/icons\";\n\nconst PENDING = 1250.5;\n\nexport default function Demo(): React.JSX.Element {\n  const [balance, setBalance] = useState(12480.5);\n  const [hidden, setHidden] = useState(false);\n\n  return (\n    <div className=\"grid w-full max-w-4xl items-start gap-x-8 gap-y-10 md:grid-cols-2\">\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Withdraw and top up move the balance. The eye hides every figure.</p>\n        <BalanceCard\n          balance={balance}\n          available={balance - PENDING}\n          pending={PENDING}\n          currency=\"EUR\"\n          locale=\"en-IE\"\n          nextPayout={{ date: \"2026-10-23\", amount: 2100 }}\n          hidden={hidden}\n          onToggleHidden={setHidden}\n          actions={[\n            { label: \"Withdraw\", icon: <IconArrowUp />, onClick: () => setBalance((current) => current - 5000) },\n            { label: \"Top up\", icon: <IconPlus />, onClick: () => setBalance((current) => current + 2500) },\n          ]}\n        />\n      </section>\n\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Overdrawn is written out, with a minus sign</p>\n        <BalanceCard\n          balance={-320}\n          available={-320}\n          pending={0}\n          currency=\"EUR\"\n          locale=\"en-IE\"\n          title=\"Kestrel Pay account\"\n          nextPayout={{ date: \"2026-10-27\", amount: 640 }}\n          actions={[{ label: \"Top up\", icon: <IconPlus /> }, { label: \"Statement\", variant: \"outline\" }]}\n        />\n      </section>\n\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Starts hidden, for a shared screen</p>\n        <BalanceCard\n          balance={48215.9}\n          available={46000}\n          pending={2215.9}\n          currency=\"EUR\"\n          locale=\"en-IE\"\n          title=\"Marketplace earnings\"\n          defaultHidden\n          nextPayout={{ date: \"2026-10-30\" }}\n          actions={[{ label: \"Withdraw\", icon: <IconArrowUp /> }]}\n        />\n      </section>\n\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Loading, in the same footprint</p>\n        <BalanceCard balance={0} loading />\n      </section>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

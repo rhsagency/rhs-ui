@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "action-tiles-demo",
+  "title": "Action tiles demo",
+  "description": "A working preview of Action tiles.",
+  "registryDependencies": [
+    "https://rhsui.com/r/action-tiles.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/action-tiles-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ActionTiles, type ActionTile } from \"@rhs-ui/dashboard/action-tiles\";\nimport { IconDownload, IconFilePlus, IconPercent, IconSend, IconSettings, IconTruck, IconUpload, IconUserPlus } from \"@rhs-ui/icons\";\n\nexport default function Demo(): React.JSX.Element {\n  const [last, setLast] = useState(\"Press a tile: it is a real button or link.\");\n  const press = (name: string) => () => setLast(`${name} pressed.`);\n\n  const actions: readonly ActionTile[] = [\n    { label: \"New invoice\", description: \"Bill a customer in two steps\", icon: <IconFilePlus />, shortcut: \"N then I\", onSelect: press(\"New invoice\") },\n    { label: \"Invite teammate\", description: \"Add a colleague by email\", icon: <IconUserPlus />, shortcut: \"N then T\", onSelect: press(\"Invite teammate\") },\n    { label: \"Import products\", description: \"From a CSV or another shop\", icon: <IconUpload />, shortcut: \"N then P\", onSelect: press(\"Import products\") },\n    { label: \"Create discount\", description: \"A code or an automatic offer\", icon: <IconPercent />, shortcut: \"N then D\", onSelect: press(\"Create discount\") },\n    { label: \"Print labels\", description: \"Ready to ship: 24 orders\", icon: <IconTruck />, shortcut: \"P then L\", onSelect: press(\"Print labels\") },\n    { label: \"Export report\", description: \"Last 30 days as a spreadsheet\", icon: <IconDownload />, href: \"#export\" },\n    { label: \"Send reminder\", description: \"Nudge customers with open invoices\", icon: <IconSend />, disabled: true, disabledReason: \"Connect an email provider in Settings first.\" },\n    { label: \"Shop settings\", description: \"Payments, tax and shipping\", icon: <IconSettings />, shortcut: \"G then S\", href: \"#settings\" },\n  ];\n\n  const dense: readonly ActionTile[] = [\n    { label: \"New invoice\", icon: <IconFilePlus />, shortcut: \"N then I\", onSelect: press(\"New invoice\") },\n    { label: \"Invite teammate\", icon: <IconUserPlus />, shortcut: \"N then T\", onSelect: press(\"Invite teammate\") },\n    { label: \"Import products\", icon: <IconUpload />, shortcut: \"N then P\", onSelect: press(\"Import products\") },\n    { label: \"Create discount\", icon: <IconPercent />, shortcut: \"N then D\", onSelect: press(\"Create discount\") },\n    { label: \"Send reminder\", icon: <IconSend />, disabled: true, disabledReason: \"Connect an email provider in Settings first.\" },\n    { label: \"Export report\", icon: <IconDownload />, href: \"#export\" },\n  ];\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-10\">\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Four columns, two on a phone. The disabled tile stays focusable and says why.</p>\n        <ActionTiles actions={actions} />\n        <p aria-live=\"polite\" className=\"text-xs text-muted-foreground\">\n          {last}\n        </p>\n      </section>\n\n      <section className=\"grid gap-3\">\n        <p className=\"text-xs text-muted-foreground\">Dense, three columns</p>\n        <ActionTiles actions={dense} columns={3} dense label=\"Quick actions, compact\" />\n      </section>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

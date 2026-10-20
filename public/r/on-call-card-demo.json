@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "on-call-card-demo",
+  "title": "On-call card demo",
+  "description": "A working preview of On-call card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/on-call-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/on-call-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { OnCallCard, type OnCallEscalation, type OnCallPerson, type OnCallShift } from \"@rhs-ui/dashboard/on-call-card\";\n\nconst ZONE = \"Europe/Amsterdam\";\nconst REASONS = [\"Checkout is failing\", \"Database alerts firing\", \"Customer escalation\"];\n\nconst escalation: OnCallEscalation = { name: \"Sofia Marin\", role: \"Head of Engineering\", phone: \"+31 20 555 0142\" };\n\nconst priya: OnCallShift = { name: \"Priya Nair\", role: \"Backend, primary\", start: \"2026-10-20T08:00:00+02:00\", end: \"2026-10-20T18:00:00+02:00\" };\nconst tom: OnCallShift = { name: \"Tom de Vries\", role: \"Platform\", start: \"2026-10-20T18:00:00+02:00\", end: \"2026-10-21T08:00:00+02:00\" };\nconst aiko: OnCallShift = { name: \"Aiko Tanaka\", role: \"Backend, secondary\", start: \"2026-10-20T08:00:00+02:00\", end: \"2026-10-20T18:00:00+02:00\" };\nconst priyaTomorrow: OnCallShift = { name: \"Priya Nair\", role: \"Backend, primary\", start: \"2026-10-21T08:00:00+02:00\", end: \"2026-10-21T18:00:00+02:00\" };\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [sent, setSent] = useState<string[]>([]);\n  // A real page would call your paging service here. This one takes a moment, then succeeds.\n  const page = async (person: OnCallPerson, reason: string): Promise<void> => {\n    await new Promise((resolve) => setTimeout(resolve, 900));\n    setSent((list) => [`${person.name}: ${reason}`, ...list].slice(0, 3));\n  };\n  const common = { timeZone: ZONE, locale: \"en-GB\", escalation, reasons: REASONS, scheduleHref: \"#rota\", onPage: page } as const;\n\n  return (\n    <div className=\"grid w-full max-w-5xl gap-x-8 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr))]\">\n      <Example caption=\"A handover within the hour\">\n        <OnCallCard {...common} now=\"2026-10-20T17:25:00+02:00\" current={priya} next={tom} />\n      </Example>\n      <Example caption=\"Mid-shift, nothing to flag\">\n        <OnCallCard {...common} now=\"2026-10-20T11:10:00+02:00\" current={aiko} next={priyaTomorrow} />\n      </Example>\n      <Example caption=\"Nobody on call\">\n        <OnCallCard {...common} now=\"2026-10-20T07:40:00+02:00\" current={null} next={priya} />\n      </Example>\n      <p role=\"status\" className=\"col-span-full min-h-5 text-sm text-muted-foreground\">\n        {sent.length ? `Last page sent: ${sent[0]}` : \"\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

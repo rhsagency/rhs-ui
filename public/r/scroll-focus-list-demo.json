@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-focus-list-demo",
+  "title": "Scroll focus list demo",
+  "description": "A working preview of Scroll focus list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/scroll-focus-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/scroll-focus-list-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { ScrollFocusList, type ScrollFocusItem } from \"@rhs-ui/motion/scroll-focus-list\";\n\nconst STEPS: readonly ScrollFocusItem[] = [\n  { title: \"You place the order\", description: \"Checkout confirms stock and payment in a single step, so nothing is promised that cannot be shipped.\" },\n  { title: \"We pick and pack\", description: \"A picker gets the shortest route through the warehouse, and the box is weighed to catch a missing item before it leaves.\" },\n  { title: \"The courier collects\", description: \"Labels are printed at the dock, and tracking starts the moment the courier scans the parcel.\" },\n  { title: \"It travels\", description: \"Every scan shows on the map, and the delivery window is updated as the route changes.\" },\n  { title: \"It arrives\", description: \"A photo confirms the drop-off. If something is wrong, one tap opens a return.\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [step, setStep] = useState(0);\n  return (\n    <div className=\"mx-auto w-full max-w-2xl px-4 py-6\">\n      <div className=\"flex items-end justify-between gap-4 pb-3\">\n        <p className=\"text-xs text-muted-foreground\">Scroll the panel: the step at the reading line stays at full strength.</p>\n        <p className=\"shrink-0 text-xs text-muted-foreground tabular-nums\">\n          Step {step + 1} of {STEPS.length}\n        </p>\n      </div>\n      <div role=\"region\" aria-label=\"Scrollable order journey\" tabIndex={0} className=\"relative h-[min(32rem,calc(100dvh-5.5rem))] overflow-y-auto rounded-xl border border-border bg-card outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n        <div className=\"px-6 pt-8\">\n          <p className=\"text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase\">Order journey</p>\n          <h2 className=\"mt-2 text-2xl font-medium tracking-[-0.03em] text-balance\">From checkout to your door</h2>\n        </div>\n        <ScrollFocusList items={STEPS} lineAt={0.42} onActiveChange={setStep} aria-label=\"Order journey\" className=\"px-6 pt-14 pb-72 [--rhs-focus-gap:5.5rem]\" />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
