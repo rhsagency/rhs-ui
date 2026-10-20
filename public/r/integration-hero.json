@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "integration-hero",
+  "title": "Integration hero",
+  "description": "A co-branded opening for an integration page: two marks joined by a line, what the connection does and the connect action.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/badge.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/description-list.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/integration-hero.tsx",
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { IconArrowLeftRight, IconArrowRight, IconBook, IconCheck, IconFlask } from \"@rhs-ui/icons\";\nimport { Badge } from \"@rhs-ui/primitives/badge\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { DescriptionList, type DescriptionItem } from \"@rhs-ui/primitives/description-list\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface IntegrationHeroParty {\n  /** The name read out for the pair of marks: \"Acme\". */\n  name: string;\n  /** The mark: an inline SVG or an <img>. It fills a square tile; nothing is drawn for you. */\n  mark: ReactNode;\n}\n\nexport interface IntegrationHeroProps extends Omit<ComponentProps<\"section\">, \"title\" | \"children\"> {\n  /** The title's element: \"h2\" inside a page that has its own h1 (the default), \"h1\" when the hero opens the page. */\n  titleAs?: \"h1\" | \"h2\";\n  /** Your product, on the left tile. */\n  product: IntegrationHeroParty;\n  /** The partner, on the right tile. */\n  partner: IntegrationHeroParty;\n  /** The page title: \"Acme for Northwind\". */\n  title: string;\n  /** What the connection does, in a line or two. */\n  description?: string;\n  /** Facts as term and value, three being the design: setup time, what syncs, the plan needed. Two to four fit. */\n  facts: readonly DescriptionItem[];\n  /** Where the connect action leads. */\n  connectHref: string;\n  /** Where the guide lives. */\n  guideHref: string;\n  /** Defaults to \"Connect\" followed by the partner's name. */\n  connectLabel?: string;\n  /** Defaults to \"Read the guide\". */\n  guideLabel?: string;\n  /** Shown as a tag beside the eyebrow. Leave out for a plain page. */\n  status?: \"available\" | \"beta\";\n  /** The word above the title. */\n  eyebrow?: string;\n}\n\n/* Written out so Tailwind sees every class: the facts share the row evenly. */\nconst FACT_COLUMNS = [\"sm:grid-cols-1\", \"sm:grid-cols-1\", \"sm:grid-cols-2\", \"sm:grid-cols-3\", \"sm:grid-cols-4\"] as const;\n\nfunction Tile({ children }: { children: ReactNode }) {\n  return (\n    <div className=\"grid size-20 shrink-0 place-items-center rounded-2xl border border-border bg-card text-foreground shadow-xs sm:size-24 [&>img]:size-10 [&>img]:object-contain [&>svg]:size-10\">\n      {children}\n    </div>\n  );\n}\n\n/**\n * A co-branded opening for an integration page: your mark and the partner's\n * on one axis, joined by a hairline with a small badge, then the title, what\n * the connection does, three facts and the connect action. The two tiles are\n * one image to a screen reader (\"Acme and Northwind\") and nothing is drawn\n * with the partner's brand beyond the mark you pass, so one template can give\n * every integration its own landing page without copied badges.\n */\nexport function IntegrationHero({\n  titleAs: Title = \"h2\",\n  product,\n  partner,\n  title,\n  description,\n  facts,\n  connectHref,\n  guideHref,\n  connectLabel,\n  guideLabel = \"Read the guide\",\n  status,\n  eyebrow = \"Integration\",\n  className,\n  ...props\n}: IntegrationHeroProps) {\n  return (\n    <section data-slot=\"integration-hero\" className={cn(\"py-16 text-center sm:py-24\", className)} {...props}>\n      <div role=\"img\" aria-label={`${product.name} and ${partner.name}`} className=\"mx-auto flex w-fit flex-col items-center md:flex-row\">\n        <Tile>{product.mark}</Tile>\n        <div aria-hidden=\"true\" className=\"relative flex h-14 w-px items-center justify-center bg-border sm:h-16 md:h-px md:w-28 lg:w-36\">\n          <span className=\"absolute grid size-8 place-items-center rounded-full border border-border bg-background text-muted-foreground shadow-xs\">\n            <IconArrowLeftRight className=\"size-3.5\" />\n          </span>\n        </div>\n        <Tile>{partner.mark}</Tile>\n      </div>\n      <p className=\"mt-10 flex items-center justify-center gap-2.5 text-sm text-muted-foreground\">\n        {eyebrow}\n        {status ? (\n          <Badge variant={status === \"beta\" ? \"outline\" : \"secondary\"}>\n            {status === \"beta\" ? <IconFlask /> : <IconCheck />}\n            {status === \"beta\" ? \"Beta\" : \"Available\"}\n          </Badge>\n        ) : null}\n      </p>\n      <Title className=\"mx-auto mt-4 max-w-3xl text-4xl leading-[1.04] font-medium tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl\">{title}</Title>\n      {description ? <p className=\"mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg\">{description}</p> : null}\n      <div className=\"mx-auto mt-10 max-w-2xl overflow-hidden rounded-2xl border border-border bg-card\">\n        <DescriptionList\n          items={facts}\n          layout=\"grid\"\n          className={cn(\"grid-cols-1 gap-0 divide-y divide-border sm:divide-x sm:divide-y-0 [&>div]:content-start [&>div]:gap-1 [&>div]:px-5 [&>div]:py-4 [&>div]:text-center [&_dt]:text-xs\", FACT_COLUMNS[Math.min(facts.length, 4)])}\n        />\n      </div>\n      <div className=\"mt-8 flex flex-wrap items-center justify-center gap-3\">\n        <Button asChild size=\"lg\">\n          <a href={connectHref}>\n            {connectLabel ?? `Connect ${partner.name}`}\n            <IconArrowRight />\n          </a>\n        </Button>\n        <Button asChild size=\"lg\" variant=\"outline\">\n          <a href={guideHref}>\n            <IconBook />\n            {guideLabel}\n          </a>\n        </Button>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/integration-hero.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

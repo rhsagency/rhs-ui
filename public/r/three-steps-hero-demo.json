@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "three-steps-hero-demo",
+  "title": "Three steps hero demo",
+  "description": "A working preview of Three steps hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/three-steps-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/three-steps-hero-demo.tsx",
+      "content": "import { ThreeStepsHero } from \"@rhs-ui/marketing/three-steps-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <ThreeStepsHero\n        title=\"Your tax return, filed without the paperwork chase.\"\n        description=\"Send your documents once. A registered adviser checks every line, files the return and tells you what you get back.\"\n        cta={{ label: \"Start your return\", href: \"#start\" }}\n        steps={[\n          { title: \"Upload\", description: \"Photograph your payslips and statements, or connect your bank. No forms to fill in.\", time: \"2 minutes\" },\n          { title: \"We check\", description: \"An adviser reviews every line, asks if something is missing and signs it off.\", time: \"Same day\" },\n          { title: \"You receive it\", description: \"The return is filed with the tax office and your copy lands in your inbox.\", time: \"In 3 days\" },\n        ]}\n        summary=\"From start to done: about 3 days\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

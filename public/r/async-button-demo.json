@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "async-button-demo",
+  "title": "Async button demo",
+  "description": "A working preview of Async button.",
+  "registryDependencies": [
+    "https://rhsui.com/r/async-button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/async-button-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef, type ReactNode } from \"react\";\n\nimport { IconSave, IconSend } from \"@rhs-ui/icons\";\nimport { AsyncButton, type AsyncButtonStatus } from \"@rhs-ui/primitives/async-button\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nconst SAVE = { idle: \"Save changes\", pending: \"Saving…\", success: \"Changes saved\", error: \"Could not save\" };\n\nconst STATES: { status: AsyncButtonStatus; caption: string }[] = [\n  { status: \"idle\", caption: \"Idle\" },\n  { status: \"pending\", caption: \"Pending\" },\n  { status: \"success\", caption: \"Success\" },\n  { status: \"error\", caption: \"Error\" },\n];\n\nfunction Example({ caption, children, wide = false }: { caption: string; children: ReactNode; wide?: boolean }): React.JSX.Element {\n  return (\n    <div className={wide ? \"col-span-full grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\" : \"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start justify-items-start gap-3\"}>\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const attempts = useRef(0);\n  return (\n    <div className=\"grid w-full max-w-3xl gap-x-12 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))]\">\n      <Example caption=\"Press it: pending, then saved\">\n        <AsyncButton icon={<IconSave />} labels={SAVE} onClick={() => wait(1400)} />\n      </Example>\n\n      <Example caption=\"Fails the first time, and can be retried at once\">\n        <AsyncButton\n          variant=\"outline\"\n          icon={<IconSend />}\n          labels={{ idle: \"Send invoice\", pending: \"Sending…\", success: \"Invoice sent\", error: \"Could not send\" }}\n          onClick={async () => {\n            attempts.current += 1;\n            await wait(1200);\n            if (attempts.current % 2 === 1) throw new Error(\"The mail server did not answer.\");\n          }}\n        />\n      </Example>\n\n      <Example caption=\"Any variant\">\n        <AsyncButton variant=\"secondary\" labels={{ idle: \"Publish post\", pending: \"Publishing…\", success: \"Published\", error: \"Failed to publish\" }} onClick={() => wait(1600)} />\n      </Example>\n\n      <Example wide caption=\"Every state, driven from outside with status={mutation.status}\">\n        <div className=\"flex flex-wrap gap-x-8 gap-y-5\">\n          {STATES.map(({ status, caption }) => (\n            <div key={status} className=\"grid min-w-0 justify-items-start gap-2\">\n              <AsyncButton status={status} icon={<IconSave />} labels={SAVE} />\n              <span className=\"text-xs text-muted-foreground\">{caption}</span>\n            </div>\n          ))}\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "release-hero-demo",
+  "title": "Release hero demo",
+  "description": "A working preview of Release hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/release-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/release-hero-demo.tsx",
+      "content": "import { ReleaseHero } from \"@rhs-ui/marketing/release-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">New release, with breaking changes</p>\n      <ReleaseHero\n        className=\"pt-8 sm:pt-8\"\n        product=\"Kestrel\"\n        version=\"v4.2\"\n        releasedAt=\"2026-10-20\"\n        channel=\"new\"\n        highlights={[\n          { title: \"Streaming by default\", description: \"Pages start rendering after the first byte, with no config change.\" },\n          { title: \"Typed routes\", description: \"Links and params are checked against your file tree at build time.\" },\n          { title: \"Builds 40% faster\", description: \"An incremental cache keeps unchanged routes out of the pipeline.\" },\n        ]}\n        notesHref=\"#notes\"\n        upgradeHref=\"#upgrade\"\n        breaking={{ summary: \"Node 18 is no longer supported.\", href: \"#migrate\", linkLabel: \"Migration guide\" }}\n      />\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">Long-term support, a longer version</p>\n      <ReleaseHero\n        className=\"pt-8 sm:pt-8\"\n        product=\"Kestrel\"\n        version=\"v3.9.14\"\n        releasedAt=\"2026-09-08\"\n        channel=\"lts\"\n        highlights={[\n          { title: \"Security fixes only\", description: \"Patches for 18 months, with no new features to review.\" },\n          { title: \"Node 18 and 20\", description: \"The last line that still runs on Node 18.\" },\n          { title: \"Drop-in upgrade\", description: \"Every 3.x project updates without touching its code.\" },\n        ]}\n        notesHref=\"#notes\"\n        upgradeHref=\"#upgrade\"\n        upgradeLabel=\"Stay on LTS\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

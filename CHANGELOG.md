@@ -13,6 +13,12 @@ own `meta.version` and are listed when they change.
 - New in the batch kit (`scripts/batch.mjs`): check new items against the registry
   rules, typecheck them, render their demos on the server and look at them in a
   browser in both themes and on a phone, before they join the registry.
+- Eleven new buttons: `button-group`, `split-button`, `icon-button`, `copy-button`,
+  `async-button`, `download-button`, `upload-button`, `print-button`, `back-button`,
+  `fullscreen-button` and `shortcut-button`, each with a demo.
+- Nine new heroes: `open-source-hero`, `watch-demo-hero`, `two-path-hero`,
+  `three-steps-hero`, `integration-hero`, `prompt-hero`, `desktop-download-hero`,
+  `release-hero` and `overlap-cards-hero`.
 
 ## Unreleased (0.7.0)
 

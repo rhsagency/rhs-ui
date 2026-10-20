@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "integration-hero-demo",
+  "title": "Integration hero demo",
+  "description": "A working preview of Integration hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/integration-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/integration-hero-demo.tsx",
+      "content": "import { IntegrationHero } from \"@rhs-ui/marketing/integration-hero\";\n\n/* Marks drawn for the demo. In your app these are the real logos, as inline SVG or <img>. */\nconst acme = (\n  <svg viewBox=\"0 0 40 40\" fill=\"none\" aria-hidden=\"true\">\n    <path d=\"M20 5.5 35 33.5H5L20 5.5Z\" fill=\"currentColor\" />\n    <path d=\"M13.5 27h13\" className=\"stroke-card\" strokeWidth=\"3.5\" strokeLinecap=\"round\" />\n  </svg>\n);\n\nconst northwind = (\n  <svg viewBox=\"0 0 40 40\" fill=\"none\" aria-hidden=\"true\">\n    <circle cx=\"20\" cy=\"20\" r=\"14\" stroke=\"currentColor\" strokeWidth=\"3\" />\n    <path d=\"M20 9.5 25.5 22h-11L20 9.5Z\" fill=\"currentColor\" />\n  </svg>\n);\n\nconst kestrel = (\n  <svg viewBox=\"0 0 40 40\" fill=\"none\" aria-hidden=\"true\">\n    <path d=\"M13 7.5v25M13 20 28 7.5M13 20l15 12.5\" stroke=\"currentColor\" strokeWidth=\"3.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n  </svg>\n);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">Available</p>\n      <IntegrationHero\n        className=\"pt-8 sm:pt-8\"\n        product={{ name: \"Acme\", mark: acme }}\n        partner={{ name: \"Northwind\", mark: northwind }}\n        title=\"Acme for Northwind\"\n        description=\"Every paid invoice in Acme is posted to Northwind as a ledger entry, with its customer and tax code already matched.\"\n        facts={[\n          { term: \"Setup time\", value: \"5 minutes\" },\n          { term: \"What syncs\", value: \"Invoices and payments\" },\n          { term: \"Plan needed\", value: \"Business or above\" },\n        ]}\n        connectHref=\"#connect\"\n        guideHref=\"#guide\"\n        status=\"available\"\n      />\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">Beta, another partner</p>\n      <IntegrationHero\n        className=\"pt-8 sm:pt-8\"\n        product={{ name: \"Acme\", mark: acme }}\n        partner={{ name: \"Kestrel\", mark: kestrel }}\n        title=\"Acme for Kestrel\"\n        description=\"A Kestrel task is created for every Acme ticket that has gone unanswered for two hours, assigned to whoever is on call.\"\n        facts={[\n          { term: \"Setup time\", value: \"10 minutes\" },\n          { term: \"What syncs\", value: \"Tickets and assignees\" },\n          { term: \"Plan needed\", value: \"Any plan\" },\n        ]}\n        connectHref=\"#connect\"\n        guideHref=\"#guide\"\n        status=\"beta\"\n        connectLabel=\"Join the beta\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

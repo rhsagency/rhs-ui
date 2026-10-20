@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "overlap-cards-hero-demo",
+  "title": "Overlap cards hero demo",
+  "description": "A working preview of Overlap cards hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/overlap-cards-hero.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/overlap-cards-hero-demo.tsx",
+      "content": "import { IconCalculator, IconCalendar, IconFileCheck, IconHeadphones, IconStethoscope, IconUserCircle } from \"@rhs-ui/icons\";\nimport { OverlapCardsHero } from \"@rhs-ui/marketing/overlap-cards-hero\";\n\n/* A scene drawn for the demo. In your app: a real photo; the scrim keeps the copy readable over it. */\nconst scenery =\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent(\n    \"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'><rect width='1600' height='900' fill='#cfcdc7'/><circle cx='1180' cy='290' r='190' fill='#ebe9e4'/><path d='M0 640C260 520 420 560 640 470S1040 400 1600 540V900H0Z' fill='#8d8a82'/><path d='M0 760C320 660 560 720 860 640S1320 600 1600 700V900H0Z' fill='#5f5d57'/></svg>\",\n  );\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">Solid panel</p>\n      <OverlapCardsHero\n        eyebrow=\"Meridian Mutual\"\n        title=\"Cover that keeps pace with your life.\"\n        description=\"Home, car and small-business insurance, explained in plain language and settled in days, not weeks.\"\n        cta={{ label: \"Compare plans\", href: \"#plans\" }}\n        cards={[\n          { icon: <IconFileCheck />, title: \"Report a claim\", description: \"Tell us what happened and follow every step online.\", href: \"#claim\" },\n          { icon: <IconCalculator />, title: \"Get a quote\", description: \"Cover for your home, car or business in about four minutes.\", href: \"#quote\" },\n          { icon: <IconHeadphones />, title: \"Talk to an adviser\", description: \"A real person, Monday to Saturday, from eight to eight.\", href: \"#adviser\" },\n        ]}\n      />\n      <p className=\"pt-8 text-xs text-muted-foreground\">With a photo and a scrim, and a section that follows</p>\n      <OverlapCardsHero\n        eyebrow=\"Lindenhof Clinic\"\n        title=\"Care that starts with a conversation.\"\n        description=\"Family doctors, specialists and a patient portal that remembers what you told us last time.\"\n        cta={{ label: \"Book an appointment\", href: \"#book\" }}\n        media={<img src={scenery} alt=\"\" />}\n        cards={[\n          { icon: <IconCalendar />, title: \"Book an appointment\", description: \"Pick a time that suits you; most weeks there is one tomorrow.\", href: \"#book\" },\n          { icon: <IconStethoscope />, title: \"Find a specialist\", description: \"Cardiology, dermatology, physiotherapy and 14 more.\", href: \"#specialists\" },\n          { icon: <IconUserCircle />, title: \"Patient portal\", description: \"Results, prescriptions and messages in one place.\", href: \"#portal\" },\n        ]}\n      />\n      <p className=\"pt-10 pb-6 text-sm text-muted-foreground\">The next section starts here, after the cards, never under them.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

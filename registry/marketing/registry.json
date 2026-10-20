@@ -3159,6 +3159,422 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "open-source-hero",
+      "type": "registry:block",
+      "title": "Open source hero",
+      "description": "An open-source opening: the project name, an install command to copy and a repository card with stars, release, licence, languages and contributors.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/open-source-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/open-source-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "open-source-hero-demo",
+      "type": "registry:example",
+      "title": "Open source hero demo",
+      "description": "A working preview of Open source hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/open-source-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/open-source-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "watch-demo-hero",
+      "type": "registry:block",
+      "title": "Watch demo hero",
+      "description": "A hero whose picture is a poster frame: one press opens the product video in a dialog with captions and native controls.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/watch-demo-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/watch-demo-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "watch-demo-hero-demo",
+      "type": "registry:example",
+      "title": "Watch demo hero demo",
+      "description": "A working preview of Watch demo hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/watch-demo-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/watch-demo-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "two-path-hero",
+      "type": "registry:block",
+      "title": "Two path hero",
+      "description": "A hero that sends two kinds of visitor the right way: two full halves, each one whole link with its own promise.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/two-path-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/two-path-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "two-path-hero-demo",
+      "type": "registry:example",
+      "title": "Two path hero demo",
+      "description": "A working preview of Two path hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/two-path-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-path-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "three-steps-hero",
+      "type": "registry:block",
+      "title": "Three steps hero",
+      "description": "A hero that explains the service in the same screen: the promise, one action, and three numbered steps with their time.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/three-steps-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/three-steps-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "three-steps-hero-demo",
+      "type": "registry:example",
+      "title": "Three steps hero demo",
+      "description": "A working preview of Three steps hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/three-steps-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/three-steps-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "integration-hero",
+      "type": "registry:block",
+      "title": "Integration hero",
+      "description": "A co-branded opening for an integration page: two marks joined by a line, what the connection does and the connect action.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/integration-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/integration-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "integration-hero-demo",
+      "type": "registry:example",
+      "title": "Integration hero demo",
+      "description": "A working preview of Integration hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/integration-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/integration-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prompt-hero",
+      "type": "registry:block",
+      "title": "Prompt hero",
+      "description": "An AI product opening where the first action is typing: a large prompt box with example chips that fill it.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/prompt-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/prompt-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prompt-hero-demo",
+      "type": "registry:example",
+      "title": "Prompt hero demo",
+      "description": "A working preview of Prompt hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prompt-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prompt-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "desktop-download-hero",
+      "type": "registry:block",
+      "title": "Desktop download hero",
+      "description": "The opening of a desktop app: one primary download button for the visitor's system, the other platforms a click away.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/desktop-download-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/desktop-download-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/desktop-download-hero/detect.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/desktop-download-hero/detect.ts"
+        }
+      ]
+    },
+    {
+      "name": "desktop-download-hero-demo",
+      "type": "registry:example",
+      "title": "Desktop download hero demo",
+      "description": "A working preview of Desktop download hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/desktop-download-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/desktop-download-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "release-hero",
+      "type": "registry:block",
+      "title": "Release hero",
+      "description": "Announce a version: the number set huge, the date, three highlights and the upgrade and release-notes actions.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/release-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/release-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "release-hero-demo",
+      "type": "registry:example",
+      "title": "Release hero demo",
+      "description": "A working preview of Release hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/release-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/release-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "overlap-cards-hero",
+      "type": "registry:block",
+      "title": "Overlap cards hero",
+      "description": "A corporate opening whose three link cards straddle its bottom edge, so the first scroll already has somewhere to go.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/overlap-cards-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/overlap-cards-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "overlap-cards-hero-demo",
+      "type": "registry:example",
+      "title": "Overlap cards hero demo",
+      "description": "A working preview of Overlap cards hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/overlap-cards-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/overlap-cards-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "back-button-demo",
+  "title": "Back button demo",
+  "description": "A working preview of Back button.",
+  "registryDependencies": [
+    "https://rhsui.com/r/back-button.json",
+    "https://rhsui.com/r/badge.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/back-button-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconInfo } from \"@rhs-ui/icons\";\nimport { Badge } from \"@rhs-ui/primitives/badge\";\nimport { BackButton } from \"@rhs-ui/primitives/back-button\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [note, setNote] = useState(\"Press a back button to see where it would go.\");\n  // A router would act here; the demo only reports what it would do. Without onBack the button acts by itself.\n  const onBack = (canGoBack: boolean) =>\n    setNote(canGoBack ? \"The page before this one is on this site, so it goes back one page.\" : \"There is no earlier page on this site, so it opens /orders instead of leaving.\");\n\n  return (\n    <div className=\"flex w-full justify-center\">\n      <div className=\"grid w-full max-w-md gap-8\">\n        <Example caption=\"In a page header. Screen readers hear “Back to Orders”\">\n          <div className=\"rounded-xl border border-border bg-card p-5 shadow-xs\">\n            <div className=\"flex items-center justify-between gap-3\">\n              <BackButton fallbackHref=\"/orders\" context=\"Orders\" size=\"sm\" className=\"-ml-3.5\" onBack={onBack} />\n              <Badge variant=\"secondary\">Shipped</Badge>\n            </div>\n            <h2 className=\"mt-3 text-xl font-semibold tracking-[-0.03em]\">Order #4821</h2>\n            <p className=\"mt-1 text-sm text-muted-foreground\">Placed 14 Oct 2026 by Halcyon Labs, 3 items.</p>\n          </div>\n        </Example>\n\n        <Example caption=\"Variants\">\n          <div className=\"flex flex-wrap items-center gap-3\">\n            <BackButton fallbackHref=\"/orders\" variant=\"outline\" onBack={onBack} />\n            <BackButton fallbackHref=\"/orders\" variant=\"secondary\" label=\"All orders\" onBack={onBack} />\n            <BackButton fallbackHref=\"/orders\" variant=\"link\" label=\"Back to orders\" onBack={onBack} />\n          </div>\n        </Example>\n\n        <p role=\"status\" className=\"flex min-h-10 items-start gap-2 rounded-lg border border-dashed border-border px-3 py-2.5 text-sm text-muted-foreground\">\n          <IconInfo aria-hidden=\"true\" className=\"mt-0.5 size-4 shrink-0\" />\n          {note}\n        </p>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

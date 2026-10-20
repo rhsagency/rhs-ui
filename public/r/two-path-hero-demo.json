@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "two-path-hero-demo",
+  "title": "Two path hero demo",
+  "description": "A working preview of Two path hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/two-path-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/two-path-hero-demo.tsx",
+      "content": "import { TwoPathHero } from \"@rhs-ui/marketing/two-path-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <TwoPathHero\n        title=\"Northwind connects the people who build with the people who hire.\"\n        description=\"Whichever side of the table you are on, the first step takes about five minutes.\"\n        paths={[\n          {\n            label: \"For teams\",\n            heading: \"Hire engineers who can start on Monday\",\n            points: [\"A vetted shortlist within 48 hours\", \"Two-week paid trial before you commit\", \"Swap anyone, any time, at no fee\"],\n            href: \"#teams\",\n            cta: \"Start hiring\",\n          },\n          {\n            label: \"For individuals\",\n            heading: \"Find work that fits the life you want\",\n            points: [\"Roles matched to your skills and rate\", \"You set your own hours and terms\", \"Paid every week, in your own currency\"],\n            href: \"#individuals\",\n            cta: \"Create your profile\",\n          },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

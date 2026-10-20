@@ -5974,6 +5974,552 @@
       ]
     },
     {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button group",
+      "description": "Related actions joined into one bar with shared borders and one radius, in a row or a column, stacking on a phone, so a set of buttons reads as a single control.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/button-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/button-group.tsx"
+        }
+      ],
+      "docs": "Give the group an aria-label. variant and size reach every button in it (Button, Copy, Async, Download, Upload and the rest) unless that button sets its own. A child with size=\"icon\" takes the square size of the group, and stackBelow turns a long row into a column on a phone. For choosing a value use Toggle Group or Segmented Control."
+    },
+    {
+      "name": "button-group-demo",
+      "type": "registry:example",
+      "title": "Button group demo",
+      "description": "A working preview of Button group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button-group.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/copy-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/button-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:ui",
+      "title": "Split button",
+      "description": "A main action with a chevron that opens the alternatives, like Save and Save as draft: one click does the common thing, the menu holds the rest, and it can remember the choice.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/button-group.json",
+        "https://rhsui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/split-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/split-button.tsx"
+        }
+      ],
+      "docs": "The chevron is named \"More options for <label>\". Loading and disabled apply to the main button only; a loading button is aria-disabled, not disabled, so keyboard focus stays on it. With remember, store the id from onRememberChange and pass it back as rememberedId on the next visit."
+    },
+    {
+      "name": "split-button-demo",
+      "type": "registry:example",
+      "title": "Split button demo",
+      "description": "A working preview of Split button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/split-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/split-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "title": "Icon button",
+      "description": "A button that is only an icon but can never be unlabelled: the label is required, shows as a tooltip with its shortcut, and the touch target stays 44px.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/icon-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/icon-button.tsx"
+        }
+      ],
+      "docs": "label is required: it is the accessible name and the tooltip. shortcut only displays keys in the tooltip; bind the key with Shortcut button or your own handler. The badge can appear and disappear while the button has focus, and its count joins the accessible name. Wrap a toolbar in IconButtonProvider so the tooltips share one delay: after the first, the neighbours open at once. tooltip takes over the tooltip's open state."
+    },
+    {
+      "name": "icon-button-demo",
+      "type": "registry:example",
+      "title": "Icon button demo",
+      "description": "A working preview of Icon button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/icon-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "Copy button",
+      "description": "A button that copies text and says so: the icon draws into a check, the label becomes Copied, a screen reader hears it, then it resets. It copes with a blocked clipboard.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-copy.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/copy-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/copy-button.tsx"
+        }
+      ],
+      "docs": "Pass a function as value for text worked out when the button is pressed; it may be async. Where the browser blocks the clipboard the text is selected and the button says to press Ctrl C. status shows a state without pressing."
+    },
+    {
+      "name": "copy-button-demo",
+      "type": "registry:example",
+      "title": "Copy button demo",
+      "description": "A working preview of Copy button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/copy-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "async-button",
+      "type": "registry:ui",
+      "title": "Async button",
+      "description": "A button for an action that takes a moment: it locks while pending, shows success or failure in place without changing width, and returns to rest by itself.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/async-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/async-button.tsx"
+        }
+      ],
+      "docs": "Return a promise from onClick, or drive the button from your own state with status={mutation.status}. It uses aria-disabled while pending so focus stays on the button, and it is as wide as its longest label so nothing jumps."
+    },
+    {
+      "name": "async-button-demo",
+      "type": "registry:example",
+      "title": "Async button demo",
+      "description": "A working preview of Async button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/async-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/async-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "download-button",
+      "type": "registry:ui",
+      "title": "Download button",
+      "description": "A download action that tells you what you get: file name, type and size on the button, and a preparing state for files made on demand.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/download-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/download-button.tsx"
+        }
+      ],
+      "docs": "Give href for a file that exists (a real link; a cross-origin file may be opened instead of saved) or onDownload for one built when asked. Pass bytes as soon as you know the size; it can arrive after the first render. The accessible name follows the state and always holds the words drawn on the button."
+    },
+    {
+      "name": "download-button-demo",
+      "type": "registry:example",
+      "title": "Download button demo",
+      "description": "A working preview of Download button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/download-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/download-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "upload-button",
+      "type": "registry:ui",
+      "title": "Upload button",
+      "description": "A button that opens the file chooser, also takes drops and pastes, and hands you validated files, with progress on the button itself and a cancel while it uploads.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/upload-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/upload-button.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-indeterminate": {
+          "from": {
+            "transform": "translateX(-100%)"
+          },
+          "to": {
+            "transform": "translateX(250%)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-indeterminate": "rhs-indeterminate 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite"
+        }
+      },
+      "docs": "You run the upload: pass state and progress back in. onFiles gets the accepted files and the rejected ones, each with a code and a reason in words (labels.accept replaces the words for what is accepted); show those wherever suits you, or hand the list to File Dropzone."
+    },
+    {
+      "name": "upload-button-demo",
+      "type": "registry:example",
+      "title": "Upload button demo",
+      "description": "A working preview of Upload button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/upload-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/upload-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "print-button",
+      "type": "registry:ui",
+      "title": "Print button",
+      "description": "Prints one part of the page instead of the whole thing: it hides everything else for the print job and puts the page back afterwards.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/print-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/print-button.tsx"
+        }
+      ],
+      "docs": "Pass target as a ref or a selector. Mark anything that must stay off the paper with data-print-hide. The print styles are injected for the length of the job and removed on afterprint."
+    },
+    {
+      "name": "print-button-demo",
+      "type": "registry:example",
+      "title": "Print button demo",
+      "description": "A working preview of Print button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/print-button.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/print-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "back-button",
+      "type": "registry:ui",
+      "title": "Back button",
+      "description": "A back link that returns to where the person came from and falls back to a safe page when there is no history, so it never leaves your site.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/back-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/back-button.tsx"
+        }
+      ],
+      "docs": "It is a real link to fallbackHref. Pass onBack to hand the press to your router: it gets true when the previous page is on your site and false when it is not."
+    },
+    {
+      "name": "back-button-demo",
+      "type": "registry:example",
+      "title": "Back button demo",
+      "description": "A working preview of Back button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/back-button.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/back-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fullscreen-button",
+      "type": "registry:ui",
+      "title": "Fullscreen button",
+      "description": "A toggle for fullscreen on any element: icon and label follow the real state, Escape works as the browser makes it, and it hides where unsupported.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/fullscreen-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/fullscreen-button.tsx"
+        }
+      ],
+      "docs": "Mark the element with data-fullscreen-root or pass target, and keep the button inside it. iPhone Safari cannot expand an element: pass fallback to cover the viewport instead, or the button renders nothing there. With words on it the name is the visible label; the icon-only button keeps one name and uses aria-pressed."
+    },
+    {
+      "name": "fullscreen-button-demo",
+      "type": "registry:example",
+      "title": "Fullscreen button demo",
+      "description": "A working preview of Fullscreen button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/fullscreen-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fullscreen-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shortcut-button",
+      "type": "registry:ui",
+      "title": "Shortcut button",
+      "description": "A button that shows its keyboard shortcut and listens for it: the right modifier per platform, ignored while typing, exposed to assistive tech.",
+      "categories": [
+        "primitives",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "actions"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/shortcut-button.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shortcut-button.tsx"
+        }
+      ],
+      "docs": "mod is Cmd on a Mac and Ctrl elsewhere. Sequences like \"g i\" time out after a second. The shortcut is ignored in text fields unless allowInInputs is set."
+    },
+    {
+      "name": "shortcut-button-demo",
+      "type": "registry:example",
+      "title": "Shortcut button demo",
+      "description": "A working preview of Shortcut button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shortcut-button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shortcut-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -24680,6 +25226,431 @@
       "files": [
         {
           "path": "registry/examples/cta-image-band-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "open-source-hero",
+      "type": "registry:block",
+      "title": "Open source hero",
+      "description": "An open-source opening: the project name, an install command to copy and a repository card with stars, release, licence, languages and contributors.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/open-source-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/open-source-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "open-source-hero-demo",
+      "type": "registry:example",
+      "title": "Open source hero demo",
+      "description": "A working preview of Open source hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/open-source-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/open-source-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "watch-demo-hero",
+      "type": "registry:block",
+      "title": "Watch demo hero",
+      "description": "A hero whose picture is a poster frame: one press opens the product video in a dialog with captions and native controls.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/watch-demo-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/watch-demo-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "watch-demo-hero-demo",
+      "type": "registry:example",
+      "title": "Watch demo hero demo",
+      "description": "A working preview of Watch demo hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/watch-demo-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/watch-demo-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "two-path-hero",
+      "type": "registry:block",
+      "title": "Two path hero",
+      "description": "A hero that sends two kinds of visitor the right way: two full halves, each one whole link with its own promise.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/two-path-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/two-path-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "two-path-hero-demo",
+      "type": "registry:example",
+      "title": "Two path hero demo",
+      "description": "A working preview of Two path hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/two-path-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-path-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "three-steps-hero",
+      "type": "registry:block",
+      "title": "Three steps hero",
+      "description": "A hero that explains the service in the same screen: the promise, one action, and three numbered steps with their time.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/three-steps-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/three-steps-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "three-steps-hero-demo",
+      "type": "registry:example",
+      "title": "Three steps hero demo",
+      "description": "A working preview of Three steps hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/three-steps-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/three-steps-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "integration-hero",
+      "type": "registry:block",
+      "title": "Integration hero",
+      "description": "A co-branded opening for an integration page: two marks joined by a line, what the connection does and the connect action.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/integration-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/integration-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "integration-hero-demo",
+      "type": "registry:example",
+      "title": "Integration hero demo",
+      "description": "A working preview of Integration hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/integration-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/integration-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prompt-hero",
+      "type": "registry:block",
+      "title": "Prompt hero",
+      "description": "An AI product opening where the first action is typing: a large prompt box with example chips that fill it.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/prompt-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/prompt-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prompt-hero-demo",
+      "type": "registry:example",
+      "title": "Prompt hero demo",
+      "description": "A working preview of Prompt hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prompt-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prompt-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "desktop-download-hero",
+      "type": "registry:block",
+      "title": "Desktop download hero",
+      "description": "The opening of a desktop app: one primary download button for the visitor's system, the other platforms a click away.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/desktop-download-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/desktop-download-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/desktop-download-hero/detect.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/desktop-download-hero/detect.ts"
+        }
+      ]
+    },
+    {
+      "name": "desktop-download-hero-demo",
+      "type": "registry:example",
+      "title": "Desktop download hero demo",
+      "description": "A working preview of Desktop download hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/desktop-download-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/desktop-download-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "release-hero",
+      "type": "registry:block",
+      "title": "Release hero",
+      "description": "Announce a version: the number set huge, the date, three highlights and the upgrade and release-notes actions.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/release-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/release-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "release-hero-demo",
+      "type": "registry:example",
+      "title": "Release hero demo",
+      "description": "A working preview of Release hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/release-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/release-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "overlap-cards-hero",
+      "type": "registry:block",
+      "title": "Overlap cards hero",
+      "description": "A corporate opening whose three link cards straddle its bottom edge, so the first scroll already has somewhere to go.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/overlap-cards-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/overlap-cards-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "overlap-cards-hero-demo",
+      "type": "registry:example",
+      "title": "Overlap cards hero demo",
+      "description": "A working preview of Overlap cards hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/overlap-cards-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/overlap-cards-hero-demo.tsx",
           "type": "registry:example"
         }
       ]

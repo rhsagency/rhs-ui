@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "print-button",
+  "title": "Print button",
+  "description": "Prints one part of the page instead of the whole thing: it hides everything else for the print job and puts the page back afterwards.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/print-button.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ComponentProps, type RefObject } from \"react\";\n\nimport { IconPrinter } from \"@rhs-ui/icons\";\nimport { Button, type ButtonProps } from \"@rhs-ui/primitives/button\";\n\nexport interface PrintButtonProps extends Omit<ComponentProps<\"button\">, \"onClick\" | \"children\" | \"title\"> {\n  /** What to print: a ref to the element, or a selector for it. Leave it out to print the whole page. */\n  target?: RefObject<HTMLElement | null> | string;\n  /** The document title while printing, so the PDF gets a good file name: \"Invoice INV-2041\". */\n  title?: string;\n  /** Runs before the page is prepared. If it returns a promise, printing waits for it (to load a chart, say). */\n  onBeforePrint?: () => void | Promise<void>;\n  /** Runs once the print dialog is done and the page is back to normal. */\n  onAfterPrint?: () => void;\n  /** The words on the button. */\n  label?: string;\n  /** Any Button variant. */\n  variant?: ButtonProps[\"variant\"];\n  /** Any Button size. */\n  size?: ButtonProps[\"size\"];\n}\n\nconst ATTRIBUTE = \"data-rhs-print\";\n\n/*\n * Applies only while a print job runs, and only in the print medium. The target\n * and every ancestor are marked; everything else is taken out of the layout, so\n * no blank pages are left behind. The ancestors are flattened to plain blocks,\n * or a sidebar grid would squeeze the target into one column.\n */\nconst PRINT_CSS = `\n@page { margin: 14mm; }\n@media print {\n  html, body { height: auto !important; min-height: 0 !important; overflow: visible !important; background: #fff !important; }\n  body :not([${ATTRIBUTE}]):not([${ATTRIBUTE}=\"target\"] *) { display: none !important; }\n  [${ATTRIBUTE}=\"path\"] { display: block !important; position: static !important; width: auto !important; height: auto !important; min-height: 0 !important; max-width: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; overflow: visible !important; transform: none !important; background: none !important; box-shadow: none !important; }\n  [${ATTRIBUTE}=\"target\"] { margin: 0 !important; max-width: none !important; width: 100% !important; }\n  [${ATTRIBUTE}=\"target\"], [${ATTRIBUTE}=\"target\"] * { color: #111 !important; background-color: transparent !important; box-shadow: none !important; text-shadow: none !important; animation: none !important; transition: none !important; }\n  [${ATTRIBUTE}=\"target\"] a { text-decoration: underline !important; }\n  [${ATTRIBUTE}=\"target\"] [data-print-hide] { display: none !important; }\n}`;\n\n/** Some in-app browsers and web views have no print dialog: window.print() exists there and does nothing. */\nfunction canPrint(): boolean {\n  if (typeof window.print !== \"function\") return false;\n  const agent = navigator.userAgent;\n  if (/; wv\\)|FBAN|FBAV|Instagram|MicroMessenger|Line\\//i.test(agent)) return false;\n  // iOS web views leave \"Safari/\" out of the user agent; Safari and the other iOS browsers keep it.\n  return !(/iPhone|iPad|iPod/.test(agent) && !/Safari\\//.test(agent));\n}\n\n/**\n * Prints one part of the page instead of the whole thing. It marks the target,\n * injects a print stylesheet that takes everything else out of the layout,\n * drops shadows and the dark theme and keeps links readable, then restores the\n * title and the page when the browser reports `afterprint`. Anything inside the\n * target marked `data-print-hide` (its own buttons, say) stays off the paper.\n * It renders nothing where printing is not available, and it never prints\n * during server render.\n */\nexport function PrintButton({ target, title, onBeforePrint, onAfterPrint, label = \"Print\", variant = \"outline\", size, ...props }: PrintButtonProps) {\n  const [available, setAvailable] = useState(true);\n  const finish = useRef<(() => void) | null>(null);\n  useEffect(() => {\n    if (!canPrint()) setAvailable(false);\n    return () => finish.current?.();\n  }, []);\n  if (!available) return null;\n\n  async function print() {\n    finish.current?.();\n    await onBeforePrint?.();\n    const root = typeof target === \"string\" ? document.querySelector<HTMLElement>(target) : (target?.current ?? null);\n    const marked: Element[] = [];\n    let sheet: HTMLStyleElement | null = null;\n    if (root) {\n      for (let node: Element | null = root; node; node = node.parentElement) {\n        node.setAttribute(ATTRIBUTE, node === root ? \"target\" : \"path\");\n        marked.push(node);\n      }\n      sheet = document.createElement(\"style\");\n      sheet.setAttribute(\"data-rhs-print-style\", \"\");\n      sheet.textContent = PRINT_CSS;\n      document.head.append(sheet);\n    }\n    const before = document.title;\n    if (title) document.title = title;\n    let done = false;\n    const restore = () => {\n      if (done) return;\n      done = true;\n      window.removeEventListener(\"afterprint\", restore);\n      marked.forEach((node) => node.removeAttribute(ATTRIBUTE));\n      sheet?.remove();\n      document.title = before;\n      finish.current = null;\n      onAfterPrint?.();\n    };\n    finish.current = restore;\n    window.addEventListener(\"afterprint\", restore);\n    window.print();\n  }\n\n  return (\n    <Button data-slot=\"print-button\" type=\"button\" variant={variant} size={size} onClick={() => void print()} {...props}>\n      <IconPrinter />\n      {label}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/print-button.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "actions"
+  },
+  "docs": "Pass target as a ref or a selector. Mark anything that must stay off the paper with data-print-hide. The print styles are injected for the length of the job and removed on afterprint.",
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

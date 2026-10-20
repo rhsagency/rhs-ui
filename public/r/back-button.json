@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "back-button",
+  "title": "Back button",
+  "description": "A back link that returns to where the person came from and falls back to a safe page when there is no history, so it never leaves your site.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/back-button.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, type ComponentProps, type MouseEvent } from \"react\";\n\nimport { IconArrowLeft } from \"@rhs-ui/icons\";\nimport { Button, type ButtonProps } from \"@rhs-ui/primitives/button\";\n\nexport interface BackButtonProps extends Omit<ComponentProps<\"a\">, \"href\" | \"children\" | \"onClick\"> {\n  /** Where to go when there is no earlier page on your site: arriving from a search result or a shared link. It is also the link's real `href`. */\n  fallbackHref: string;\n  /** The visible label. */\n  label?: string;\n  /** Where it goes back to, added to the accessible name only: \"Orders\" gives \"Back to Orders\". */\n  context?: string;\n  /** Hand the press to your router. It gets `true` when the previous page is on your site (go back) and `false` otherwise (go to `fallbackHref`). The browser's own navigation is then skipped. */\n  onBack?: (canGoBack: boolean) => void;\n  /** Any Button variant; a ghost button suits a page header. */\n  variant?: ButtonProps[\"variant\"];\n  /** Any Button size. */\n  size?: ButtonProps[\"size\"];\n}\n\nconst KEY = \"rhs-ui:back-depth\";\nlet seen = false;\nlet counted = \"\";\n\nconst sameSite = (url: string) => {\n  try {\n    return url !== \"\" && new URL(url).origin === window.location.origin;\n  } catch {\n    return false;\n  }\n};\n\n/**\n * Where the browser has no Navigation API, a page keeps a count of the pages of\n * this site that came before it in the tab. A fresh load starts from the\n * referrer (a page of ours counts as one, a search result or a shared link as\n * none); every page view after that in the same load adds one.\n */\nfunction countView() {\n  try {\n    if (counted === window.location.href) return;\n    counted = window.location.href;\n    let depth = Number(window.sessionStorage.getItem(KEY)) || 0;\n    if (seen) depth += 1;\n    else depth = sameSite(document.referrer) ? Math.max(depth, 1) : 0;\n    seen = true;\n    window.sessionStorage.setItem(KEY, String(depth));\n  } catch {\n    /* Storage is blocked: the count stays at zero and the button uses its fallback. */\n  }\n}\n\n/** Is the entry before this one a page of this site? The Navigation API knows; otherwise the count does. */\nfunction canGoBack(): boolean {\n  const navigation = (window as { navigation?: { canGoBack?: boolean } }).navigation;\n  if (typeof navigation?.canGoBack === \"boolean\") return navigation.canGoBack;\n  try {\n    return window.history.length > 1 && (Number(window.sessionStorage.getItem(KEY)) || 0) > 0;\n  } catch {\n    return false;\n  }\n}\n\n/**\n * A back link that returns to where the person came from and falls back to a\n * safe page when there is no history, so it never throws anyone off your site.\n * It is a real anchor with an `href`, so middle click, copy link and no\n * JavaScript all work; a plain click goes back only when the previous page is\n * yours. The arrow nudges left on hover where motion is allowed.\n */\nexport function BackButton({ fallbackHref, label = \"Back\", context, onBack, variant = \"ghost\", size, className, ...props }: BackButtonProps) {\n  useEffect(countView, []);\n\n  function onClick(event: MouseEvent<HTMLAnchorElement>) {\n    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;\n    const back = canGoBack();\n    if (onBack) {\n      event.preventDefault();\n      onBack(back);\n    } else if (back) {\n      event.preventDefault();\n      window.history.back();\n    }\n  }\n\n  return (\n    <Button asChild variant={variant} size={size} className={className}>\n      <a data-slot=\"back-button\" href={fallbackHref} onClick={onClick} {...props}>\n        <IconArrowLeft className=\"transition-transform duration-200 motion-safe:group-hover/button:-translate-x-0.5 motion-safe:group-focus-visible/button:-translate-x-0.5 motion-reduce:transition-none\" />\n        {label}\n        {context ? <span className=\"sr-only\"> to {context}</span> : null}\n      </a>\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/back-button.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "actions"
+  },
+  "docs": "It is a real link to fallbackHref. Pass onBack to hand the press to your router: it gets true when the previous page is on your site and false when it is not.",
+  "categories": [
+    "primitives",
+    "actions"
+  ],
+  "type": "registry:ui"
+}

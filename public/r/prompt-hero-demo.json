@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prompt-hero-demo",
+  "title": "Prompt hero demo",
+  "description": "A working preview of Prompt hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/prompt-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/prompt-hero-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { PromptHero } from \"@rhs-ui/marketing/prompt-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  const [sent, setSent] = useState<string | null>(null);\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <PromptHero\n        title=\"Tell Atlas where you want to go.\"\n        description=\"Describe the trip in your own words. Atlas drafts the days, the stays and the budget while you watch.\"\n        placeholder=\"A long weekend in Lisbon for two, mostly food and walking, under €1,200\"\n        examples={[\n          \"Five days in Kyoto in cherry blossom season\",\n          \"A car-free week in the Dolomites with two kids\",\n          \"Three cities in Portugal by train, under €1,500\",\n        ]}\n        onSubmit={async (prompt) => {\n          await new Promise((resolve) => setTimeout(resolve, 700));\n          setSent(prompt);\n        }}\n        next=\"Next, we save your prompt and ask you to create a free account.\"\n        capabilities={[\"Day-by-day itineraries\", \"Flights and stays compared\", \"Edit it by chatting\"]}\n      />\n      <p role=\"status\" className=\"pb-8 text-center text-xs text-muted-foreground\">\n        {sent ? `Handed to your app: “${sent}”` : \"Type a prompt and send it to see what your app receives.\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

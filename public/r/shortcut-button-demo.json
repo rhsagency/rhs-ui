@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shortcut-button-demo",
+  "title": "Shortcut button demo",
+  "description": "A working preview of Shortcut button.",
+  "registryDependencies": [
+    "https://rhsui.com/r/shortcut-button.json",
+    "https://rhsui.com/r/input.json",
+    "https://rhsui.com/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/shortcut-button-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState, type ReactNode } from \"react\";\n\nimport { Input } from \"@rhs-ui/primitives/input\";\nimport { ShortcutButton } from \"@rhs-ui/primitives/shortcut-button\";\nimport { Textarea } from \"@rhs-ui/primitives/textarea\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [last, setLast] = useState(\"Press a shortcut, or click a button.\");\n  const [reply, setReply] = useState(\"\");\n  const [sent, setSent] = useState(\"Nothing sent yet.\");\n  const panel = useRef<HTMLDivElement>(null);\n  const log = (what: string) => (source: \"pointer\" | \"shortcut\") => setLast(`${what}, from the ${source === \"shortcut\" ? \"keyboard\" : \"pointer\"}.`);\n\n  return (\n    <div className=\"grid w-full max-w-3xl gap-x-12 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr))]\">\n      <Example caption=\"Press the keys anywhere on the page, or click\">\n        <div className=\"grid gap-3\">\n          <div className=\"flex flex-wrap items-center gap-2\">\n            <ShortcutButton shortcut=\"mod+j\" label=\"Jump to\" onAction={log(\"Jumped to Kestrel Foods\")} />\n            <ShortcutButton shortcut=\"c\" label=\"New issue\" variant=\"default\" onAction={log(\"Started a new issue\")} />\n            <ShortcutButton shortcut=\"g i\" label=\"Go to inbox\" variant=\"secondary\" onAction={log(\"Went to the inbox\")} />\n            <ShortcutButton shortcut=\"e\" label=\"Archive\" disabled onAction={log(\"Archived\")} />\n          </div>\n          <Input aria-label=\"Draft a comment\" placeholder=\"Typing here fires nothing\" />\n          <p role=\"status\" className=\"text-xs text-muted-foreground\">\n            {last}\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"Scoped to a panel, and allowed inside its text box\">\n        <div ref={panel} className=\"grid gap-3 rounded-xl border border-border bg-card p-3 shadow-xs\">\n          <Textarea aria-label=\"Reply to Halcyon Labs\" rows={3} value={reply} onChange={(event) => setReply(event.target.value)} placeholder=\"Reply to Halcyon Labs…\" className=\"min-h-20 resize-none\" />\n          <div className=\"flex flex-wrap items-center justify-between gap-3\">\n            <p role=\"status\" className=\"min-w-0 truncate text-xs text-muted-foreground\">\n              {sent}\n            </p>\n            <ShortcutButton\n              scope={panel}\n              allowInInputs\n              shortcut=\"mod+enter\"\n              label=\"Send reply\"\n              variant=\"default\"\n              size=\"sm\"\n              onAction={() => {\n                setSent(reply.trim() ? `Sent: “${reply.trim().slice(0, 28)}${reply.trim().length > 28 ? \"…\" : \"\"}”` : \"Write something first.\");\n                if (reply.trim()) setReply(\"\");\n              }}\n            />\n          </div>\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
