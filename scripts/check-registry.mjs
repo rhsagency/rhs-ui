@@ -19,6 +19,7 @@
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 import { FAMILIES, familyOf } from "./families.mjs";
 
@@ -37,7 +38,7 @@ const HOOK_CALL = /\buse(?!Id\b)[A-Z]\w*\s*(?:<[^()]*?>)?\s*\(/;
  * generated root. A stray registry/<name>.json would shadow the folder of the
  * same name in module resolution (@rhs-ui/icons -> registry/icons.json).
  */
-function loadItems() {
+export function loadItems(strays = []) {
   const items = [];
   for (const entry of readdirSync(path.join(root, "registry"), { withFileTypes: true })) {
     if (entry.isFile()) {
@@ -51,7 +52,6 @@ function loadItems() {
   }
   return items;
 }
-const strays = [];
 
 /** A file that calls a hook must be a client module, or a Server Component that imports it fails at runtime. */
 export function clientProblems(src) {
@@ -282,10 +282,20 @@ function aliasProblems() {
   return problems;
 }
 
-const items = loadItems();
-const registrySources = new Map(
-  [...new Set(items.flatMap((i) => (i.files ?? []).map((f) => f.path)))].filter((p) => existsSync(path.join(root, p))).map((p) => [p, readFileSync(path.join(root, p), "utf8")]),
-);
+/** Every registry source on disk, keyed by path: the named group/peer check reads across files. */
+export function registrySourcesOf(items) {
+  return new Map(
+    [...new Set(items.flatMap((i) => (i.files ?? []).map((f) => f.path)))].filter((p) => existsSync(path.join(root, p))).map((p) => [p, readFileSync(path.join(root, p), "utf8")]),
+  );
+}
+
+// The gate runs when this file is the entry point; scripts/batch.mjs imports the rules above.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();
+
+function main() {
+const strays = [];
+const items = loadItems(strays);
+const registrySources = registrySourcesOf(items);
 const problems = [...strays, ...aliasProblems(), ...checkItems(items), ...groupNameProblems(registrySources)];
 for (const pr of problems) console.log(`FAIL ${pr}`);
 
@@ -361,3 +371,4 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(`check-registry: ${items.length} items clean (${selfTests.length} self-tests passed)`);
+}

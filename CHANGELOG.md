@@ -3,6 +3,17 @@
 All notable changes to the RHS UI registry. Versions are git tags; items carry their
 own `meta.version` and are listed when they change.
 
+## Unreleased (0.8.0)
+
+- The whole icon set is free again: the 206 library glyphs (weather, travel, food,
+  health, science, home, business, tools, play, animals, music) and the 380 animated
+  icons that moved to Pro in 0.7.0 are back under their free names, `Icon<Name>` and
+  `Icon<Name>Animated`. That makes 529 glyphs and 457 animated icons, all MIT. RHS UI
+  Pro gets an icon family of its own instead, drawn on the 48 grid.
+- New in the batch kit (`scripts/batch.mjs`): check new items against the registry
+  rules, typecheck them, render their demos on the server and look at them in a
+  browser in both themes and on a phone, before they join the registry.
+
 ## Unreleased (0.7.0)
 
 - Free and Pro rebalanced to 40% free and 60% Pro per library. Free keeps the
