@@ -69,6 +69,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 11 more: `barcode`, `loading-overlay`, `skeleton-group`, `text-skeleton`, `async-view`, `error-boundary`, `live-announcer`, `undo-toast`, `task-toast`, `dismissible-notice`, `last-updated`.
 - Marketing, 10 more: `trial-timeline`, `talk-to-us-cta`, `audience-discounts`, `office-list`, `newsletter-lists`, `thank-you-next-steps`, `early-access-form`, `service-packages`, `refer-a-friend`, `ticket-tiers`.
 - Primitives, 10 more: `new-items-pill`, `infinite-scroll-status`, `pull-to-refresh`, `eta-progress`, `strength-meter`, `milestone-progress`, `estimated-progress`, `slow-loading-state`, `activity-toast`, `optimistic-item`.
+- Application, 8 more: `workbench-shell`, `map-panel-shell`, `notification-item`, `comment-item`, `message-bubble`, `task-row`, `task-card`, `project-card`.
 
 ## Unreleased (0.7.0)
 

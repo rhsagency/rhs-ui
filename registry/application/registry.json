@@ -2754,6 +2754,449 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "workbench-shell",
+      "type": "registry:block",
+      "title": "Workbench shell",
+      "description": "A tool layout with an explorer, canvas and inspector you can resize by mouse or keyboard, a toolbar, a status bar and sheets on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/workbench-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workbench-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/workbench-shell/handle.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workbench-shell/handle.tsx"
+        },
+        {
+          "path": "registry/application/workbench-shell/layout.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workbench-shell/layout.ts"
+        }
+      ],
+      "docs": "Pass canvas, and any of explorer, inspector, toolbar and status. The panels are separated from the canvas by drag handles that are also keyboard separators: focus one and press the arrow that moves it toward the canvas to grow its panel by 16px (Shift for 64), the other arrow to shrink it, Home to collapse it and End to bring it back. A double click on a handle brings its panel back to its starting width. Dragging a panel below half its minimum collapses it, and dragging out of the collapsed hairline opens it again. Two toggles in the toolbar collapse and restore the panels, and when the shell is narrower than 64rem (lg) they open the panels as sheets instead; breakpoint changes that width in rem, and it is never less than the panels' minimums and the canvas minimum need together; below it the panels are also hidden by CSS before the script has run, so a narrow screen never paints a squeezed layout first. The content of a panel is mounted once and moved between the panel and its sheet, so a field keeps what was typed and a tree keeps its open folders when a sheet closes or the shell crosses the breakpoint. The shell reads its own width, not the window's, so it works inside a pane, and it follows dir=\"rtl\". The explorer and inspector scroll on their own; the canvas takes the room that is left, scrolls on its own, has min-width 0 so a wide editor or artboard can never push the layout out, and is a tab stop only while there is something to scroll. defaultSizes takes { explorer, inspector, collapsed } in px, minSizes the least width of the panels and of the canvas, and onSizesChange hands you the same shape once per gesture (a released drag, a key, a toggle; not a gesture that ends where it began), so it can go straight to localStorage and back into defaultSizes. Pass sizes to keep the layout yourself. When the shell is too narrow for the sizes you chose, the panels give way together and return to your sizes when it grows again. The toolbar slot sits between the toggles and scrolls sideways if it does not fit; status is a 28px strip that scrolls on a phone. The shell is as tall as its container: it is h-dvh unless you pass a height in className."
+    },
+    {
+      "name": "workbench-shell-demo",
+      "type": "registry:example",
+      "title": "Workbench shell demo",
+      "description": "A working preview of Workbench shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/breadcrumb.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/toolbar.json",
+        "https://rhsui.com/r/tree-view.json",
+        "https://rhsui.com/r/workbench-shell.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/workbench-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "map-panel-shell",
+      "type": "registry:block",
+      "title": "Map panel shell",
+      "description": "A full-bleed map or any view with a floating search and results panel that becomes a bottom sheet with three snap heights on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/map-panel-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/map-panel-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/map-panel-shell/snap.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/map-panel-shell/snap.ts"
+        }
+      ],
+      "docs": "Pass canvas (your map: Leaflet, Mapbox, MapLibre, an image, a floor plan; the block draws nothing and loads nothing), panel (the results list), and optionally search, filters and controls. From 48rem of width the panel floats at the start (the left) as a 24rem card, with a tab on its edge that hides it and a Show results button that brings it back; controls sit in the opposite corner, and the layout follows dir=\"rtl\". Below that it is a bottom sheet with three snap heights: peek (the search only), half and full (a strip of the map stays above it, and the controls fold away until the sheet is lowered). Move it by dragging the handle, with ArrowUp and ArrowDown, Home and End on the handle, by tapping the handle, or with the button beside the search. The sheet is not modal: nothing dims the map, nothing traps focus, and the map keeps taking input around it. In the tab order the panel comes first, then the controls, then your map. At peek the filters and the list step out of the tab order, and focusing the search lifts the sheet to half. open and onOpenChange control whether the panel is shown; snap and onSnapChange control the sheet's height (defaultOpen and defaultSnap leave it to the shell). The search slot sits in a 2.25rem row, which is what peek shows. The filters wrap onto more rows on the card and scroll sideways on a phone, with a fade at the end that has more to see; give every chip an icon, as a selected chip swaps it for a check, so selecting never changes its width. The shell is as tall as its container: it is h-dvh unless you pass a height in className."
+    },
+    {
+      "name": "map-panel-shell-demo",
+      "type": "registry:example",
+      "title": "Map panel shell demo",
+      "description": "A working preview of Map panel shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/chip.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/map-panel-shell.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/map-panel-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notification-item",
+      "type": "registry:component",
+      "title": "Notification item",
+      "description": "One notification row: who did what to which thing, when, an unread marker in dot and word, and the actions that apply.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/notification-item.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-item.tsx"
+        }
+      ],
+      "docs": "Put the rows in a ul. Pass actor ({ name, image }), verb, target ({ label, href }) and time. unread adds a dot, the word Unread for screen readers and a heavier title, and onMarkRead shows a check button on unread rows. The row is one link or button laid under its content: href makes it a link, onOpen makes it a button (or runs on the link, with the event so a router can call preventDefault), and the actions you pass stay separate tab stops above it. When the check button leaves with the unread state, focus goes to the row's link instead of falling to the page. Without now the time starts as a date and clock time and turns into \"4 min. ago\" once the page is live, then keeps itself current; pass now to get relative text in server HTML, in tests and in previews. The row follows its own width: actions sit beside the text from 28rem and under it below that. An icon beside an actor sits on the corner of the avatar; without an actor it replaces the avatar, and a bell stands in when neither is given."
+    },
+    {
+      "name": "notification-item-demo",
+      "type": "registry:example",
+      "title": "Notification item demo",
+      "description": "A working preview of Notification item.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/notification-item.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/notification-item-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "comment-item",
+      "type": "registry:component",
+      "title": "Comment item",
+      "description": "One comment with author, role, time, an edited note and a body that folds, with reply, edit and delete. Nest replies to compose a thread.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/comment-item.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/comment-item.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "docs": "Pass author ({ name, image, href }), createdAt, body and, for a role next to the name, badge. editedAt adds an Edited note beside the time. actions lists what this viewer may do: reply is a button under the body, and edit and delete appear in an overflow menu, so give them only on the viewer's own comments. onAction receives the action; a delete runs it only after the person confirms in the comment itself (focus goes to Keep it, Escape cancels), and if it returns a promise the button waits, and if the promise rejects the comment says so and stays. Bodies of more than six lines fold behind Show more, a button that only exists when there is something to unfold; a plain string keeps its line breaks. For editing, set editing and put your own editor in body: it is shown in full and the actions step aside, and when editing ends focus goes back to the menu button. highlighted frames the comment a permalink points at and sets aria-current; give it an id so the link can find it. Replies are children: pass more CommentItems with size=\"sm\" and they nest along a thread line. footer sits next to Reply, for a reaction bar. Without now, times start as a date and clock time and turn relative once the page is live."
+    },
+    {
+      "name": "comment-item-demo",
+      "type": "registry:example",
+      "title": "Comment item demo",
+      "description": "A working preview of Comment item.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/comment-item.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/comment-item-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "message-bubble",
+      "type": "registry:component",
+      "title": "Message bubble",
+      "description": "A chat bubble for people talking to people: own and other styles, grouped corners, a reply quote and a send state.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/message-bubble.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/message-bubble.tsx"
+        }
+      ],
+      "docs": "Put the bubbles in a plain block, in order; each brings its own spacing, tight inside a run and wider between runs. side is own (right, primary surface) or other (left, muted); position says where the bubble sits in a run from one person (single, first, middle, last) and squares off the corners that touch their neighbours, so work it out from the neighbouring messages. time is written as a clock time in locale and timeZone under the last bubble of a run, with the exact moment in its tooltip; every bubble keeps its time for screen readers. For your own messages status shows in words as well as a mark: Sending, Sent, Read, and Not sent with a Retry button when you pass onRetry. A failed message shows its state wherever it sits in a run, and pressing Retry hands focus to the line that then says Sending. replyTo quotes the message being answered, attachments draws images or files inside the bubble above the text, and author adds the avatar at the end of a run and the name at its start. Long words and URLs wrap, and line breaks in a string are kept."
+    },
+    {
+      "name": "message-bubble-demo",
+      "type": "registry:example",
+      "title": "Message bubble demo",
+      "description": "A working preview of Message bubble.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/message-bubble.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/message-bubble-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-row",
+      "type": "registry:component",
+      "title": "Task row",
+      "description": "A task as a list row: checkbox, title, due date in words, assignee, priority mark and subtask count.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/due-date-label.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/task-row.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-row.tsx"
+        }
+      ],
+      "docs": "Put the rows in a ul. task is { id, title, href, done, completedAt, due, assignee, subtasks, priority }; the due date comes from DueDateLabel, so a date-only string such as \"2026-10-28\" is a calendar day and the words are Due today, Due tomorrow, Due in 5 days and Overdue by 2 days, with an icon and weight as well as colour. onToggle receives the state the checkbox asks for: update task.done, and set completedAt to have a finished task say Done on 12 Oct. The checkbox is its own control and never opens the task; completing it strikes the title and says Completed to screen readers. The rest of the row is one link (task.href) or button (onOpen) under the checkbox and the actions slot. A long title stays on one line in a wide row and takes up to two in a narrow one; the whole of it appears in a tooltip on hover and keyboard focus. selected marks the task whose details are open with a bar and aria-current; density=\"compact\" tightens the rows. The row follows its own width: from 36rem everything sits on one line in fixed columns, below that the details wrap under the title. Pass now for deterministic due dates in tests and previews. Give the actions a group-hover/task-row class to reveal them on hover."
+    },
+    {
+      "name": "task-row-demo",
+      "type": "registry:example",
+      "title": "Task row demo",
+      "description": "A working preview of Task row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/task-row.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-card",
+      "type": "registry:component",
+      "title": "Task card",
+      "description": "A compact card for a board or grid: title, label chips, due date, assignee stack and subtask progress, ready to be dragged.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/due-date-label.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/task-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-card.tsx"
+        }
+      ],
+      "docs": "Put the cards in a ul. task is { id, title, href, cover, due, done, completedAt, assignees, subtasks }, labels are { id, label } chips above the title. The whole card is one link (task.href) or button (onOpen) with a ring around all of it on focus, and footer controls sit above it as their own tab stops. The card is a plain li that spreads every prop and the ref, so a drag library (dnd-kit, pragmatic-drag-and-drop) can wrap it; dragging gives it a firm border, a shadow and a small rise, selected a firm outline and aria-current. TaskCardSkeleton is the same card as a placeholder, with cover to reserve the image. The due date comes from DueDateLabel, so a date-only string is a calendar day; pass now for deterministic words in tests and previews."
+    },
+    {
+      "name": "task-card-demo",
+      "type": "registry:example",
+      "title": "Task card demo",
+      "description": "A working preview of Task card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/task-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "project-card",
+      "type": "registry:component",
+      "title": "Project card",
+      "description": "A project at a glance: name, status, a progress line, team avatars and due date, as one clickable card with a menu.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/due-date-label.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/project-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/project-card.tsx"
+        }
+      ],
+      "docs": "project is { id, name, description, status, progress, members, due, completedAt, icon, href }; status is planning, active, on-hold, completed or archived and is written in words with its own mark. The card is one stretched link (project.href) or button (onOpen) with a ring around all of it on focus; the star toggle (starred and onStar) and the overflow menu (menu, a list of { id, label, icon, destructive, onSelect }) are separate controls above it, so pressing them never opens the project. An archived project is dimmed by its surface and its tile rather than by opacity, so it stays readable. The tile shows icon, or the first letter of the name. ProjectCardSkeleton is the same card as a placeholder. It sizes to its column, so it works in any responsive grid. The due date comes from DueDateLabel; a completed project shows Done on 12 Oct from completedAt instead, and an archived one shows no date, so a finished project never reads as overdue. Pass now for deterministic words in tests and previews."
+    },
+    {
+      "name": "project-card-demo",
+      "type": "registry:example",
+      "title": "Project card demo",
+      "description": "A working preview of Project card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/project-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/project-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
