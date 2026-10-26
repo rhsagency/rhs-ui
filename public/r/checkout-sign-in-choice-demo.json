@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkout-sign-in-choice-demo",
+  "title": "Checkout sign-in choice demo",
+  "description": "A working preview of Checkout sign-in choice.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checkout-sign-in-choice.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checkout-sign-in-choice-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { IconFingerprint, IconMail } from \"@rhs-ui/icons\";\nimport { CheckoutSignInChoice } from \"@rhs-ui/commerce/checkout-sign-in-choice\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => window.setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [result, setResult] = useState(\"Send an empty form to see the checks. Sign in as mira@northwind.example with the password northwind, or with anything else to see the error.\");\n\n  return (\n    <div className=\"mx-auto w-full max-w-5xl min-w-0 px-6 py-6\">\n      <CheckoutSignInChoice\n        headingAs=\"h2\"\n        forgotHref=\"#forgot\"\n        createAccountHref=\"#create-account\"\n        defaultEmail=\"mira@northwind.example\"\n        providers={\n          <>\n            <Button type=\"button\" variant=\"outline\" className=\"w-full\">\n              <IconFingerprint />\n              Sign in with a passkey\n            </Button>\n            <Button type=\"button\" variant=\"outline\" className=\"w-full\">\n              <IconMail />\n              Email me a sign-in link\n            </Button>\n          </>\n        }\n        onSignIn={async ({ email, password }) => {\n          await wait(600);\n          if (email === \"mira@northwind.example\" && password === \"northwind\") {\n            setResult(\"Signed in as Mira. The shopper would now go on to the delivery step.\");\n            return;\n          }\n          return \"That email and password do not match. Check them and try again, or reset your password.\";\n        }}\n        onContinueAsGuest={async (email) => {\n          await wait(500);\n          if (email.endsWith(\"@northwind.example\")) return \"That address belongs to a staff account. Sign in instead, or use a personal email.\";\n          setResult(`Continuing as a guest with ${email}. The shopper would now go on to the delivery step.`);\n        }}\n      />\n      <p role=\"status\" className=\"mx-auto mt-2 max-w-xl text-center text-xs text-muted-foreground\">\n        {result}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rental-rates-demo",
+  "title": "Rental rates demo",
+  "description": "A working preview of Rental rates.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rental-rates.json",
+    "https://rhsui.com/r/segmented-control.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rental-rates-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { SegmentedControl } from \"@rhs-ui/application/segmented-control\";\nimport { RentalRates, type RentalRange } from \"@rhs-ui/commerce/rental-rates\";\n\n/** Booked for other customers. Everything between the 12th and the 23rd of November is free. */\nconst BOOKED = [\"2026-11-09\", \"2026-11-10\", \"2026-11-11\", \"2026-11-24\", \"2026-11-25\", \"2026-11-26\", \"2026-12-04\", \"2026-12-05\", \"2026-12-06\"];\n\nconst TRIES = {\n  weekend: { label: \"A weekend\", range: { from: new Date(2026, 10, 20), to: new Date(2026, 10, 22) } },\n  six: { label: \"Six days\", range: { from: new Date(2026, 10, 16), to: new Date(2026, 10, 21) } },\n  ten: { label: \"Ten days\", range: { from: new Date(2026, 10, 12), to: new Date(2026, 10, 21) } },\n} satisfies Record<string, { label: string; range: RentalRange }>;\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [range, setRange] = useState<RentalRange>(TRIES.weekend.range);\n  const [tried, setTried] = useState<keyof typeof TRIES | \"own\">(\"weekend\");\n\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 grid-cols-[minmax(0,1fr)] gap-y-12\">\n      <Example caption=\"Pick days, or try a rental: the cheapest mix of rates is worked out for exactly those days\">\n        <SegmentedControl\n          label=\"Try a rental\"\n          value={tried}\n          onValueChange={(next) => {\n            if (next === \"own\") return;\n            const pick = TRIES[next as keyof typeof TRIES];\n            setTried(next as keyof typeof TRIES);\n            setRange(pick.range);\n          }}\n          options={[\n            ...Object.entries(TRIES).map(([value, entry]) => ({ value, label: entry.label })),\n            ...(tried === \"own\" ? [{ value: \"own\", label: \"Your dates\" }] : []),\n          ]}\n          className=\"w-full max-sm:flex-wrap max-sm:[&>button]:flex-1 max-sm:[&>button]:basis-[calc(50%-2px)] sm:w-fit\"\n        />\n        <RentalRates\n          rates={{ day: 3500, weekend: 9000, week: 18000, month: 52000 }}\n          deposit={25000}\n          description=\"Floor sander, 2.2 kW · Northwind Hire\"\n          locale=\"en-GB\"\n          min=\"2026-11-02\"\n          unavailable={BOOKED}\n          range={range}\n          onRangeChange={(next) => {\n            setRange(next);\n            setTried(\"own\");\n          }}\n        />\n      </Example>\n\n      <Example caption=\"Nothing picked yet, only a day and a week rate, no deposit\">\n        <div className=\"max-w-md\">\n          <RentalRates rates={{ day: 4500, week: 22000 }} description=\"Tile cutter, wet saw · Northwind Hire\" locale=\"en-GB\" min=\"2026-11-02\" />\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

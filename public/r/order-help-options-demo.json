@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "order-help-options-demo",
+  "title": "Order help options demo",
+  "description": "A working preview of Order help options.",
+  "registryDependencies": [
+    "https://rhsui.com/r/order-help-options.json",
+    "https://rhsui.com/r/segmented-control.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/order-help-options-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SegmentedControl } from \"@rhs-ui/application/segmented-control\";\nimport { OrderHelpOptions, type OrderHelpStatus } from \"@rhs-ui/commerce/order-help-options\";\n\n/** The shop's clock, fixed so the page reads the same everywhere: the last Monday of October 2026. */\nconst NOW = \"2026-10-26T09:30:00Z\";\n\nconst STATES = [\n  { value: \"processing\", label: \"Processing\" },\n  { value: \"packed\", label: \"Packed\" },\n  { value: \"shipped\", label: \"Shipped\" },\n  { value: \"delivered\", label: \"Delivered\" },\n  { value: \"cancelled\", label: \"Cancelled\" },\n] as const;\n\nconst CONTACT = { href: \"#contact\", description: \"Chat, email or call us. We answer within one working day, Monday to Friday.\" };\n\nexport default function Demo(): React.JSX.Element {\n  const [status, setStatus] = useState<OrderHelpStatus>(\"packed\");\n  const [chosen, setChosen] = useState(\"Press an available button.\");\n\n  return (\n    <div className=\"mx-auto grid w-full max-w-2xl min-w-0 grid-cols-[minmax(0,1fr)] gap-y-12 px-6 py-8\">\n      <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4\">\n        <p className=\"text-xs text-muted-foreground\">Move the order along: what can still be done changes, and the list says why</p>\n        <SegmentedControl\n          label=\"Where is the order?\"\n          value={status}\n          onValueChange={(next) => setStatus(next as OrderHelpStatus)}\n          options={STATES}\n          className=\"w-full [&>button]:flex-1 [&>button]:px-2 max-sm:flex-wrap max-sm:[&>button]:basis-[30%] sm:w-fit\"\n        />\n        <OrderHelpOptions\n          order={{ number: \"NW-20431\", status, deliveredAt: \"2026-10-23T14:12:00Z\", returnUntil: \"2026-11-22\" }}\n          now={NOW}\n          timeZone=\"Europe/Amsterdam\"\n          locale=\"en-GB\"\n          contact={CONTACT}\n          onSelect={(id) => setChosen(`You chose “${id}” for order NW-20431.`)}\n        />\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">\n          {chosen}\n        </p>\n      </div>\n\n      <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4\">\n        <p className=\"text-xs text-muted-foreground\">Delivered, and the return window has closed: the date says so</p>\n        <OrderHelpOptions\n          order={{ number: \"NW-20112\", status: \"delivered\", deliveredAt: \"2026-09-18T11:05:00Z\", returnUntil: \"2026-10-18\" }}\n          now={NOW}\n          timeZone=\"Europe/Amsterdam\"\n          locale=\"en-GB\"\n          contact={{ href: \"#contact\", label: \"Contact support\" }}\n          labels={{ title: \"Need help with an older order?\" }}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

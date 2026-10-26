@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "returns-policy-section-demo",
+  "title": "Returns policy section demo",
+  "description": "A working preview of Returns policy section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/returns-policy-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/returns-policy-section-demo.tsx",
+      "content": "import { ReturnsPolicySection } from \"@rhs-ui/commerce/returns-policy-section\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto w-full max-w-6xl min-w-0 px-6\">\n      <ReturnsPolicySection\n        startHref=\"#start-a-return\"\n        contact={{ label: \"returns@northwind.example\", href: \"#contact\", detail: \"We answer within one working day, Monday to Friday.\" }}\n        notice={{\n          title: \"Something wrong with your order?\",\n          body: (\n            <>\n              A faulty, damaged or wrong item does not wait for the clock. <a href=\"#report\">Tell us what arrived</a> and we collect it free of charge.\n            </>\n          ),\n        }}\n        locale=\"en-GB\"\n      />\n\n      <div className=\"border-t border-border pt-6\">\n        <p className=\"text-xs text-muted-foreground\">Swapped and trimmed for another shop: a 14-day window and its own lists, with no facts, steps or refund table</p>\n        <ReturnsPolicySection\n          headingAs=\"h2\"\n          className=\"pb-6 sm:pb-4\"\n          windowDays={14}\n          facts={[]}\n          steps={[]}\n          startHref=\"#start\"\n          locale=\"en-GB\"\n          eligible={[\"Furniture in its original, unassembled packaging\", \"Lighting and textiles that have not been used\", \"Samples returned within 7 days\"]}\n          excluded={[\"Items cut to size or made to measure\", \"Assembled or mounted furniture\", \"Anything with traces of use\"]}\n          refundTimes={[]}\n          contact={{ label: \"service@kestrel-living.example\", href: \"#service\" }}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

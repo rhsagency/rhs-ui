@@ -2075,6 +2075,478 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "bill-splitter",
+      "type": "registry:component",
+      "title": "Bill splitter",
+      "description": "Split the bill at the table: equally or by item, with a tip and an optional round-up, in whole cents so the shares always add up to the bill.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/bill-splitter/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/bill-splitter/index.tsx"
+        },
+        {
+          "path": "registry/commerce/bill-splitter/split.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/bill-splitter/split.ts"
+        }
+      ],
+      "docs": "Pass the bill as total in minor units (9640 is 96.40) and people as a count or as names. With items (name, amount and sharedBy, the positions of the people who had it) the bill can also be split by item: a line with no names is shared by everyone, and whatever the lines do not cover (a service charge, a discount) is shared in proportion to what each person had and shown as its own row. tipPercent starts the tip and tipOptions sets the choices. The count of people, the sharedBy of each line and tipPercent are starting values: after that the people at the table change them on the screen, and a later change of the prop does not undo that (give the component a new key to start over). Every sum is done in whole minor units and the odd cent goes to the first people in line, so the shares always add up to the bill; in an equal split the screen names who pays the cent more. defaultRoundUp lifts every share to a whole unit and shows the difference as its own line. onPay receives each share (subtotal, tip, rounding and total) when its button is pressed: return a promise to show it is working, reject to keep the share unpaid and say so. Once someone has paid, the split is fixed. Pass paid (positions) to control who has paid. Without onPay the splitter is a calculator with no buttons. Someone without a name is Guest 1, Guest 2 and so on (labels.guest). The chips under a dish and the sentence about the odd cent use short names: the first name, the first name with the initial of the last name ('Anna V.') when two first names collide, and a guest's whole label, so two chips never read the same. In a wide card up to four people sit beside the dish on one line; with more they stay under it and wrap. The result is a polite status; labels holds every word."
+    },
+    {
+      "name": "bill-splitter-demo",
+      "type": "registry:example",
+      "title": "Bill splitter demo",
+      "description": "A working preview of Bill splitter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bill-splitter.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bill-splitter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rental-rates",
+      "type": "registry:component",
+      "title": "Rental rates",
+      "description": "Rental pricing by period: day, weekend, week and month rates, the cheapest mix for the dates picked, and the refundable deposit apart.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/rental-rates/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rental-rates/index.tsx"
+        },
+        {
+          "path": "registry/commerce/rental-rates/pricing.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rental-rates/pricing.ts"
+        },
+        {
+          "path": "registry/commerce/rental-rates/range-calendar.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rental-rates/range-calendar.tsx"
+        }
+      ],
+      "docs": "Pass rates as the price of one whole period in minor units: { day: 3500, weekend: 9000, week: 18000, month: 52000 }; leave out what you do not offer. A weekend is Friday to Sunday (Saturday and Sunday count too), a week is 7 days and a month is 30. The cheapest combination for the days picked is worked out exactly (it may buy a week for six days, or a week and three days), and the breakdown names every line, with what it saves against the day rate in a sentence such as '3 days at the weekend rate saves €15.00'. Every rate shows what one day costs on it. range and onRangeChange control the dates (Dates at midnight, like the house date pickers; range also takes a plain '2026-11-20' string), or leave them out and pass defaultRange. unavailable lists the booked days as Dates or strings: they are struck through, cannot be picked, and while the return day is chosen the days after the next booking are refused too; the booked days of the month are named under the calendar. min is the first day that can be rented. Choosing a rate fills in the dates for one whole period from the pick-up day, or from today, moving to the next stretch where it is free and saying so under the chosen dates in the summary, so the calendar stays where it is. deposit is shown apart from the total and described as refundable. The total is a polite status. labels holds every word; pricing.ts holds the arithmetic and runs on the server too."
+    },
+    {
+      "name": "rental-rates-demo",
+      "type": "registry:example",
+      "title": "Rental rates demo",
+      "description": "A working preview of Rental rates.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rental-rates.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rental-rates-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shelf-label",
+      "type": "registry:component",
+      "title": "Shelf label",
+      "description": "A retail shelf label: name, big price with raised cents, unit price and a scannable barcode, in black on white and printable at true size.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/shelf-label/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shelf-label/index.tsx"
+        },
+        {
+          "path": "registry/commerce/shelf-label/ean.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shelf-label/ean.ts"
+        }
+      ],
+      "docs": "Pass product, price in minor units, a barcode and, for goods sold by weight or volume, unitPrice as { amount, per }: '€2.49 per kg'. The barcode is an EAN-13, a UPC-A (12 digits) or an EAN-8 with its check digit, drawn as SVG with the digits under the bars the way the standard sets them; a wrong check digit is not drawn as a code, the label says what the digit should be. promotion puts a black strip across the top; detail adds a second line under the name. size is small (50 × 30 mm), medium (60 × 40 mm) or large (100 × 60 mm): on screen a label is drawn at about its printed size (the small ones a little larger, so their text stays readable) and everything inside is measured against the label itself, so it scales as one. The barcode takes the room the text above it leaves: a two-line name with a detail under a promotion makes it a little smaller instead of running into it, and the promotion stays on one line and is cut short with an ellipsis. The label is always black on white so it scans reliably, in the dark theme too. Mark labels printable and a print stylesheet takes everything else off the paper: each label prints at its true size in millimetres with its bars and strip, flowing down the page; the stylesheet uses :has(), which every current browser supports. The price is read out in full and drawn with its cents set small and raised. ean.ts holds the barcode arithmetic and runs on the server too. labels holds the three fixed phrases."
+    },
+    {
+      "name": "shelf-label-demo",
+      "type": "registry:example",
+      "title": "Shelf label demo",
+      "description": "A working preview of Shelf label.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shelf-label.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shelf-label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "search-results-header",
+      "type": "registry:block",
+      "title": "Search results header",
+      "description": "The top of a shop search results page: the query as the h1, a polite count, a did-you-mean correction, category tabs with counts and related searches.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/scroll-tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/search-results-header.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/search-results-header.tsx"
+        }
+      ],
+      "docs": "Pass the query as typed and the total across all categories. The heading repeats what was searched with the number of results (headingAs is h1 by default; use h2 inside a page that has one). When the shop searched for something else, pass correctedQuery: the heading names that, and a line says 'Showing results for shirt. Search instead for shrit.' with two real links. categories are the tabs (id, label, count), the first being the unfiltered All; they are controlled with activeCategory and onCategoryChange, or keep themselves with defaultCategory. related are the chips under them and sort is a slot at the end of that row, for a sort menu; on a phone it gets a row of its own at full width, so give it something that can grow. Related searches and the correction are real links built with searchHref (default ?q=term); pass onSearch(term) to take a plain click yourself while modified clicks still open a new tab. The count is announced politely when it changes: the total, or the count of the chosen category. With total 0 the heading says 'No results for' and the tabs are hidden; render the empty-search state in the results area below. EmptySearch repeats the query in a title of its own, so when it sits under this heading you can keep that title for screen readers only, as the demo does. labels holds every word."
+    },
+    {
+      "name": "search-results-header-demo",
+      "type": "registry:example",
+      "title": "Search results header demo",
+      "description": "A working preview of Search results header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/search-results-header.json",
+        "https://rhsui.com/r/empty-search.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/search-results-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkout-sign-in-choice",
+      "type": "registry:block",
+      "title": "Checkout sign-in choice",
+      "description": "The fork before checkout: sign in, or continue as a guest with just an email, with what an account adds stated plainly.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/checkout-sign-in-choice.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/checkout-sign-in-choice.tsx"
+        }
+      ],
+      "docs": "Two cards side by side, stacked on a phone with the guest card first; side by side they share their rows, so the headings and the first fields line up whatever the length of the descriptions. onSignIn receives { email, password } once both are filled in, and onContinueAsGuest receives the guest's email: return, or resolve to, a sentence when it fails ('That email and password do not match.') and it is shown in an announced alert in that card; return nothing when it worked. Each form checks itself when it is sent, writes the problem under the field and moves focus there. providers is a slot under the sign-in form after an 'or' rule, for a passkey or an email link. forgotHref shows the forgot link beside the password; createAccountHref (a link) or onCreateAccount (a button) is the way to an account, under a list of what an account adds (benefits, three read best). defaultEmail starts the sign-in with a known address. headingAs is h1 by default; the cards' titles sit one level below, and each card is a labelled region. labels holds every word."
+    },
+    {
+      "name": "checkout-sign-in-choice-demo",
+      "type": "registry:example",
+      "title": "Checkout sign-in choice demo",
+      "description": "A working preview of Checkout sign-in choice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checkout-sign-in-choice.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checkout-sign-in-choice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "returns-policy-section",
+      "type": "registry:block",
+      "title": "Returns policy section",
+      "description": "Returns explained for humans: the window, how it works in four steps, what can and cannot be returned, and when the refund arrives.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/returns-policy-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/returns-policy-section.tsx"
+        }
+      ],
+      "docs": "It works with no props: the copy it starts with is a real, shippable returns policy (30 days from delivery, four steps, what can and cannot be returned, refund times by payment method). Every line is a prop, so the legal wording can be swapped for each shop: windowDays fills the headline and the rule in words, facts are the terms beside the headline, steps (title, description, icon) are drawn as a numbered strip, eligible and excluded are one line each with a check or a cross, refundTimes are rows of the table (method, time, note), notice is a callout under it (a note unless you set its tone to tip or warning), startHref adds the Start a return button and contact a line with the way to reach someone. An empty facts, steps, eligible, excluded or refundTimes leaves that part out. headingAs is h2 by default; with h1 the titles of the parts are h2 and the steps h3. linkAs renders the links with your router's Link. It keeps no state, so it renders on the server. labels holds the fixed words."
+    },
+    {
+      "name": "returns-policy-section-demo",
+      "type": "registry:example",
+      "title": "Returns policy section demo",
+      "description": "A working preview of Returns policy section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/returns-policy-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/returns-policy-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shipping-rates-table",
+      "type": "registry:block",
+      "title": "Shipping rates table",
+      "description": "Where you ship and what it costs: regions, methods, prices, delivery times and the free-shipping threshold in one table, with a country picker.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/shipping-rates-table/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/shipping-rates-table/index.tsx"
+        },
+        {
+          "path": "registry/commerce/shipping-rates-table/rates.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/shipping-rates-table/rates.ts"
+        }
+      ],
+      "docs": "zones lists the regions in the order they should appear: region, countries (they fill the country picker; without them it lists the regions) and methods with name, price in minor units (0 is shown as Free, and its free-from cell says Always free), days (a number, a [fastest, slowest] pair or your own sentence, always in working days) and freeFrom, the order amount from which that method is free; a paid method without one shows a dash, read out as No free option. On a phone the Free from row is left out for both. Choosing a country marks its region's rows Your region in words as well as a tint and brings them into view; highlight starts with a country or a region already marked. cutoff is the dispatch cut-off in a sentence and notes are callouts under the table (customs, holidays, cut-off times). On a phone every region is a card with its methods and a description list, so nothing scrolls sideways. currency and locale format the amounts. headingAs is h2 by default; with h1 the region cards on a phone are h2. labels holds every word."
+    },
+    {
+      "name": "shipping-rates-table-demo",
+      "type": "registry:example",
+      "title": "Shipping rates table demo",
+      "description": "A working preview of Shipping rates table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shipping-rates-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shipping-rates-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "customer-account-home",
+      "type": "registry:block",
+      "title": "Customer account home",
+      "description": "The landing of 'My account': a greeting, the latest order with its status, and quick links with counts to orders, addresses, returns and help.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/customer-account-home.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/customer-account-home.tsx"
+        }
+      ],
+      "docs": "Pass the customer's name and memberSince as an ISO date (shown as the month and the year). latestOrder carries the number, status (processing, shipped, delivered or cancelled), placedAt, items for the thumbnails (three are drawn, the rest become +2, itemCount says how many there are in all), total in minor units and deliveryDate: the status is written out in words, and while the order is on its way with a trackHref a Track link appears. Without an order the card becomes No orders yet with a Start shopping link (shopHref), so a new account never meets a hole. links are the tiles under it: label, href, an optional count (zero is shown), a hint line and an icon; the tiles wrap and the last row stretches, so there is never an empty cell. nudge is a slot under the grid for a loyalty note or a verification reminder. linkAs renders the links with your router's Link; renderImage plugs in next/image. locale and timeZone format the dates. It keeps no state, so it renders on the server. labels holds every word."
+    },
+    {
+      "name": "customer-account-home-demo",
+      "type": "registry:example",
+      "title": "Customer account home demo",
+      "description": "A working preview of Customer account home.",
+      "registryDependencies": [
+        "https://rhsui.com/r/customer-account-home.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/customer-account-home-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-help-options",
+      "type": "registry:block",
+      "title": "Order help options",
+      "description": "'Need help with this order?': the actions that fit its status, each saying why it is available or, with the date, why it is not.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-help-options/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/order-help-options/index.tsx"
+        },
+        {
+          "path": "registry/commerce/order-help-options/help.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/order-help-options/help.ts"
+        }
+      ],
+      "docs": "Pass the order (number, status of processing, packed, shipped, delivered or cancelled, and deliveredAt and returnUntil as ISO dates) and the block works the list out itself: Track opens while it ships, Change address and Cancel close when the order is packed, Return opens at delivery and closes with the return window, and Report a problem is always there. An action that is not possible stays in the list, dimmed and marked aria-disabled, with its reason and the date in words: Tab still lands on it, so the reason is read out, and pressing it does nothing, and the status leads the block as a sentence so people see why the list looks as it does. Give the first available recommended action a solid button by setting primary on it. Pass your own actions (id, title, description, available, reason, href, label, primary, icon) when you have worked availability out on the server. onSelect receives the id of the pressed action; an action with an href is a link. contact adds the row at the end. Pass now (an ISO date-time) so the return window is judged against the same moment on the server and in the browser; without it the window counts as open until the browser's clock says otherwise. timeZone is the shop's: calendar days are counted there. labels holds every word, the reasons included."
+    },
+    {
+      "name": "order-help-options-demo",
+      "type": "registry:example",
+      "title": "Order help options demo",
+      "description": "A working preview of Order help options.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-help-options.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-help-options-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
