@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "early-access-form-demo",
+  "title": "Early access form demo",
+  "description": "A working preview of Early access form.",
+  "registryDependencies": [
+    "https://rhsui.com/r/early-access-form.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/early-access-form-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { EarlyAccessForm } from \"@rhs-ui/marketing/early-access-form\";\n\nconst roles = [\n  { value: \"product\", label: \"Product manager\" },\n  { value: \"engineering\", label: \"Engineering lead\" },\n  { value: \"design\", label: \"Designer\" },\n  { value: \"founder\", label: \"Founder or executive\" },\n  { value: \"operations\", label: \"Operations\" },\n  { value: \"other\", label: \"Something else\" },\n];\n\nconst sizes = [\n  { value: \"1-10\", label: \"1-10\" },\n  { value: \"11-50\", label: \"11-50\" },\n  { value: \"51-200\", label: \"51-200\" },\n  { value: \"200+\", label: \"200+\" },\n];\n\n/** A request that takes a moment and works, so the busy and success states can be seen by trying it. */\nconst apply = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n/** Only one code works in this preview, so the failure and the success can both be tried. */\nconst checkCode = (code: string) => new Promise<boolean>((resolve) => setTimeout(() => resolve(code.toUpperCase() === \"HAL-4821\"), 600));\n\nconst copy = {\n  description: \"Halcyon Studio opens to teams in waves. Tell us a little about yours and we invite the people we can help most first.\",\n  reviewTime: \"We review applications every Friday.\",\n  roles,\n  sizes,\n  onSubmit: apply,\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <div className=\"grid gap-x-12 gap-y-16 lg:grid-cols-2\">\n        <Example caption=\"Try it: send it empty for the mistakes, then open the invite code (HAL-4821 works)\">\n          <EarlyAccessForm {...copy} title=\"Get early access\" checkInviteCode={checkCode} />\n        </Example>\n        <div className=\"grid min-w-0 content-start gap-16\">\n          <Example caption=\"Applied: the confirmation says what happens next and when\">\n            <EarlyAccessForm {...copy} headingLevel={3} title=\"Get early access\" defaultStatus=\"done\" defaultValues={{ email: \"maria@halcyon.studio\" }} />\n          </Example>\n          <Example caption=\"With a valid invite code: no queue, and the confirmation says so\">\n            <EarlyAccessForm {...copy} headingLevel={3} title=\"Get early access\" defaultStatus=\"invited\" defaultValues={{ email: \"maria@halcyon.studio\", inviteCode: \"HAL-4821\" }} />\n          </Example>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -5797,6 +5797,480 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "trial-timeline",
+      "type": "registry:block",
+      "title": "Trial timeline",
+      "description": "A free trial told day by day: what you get today, when you are reminded and what happens at the end, so nobody wonders if they will be charged.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/trial-timeline.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/trial-timeline.tsx"
+        }
+      ],
+      "docs": "Pass a title, three or four moments (a day label, a title, a sentence and an optional icon each), an optional description, an action and a note. The moments are an ordered list: a row when the section is wide and a column when it is narrow, decided by the width of the section itself, so it holds in a sidebar as well as on a phone. The connecting line is decoration and hidden from assistive technology. The last moment is the answer to what happens at the end, so it is emphasised by weight, a filled marker and a heavier title, never by colour. Without an icon a moment shows its step number. The action is yours: a Button or a link styled as one."
+    },
+    {
+      "name": "trial-timeline-demo",
+      "type": "registry:example",
+      "title": "Trial timeline demo",
+      "description": "A working preview of Trial timeline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trial-timeline.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trial-timeline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "talk-to-us-cta",
+      "type": "registry:block",
+      "title": "Talk to us CTA",
+      "description": "A closing ask led by real people: faces, names and roles, a first-person heading, two actions and a status dot with words for how fast they reply.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/talk-to-us-cta.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/talk-to-us-cta.tsx"
+        }
+      ],
+      "docs": "Pass one to three people (a name, a role and an optional photo), a title written in the first person, an optional description, the actions, an availability line and a status of online, away or offline. The faces overlap on a ring in the card colour and are hidden from assistive technology because the names are written below them; three names share one row in three equal columns, so none is left alone on a second line. Status is a dot and words together: the dot is solid when online, a ring when away and a thin ring when offline, and the availability text must say the state too, for example Online now, replies in about 10 minutes. The line is a polite status region, so a change is announced once and nothing is read on load. The actions stack on a phone and sit side by side when there is room. Place it after a FAQ, beside pricing or above the footer."
+    },
+    {
+      "name": "talk-to-us-cta-demo",
+      "type": "registry:example",
+      "title": "Talk to us CTA demo",
+      "description": "A working preview of Talk to us CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/talk-to-us-cta.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/talk-to-us-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "audience-discounts",
+      "type": "registry:block",
+      "title": "Audience discounts",
+      "description": "Startups, students and nonprofits: a card per group with who qualifies, how much off as the biggest figure and how to apply, so nobody has to ask.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/audience-discounts.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/audience-discounts.tsx"
+        }
+      ],
+      "docs": "Pass a title, two to four programs, an optional description and a note about how you check. A program is an id, the audience, the discount, an optional duration, the eligibility as a list of lines, an action and an optional icon. The discount is real text set as the biggest thing on the card, with the duration under it; eligibility is a list so it can be scanned; the action is an object with a label that names the group, such as Apply for the student discount, and either an href or an onClick, and it renders as a link or a button accordingly. Cards are articles in a list, and the columns follow the count so no card is left alone in a row: two groups stay a pair, three go from one column to three, four from two to four, and a single one stays a card. The cards share their rows through a subgrid, so the figures, the dividers, the lists and the buttons line up from one card to the next, and the buttons fill the row so they are equally tall. The note sits beneath with a shield icon. labels translates the small line above each list of conditions."
+    },
+    {
+      "name": "audience-discounts-demo",
+      "type": "registry:example",
+      "title": "Audience discounts demo",
+      "description": "A working preview of Audience discounts.",
+      "registryDependencies": [
+        "https://rhsui.com/r/audience-discounts.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/audience-discounts-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "office-list",
+      "type": "registry:block",
+      "title": "Office list",
+      "description": "Every office with address, phone, email and hours, with an open-now line worked out in each office's own time zone and the zone said in words.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/office-list/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/index.tsx"
+        },
+        {
+          "path": "registry/marketing/office-list/hours.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/hours.ts"
+        },
+        {
+          "path": "registry/marketing/office-list/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/types.ts"
+        }
+      ],
+      "docs": "Pass the offices (an id, a city, an optional name, the address as lines, a phone, an email, an IANA time zone, the hours, a directions link and an optional map), a title and a layout of list or tabs. Hours are ranges of days with an opening and a closing time on the 24-hour clock in the office's own zone; a second range for the same days is a lunch break, and a day with no range is closed. A day with two ranges shows them one under the other, each on a line that never breaks, so no time is ever split across lines at any width. The open-now line, the highlighted weekday and the local time are worked out after the page has mounted, because the server does not know the reader's clock, so the markup always matches; until then the line is empty and nothing jumps. Every office also says its time zone in words, using the generic name so it never changes with daylight saving. The status reads Open now, until 18:00 or Closed, opens at 09:00, tomorrow or on a named weekday. The address, phone and email share one address element, the phone is a tel link and the email a mailto link. The list layout shows every office at once as rows; the tabs layout shows one at a time with its map beside the details. Pass now to pin the lines for a test, locale for weekday names and the zone name, and labels to translate every fixed word. The week is built here and not with OpeningHours, on purpose: it needs two ranges in a day, a zone for each office and a clock that is known only after mount, where OpeningHours takes finished text and a day index from you."
+    },
+    {
+      "name": "office-list-demo",
+      "type": "registry:example",
+      "title": "Office list demo",
+      "description": "A working preview of Office list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/office-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/office-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-lists",
+      "type": "registry:block",
+      "title": "Newsletter lists",
+      "description": "Let people choose what they get: several lists as checkbox cards with frequency, one email field and a button that says how many lists it subscribes to.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/newsletter-lists.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/newsletter-lists.tsx"
+        }
+      ],
+      "docs": "Pass the lists (an id, a name, one line, how often and an optional defaultChecked), an onSubmit that receives the address and the ids of the chosen lists, a title and an optional description, privacyHref and minSelected. Nothing is checked unless a list is marked defaultChecked, which is what consent rules ask for. Each list is a real checkbox in a card that outlines when chosen, with the frequency beside the name. With fewer than minSelected chosen the button is off and a hint says why; once enough are chosen the hint becomes a count, and because it is a polite status region the change is announced. The button says how many lists it will subscribe to. The address is checked in words before anything is sent, a failure keeps the choices and the address, turns the button into a retry and puts focus on it, and success replaces the form with a status message that repeats the chosen lists and takes focus so a screen reader reads it. defaultStatus error or done, with defaultEmail and the lists marked defaultChecked, shows the failure or the confirmation for a page that already knows the result; labels translates every fixed word and sentence. The cards are not CheckboxCards, on purpose: the check sits on the left beside the name and the frequency is a chip next to it, where CheckboxCards puts the check on the right and has no frequency."
+    },
+    {
+      "name": "newsletter-lists-demo",
+      "type": "registry:example",
+      "title": "Newsletter lists demo",
+      "description": "A working preview of Newsletter lists.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-lists.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-lists-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "thank-you-next-steps",
+      "type": "registry:block",
+      "title": "Thank-you next steps",
+      "description": "The page after a conversion: the confirmation, what happens next in order with timings, a copyable reference, and one or two things to do while waiting.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/thank-you-next-steps.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/thank-you-next-steps.tsx"
+        }
+      ],
+      "docs": "Pass a title that repeats what was done, a summary with the detail that matters, the steps (a label, an optional detail and when it happens), the follow-up actions and an optional reference such as a booking or order number. The title and summary are announced once when the page loads: a live region that is already full on arrival is not read, so a hidden polite status region is filled after mount. The reference is selectable and has a copy button that confirms in words and says so to a screen reader; if the browser refuses, a line says to copy it by hand and a screen reader hears it too. headingLevel goes from 1 to 4: use 1 when this block is the main content of the thank-you page. Steps are an ordered list joined by a hairline, with the timing as a chip that sits beside the step on a wide section and under it on a narrow one. The check mark is decoration. Name the reference through labels.reference, for example Booking reference or Order number; labels also translates the other fixed words. The block is not ResultState, on purpose: a thank-you page needs a page-level heading, ordered steps with timings and an announcement after mount, where ResultState is a centred panel with one description."
+    },
+    {
+      "name": "thank-you-next-steps-demo",
+      "type": "registry:example",
+      "title": "Thank-you next steps demo",
+      "description": "A working preview of Thank-you next steps.",
+      "registryDependencies": [
+        "https://rhsui.com/r/thank-you-next-steps.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/thank-you-next-steps-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "early-access-form",
+      "type": "registry:block",
+      "title": "Early access form",
+      "description": "A beta application that sorts the waitlist by fit: work email, role, team size and one optional sentence, with an invite code behind a link.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/early-access-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/early-access-form.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, the roles (a value and a label each, shown in the house select), the sizes (shown as a segmented control, so keep them short), a title, an optional description and a reviewTime such as We review applications every Friday. Work email, role and team size are required; what would you use it for is optional. A mistake is said in words beside its field once the reader has been there or tried to send, and the first one takes focus. The team size row carries its name, its invalid state and its sentence like every other field, and its rail turns destructive. The I have an invite code link reveals a code field and moves focus into it, and I do not have a code takes the field away again and gives focus back to the link, so a keyboard reader never loses their place; pass checkInviteCode to check it on the way out, and a code that does not work is a sentence under the field that keeps the rest of the form as it is, while a code that works skips the queue and the confirmation says so. onSubmit may be async: the button shows busy, a rejection keeps everything typed, shows the failure and puts focus back on the button, which is the retry, and success replaces the form with a status message that says what happens next and when and takes focus. defaultValues and defaultStatus done or invited show a state for a page that already knows it; labels translates every fixed word and error."
+    },
+    {
+      "name": "early-access-form-demo",
+      "type": "registry:example",
+      "title": "Early access form demo",
+      "description": "A working preview of Early access form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/early-access-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/early-access-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-packages",
+      "type": "registry:block",
+      "title": "Service packages",
+      "description": "Fixed-scope packages for agencies and consultants: the price, how long it takes, what you get and what you have to provide, in cards that line up row by row.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-packages.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-packages.tsx"
+        }
+      ],
+      "docs": "Pass two to four packages (an id, a name, a summary, the price as text, an optional from flag and price note, the duration, the deliverables, what the client provides, an action and an optional featured flag), a title, an optional description and a note for VAT and payment terms. Prices are real text in tabular figures and the duration is a visible fact. The you provide panel, access, content and a decision-maker, is what makes it a service package rather than a software plan; it is joined into a sentence in the locale you pass. One package can be marked featured, which gets a stronger border and a badge. The cards share their rows through a subgrid, so the prices, the durations, the dividers, the deliverables, the panels and the buttons line up from one card to the next, even when one price note runs to two lines, and the columns follow the count so no package is left alone in a row. The action is an object with a label and either an href or an onClick, and a long label wraps instead of spilling out of its card. labels translates the fixed words."
+    },
+    {
+      "name": "service-packages-demo",
+      "type": "registry:example",
+      "title": "Service packages demo",
+      "description": "A working preview of Service packages.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-packages.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-packages-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "refer-a-friend",
+      "type": "registry:block",
+      "title": "Refer a friend",
+      "description": "Customers invite friends: the deal in plain words, three steps, a personal link to copy, share options and a live count of invites, joins and credit.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/refer-a-friend.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/refer-a-friend.tsx"
+        }
+      ],
+      "docs": "Pass the offer (what the friend gets and what the customer gets, as text), the customer's link, their stats (invited, joined and the credit earned so far, formatted by you), the terms (a link and a line on when credit arrives, both required) and an optional onShare that receives copy, email or native. The heading, the three steps and the share message are written from the offer unless you pass your own title, steps or message. The link sits in a read-only field that selects on focus, with a copy button that confirms in words and says so to a screen reader, and says it to a screen reader too when the browser refuses. The field wraps the link instead of cutting it, on a phone as on a wide panel, so the personal part at its end is always readable; on a narrow section the button sits under the field at full width. The email action is a mailto link with the message and link filled in, and the device's share sheet is offered only where the browser has one, which is known after mount so the markup always matches. The three tallies are a description list in tabular figures with their labels, and locale formats the counts. On a wide section the offer and the steps sit beside the link panel; on a narrow one they stack. labels translates every fixed word, the default steps and the share message. The default steps and message are generic (a first purchase, a first payment); pass your own steps and message to tell one story, such as a first month and a next invoice. The field is not CopyField, on purpose: it needs a link that wraps, words you can translate and a read-only field that selects itself."
+    },
+    {
+      "name": "refer-a-friend-demo",
+      "type": "registry:example",
+      "title": "Refer a friend demo",
+      "description": "A working preview of Refer a friend.",
+      "registryDependencies": [
+        "https://rhsui.com/r/refer-a-friend.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/refer-a-friend-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ticket-tiers",
+      "type": "registry:block",
+      "title": "Ticket tiers",
+      "description": "Ticket types for an event with price, inclusions, how many are left and when the price rises, with sold out and not on sale yet designed as states.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/ticket-tiers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/ticket-tiers.tsx"
+        }
+      ],
+      "docs": "Pass the tiers (an id, a name, an optional description, the price in whole units, what is included, an optional remaining count, an optional saleStart and saleEnd as ISO times and an optional max per order), onSelect, and the currency, locale and timeZone prices and dates are written in. A tier that is sold out, ended or not on sale yet keeps its place with a disabled button and a clear label. An open tier shows how many are left, in the heavy style at or below lowStock, the date the price rises as a time element, a quantity stepper with the total, and a button that says how many tickets it buys. The stepper stops at the stock and at the limit per order; pressing plus at a limit keeps the button focusable and says why in words in a polite status line, which is also where the limit is stated before anyone hits it. Sale windows are judged on the reader's clock after mount, or on the now you pass. Until the clock is known, a tier that has a sale window shows as checking: no badge, a muted price and a disabled button that says Checking availability, so the server never renders a tier open that the browser would close. Pass now from the server and nothing is ever checking. A tier with no sale window is open straight away, and a sold-out one is sold out whatever the clock says. The badge has a row of its own above the name on every card, so names and descriptions line up however long a date is. The cards share their rows through a subgrid, so the prices, lists and buttons line up. The stepper is its own and not NumberInput, on purpose: its plus stays focusable at a limit and says why in words, where NumberInput disables its buttons and keeps them out of the tab order. labels translates the fixed words, Checking availability included."
+    },
+    {
+      "name": "ticket-tiers-demo",
+      "type": "registry:example",
+      "title": "Ticket tiers demo",
+      "description": "A working preview of Ticket tiers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ticket-tiers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ticket-tiers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

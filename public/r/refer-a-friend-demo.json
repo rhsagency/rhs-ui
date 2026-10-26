@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "refer-a-friend-demo",
+  "title": "Refer a friend demo",
+  "description": "A working preview of Refer a friend.",
+  "registryDependencies": [
+    "https://rhsui.com/r/refer-a-friend.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/refer-a-friend-demo.tsx",
+      "content": "import { ReferAFriend } from \"@rhs-ui/marketing/refer-a-friend\";\n\nconst offer = { give: \"€20\", get: \"€20\" };\nconst terms = { href: \"#terms\", creditTiming: \"Credit arrives 14 days after your friend's first payment, so a refund never takes it back.\" };\n\n// One story in one set of words: a subscription, so \"first month\" and \"next invoice\", and the same 14 days as the terms.\nconst steps = [\n  { title: \"Share your link\", description: \"Send it by email or message, or copy it.\" },\n  { title: \"They get €20 off\", description: \"Your friend signs up through your link and the €20 comes off their first month.\" },\n  { title: \"You get €20 credit\", description: \"When their first payment clears, €20 is added to your next invoice, 14 days later.\" },\n];\nconst message = {\n  subject: \"€20 off your first month of Halcyon\",\n  text: \"I use Halcyon and think you will like it. Sign up with my link and your first month is €20 cheaper.\",\n};\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">For signed-in customers: the offer, how it works, a link to copy and share, and their own numbers. Try copy.</p>\n      <ReferAFriend\n        offer={offer}\n        link=\"https://halcyon.example/r/maria-k4x9\"\n        stats={{ invited: 12, joined: 5, credit: \"€100\" }}\n        terms={terms}\n        steps={steps}\n        message={message}\n        description=\"A friend who tries Halcyon through your link gets €20 off their first month. When their first payment clears, you get €20 off your next invoice.\"\n      />\n\n      <div className=\"mt-20 max-w-xl\">\n        <p className=\"mb-8 text-xs text-muted-foreground\">In a narrow column, and for a customer who has not shared yet: everything stacks, the link wraps instead of being cut, and the numbers start at zero</p>\n        <ReferAFriend headingLevel={3} offer={offer} link=\"https://halcyon.example/r/tomas-p7r2\" stats={{ invited: 0, joined: 0, credit: \"€0\" }} terms={terms} steps={steps} message={message} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

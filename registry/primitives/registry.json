@@ -8041,6 +8041,580 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "barcode",
+      "type": "registry:ui",
+      "title": "Barcode",
+      "description": "Scannable Code 128 and EAN-13 barcodes as SVG for tickets, labels and packing slips, with the check digit handled and the value in text below.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/barcode/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode/index.tsx"
+        },
+        {
+          "path": "registry/primitives/barcode/encode.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode/encode.ts"
+        }
+      ],
+      "docs": "Code 128 takes any ASCII text and chooses its own code sets; EAN-13 takes twelve digits (the check digit is added) or thirteen (it is checked), and a value that cannot be encoded is reported in words instead of drawn. The quiet zone and black on white are fixed because a scanner needs them. encodeBarcode and eanCheckDigit are exported for validating a value before you print it."
+    },
+    {
+      "name": "barcode-demo",
+      "type": "registry:example",
+      "title": "Barcode demo",
+      "description": "A working preview of Barcode.",
+      "registryDependencies": [
+        "https://rhsui.com/r/barcode.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/barcode-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "loading-overlay",
+      "type": "registry:ui",
+      "title": "Loading overlay",
+      "description": "Covers a card, table or form while it refreshes with a scrim, a spinner and a label, and makes the stale content inert so it cannot be clicked or tabbed into.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/loading-overlay.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/loading-overlay.tsx"
+        }
+      ],
+      "docs": "Wrap the region and set loading. delay (default 200 ms) keeps a quick refresh from flashing the overlay, and minDuration (default 400 ms) keeps it from blinking once it is up. Give the component the radius of the region it covers, for example className=\"rounded-xl\". The content is made inert and aria-busy while the overlay shows; focus that was inside it is parked on the overlay and handed back."
+    },
+    {
+      "name": "loading-overlay-demo",
+      "type": "registry:example",
+      "title": "Loading overlay demo",
+      "description": "A working preview of Loading overlay.",
+      "registryDependencies": [
+        "https://rhsui.com/r/loading-overlay.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/loading-overlay-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-group",
+      "type": "registry:ui",
+      "title": "Skeleton group",
+      "description": "Wraps skeleton placeholders so they read as one Loading to screen readers and sweep as one wave, with no delays wired by hand.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/skeleton-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/skeleton-group.tsx"
+        }
+      ],
+      "docs": "Put Skeleton blocks inside, at any depth: the group staggers their shimmer in document order, marks the region aria-busy and renders one visually hidden status instead of a dozen silent boxes. When loading turns false the placeholders are not rendered and nothing is announced. A custom shape joins the wave with data-skeleton, or asks for a delay with useSkeletonDelay(index)."
+    },
+    {
+      "name": "skeleton-group-demo",
+      "type": "registry:example",
+      "title": "Skeleton group demo",
+      "description": "A working preview of Skeleton group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton-group.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/skeleton-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "text-skeleton",
+      "type": "registry:ui",
+      "title": "Text skeleton",
+      "description": "Lines of loading text with natural, uneven lengths and a short last line, each bar in the line height of the text it stands in for.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/text-skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/text-skeleton.tsx"
+        }
+      ],
+      "docs": "Pick the size of the text it replaces (sm, base, lg or a heading level h1 to h6) and the number of lines: every bar sits in one line box of that text, so the real content moves nothing when it arrives. Line lengths come from a seed, so the block is identical on the server and in the browser; give neighbouring blocks different seeds. Wrap a screen in SkeletonGroup to announce Loading once."
+    },
+    {
+      "name": "text-skeleton-demo",
+      "type": "registry:example",
+      "title": "Text skeleton demo",
+      "description": "A working preview of Text skeleton.",
+      "registryDependencies": [
+        "https://rhsui.com/r/text-skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/text-skeleton-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "async-view",
+      "type": "registry:ui",
+      "title": "Async view",
+      "description": "Every state of a data view in one wrapper: loading, error with Retry, empty, background refresh and ready, each with a slot and a default.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/async-view.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/async-view.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "It fetches nothing: pass status ('loading' | 'error' | 'empty' | 'ready') and isFetching from TanStack Query, SWR or a plain useState. The skeleton waits loadingDelay (200 ms) so a quick load never flashes one; a background refresh keeps the old content and runs a thin bar along the top. The region carries aria-busy and a polite status announces each change. Pass skeleton, error and empty to replace a default, or errorTitle, errorMessage and onRetry to adjust the built-in error panel."
+    },
+    {
+      "name": "async-view-demo",
+      "type": "registry:example",
+      "title": "Async view demo",
+      "description": "A working preview of Async view.",
+      "registryDependencies": [
+        "https://rhsui.com/r/async-view.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/async-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "error-boundary",
+      "type": "registry:ui",
+      "title": "Error boundary",
+      "description": "A React error boundary with a calm built-in fallback, a reset that really remounts the subtree, resetKeys, and a hook for your error logger.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/error-boundary/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/error-boundary/index.tsx"
+        },
+        {
+          "path": "registry/primitives/error-boundary/with-error-boundary.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/error-boundary/with-error-boundary.tsx"
+        }
+      ],
+      "docs": "Wrap any subtree: when a child throws while rendering, the fallback replaces it and the rest of the page keeps working. fallback is a node or a function that gets { error, reset } (a function needs a Client Component parent); onError is the place for your logger; resetKeys resets the boundary when a route, an id or a filter changes; reset mounts the children anew. withErrorBoundary lives in error-boundary/with-error-boundary and is not a client module. Event handlers, async code and the server are outside what a boundary catches: use error.tsx for the page."
+    },
+    {
+      "name": "error-boundary-demo",
+      "type": "registry:example",
+      "title": "Error boundary demo",
+      "description": "A working preview of Error boundary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/error-boundary.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/error-boundary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "live-announcer",
+      "type": "registry:ui",
+      "title": "Live announcer",
+      "description": "One place to tell screen readers what just happened: mount LiveAnnouncer once, then announce polite or urgent messages from any component with a hook.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/live-announcer.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/live-announcer.tsx"
+        }
+      ],
+      "docs": "Mount <LiveAnnouncer /> once, as a sibling of your app's main wrapper rather than inside it, so a modal that hides the app does not hide it. Then call announce('3 results found') or announce('Upload failed', 'assertive'), or take the same function from useAnnounce(). Both regions exist from the first render, a message is written by emptying and refilling its region so repeats are read again, identical messages sent within 600 ms count as one, and the rest are read in turn. clearAfterMs empties a region after a message; onAnnounce reports each message that was written, for a visible log. A no-op on the server."
+    },
+    {
+      "name": "live-announcer-demo",
+      "type": "registry:example",
+      "title": "Live announcer demo",
+      "description": "A working preview of Live announcer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/live-announcer.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/live-announcer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "undo-toast",
+      "type": "registry:ui",
+      "title": "Undo toast",
+      "description": "The delete-with-undo pattern: the row goes at once, a toast offers Undo with a draining timer, and the real delete runs only when the time is up.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/undo-toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/undo-toast.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-drain": {
+          "from": {
+            "transform": "scaleX(1)"
+          },
+          "to": {
+            "transform": "scaleX(0)"
+          }
+        }
+      },
+      "docs": "Call toastUndo({ message, onUndo, onCommit }) from the handler that removes the row, after you have removed it from your own state. onUndo puts it back; onCommit runs once, when the six seconds are up, when the toast is closed or pushed out by a newer one, and when the page is left (make the request with keepalive or sendBeacon there). The line drains over duration and waits while the toast is hovered or has focus and while the tab is in the background. Mount Toaster once, as for any toast."
+    },
+    {
+      "name": "undo-toast-demo",
+      "type": "registry:example",
+      "title": "Undo toast demo",
+      "description": "A working preview of Undo toast.",
+      "registryDependencies": [
+        "https://rhsui.com/r/undo-toast.json",
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/undo-toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-toast",
+      "type": "registry:ui",
+      "title": "Task toast",
+      "description": "One toast that follows a task from start to finish: a spinner, a live progress bar, then success, or a failure with Retry, all in the same toast.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/task-toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/task-toast.tsx"
+        }
+      ],
+      "docs": "const task = taskToast({ title: 'Exporting orders', onCancel }); then task.progress(0.4, '1,200 of 3,000 orders'), task.success('Export ready', { action }) or task.error('Export failed', { onRetry }). It is one toast the whole way and changes in place: a spinner, a slim bar with a percentage, a check that closes itself after five seconds, or a warning that stays until it is dealt with. If someone closes the toast by hand while the task runs, the result still arrives as a toast; task.dismiss() closes it for good. taskToast.promise(promise, { loading, success, error }) covers a task with no progress to report. Mount Toaster once, as for any toast. The Toaster shows the last three toasts, so a fourth can push out an error toast together with its Retry: for a long job, keep Retry reachable elsewhere as well."
+    },
+    {
+      "name": "task-toast-demo",
+      "type": "registry:example",
+      "title": "Task toast demo",
+      "description": "A working preview of Task toast.",
+      "registryDependencies": [
+        "https://rhsui.com/r/task-toast.json",
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dismissible-notice",
+      "type": "registry:ui",
+      "title": "Dismissible notice",
+      "description": "A tip or notice card people can close for good: it remembers the dismissal, can return after N days, and comes back when its version changes.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/dismissible-notice/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dismissible-notice/index.tsx"
+        },
+        {
+          "path": "registry/primitives/dismissible-notice/store.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dismissible-notice/store.ts"
+        }
+      ],
+      "docs": "id names the notice in localStorage (rhs-ui:dismissed:<id>); version and remindAfterDays decide when a dismissal stops counting. Where storage throws, the dismissal lives in memory for the session. The card is drawn after the page is live, never in the server HTML, and it folds away on close, instantly under reduced motion. useDismissed(id, options) returns { dismissed, dismiss, restore } for anything else that should stay closed: pass dismiss to Banner's onDismiss and render the banner while dismissed is false."
+    },
+    {
+      "name": "dismissible-notice-demo",
+      "type": "registry:example",
+      "title": "Dismissible notice demo",
+      "description": "A working preview of Dismissible notice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dismissible-notice.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/banner.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dismissible-notice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "last-updated",
+      "type": "registry:ui",
+      "title": "Last updated",
+      "description": "An Updated 3 min ago label with a refresh button that keeps itself current, and says in words and weight when the data has gone stale.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/last-updated.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/last-updated.tsx"
+        }
+      ],
+      "docs": "updatedAt takes a Date, a timestamp or an ISO string. The text counts minutes, then gives a clock time after an hour (with the date once it is not today), written in locale and timeZone so the server and the browser agree; before the page is live it shows the date and time instead of an age. Past staleAfterMs (15 minutes) it adds a warning mark and 'may be out of date'. onRefresh shows the button: return a promise and the arrow turns until it settles (a rejection stops it without saying Data refreshed), or drive refreshing yourself. labels takes your own words as templates with {n}, {time}, {date} and {text}."
+    },
+    {
+      "name": "last-updated-demo",
+      "type": "registry:example",
+      "title": "Last updated demo",
+      "description": "A working preview of Last updated.",
+      "registryDependencies": [
+        "https://rhsui.com/r/last-updated.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/last-updated-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

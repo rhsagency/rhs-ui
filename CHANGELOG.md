@@ -66,6 +66,8 @@ own `meta.version` and are listed when they change.
 - Marketing, 9 more: `incident-postmortem`, `recipe-layout`, `article-footnotes`, `newsletter-card`, `sticky-cta-bar`, `pricing-rows`, `contact-form-centered`, `enterprise-plan-band`, `guarantee-panel`.
 - Application, 6 more: `rail-panel-shell`, `section-sidebar-shell`, `record-page-shell`, `inspector-shell`, `summary-aside-shell`, `feed-shell`.
 - Commerce, 8 more: `category-product-rows`, `reorder-list`, `brand-index`, `reviews-to-write`, `pickup-ready-card`, `trade-account-application`, `delivery-instructions`, `trade-credit-summary`.
+- Primitives, 11 more: `barcode`, `loading-overlay`, `skeleton-group`, `text-skeleton`, `async-view`, `error-boundary`, `live-announcer`, `undo-toast`, `task-toast`, `dismissible-notice`, `last-updated`.
+- Marketing, 10 more: `trial-timeline`, `talk-to-us-cta`, `audience-discounts`, `office-list`, `newsletter-lists`, `thank-you-next-steps`, `early-access-form`, `service-packages`, `refer-a-friend`, `ticket-tiers`.
 
 ## Unreleased (0.7.0)
 

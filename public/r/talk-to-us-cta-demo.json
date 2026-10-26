@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "talk-to-us-cta-demo",
+  "title": "Talk to us CTA demo",
+  "description": "A working preview of Talk to us CTA.",
+  "registryDependencies": [
+    "https://rhsui.com/r/talk-to-us-cta.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/talk-to-us-cta-demo.tsx",
+      "content": "import { IconCalendar, IconMail } from \"@rhs-ui/icons\";\nimport { TalkToUsCta } from \"@rhs-ui/marketing/talk-to-us-cta\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\n// Drawn portraits as data URIs, so the preview needs no image host.\nconst portrait = (background: string, figure: string) =>\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent(\n    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' fill='${background}'/><circle cx='48' cy='38' r='17' fill='${figure}'/><path d='M14 96c4-22 18-33 34-33s30 11 34 33z' fill='${figure}'/></svg>`,\n  );\n\nconst maya = { name: \"Maya Okafor\", role: \"Customer success\", avatar: portrait(\"#d9d6cf\", \"#4a463f\") };\nconst tomas = { name: \"Tomás Ribeiro\", role: \"Solutions engineer\", avatar: portrait(\"#2c2f33\", \"#cfcbc2\") };\nconst jun = { name: \"Jun Park\", role: \"Billing and plans\" };\n\nfunction Actions({ call }: { call: string }): React.JSX.Element {\n  return (\n    <>\n      <Button size=\"lg\">\n        <IconCalendar />\n        {call}\n      </Button>\n      <Button size=\"lg\" variant=\"outline\" asChild>\n        <a href=\"mailto:hello@halcyon.example\">\n          <IconMail />\n          Send an email\n        </a>\n      </Button>\n    </>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">One person, online: the usual closing ask after a FAQ or beside pricing</p>\n      <TalkToUsCta\n        people={[maya]}\n        title=\"Not sure which plan fits? Talk to Maya.\"\n        description=\"Tell her what your team does and she will tell you honestly which plan you need, and which you do not.\"\n        availability=\"Online now, replies in about 10 minutes\"\n        status=\"online\"\n        actions={<Actions call=\"Book a 20-minute call\" />}\n      />\n\n      <div className=\"mt-16 grid gap-x-8 gap-y-14 lg:grid-cols-2\">\n        <div className=\"min-w-0\">\n          <p className=\"mb-6 text-xs text-muted-foreground\">A small team, away: the dot is a ring, and the words say when they are back</p>\n          <TalkToUsCta\n            headingLevel={3}\n            people={[maya, tomas, jun]}\n            title=\"Questions before you commit? Ask us.\"\n            availability=\"Away until 13:00, replies this afternoon\"\n            status=\"away\"\n            actions={<Actions call=\"Book a call\" />}\n          />\n        </div>\n        <div className=\"min-w-0\">\n          <p className=\"mb-6 text-xs text-muted-foreground\">Offline: a thin ring, and a promise of when the answer comes</p>\n          <TalkToUsCta\n            headingLevel={3}\n            people={[tomas]}\n            title=\"Want a walkthrough? Talk to Tomás.\"\n            availability=\"Offline until 09:00, replies first thing tomorrow\"\n            status=\"offline\"\n            actions={<Actions call=\"Book a walkthrough\" />}\n          />\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

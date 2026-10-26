@@ -8205,6 +8205,591 @@
       ]
     },
     {
+      "name": "barcode",
+      "type": "registry:ui",
+      "title": "Barcode",
+      "description": "Scannable Code 128 and EAN-13 barcodes as SVG for tickets, labels and packing slips, with the check digit handled and the value in text below.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/barcode/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode/index.tsx"
+        },
+        {
+          "path": "registry/primitives/barcode/encode.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode/encode.ts"
+        }
+      ],
+      "docs": "Code 128 takes any ASCII text and chooses its own code sets; EAN-13 takes twelve digits (the check digit is added) or thirteen (it is checked), and a value that cannot be encoded is reported in words instead of drawn. The quiet zone and black on white are fixed because a scanner needs them. encodeBarcode and eanCheckDigit are exported for validating a value before you print it."
+    },
+    {
+      "name": "barcode-demo",
+      "type": "registry:example",
+      "title": "Barcode demo",
+      "description": "A working preview of Barcode.",
+      "registryDependencies": [
+        "https://rhsui.com/r/barcode.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/barcode-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "loading-overlay",
+      "type": "registry:ui",
+      "title": "Loading overlay",
+      "description": "Covers a card, table or form while it refreshes with a scrim, a spinner and a label, and makes the stale content inert so it cannot be clicked or tabbed into.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/loading-overlay.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/loading-overlay.tsx"
+        }
+      ],
+      "docs": "Wrap the region and set loading. delay (default 200 ms) keeps a quick refresh from flashing the overlay, and minDuration (default 400 ms) keeps it from blinking once it is up. Give the component the radius of the region it covers, for example className=\"rounded-xl\". The content is made inert and aria-busy while the overlay shows; focus that was inside it is parked on the overlay and handed back."
+    },
+    {
+      "name": "loading-overlay-demo",
+      "type": "registry:example",
+      "title": "Loading overlay demo",
+      "description": "A working preview of Loading overlay.",
+      "registryDependencies": [
+        "https://rhsui.com/r/loading-overlay.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/loading-overlay-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-group",
+      "type": "registry:ui",
+      "title": "Skeleton group",
+      "description": "Wraps skeleton placeholders so they read as one Loading to screen readers and sweep as one wave, with no delays wired by hand.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/skeleton-group.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/skeleton-group.tsx"
+        }
+      ],
+      "docs": "Put Skeleton blocks inside, at any depth: the group staggers their shimmer in document order, marks the region aria-busy and renders one visually hidden status instead of a dozen silent boxes. When loading turns false the placeholders are not rendered and nothing is announced. A custom shape joins the wave with data-skeleton, or asks for a delay with useSkeletonDelay(index)."
+    },
+    {
+      "name": "skeleton-group-demo",
+      "type": "registry:example",
+      "title": "Skeleton group demo",
+      "description": "A working preview of Skeleton group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton-group.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/skeleton-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "text-skeleton",
+      "type": "registry:ui",
+      "title": "Text skeleton",
+      "description": "Lines of loading text with natural, uneven lengths and a short last line, each bar in the line height of the text it stands in for.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/text-skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/text-skeleton.tsx"
+        }
+      ],
+      "docs": "Pick the size of the text it replaces (sm, base, lg or a heading level h1 to h6) and the number of lines: every bar sits in one line box of that text, so the real content moves nothing when it arrives. Line lengths come from a seed, so the block is identical on the server and in the browser; give neighbouring blocks different seeds. Wrap a screen in SkeletonGroup to announce Loading once."
+    },
+    {
+      "name": "text-skeleton-demo",
+      "type": "registry:example",
+      "title": "Text skeleton demo",
+      "description": "A working preview of Text skeleton.",
+      "registryDependencies": [
+        "https://rhsui.com/r/text-skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/text-skeleton-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "async-view",
+      "type": "registry:ui",
+      "title": "Async view",
+      "description": "Every state of a data view in one wrapper: loading, error with Retry, empty, background refresh and ready, each with a slot and a default.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/async-view.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/async-view.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "It fetches nothing: pass status ('loading' | 'error' | 'empty' | 'ready') and isFetching from TanStack Query, SWR or a plain useState. The skeleton waits loadingDelay (200 ms) so a quick load never flashes one; a background refresh keeps the old content and runs a thin bar along the top. The region carries aria-busy and a polite status announces each change. Pass skeleton, error and empty to replace a default, or errorTitle, errorMessage and onRetry to adjust the built-in error panel."
+    },
+    {
+      "name": "async-view-demo",
+      "type": "registry:example",
+      "title": "Async view demo",
+      "description": "A working preview of Async view.",
+      "registryDependencies": [
+        "https://rhsui.com/r/async-view.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/async-view-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "error-boundary",
+      "type": "registry:ui",
+      "title": "Error boundary",
+      "description": "A React error boundary with a calm built-in fallback, a reset that really remounts the subtree, resetKeys, and a hook for your error logger.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/error-boundary/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/error-boundary/index.tsx"
+        },
+        {
+          "path": "registry/primitives/error-boundary/with-error-boundary.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/error-boundary/with-error-boundary.tsx"
+        }
+      ],
+      "docs": "Wrap any subtree: when a child throws while rendering, the fallback replaces it and the rest of the page keeps working. fallback is a node or a function that gets { error, reset } (a function needs a Client Component parent); onError is the place for your logger; resetKeys resets the boundary when a route, an id or a filter changes; reset mounts the children anew. withErrorBoundary lives in error-boundary/with-error-boundary and is not a client module. Event handlers, async code and the server are outside what a boundary catches: use error.tsx for the page."
+    },
+    {
+      "name": "error-boundary-demo",
+      "type": "registry:example",
+      "title": "Error boundary demo",
+      "description": "A working preview of Error boundary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/error-boundary.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/error-boundary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "live-announcer",
+      "type": "registry:ui",
+      "title": "Live announcer",
+      "description": "One place to tell screen readers what just happened: mount LiveAnnouncer once, then announce polite or urgent messages from any component with a hook.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/live-announcer.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/live-announcer.tsx"
+        }
+      ],
+      "docs": "Mount <LiveAnnouncer /> once, as a sibling of your app's main wrapper rather than inside it, so a modal that hides the app does not hide it. Then call announce('3 results found') or announce('Upload failed', 'assertive'), or take the same function from useAnnounce(). Both regions exist from the first render, a message is written by emptying and refilling its region so repeats are read again, identical messages sent within 600 ms count as one, and the rest are read in turn. clearAfterMs empties a region after a message; onAnnounce reports each message that was written, for a visible log. A no-op on the server."
+    },
+    {
+      "name": "live-announcer-demo",
+      "type": "registry:example",
+      "title": "Live announcer demo",
+      "description": "A working preview of Live announcer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/live-announcer.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/live-announcer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "undo-toast",
+      "type": "registry:ui",
+      "title": "Undo toast",
+      "description": "The delete-with-undo pattern: the row goes at once, a toast offers Undo with a draining timer, and the real delete runs only when the time is up.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/undo-toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/undo-toast.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-drain": {
+          "from": {
+            "transform": "scaleX(1)"
+          },
+          "to": {
+            "transform": "scaleX(0)"
+          }
+        }
+      },
+      "docs": "Call toastUndo({ message, onUndo, onCommit }) from the handler that removes the row, after you have removed it from your own state. onUndo puts it back; onCommit runs once, when the six seconds are up, when the toast is closed or pushed out by a newer one, and when the page is left (make the request with keepalive or sendBeacon there). The line drains over duration and waits while the toast is hovered or has focus and while the tab is in the background. Mount Toaster once, as for any toast."
+    },
+    {
+      "name": "undo-toast-demo",
+      "type": "registry:example",
+      "title": "Undo toast demo",
+      "description": "A working preview of Undo toast.",
+      "registryDependencies": [
+        "https://rhsui.com/r/undo-toast.json",
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/undo-toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-toast",
+      "type": "registry:ui",
+      "title": "Task toast",
+      "description": "One toast that follows a task from start to finish: a spinner, a live progress bar, then success, or a failure with Retry, all in the same toast.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/task-toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/task-toast.tsx"
+        }
+      ],
+      "docs": "const task = taskToast({ title: 'Exporting orders', onCancel }); then task.progress(0.4, '1,200 of 3,000 orders'), task.success('Export ready', { action }) or task.error('Export failed', { onRetry }). It is one toast the whole way and changes in place: a spinner, a slim bar with a percentage, a check that closes itself after five seconds, or a warning that stays until it is dealt with. If someone closes the toast by hand while the task runs, the result still arrives as a toast; task.dismiss() closes it for good. taskToast.promise(promise, { loading, success, error }) covers a task with no progress to report. Mount Toaster once, as for any toast. The Toaster shows the last three toasts, so a fourth can push out an error toast together with its Retry: for a long job, keep Retry reachable elsewhere as well."
+    },
+    {
+      "name": "task-toast-demo",
+      "type": "registry:example",
+      "title": "Task toast demo",
+      "description": "A working preview of Task toast.",
+      "registryDependencies": [
+        "https://rhsui.com/r/task-toast.json",
+        "https://rhsui.com/r/toast.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dismissible-notice",
+      "type": "registry:ui",
+      "title": "Dismissible notice",
+      "description": "A tip or notice card people can close for good: it remembers the dismissal, can return after N days, and comes back when its version changes.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/dismissible-notice/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dismissible-notice/index.tsx"
+        },
+        {
+          "path": "registry/primitives/dismissible-notice/store.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dismissible-notice/store.ts"
+        }
+      ],
+      "docs": "id names the notice in localStorage (rhs-ui:dismissed:<id>); version and remindAfterDays decide when a dismissal stops counting. Where storage throws, the dismissal lives in memory for the session. The card is drawn after the page is live, never in the server HTML, and it folds away on close, instantly under reduced motion. useDismissed(id, options) returns { dismissed, dismiss, restore } for anything else that should stay closed: pass dismiss to Banner's onDismiss and render the banner while dismissed is false."
+    },
+    {
+      "name": "dismissible-notice-demo",
+      "type": "registry:example",
+      "title": "Dismissible notice demo",
+      "description": "A working preview of Dismissible notice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dismissible-notice.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/banner.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dismissible-notice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "last-updated",
+      "type": "registry:ui",
+      "title": "Last updated",
+      "description": "An Updated 3 min ago label with a refresh button that keeps itself current, and says in words and weight when the data has gone stale.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/last-updated.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/last-updated.tsx"
+        }
+      ],
+      "docs": "updatedAt takes a Date, a timestamp or an ISO string. The text counts minutes, then gives a clock time after an hour (with the date once it is not today), written in locale and timeZone so the server and the browser agree; before the page is live it shows the date and time instead of an age. Past staleAfterMs (15 minutes) it adds a warning mark and 'may be out of date'. onRefresh shows the button: return a promise and the arrow turns until it settles (a rejection stops it without saying Data refreshed), or drive refreshing yourself. labels takes your own words as templates with {n}, {time}, {date} and {text}."
+    },
+    {
+      "name": "last-updated-demo",
+      "type": "registry:example",
+      "title": "Last updated demo",
+      "description": "A working preview of Last updated.",
+      "registryDependencies": [
+        "https://rhsui.com/r/last-updated.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/last-updated-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -36334,6 +36919,490 @@
       "files": [
         {
           "path": "registry/examples/guarantee-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trial-timeline",
+      "type": "registry:block",
+      "title": "Trial timeline",
+      "description": "A free trial told day by day: what you get today, when you are reminded and what happens at the end, so nobody wonders if they will be charged.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/trial-timeline.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/trial-timeline.tsx"
+        }
+      ],
+      "docs": "Pass a title, three or four moments (a day label, a title, a sentence and an optional icon each), an optional description, an action and a note. The moments are an ordered list: a row when the section is wide and a column when it is narrow, decided by the width of the section itself, so it holds in a sidebar as well as on a phone. The connecting line is decoration and hidden from assistive technology. The last moment is the answer to what happens at the end, so it is emphasised by weight, a filled marker and a heavier title, never by colour. Without an icon a moment shows its step number. The action is yours: a Button or a link styled as one."
+    },
+    {
+      "name": "trial-timeline-demo",
+      "type": "registry:example",
+      "title": "Trial timeline demo",
+      "description": "A working preview of Trial timeline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trial-timeline.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trial-timeline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "talk-to-us-cta",
+      "type": "registry:block",
+      "title": "Talk to us CTA",
+      "description": "A closing ask led by real people: faces, names and roles, a first-person heading, two actions and a status dot with words for how fast they reply.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/talk-to-us-cta.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/talk-to-us-cta.tsx"
+        }
+      ],
+      "docs": "Pass one to three people (a name, a role and an optional photo), a title written in the first person, an optional description, the actions, an availability line and a status of online, away or offline. The faces overlap on a ring in the card colour and are hidden from assistive technology because the names are written below them; three names share one row in three equal columns, so none is left alone on a second line. Status is a dot and words together: the dot is solid when online, a ring when away and a thin ring when offline, and the availability text must say the state too, for example Online now, replies in about 10 minutes. The line is a polite status region, so a change is announced once and nothing is read on load. The actions stack on a phone and sit side by side when there is room. Place it after a FAQ, beside pricing or above the footer."
+    },
+    {
+      "name": "talk-to-us-cta-demo",
+      "type": "registry:example",
+      "title": "Talk to us CTA demo",
+      "description": "A working preview of Talk to us CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/talk-to-us-cta.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/talk-to-us-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "audience-discounts",
+      "type": "registry:block",
+      "title": "Audience discounts",
+      "description": "Startups, students and nonprofits: a card per group with who qualifies, how much off as the biggest figure and how to apply, so nobody has to ask.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/audience-discounts.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/audience-discounts.tsx"
+        }
+      ],
+      "docs": "Pass a title, two to four programs, an optional description and a note about how you check. A program is an id, the audience, the discount, an optional duration, the eligibility as a list of lines, an action and an optional icon. The discount is real text set as the biggest thing on the card, with the duration under it; eligibility is a list so it can be scanned; the action is an object with a label that names the group, such as Apply for the student discount, and either an href or an onClick, and it renders as a link or a button accordingly. Cards are articles in a list, and the columns follow the count so no card is left alone in a row: two groups stay a pair, three go from one column to three, four from two to four, and a single one stays a card. The cards share their rows through a subgrid, so the figures, the dividers, the lists and the buttons line up from one card to the next, and the buttons fill the row so they are equally tall. The note sits beneath with a shield icon. labels translates the small line above each list of conditions."
+    },
+    {
+      "name": "audience-discounts-demo",
+      "type": "registry:example",
+      "title": "Audience discounts demo",
+      "description": "A working preview of Audience discounts.",
+      "registryDependencies": [
+        "https://rhsui.com/r/audience-discounts.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/audience-discounts-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "office-list",
+      "type": "registry:block",
+      "title": "Office list",
+      "description": "Every office with address, phone, email and hours, with an open-now line worked out in each office's own time zone and the zone said in words.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/office-list/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/index.tsx"
+        },
+        {
+          "path": "registry/marketing/office-list/hours.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/hours.ts"
+        },
+        {
+          "path": "registry/marketing/office-list/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/office-list/types.ts"
+        }
+      ],
+      "docs": "Pass the offices (an id, a city, an optional name, the address as lines, a phone, an email, an IANA time zone, the hours, a directions link and an optional map), a title and a layout of list or tabs. Hours are ranges of days with an opening and a closing time on the 24-hour clock in the office's own zone; a second range for the same days is a lunch break, and a day with no range is closed. A day with two ranges shows them one under the other, each on a line that never breaks, so no time is ever split across lines at any width. The open-now line, the highlighted weekday and the local time are worked out after the page has mounted, because the server does not know the reader's clock, so the markup always matches; until then the line is empty and nothing jumps. Every office also says its time zone in words, using the generic name so it never changes with daylight saving. The status reads Open now, until 18:00 or Closed, opens at 09:00, tomorrow or on a named weekday. The address, phone and email share one address element, the phone is a tel link and the email a mailto link. The list layout shows every office at once as rows; the tabs layout shows one at a time with its map beside the details. Pass now to pin the lines for a test, locale for weekday names and the zone name, and labels to translate every fixed word. The week is built here and not with OpeningHours, on purpose: it needs two ranges in a day, a zone for each office and a clock that is known only after mount, where OpeningHours takes finished text and a day index from you."
+    },
+    {
+      "name": "office-list-demo",
+      "type": "registry:example",
+      "title": "Office list demo",
+      "description": "A working preview of Office list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/office-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/office-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-lists",
+      "type": "registry:block",
+      "title": "Newsletter lists",
+      "description": "Let people choose what they get: several lists as checkbox cards with frequency, one email field and a button that says how many lists it subscribes to.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/newsletter-lists.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/newsletter-lists.tsx"
+        }
+      ],
+      "docs": "Pass the lists (an id, a name, one line, how often and an optional defaultChecked), an onSubmit that receives the address and the ids of the chosen lists, a title and an optional description, privacyHref and minSelected. Nothing is checked unless a list is marked defaultChecked, which is what consent rules ask for. Each list is a real checkbox in a card that outlines when chosen, with the frequency beside the name. With fewer than minSelected chosen the button is off and a hint says why; once enough are chosen the hint becomes a count, and because it is a polite status region the change is announced. The button says how many lists it will subscribe to. The address is checked in words before anything is sent, a failure keeps the choices and the address, turns the button into a retry and puts focus on it, and success replaces the form with a status message that repeats the chosen lists and takes focus so a screen reader reads it. defaultStatus error or done, with defaultEmail and the lists marked defaultChecked, shows the failure or the confirmation for a page that already knows the result; labels translates every fixed word and sentence. The cards are not CheckboxCards, on purpose: the check sits on the left beside the name and the frequency is a chip next to it, where CheckboxCards puts the check on the right and has no frequency."
+    },
+    {
+      "name": "newsletter-lists-demo",
+      "type": "registry:example",
+      "title": "Newsletter lists demo",
+      "description": "A working preview of Newsletter lists.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-lists.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-lists-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "thank-you-next-steps",
+      "type": "registry:block",
+      "title": "Thank-you next steps",
+      "description": "The page after a conversion: the confirmation, what happens next in order with timings, a copyable reference, and one or two things to do while waiting.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/thank-you-next-steps.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/thank-you-next-steps.tsx"
+        }
+      ],
+      "docs": "Pass a title that repeats what was done, a summary with the detail that matters, the steps (a label, an optional detail and when it happens), the follow-up actions and an optional reference such as a booking or order number. The title and summary are announced once when the page loads: a live region that is already full on arrival is not read, so a hidden polite status region is filled after mount. The reference is selectable and has a copy button that confirms in words and says so to a screen reader; if the browser refuses, a line says to copy it by hand and a screen reader hears it too. headingLevel goes from 1 to 4: use 1 when this block is the main content of the thank-you page. Steps are an ordered list joined by a hairline, with the timing as a chip that sits beside the step on a wide section and under it on a narrow one. The check mark is decoration. Name the reference through labels.reference, for example Booking reference or Order number; labels also translates the other fixed words. The block is not ResultState, on purpose: a thank-you page needs a page-level heading, ordered steps with timings and an announcement after mount, where ResultState is a centred panel with one description."
+    },
+    {
+      "name": "thank-you-next-steps-demo",
+      "type": "registry:example",
+      "title": "Thank-you next steps demo",
+      "description": "A working preview of Thank-you next steps.",
+      "registryDependencies": [
+        "https://rhsui.com/r/thank-you-next-steps.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/thank-you-next-steps-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "early-access-form",
+      "type": "registry:block",
+      "title": "Early access form",
+      "description": "A beta application that sorts the waitlist by fit: work email, role, team size and one optional sentence, with an invite code behind a link.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/early-access-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/early-access-form.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, the roles (a value and a label each, shown in the house select), the sizes (shown as a segmented control, so keep them short), a title, an optional description and a reviewTime such as We review applications every Friday. Work email, role and team size are required; what would you use it for is optional. A mistake is said in words beside its field once the reader has been there or tried to send, and the first one takes focus. The team size row carries its name, its invalid state and its sentence like every other field, and its rail turns destructive. The I have an invite code link reveals a code field and moves focus into it, and I do not have a code takes the field away again and gives focus back to the link, so a keyboard reader never loses their place; pass checkInviteCode to check it on the way out, and a code that does not work is a sentence under the field that keeps the rest of the form as it is, while a code that works skips the queue and the confirmation says so. onSubmit may be async: the button shows busy, a rejection keeps everything typed, shows the failure and puts focus back on the button, which is the retry, and success replaces the form with a status message that says what happens next and when and takes focus. defaultValues and defaultStatus done or invited show a state for a page that already knows it; labels translates every fixed word and error."
+    },
+    {
+      "name": "early-access-form-demo",
+      "type": "registry:example",
+      "title": "Early access form demo",
+      "description": "A working preview of Early access form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/early-access-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/early-access-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-packages",
+      "type": "registry:block",
+      "title": "Service packages",
+      "description": "Fixed-scope packages for agencies and consultants: the price, how long it takes, what you get and what you have to provide, in cards that line up row by row.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-packages.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-packages.tsx"
+        }
+      ],
+      "docs": "Pass two to four packages (an id, a name, a summary, the price as text, an optional from flag and price note, the duration, the deliverables, what the client provides, an action and an optional featured flag), a title, an optional description and a note for VAT and payment terms. Prices are real text in tabular figures and the duration is a visible fact. The you provide panel, access, content and a decision-maker, is what makes it a service package rather than a software plan; it is joined into a sentence in the locale you pass. One package can be marked featured, which gets a stronger border and a badge. The cards share their rows through a subgrid, so the prices, the durations, the dividers, the deliverables, the panels and the buttons line up from one card to the next, even when one price note runs to two lines, and the columns follow the count so no package is left alone in a row. The action is an object with a label and either an href or an onClick, and a long label wraps instead of spilling out of its card. labels translates the fixed words."
+    },
+    {
+      "name": "service-packages-demo",
+      "type": "registry:example",
+      "title": "Service packages demo",
+      "description": "A working preview of Service packages.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-packages.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-packages-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "refer-a-friend",
+      "type": "registry:block",
+      "title": "Refer a friend",
+      "description": "Customers invite friends: the deal in plain words, three steps, a personal link to copy, share options and a live count of invites, joins and credit.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/refer-a-friend.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/refer-a-friend.tsx"
+        }
+      ],
+      "docs": "Pass the offer (what the friend gets and what the customer gets, as text), the customer's link, their stats (invited, joined and the credit earned so far, formatted by you), the terms (a link and a line on when credit arrives, both required) and an optional onShare that receives copy, email or native. The heading, the three steps and the share message are written from the offer unless you pass your own title, steps or message. The link sits in a read-only field that selects on focus, with a copy button that confirms in words and says so to a screen reader, and says it to a screen reader too when the browser refuses. The field wraps the link instead of cutting it, on a phone as on a wide panel, so the personal part at its end is always readable; on a narrow section the button sits under the field at full width. The email action is a mailto link with the message and link filled in, and the device's share sheet is offered only where the browser has one, which is known after mount so the markup always matches. The three tallies are a description list in tabular figures with their labels, and locale formats the counts. On a wide section the offer and the steps sit beside the link panel; on a narrow one they stack. labels translates every fixed word, the default steps and the share message. The default steps and message are generic (a first purchase, a first payment); pass your own steps and message to tell one story, such as a first month and a next invoice. The field is not CopyField, on purpose: it needs a link that wraps, words you can translate and a read-only field that selects itself."
+    },
+    {
+      "name": "refer-a-friend-demo",
+      "type": "registry:example",
+      "title": "Refer a friend demo",
+      "description": "A working preview of Refer a friend.",
+      "registryDependencies": [
+        "https://rhsui.com/r/refer-a-friend.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/refer-a-friend-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ticket-tiers",
+      "type": "registry:block",
+      "title": "Ticket tiers",
+      "description": "Ticket types for an event with price, inclusions, how many are left and when the price rises, with sold out and not on sale yet designed as states.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/ticket-tiers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/ticket-tiers.tsx"
+        }
+      ],
+      "docs": "Pass the tiers (an id, a name, an optional description, the price in whole units, what is included, an optional remaining count, an optional saleStart and saleEnd as ISO times and an optional max per order), onSelect, and the currency, locale and timeZone prices and dates are written in. A tier that is sold out, ended or not on sale yet keeps its place with a disabled button and a clear label. An open tier shows how many are left, in the heavy style at or below lowStock, the date the price rises as a time element, a quantity stepper with the total, and a button that says how many tickets it buys. The stepper stops at the stock and at the limit per order; pressing plus at a limit keeps the button focusable and says why in words in a polite status line, which is also where the limit is stated before anyone hits it. Sale windows are judged on the reader's clock after mount, or on the now you pass. Until the clock is known, a tier that has a sale window shows as checking: no badge, a muted price and a disabled button that says Checking availability, so the server never renders a tier open that the browser would close. Pass now from the server and nothing is ever checking. A tier with no sale window is open straight away, and a sold-out one is sold out whatever the clock says. The badge has a row of its own above the name on every card, so names and descriptions line up however long a date is. The cards share their rows through a subgrid, so the prices, lists and buttons line up. The stepper is its own and not NumberInput, on purpose: its plus stays focusable at a limit and says why in words, where NumberInput disables its buttons and keeps them out of the tab order. labels translates the fixed words, Checking availability included."
+    },
+    {
+      "name": "ticket-tiers-demo",
+      "type": "registry:example",
+      "title": "Ticket tiers demo",
+      "description": "A working preview of Ticket tiers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ticket-tiers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ticket-tiers-demo.tsx",
           "type": "registry:example"
         }
       ]

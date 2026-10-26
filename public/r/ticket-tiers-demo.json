@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ticket-tiers-demo",
+  "title": "Ticket tiers demo",
+  "description": "A working preview of Ticket tiers.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ticket-tiers.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ticket-tiers-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { TicketTiers, type TicketSelection, type TicketTier } from \"@rhs-ui/marketing/ticket-tiers\";\n\nconst tiers: TicketTier[] = [\n  {\n    id: \"early-bird\",\n    name: \"Early bird\",\n    description: \"The lowest price, for the first hundred people.\",\n    price: 89,\n    includes: [\"Both conference days\", \"Lunch and coffee\", \"Recordings, a week after\"],\n    remaining: 0,\n    saleEnd: \"2026-09-30T21:59:00Z\",\n  },\n  {\n    id: \"standard\",\n    name: \"Standard\",\n    description: \"Everything you need for two days of talks.\",\n    price: 129,\n    includes: [\"Both conference days\", \"Lunch and coffee\", \"Recordings, a week after\", \"The attendee Slack\"],\n    remaining: 12,\n    // The end of 15 November in Amsterdam, so the line says the price rises on the day Late registration opens.\n    saleEnd: \"2026-11-15T23:00:00Z\",\n    max: 6,\n  },\n  {\n    id: \"patron\",\n    name: \"Patron\",\n    description: \"Support the event and meet the speakers.\",\n    price: 349,\n    includes: [\"Everything in Standard\", \"Speaker dinner on Thursday\", \"Front-row seating\", \"A named seat and a gift\"],\n    remaining: 3,\n    max: 2,\n  },\n  {\n    id: \"late\",\n    name: \"Late registration\",\n    description: \"Opens the moment Standard closes.\",\n    price: 169,\n    includes: [\"Both conference days\", \"Lunch and coffee\", \"Recordings, a week after\"],\n    saleStart: \"2026-11-15T23:00:00Z\",\n  },\n];\n\nexport default function Demo(): React.JSX.Element {\n  const [message, setMessage] = useState(\"\");\n  const choose = ({ tierId, quantity }: TicketSelection) => {\n    const tier = tiers.find((item) => item.id === tierId);\n    if (tier) setMessage(`${quantity} × ${tier.name} added to your order. Demo only: nothing is charged.`);\n  };\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">\n        Four ticket types, pinned to 28 October so every state shows: sold out, selling with a date the price rises, almost gone with a limit of two, and not open yet. Press plus on Patron at two to see the limit said in words. Leave `now` out and the\n        windows follow the reader&apos;s clock; until the page has loaded, a tier with a window reads Checking availability instead of guessing.\n      </p>\n      <TicketTiers\n        title=\"Tickets for Kestrel Summit\"\n        description=\"Two days in Rotterdam, 3 and 4 December. Prices rise in steps, and each step has its own number of seats.\"\n        tiers={tiers}\n        onSelect={choose}\n        currency=\"EUR\"\n        locale=\"en-GB\"\n        timeZone=\"Europe/Amsterdam\"\n        now=\"2026-10-28T12:00:00Z\"\n      />\n      <p role=\"status\" className=\"mt-8 min-h-6 text-center text-sm text-muted-foreground\">\n        {message}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

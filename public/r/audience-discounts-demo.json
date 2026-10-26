@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audience-discounts-demo",
+  "title": "Audience discounts demo",
+  "description": "A working preview of Audience discounts.",
+  "registryDependencies": [
+    "https://rhsui.com/r/audience-discounts.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/audience-discounts-demo.tsx",
+      "content": "import { IconGitBranch, IconGraduationCap, IconHeart, IconRocket } from \"@rhs-ui/icons\";\nimport { AudienceDiscounts } from \"@rhs-ui/marketing/audience-discounts\";\n\nconst startups = {\n  id: \"startups\",\n  audience: \"Startups\",\n  discount: \"50% off\",\n  duration: \"for your first year\",\n  eligibility: [\"Under $2M raised and less than five years old\", \"A company email address\", \"Not combined with another discount\"],\n  action: { label: \"Apply for the startup discount\", href: \"#startups\" },\n  icon: <IconRocket />,\n};\nconst students = {\n  id: \"students\",\n  audience: \"Students\",\n  discount: \"40% off\",\n  duration: \"for as long as you study\",\n  eligibility: [\"Enrolled at an accredited school or university\", \"A school email address or a current student card\", \"Renews each year with proof of study\"],\n  action: { label: \"Apply for the student discount\", href: \"#students\" },\n  icon: <IconGraduationCap />,\n};\nconst nonprofits = {\n  id: \"nonprofits\",\n  audience: \"Nonprofits\",\n  discount: \"30% off\",\n  duration: \"every year, no end date\",\n  // The word joiner (U+2060) keeps \"501(c)(3)\" in one piece: a line may not break between its brackets.\n  eligibility: [\"A registered charity or 501(c)\\u2060(3) organisation\", \"Up to 50 seats\", \"Not a department of a company\"],\n  action: { label: \"Apply for the nonprofit discount\", href: \"#nonprofits\" },\n  icon: <IconHeart />,\n};\nconst openSource = {\n  id: \"open-source\",\n  audience: \"Open source\",\n  discount: \"Free\",\n  duration: \"for maintainers, as long as the project is active\",\n  eligibility: [\"A public repository under an OSI-approved licence\", \"At least ten contributors or a hundred stars\", \"Commercial support is not sold with it\"],\n  action: { label: \"Apply as a maintainer\", href: \"#open-source\" },\n  icon: <IconGitBranch />,\n};\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">Four groups on a pricing page: the saving is the biggest thing on each card, and the buttons name the group</p>\n      <AudienceDiscounts\n        title=\"Pay less while you are building something small\"\n        description=\"Halcyon should not be the reason a good project waits. If you fit one of these, you do not need to ask.\"\n        programs={[startups, students, nonprofits, openSource]}\n        note=\"We check with a student email, a charity number or a short letter from your school. Most answers arrive within two working days.\"\n      />\n\n      <div className=\"mt-20 border-t border-border pt-12\">\n        <p className=\"mb-8 text-xs text-muted-foreground\">Three groups at the end of a billing screen, with no introduction</p>\n        <AudienceDiscounts headingLevel={3} title=\"Do you qualify for a discount?\" programs={[startups, students, nonprofits]} note=\"Applying does not change your current plan. Approved discounts start at your next invoice.\" />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

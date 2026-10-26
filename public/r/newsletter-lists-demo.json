@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-lists-demo",
+  "title": "Newsletter lists demo",
+  "description": "A working preview of Newsletter lists.",
+  "registryDependencies": [
+    "https://rhsui.com/r/newsletter-lists.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/newsletter-lists-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { NewsletterLists, type NewsletterList } from \"@rhs-ui/marketing/newsletter-lists\";\n\n/** A request that takes a moment and works, so the busy and success states can be seen by trying it. */\nconst subscribe = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nconst lists: NewsletterList[] = [\n  { id: \"weekly-digest\", name: \"Weekly digest\", description: \"The five best things we read, shipped or learned this week.\", frequency: \"Every Friday\" },\n  { id: \"product-updates\", name: \"Product updates\", description: \"What is new in Halcyon, and what it means for your workflow.\", frequency: \"Twice a month\" },\n  { id: \"engineering-notes\", name: \"Engineering notes\", description: \"Long reads from the team on performance, reliability and tooling.\", frequency: \"Monthly\" },\n  { id: \"customer-stories\", name: \"Customer stories\", description: \"How other teams run their projects, with their numbers.\", frequency: \"Every quarter\" },\n];\n\nconst copy = {\n  title: \"Choose what you get\",\n  description: \"Four newsletters, and you pick. Every one has an unsubscribe link, and you can change your mind later.\",\n  onSubmit: subscribe,\n  privacyHref: \"#privacy\",\n};\n\n/** The same lists with the ones a reader already asked for marked as defaults. */\nconst chosen = (...ids: string[]) => lists.map((list) => ({ ...list, defaultChecked: ids.includes(list.id) }));\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <div className=\"grid gap-x-12 gap-y-16 lg:grid-cols-2\">\n        <Example caption=\"Try it: nothing is checked and the button is off. Choose two lists, add an address, and subscribe\">\n          <NewsletterLists {...copy} lists={lists} />\n        </Example>\n        <div className=\"grid min-w-0 content-start gap-16\">\n          <Example caption=\"When sending fails: the choices and the address are kept, and the button tries again\">\n            <NewsletterLists {...copy} headingLevel={3} lists={chosen(\"product-updates\")} defaultEmail=\"maria@halcyon.studio\" defaultStatus=\"error\" />\n          </Example>\n          <Example caption=\"After subscribing: the confirmation takes the form's place, repeats the chosen lists and says what happens next\">\n            <NewsletterLists {...copy} headingLevel={3} lists={chosen(\"weekly-digest\", \"product-updates\")} defaultEmail=\"maria@halcyon.studio\" defaultStatus=\"done\" />\n          </Example>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
