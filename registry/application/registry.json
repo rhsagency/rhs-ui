@@ -1840,6 +1840,562 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "reaction-bar",
+      "type": "registry:component",
+      "title": "Reaction bar",
+      "description": "Emoji reactions under a message or comment: counts, your own pressed, who reacted on hover, and an add button with a palette you walk with arrow keys.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/toggle.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/reaction-bar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/reaction-bar/index.tsx"
+        },
+        {
+          "path": "registry/application/reaction-bar/palette.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/reaction-bar/palette.ts"
+        }
+      ],
+      "docs": "Keep reactions in state and update it in onToggle (applyReaction does the bookkeeping). The bar shows your press at once; if onToggle rejects it puts the count back and says so in words, and a request in flight blocks a second press on the same emoji. users lists the other people who reacted, so the tooltip can read 'You, Ana Reyes and 2 others'; it may hold only the first few names. max is the most different reactions one message can carry. disabled makes the bar read only: the chips keep full contrast, their tooltip and their place in the tab order (they are aria-disabled, not disabled) and only the add button is dimmed."
+    },
+    {
+      "name": "reaction-bar-demo",
+      "type": "registry:example",
+      "title": "Reaction bar demo",
+      "description": "A working preview of Reaction bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/reaction-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reaction-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inset-sidebar-shell",
+      "type": "registry:block",
+      "title": "Inset sidebar shell",
+      "description": "An app frame with the sidebar on the page background and the page as a bordered, rounded surface beside it, scrolling on its own under a breadcrumb header.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/breadcrumb.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/sheet.json",
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/skip-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/inset-sidebar-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/inset-sidebar-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/inset-sidebar-shell/mobile-menu.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/inset-sidebar-shell/mobile-menu.tsx"
+        },
+        {
+          "path": "registry/application/inset-sidebar-shell/main.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/inset-sidebar-shell/main.tsx"
+        }
+      ],
+      "docs": "Pass your navigation as nav (a SidebarNav is itself the navigation landmark), the account button as footer, and breadcrumbs and actions as header. The page scrolls inside the surface, so the sidebar never moves. Below md the sidebar opens as a left sheet from the menu button and closes when a link is followed. Below lg only the last breadcrumb stays, because the header has no room for a trail that would shrink to a few letters. The first pixels of a scrolled page fade under the header; at rest nothing fades, so padded={false} suits a full-bleed table. The shell is as tall as its container: it is h-dvh unless you pass a height in className. Pass linkAs for your router link and mainId when the page already uses id=main."
+    },
+    {
+      "name": "inset-sidebar-shell-demo",
+      "type": "registry:example",
+      "title": "Inset sidebar shell demo",
+      "description": "A working preview of Inset sidebar shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inset-sidebar-shell.json",
+        "https://rhsui.com/r/sidebar-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inset-sidebar-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "top-nav-shell",
+      "type": "registry:block",
+      "title": "Top navigation shell",
+      "description": "An app frame with the navigation along the top: brand, links with the current one marked, search, actions and account, then the page in a container.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/page-header.json",
+        "https://rhsui.com/r/search-trigger.json",
+        "https://rhsui.com/r/sheet.json",
+        "https://rhsui.com/r/skip-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/top-nav-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/top-nav-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/top-nav-shell/header.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/top-nav-shell/header.tsx"
+        },
+        {
+          "path": "registry/application/top-nav-shell/menu.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/top-nav-shell/menu.tsx"
+        }
+      ],
+      "docs": "Pass links with currentHref (the current link gets aria-current) and your router's Link as linkAs. search, actions and account are slots: from md (or lg, see collapse) they sit in the sticky header, and below that width the links, the search and the actions move into a sheet opened from the menu button while the account stays in the header. pageHeader takes the PageHeader props and is drawn at the top of the content. collapse sets where the row takes over from the menu: md (default) fits four short links next to a labelled action, and five links need collapse=\"lg\" (they want about 820px). With the default, a SearchTrigger shrinks to its icon between md and lg so the row never crowds. The menu closes by itself if the window grows past that width, and the search fills the menu whatever width class it carries. The header gets its bottom border once the page scrolls, measured with an IntersectionObserver. width sets the container to 72rem (default), 80rem or the whole width. Five areas or fewer fit the row; beyond that use a sidebar shell."
+    },
+    {
+      "name": "top-nav-shell-demo",
+      "type": "registry:example",
+      "title": "Top navigation shell demo",
+      "description": "A working preview of Top navigation shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-trigger.json",
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/top-nav-shell.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/top-nav-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "settings-shell",
+      "type": "registry:block",
+      "title": "Settings shell",
+      "description": "A settings layout: grouped side navigation, a page title and a focused content column, with the nav becoming a scrolling tab row on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/page-header.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/sidebar-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/settings-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/settings-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/settings-shell/tab-row.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/settings-shell/tab-row.tsx"
+        }
+      ],
+      "docs": "Pass groups (labelled lists of links, the SidebarNav shape) with currentHref, plus title, description and actions for the page. backHref adds a Back to app link. The children are the sections of the page: they are stacked with one gap in a column of at most 42rem. From md the navigation sticks under the top of the viewport; on a phone the groups become a row of links that scrolls sideways with faded edges and the current page is scrolled into view. Pass linkAs for your router link."
+    },
+    {
+      "name": "settings-shell-demo",
+      "type": "registry:example",
+      "title": "Settings shell demo",
+      "description": "A working preview of Settings shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/connected-accounts.json",
+        "https://rhsui.com/r/email-addresses-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/privacy-settings-section.json",
+        "https://rhsui.com/r/settings-shell.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/settings-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filter-rail-shell",
+      "type": "registry:block",
+      "title": "Filter rail shell",
+      "description": "A layout for any list narrowed by filters: a rail of filter groups, a results toolbar, removable chips, an announced count and a sheet on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/filter-rail-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/filter-rail-shell/index.tsx"
+        }
+      ],
+      "docs": "filters is a list of groups ({ id, label, activeCount, children }): the shell draws them as collapsible sections, in the rail from lg and in a sheet below it, and never renders both copies at once so no id or label exists twice. chips are the active filters ({ id, label, onRemove }); onClearAll drives Clear all in the row and Clear in the sheet; after Clear in the sheet focus moves to Show N results, so it never leaves the dialog. resultCount is shown, announced politely when it changes (from the page, or from the sheet while it is open, since a modal hides the page from screen readers) and written on the sheet's Show N results button. toolbar holds your sort and view toggle. open and onOpenChange control the sheet if you need to. Keep the filter state in the page, the shell holds none of it."
+    },
+    {
+      "name": "filter-rail-shell-demo",
+      "type": "registry:example",
+      "title": "Filter rail shell demo",
+      "description": "A working preview of Filter rail shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/filter-rail-shell.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/range-slider.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filter-rail-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wizard-shell",
+      "type": "registry:block",
+      "title": "Wizard shell",
+      "description": "The frame for a multi-step task: a top bar with save and exit, a step rail, the step content and a sticky footer with Back and Continue.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/skip-link.json",
+        "https://rhsui.com/r/stepper.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/wizard-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/wizard-shell/index.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-step-in": "rhs-step-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+        }
+      },
+      "css": {
+        "@keyframes rhs-step-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(6px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      },
+      "docs": "Pass steps ({ title, description }), the current index and onContinue; you decide what comes next in your own state. titleAs makes the step heading an h1 (the default, because the step is the page) or an h2. The step's heading takes focus whenever current changes (never on first render), so the new step is announced; finished steps in the rail call onStepChange. Set canContinue to false with canContinueReason and the footer shows that sentence instead of a dead button; on a phone it gets a row of its own above the buttons. onContinue may return a promise: the button shows a spinner until it settles, and errors are yours to handle inside it. onSkip adds Skip for now, onExit adds Save and exit, help is a slot in the header. The last step's button says Finish unless you set continueLabel. The step fades in when it changes (not under reduced motion)."
+    },
+    {
+      "name": "wizard-shell-demo",
+      "type": "registry:example",
+      "title": "Wizard shell demo",
+      "description": "A working preview of Wizard shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/result-state.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/wizard-shell.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wizard-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dashboard-shell",
+      "type": "registry:block",
+      "title": "Dashboard shell",
+      "description": "A dashboard frame with named areas: a header with filters, a KPI strip, a main area, a side column and a full-width table zone.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/auto-grid.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/page-header.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/dashboard-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/dashboard-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/dashboard-shell/updated-at.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/dashboard-shell/updated-at.tsx"
+        }
+      ],
+      "docs": "Fill the areas you have: kpis, main, side and table are slots, and an empty one leaves no hole (main takes the full width when there is no side). From lg they sit in four columns, below it in reading order. filters is the content of a bar under the title (a period picker, quick filters) that sticks to the top from md up and scrolls away on a phone; updatedAt adds Updated 2 minutes ago, on a row of its own on a phone, written as a full date on the server and turned relative in the browser, with locale and timeZone. Every area is a labelled region; rename them with labels. loading shows a skeleton in each area you filled. Charts are yours: drop them into the slots. Set --sticky-top when a fixed header sits above."
+    },
+    {
+      "name": "dashboard-shell-demo",
+      "type": "registry:example",
+      "title": "Dashboard shell demo",
+      "description": "A working preview of Dashboard shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/auto-grid.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/dashboard-shell.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dashboard-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "focus-shell",
+      "type": "registry:block",
+      "title": "Focus shell",
+      "description": "A distraction-free frame for one task: a minimal header, a single centred column, a quiet footer and a clear way out.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/skip-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/focus-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/focus-shell/index.tsx"
+        }
+      ],
+      "docs": "brand sits left in the header and exit (a link back or a close button) right; a ghost Button there is pulled out by its own padding so its text ends on the margin. The column is 24rem (narrow), 32rem (default) or 44rem (wide); align is center or top. footer takes the legal links and language the language switcher. The page is min-h-dvh, never a fixed 100vh: the column is centred with auto margins while there is room and starts at the top when there is not, so the page scrolls normally on a short screen or with the keyboard open. A skip link points at the one main landmark (mainId)."
+    },
+    {
+      "name": "focus-shell-demo",
+      "type": "registry:example",
+      "title": "Focus shell demo",
+      "description": "A working preview of Focus shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/focus-shell.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/focus-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mobile-tab-shell",
+      "type": "registry:block",
+      "title": "Mobile tab shell",
+      "description": "A phone-first app frame: a top bar with title and back, scrolling content and a bottom tab bar that respects the home indicator.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/bottom-nav.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/notification-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/mobile-tab-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/mobile-tab-shell/index.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-step-in": "rhs-step-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+        }
+      },
+      "css": {
+        "@keyframes rhs-step-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(6px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      },
+      "docs": "Give it a title, three to five tabs ({ id, label, icon, badge }) and the id of the active one. Tabs are real links with aria-current: pass onTabChange to switch screens in state, or leave it out and give each tab an href. The title is large at the top of the content and moves into the app bar once it has scrolled out of view; onBack adds a back button, actions fills the right of the bar, fab floats a round button above the tab bar. The content scrolls on its own with overscroll-contain and ends where the tab bar begins. screenKey (default the active tab) says when the screen has changed: the content then starts at the top and fades in, and the new title takes focus so the change is announced (never on the first render, and not when a tab was pressed, which keeps its focus). The bar clears the notch and the home indicator with env(safe-area-inset-*). From md up the screen is 390px wide and centred; pass a height in className to size it."
+    },
+    {
+      "name": "mobile-tab-shell-demo",
+      "type": "registry:example",
+      "title": "Mobile tab shell demo",
+      "description": "A working preview of Mobile tab shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/mobile-tab-shell.json",
+        "https://rhsui.com/r/notification-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mobile-tab-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

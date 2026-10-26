@@ -60,6 +60,7 @@ own `meta.version` and are listed when they change.
 - Commerce, 9 more: `kitchen-ticket`, `bank-transfer-details`, `seller-card`, `care-instructions`, `grade-scale`, `order-matrix`, `shipment-group`, `dimension-diagram`, `refund-tracker`.
 - Marketing, 10 more: `directions-by-mode`, `allergen-matrix`, `founder-letter`, `values-rows`, `topic-hub`, `key-takeaways`, `article-series-outline`, `interview-layout`, `version-support-table`, `open-source-credits`.
 - Application, 9 more: `like-button`, `vote-buttons`, `watch-button`, `approval-buttons`, `social-sign-in-buttons`, `translate-toggle`, `use-location-button`, `keep-awake-toggle`, `listen-button`.
+- Application, 9 more: `reaction-bar`, `inset-sidebar-shell`, `top-nav-shell`, `settings-shell`, `filter-rail-shell`, `wizard-shell`, `dashboard-shell`, `focus-shell`, `mobile-tab-shell`.
 
 ## Unreleased (0.7.0)
 
