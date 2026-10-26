@@ -145,15 +145,18 @@ export function UseLocationButton({
       if (permission.state !== "denied") setStatus((current) => (current === "denied" ? "idle" : current));
     };
     // Not every browser has the Permissions API, or answers for geolocation: then the first press finds out.
-    navigator.permissions
-      ?.query({ name: "geolocation" })
-      .then((result) => {
-        if (!live) return;
-        permission = result;
-        sync();
-        result.addEventListener("change", sync);
-      })
-      .catch(() => undefined);
+    // A geolocation of your own (a native shell, a simulation) decides for itself: the browser's
+    // permission for the page says nothing about it.
+    if (!geolocation)
+      navigator.permissions
+        ?.query({ name: "geolocation" })
+        .then((result) => {
+          if (!live) return;
+          permission = result;
+          sync();
+          result.addEventListener("change", sync);
+        })
+        .catch(() => undefined);
     return () => {
       live = false;
       turn.current += 1;

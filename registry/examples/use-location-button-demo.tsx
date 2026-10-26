@@ -51,7 +51,7 @@ function StoreFinder(): React.JSX.Element {
           </Label>
           <Input id="store-postcode" placeholder="Postcode, like 1012 AB" autoComplete="postal-code" />
         </div>
-        <UseLocationButton onLocate={setHere} />
+        <UseLocationButton onLocate={setHere} geolocation={ENGINES.found} />
       </div>
       <ul className="mt-5 divide-y divide-border border-t border-border">
         {rows.map(({ store, km }) => (
@@ -111,7 +111,7 @@ function PressOnce({ children }: { children: ReactNode }): React.JSX.Element {
 export default function Demo(): React.JSX.Element {
   return (
     <div className="grid w-full max-w-2xl gap-9">
-      <Example caption="A store finder. Press the button (the browser asks first) and the stores sort by distance. The position never leaves the page.">
+      <Example caption="A store finder. Press the button and the stores sort by distance; in your app the browser asks first, here a simulation answers. The position never leaves the page.">
         <StoreFinder />
       </Example>
 
