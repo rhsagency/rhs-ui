@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magic-link-sign-in-demo",
+  "title": "Magic link sign-in demo",
+  "description": "A working preview of Magic link sign-in.",
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/magic-link-sign-in.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/magic-link-sign-in-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { MagicLinkSignIn, type MagicLinkRequest } from \"@rhs-ui/application/magic-link-sign-in\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nasync function requestLink({ email }: MagicLinkRequest): Promise<void> {\n  await wait(900);\n  // The request itself fails, not the address: an address with \"offline\" in it shows the retry message.\n  if (email.includes(\"offline\")) throw new Error(\"The mail service did not answer.\");\n}\n\nfunction Terms(): React.JSX.Element {\n  return (\n    <p className=\"text-xs leading-relaxed\">\n      By continuing you agree to the{\" \"}\n      <a href=\"#terms\" className=\"rounded-sm underline underline-offset-4 outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n        Terms\n      </a>{\" \"}\n      and the{\" \"}\n      <a href=\"#privacy\" className=\"rounded-sm underline underline-offset-4 outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n        Privacy policy\n      </a>\n      .\n    </p>\n  );\n}\n\nfunction Step({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <figure className=\"grid gap-3\">\n      <figcaption className=\"text-center text-xs text-muted-foreground\">{caption}</figcaption>\n      {children}\n    </figure>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [opened, setOpened] = useState(false);\n  const [note, setNote] = useState(\"\");\n\n  return (\n    <div className=\"mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:px-6\">\n      <div className=\"grid gap-10 lg:grid-cols-2 lg:items-start\">\n        <Step caption=\"Ask for a link\">\n          <MagicLinkSignIn titleAs=\"h2\" onRequestLink={requestLink} onUsePassword={() => setNote(\"Opening the password sign-in.\")} footer={<Terms />} />\n        </Step>\n        <Step caption=\"The link is sent: the wait starts, and the resend button counts it down\">\n          <MagicLinkSignIn\n            titleAs=\"h2\"\n            defaultEmail=\"anna@northwind.studio\"\n            defaultSent\n            signedIn={opened}\n            onRequestLink={requestLink}\n            onUsePassword={() => setNote(\"Opening the password sign-in.\")}\n            onSignedIn={() => setNote(\"Continuing to the app.\")}\n          />\n        </Step>\n      </div>\n      <div className=\"flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs text-muted-foreground\">\n        <Button size=\"sm\" variant=\"outline\" onClick={() => setOpened((value) => !value)}>\n          {opened ? \"Show the confirmation again\" : \"Pretend the link was opened in another tab\"}\n        </Button>\n        <p aria-live=\"polite\">{note || \"Preview tip: an address with offline in it makes the request fail once, so the retry message shows.\"}</p>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

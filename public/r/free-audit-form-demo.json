@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "free-audit-form-demo",
+  "title": "Free audit form demo",
+  "description": "A working preview of Free audit form.",
+  "registryDependencies": [
+    "https://rhsui.com/r/free-audit-form.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/free-audit-form-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { FreeAuditForm } from \"@rhs-ui/marketing/free-audit-form\";\n\n/** A request that takes a moment and works, so the busy and success states can be seen by trying it. */\nconst requestAudit = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nconst copy = {\n  title: \"Find out what is holding your site back\",\n  description: \"Send us your address and we review speed, search visibility and the basics of accessibility. A person reads every result before it reaches you.\",\n  points: [\n    \"Page speed on a phone and on a laptop\",\n    \"Search basics: titles, headings, redirects and indexing\",\n    \"Accessibility problems a quick scan can catch\",\n    \"Three fixes, ranked by how much they would change\",\n  ],\n  turnaround: \"Report within 24 hours\",\n  consent: (\n    <>\n      We use your email to send the report and one follow-up. No newsletter.{\" \"}\n      <a href=\"#privacy\" className=\"rounded-sm text-foreground underline decoration-foreground/40 underline-offset-4 outline-none hover:decoration-current focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n        Privacy policy\n      </a>\n    </>\n  ),\n  onSubmit: requestAudit,\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Try it: type northwind.co/pricing and leave the field, and the address is tidied to what will be sent\">\n        <FreeAuditForm {...copy} />\n      </Example>\n      <div className=\"mt-16 border-t border-border pt-12\">\n        <Example caption=\"After sending: what was received, and when the report arrives\">\n          <FreeAuditForm {...copy} headingLevel={3} defaultStatus=\"done\" defaultValues={{ url: \"https://northwind.co/pricing\", email: \"maria@halcyon.studio\" }} />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

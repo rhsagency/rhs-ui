@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "welcome-offer-signup-demo",
+  "title": "Welcome offer signup demo",
+  "description": "A working preview of Welcome offer signup.",
+  "registryDependencies": [
+    "https://rhsui.com/r/welcome-offer-signup.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/welcome-offer-signup-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { WelcomeOfferSignup, type WelcomeOfferResult } from \"@rhs-ui/marketing/welcome-offer-signup\";\n\nconst offer = {\n  title: \"10% off your first order\",\n  description: \"Join the Kestrel list and we show your code right away: for your first bag of beans, and for whatever else we roast.\",\n  terms: [\"Minimum spend €25\", \"Valid for 30 days after you sign up\", \"One use per customer, not combinable with other codes\"],\n};\n\nconst consent = (\n  <>\n    You agree to marketing emails from Kestrel Coffee. Leave with one click, any time.{\" \"}\n    <a href=\"#privacy\" className=\"rounded-sm text-foreground underline decoration-foreground/40 underline-offset-4 outline-none hover:decoration-current focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n      Privacy policy\n    </a>\n  </>\n);\n\n/** The code only comes back with the response. This address is already on the list, so it gets the same code and a welcome back. */\nfunction issueCode(email: string): Promise<WelcomeOfferResult> {\n  const known = email.toLowerCase() === \"maria@halcyon.studio\";\n  return new Promise((resolve) => setTimeout(() => resolve(known ? { code: \"KESTREL10\", returning: true } : { code: \"KESTREL10\" }), 800));\n}\n\nconst shared = { offer, consent, onSubmit: issueCode, action: { href: \"#shop\" } } as const;\n\n/** A column that fills its row, so two examples side by side end on the same line. */\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"flex min-w-0 flex-col\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Try it: any address shows the code, and maria@halcyon.studio is already on the list and is welcomed back\">\n        <WelcomeOfferSignup {...shared} />\n      </Example>\n      <div className=\"mt-16 grid gap-x-8 gap-y-14 border-t border-border pt-12 lg:grid-cols-2\">\n        <Example caption=\"After signing up: the code to copy, the conditions and the way back to the shop\">\n          <WelcomeOfferSignup {...shared} headingLevel={3} className=\"flex-1\" defaultResult={{ email: \"sam@halcyon.studio\", code: \"KESTREL10\" }} />\n        </Example>\n        <Example caption=\"A returning subscriber: the same path, with Welcome back wording\">\n          <WelcomeOfferSignup {...shared} headingLevel={3} className=\"flex-1\" defaultResult={{ email: \"maria@halcyon.studio\", code: \"KESTREL10\", returning: true }} />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

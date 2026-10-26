@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "booking-summary-demo",
+  "title": "Booking summary demo",
+  "description": "A working preview of Booking summary.",
+  "registryDependencies": [
+    "https://rhsui.com/r/booking-summary.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/booking-summary-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { BookingSummary, type BookingPart } from \"@rhs-ui/commerce/booking-summary\";\n\nconst PARTS: Record<BookingPart, string> = {\n  service: \"the service\",\n  datetime: \"the date and time\",\n  staff: \"who you book with\",\n  location: \"the location\",\n  notes: \"your notes\",\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [editing, setEditing] = useState<BookingPart | null>(null);\n\n  return (\n    <div className=\"grid w-full max-w-4xl min-w-0 gap-x-8 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr))]\">\n      <Example caption=\"Last step of the flow: every row has its own edit link\">\n        <div className=\"grid gap-3\">\n          <BookingSummary\n            service={{ name: \"Deep tissue massage\", detail: \"Treatment room 2, towels included\" }}\n            start=\"2026-11-03T10:00:00+01:00\"\n            duration={60}\n            staff={{ name: \"Marit de Vries\", role: \"Senior therapist\" }}\n            location={{ name: \"Halcyon Studio Amsterdam\", address: [\"Keizersgracht 214\", \"1016 DX Amsterdam\"] }}\n            price={{ amount: 9500, currency: \"EUR\", note: \"VAT included. You pay at the studio.\" }}\n            policy=\"Free cancellation until 24 hours before your visit. After that the full price is charged.\"\n            locale=\"en-GB\"\n            timeZone=\"Europe/Amsterdam\"\n            onEdit={setEditing}\n          />\n          <p role=\"status\" className=\"min-h-5 text-xs text-muted-foreground\">\n            {editing ? `Going back to change ${PARTS[editing]}.` : \"Press an edit link to see what it reports.\"}\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"Confirmation page: the same summary, final and read-only, with the reference\">\n        <BookingSummary\n          confirmed\n          reference=\"NW-48213\"\n          service={{ name: \"Colour and cut\", detail: \"Includes wash and style\" }}\n          start=\"2026-11-12T14:30:00+01:00\"\n          duration={150}\n          staff={{ name: \"Sofia Marchetti\", role: \"Colour specialist\" }}\n          location={{ name: \"Northwind Salon Utrecht\", address: [\"Oudegracht 112\", \"3511 AV Utrecht\"] }}\n          notes=\"Allergic to ammonia-based dyes.\"\n          price={{ amount: 14800, currency: \"EUR\", note: \"VAT included. Paid online.\" }}\n          policy=\"Free changes until 48 hours before. Cancelling later costs half the price.\"\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

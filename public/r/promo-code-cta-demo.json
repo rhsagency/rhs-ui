@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "promo-code-cta-demo",
+  "title": "Promo code CTA demo",
+  "description": "A working preview of Promo code CTA.",
+  "registryDependencies": [
+    "https://rhsui.com/r/promo-code-cta.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/promo-code-cta-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { PromoCodeCta } from \"@rhs-ui/marketing/promo-code-cta\";\n\n/**\n * The clock is fixed, so the three examples stay in the state their captions describe whatever day this page is read,\n * and the first paint on the server is the same as in the browser. On a real page leave `now` out when the page is built\n * once, or pass the request's time when it is rendered per request.\n */\nconst shared = {\n  locale: \"en-GB\",\n  timeZone: \"Europe/Amsterdam\",\n  terms: \"#terms\",\n  now: \"2026-10-26T09:00:00Z\",\n} as const;\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <div className=\"grid gap-y-14\">\n        <Example caption=\"While it runs: the headline, the conditions, a real end date with its time zone, the terms and a code to copy\">\n          <PromoCodeCta\n            {...shared}\n            title=\"20 percent off annual plans\"\n            description=\"Switch to annual billing and keep the discount for your whole first year. It applies to the Team and Business plans.\"\n            code=\"ANNUAL20\"\n            endsAt=\"2027-06-30\"\n            action={{ label: \"Choose annual billing\", href: \"#pricing\" }}\n          />\n        </Example>\n        <Example caption=\"After the end date: the band says so and the code is gone from the page\">\n          <PromoCodeCta\n            {...shared}\n            title=\"Early bird: 30 percent off the first year\"\n            description=\"Applied to every plan for teams that joined before the end of March.\"\n            code=\"EARLYBIRD30\"\n            endsAt=\"2026-03-31\"\n            action={{ label: \"See pricing\", href: \"#pricing\" }}\n          />\n        </Example>\n        <Example caption=\"Smallest form: a headline, a code, a date and the terms\">\n          <PromoCodeCta {...shared} headingLevel={3} title=\"Free delivery on orders over €50\" code=\"DELIVERY50\" endsAt=\"2027-01-15T22:59:00Z\" />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

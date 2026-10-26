@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "passkey-sign-in-demo",
+  "title": "Passkey sign-in demo",
+  "description": "A working preview of Passkey sign-in.",
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/passkey-sign-in.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/passkey-sign-in-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { PasskeySignIn, type PasskeyError, type PasskeyFallback } from \"@rhs-ui/application/passkey-sign-in\";\nimport { IconCheck } from \"@rhs-ui/icons\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nfunction Step({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <figure className=\"grid gap-3\">\n      <figcaption className=\"text-center text-xs text-muted-foreground\">{caption}</figcaption>\n      {children}\n    </figure>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [error, setError] = useState<PasskeyError | null>(null);\n  const [note, setNote] = useState(\"\");\n  const [attempt, setAttempt] = useState(0);\n\n  const fallbacks: readonly PasskeyFallback[] = [\n    { id: \"password\", label: \"Use a password instead\", onSelect: () => setNote(\"Opening the password sign-in.\") },\n    { id: \"link\", label: \"Email me a link\", onSelect: () => setNote(\"Opening the email link sign-in.\") },\n  ];\n\n  return (\n    <div className=\"mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:px-6\">\n      <div className=\"grid gap-10 lg:grid-cols-2 lg:items-start\">\n        <Step caption=\"Passkey first: press the button\">\n          <PasskeySignIn\n            titleAs=\"h2\"\n            fallbacks={fallbacks}\n            error={error}\n            onPasskey={async () => {\n              setError(null);\n              setNote(\"\");\n              await wait(1600);\n              // The first press ends as a cancelled prompt, so the error shows; the second one signs in.\n              if (attempt === 0) {\n                setAttempt(1);\n                setError(\"cancelled\");\n                return;\n              }\n              setAttempt(0);\n              setNote(\"Signed in with a passkey. In your app this is where the redirect happens.\");\n            }}\n          />\n        </Step>\n\n        <Step caption=\"Waiting for the browser prompt\">\n          <PasskeySignIn titleAs=\"h2\" busy fallbacks={fallbacks} defaultEmail=\"anna@northwind.studio\" onPasskey={() => undefined} />\n        </Step>\n\n        <Step caption=\"No passkey on this device\">\n          <PasskeySignIn titleAs=\"h2\" error=\"not-found\" fallbacks={fallbacks} onPasskey={() => undefined} />\n        </Step>\n\n        <Step caption=\"A browser without passkeys\">\n          <PasskeySignIn titleAs=\"h2\" supported={false} fallbacks={fallbacks} onPasskey={() => undefined} />\n        </Step>\n      </div>\n\n      <p aria-live=\"polite\" className=\"flex min-h-5 items-center justify-center gap-2 text-center text-xs text-muted-foreground\">\n        {note ? (\n          <>\n            <IconCheck className=\"size-3.5 shrink-0 text-foreground\" />\n            {note}\n          </>\n        ) : (\n          \"Press the button in the first card: it waits for your device, ends once as a closed prompt, and signs in on the second press. Click the word passkey for its explanation.\"\n        )}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

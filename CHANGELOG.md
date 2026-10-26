@@ -74,6 +74,9 @@ own `meta.version` and are listed when they change.
 - Commerce, 8 more: `warranty-registration`, `product-passport`, `product-safety-info`, `ranked-product-list`, `age-verification-gate`, `payment-plan-picker`, `price-transparency`, `sample-request`.
 - Application, 10 more: `member-row`, `integration-card`, `event-chip`, `week-strip`, `feature-gate`, `activity-entry`, `time-tracker`, `checklist-card`, `note-card`, `inbox-row`.
 - Marketing, 9 more: `credit-packs`, `rate-card`, `cohort-signup`, `webinar-signup`, `rsvp-form`, `booking-bar`, `upgrade-prompt`, `paywall-gate`, `call-us-section`.
+- Commerce, 9 more: `plan-card`, `booking-summary`, `coupon-card`, `room-card`, `course-card`, `price-quote-card`, `flight-card`, `payment-card-preview`, `discount-field`.
+- Marketing, 9 more: `coverage-check`, `free-audit-form`, `contact-faq-split`, `welcome-offer-signup`, `email-course-signup`, `newsletter-preview`, `promo-code-cta`, `app-download-qr`, `cta-photo-split`.
+- Application, 11 more: `typing-indicator`, `reply-summary`, `help-launcher`, `call-log-row`, `chat-header`, `sla-timer`, `attendee-list`, `task-relations`, `two-column-sign-in`, `magic-link-sign-in`, `passkey-sign-in`.
 
 ## Unreleased (0.7.0)
 

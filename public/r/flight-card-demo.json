@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flight-card-demo",
+  "title": "Flight card demo",
+  "description": "A working preview of Flight card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/flight-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/flight-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { FlightCard, type FlightAirport } from \"@rhs-ui/commerce/flight-card\";\n\nconst AMS: FlightAirport = { code: \"AMS\", city: \"Amsterdam\", timeZone: \"Europe/Amsterdam\" };\nconst LIS: FlightAirport = { code: \"LIS\", city: \"Lisbon\", timeZone: \"Europe/Lisbon\" };\nconst ZRH: FlightAirport = { code: \"ZRH\", city: \"Zurich\", timeZone: \"Europe/Zurich\" };\nconst SIN: FlightAirport = { code: \"SIN\", city: \"Singapore\", timeZone: \"Asia/Singapore\" };\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [chosen, setChosen] = useState<\"cheap\" | \"stop\" | \"fast\">(\"fast\");\n\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 gap-8\">\n      <Example caption=\"Direct: hover or tap a time to see its zone. Flight details lists the flight\">\n        <FlightCard\n          badge=\"Cheapest\"\n          segments={[{ from: AMS, to: LIS, departure: \"2026-11-14T08:25:00+01:00\", arrival: \"2026-11-14T10:15:00+00:00\", carrier: \"Halcyon Air\", flightNumber: \"HA 2214\" }]}\n          price={17900}\n          priceNote=\"per person\"\n          cabin=\"Economy\"\n          baggage=\"Cabin bag only\"\n          selected={chosen === \"cheap\"}\n          onSelect={() => setChosen(\"cheap\")}\n          locale=\"en-GB\"\n        />\n      </Example>\n\n      <Example caption=\"One stop, landing the next day: the stop in words, the layover between the flights, and +1 day\">\n        <FlightCard\n          segments={[\n            { from: AMS, to: ZRH, departure: \"2026-11-14T19:10:00+01:00\", arrival: \"2026-11-14T20:35:00+01:00\", carrier: \"Kestrel Airways\", flightNumber: \"KA 1176\" },\n            { from: ZRH, to: SIN, departure: \"2026-11-14T21:55:00+01:00\", arrival: \"2026-11-15T17:30:00+08:00\", carrier: \"Kestrel Airways\", flightNumber: \"KA 52\" },\n          ]}\n          price={74800}\n          priceNote=\"per person\"\n          cabin=\"Premium economy\"\n          baggage=\"2 checked bags included\"\n          selected={chosen === \"stop\"}\n          onSelect={() => setChosen(\"stop\")}\n          locale=\"en-GB\"\n        />\n      </Example>\n\n      <Example caption=\"Chosen: a heavier border and a button that says so\">\n        <FlightCard\n          badge=\"Fastest\"\n          segments={[{ from: AMS, to: LIS, departure: \"2026-11-14T12:40:00+01:00\", arrival: \"2026-11-14T14:20:00+00:00\", carrier: \"Northwind Air\", flightNumber: \"NW 441\" }]}\n          price={20400}\n          priceNote=\"per person\"\n          cabin=\"Economy\"\n          baggage=\"1 checked bag included\"\n          selected={chosen === \"fast\"}\n          onSelect={() => setChosen(\"fast\")}\n          locale=\"en-GB\"\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

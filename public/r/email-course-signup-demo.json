@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "email-course-signup-demo",
+  "title": "Email course signup demo",
+  "description": "A working preview of Email course signup.",
+  "registryDependencies": [
+    "https://rhsui.com/r/email-course-signup.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/email-course-signup-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { EmailCourseSignup, type CourseLesson } from \"@rhs-ui/marketing/email-course-signup\";\n\nconst lessons: CourseLesson[] = [\n  { day: 1, title: \"The one metric that matters\", takeaway: \"Choose the single number that tells you whether your price is working, and stop watching the rest.\" },\n  { day: 2, title: \"What customers would actually pay\", takeaway: \"Three questions that surface a real number instead of a polite one.\" },\n  { day: 3, title: \"The middle plan does the work\", takeaway: \"Why the plan you want people to choose goes second, and how to show it.\" },\n  { day: 4, title: \"Raising prices without losing people\", takeaway: \"A message to send, a date to give and what to say to the ones who push back.\" },\n  { day: 5, title: \"A pricing page you can ship on Friday\", takeaway: \"Turn the four lessons into one page, with a checklist to test it before it goes live.\" },\n];\n\nconst shared = {\n  lessons,\n  title: \"Price your software in five emails\",\n  description: \"One short email a day, each with one idea and one exercise. Written for founders who set a price once, on a guess, and never looked at it again.\",\n  duration: \"5 minutes a day\",\n  privacyHref: \"#privacy\",\n  locale: \"en-GB\",\n  timeZone: \"Europe/Amsterdam\",\n} as const;\n\n/** Tomorrow as a plain day, the way a server that sends in the morning would answer. */\nconst enrol = () =>\n  new Promise<{ firstLessonAt: string }>((resolve) =>\n    setTimeout(() => resolve({ firstLessonAt: new Date(Date.now() + 86_400_000).toISOString().slice(0, 10) }), 800),\n  );\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Try it: the outline is a real ordered list, and signing up tells you the day Day 1 arrives\">\n        <EmailCourseSignup {...shared} onSubmit={enrol} />\n      </Example>\n      <div className=\"mt-16 border-t border-border pt-12\">\n        <Example caption=\"When your server names the time, the confirmation says it, with the time zone\">\n          <EmailCourseSignup\n            {...shared}\n            headingLevel={3}\n            title=\"Price your software in three emails\"\n            lessons={lessons.slice(0, 3)}\n            onSubmit={enrol}\n            defaultStatus=\"done\"\n            defaultValue=\"maria@halcyon.studio\"\n            defaultStart={{ firstLessonAt: \"2026-10-29T07:00:00+01:00\" }}\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

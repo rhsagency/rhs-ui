@@ -3728,6 +3728,564 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "typing-indicator",
+      "type": "registry:component",
+      "title": "Typing indicator",
+      "description": "Who is writing right now, in words and three pulsing dots, handling one, two or many people and speaking up politely at most once every few seconds.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/loading-dots.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/typing-indicator.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/typing-indicator.tsx"
+        }
+      ],
+      "docs": "Pass people as the list of names writing right now; the sentence follows it: Anna is typing, Anna and Tom are typing, Anna, Tom and 2 others are typing. max is how many names are spelled out (default 2) and one person too many is always named, so and 1 other never appears. label is the activity after is or are (default typing, or replying, or recording a voice message). With nobody writing the line fades out and keeps its height, so the thread above never jumps. The drawn line changes at once; the spoken copy is a polite status that waits announceEvery milliseconds (default 4000) between announcements. labels translates is, are, and and others."
+    },
+    {
+      "name": "typing-indicator-demo",
+      "type": "registry:example",
+      "title": "Typing indicator demo",
+      "description": "A working preview of Typing indicator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/typing-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/typing-indicator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reply-summary",
+      "type": "registry:component",
+      "title": "Reply summary",
+      "description": "A \"5 replies, last reply 2 hours ago\" link with a small avatar stack that opens the thread, for message and comment lists.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/reply-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/reply-summary.tsx"
+        }
+      ],
+      "docs": "Put it under a message or comment. replies is the count (fewer than one draws nothing), repliers the people who replied, most recent first, of whom three are drawn, and lastReplyAt when the latest came in. With href the line is a link, without it a button; onOpen receives the click, so a client-side router can call preventDefault() and navigate itself. The whole line is one control named like View thread, 5 replies, 2 new, last reply 2 hours ago. unread is true for a plain New or a number for 2 new, always written as text. A count of 1000 or more compacts to 1.3k on the line and stays 1,284 in the name. The relative time is read once and never ticks; pass now to get it in server HTML, in tests and in previews, and locale and timeZone for the language and the zone of the date shown before the clock is known. The line reads its own column: narrow, the time is written short (2h ago) and the hover swap to View thread goes; narrower still the third avatar, the second and the chevron step aside, and if even that is too much the time drops to a second line. The time is never cut off. labels translates every word."
+    },
+    {
+      "name": "reply-summary-demo",
+      "type": "registry:example",
+      "title": "Reply summary demo",
+      "description": "A working preview of Reply summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/reply-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reply-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "help-launcher",
+      "type": "registry:component",
+      "title": "Help launcher",
+      "description": "A floating Help button that opens a short menu of docs, contact options, keyboard shortcuts and system status, with no third-party script.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/help-launcher.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/help-launcher.tsx"
+        }
+      ],
+      "docs": "Mount it once near the root of the app. items is the menu in order: each entry has a label, an optional description and icon, and either an href or an onSelect, plus an optional shortcut shown as keys (display only: bind the key yourself) and a group, since a rule separates one group from the next. An href that starts with http opens in a new tab and shows an arrow. It is a real menu button: arrow keys move, Escape and a click outside close it, and focus returns to the button. position is bottom-right or bottom-left, label renames the button, heading adds a line above the entries, and open, defaultOpen and onOpenChange control it. It keeps off the screen edge and the notch with safe-area insets; offset lifts it by any CSS length to clear a tab bar or a cookie banner. hidden draws nothing, for a page where it would cover content. contained positions it inside the nearest positioned ancestor instead of the browser window. It loads no third-party script."
+    },
+    {
+      "name": "help-launcher-demo",
+      "type": "registry:example",
+      "title": "Help launcher demo",
+      "description": "A working preview of Help launcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/help-launcher.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/help-launcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "call-log-row",
+      "type": "registry:component",
+      "title": "Call log row",
+      "description": "A call in a log: caller, direction as a drawn arrow and a word, time and duration, with a voicemail, a note and a call back button.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/call-log-row/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/call-log-row/index.tsx"
+        },
+        {
+          "path": "registry/application/call-log-row/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/call-log-row/format.ts"
+        }
+      ],
+      "docs": "Put the rows in a ul. call is { id, name, image, number, direction, at, duration, voicemail, note }: direction is incoming, outgoing or missed, duration is in seconds, and voicemail is { duration }. A caller without a name leads with the number, written for the locale (bare numbers are grouped, +1 numbers as (415) 555-0132; a number that already has spaces or dashes is shown as written; for exact national formats pass formatted text), and says Not in contacts. A missed call is marked by its word, a heavier name and a broken arrow as well as its colour. The row reads as one sentence, Missed call from Anna de Vries, 14:32, and Call back Anna de Vries is a button of its own: onCallBack may return a promise, and the button shows a spinner while it runs; if it rejects, the row says Could not call Anna de Vries. Try again. in a short alert under the line (labels.callFailed), and each press of the button is announced, also a repeat on the same person. onOpen makes the whole row a button under the others. onNote adds a note button, showNote prints call.note under the line, onPlayVoicemail draws a play button beside the voicemail length, and playSlot replaces it with your own player. Pass now to get Yesterday in server HTML; times use locale and timeZone (en-GB gives 14:32). The row reads its own width: narrow, the time sits beside the name, the length joins the arrow and the number gives way; the note button then gives way to onOpen."
+    },
+    {
+      "name": "call-log-row-demo",
+      "type": "registry:example",
+      "title": "Call log row demo",
+      "description": "A working preview of Call log row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/call-log-row.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/call-log-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chat-header",
+      "type": "registry:component",
+      "title": "Chat header",
+      "description": "The top of a conversation: avatar or group mosaic, name, presence or member count, and call, search and info actions.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/chat-header.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chat-header.tsx"
+        }
+      ],
+      "docs": "Put it above the thread. conversation is { id, name, image, group, members, memberCount, onlineCount, muted }: a group without an image is drawn as a mosaic of up to four members. presence is { state, lastSeenAt } for a direct chat and gives Active now, Away, Last seen 14:02 (or yesterday, Mon, 12 Oct) or Offline; a group counts its members instead, 12 members, 3 online. status replaces the line with your own words. The avatar and name are one button when onOpenInfo is passed, named Open info for Anna and described by the status line. The status is also a polite status of its own that speaks only once a change has held for a moment, and never when another conversation opens. actions are icon buttons with tooltips: a wide bar keeps maxInline (default 3), a narrow one keeps two, and the rest wait in a More menu. onBack shows a back button on a narrow bar only. muted adds a bell with a line through it and the word Muted. Pass now to get Last seen in server HTML; times use locale and timeZone. labels translates every word."
+    },
+    {
+      "name": "chat-header-demo",
+      "type": "registry:example",
+      "title": "Chat header demo",
+      "description": "A working preview of Chat header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chat-header.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chat-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sla-timer",
+      "type": "registry:component",
+      "title": "SLA timer",
+      "description": "Time left on a service target: on track, at risk or breached, with a paused state while waiting on the customer.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sla-timer/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sla-timer/index.tsx"
+        },
+        {
+          "path": "registry/application/sla-timer/time.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sla-timer/time.ts"
+        }
+      ],
+      "docs": "deadline and startedAt are the target and when its clock started; the line reads First response in 12 min (label is the words before the time, with the preposition: First response in, Resolve within; without it the line reads 12 min left), then Breached by 25 min once the deadline has passed. The state is written as well as styled: On track, At risk (when a quarter of the target is left, or thresholds says otherwise with atRiskFraction or atRiskMinutes), Breached and Paused, each with its own icon. pausedAt stops the clock and the line reads Paused: waiting on customer (change the reason with pausedReason). businessHours { days, start, end, timeZone } counts working time only, across clock changes, and shows hours rather than days. Time is worked out from timestamps and refreshed once a minute and when a sleeping tab wakes; the ticking is never announced, only a change of state is, politely and once. A thin bar shows how much of the target has gone (showProgress), and the tooltip, on hover, on focus and on a tap, gives the exact deadline. Pass now to get the words in server HTML, in tests and in previews; without it the server shows the due date until the clock is known. locale and timeZone format numbers and dates, labels translates every word."
+    },
+    {
+      "name": "sla-timer-demo",
+      "type": "registry:example",
+      "title": "SLA timer demo",
+      "description": "A working preview of SLA timer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/sla-timer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sla-timer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "attendee-list",
+      "type": "registry:component",
+      "title": "Attendee list",
+      "description": "Who is coming: attendees with their response, grouped counts and your own RSVP, for meetings and events.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/attendee-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/attendee-list.tsx"
+        }
+      ],
+      "docs": "attendees is { id, name, email, image, response, optional } with a response of accepted, declined, tentative or none. The list opens with counts (4 yes, 1 maybe, 2 waiting, left out when zero) that are a polite status, so a change is read out, and a thin bar of the same shares. Each answer is written out as Accepted, Tentative, Declined or No response and drawn as a different shape, so none depends on colour. organizer and you are attendee ids: the organizer leads and carries a tag, you come next with three buttons (Yes, Maybe, No) that call onRespond and may return a promise, and only the organizer sees a Remind button on rows that have not answered, calling onRemind (also a promise: busy, then Reminded). maxVisible (default 5) folds the rest behind Show 12 more and never folds the organizer or you away. The row reads its own width: narrow, the answer moves under the name. headingLevel sets the heading (2 to 4) and labels translates every word."
+    },
+    {
+      "name": "attendee-list-demo",
+      "type": "registry:example",
+      "title": "Attendee list demo",
+      "description": "A working preview of Attendee list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/attendee-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/attendee-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-relations",
+      "type": "registry:component",
+      "title": "Task relations",
+      "description": "Task dependencies in groups: blocked by, blocks and related, each with its status and an add-link action.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/confirm-popover.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/task-relations.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-relations.tsx"
+        }
+      ],
+      "docs": "relations is { blockedBy, blocks, related }, each a list of tasks { id, key, title, status, href } with a status of todo, in-progress, in-review, done or cancelled, drawn as a ring, a half ring, a three-quarter ring, a solid disc with a tick and a ring with a slash, and always written out. Empty groups are not drawn. A task with open blockers says so at the top (Blocked by 2 open tasks, a polite status) and its resolved blockers (done or cancelled) fold away behind Show 2 resolved. With canEdit, Add link opens a small searchable menu over candidates (those already linked are left out) with the kind of link to make; onAdd(kind, task) may return a promise: the picked row then shows a spinner, the rest wait and a second pick does nothing, and a rejection keeps the menu open and says so. Every row gets a remove button that asks first in a confirmation; onRemove(kind, task) may return a promise. Both are announced, and focus lands on the panel when a row disappears. onOpen(task, event) makes rows open: with href the title is a link and the event reaches your router, without it the row is a button. The panel reads its own width: narrow, the status moves under the title. headingLevel (2 to 4) sets the heading and the group names sit one level below. labels translates every word."
+    },
+    {
+      "name": "task-relations-demo",
+      "type": "registry:example",
+      "title": "Task relations demo",
+      "description": "A working preview of Task relations.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/task-relations.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-relations-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "two-column-sign-in",
+      "type": "registry:block",
+      "title": "Two-column sign-in",
+      "description": "A full-page sign-in with the form on one side and a quiet brand panel with a customer quote on the other, folding to the form alone on a phone.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/two-column-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/two-column-sign-in.tsx"
+        }
+      ],
+      "docs": "onSubmit({ email, password, remember }) signs the person in: return a message to show it in one announced error region above the fields (That email and password do not match), or nothing when it worked; a thrown error shows a general message. The button is busy while it runs and a second submit is ignored, and what was typed survives a failed attempt (the password field is focused and selected so it can be retyped). A missing or malformed field is told under the field. providers is a slot above a labelled divider (dividerLabel) for single sign-on and passkey buttons, forgotHref adds the Forgot password link, brand is your logo, footer sits under the form, and titleAs is h1 (the default, when the form is the page) or h2. aside is the other column for a quote, a product shot or a photo: it is hidden below lg and decorative (hidden from assistive technology) unless you give it asideLabel, so a phone gets the form alone in a column no wider than 24rem. Its top edge is level with the form column's, so a row of your own that is 2.5rem high lines up with the brand. It uses semantic tokens only, with a hairline between the halves and no gradient behind the quote. heading, description, submitLabel and labels change the words."
+    },
+    {
+      "name": "two-column-sign-in-demo",
+      "type": "registry:example",
+      "title": "Two-column sign-in demo",
+      "description": "A working preview of Two-column sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/two-column-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-column-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "magic-link-sign-in",
+      "type": "registry:block",
+      "title": "Magic link sign-in",
+      "description": "Passwordless sign-in: one email field, then an in-place check-your-inbox state with a timed resend and a way back to the form.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/magic-link-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/magic-link-sign-in.tsx"
+        }
+      ],
+      "docs": "onRequestLink({ email, remember }) asks your server to email the link. Resolve whether or not the address has an account, so the card never shows which addresses are registered (the confirmation says If the address has an account, a link is on its way); reject only when the request itself failed, and the card keeps the typed address and shows one retry message. A malformed address is caught when the field is left, with the message tied to the field. On success the card swaps in place to Check your inbox: it names the address, says the link works once for expiresInMinutes (default 15), says where to look, and offers Resend link, Use a different email and, with onUsePassword, Sign in with a password. The resend button counts down resendAfter seconds (default 30) in tabular figures, its name stays Resend link while it waits, and the status region speaks only when the wait starts and when it ends; the wait is worked out from timestamps, so it is right after the tab sleeps. Focus moves to the confirmation heading and back to the field. signedIn flips the card to You are signed in with a Continue button (onSignedIn) for apps that notice the link was opened in another tab. defaultEmail and defaultSent start on the confirmation, titleAs sets the heading element, footer sits under the card, labels translates every word."
+    },
+    {
+      "name": "magic-link-sign-in-demo",
+      "type": "registry:example",
+      "title": "Magic link sign-in demo",
+      "description": "A working preview of Magic link sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/magic-link-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/magic-link-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "passkey-sign-in",
+      "type": "registry:block",
+      "title": "Passkey sign-in",
+      "description": "A passkey-first sign-in: one large \"Sign in with a passkey\" button, autofill on the email field, and a quiet fallback to a password or a link.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/passkey-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/passkey-sign-in.tsx"
+        }
+      ],
+      "docs": "onPasskey({ email }) is yours: run WebAuthn in it (the block never touches navigator.credentials) and resolve when it is done; email is what was typed in the field and may be empty. While the browser prompt is open the big button reads Waiting for your device with a spinner and the same press cannot run twice (busy forces that state for a redirect or a preview). Report what went wrong through error: cancelled, not-found or unsupported each become plain words with the next step, announced once (a rejection with no error set shows a general message; labels.errors translates them). supported={false} removes the button and the field and leads with the fallbacks as full buttons. fallbacks are { id, label, href or onSelect }, shown as quiet text actions under the field (Use a password instead, Email me a link). The email field has autocomplete=username webauthn, so the browser can offer a saved passkey in it, and pressing Enter in it runs the same sign-in. A one-line explanation of what a passkey is sits behind a term, the word passkey with a dotted underline that opens a small named panel on click, tap or Enter (labels.lead, term and definition). Targets are 44px and up (the word passkey is a link inside a sentence, with a padded hit area), the fingerprint tile is a monochrome circle, and nothing depends on a pointer. titleAs sets the heading element, footer sits under the card."
+    },
+    {
+      "name": "passkey-sign-in-demo",
+      "type": "registry:example",
+      "title": "Passkey sign-in demo",
+      "description": "A working preview of Passkey sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/passkey-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/passkey-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

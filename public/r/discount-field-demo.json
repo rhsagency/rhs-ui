@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "discount-field-demo",
+  "title": "Discount field demo",
+  "description": "A working preview of Discount field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/discount-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/discount-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { DiscountField, type DiscountValue } from \"@rhs-ui/commerce/discount-field\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      {/* Two lines tall in a two-column row, so the fields line up across the columns. */}\n      <p className=\"text-xs text-muted-foreground sm:min-h-8\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [reported, setReported] = useState<DiscountValue | null>({ type: \"percent\", value: 20 });\n\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 gap-x-10 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))]\">\n      <Example caption=\"With the price: the new price follows every keystroke. Flip the switch and each side keeps what you typed\">\n        <div className=\"grid gap-3\">\n          <DiscountField price={4800} defaultValue={{ type: \"percent\", value: 20 }} onValueChange={setReported} name=\"discount\" />\n          <p className=\"text-xs text-muted-foreground\">\n            Reports{\" \"}\n            <code className=\"rounded-sm bg-muted px-1.5 py-0.5 font-mono text-foreground tabular-nums\">{reported ? JSON.stringify(reported) : \"null\"}</code>\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"Without a price it only reads the number: an amount is reported in minor units\">\n        <DiscountField defaultValue={{ type: \"amount\", value: 1500 }} defaultType=\"amount\" />\n      </Example>\n\n      <Example caption=\"An amount above the price is refused in words, and nothing is reported\">\n        <DiscountField price={4800} defaultValue={{ type: \"amount\", value: 6000 }} />\n      </Example>\n\n      <Example caption=\"A percentage above the limit is refused too. Here the limit is 50%, and the keyboard's comma works\">\n        <DiscountField price={12900} maxPercent={50} defaultValue={{ type: \"percent\", value: 62.5 }} locale=\"nl-NL\" />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

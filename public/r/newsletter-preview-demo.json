@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-preview-demo",
+  "title": "Newsletter with preview demo",
+  "description": "A working preview of Newsletter with preview.",
+  "registryDependencies": [
+    "https://rhsui.com/r/newsletter-preview.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/newsletter-preview-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { NewsletterPreview } from \"@rhs-ui/marketing/newsletter-preview\";\n\nconst shared = {\n  title: \"The Halcyon Dispatch\",\n  description: \"One email on Friday morning: the three most useful things we read about building calm software, and a short note on what we are changing in our own.\",\n  promise: \"Every Friday at 8:00. Leave with one click.\",\n  readers: \"12,400\",\n  privacyHref: \"#privacy\",\n  issue: {\n    number: 148,\n    title: \"The quiet cost of one more dashboard\",\n    date: \"2026-10-23\",\n    items: [\"Why the fourth chart is where attention stops\", \"A one-page test for whether a metric deserves a screen\", \"Three teams that deleted a dashboard and kept the numbers\"],\n    href: \"#archive/148\",\n  },\n  locale: \"en-GB\",\n} as const;\n\n/** A request that takes a moment and works, so the busy and success states can be seen by trying it. */\nconst subscribe = () => new Promise<void>((resolve) => setTimeout(resolve, 800));\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Try it: the card is a link into the archive, and the form announces its result\">\n        <NewsletterPreview {...shared} onSubmit={subscribe} />\n      </Example>\n      <div className=\"mt-16 border-t border-border pt-12\">\n        <Example caption=\"After subscribing: the form gives way to what happens next, and the issue stays one click away\">\n          <NewsletterPreview {...shared} headingLevel={3} onSubmit={subscribe} defaultStatus=\"done\" defaultValue=\"maria@halcyon.studio\" />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

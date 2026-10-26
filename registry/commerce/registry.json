@@ -3475,6 +3475,446 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "plan-card",
+      "type": "registry:component",
+      "title": "Plan card",
+      "description": "One plan as a card: its price and interval, what it includes and the button, with 'Most popular' and 'Your plan' told in words, not only in colour.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/plan-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/plan-card.tsx"
+        }
+      ],
+      "docs": "Pass the plan's name, a description and the price as { amount, interval, currency, note }. amount is in minor units (2900 is 29.00; a string such as 'Custom' is shown as written), interval is muted after a slash ('/ month') and note is the small line under it ('€288 billed yearly'). A price that changes, as it does when a billing toggle flips, counts to its new value, and a whole price drops its cents. features take plain strings, or { label, included: false } for a feature the plan leaves out, which a screen reader hears as 'Not included'. cta is { label, href?, onClick?, disabled?, loading? }; with an href it renders as a link that needs no JavaScript, and a label too long for the button wraps onto a second line and the button grows with it instead of being cut off. recommended draws a heavier border and the pill 'Most popular' (badge replaces its words, and also works on a card that is not recommended); current replaces the button with 'Your plan' and sets aria-current. locale writes the price, headingAs sets the heading level (h3 by default) and labels holds the fixed words for another language. It keeps no state and renders on the server."
+    },
+    {
+      "name": "plan-card-demo",
+      "type": "registry:example",
+      "title": "Plan card demo",
+      "description": "A working preview of Plan card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/plan-card.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/plan-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "booking-summary",
+      "type": "registry:component",
+      "title": "Booking summary",
+      "description": "What you are about to book, as a list: service, date and time, who and where, the total set apart, and an edit link on every row.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/booking-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/booking-summary.tsx"
+        }
+      ],
+      "docs": "service and staff can be plain strings or objects ({ name, detail }, { name, role }); location is { name, address: [lines] } and is set in an <address> element. start is an ISO date-time, a Date or a timestamp and duration is in minutes: the row reads 'Tuesday 3 November 2026' with '10:00 to 11:00 · 1 hour' under it, written in locale and timeZone (pass both, so the server and the browser agree). price is { amount, currency, note? } with the amount in the currency's own minor units (9500 is 95.00 EUR, but 9,500 JPY, which has none) and is set apart in the footer; policy is the cancellation policy as one plain line under it. onEdit(part) adds an 'Edit' button to every row, and editHrefs makes a part a real link instead; without either the summary is read-only, as on a confirmation page. Each link is named for what it changes, from labels and not from the row's term: editService, editDateTime, editStaff, editLocation and editNotes ('Edit service', 'Edit date and time', 'Edit staff member', 'Edit location', 'Edit notes'), so the rows 'With' and 'Where' are never announced as 'Edit with' and 'Edit where'. Keep the visible word (labels.edit) inside each name when you translate them, so voice control matches what is on screen. confirmed adds a check mark and the heading 'Booking confirmed', and reference prints the booking reference. headingAs sets the heading level (h2 by default) and labels holds the fixed words for another language. It keeps no state and renders on the server."
+    },
+    {
+      "name": "booking-summary-demo",
+      "type": "registry:example",
+      "title": "Booking summary demo",
+      "description": "A working preview of Booking summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/booking-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/booking-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coupon-card",
+      "type": "registry:component",
+      "title": "Coupon card",
+      "description": "A voucher: the offer, its code with a copy button, the conditions and the expiry, on a card with a perforated edge.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/coupon-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/coupon-card.tsx"
+        }
+      ],
+      "docs": "offer is the headline on the stub ('20% off'), code the voucher code, description what it applies to and conditions the small print as a list behind a 'Details' disclosure. expiresAt is a date-only string such as '2026-10-29' (valid through the end of that day in timeZone) or a date-time; the card writes it out ('Expires in 3 days', 'Expires today', 'Expired 8 days ago') with the full date in a tooltip that hover, tap and keyboard focus open. Pass now from the server so the first render already says it; without it the card writes the plain date until the browser's clock is known, then switches. status is 'active', 'used' or 'expired': the last two mute the card, strike the code through and take the copy button away, and an active coupon past its date is shown as expired. onCopy(code) is called once the code is on the clipboard, and the copy button confirms through a polite live region. A code that does not fit beside the button keeps its letters together and the button drops under it; only a code longer than the whole row ever breaks. The notches are mask cut-outs, so the page shows through in light and dark. The layout follows the card's own width: stacked below 32rem, stub and body side by side above it. labels holds every fixed word."
+    },
+    {
+      "name": "coupon-card-demo",
+      "type": "registry:example",
+      "title": "Coupon card demo",
+      "description": "A working preview of Coupon card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coupon-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coupon-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "room-card",
+      "type": "registry:component",
+      "title": "Room card",
+      "description": "A hotel room or rental: photos, size and beds, amenities, the price per night and the stay total, with 'Only 2 left' and sold-out states in words.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/room-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/room-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/room-card/slider.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/room-card/slider.tsx"
+        }
+      ],
+      "docs": "name, beds ('1 king bed'), size ('28 m²') and sleeps describe the room; images are { src, alt } and show in a slider with arrows (on hover and focus, always on touch), native swipe and a loop. amenities lists the first maxAmenities (4) with a check mark; the 'See all 9 amenities' link appears when amenitiesHref (a real link) or onSeeAllAmenities (a callback) gives it somewhere to go, and without either every amenity is listed. pricePerNight and totalPrice are in minor units; nights writes 'for 2 nights' beside the total, and taxesIncluded (default true) chooses between 'taxes included' and 'plus taxes'. refundable says 'Free cancellation' or 'Non-refundable', and roomsLeft shows 'Only 2 left' at lowStockAt (3) or fewer; 0 turns the price into 'Not available for these dates' and disables the button, which points at that reason. onSelect is called by the button. The pictures sit on top in a narrow column and beside the details from 48rem. locale writes the prices, headingAs sets the heading level and labels holds every fixed word."
+    },
+    {
+      "name": "room-card-demo",
+      "type": "registry:example",
+      "title": "Room card demo",
+      "description": "A working preview of Room card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/room-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/room-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "course-card",
+      "type": "registry:component",
+      "title": "Course card",
+      "description": "A course in a catalogue: cover, level, instructor, length, rating and price with its discount in words, or progress and Continue once enrolled.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/course-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/course-card.tsx"
+        }
+      ],
+      "docs": "title, cover ({ src, alt }), instructor ({ name, image? }), level ('beginner', 'intermediate' or 'advanced': a word with a three-bar glyph), duration (minutes, written '6h 30m'), lessons, rating, ratingCount, price (minor units; 0 says 'Free'), compareAtPrice (struck through, with '38% off' in words), badge and href. The whole card is one link, through the title, so there is a single tab stop and nothing nested in a link. progress (0 to 100) turns it into an enrolled course: a progress bar and 'Continue' replace the price, and at 100 it says 'Completed' and 'Review'. The stars are one image named 'Rated 4.8 out of 5 by 1,284 learners'. locale writes the numbers and prices, headingAs sets the heading level (h3 by default) and labels holds the fixed words. It keeps no state and renders on the server."
+    },
+    {
+      "name": "course-card-demo",
+      "type": "registry:example",
+      "title": "Course card demo",
+      "description": "A working preview of Course card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/course-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/course-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-quote-card",
+      "type": "registry:component",
+      "title": "Price quote card",
+      "description": "A price quote you received: number, validity, total with tax stated and its status, with accept and decline of equal weight, download and a way back when it expires.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-quote-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-quote-card.tsx"
+        }
+      ],
+      "docs": "number, issuedAt, validUntil, total (in the currency's own minor units: 1452000 is 14,520.00 EUR, but 1,452,000 JPY, which has none), currency, taxIncluded (the rate in percent that the total includes: 21 says '21% VAT included', and labels.taxName renames the tax), status, supplier ({ name, contact? } or a string) and summary. validUntil is a date-only string (valid through the end of that day in timeZone) or a date-time, and the card says 'Valid until 30 Nov, 12 days left'. Pass now from the server for a first render that already counts the days; without it the card writes the plain date until the browser's clock is known. With now, the card's clock starts there, so a decision made in the card is stamped with now plus the time since it was given (a preview with a fixed now reads in its own time). An open quote (sent, viewed) past its date is shown as expired. Accept and decline are equal buttons that each ask once in a popover that keeps a gutter from the screen's edge on a phone (labels.cancel is its cancel button); onAccept and onDecline may return a promise (the popover shows the busy state, and if it rejects nothing is recorded and the card says so). Afterwards the card shows the outcome and when (decidedAt, or the moment of the click) and moves the keyboard focus to that line, because the buttons that held it are gone; a status that arrives from the page does not move the focus. An expired quote disables both and shows 'Ask for a new quote' for onRequestNew; onDownload adds 'Download PDF'. locale and timeZone write the dates, and labels holds every fixed word."
+    },
+    {
+      "name": "price-quote-card-demo",
+      "type": "registry:example",
+      "title": "Price quote card demo",
+      "description": "A working preview of Price quote card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-quote-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-quote-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "flight-card",
+      "type": "registry:component",
+      "title": "Flight card",
+      "description": "A flight option: departure and arrival in each airport's own time, duration and stops in words, airline, price and a select action, with every segment on demand.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/flight-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/flight-card.tsx"
+        }
+      ],
+      "docs": "segments are the flights of the trip in order: { from, to, departure, arrival, carrier, flightNumber }, where from and to are airports { code, city?, timeZone } and the moments are ISO date-times with an offset or in UTC. Every time is written in its airport's own zone, with the abbreviation and the date in a tooltip (hover, tap or keyboard focus on the two main times). The route line says 'Direct', '1 stop in Zurich, 1h 20m' or '2 stops in Zurich and Madrid', shows a dot for every stop and the total duration (on a narrow card the duration joins the words under the line), and a landing on a later local day says '+1 day'. price is in minor units with priceNote ('per person'), cabin and baggage are plain strings and badge is a word in the corner ('Cheapest'). selected draws a heavier border and a button that says 'Selected'; onSelect is called by the button. The card's hidden heading names it by route, departure and airline ('Amsterdam to Lisbon, departs 07:25, Northwind Air': labels.title with {from}, {to}, {time} and {carrier}) and describes the button, so two flights on one route are told apart. 'Flight details' lists every segment with the layovers between them. Price and button sit beside the route from 36rem and below it on a narrow card. locale writes the times and the price, and labels holds every fixed word."
+    },
+    {
+      "name": "flight-card-demo",
+      "type": "registry:example",
+      "title": "Flight card demo",
+      "description": "A working preview of Flight card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/flight-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/flight-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "payment-card-preview",
+      "type": "registry:component",
+      "title": "Payment card preview",
+      "description": "A payment card drawn live as you fill in the form: number grouped by network, name and expiry, the brand in words, a back for the code, nothing stored.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/payment-card-preview/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/payment-card-preview/index.tsx"
+        },
+        {
+          "path": "registry/commerce/payment-card-preview/card.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/payment-card-preview/card.ts"
+        }
+      ],
+      "docs": "number, name, expiry, cvc and brand are whatever the form holds right now, complete or not: only digits count, so '4242 4242' and '4242-4242' are the same, and nothing is stored or sent. The brand is found from the first digits (visa, mastercard, amex, discover, diners, jcb, unionpay, maestro) unless you pass brand, which also takes any other text and sets it as it is; the digits group as the network groups them (4-4-4-4, 4-6-5 for American Express, 4-6-4 for Diners Club) and places still to be filled show as soft bullets. masked hides all but the last four digits (and the security code); flipped shows the back with the security code area, turning in 3D or cross-fading under reduced motion. The card is one figure whose accessible name tells what is filled in so far ('Visa card for Ada Lovelace ending 4242, expires 09/28'). The helpers in payment-card-preview/card (detectBrand, brandInfo, formatNumber, formatExpiry, digitsOf) format an input as the person types, which is how the demo uses them. The card scales with its width, so give it one with className. labels holds the fixed words. It keeps no state and renders on the server."
+    },
+    {
+      "name": "payment-card-preview-demo",
+      "type": "registry:example",
+      "title": "Payment card preview demo",
+      "description": "A working preview of Payment card preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/payment-card-preview.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/payment-card-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "discount-field",
+      "type": "registry:component",
+      "title": "Discount field",
+      "description": "A discount as either an amount or a percentage, with the switch inside the field and the resulting price shown against the original.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/discount-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/discount-field.tsx"
+        }
+      ],
+      "docs": "A text field with a two-sided switch in it: your currency code ('EUR') and '%'. The number is read the way the switch says, and each side keeps its own number, so flipping never loses what was typed. value is { type: 'amount', value } in minor units or { type: 'percent', value } as a plain number, or null for an empty field; control it with value and onValueChange, or start it with defaultValue and defaultType. onValueChange gets null while the field is empty or the discount is refused, so a form never holds an impossible one. Pass price (minor units) and the field prints 'New price 38.40 EUR, 20% off' under itself (the percentage is worked out for an amount), and refuses an amount above the price or a percentage above maxPercent (100) in words, marking the input invalid. A comma or a point both work as the decimal separator, and the number is tidied when the field is left. name adds two hidden inputs for a plain form post: the number under name and its type under name-type. The switch is a radio group named 'Discount type' with arrow keys. locale writes the numbers, hideLabel keeps the label for screen readers only and labels holds the fixed words."
+    },
+    {
+      "name": "discount-field-demo",
+      "type": "registry:example",
+      "title": "Discount field demo",
+      "description": "A working preview of Discount field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/discount-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/discount-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

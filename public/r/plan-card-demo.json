@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-card-demo",
+  "title": "Plan card demo",
+  "description": "A working preview of Plan card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/plan-card.json",
+    "https://rhsui.com/r/segmented-control.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/plan-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { SegmentedControl } from \"@rhs-ui/application/segmented-control\";\nimport { PlanCard } from \"@rhs-ui/commerce/plan-card\";\n\ntype Billing = \"monthly\" | \"yearly\";\n\nconst BILLING = [\n  { value: \"monthly\", label: \"Monthly\" },\n  { value: \"yearly\", label: \"Yearly, save 17%\" },\n] as const;\n\nexport default function Demo(): React.JSX.Element {\n  const [billing, setBilling] = useState<Billing>(\"yearly\");\n  const [chosen, setChosen] = useState<string | null>(null);\n  const yearly = billing === \"yearly\";\n\n  return (\n    <div className=\"@container grid w-full min-w-0 grid-cols-[minmax(0,1fr)] gap-8\">\n      <div className=\"flex justify-center\">\n        <SegmentedControl label=\"Billing interval\" options={BILLING} value={billing} onValueChange={(value) => setBilling(value === \"monthly\" ? \"monthly\" : \"yearly\")} />\n      </div>\n\n      <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 @3xl:grid-cols-3\">\n        <PlanCard\n          name=\"Starter\"\n          description=\"For a first project and anyone still finding out what they need.\"\n          price={{ amount: 0, interval: \"month\", note: \"Free for ever, no card needed\" }}\n          features={[\"One workspace\", \"Three active projects\", \"Community support\", { label: \"Audit log\", included: false }]}\n          current\n        />\n        <PlanCard\n          name=\"Studio\"\n          description=\"For a team that ships every week and wants the full toolkit.\"\n          price={{\n            amount: yearly ? 2400 : 2900,\n            interval: \"month\",\n            note: yearly ? \"€288 billed yearly, save 17%\" : \"Billed monthly, cancel any time\",\n          }}\n          features={[\"Unlimited projects\", \"Roles and approvals\", \"Priority support, same day\", \"Audit log for 12 months\", { label: \"SSO and SAML\", included: false }]}\n          recommended\n          cta={{ label: \"Choose Studio\", onClick: () => setChosen(`Studio, billed ${billing}`) }}\n        />\n        <PlanCard\n          name=\"Scale\"\n          description=\"For organisations with security reviews, many teams and a contract.\"\n          price={{ amount: \"Custom\", note: \"Volume pricing on an annual contract\" }}\n          features={[\"Everything in Studio\", \"SSO and SAML\", \"Dedicated success manager\", \"99.9% uptime SLA\"]}\n          cta={{ label: \"Talk to sales\", href: \"#sales\" }}\n        />\n      </div>\n\n      <p role=\"status\" className=\"min-h-5 text-center text-sm text-muted-foreground\">\n        {chosen ? `You chose ${chosen}. This is a demo, so no payment is taken.` : \"Flip the billing interval to watch the price count.\"}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

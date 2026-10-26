@@ -28527,6 +28527,455 @@
       ]
     },
     {
+      "name": "plan-card",
+      "type": "registry:component",
+      "title": "Plan card",
+      "description": "One plan as a card: its price and interval, what it includes and the button, with 'Most popular' and 'Your plan' told in words, not only in colour.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/plan-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/plan-card.tsx"
+        }
+      ],
+      "docs": "Pass the plan's name, a description and the price as { amount, interval, currency, note }. amount is in minor units (2900 is 29.00; a string such as 'Custom' is shown as written), interval is muted after a slash ('/ month') and note is the small line under it ('€288 billed yearly'). A price that changes, as it does when a billing toggle flips, counts to its new value, and a whole price drops its cents. features take plain strings, or { label, included: false } for a feature the plan leaves out, which a screen reader hears as 'Not included'. cta is { label, href?, onClick?, disabled?, loading? }; with an href it renders as a link that needs no JavaScript, and a label too long for the button wraps onto a second line and the button grows with it instead of being cut off. recommended draws a heavier border and the pill 'Most popular' (badge replaces its words, and also works on a card that is not recommended); current replaces the button with 'Your plan' and sets aria-current. locale writes the price, headingAs sets the heading level (h3 by default) and labels holds the fixed words for another language. It keeps no state and renders on the server."
+    },
+    {
+      "name": "plan-card-demo",
+      "type": "registry:example",
+      "title": "Plan card demo",
+      "description": "A working preview of Plan card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/plan-card.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/plan-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "booking-summary",
+      "type": "registry:component",
+      "title": "Booking summary",
+      "description": "What you are about to book, as a list: service, date and time, who and where, the total set apart, and an edit link on every row.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/booking-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/booking-summary.tsx"
+        }
+      ],
+      "docs": "service and staff can be plain strings or objects ({ name, detail }, { name, role }); location is { name, address: [lines] } and is set in an <address> element. start is an ISO date-time, a Date or a timestamp and duration is in minutes: the row reads 'Tuesday 3 November 2026' with '10:00 to 11:00 · 1 hour' under it, written in locale and timeZone (pass both, so the server and the browser agree). price is { amount, currency, note? } with the amount in the currency's own minor units (9500 is 95.00 EUR, but 9,500 JPY, which has none) and is set apart in the footer; policy is the cancellation policy as one plain line under it. onEdit(part) adds an 'Edit' button to every row, and editHrefs makes a part a real link instead; without either the summary is read-only, as on a confirmation page. Each link is named for what it changes, from labels and not from the row's term: editService, editDateTime, editStaff, editLocation and editNotes ('Edit service', 'Edit date and time', 'Edit staff member', 'Edit location', 'Edit notes'), so the rows 'With' and 'Where' are never announced as 'Edit with' and 'Edit where'. Keep the visible word (labels.edit) inside each name when you translate them, so voice control matches what is on screen. confirmed adds a check mark and the heading 'Booking confirmed', and reference prints the booking reference. headingAs sets the heading level (h2 by default) and labels holds the fixed words for another language. It keeps no state and renders on the server."
+    },
+    {
+      "name": "booking-summary-demo",
+      "type": "registry:example",
+      "title": "Booking summary demo",
+      "description": "A working preview of Booking summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/booking-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/booking-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coupon-card",
+      "type": "registry:component",
+      "title": "Coupon card",
+      "description": "A voucher: the offer, its code with a copy button, the conditions and the expiry, on a card with a perforated edge.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/coupon-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/coupon-card.tsx"
+        }
+      ],
+      "docs": "offer is the headline on the stub ('20% off'), code the voucher code, description what it applies to and conditions the small print as a list behind a 'Details' disclosure. expiresAt is a date-only string such as '2026-10-29' (valid through the end of that day in timeZone) or a date-time; the card writes it out ('Expires in 3 days', 'Expires today', 'Expired 8 days ago') with the full date in a tooltip that hover, tap and keyboard focus open. Pass now from the server so the first render already says it; without it the card writes the plain date until the browser's clock is known, then switches. status is 'active', 'used' or 'expired': the last two mute the card, strike the code through and take the copy button away, and an active coupon past its date is shown as expired. onCopy(code) is called once the code is on the clipboard, and the copy button confirms through a polite live region. A code that does not fit beside the button keeps its letters together and the button drops under it; only a code longer than the whole row ever breaks. The notches are mask cut-outs, so the page shows through in light and dark. The layout follows the card's own width: stacked below 32rem, stub and body side by side above it. labels holds every fixed word."
+    },
+    {
+      "name": "coupon-card-demo",
+      "type": "registry:example",
+      "title": "Coupon card demo",
+      "description": "A working preview of Coupon card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coupon-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coupon-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "room-card",
+      "type": "registry:component",
+      "title": "Room card",
+      "description": "A hotel room or rental: photos, size and beds, amenities, the price per night and the stay total, with 'Only 2 left' and sold-out states in words.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/room-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/room-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/room-card/slider.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/room-card/slider.tsx"
+        }
+      ],
+      "docs": "name, beds ('1 king bed'), size ('28 m²') and sleeps describe the room; images are { src, alt } and show in a slider with arrows (on hover and focus, always on touch), native swipe and a loop. amenities lists the first maxAmenities (4) with a check mark; the 'See all 9 amenities' link appears when amenitiesHref (a real link) or onSeeAllAmenities (a callback) gives it somewhere to go, and without either every amenity is listed. pricePerNight and totalPrice are in minor units; nights writes 'for 2 nights' beside the total, and taxesIncluded (default true) chooses between 'taxes included' and 'plus taxes'. refundable says 'Free cancellation' or 'Non-refundable', and roomsLeft shows 'Only 2 left' at lowStockAt (3) or fewer; 0 turns the price into 'Not available for these dates' and disables the button, which points at that reason. onSelect is called by the button. The pictures sit on top in a narrow column and beside the details from 48rem. locale writes the prices, headingAs sets the heading level and labels holds every fixed word."
+    },
+    {
+      "name": "room-card-demo",
+      "type": "registry:example",
+      "title": "Room card demo",
+      "description": "A working preview of Room card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/room-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/room-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "course-card",
+      "type": "registry:component",
+      "title": "Course card",
+      "description": "A course in a catalogue: cover, level, instructor, length, rating and price with its discount in words, or progress and Continue once enrolled.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/course-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/course-card.tsx"
+        }
+      ],
+      "docs": "title, cover ({ src, alt }), instructor ({ name, image? }), level ('beginner', 'intermediate' or 'advanced': a word with a three-bar glyph), duration (minutes, written '6h 30m'), lessons, rating, ratingCount, price (minor units; 0 says 'Free'), compareAtPrice (struck through, with '38% off' in words), badge and href. The whole card is one link, through the title, so there is a single tab stop and nothing nested in a link. progress (0 to 100) turns it into an enrolled course: a progress bar and 'Continue' replace the price, and at 100 it says 'Completed' and 'Review'. The stars are one image named 'Rated 4.8 out of 5 by 1,284 learners'. locale writes the numbers and prices, headingAs sets the heading level (h3 by default) and labels holds the fixed words. It keeps no state and renders on the server."
+    },
+    {
+      "name": "course-card-demo",
+      "type": "registry:example",
+      "title": "Course card demo",
+      "description": "A working preview of Course card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/course-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/course-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-quote-card",
+      "type": "registry:component",
+      "title": "Price quote card",
+      "description": "A price quote you received: number, validity, total with tax stated and its status, with accept and decline of equal weight, download and a way back when it expires.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-quote-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-quote-card.tsx"
+        }
+      ],
+      "docs": "number, issuedAt, validUntil, total (in the currency's own minor units: 1452000 is 14,520.00 EUR, but 1,452,000 JPY, which has none), currency, taxIncluded (the rate in percent that the total includes: 21 says '21% VAT included', and labels.taxName renames the tax), status, supplier ({ name, contact? } or a string) and summary. validUntil is a date-only string (valid through the end of that day in timeZone) or a date-time, and the card says 'Valid until 30 Nov, 12 days left'. Pass now from the server for a first render that already counts the days; without it the card writes the plain date until the browser's clock is known. With now, the card's clock starts there, so a decision made in the card is stamped with now plus the time since it was given (a preview with a fixed now reads in its own time). An open quote (sent, viewed) past its date is shown as expired. Accept and decline are equal buttons that each ask once in a popover that keeps a gutter from the screen's edge on a phone (labels.cancel is its cancel button); onAccept and onDecline may return a promise (the popover shows the busy state, and if it rejects nothing is recorded and the card says so). Afterwards the card shows the outcome and when (decidedAt, or the moment of the click) and moves the keyboard focus to that line, because the buttons that held it are gone; a status that arrives from the page does not move the focus. An expired quote disables both and shows 'Ask for a new quote' for onRequestNew; onDownload adds 'Download PDF'. locale and timeZone write the dates, and labels holds every fixed word."
+    },
+    {
+      "name": "price-quote-card-demo",
+      "type": "registry:example",
+      "title": "Price quote card demo",
+      "description": "A working preview of Price quote card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-quote-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-quote-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "flight-card",
+      "type": "registry:component",
+      "title": "Flight card",
+      "description": "A flight option: departure and arrival in each airport's own time, duration and stops in words, airline, price and a select action, with every segment on demand.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/flight-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/flight-card.tsx"
+        }
+      ],
+      "docs": "segments are the flights of the trip in order: { from, to, departure, arrival, carrier, flightNumber }, where from and to are airports { code, city?, timeZone } and the moments are ISO date-times with an offset or in UTC. Every time is written in its airport's own zone, with the abbreviation and the date in a tooltip (hover, tap or keyboard focus on the two main times). The route line says 'Direct', '1 stop in Zurich, 1h 20m' or '2 stops in Zurich and Madrid', shows a dot for every stop and the total duration (on a narrow card the duration joins the words under the line), and a landing on a later local day says '+1 day'. price is in minor units with priceNote ('per person'), cabin and baggage are plain strings and badge is a word in the corner ('Cheapest'). selected draws a heavier border and a button that says 'Selected'; onSelect is called by the button. The card's hidden heading names it by route, departure and airline ('Amsterdam to Lisbon, departs 07:25, Northwind Air': labels.title with {from}, {to}, {time} and {carrier}) and describes the button, so two flights on one route are told apart. 'Flight details' lists every segment with the layovers between them. Price and button sit beside the route from 36rem and below it on a narrow card. locale writes the times and the price, and labels holds every fixed word."
+    },
+    {
+      "name": "flight-card-demo",
+      "type": "registry:example",
+      "title": "Flight card demo",
+      "description": "A working preview of Flight card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/flight-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/flight-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "payment-card-preview",
+      "type": "registry:component",
+      "title": "Payment card preview",
+      "description": "A payment card drawn live as you fill in the form: number grouped by network, name and expiry, the brand in words, a back for the code, nothing stored.",
+      "categories": [
+        "commerce",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/payment-card-preview/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/payment-card-preview/index.tsx"
+        },
+        {
+          "path": "registry/commerce/payment-card-preview/card.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/payment-card-preview/card.ts"
+        }
+      ],
+      "docs": "number, name, expiry, cvc and brand are whatever the form holds right now, complete or not: only digits count, so '4242 4242' and '4242-4242' are the same, and nothing is stored or sent. The brand is found from the first digits (visa, mastercard, amex, discover, diners, jcb, unionpay, maestro) unless you pass brand, which also takes any other text and sets it as it is; the digits group as the network groups them (4-4-4-4, 4-6-5 for American Express, 4-6-4 for Diners Club) and places still to be filled show as soft bullets. masked hides all but the last four digits (and the security code); flipped shows the back with the security code area, turning in 3D or cross-fading under reduced motion. The card is one figure whose accessible name tells what is filled in so far ('Visa card for Ada Lovelace ending 4242, expires 09/28'). The helpers in payment-card-preview/card (detectBrand, brandInfo, formatNumber, formatExpiry, digitsOf) format an input as the person types, which is how the demo uses them. The card scales with its width, so give it one with className. labels holds the fixed words. It keeps no state and renders on the server."
+    },
+    {
+      "name": "payment-card-preview-demo",
+      "type": "registry:example",
+      "title": "Payment card preview demo",
+      "description": "A working preview of Payment card preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/payment-card-preview.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/payment-card-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "discount-field",
+      "type": "registry:component",
+      "title": "Discount field",
+      "description": "A discount as either an amount or a percentage, with the switch inside the field and the resulting price shown against the original.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/discount-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/discount-field.tsx"
+        }
+      ],
+      "docs": "A text field with a two-sided switch in it: your currency code ('EUR') and '%'. The number is read the way the switch says, and each side keeps its own number, so flipping never loses what was typed. value is { type: 'amount', value } in minor units or { type: 'percent', value } as a plain number, or null for an empty field; control it with value and onValueChange, or start it with defaultValue and defaultType. onValueChange gets null while the field is empty or the discount is refused, so a form never holds an impossible one. Pass price (minor units) and the field prints 'New price 38.40 EUR, 20% off' under itself (the percentage is worked out for an amount), and refuses an amount above the price or a percentage above maxPercent (100) in words, marking the input invalid. A comma or a point both work as the decimal separator, and the number is tidied when the field is left. name adds two hidden inputs for a plain form post: the number under name and its type under name-type. The switch is a radio group named 'Discount type' with arrow keys. locale writes the numbers, hideLabel keeps the label for screen readers only and labels holds the fixed words."
+    },
+    {
+      "name": "discount-field-demo",
+      "type": "registry:example",
+      "title": "Discount field demo",
+      "description": "A working preview of Discount field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/discount-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/discount-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "metric-strip",
       "type": "registry:component",
       "title": "Metric strip",
@@ -33481,6 +33930,575 @@
       "files": [
         {
           "path": "registry/examples/inbox-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "typing-indicator",
+      "type": "registry:component",
+      "title": "Typing indicator",
+      "description": "Who is writing right now, in words and three pulsing dots, handling one, two or many people and speaking up politely at most once every few seconds.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/loading-dots.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/typing-indicator.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/typing-indicator.tsx"
+        }
+      ],
+      "docs": "Pass people as the list of names writing right now; the sentence follows it: Anna is typing, Anna and Tom are typing, Anna, Tom and 2 others are typing. max is how many names are spelled out (default 2) and one person too many is always named, so and 1 other never appears. label is the activity after is or are (default typing, or replying, or recording a voice message). With nobody writing the line fades out and keeps its height, so the thread above never jumps. The drawn line changes at once; the spoken copy is a polite status that waits announceEvery milliseconds (default 4000) between announcements. labels translates is, are, and and others."
+    },
+    {
+      "name": "typing-indicator-demo",
+      "type": "registry:example",
+      "title": "Typing indicator demo",
+      "description": "A working preview of Typing indicator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/typing-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/typing-indicator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reply-summary",
+      "type": "registry:component",
+      "title": "Reply summary",
+      "description": "A \"5 replies, last reply 2 hours ago\" link with a small avatar stack that opens the thread, for message and comment lists.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/reply-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/reply-summary.tsx"
+        }
+      ],
+      "docs": "Put it under a message or comment. replies is the count (fewer than one draws nothing), repliers the people who replied, most recent first, of whom three are drawn, and lastReplyAt when the latest came in. With href the line is a link, without it a button; onOpen receives the click, so a client-side router can call preventDefault() and navigate itself. The whole line is one control named like View thread, 5 replies, 2 new, last reply 2 hours ago. unread is true for a plain New or a number for 2 new, always written as text. A count of 1000 or more compacts to 1.3k on the line and stays 1,284 in the name. The relative time is read once and never ticks; pass now to get it in server HTML, in tests and in previews, and locale and timeZone for the language and the zone of the date shown before the clock is known. The line reads its own column: narrow, the time is written short (2h ago) and the hover swap to View thread goes; narrower still the third avatar, the second and the chevron step aside, and if even that is too much the time drops to a second line. The time is never cut off. labels translates every word."
+    },
+    {
+      "name": "reply-summary-demo",
+      "type": "registry:example",
+      "title": "Reply summary demo",
+      "description": "A working preview of Reply summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/reply-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reply-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "help-launcher",
+      "type": "registry:component",
+      "title": "Help launcher",
+      "description": "A floating Help button that opens a short menu of docs, contact options, keyboard shortcuts and system status, with no third-party script.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/help-launcher.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/help-launcher.tsx"
+        }
+      ],
+      "docs": "Mount it once near the root of the app. items is the menu in order: each entry has a label, an optional description and icon, and either an href or an onSelect, plus an optional shortcut shown as keys (display only: bind the key yourself) and a group, since a rule separates one group from the next. An href that starts with http opens in a new tab and shows an arrow. It is a real menu button: arrow keys move, Escape and a click outside close it, and focus returns to the button. position is bottom-right or bottom-left, label renames the button, heading adds a line above the entries, and open, defaultOpen and onOpenChange control it. It keeps off the screen edge and the notch with safe-area insets; offset lifts it by any CSS length to clear a tab bar or a cookie banner. hidden draws nothing, for a page where it would cover content. contained positions it inside the nearest positioned ancestor instead of the browser window. It loads no third-party script."
+    },
+    {
+      "name": "help-launcher-demo",
+      "type": "registry:example",
+      "title": "Help launcher demo",
+      "description": "A working preview of Help launcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/help-launcher.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/help-launcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "call-log-row",
+      "type": "registry:component",
+      "title": "Call log row",
+      "description": "A call in a log: caller, direction as a drawn arrow and a word, time and duration, with a voicemail, a note and a call back button.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/call-log-row/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/call-log-row/index.tsx"
+        },
+        {
+          "path": "registry/application/call-log-row/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/call-log-row/format.ts"
+        }
+      ],
+      "docs": "Put the rows in a ul. call is { id, name, image, number, direction, at, duration, voicemail, note }: direction is incoming, outgoing or missed, duration is in seconds, and voicemail is { duration }. A caller without a name leads with the number, written for the locale (bare numbers are grouped, +1 numbers as (415) 555-0132; a number that already has spaces or dashes is shown as written; for exact national formats pass formatted text), and says Not in contacts. A missed call is marked by its word, a heavier name and a broken arrow as well as its colour. The row reads as one sentence, Missed call from Anna de Vries, 14:32, and Call back Anna de Vries is a button of its own: onCallBack may return a promise, and the button shows a spinner while it runs; if it rejects, the row says Could not call Anna de Vries. Try again. in a short alert under the line (labels.callFailed), and each press of the button is announced, also a repeat on the same person. onOpen makes the whole row a button under the others. onNote adds a note button, showNote prints call.note under the line, onPlayVoicemail draws a play button beside the voicemail length, and playSlot replaces it with your own player. Pass now to get Yesterday in server HTML; times use locale and timeZone (en-GB gives 14:32). The row reads its own width: narrow, the time sits beside the name, the length joins the arrow and the number gives way; the note button then gives way to onOpen."
+    },
+    {
+      "name": "call-log-row-demo",
+      "type": "registry:example",
+      "title": "Call log row demo",
+      "description": "A working preview of Call log row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/call-log-row.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/call-log-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chat-header",
+      "type": "registry:component",
+      "title": "Chat header",
+      "description": "The top of a conversation: avatar or group mosaic, name, presence or member count, and call, search and info actions.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/chat-header.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chat-header.tsx"
+        }
+      ],
+      "docs": "Put it above the thread. conversation is { id, name, image, group, members, memberCount, onlineCount, muted }: a group without an image is drawn as a mosaic of up to four members. presence is { state, lastSeenAt } for a direct chat and gives Active now, Away, Last seen 14:02 (or yesterday, Mon, 12 Oct) or Offline; a group counts its members instead, 12 members, 3 online. status replaces the line with your own words. The avatar and name are one button when onOpenInfo is passed, named Open info for Anna and described by the status line. The status is also a polite status of its own that speaks only once a change has held for a moment, and never when another conversation opens. actions are icon buttons with tooltips: a wide bar keeps maxInline (default 3), a narrow one keeps two, and the rest wait in a More menu. onBack shows a back button on a narrow bar only. muted adds a bell with a line through it and the word Muted. Pass now to get Last seen in server HTML; times use locale and timeZone. labels translates every word."
+    },
+    {
+      "name": "chat-header-demo",
+      "type": "registry:example",
+      "title": "Chat header demo",
+      "description": "A working preview of Chat header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chat-header.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chat-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sla-timer",
+      "type": "registry:component",
+      "title": "SLA timer",
+      "description": "Time left on a service target: on track, at risk or breached, with a paused state while waiting on the customer.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sla-timer/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sla-timer/index.tsx"
+        },
+        {
+          "path": "registry/application/sla-timer/time.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sla-timer/time.ts"
+        }
+      ],
+      "docs": "deadline and startedAt are the target and when its clock started; the line reads First response in 12 min (label is the words before the time, with the preposition: First response in, Resolve within; without it the line reads 12 min left), then Breached by 25 min once the deadline has passed. The state is written as well as styled: On track, At risk (when a quarter of the target is left, or thresholds says otherwise with atRiskFraction or atRiskMinutes), Breached and Paused, each with its own icon. pausedAt stops the clock and the line reads Paused: waiting on customer (change the reason with pausedReason). businessHours { days, start, end, timeZone } counts working time only, across clock changes, and shows hours rather than days. Time is worked out from timestamps and refreshed once a minute and when a sleeping tab wakes; the ticking is never announced, only a change of state is, politely and once. A thin bar shows how much of the target has gone (showProgress), and the tooltip, on hover, on focus and on a tap, gives the exact deadline. Pass now to get the words in server HTML, in tests and in previews; without it the server shows the due date until the clock is known. locale and timeZone format numbers and dates, labels translates every word."
+    },
+    {
+      "name": "sla-timer-demo",
+      "type": "registry:example",
+      "title": "SLA timer demo",
+      "description": "A working preview of SLA timer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/sla-timer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sla-timer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "attendee-list",
+      "type": "registry:component",
+      "title": "Attendee list",
+      "description": "Who is coming: attendees with their response, grouped counts and your own RSVP, for meetings and events.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/attendee-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/attendee-list.tsx"
+        }
+      ],
+      "docs": "attendees is { id, name, email, image, response, optional } with a response of accepted, declined, tentative or none. The list opens with counts (4 yes, 1 maybe, 2 waiting, left out when zero) that are a polite status, so a change is read out, and a thin bar of the same shares. Each answer is written out as Accepted, Tentative, Declined or No response and drawn as a different shape, so none depends on colour. organizer and you are attendee ids: the organizer leads and carries a tag, you come next with three buttons (Yes, Maybe, No) that call onRespond and may return a promise, and only the organizer sees a Remind button on rows that have not answered, calling onRemind (also a promise: busy, then Reminded). maxVisible (default 5) folds the rest behind Show 12 more and never folds the organizer or you away. The row reads its own width: narrow, the answer moves under the name. headingLevel sets the heading (2 to 4) and labels translates every word."
+    },
+    {
+      "name": "attendee-list-demo",
+      "type": "registry:example",
+      "title": "Attendee list demo",
+      "description": "A working preview of Attendee list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/attendee-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/attendee-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-relations",
+      "type": "registry:component",
+      "title": "Task relations",
+      "description": "Task dependencies in groups: blocked by, blocks and related, each with its status and an add-link action.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "application"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/confirm-popover.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/task-relations.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-relations.tsx"
+        }
+      ],
+      "docs": "relations is { blockedBy, blocks, related }, each a list of tasks { id, key, title, status, href } with a status of todo, in-progress, in-review, done or cancelled, drawn as a ring, a half ring, a three-quarter ring, a solid disc with a tick and a ring with a slash, and always written out. Empty groups are not drawn. A task with open blockers says so at the top (Blocked by 2 open tasks, a polite status) and its resolved blockers (done or cancelled) fold away behind Show 2 resolved. With canEdit, Add link opens a small searchable menu over candidates (those already linked are left out) with the kind of link to make; onAdd(kind, task) may return a promise: the picked row then shows a spinner, the rest wait and a second pick does nothing, and a rejection keeps the menu open and says so. Every row gets a remove button that asks first in a confirmation; onRemove(kind, task) may return a promise. Both are announced, and focus lands on the panel when a row disappears. onOpen(task, event) makes rows open: with href the title is a link and the event reaches your router, without it the row is a button. The panel reads its own width: narrow, the status moves under the title. headingLevel (2 to 4) sets the heading and the group names sit one level below. labels translates every word."
+    },
+    {
+      "name": "task-relations-demo",
+      "type": "registry:example",
+      "title": "Task relations demo",
+      "description": "A working preview of Task relations.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/task-relations.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-relations-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "two-column-sign-in",
+      "type": "registry:block",
+      "title": "Two-column sign-in",
+      "description": "A full-page sign-in with the form on one side and a quiet brand panel with a customer quote on the other, folding to the form alone on a phone.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/two-column-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/two-column-sign-in.tsx"
+        }
+      ],
+      "docs": "onSubmit({ email, password, remember }) signs the person in: return a message to show it in one announced error region above the fields (That email and password do not match), or nothing when it worked; a thrown error shows a general message. The button is busy while it runs and a second submit is ignored, and what was typed survives a failed attempt (the password field is focused and selected so it can be retyped). A missing or malformed field is told under the field. providers is a slot above a labelled divider (dividerLabel) for single sign-on and passkey buttons, forgotHref adds the Forgot password link, brand is your logo, footer sits under the form, and titleAs is h1 (the default, when the form is the page) or h2. aside is the other column for a quote, a product shot or a photo: it is hidden below lg and decorative (hidden from assistive technology) unless you give it asideLabel, so a phone gets the form alone in a column no wider than 24rem. Its top edge is level with the form column's, so a row of your own that is 2.5rem high lines up with the brand. It uses semantic tokens only, with a hairline between the halves and no gradient behind the quote. heading, description, submitLabel and labels change the words."
+    },
+    {
+      "name": "two-column-sign-in-demo",
+      "type": "registry:example",
+      "title": "Two-column sign-in demo",
+      "description": "A working preview of Two-column sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/two-column-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-column-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "magic-link-sign-in",
+      "type": "registry:block",
+      "title": "Magic link sign-in",
+      "description": "Passwordless sign-in: one email field, then an in-place check-your-inbox state with a timed resend and a way back to the form.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/magic-link-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/magic-link-sign-in.tsx"
+        }
+      ],
+      "docs": "onRequestLink({ email, remember }) asks your server to email the link. Resolve whether or not the address has an account, so the card never shows which addresses are registered (the confirmation says If the address has an account, a link is on its way); reject only when the request itself failed, and the card keeps the typed address and shows one retry message. A malformed address is caught when the field is left, with the message tied to the field. On success the card swaps in place to Check your inbox: it names the address, says the link works once for expiresInMinutes (default 15), says where to look, and offers Resend link, Use a different email and, with onUsePassword, Sign in with a password. The resend button counts down resendAfter seconds (default 30) in tabular figures, its name stays Resend link while it waits, and the status region speaks only when the wait starts and when it ends; the wait is worked out from timestamps, so it is right after the tab sleeps. Focus moves to the confirmation heading and back to the field. signedIn flips the card to You are signed in with a Continue button (onSignedIn) for apps that notice the link was opened in another tab. defaultEmail and defaultSent start on the confirmation, titleAs sets the heading element, footer sits under the card, labels translates every word."
+    },
+    {
+      "name": "magic-link-sign-in-demo",
+      "type": "registry:example",
+      "title": "Magic link sign-in demo",
+      "description": "A working preview of Magic link sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/magic-link-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/magic-link-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "passkey-sign-in",
+      "type": "registry:block",
+      "title": "Passkey sign-in",
+      "description": "A passkey-first sign-in: one large \"Sign in with a passkey\" button, autofill on the email field, and a quiet fallback to a password or a link.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/passkey-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/passkey-sign-in.tsx"
+        }
+      ],
+      "docs": "onPasskey({ email }) is yours: run WebAuthn in it (the block never touches navigator.credentials) and resolve when it is done; email is what was typed in the field and may be empty. While the browser prompt is open the big button reads Waiting for your device with a spinner and the same press cannot run twice (busy forces that state for a redirect or a preview). Report what went wrong through error: cancelled, not-found or unsupported each become plain words with the next step, announced once (a rejection with no error set shows a general message; labels.errors translates them). supported={false} removes the button and the field and leads with the fallbacks as full buttons. fallbacks are { id, label, href or onSelect }, shown as quiet text actions under the field (Use a password instead, Email me a link). The email field has autocomplete=username webauthn, so the browser can offer a saved passkey in it, and pressing Enter in it runs the same sign-in. A one-line explanation of what a passkey is sits behind a term, the word passkey with a dotted underline that opens a small named panel on click, tap or Enter (labels.lead, term and definition). Targets are 44px and up (the word passkey is a link inside a sentence, with a padded hit area), the fingerprint tile is a monochrome circle, and nothing depends on a pointer. titleAs sets the heading element, footer sits under the card."
+    },
+    {
+      "name": "passkey-sign-in-demo",
+      "type": "registry:example",
+      "title": "Passkey sign-in demo",
+      "description": "A working preview of Passkey sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/passkey-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/passkey-sign-in-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -40360,6 +41378,441 @@
       "files": [
         {
           "path": "registry/examples/call-us-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coverage-check",
+      "type": "registry:block",
+      "title": "Coverage check",
+      "description": "Ask for a postcode and answer yes, not yet or check the address, with a notify-me field for the places you do not serve.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/coverage-check.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/coverage-check.tsx"
+        }
+      ],
+      "docs": "Pass onCheck, which receives the trimmed text once it has passed the pattern and resolves with a result: a status (available, not-yet or unknown), an optional title and message, and optional details as label and value pairs such as delivery days or an install date. Every answer has a heading and its own icon, so the three differ without colour. The answer is a status message that takes focus, so a screen reader reads it, and Check another address brings focus back to the field with the old text selected. Pass onNotify and a not-yet answer offers an email field to be told when you arrive; it is called with the address and the text that was checked. label, placeholder and hint describe the field, and inputMode, pattern (a regular expression the whole text must match, a loose postcode shape by default) and autoComplete adapt it to postcodes, ZIP codes or full addresses; the two sentences that report a mistake name the field by its label, so an address field never talks about postcodes. action sits next to Check another address when the place is covered. defaultValue and defaultResult start the block on an answer. labels translates every fixed word."
+    },
+    {
+      "name": "coverage-check-demo",
+      "type": "registry:example",
+      "title": "Coverage check demo",
+      "description": "A working preview of Coverage check.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coverage-check.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coverage-check-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "free-audit-form",
+      "type": "registry:block",
+      "title": "Free audit form",
+      "description": "Trade a website address for a free review: URL and email, a validated check and a confirmation that says when the report arrives.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/free-audit-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/free-audit-form.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, which receives the tidied address and the work email, plus a title, a description, the points the audit covers, the turnaround ('Report within 24 hours') and the consent line, which may hold a link. The address is tidied as the visitor leaves the field: https is added, the host is lower-cased and everything after the site is dropped, so the field shows exactly what is sent; set keepPath to keep a path such as /pricing. A mistake is said in plain words beside its field once the visitor has been there or tried to send, and the first one takes focus; pressing the button never loses its click to a message that appears on the way. The confirmation replaces the form, lists what was received, repeats the turnaround and takes focus so a screen reader reads it. On a wide screen the form sits beside the heading and the points; on a phone the form follows the heading and the points come after it. defaultValues and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "free-audit-form-demo",
+      "type": "registry:example",
+      "title": "Free audit form demo",
+      "description": "A working preview of Free audit form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/free-audit-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/free-audit-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contact-faq-split",
+      "type": "registry:block",
+      "title": "Contact with FAQ",
+      "description": "Answer before they write: the few questions that fill your inbox in an accordion beside a short contact form.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/contact-faq-split.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/contact-faq-split.tsx"
+        }
+      ],
+      "docs": "Pass faqs (a question, an answer that may hold markup, and optional keywords), onSubmit, a title, an optional description and a promise such as 'We reply within one working day.' The questions are an accordion with one open at a time; defaultOpen picks the one that starts open. While the message is typed, a hint appears after a short pause with the question that shares the most words with it ('This might answer it: Where is my order?'): words are compared by their roots, small words in stopWords are skipped, and a question's keywords catch other ways of asking. A keyword of several words ('money back') counts only when the message has all of them, and a single shared word fires the hint only when it has five letters or more and belongs to one question, so 'order' or 'back' alone stay quiet. The hint is a button that opens that answer and moves focus to its question; it is announced politely, it is offered once, and it never blocks or delays the send. Mistakes are said beside their field once the visitor has been there or tried to send, and the first one takes focus. The confirmation replaces the form and takes focus. defaultValues and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "contact-faq-split-demo",
+      "type": "registry:example",
+      "title": "Contact with FAQ demo",
+      "description": "A working preview of Contact with FAQ.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-faq-split.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-faq-split-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "welcome-offer-signup",
+      "type": "registry:block",
+      "title": "Welcome offer signup",
+      "description": "Trade an email for a first-order discount and reveal the code in place, with a copy button and the terms.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/welcome-offer-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/welcome-offer-signup.tsx"
+        }
+      ],
+      "docs": "Pass offer (a title, a description and the terms as a list), onSubmit and action. onSubmit receives the address and resolves with the code, or with { code, returning: true } for an address that signed up before, which reads Welcome back and hands the same code over again. The code is not in the page until that response arrives, so view source and crawlers get nothing; defaultResult is the one way to start on a code, for a visitor who is meant to have it. The consent line is required and sits beside the button, and the terms show under the form as one line and next to the code as a list. The code is a copy field that says Copied in words. action is the button under the code: an href makes it a link, otherwise it calls onClick, and its text is Start shopping unless you set a label. The result takes focus so a screen reader reads it. labels translates every fixed word."
+    },
+    {
+      "name": "welcome-offer-signup-demo",
+      "type": "registry:example",
+      "title": "Welcome offer signup demo",
+      "description": "A working preview of Welcome offer signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/welcome-offer-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/welcome-offer-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "email-course-signup",
+      "type": "registry:block",
+      "title": "Email course signup",
+      "description": "A five-day email course: the lesson outline day by day beside a signup field, so the promise is concrete before the email is given.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/email-course-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/email-course-signup.tsx"
+        }
+      ],
+      "docs": "Pass lessons (a day, a title and a one-line takeaway), onSubmit, a title, a description and the duration ('5 minutes a day'). The outline is a real ordered list with each lesson's day as its number. The card holds one email field, the start rule under the button ('Starts the day after you sign up'), an Unsubscribe any time note beside the button and the privacy line, which links to your policy when you pass privacyHref. The confirmation says where the lessons will arrive and when Day 1 comes: onSubmit may resolve with { firstLessonAt } (a time with its offset, or a plain day), which is written in locale and timeZone, and without it the confirmation repeats the start rule. It takes focus so a screen reader reads it. defaultValue, defaultStatus and defaultStart start the card filled or confirmed. labels translates every fixed word, the start rule and the unsubscribe note included."
+    },
+    {
+      "name": "email-course-signup-demo",
+      "type": "registry:example",
+      "title": "Email course signup demo",
+      "description": "A working preview of Email course signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/email-course-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/email-course-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-preview",
+      "type": "registry:block",
+      "title": "Newsletter with preview",
+      "description": "Subscribe with a look inside: the latest issue as a cover card beside the form, so people see exactly what they will receive.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/newsletter-preview.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/newsletter-preview.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, the latest issue (number, title, date, three headlines and an href into your archive), a title and a description. The whole issue card is a link: one anchor inside it covers the card and carries the issue's title for a screen reader. date is a plain day or a time, written in locale and timeZone. promise (how often, how to leave) sits under the form and privacyHref adds the privacy line. readers is the count as you would say it aloud, '12,400', and appears as a sentence only when you pass it: pass it only when it is true and current. The address is checked in words when the form is sent, a failure keeps what was typed, and success replaces the form with a status message that takes focus. defaultValue and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "newsletter-preview-demo",
+      "type": "registry:example",
+      "title": "Newsletter with preview demo",
+      "description": "A working preview of Newsletter with preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-preview.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "promo-code-cta",
+      "type": "registry:block",
+      "title": "Promo code CTA",
+      "description": "A limited offer with its code ready to copy, the terms in plain words and the date it ends, so the discount is one click from the cart.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/promo-code-cta.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/promo-code-cta.tsx"
+        }
+      ],
+      "docs": "Pass title, code, endsAt and terms, and optionally a description and an action: a real code, a real date and a link to the terms are what make the urgency honest. endsAt is a time with its offset or a Z, or a plain day that ends with that day on the clocks of timeZone; it is written with locale and the zone's name inside a time element. No timer runs. Once the end has passed the band reads This offer has ended and the code is no longer in the page. A page that is built once corrects itself in the browser; pass now, the same on the server and in the browser, when you render per request so the first paint is already right. The code is a copy field that says Copied in words. labels translates every fixed word."
+    },
+    {
+      "name": "promo-code-cta-demo",
+      "type": "registry:example",
+      "title": "Promo code CTA demo",
+      "description": "A working preview of Promo code CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/promo-code-cta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/promo-code-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "app-download-qr",
+      "type": "registry:block",
+      "title": "App download with QR",
+      "description": "Get the app on your phone: store buttons, a QR code for desktop visitors and a 'text me the link' field.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/phone-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/app-download-qr.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/app-download-qr.tsx"
+        }
+      ],
+      "docs": "Pass title, description, stores (a name and an href, with an optional caption and icon), qr and onSendLink. The store buttons are drawn in the house style, not as copied badges; the icon and the small line follow the store's name unless you pass your own. qr is the SVG or image from your generator, given an accessible name; it sits on a white tile so it scans in both themes. onSendLink receives the number in international form ('+31612345678'), the field starts on defaultCountry, and Link sent is a status message that takes focus. A phone or tablet (no hover, a coarse pointer) sees only the store buttons: the QR code and the text field are hidden by a media query on hover and pointer, not by width, so a narrow desktop window still gets them. rating is a value, a count and an optional source, written in locale, with a single rating in the singular. defaultStatus and defaultPhone start the text path as sent. labels translates every fixed word."
+    },
+    {
+      "name": "app-download-qr-demo",
+      "type": "registry:example",
+      "title": "App download with QR demo",
+      "description": "A working preview of App download with QR.",
+      "registryDependencies": [
+        "https://rhsui.com/r/app-download-qr.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/app-download-qr-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cta-photo-split",
+      "type": "registry:block",
+      "title": "Photo split CTA",
+      "description": "A closing ask beside a real photograph: the picture fills one half edge to edge, the copy and action the other.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "conversion"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/cta-photo-split.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cta-photo-split.tsx"
+        }
+      ],
+      "docs": "Pass title, description, points, actions (a button or two), note and image. image is an img, a picture or your framework's image: it fills its half edge to edge and is cropped to fit, in a space that is fixed (16:9 on a phone, the height of the copy on a wide screen), so the card does not move as it loads, and it is never revealed by an animation. imageSide puts it on the left or the right on a wide screen; on a phone it is always above the copy. Give the photograph real alt text. It is a server component and needs no client JavaScript."
+    },
+    {
+      "name": "cta-photo-split-demo",
+      "type": "registry:example",
+      "title": "Photo split CTA demo",
+      "description": "A working preview of Photo split CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cta-photo-split.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cta-photo-split-demo.tsx",
           "type": "registry:example"
         }
       ]

@@ -6731,6 +6731,432 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "coverage-check",
+      "type": "registry:block",
+      "title": "Coverage check",
+      "description": "Ask for a postcode and answer yes, not yet or check the address, with a notify-me field for the places you do not serve.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/coverage-check.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/coverage-check.tsx"
+        }
+      ],
+      "docs": "Pass onCheck, which receives the trimmed text once it has passed the pattern and resolves with a result: a status (available, not-yet or unknown), an optional title and message, and optional details as label and value pairs such as delivery days or an install date. Every answer has a heading and its own icon, so the three differ without colour. The answer is a status message that takes focus, so a screen reader reads it, and Check another address brings focus back to the field with the old text selected. Pass onNotify and a not-yet answer offers an email field to be told when you arrive; it is called with the address and the text that was checked. label, placeholder and hint describe the field, and inputMode, pattern (a regular expression the whole text must match, a loose postcode shape by default) and autoComplete adapt it to postcodes, ZIP codes or full addresses; the two sentences that report a mistake name the field by its label, so an address field never talks about postcodes. action sits next to Check another address when the place is covered. defaultValue and defaultResult start the block on an answer. labels translates every fixed word."
+    },
+    {
+      "name": "coverage-check-demo",
+      "type": "registry:example",
+      "title": "Coverage check demo",
+      "description": "A working preview of Coverage check.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coverage-check.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coverage-check-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "free-audit-form",
+      "type": "registry:block",
+      "title": "Free audit form",
+      "description": "Trade a website address for a free review: URL and email, a validated check and a confirmation that says when the report arrives.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/free-audit-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/free-audit-form.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, which receives the tidied address and the work email, plus a title, a description, the points the audit covers, the turnaround ('Report within 24 hours') and the consent line, which may hold a link. The address is tidied as the visitor leaves the field: https is added, the host is lower-cased and everything after the site is dropped, so the field shows exactly what is sent; set keepPath to keep a path such as /pricing. A mistake is said in plain words beside its field once the visitor has been there or tried to send, and the first one takes focus; pressing the button never loses its click to a message that appears on the way. The confirmation replaces the form, lists what was received, repeats the turnaround and takes focus so a screen reader reads it. On a wide screen the form sits beside the heading and the points; on a phone the form follows the heading and the points come after it. defaultValues and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "free-audit-form-demo",
+      "type": "registry:example",
+      "title": "Free audit form demo",
+      "description": "A working preview of Free audit form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/free-audit-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/free-audit-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contact-faq-split",
+      "type": "registry:block",
+      "title": "Contact with FAQ",
+      "description": "Answer before they write: the few questions that fill your inbox in an accordion beside a short contact form.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/contact-faq-split.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/contact-faq-split.tsx"
+        }
+      ],
+      "docs": "Pass faqs (a question, an answer that may hold markup, and optional keywords), onSubmit, a title, an optional description and a promise such as 'We reply within one working day.' The questions are an accordion with one open at a time; defaultOpen picks the one that starts open. While the message is typed, a hint appears after a short pause with the question that shares the most words with it ('This might answer it: Where is my order?'): words are compared by their roots, small words in stopWords are skipped, and a question's keywords catch other ways of asking. A keyword of several words ('money back') counts only when the message has all of them, and a single shared word fires the hint only when it has five letters or more and belongs to one question, so 'order' or 'back' alone stay quiet. The hint is a button that opens that answer and moves focus to its question; it is announced politely, it is offered once, and it never blocks or delays the send. Mistakes are said beside their field once the visitor has been there or tried to send, and the first one takes focus. The confirmation replaces the form and takes focus. defaultValues and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "contact-faq-split-demo",
+      "type": "registry:example",
+      "title": "Contact with FAQ demo",
+      "description": "A working preview of Contact with FAQ.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-faq-split.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-faq-split-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "welcome-offer-signup",
+      "type": "registry:block",
+      "title": "Welcome offer signup",
+      "description": "Trade an email for a first-order discount and reveal the code in place, with a copy button and the terms.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/welcome-offer-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/welcome-offer-signup.tsx"
+        }
+      ],
+      "docs": "Pass offer (a title, a description and the terms as a list), onSubmit and action. onSubmit receives the address and resolves with the code, or with { code, returning: true } for an address that signed up before, which reads Welcome back and hands the same code over again. The code is not in the page until that response arrives, so view source and crawlers get nothing; defaultResult is the one way to start on a code, for a visitor who is meant to have it. The consent line is required and sits beside the button, and the terms show under the form as one line and next to the code as a list. The code is a copy field that says Copied in words. action is the button under the code: an href makes it a link, otherwise it calls onClick, and its text is Start shopping unless you set a label. The result takes focus so a screen reader reads it. labels translates every fixed word."
+    },
+    {
+      "name": "welcome-offer-signup-demo",
+      "type": "registry:example",
+      "title": "Welcome offer signup demo",
+      "description": "A working preview of Welcome offer signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/welcome-offer-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/welcome-offer-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "email-course-signup",
+      "type": "registry:block",
+      "title": "Email course signup",
+      "description": "A five-day email course: the lesson outline day by day beside a signup field, so the promise is concrete before the email is given.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/email-course-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/email-course-signup.tsx"
+        }
+      ],
+      "docs": "Pass lessons (a day, a title and a one-line takeaway), onSubmit, a title, a description and the duration ('5 minutes a day'). The outline is a real ordered list with each lesson's day as its number. The card holds one email field, the start rule under the button ('Starts the day after you sign up'), an Unsubscribe any time note beside the button and the privacy line, which links to your policy when you pass privacyHref. The confirmation says where the lessons will arrive and when Day 1 comes: onSubmit may resolve with { firstLessonAt } (a time with its offset, or a plain day), which is written in locale and timeZone, and without it the confirmation repeats the start rule. It takes focus so a screen reader reads it. defaultValue, defaultStatus and defaultStart start the card filled or confirmed. labels translates every fixed word, the start rule and the unsubscribe note included."
+    },
+    {
+      "name": "email-course-signup-demo",
+      "type": "registry:example",
+      "title": "Email course signup demo",
+      "description": "A working preview of Email course signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/email-course-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/email-course-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-preview",
+      "type": "registry:block",
+      "title": "Newsletter with preview",
+      "description": "Subscribe with a look inside: the latest issue as a cover card beside the form, so people see exactly what they will receive.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/newsletter-preview.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/newsletter-preview.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit, the latest issue (number, title, date, three headlines and an href into your archive), a title and a description. The whole issue card is a link: one anchor inside it covers the card and carries the issue's title for a screen reader. date is a plain day or a time, written in locale and timeZone. promise (how often, how to leave) sits under the form and privacyHref adds the privacy line. readers is the count as you would say it aloud, '12,400', and appears as a sentence only when you pass it: pass it only when it is true and current. The address is checked in words when the form is sent, a failure keeps what was typed, and success replaces the form with a status message that takes focus. defaultValue and defaultStatus start it filled or confirmed. labels translates every fixed word."
+    },
+    {
+      "name": "newsletter-preview-demo",
+      "type": "registry:example",
+      "title": "Newsletter with preview demo",
+      "description": "A working preview of Newsletter with preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-preview.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "promo-code-cta",
+      "type": "registry:block",
+      "title": "Promo code CTA",
+      "description": "A limited offer with its code ready to copy, the terms in plain words and the date it ends, so the discount is one click from the cart.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/promo-code-cta.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/promo-code-cta.tsx"
+        }
+      ],
+      "docs": "Pass title, code, endsAt and terms, and optionally a description and an action: a real code, a real date and a link to the terms are what make the urgency honest. endsAt is a time with its offset or a Z, or a plain day that ends with that day on the clocks of timeZone; it is written with locale and the zone's name inside a time element. No timer runs. Once the end has passed the band reads This offer has ended and the code is no longer in the page. A page that is built once corrects itself in the browser; pass now, the same on the server and in the browser, when you render per request so the first paint is already right. The code is a copy field that says Copied in words. labels translates every fixed word."
+    },
+    {
+      "name": "promo-code-cta-demo",
+      "type": "registry:example",
+      "title": "Promo code CTA demo",
+      "description": "A working preview of Promo code CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/promo-code-cta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/promo-code-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "app-download-qr",
+      "type": "registry:block",
+      "title": "App download with QR",
+      "description": "Get the app on your phone: store buttons, a QR code for desktop visitors and a 'text me the link' field.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/phone-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/app-download-qr.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/app-download-qr.tsx"
+        }
+      ],
+      "docs": "Pass title, description, stores (a name and an href, with an optional caption and icon), qr and onSendLink. The store buttons are drawn in the house style, not as copied badges; the icon and the small line follow the store's name unless you pass your own. qr is the SVG or image from your generator, given an accessible name; it sits on a white tile so it scans in both themes. onSendLink receives the number in international form ('+31612345678'), the field starts on defaultCountry, and Link sent is a status message that takes focus. A phone or tablet (no hover, a coarse pointer) sees only the store buttons: the QR code and the text field are hidden by a media query on hover and pointer, not by width, so a narrow desktop window still gets them. rating is a value, a count and an optional source, written in locale, with a single rating in the singular. defaultStatus and defaultPhone start the text path as sent. labels translates every fixed word."
+    },
+    {
+      "name": "app-download-qr-demo",
+      "type": "registry:example",
+      "title": "App download with QR demo",
+      "description": "A working preview of App download with QR.",
+      "registryDependencies": [
+        "https://rhsui.com/r/app-download-qr.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/app-download-qr-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cta-photo-split",
+      "type": "registry:block",
+      "title": "Photo split CTA",
+      "description": "A closing ask beside a real photograph: the picture fills one half edge to edge, the copy and action the other.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/cta-photo-split.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cta-photo-split.tsx"
+        }
+      ],
+      "docs": "Pass title, description, points, actions (a button or two), note and image. image is an img, a picture or your framework's image: it fills its half edge to edge and is cropped to fit, in a space that is fixed (16:9 on a phone, the height of the copy on a wide screen), so the card does not move as it loads, and it is never revealed by an animation. imageSide puts it on the left or the right on a wide screen; on a phone it is always above the copy. Give the photograph real alt text. It is a server component and needs no client JavaScript."
+    },
+    {
+      "name": "cta-photo-split-demo",
+      "type": "registry:example",
+      "title": "Photo split CTA demo",
+      "description": "A working preview of Photo split CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cta-photo-split.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cta-photo-split-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

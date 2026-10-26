@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coupon-card-demo",
+  "title": "Coupon card demo",
+  "description": "A working preview of Coupon card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/coupon-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/coupon-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { CouponCard } from \"@rhs-ui/commerce/coupon-card\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [copied, setCopied] = useState<string | null>(null);\n\n  return (\n    <div className=\"grid w-full max-w-xl min-w-0 gap-8\">\n      <Example caption=\"Active: the code copies in one press, the date is in the tooltip and the small print behind Details\">\n        <CouponCard\n          offer=\"20% off\"\n          description=\"Everything in the Northwind outlet, in every size and colour.\"\n          code=\"OUTLET20\"\n          expiresAt=\"2026-10-29\"\n          conditions={[\"Valid on outlet items only\", \"Cannot be combined with another code\", \"Orders from €50\", \"One use per customer\"]}\n          onCopy={setCopied}\n          now=\"2026-10-26T09:00:00Z\"\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n        />\n        <p role=\"status\" className=\"min-h-4 text-xs text-muted-foreground\">\n          {copied ? `Copied ${copied} to the clipboard.` : \"\"}\n        </p>\n      </Example>\n\n      <Example caption=\"Used: muted, the code is struck through and there is nothing to copy\">\n        <CouponCard offer=\"€10 off\" description=\"Your first order at Halcyon Home.\" code=\"WELCOME10\" expiresAt=\"2026-12-31\" status=\"used\" now=\"2026-10-26T09:00:00Z\" locale=\"en-GB\" timeZone=\"Europe/Amsterdam\" />\n      </Example>\n\n      <Example caption=\"Expired: the same, with the day it ended\">\n        <CouponCard\n          offer=\"Free delivery\"\n          description=\"On any order, to the Netherlands and Belgium.\"\n          code=\"AUTUMNSHIP\"\n          expiresAt=\"2026-10-18\"\n          conditions={[\"Standard delivery only\"]}\n          now=\"2026-10-26T09:00:00Z\"\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

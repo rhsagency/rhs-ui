@@ -1,0 +1,175 @@
+import type { ReactNode } from "react";
+
+import { Button } from "@rhs-ui/primitives/button";
+import { CtaPhotoSplit } from "@rhs-ui/marketing/cta-photo-split";
+
+/** Soft film grain and a gentle vignette, so the drawn scenes read as photographs rather than flat artwork. */
+const FINISH_DEFS =
+  "<filter id='grain' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 .9 0 0 0 -.25'/></filter>" +
+  "<radialGradient id='vig' cx='.5' cy='.46' r='.8'><stop offset='.55' stop-color='#1d140b' stop-opacity='0'/><stop offset='1' stop-color='#1d140b' stop-opacity='.3'/></radialGradient>" +
+  "<filter id='soft' x='-30%' y='-30%' width='160%' height='160%'><feGaussianBlur stdDeviation='18'/></filter>" +
+  "<filter id='blur' x='-30%' y='-30%' width='160%' height='160%'><feGaussianBlur stdDeviation='4'/></filter>";
+const FINISH = "<rect width='1200' height='900' filter='url(#grain)' opacity='.55'/><rect width='1200' height='900' fill='url(#vig)'/>";
+
+const scene = (defs: string, body: string) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900' preserveAspectRatio='xMidYMid slice'><defs>${FINISH_DEFS}${defs}</defs>${body}${FINISH}</svg>`);
+
+/** Floor boards in perspective: lines that meet far behind the horizon. */
+const boards = Array.from({ length: 16 }, (_, i) => {
+  const x = -900 + i * 190;
+  return `M${600 + (x - 600) * 0.28} 624L${x} 900`;
+}).join("");
+
+const studio = scene(
+  "<linearGradient id='wall' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#f6f1e8'/><stop offset='1' stop-color='#e8dfd0'/></linearGradient>" +
+    "<linearGradient id='floor' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#dcc19b'/><stop offset='1' stop-color='#b8946a'/></linearGradient>" +
+    "<linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#dfe9ef'/><stop offset='.7' stop-color='#f7f4ea'/><stop offset='1' stop-color='#fffaf0'/></linearGradient>",
+  "<rect width='1200' height='900' fill='url(#wall)'/>" +
+    "<rect x='650' y='70' width='480' height='560' fill='#fffaf0' opacity='.7' filter='url(#soft)'/>" +
+    "<rect x='700' y='110' width='380' height='460' fill='url(#sky)'/>" +
+    "<g filter='url(#blur)' opacity='.6'><ellipse cx='790' cy='540' rx='110' ry='46' fill='#9bb08c'/><ellipse cx='960' cy='548' rx='130' ry='50' fill='#86a077'/><ellipse cx='1040' cy='520' rx='70' ry='40' fill='#a7b99a'/></g>" +
+    "<path d='M700 110h380v460H700zM890 110v460M700 340h380' fill='none' stroke='#3a3531' stroke-width='9'/>" +
+    "<rect x='688' y='566' width='404' height='16' fill='#ece5d8'/>" +
+    "<rect x='336' y='160' width='160' height='210' fill='#f9f6ef' stroke='#4a4540' stroke-width='8'/><rect x='352' y='176' width='128' height='178' fill='#efe7da'/><circle cx='416' cy='250' r='38' fill='#c9a27a'/><path d='M352 330Q416 290 480 330V354H352Z' fill='#8a9d89'/>" +
+    "<rect y='604' width='1200' height='24' fill='#ebe3d5'/>" +
+    "<path d='M0 628H1200V900H0Z' fill='url(#floor)'/>" +
+    `<path d='${boards}' stroke='#8e6c43' stroke-opacity='.3' stroke-width='3' fill='none'/>` +
+    "<path d='M690 640L1090 630L1000 900H300Z' fill='#fff7e2' opacity='.6' filter='url(#soft)'/>" +
+    "<g stroke='#9d7a4c' stroke-opacity='.22' stroke-width='16' filter='url(#blur)'><path d='M890 640L840 900'/><path d='M700 652L1090 642'/></g>" +
+    "<ellipse cx='170' cy='652' rx='100' ry='12' fill='#5b4630' opacity='.35' filter='url(#blur)'/>" +
+    "<rect x='110' y='380' width='74' height='270' rx='37' fill='#8a9d89'/><rect x='122' y='392' width='14' height='248' rx='7' fill='#fff' opacity='.14'/><ellipse cx='147' cy='384' rx='37' ry='13' fill='#a3b5a1'/><ellipse cx='147' cy='384' rx='22' ry='7' fill='none' stroke='#7b8f7a' stroke-width='3'/>" +
+    "<rect x='196' y='430' width='66' height='220' rx='33' fill='#cdb090'/><rect x='207' y='442' width='12' height='198' rx='6' fill='#fff' opacity='.16'/><ellipse cx='229' cy='434' rx='33' ry='12' fill='#e0c9ac'/><ellipse cx='229' cy='434' rx='19' ry='6' fill='none' stroke='#b89a78' stroke-width='3'/>" +
+    "<ellipse cx='410' cy='652' rx='160' ry='11' fill='#5b4630' opacity='.3' filter='url(#blur)'/>" +
+    "<rect x='290' y='572' width='240' height='26' rx='5' fill='#c9a171'/><rect x='290' y='572' width='240' height='7' rx='3' fill='#dcb888'/><rect x='308' y='598' width='16' height='52' fill='#a98059'/><rect x='496' y='598' width='16' height='52' fill='#a98059'/>" +
+    "<rect x='330' y='546' width='96' height='28' rx='8' fill='#f3eee5'/><rect x='330' y='560' width='96' height='4' fill='#e1d9c9'/>" +
+    "<ellipse cx='592' cy='650' rx='70' ry='10' fill='#5b4630' opacity='.4' filter='url(#blur)'/>" +
+    "<g stroke='#4f6347' stroke-width='5' stroke-linecap='round'><path d='M592 560L562 430'/><path d='M592 560L628 440'/><path d='M592 560L544 480'/><path d='M592 560L602 400'/></g>" +
+    "<ellipse cx='558' cy='400' rx='44' ry='76' transform='rotate(-14 558 400)' fill='#6f8a64'/><ellipse cx='632' cy='410' rx='40' ry='70' transform='rotate(20 632 410)' fill='#7e9972'/><ellipse cx='522' cy='470' rx='36' ry='62' transform='rotate(-48 522 470)' fill='#5d7855'/><ellipse cx='604' cy='360' rx='34' ry='66' transform='rotate(6 604 360)' fill='#8aa57e'/>" +
+    "<path d='M530 560h124l-14 90H544z' fill='#c4ad90'/><path d='M530 560h124l-2 14H532z' fill='#d3bfa3'/>",
+);
+
+const bakery = scene(
+  "<linearGradient id='wall' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#f1e5d1'/><stop offset='1' stop-color='#dfcbaa'/></linearGradient>" +
+    "<linearGradient id='top' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#c99863'/><stop offset='1' stop-color='#a97a49'/></linearGradient>" +
+    "<linearGradient id='front' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#7a5538'/><stop offset='1' stop-color='#5b3d28'/></linearGradient>",
+  "<rect width='1200' height='900' fill='url(#wall)'/>" +
+    `<g stroke='#bda27a' stroke-opacity='.4' stroke-width='2'>${Array.from({ length: 13 }, (_, row) => `<path d='M0 ${row * 46}H1200'/>${Array.from({ length: 16 }, (_, col) => `<path d='M${col * 84 + (row % 2) * 42} ${row * 46}v46'/>`).join("")}`).join("")}</g>` +
+    "<rect x='80' y='262' width='470' height='16' fill='#8b6544'/><rect x='80' y='278' width='470' height='6' fill='#6a4c34' opacity='.5'/>" +
+    Array.from({ length: 5 }, (_, i) => `<rect x='${108 + i * 88}' y='196' width='62' height='66' rx='9' fill='#f6eddc' stroke='#cdb995'/><rect x='${108 + i * 88}' y='184' width='62' height='14' rx='5' fill='#6a4c34'/><rect x='${116 + i * 88}' y='220' width='46' height='34' rx='4' fill='${["#d9a05b", "#b9753b", "#e1c07e", "#a9743f", "#cf9449"][i]}' opacity='.8'/>`).join("") +
+    "<rect x='80' y='430' width='470' height='16' fill='#8b6544'/>" +
+    Array.from({ length: 4 }, (_, i) => `<ellipse cx='${150 + i * 110}' cy='418' rx='46' ry='26' fill='${["#c98d4f", "#b97a3e", "#d39c5e", "#bf8444"][i]}'/><path d='M${120 + i * 110} 410q30 -12 60 0' stroke='#efd09a' stroke-width='5' fill='none' stroke-linecap='round'/>`).join("") +
+    [700, 890, 1080].map((cx) => `<path d='M${cx} 0V150' stroke='#2f2a26' stroke-width='3'/><ellipse cx='${cx}' cy='300' rx='150' ry='120' fill='#ffd88a' opacity='.3' filter='url(#soft)'/><path d='M${cx - 54} 226Q${cx} 112 ${cx + 54} 226Z' fill='#2f2a26'/><ellipse cx='${cx}' cy='228' rx='54' ry='9' fill='#ffe9b8'/>`).join("") +
+    "<rect y='612' width='1200' height='34' fill='url(#top)'/><rect y='612' width='1200' height='6' fill='#e0b883' opacity='.7'/>" +
+    "<rect y='646' width='1200' height='254' fill='url(#front)'/>" +
+    `<g stroke='#3f2a1b' stroke-opacity='.45' stroke-width='3'>${Array.from({ length: 14 }, (_, i) => `<path d='M${i * 92} 646V900'/>`).join("")}</g>` +
+    "<ellipse cx='820' cy='618' rx='190' ry='14' fill='#4a2f1d' opacity='.35' filter='url(#blur)'/>" +
+    "<path d='M650 560Q660 640 700 640H940Q980 640 990 560Z' fill='#9a6c44'/><ellipse cx='820' cy='560' rx='170' ry='26' fill='#7d5535'/>" +
+    "<ellipse cx='740' cy='548' rx='78' ry='34' fill='#c98d4f'/><path d='M690 540q50 -22 100 0' stroke='#f0d29f' stroke-width='6' fill='none' stroke-linecap='round'/>" +
+    "<ellipse cx='870' cy='542' rx='84' ry='36' fill='#b97a3e'/><path d='M814 534q56 -24 112 0' stroke='#e7c38b' stroke-width='6' fill='none' stroke-linecap='round'/>" +
+    "<ellipse cx='810' cy='580' rx='72' ry='28' fill='#d39c5e'/><path d='M762 574q48 -18 96 0' stroke='#f0d29f' stroke-width='5' fill='none' stroke-linecap='round'/>" +
+    "<ellipse cx='400' cy='620' rx='110' ry='12' fill='#4a2f1d' opacity='.35' filter='url(#blur)'/>" +
+    "<rect x='392' y='540' width='16' height='76' fill='#d9ccb6'/><ellipse cx='400' cy='616' rx='70' ry='9' fill='#e6dcc9'/><ellipse cx='400' cy='540' rx='110' ry='16' fill='#f0e7d6'/>" +
+    "<path d='M316 540V470a84 24 0 0 1 168 0V540Z' fill='#ead0a8'/><ellipse cx='400' cy='470' rx='84' ry='24' fill='#f5e0bd'/>" +
+    "<g fill='#b5523b'><circle cx='370' cy='466' r='11'/><circle cx='402' cy='458' r='11'/><circle cx='432' cy='468' r='11'/><circle cx='400' cy='478' r='10'/></g><g fill='#6f8a64'><ellipse cx='388' cy='452' rx='9' ry='4'/><ellipse cx='418' cy='450' rx='9' ry='4'/></g>" +
+    "<ellipse cx='150' cy='622' rx='60' ry='8' fill='#4a2f1d' opacity='.3' filter='url(#blur)'/><path d='M118 572h64l-8 44h-48z' fill='#f4efe6'/><path d='M182 584h14a10 10 0 0 1 0 22h-18' fill='none' stroke='#f4efe6' stroke-width='6'/><ellipse cx='150' cy='572' rx='32' ry='7' fill='#5a3a26'/>",
+);
+
+const workshop = scene(
+  "<linearGradient id='wall' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ece4d4'/><stop offset='1' stop-color='#d6c8ae'/></linearGradient>" +
+    "<linearGradient id='table' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#c7a27a'/><stop offset='1' stop-color='#a07c54'/></linearGradient>",
+  "<rect width='1200' height='900' fill='url(#wall)'/>" +
+    "<path d='M0 0H520L360 900H0Z' fill='#fffaf0' opacity='.5' filter='url(#soft)'/>" +
+    [210, 430, 650].map((y) => `<rect x='430' y='${y}' width='700' height='16' fill='#8b6544'/><rect x='430' y='${y + 16}' width='700' height='8' fill='#5d4129' opacity='.35' filter='url(#blur)'/>`).join("") +
+    [
+      [490, 210, "#c98a63", 1],
+      [610, 210, "#efe6d6", 0.8],
+      [720, 210, "#8aa07f", 1.1],
+      [880, 210, "#d8b99a", 0.9],
+      [1020, 210, "#b6694a", 1],
+      [500, 430, "#efe6d6", 1.1],
+      [640, 430, "#a98b6a", 0.9],
+      [780, 430, "#c98a63", 1.2],
+      [950, 430, "#8aa07f", 0.9],
+      [520, 650, "#d8b99a", 1],
+      [680, 650, "#b6694a", 1.1],
+      [860, 650, "#efe6d6", 1],
+      [1010, 650, "#8aa07f", 0.9],
+    ]
+      .map(([x, base, fill, scale]) => `<g transform='translate(${x} ${Number(base) + 2}) scale(${scale})'><path d='M-10 -90C-10 -110 10 -110 10 -90C34 -70 36 -30 22 0H-22C-36 -30 -34 -70 -10 -90Z' fill='${fill}'/><path d='M-24 -28C-6 -22 8 -22 24 -28L22 0H-22Z' fill='#000' opacity='.08'/><ellipse cx='-8' cy='-48' rx='5' ry='22' fill='#fff' opacity='.18'/></g>`)
+      .join("") +
+    "<rect y='740' width='1200' height='160' fill='url(#table)'/><rect y='740' width='1200' height='8' fill='#dcb98f'/>" +
+    "<ellipse cx='520' cy='744' rx='170' ry='14' fill='#4a2f1d' opacity='.3' filter='url(#blur)'/>" +
+    "<path d='M410 700Q420 744 470 744H590Q640 744 650 700Z' fill='#bd7a55'/><ellipse cx='530' cy='700' rx='120' ry='22' fill='#cf8e68'/><ellipse cx='530' cy='702' rx='96' ry='15' fill='#8d553a'/>" +
+    "<ellipse cx='810' cy='742' rx='90' ry='10' fill='#4a2f1d' opacity='.3' filter='url(#blur)'/><ellipse cx='800' cy='722' rx='56' ry='26' fill='#a7a08f'/><ellipse cx='800' cy='714' rx='50' ry='18' fill='#bdb6a4'/>" +
+    "<rect x='900' y='726' width='150' height='12' rx='6' fill='#5f4630' transform='rotate(-8 975 732)'/><ellipse cx='1080' cy='730' rx='34' ry='18' fill='#d9c9a6'/>",
+);
+
+const photos = {
+  studio: { src: studio, alt: "A sunlit studio with a wooden floor, two rolled mats, a low bench and a leafy plant by a tall window" },
+  bakery: { src: bakery, alt: "A bakery counter under three pendant lamps, with a basket of loaves, a cake on a stand and a cup of coffee" },
+  workshop: { src: workshop, alt: "Open shelves of hand-thrown vases and bowls above a wooden table with a bowl in progress" },
+} as const;
+
+const Photo = ({ name }: { name: keyof typeof photos }): React.JSX.Element => <img src={photos[name].src} alt={photos[name].alt} width={1200} height={900} />;
+
+function Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {
+  return (
+    <div className="min-w-0">
+      <p className="mb-6 text-xs text-muted-foreground">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+export default function Demo(): React.JSX.Element {
+  return (
+    <div className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
+      <div className="grid gap-y-16">
+        <Example caption="Photograph on the left: a studio's closing ask, with the reassurances that remove the last doubt">
+          <CtaPhotoSplit
+            title="Your first session is on us."
+            description="Come to Halcyon Studio for a free hour of mobility and breathwork. Meet the teachers, try the room and decide at your own pace."
+            points={["No contract and no joining fee", "Mats, blocks and towels are provided", "Ten minutes from the station, with bike parking"]}
+            actions={
+              <>
+                <Button size="lg">Book a free session</Button>
+                <Button size="lg" variant="outline">
+                  See the timetable
+                </Button>
+              </>
+            }
+            note="Takes two minutes. We confirm by email within the hour."
+            image={<Photo name="studio" />}
+          />
+        </Example>
+        <Example caption="Photograph on the right, one action: on a phone the picture moves above the copy at 16:9">
+          <CtaPhotoSplit
+            imageSide="right"
+            title="Come by on a Saturday."
+            description="The ovens start at five and the first loaves are out by seven. Stay for coffee, take a loaf home and meet the people who made it."
+            points={["Sourdough, rye and the Saturday bun", "Open Tuesday to Sunday, 7:00 to 15:00"]}
+            actions={
+              <Button size="lg" asChild>
+                <a href="#visit">Plan your visit</a>
+              </Button>
+            }
+            note="Order a loaf before 18:00 the day before and it is waiting for you."
+            image={<Photo name="bakery" />}
+          />
+        </Example>
+        <Example caption="The smallest form: a headline, a sentence and the action, with no list and no note">
+          <CtaPhotoSplit
+            headingLevel={3}
+            title="Make something with your hands."
+            description="A three-hour pottery workshop for beginners. You leave with a bowl that is yours, glazed and fired by us."
+            actions={
+              <Button size="lg" asChild>
+                <a href="#workshops">Choose a date</a>
+              </Button>
+            }
+            image={<Photo name="workshop" />}
+          />
+        </Example>
+      </div>
+    </div>
+  );
+}
