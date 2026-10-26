@@ -6271,6 +6271,466 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "credit-packs",
+      "type": "registry:block",
+      "title": "Credit packs",
+      "description": "One-off credit packs with the price per credit and the saving against the smallest pack worked out from your numbers, and one pack marked best value.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/credit-packs.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/credit-packs.tsx"
+        }
+      ],
+      "docs": "Pass the packs (an id, credits, price in whole units and an optional label, smallest first), onSelect, and the currency and locale prices are written in. The saving and the best value badge are worked out from the packs, never typed in: the smallest pack is the standard rate, every other pack shows what it saves per credit against it, rounded down so the claim is never larger than the truth, and the badge goes to the cheapest credit, but only when that is cheaper than the smallest pack. Pass bestValue with an id to choose another pack, or null for no badge. The packs are a radio group (arrow keys move and choose, one tab stop) with the best value pack chosen at the start, or the one in defaultValue; value and onValueChange make it controlled. The button hands the chosen pack to onSelect and the section takes no payment itself. expiry is the rule buyers ask about first and is said beside the button as a plain sentence, so Credits never expire and Credits are valid for 12 months are written alike. Under 672px every pack is a compact row with the price on the right; from there the packs are cards that share their rows through a subgrid, so credits, prices and savings line up, and the columns follow the count so no card is left alone in a row. labels translates every fixed word."
+    },
+    {
+      "name": "credit-packs-demo",
+      "type": "registry:example",
+      "title": "Credit packs demo",
+      "description": "A working preview of Credit packs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/credit-packs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/credit-packs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rate-card",
+      "type": "registry:block",
+      "title": "Rate card",
+      "description": "Metered pricing as a plain table: each resource with what is included free, then the price per unit, so developers can estimate without a calculator.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/rate-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/rate-card.tsx"
+        }
+      ],
+      "docs": "Pass the groups (a title and rows of resource, included, rate, unit and an optional note), billing (how the product is billed, in words), checkedOn (the day the prices were checked) and the currency and locale. billing and checkedOn are required on purpose: they are the caption, and a rate card that does not say how old it is goes stale unnoticed. Included may be a number, written in the locale, or text such as 10 GB or Unlimited, and null says nothing is included. A numeric rate is written as money with up to four digits for a fraction of a cent, followed by per and the unit; 0 reads as Free, null as no extra charge, and text such as Custom is shown as written. The table is semantic, with the caption, column headers, a header row for every group and a row header for every resource. Under 672px the rows become stacked blocks that keep their column names, so nothing scrolls sideways, and explicit roles keep it a table for a screen reader in both layouts. It needs no client JavaScript. labels translates every fixed word."
+    },
+    {
+      "name": "rate-card-demo",
+      "type": "registry:example",
+      "title": "Rate card demo",
+      "description": "A working preview of Rate card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rate-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rate-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cohort-signup",
+      "type": "registry:block",
+      "title": "Cohort signup",
+      "description": "The next intake of a course or programme: start date, length, price, seats left and an enrol button, with the application deadline.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/cohort-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cohort-signup.tsx"
+        }
+      ],
+      "docs": "Pass the cohort (name, startsAt, weeks, schedule, price, seatsTotal, seatsTaken and deadline, and optionally priceNote, what the price is for), an action and the currency, locale and timeZone it is written in. startsAt and deadline are ISO times with an offset or a Z. Every date is written in the time zone you pass, and the first session's time and the deadline name that zone (CET, EST), so a reader elsewhere knows which moment is meant. The price is the biggest number in the enrolment panel. The seats are a bar with the count in words (14 of 30 left); at or below lowSeats the count turns heavy and says Only. When the seats run out the card says Full in text, the button becomes Join the waiting list (onClick is told which it was: reserve or waitlist) and a line says how the reader will be told. Once the deadline has passed the button closes and the card says Applications closed. That is judged on the reader's clock after the page has mounted, so the server never claims it and a page built ahead of time cannot go stale; pass now, the same on the server and in the browser, to pin the moment for a test or a screenshot. The action is a link when it has an href and a button when it has not, and syllabusHref adds a quiet link under it. On a wide section the facts sit beside the enrolment panel; on a narrow one they stack. The only client JavaScript is that clock; a function passed to it must come from a client component. labels translates every fixed word."
+    },
+    {
+      "name": "cohort-signup-demo",
+      "type": "registry:example",
+      "title": "Cohort signup demo",
+      "description": "A working preview of Cohort signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cohort-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cohort-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "webinar-signup",
+      "type": "registry:block",
+      "title": "Webinar signup",
+      "description": "Register for a live session: the date in the viewer's own time zone, the speakers, what you will learn and a two-field form.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/webinar-signup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/webinar-signup.tsx"
+        }
+      ],
+      "docs": "Pass the event (title, startsAt, duration in minutes and the timeZone it is announced in), the speakers (a name, a role and an optional image; initials show until it loads), what the reader will learn, and onSubmit, which receives the name, the email and whether they want the recording, and may be async: resolve to confirm, reject to show the error and keep everything typed. The date and time are written in the announced time zone with its name, and after mount the reader's own time follows (Your time: 5:00 PM to 5:45 PM GMT+1) when it says something new; the server writes only the announced time, so the two always agree. seatsLeft is an optional line of plain text, never a countdown, and at 0 the form closes. Mistakes are said in words once the reader has left a field or pressed the button, and the first one takes focus; sending shows a busy button, and a failed send keeps everything typed and puts focus back on the button. The confirmation says where the details went, states the reminder schedule (pass reminders with what you really send; the default is only a stand-in), says the recording is coming when it was asked for, and offers Add to calendar as a link to a calendar file you supply in calendarHref (a data: URL or an .ics file; a data URL is saved as calendarFileName). defaultStatus done starts on the confirmation. Below 896px, on a phone or a tablet held upright, the form follows the date, before what the reader will learn; from 896px it takes a column of its own beside them. labels translates every fixed word, errors included."
+    },
+    {
+      "name": "webinar-signup-demo",
+      "type": "registry:example",
+      "title": "Webinar signup demo",
+      "description": "A working preview of Webinar signup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/webinar-signup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/webinar-signup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rsvp-form",
+      "type": "registry:block",
+      "title": "RSVP form",
+      "description": "Reply to an invitation: name, yes or no, number of guests, dietary needs and a message, with a warm confirmation.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox-group.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/rsvp-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/rsvp-form.tsx"
+        }
+      ],
+      "docs": "Pass the event (name, startsAt, timeZone and place), onSubmit and, as you need them, maxGuests (the most guests one reply can bring, not counting the person replying: 2 by default, and 0 leaves the guest count out), dietary (the needs to tick), deadline and calendarHref. onSubmit receives the name, whether they are coming, the number of guests, the dietary needs and the message, and may be async: resolve to confirm, reject to show the error and keep everything typed. Yes and no are two large radio cards, one above the other and side by side only once the form is wide enough for both to hold their words; choosing no takes the guest count and the dietary needs away, so nobody answers what does not apply. Mistakes are said in words once the reader has been in a field or tried to send, and the first one takes focus. The confirmation repeats the answer in words (Sanne, we have you down as coming with 1 guest), lists the dietary needs noted, offers Add to calendar to people who are coming (a data: URL or an .ics file you supply) and has Change my answer, which reopens the form with every answer as it was and puts focus on the first field. The date is written in the event's time zone without naming it, because the guests are there. defaultStatus done with defaultValues starts on the confirmation. labels translates every fixed word, errors included."
+    },
+    {
+      "name": "rsvp-form-demo",
+      "type": "registry:example",
+      "title": "RSVP form demo",
+      "description": "A working preview of RSVP form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rsvp-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rsvp-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "booking-bar",
+      "type": "registry:block",
+      "title": "Booking bar",
+      "description": "A horizontal search bar for stays, rentals and rides: dates in one two-month calendar, guests as counters and a button, stacking into a form on a phone.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/booking-bar/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/booking-bar/index.tsx"
+        },
+        {
+          "path": "registry/marketing/booking-bar/dates.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/booking-bar/dates.ts"
+        },
+        {
+          "path": "registry/marketing/booking-bar/location-field.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/booking-bar/location-field.tsx"
+        },
+        {
+          "path": "registry/marketing/booking-bar/range-calendar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/booking-bar/range-calendar.tsx"
+        },
+        {
+          "path": "registry/marketing/booking-bar/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/booking-bar/types.ts"
+        }
+      ],
+      "docs": "Pass onSearch, which receives the stay (from and to), the number of nights, the adults, the children and the location when the reader searches and everything is in order, and optionally locations (a value, a label and a description), minNights, maxGuests, minDate, weekStartsOn, defaultValue and locale. Days are calendar days at midnight in the reader's own time zone; in defaultValue write them as ISO dates (2026-12-18) so a value that crosses from a Server Component never shifts with a time zone. The dates are one picker: a two-month calendar from 640px and one month below, where the stay is a band, pointing at or moving to a day previews it, days before minDate and days closer to the check-in than minNights cannot be chosen, and pressing one says why in words (Minimum stay is 2 nights.). Once a stay exists the number of nights is said in words in the field (18 Dec to 21 Dec, 3 nights). The guests are two counters in a panel, adults from one, with a limit on the total that the panel states in words. A search without dates, or with a stay shorter than the minimum, says so under the bar, marks the dates and puts focus on them. Every part is labelled and works by keyboard: arrow keys, Page Up and Page Down, Home and End in the calendar, Enter to choose, Escape to close. From 768px the parts sit in one raised bar; below it they stack as a form. defaultOpen starts the dates or the guests panel open, which is for documentation and screenshots: an open panel takes focus when the page loads. The calendar and the location list are their own files (range-calendar and location-field), built for this bar, so that every word they say to assistive technology comes from labels. labels translates every fixed word, errors included."
+    },
+    {
+      "name": "booking-bar-demo",
+      "type": "registry:example",
+      "title": "Booking bar demo",
+      "description": "A working preview of Booking bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/booking-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/booking-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "upgrade-prompt",
+      "type": "registry:block",
+      "title": "Upgrade prompt",
+      "description": "The wall a free user hits: what is locked, what the next plan unlocks, the price and a Not now that always works, with an optional usage meter.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/upgrade-prompt.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/upgrade-prompt.tsx"
+        }
+      ],
+      "docs": "Pass the feature that is locked (the heading), the plan that unlocks it (a name, a price and what the price is for), what the plan adds as a list, onUpgrade and onDismiss. onDismiss is required on purpose: the panel has no way to hide itself, so there is always an exit, and calling it should show the free experience again, with focus moved to its heading, because the button that was pressed leaves with the panel. It is a labelled region, not a modal: focus is never trapped, nothing is dimmed behind it, and a screen reader hears Locked before the feature's name. description gives the two lines on what the feature does, compareHref adds the quieter Compare plans link, and usage (used, limit and a label) shows how much of the free allowance is gone as a meter with the numbers in words; once the allowance is used up the panel says so in a sentence with an icon, not in colour. A numeric price is written as money in the currency and locale you pass, with cents only when it has them. The panel needs no client JavaScript; a function passed to it needs a client component around it. labels translates every fixed word."
+    },
+    {
+      "name": "upgrade-prompt-demo",
+      "type": "registry:example",
+      "title": "Upgrade prompt demo",
+      "description": "A working preview of Upgrade prompt.",
+      "registryDependencies": [
+        "https://rhsui.com/r/upgrade-prompt.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/upgrade-prompt-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "paywall-gate",
+      "type": "registry:block",
+      "title": "Paywall gate",
+      "description": "The subscribe-to-keep-reading moment: a fade over the last lines of an article, the offer, the price and a sign-in link for members.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/paywall-gate.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/paywall-gate.tsx"
+        }
+      ],
+      "docs": "Pass the teaser (the last visible lines of the article, as real text), the headline of the offer, three benefits, the price with its period, the primary action and, for members, a sign-in link. remaining says why the reader sees the wall (You have read 3 of 3 free articles this month) and eyebrow adds a small badge with a lock. The teaser fades out with a CSS mask, which is a visual effect only: the words stay in the page for a screen reader and the card has a heading of its own, so the fade carries no information a reader would miss. Place the block directly under the visible paragraphs of the article. For search engines: a wall that shows crawlers more than readers reads as cloaking. Describe the article with JSON-LD that sets isAccessibleForFree to false and adds a hasPart whose cssSelector matches the gated part of the page (pass className=\"paywall\" to this block, or name the wrapper of the content it hides), as Google's paywalled content guidance asks, and send crawlers the same teaser readers see. The action is a link when it has an href and a button when it has not; a function needs a client component around the block. A numeric price is written as money in the currency and locale you pass, and text such as Free is shown as written. labels translates Already a member? and Sign in."
+    },
+    {
+      "name": "paywall-gate-demo",
+      "type": "registry:example",
+      "title": "Paywall gate demo",
+      "description": "A working preview of Paywall gate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/paywall-gate.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/paywall-gate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "call-us-section",
+      "type": "registry:block",
+      "title": "Call us section",
+      "description": "A phone-first contact block for businesses people ring: the number large, whether the line is open now, and a callback alternative.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/call-us-section/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/call-us-section/index.tsx"
+        },
+        {
+          "path": "registry/marketing/call-us-section/hours.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/call-us-section/hours.ts"
+        },
+        {
+          "path": "registry/marketing/call-us-section/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/call-us-section/types.ts"
+        }
+      ],
+      "docs": "Pass the phone number, a title and, to say whether the line is answered, the hours (ranges of days with an opening and a closing time on the 24-hour clock) and the time zone the business keeps, such as Europe/Amsterdam. Open or closed is worked out on the reader's clock in that zone after the page has mounted, so the server never claims either: until then the status is an empty line of the same height. Pass now to pin it for a test or a screenshot. The status says Open now, until 17:30 or Closed, opens Monday at 08:00 in the reader's locale, with a dot and words, never colour alone. The number is a tap-to-call link sized for a thumb, made of its digits and a leading plus; its size follows the section's width and the length of the number, so it stays on one line on a phone. afterHours adds a second number that stands out, with a Use this one now tag, the moment the line closes, and alternative adds a Prefer we call you? link to a callback form. The whole week sits in a disclosure with today marked, under a heading one level below the section's own, and says which time zone it is in; defaultOpen starts it open. A range must not cross midnight: split it at 24:00. labels translates every fixed word."
+    },
+    {
+      "name": "call-us-section-demo",
+      "type": "registry:example",
+      "title": "Call us section demo",
+      "description": "A working preview of Call us section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/call-us-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/call-us-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

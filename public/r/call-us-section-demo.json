@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "call-us-section-demo",
+  "title": "Call us section demo",
+  "description": "A working preview of Call us section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/call-us-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/call-us-section-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { CallUsSection, type CallHoursRange } from \"@rhs-ui/marketing/call-us-section\";\n\nconst hours: CallHoursRange[] = [\n  { days: [\"mon\", \"tue\", \"wed\", \"thu\", \"fri\"], opens: \"08:00\", closes: \"17:30\" },\n  { days: [\"sat\"], opens: \"09:00\", closes: \"13:00\" },\n];\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nconst shared = { timeZone: \"Europe/Amsterdam\", locale: \"en-GB\", hours } as const;\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Tuesday morning in Amsterdam: the line is open, the number is the biggest thing here, and the week is one press away\">\n        <CallUsSection\n          {...shared}\n          now=\"2026-10-27T09:12:00Z\"\n          title=\"Burst pipe? Ring us now\"\n          description=\"A real plumber answers, not a call centre. Tell us where you are and we are on the way.\"\n          phone=\"+31 20 123 45 67\"\n          afterHours={{ label: \"Emergency line, every night\", phone: \"+31 6 1234 5678\" }}\n          alternative={{ prompt: \"Prefer we call you?\", label: \"Request a callback\", href: \"#callback\" }}\n          defaultOpen\n        />\n      </Example>\n\n      <div className=\"mt-16 grid gap-x-10 gap-y-14 border-t border-border pt-12 lg:grid-cols-2\">\n        <Example caption=\"Tuesday evening: the line is closed, and the emergency number stands out\">\n          <CallUsSection\n            {...shared}\n            headingLevel={3}\n            now=\"2026-10-27T19:40:00Z\"\n            title=\"Burst pipe? Ring us now\"\n            phone=\"+31 20 123 45 67\"\n            afterHours={{ label: \"Emergency line, every night\", phone: \"+31 6 1234 5678\" }}\n            alternative={{ prompt: \"Prefer we call you?\", label: \"Request a callback\", href: \"#callback\" }}\n          />\n        </Example>\n        <Example caption=\"Saturday afternoon, no night line: it says when the phone is answered next, by name of the day\">\n          <CallUsSection\n            {...shared}\n            headingLevel={3}\n            now=\"2026-10-31T13:30:00Z\"\n            title=\"Questions about your quote?\"\n            phone=\"+31 20 123 45 67\"\n            alternative={{ prompt: \"Prefer we call you?\", label: \"Request a callback\", href: \"#callback\" }}\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
