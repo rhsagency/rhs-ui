@@ -9810,6 +9810,432 @@
       ]
     },
     {
+      "name": "time-field",
+      "type": "registry:ui",
+      "title": "Time field",
+      "description": "A time you can type: hours and minutes as segments, in 24-hour or 12-hour form, stepping with the arrow keys and compact enough for a table cell.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/time-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/time-field/times.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-field/times.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak 24-hour times (\"14:30\"), with null while the time is incomplete or outside min and max, the same shape as the Time picker, so the two can be swapped. The locale decides the clock, the order of the parts and the separator (en-US writes AM and PM, nl-NL writes 24 hours), and hour12 overrides it either way. Digits move on by themselves (a 7 can only be 07), ArrowUp and ArrowDown step a part and wrap round (the minutes in steps of minuteStep, 15 puts 07 on 15), Backspace clears it, typing a or p sets AM or PM and a tap on the period turns it over (a mouse click only focuses it the first time, and turns it over from the second click on). A part left with one digit is written out in full, so a 2 in the minutes is 02. A pasted time (14:30, 2:30 pm, 1430) fills every part. min and max are 24-hour times; a time outside them is explained with the range written the way the clock is (Pick a time between 9:00 AM and 5:00 PM.), and min later than max is a range through midnight. size=\"sm\" and showIcon={false} make it fit a table cell. name adds a hidden input with the 24-hour time, labels renames the parts for another language, and id goes on the first part, so a label's htmlFor focuses the field; name the group with aria-labelledby."
+    },
+    {
+      "name": "time-field-demo",
+      "type": "registry:example",
+      "title": "Time field demo",
+      "description": "A working preview of Time field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/time-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/time-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "birthday-field",
+      "type": "registry:ui",
+      "title": "Birthday field",
+      "description": "A date of birth without a calendar: day, month by name and a typed year, with the age rule checked in words and the right autofill tokens set.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/birthday-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/birthday-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/birthday-field/birthdays.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/birthday-field/birthdays.ts"
+        }
+      ],
+      "docs": "value and onValueChange(iso, { valid }) speak ISO dates (1990-03-14), with an empty string while the date is incomplete, impossible or not allowed; only the date is reported, never an age. The order of the three parts and the names of the months come from locale (en-US by default). minAge and maxAge are whole years, the age rules are checked from today in the reader's own time zone, and today (an ISO date) pins the clock for a server or a test. A date that does not exist (31 February), that is in the future or that breaks an age rule is explained in words, the wrong part is marked red, and the one message under the group is what the group's aria-describedby points at; with a valid date the same line tells a screen reader the date it understood. A day over 31 and a year of one to three digits left behind are noticed at once. messages replaces the words (tooYoung and tooOld are functions of the age), labels renames the small labels and placeholders for another language. The parts carry autocomplete bday-day, bday-month and bday-year; the month is the house select, whose hidden native select is what a browser fills, so keep the field inside a form for autofill. name adds a hidden input with the ISO date, and id goes on the first part, so a label's htmlFor focuses the field; name the group with aria-labelledby."
+    },
+    {
+      "name": "birthday-field-demo",
+      "type": "registry:example",
+      "title": "Birthday field demo",
+      "description": "A working preview of Birthday field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/birthday-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/birthday-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scoped-search-field",
+      "type": "registry:ui",
+      "title": "Scoped search field",
+      "description": "A search box with a scope menu attached, for searching in Docs, People or Files, that reports the query and the scope together.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/scoped-search-field.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/scoped-search-field.tsx"
+        }
+      ],
+      "docs": "scopes is a list of { value, label, placeholder, icon }: the first is chosen at the start, and scope with onScopeChange (or defaultScope) controls it. The empty field shows the placeholder of the chosen scope (Search people by name or email), so it always says what it will search. query, defaultQuery and onQueryChange work the same way for the text. Changing the scope keeps the text and announces Searching in People in a polite live region; choosing it from the open menu also moves the focus on to the field, ready to type. onSearch(query, scope) is called with the trimmed text when Enter is pressed, not for an empty field unless allowEmpty is set; inside a form the form still submits, and name and scopeName put the text and the scope in the submitted data. The first Escape clears the text and the second leaves the field. The field answers to its own width, not the screen's: below 20rem (a container query) the menu shrinks to the scope's icon (the first letter of its label in a small chip when a scope has none) and the shortcut hint goes, while the scope stays in the menu's accessible name (Search in People; scopeLabel changes the first words). The shortcut is a hint only: bind the key yourself. Other input props such as autoFocus and aria-label go to the input, whose accessible name is its placeholder unless you give one."
+    },
+    {
+      "name": "scoped-search-field-demo",
+      "type": "registry:example",
+      "title": "Scoped search field demo",
+      "description": "A working preview of Scoped search field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/scoped-search-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/scoped-search-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recent-searches-field",
+      "type": "registry:ui",
+      "title": "Recent searches field",
+      "description": "A search field that remembers: focus it and your recent queries appear, each removable, with a clear all action and full keyboard use.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/recent-searches-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/recent-searches-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/recent-searches-field/recents.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/recent-searches-field/recents.ts"
+        }
+      ],
+      "docs": "recent is the list, newest first, and onRecentChange hands back the new list when a search runs (it moves to the top, and the same search from earlier is not kept twice), when one is removed and when all are cleared: the field stores nothing, so the history can live in state, local storage or on a server. onSearch(query) runs on Enter or when a recent search is chosen. While the field is focused and empty the list opens (max entries, 6 by default); once text is typed it narrows to the recent searches that begin with it, ignoring case and accents, with the typed part in bold, and when nothing matches the panel stays shut. The focus never leaves the input: the arrow keys move a highlight that is announced through aria-activedescendant, Enter runs the highlighted search or the text, Delete removes the highlighted one, Clear all is the last row, and Escape closes the panel, then clears the text, then leaves the field. The count is announced when the panel opens and as typing changes it, and removals are announced too. emptyText is the quiet line for a field with no history, label names the field, value, defaultValue and onValueChange control the text, placement keeps the panel under (or over) the field instead of letting it flip when there is no room, and defaultOpen starts with the panel open. rememberSearch, forgetSearch, matchRecent and foldSearch are exported from recent-searches-field/recents for your own storage code."
+    },
+    {
+      "name": "recent-searches-field-demo",
+      "type": "registry:example",
+      "title": "Recent searches field demo",
+      "description": "A working preview of Recent searches field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recent-searches-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recent-searches-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "autosuggest-field",
+      "type": "registry:ui",
+      "title": "Autosuggest field",
+      "description": "A free-text field with suggestions: type a job title or a city and pick a match, or keep exactly what you typed.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/autosuggest-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/autosuggest-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/autosuggest-field/suggestions.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/autosuggest-field/suggestions.ts"
+        }
+      ],
+      "docs": "The value is whatever is in the field: onValueChange receives every keystroke and the suggestion a click or Enter fills in, and value, defaultValue and onValueChange control it. options are texts or { value, hint } with a quiet word beside the text (a country beside a city). They are ranked by what begins with the typed text, then a word that begins with it (designer finds Product Designer), then what only contains it, ignoring capitals and accents, with the match in bold (a single suggestion that is exactly what was typed is not offered again, but one that only differs in capitals or accents is: zurich offers Zürich), and the first maxOptions (6) are shown; with an empty field ArrowDown lists the first ones as they are. ArrowDown opens the list and ArrowDown, ArrowUp move a highlight that aria-activedescendant names while the focus stays in the input. Enter takes the highlighted suggestion; with none highlighted it leaves the text and the form around the field submits as usual. Escape closes the list and keeps the text. onQueryChange(query) fires as the text is typed, so a server can answer with new options; add loading for a spinner and a quiet line while there is nothing to list yet, filter={false} when your source has already narrowed the list, and emptyHint for a line that says nothing matched (without it the panel stays shut). The number of suggestions is announced politely. placement keeps the list under or over the field instead of letting it flip, defaultOpen starts with it open. Other input props such as name, id and placeholder go to the input. rankSuggestions is exported from autosuggest-field/suggestions."
+    },
+    {
+      "name": "autosuggest-field-demo",
+      "type": "registry:example",
+      "title": "Autosuggest field demo",
+      "description": "A working preview of Autosuggest field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/autosuggest-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/autosuggest-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "markdown-field",
+      "type": "registry:ui",
+      "title": "Markdown field",
+      "description": "A writing box with a small toolbar and a live preview: bold, italic, link, lists, quote and code, with shortcuts and no editor library.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/toolbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/markdown-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/markdown-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/markdown-field/edit.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/markdown-field/edit.ts"
+        },
+        {
+          "path": "registry/primitives/markdown-field/markdown.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/markdown-field/markdown.tsx"
+        }
+      ],
+      "docs": "value, defaultValue and onValueChange speak plain Markdown text. toolbar lists the buttons to show (bold, italic, link, bulleted-list, numbered-list, quote, code; all by default) and the shortcuts Ctrl or Cmd with B, I and K follow it. A button wraps or prefixes the selection and takes the syntax off again when it is already there; with nothing selected, bold and italic work on the word at the caret, and the link button writes [link text](https://) with the part to fill in selected. The list and quote buttons act on every line the selection touches (a bulleted line becomes numbered when you press the numbered button), and Enter inside a list starts the next item, or ends the list on an empty one. The edits go through the browser's own editing (insertText), so Undo undoes a button; where that is not available the text is set directly and the selection restored. rows, maxLength (with a counter) and every other textarea prop such as id, name and aria-label go to the textarea, and defaultTab=\"preview\" opens on the preview. The text stays mounted behind the preview, so a form still posts it. The preview is the exported Markdown component (markdown-field/markdown): it renders headings (a # becomes h2, so a page keeps its own h1; headingLevel changes that), bold and italic, links (http, https, mailto, tel, paths and anchors only), bulleted and numbered lists, quotes, inline code and fenced code as React elements, keeps single line breaks and never produces raw HTML. A link to a script or a data address is not made a link: it stays on the page as the plain text that was written. Lists are one level deep, so an indented item is shown flat. Use it wherever the saved text is shown again. applyAction and continueList are exported from markdown-field/edit for buttons of your own."
+    },
+    {
+      "name": "markdown-field-demo",
+      "type": "registry:example",
+      "title": "Markdown field demo",
+      "description": "A working preview of Markdown field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/markdown-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/markdown-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-picker",
+      "type": "registry:ui",
+      "title": "Image picker",
+      "description": "Choose one image from a set of thumbnails, such as a cover, a header or a theme, as a radio group with a ring and a check on the pick; or several, up to a limit.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/image-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/image-picker.tsx"
+        }
+      ],
+      "docs": "images are { id, src, alt, label }. value and onValueChange speak the id (null when the choice is cleared), so what is stored never depends on an address. allowNone adds a first tile that clears the choice. With multiple, value is an array of ids and max stops the choice: the other tiles dim, the count under the grid says so, and a polite message explains it when someone tries; allowNone does not apply. columns (2 to 6) is the number of tiles in a row once the container has room: it follows container queries, so a narrow sidebar gets fewer whatever the screen, and aspect is width over height (16 / 10 by default, 1 for squares). It is a radio group (a group of checkboxes with multiple) with one tab stop: Tab goes to the chosen tile, the arrow keys move through the grid in two directions (Up and Down by a whole row as laid out right now), Home and End jump, Space or Enter chooses. A tile is named by its label, or by its alt text when it has no label, with Selected added when it is chosen, and the alt text describes it when there is a label. A picture that is loading shows the Skeleton, and one that fails falls back to a quiet block with its label. loading draws shaded tiles in place of the pictures, name posts the chosen id (one hidden input per id with multiple), noneLabel renames the first tile, and disabled turns it all off."
+    },
+    {
+      "name": "image-picker-demo",
+      "type": "registry:example",
+      "title": "Image picker demo",
+      "description": "A working preview of Image picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/image-picker.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "postal-code-field",
+      "type": "registry:ui",
+      "title": "Postal code field",
+      "description": "A postcode field that knows the country: it writes 1234 AB, SW1A 1AA or 90210 the way that country does, and says what a valid code looks like when yours is not.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/postal-code-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/postal-code-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/postal-code-field/postcodes.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/postal-code-field/postcodes.ts"
+        }
+      ],
+      "docs": "country is the ISO code (NL, GB, US) and the field takes that country's pattern, placeholder, keyboard (digits for 90210, letters and capitals for 1234 AB) and spacing from a table of thirty countries. Nothing is forced while typing, so the caret never jumps: when the field is left, the code is written the way its country writes it (1017cj becomes 1017 CJ, 902101234 becomes 90210-1234), and from then on a wrong code is explained live, with what a valid one looks like (Dutch postcodes look like 1234 AB.), until it is right; a right one gets a quiet check. value, defaultValue and onValueChange(code, { valid }) work with the code as the country writes it once it is valid, and with the text as typed (trimmed) until then, so a draft kept in state, or posted through name, is never a string nobody typed. Changing country checks the code that is there against the new country at once (a code that is also right there is rewritten in its style) and reports the new answer. required adds aria-required and, once the field has been left empty, says what to enter (Enter a Dutch postcode, like 1234 AB.); like the other fields it never blocks a submit. A country without a rule accepts any text and shows no message. name adds a hidden input with the code the field reports, and the field carries autocomplete postal-code. countries adds or replaces rules ({ adjective, term, example, alternative, pattern, format, numeric }), and POSTAL_CODES, formatPostalCode, isPostalCode, describePostalCode and askForPostalCode are exported from postal-code-field/postcodes, so an address form or a server can share the table. A code is judged by its shape only: it can be well formed and still belong to no street."
+    },
+    {
+      "name": "postal-code-field-demo",
+      "type": "registry:example",
+      "title": "Postal code field demo",
+      "description": "A working preview of Postal code field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/postal-code-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/postal-code-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",

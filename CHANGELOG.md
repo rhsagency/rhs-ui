@@ -77,6 +77,7 @@ own `meta.version` and are listed when they change.
 - Commerce, 9 more: `plan-card`, `booking-summary`, `coupon-card`, `room-card`, `course-card`, `price-quote-card`, `flight-card`, `payment-card-preview`, `discount-field`.
 - Marketing, 9 more: `coverage-check`, `free-audit-form`, `contact-faq-split`, `welcome-offer-signup`, `email-course-signup`, `newsletter-preview`, `promo-code-cta`, `app-download-qr`, `cta-photo-split`.
 - Application, 11 more: `typing-indicator`, `reply-summary`, `help-launcher`, `call-log-row`, `chat-header`, `sla-timer`, `attendee-list`, `task-relations`, `two-column-sign-in`, `magic-link-sign-in`, `passkey-sign-in`.
+- Primitives, 8 more: `time-field`, `birthday-field`, `scoped-search-field`, `recent-searches-field`, `autosuggest-field`, `markdown-field`, `image-picker`, `postal-code-field`.
 
 ## Unreleased (0.7.0)
 
