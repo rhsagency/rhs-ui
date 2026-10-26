@@ -23872,6 +23872,517 @@
       ]
     },
     {
+      "name": "sales-unit-picker",
+      "type": "registry:component",
+      "title": "Sales unit picker",
+      "description": "Let shoppers buy by the piece, the box, the pallet or by weight: every unit shows its price per piece, switching converts the quantity, and the total is worked out.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/radio-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/sales-unit-picker/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/sales-unit-picker/index.tsx"
+        },
+        {
+          "path": "registry/commerce/sales-unit-picker/units.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/sales-unit-picker/units.ts"
+        }
+      ],
+      "docs": "Describe the product's units with pieces (how many pieces one holds) and price in minor units; the price per piece, the saving against the smallest pack and the conversion between units all come from those two numbers. A unit's min, step and max are its rules: quantities are multiples of step, at least min, at most max, and a typed number is corrected with a message. Switching unit works from the pieces the shopper asked for and rounds up, never down, so looking at the units never changes the order: switch back and the same quantity returns. Typing, stepping or pushing against a limit is what changes the ask. onChange always carries a quantity the rules allow plus the line total. With mode=\"weight\" pass pricePerKilo and the amounts are grams. units.ts holds the arithmetic and runs on the server too."
+    },
+    {
+      "name": "sales-unit-picker-demo",
+      "type": "registry:example",
+      "title": "Sales unit picker demo",
+      "description": "A working preview of Sales unit picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sales-unit-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sales-unit-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quantity-calculator",
+      "type": "registry:component",
+      "title": "Quantity calculator",
+      "description": "Tell shoppers how many packs a job needs: enter an area or a length and width and a waste margin, and get whole packs rounded up, what they cover and the price.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/quantity-calculator/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/quantity-calculator/index.tsx"
+        },
+        {
+          "path": "registry/commerce/quantity-calculator/calculate.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/quantity-calculator/calculate.ts"
+        }
+      ],
+      "docs": "coveragePerPack is what one pack covers in unit (m2 or ft2); packPrice is in minor units and optional. The shopper types an area or a length and a width, and a waste margin that starts at wastePercent; a blank margin counts as wastePercent, as its placeholder says. Results always round up, and the panel says so. Typing 7,5 or 7.5 means the same, and 1,200 is read the way locale writes it. Every field has a message for a missing, unreadable, zero or too large number; maxArea is the largest believable area. onAddToCart receives the packs: return a promise and the button shows it is working, reject and the shopper is told. calculate.ts holds the arithmetic, counted in whole thousandths, and runs on the server too."
+    },
+    {
+      "name": "quantity-calculator-demo",
+      "type": "registry:example",
+      "title": "Quantity calculator demo",
+      "description": "A working preview of Quantity calculator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quantity-calculator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quantity-calculator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "compatibility-check",
+      "type": "registry:component",
+      "title": "Compatibility check",
+      "description": "Answer \"will it fit?\" for cases, filters and spare parts: pick a brand and a model and get compatible, not compatible with alternatives, or unknown, never a guess.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/compatibility-check/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/compatibility-check/index.tsx"
+        },
+        {
+          "path": "registry/commerce/compatibility-check/fit.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/compatibility-check/fit.ts"
+        }
+      ],
+      "docs": "Give it brands, models (each with the id of its brand) and the ids the product fits in compatible. Pass incompatible too when you know which models it does not fit: a model on neither list is then reported as unknown, instead of being guessed at. alternatives (by model id) are listed under a not-compatible answer, and contactHref adds an ask-us link to the unknown one. onCheck receives the brand, the model and the verdict whenever both are chosen: store that and pass it back as defaultValue to remember the last choice. productName is the subject of a sentence (\"Halcyon MagGrip car mount fits the Orbit One.\"), so keep it singular or change the wording with labels. Until a brand is chosen the model field is disabled, and a line of text under it says why. fit.ts holds verdictFor and runs on the server too.",
+      "css": {
+        "@keyframes rhs-fit-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fit-in": "rhs-fit-in 180ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      }
+    },
+    {
+      "name": "compatibility-check-demo",
+      "type": "registry:example",
+      "title": "Compatibility check demo",
+      "description": "A working preview of Compatibility check.",
+      "registryDependencies": [
+        "https://rhsui.com/r/compatibility-check.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/compatibility-check-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shoppable-list",
+      "type": "registry:component",
+      "title": "Shoppable list",
+      "description": "A recipe or project as a shopping list: amounts that scale with servings, substitutes for sold-out lines, and one button that adds the checked products to the cart.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/shoppable-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shoppable-list/index.tsx"
+        },
+        {
+          "path": "registry/commerce/shoppable-list/list.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shoppable-list/list.ts"
+        }
+      ],
+      "docs": "Each item is a product (id, name, price of one pack, optional packSize) with the amount the recipe needs for servings people. With servings the list gets a servings field and every amount scales, and so does the number of packs: 600 g needs two 500 g packs. A line with no amount (note: \"to taste\") is bought once. defaultChecked: false starts a line unchecked, for things the reader probably owns. A sold-out line (inStock: false) cannot be checked and offers its substitute; swapping checks it and onAddAll then carries the substitute's id. onAddAll receives only the checked lines, each with the product id, the packs, the price of one pack and the total; return a promise and the button shows it is working. list.ts holds the arithmetic and runs on the server too."
+    },
+    {
+      "name": "shoppable-list-demo",
+      "type": "registry:example",
+      "title": "Shoppable list demo",
+      "description": "A working preview of Shoppable list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shoppable-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shoppable-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "round-up-toggle",
+      "type": "registry:component",
+      "title": "Round up toggle",
+      "description": "Offer to round the order up to the next euro for a good cause: the exact extra amount and the cause are in the question, and the switch starts off.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/round-up-toggle/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/round-up-toggle/index.tsx"
+        },
+        {
+          "path": "registry/commerce/round-up-toggle/round-up.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/round-up-toggle/round-up.ts"
+        }
+      ],
+      "docs": "total and step are in minor units: 2457 with a step of 100 offers to round up by 43 to 2500. It is off until the shopper turns it on, so it never nudges; defaultChecked is for restoring their own earlier choice. onChange receives the new state and { amount, total }: add amount to the order as a donation while it is on. When the total is already a multiple of the step the component renders nothing, so treat the donation as zero. cause is in the question, always. round-up.ts holds roundUpOf, which runs on the server too, so the order you charge is computed the same way you showed it."
+    },
+    {
+      "name": "round-up-toggle-demo",
+      "type": "registry:example",
+      "title": "Round up toggle demo",
+      "description": "A working preview of Round up toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/round-up-toggle.json",
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/round-up-toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "installment-line",
+      "type": "registry:component",
+      "title": "Installment line",
+      "description": "The \"or pay in 3 × 33.00\" line under a price, with a popover for the schedule and terms: parts that add up exactly, fees stated, no provider logo.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/installment-line/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/installment-line/index.tsx"
+        },
+        {
+          "path": "registry/commerce/installment-line/installments.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/installment-line/installments.ts"
+        }
+      ],
+      "docs": "price and fee are in minor units. The parts are worked out so they always add up to price plus fee: what does not divide evenly goes on the first payment, and the line says so (\"the first 37.52\"). interval is week, two-weeks or month. Without now the details say how long after the first each payment is taken, which is the same on the server and in the browser; pass now (and timeZone) to give every payment its date. minPrice and maxPrice are the range you allow: outside it nothing is rendered. A fee of 0 says there is no fee; leave fee out to say nothing. terms is the small print. It has no state of its own, so it renders in a Server Component. installments.ts holds planInstallments and paymentDays, which run on the server too, so the schedule you charge is the one you showed."
+    },
+    {
+      "name": "installment-line-demo",
+      "type": "registry:example",
+      "title": "Installment line demo",
+      "description": "A working preview of Installment line.",
+      "registryDependencies": [
+        "https://rhsui.com/r/installment-line.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/installment-line-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "return-window",
+      "type": "registry:component",
+      "title": "Return window",
+      "description": "Show how long an order can still be returned: the closing date, the days left, and open, closing soon and closed states, with Start return only while it is open.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/return-window/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/return-window/index.tsx"
+        },
+        {
+          "path": "registry/commerce/return-window/window.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/return-window/window.ts"
+        }
+      ],
+      "docs": "deliveredAt is an ISO date-time or a plain date such as \"2026-10-20\"; windowDays is how many days after the delivery day returns are accepted, so delivered 2 October with 30 days the last day is 1 November. Whole calendar days are counted in timeZone, which should be the shop's: the window closes at midnight there. Under soonDays (3) days left it is closing soon; on the last day it says so; the day after it is closed and the button goes. Pass now from the server for a first render that matches the browser; without it the first render shows only the date and the days appear once the browser's clock is read, so a cached page never claims days it cannot know. Start return is a button with onStartReturn, or a link with startReturnHref. window.ts holds the calendar arithmetic and runs on the server too, so you can refuse a late return there with the same rule."
+    },
+    {
+      "name": "return-window-demo",
+      "type": "registry:example",
+      "title": "Return window demo",
+      "description": "A working preview of Return window.",
+      "registryDependencies": [
+        "https://rhsui.com/r/return-window.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/return-window-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-edit-window",
+      "type": "registry:component",
+      "title": "Order edit window",
+      "description": "Tell shoppers a fresh order can still be changed: the time left in words, actions to edit the address or items or cancel, and a calm swap when time is up.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-edit-window/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-edit-window/index.tsx"
+        },
+        {
+          "path": "registry/commerce/order-edit-window/remaining.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-edit-window/remaining.ts"
+        }
+      ],
+      "docs": "editableUntil is the moment the order stops being editable, with its offset (\"2026-10-20T10:24:00Z\"). The time is written in whole minutes, rounded down, and updates once a minute; only the 10 minute and 1 minute marks and the end are announced, politely, and never for where the time already stands when the page loads. At zero both sentences are laid in one cell, so the strip does not change size, the actions go aria-disabled (still focusable, so a keyboard user is not dropped), and onExpire is called once; never trust the browser for this, lock the order on your server as well. onAction receives address, items or cancel; cancel is only reported after the shopper confirms in the dialog, whose focus starts on Keep order. windowMinutes (optional) is the length of the whole window and adds a thin bar for how much is left. Pass now in tests and previews; without it the first render says \"You can still change this order\" and the time appears once the browser's clock is read. remaining.ts holds the arithmetic and runs on the server too."
+    },
+    {
+      "name": "order-edit-window-demo",
+      "type": "registry:example",
+      "title": "Order edit window demo",
+      "description": "A working preview of Order edit window.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-edit-window.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-edit-window-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "courier-card",
+      "type": "registry:component",
+      "title": "Courier card",
+      "description": "The delivery driver at a glance: photo or initial, first name, vehicle and plate, rating and arrival time, with Call and Message buttons and a same-size waiting state.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/courier-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/courier-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/courier-card/eta.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/courier-card/eta.ts"
+        }
+      ],
+      "docs": "Pass the courier (a first name, and optionally photo, vehicle, plate, rating) and eta in minutes; send a new eta whenever your tracking has one. The card shows only the first word of the name and never draws a phone number: onCall and onMessage are buttons you handle, or callHref and messageHref make them links, in which case use a relay or masked number, since the href is in the page. Both are named for the courier (\"Call Mehmet\"). The visible arrival time follows every update; the spoken one waits for it to settle and only speaks when the state changes, the time moved by two minutes or more, or the courier is about to arrive. Without a courier (or with status=\"pending\") the card keeps its size and says \"Looking for a courier\"; the buttons are there but disabled. status=\"arrived\" ends the countdown. eta.ts holds firstName and the rule for what is worth saying, and runs on the server too."
+    },
+    {
+      "name": "courier-card-demo",
+      "type": "registry:example",
+      "title": "Courier card demo",
+      "description": "A working preview of Courier card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/courier-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/courier-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "metric-strip",
       "type": "registry:component",
       "title": "Metric strip",

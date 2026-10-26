@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "installment-line-demo",
+  "title": "Installment line demo",
+  "description": "A working preview of Installment line.",
+  "registryDependencies": [
+    "https://rhsui.com/r/installment-line.json",
+    "https://rhsui.com/r/money.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/installment-line-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { formatMoney } from \"@rhs-ui/commerce/money\";\nimport { InstallmentLine, type InstallmentLineProps } from \"@rhs-ui/commerce/installment-line\";\n\nconst TERMS = (\n  <p>\n    Each part is charged to the card you pay with, on the same day of the month. Paying early is free. If a payment fails we try again after three days and\n    send you a message first.\n  </p>\n);\n\n/** A product block as it sits on a product page: the name, the price, then the line under it. */\nfunction Product({ name, price, line, note }: { name: string; price: number; line: ReactNode; note?: ReactNode }): React.JSX.Element {\n  return (\n    <section aria-label={name} className=\"grid content-start gap-1.5 rounded-xl border border-border bg-card p-5 shadow-xs\">\n      <h2 className=\"text-sm text-muted-foreground\">{name}</h2>\n      <p className=\"text-3xl leading-none font-semibold tracking-[-0.03em] tabular-nums\">{formatMoney({ amount: price, currency: \"EUR\" }, \"en-GB\")}</p>\n      <div className=\"mt-1.5\">{line}</div>\n      {note}\n    </section>\n  );\n}\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nconst SHARED: Partial<InstallmentLineProps> = { currency: \"EUR\", locale: \"en-GB\", terms: TERMS };\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-4xl min-w-0 gap-x-10 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))]\">\n      <Example caption=\"Three even parts: the details count the months\">\n        <Product name=\"Arc desk lamp\" price={9900} line={<InstallmentLine price={9900} parts={3} {...SHARED} />} />\n      </Example>\n\n      <Example caption=\"Four parts, two weeks apart: the odd cents go first\">\n        <Product name=\"Ridge reading chair\" price={14999} line={<InstallmentLine price={14999} parts={4} interval=\"two-weeks\" now=\"2026-10-20T10:00:00Z\" timeZone=\"Europe/Amsterdam\" {...SHARED} />} />\n      </Example>\n\n      <Example caption=\"With a fee: in the line and in the details\">\n        <Product name=\"Kestrel standing desk\" price={29900} line={<InstallmentLine price={29900} parts={3} fee={600} now=\"2026-10-20T10:00:00Z\" timeZone=\"Europe/Amsterdam\" {...SHARED} />} />\n      </Example>\n\n      <Example caption=\"Below the 50.00 minimum: no line at all\">\n        <Product\n          name=\"Cedar coaster set\"\n          price={2400}\n          line={<InstallmentLine price={2400} minPrice={5000} {...SHARED} />}\n          note={<p className=\"mt-1.5 rounded-lg border border-dashed border-border px-3 py-2 text-xs text-muted-foreground\">Nothing under the price: payment in parts starts at €50.00.</p>}\n        />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

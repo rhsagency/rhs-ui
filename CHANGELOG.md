@@ -53,6 +53,7 @@ own `meta.version` and are listed when they change.
   `insert-between-button`, `swap-button`, `status-badge`, `chip`, `tag-list`,
   `formatted-number`, `money-amount`, `link-card`, `due-date-label` and `inline-code`.
 - Dashboard, 4 more: `raci-matrix`, `field-diff-table`, `data-preview-table`, `virtualized-table`.
+- Commerce, 9 more: `sales-unit-picker`, `quantity-calculator`, `compatibility-check`, `shoppable-list`, `round-up-toggle`, `installment-line`, `return-window`, `order-edit-window`, `courier-card`.
 
 ## Unreleased (0.7.0)
 
