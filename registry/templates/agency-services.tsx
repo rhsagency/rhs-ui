@@ -75,7 +75,7 @@ export function AgencyServices({ name = "Northbound", services = SERVICES, cases
       </ContourField>
 
       <section id="agency-services" className="mx-auto max-w-6xl scroll-mt-6 px-6 py-24 sm:px-10">
-        <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-3">
+        <div className="grid gap-px overflow-clip rounded-3xl border border-border bg-border md:grid-cols-3">
           {services.map((service, index) => (
             <Reveal key={service.title} order={index} className="flex flex-col bg-background p-8">
               <span className="font-mono text-xs text-muted-foreground">0{index + 1}</span>

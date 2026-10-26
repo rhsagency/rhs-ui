@@ -118,7 +118,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.7.0",
+        "version": "0.8.0",
         "since": "0.7.0",
         "status": "stable",
         "eyebrow": "Northbound / Studio",
@@ -403,7 +403,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.7.0",
+        "version": "0.8.0",
         "since": "0.7.0",
         "status": "stable",
         "eyebrow": "Frontier / Events",

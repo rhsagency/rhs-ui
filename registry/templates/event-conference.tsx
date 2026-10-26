@@ -102,7 +102,7 @@ export function EventConference({ name = "Frontier 2026", dates = "14 and 15 Nov
           <h2 className="text-5xl font-semibold tracking-[-0.04em]">Speakers</h2>
           <p className="max-w-sm text-sm text-muted-foreground">People who build products for a living, talking about the part that went wrong first.</p>
         </Reveal>
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-px overflow-clip rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {speakers.map((speaker, index) => (
             <Reveal asChild key={speaker.name} order={index % 3}>
               <li className="grid gap-5 bg-background p-7">

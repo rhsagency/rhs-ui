@@ -54,6 +54,7 @@ own `meta.version` and are listed when they change.
   `formatted-number`, `money-amount`, `link-card`, `due-date-label` and `inline-code`.
 - Dashboard, 4 more: `raci-matrix`, `field-diff-table`, `data-preview-table`, `virtualized-table`.
 - Commerce, 9 more: `sales-unit-picker`, `quantity-calculator`, `compatibility-check`, `shoppable-list`, `round-up-toggle`, `installment-line`, `return-window`, `order-edit-window`, `courier-card`.
+- Fixed: in the `agency-services` and `event-conference` page templates the grid of cards had `overflow-hidden`, which made it the scroll container their reveals follow, so the reveals never ran and two speaker cards stayed half faded. The grid clips with `overflow-clip` now.
 
 ## Unreleased (0.7.0)
 
