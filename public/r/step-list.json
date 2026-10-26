@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-list",
+  "title": "Step list",
+  "description": "How-to steps for docs: numbered markers on a hairline that ends after the last step, a real ordered list, and any content (text, code, images) inside each step.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/step-list.tsx",
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface StepListProps extends Omit<ComponentProps<\"ol\">, \"children\"> {\n  /** `Step` components, and nothing else: each one becomes a list item. */\n  children: ReactNode;\n  /** The marker, title and gaps: 24, 28 or 32px markers. Default \"md\". */\n  size?: \"sm\" | \"md\" | \"lg\";\n  /** The number of the first step, for a guide that continues one: 5 starts at \"5\". Default 1. */\n  start?: number;\n  /** Collapse every step to its title, for an overview at the top of a guide (\"What you will do\"). The content stays in your markup but is hidden. */\n  summaryOnly?: boolean;\n}\n\nexport interface StepProps extends Omit<ComponentProps<\"li\">, \"title\"> {\n  /** The name of the step: \"Install the package\". */\n  title: ReactNode;\n  /** The element the title is written in. Pick the level that fits your page outline. Default \"h3\". */\n  as?: \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\";\n  /** The step itself: text, a code block, an image, a note. Anything goes. */\n  children?: ReactNode;\n  /** Link target for this step, so a page can point at \"#step-3\". */\n  id?: string;\n}\n\n// The text size on the list is the size of a step's content; the title and the marker are in em, so they follow it.\nconst SIZE = {\n  sm: \"[--step-marker:1.5rem] text-[0.8125rem]\",\n  md: \"[--step-marker:1.75rem] text-sm\",\n  lg: \"[--step-marker:2rem] text-base\",\n} as const;\n\n/**\n * How-to steps for a tutorial or an install guide: numbered markers on a\n * hairline that joins one step to the next and stops after the last. It is a\n * real `<ol>`, so assistive technology reads the list and the position of every\n * step, and the numbers are drawn by a CSS counter, so any content between the\n * steps keeps its place and no step has to count itself. Each `Step` has a title\n * and any content: text, code, an image. `summaryOnly` folds every step to its\n * title for an overview, and a step with an `id` can be linked to. It explains\n * a procedure; for progress through a flow, use a stepper. A Server Component.\n */\nexport function StepList({ children, size = \"md\", start = 1, summaryOnly = false, className, style, ...props }: StepListProps) {\n  return (\n    <ol\n      role=\"list\"\n      data-slot=\"step-list\"\n      data-size={size}\n      data-summary={summaryOnly ? \"\" : undefined}\n      start={start}\n      style={{ counterReset: `rhs-step ${start - 1}`, ...style }}\n      className={cn(\"group/steps grid\", SIZE[size], className)}\n      {...props}\n    >\n      {children}\n    </ol>\n  );\n}\n\n/** One step of a `StepList`: a numbered marker, a title and the content. */\nexport function Step({ title, as: Title = \"h3\", children, className, ...props }: StepProps) {\n  return (\n    <li\n      data-slot=\"step\"\n      className={cn(\n        \"relative grid scroll-mt-24 grid-cols-[var(--step-marker)_minmax(0,1fr)] gap-x-4 pb-8 [counter-increment:rhs-step] last:pb-0\",\n        \"group-data-[summary]/steps:pb-5 group-data-[summary]/steps:last:pb-0\",\n        // The hairline runs from just under this marker to just above the next one, and the last step has none.\n        \"after:absolute after:top-[calc(var(--step-marker)+0.375rem)] after:bottom-1.5 after:start-[calc(var(--step-marker)/2)] after:w-px after:-translate-x-1/2 after:bg-border after:content-[''] last:after:hidden rtl:after:translate-x-1/2\",\n        className,\n      )}\n      {...props}\n    >\n      <span\n        aria-hidden=\"true\"\n        data-slot=\"step-marker\"\n        className=\"grid size-(--step-marker) place-items-center rounded-full border border-border bg-card font-medium tabular-nums text-foreground shadow-xs [font-size:0.86em] before:content-[counter(rhs-step)]\"\n      />\n      <div className=\"min-w-0\">\n        <Title data-slot=\"step-title\" className=\"flex min-h-(--step-marker) items-center text-[1.14em] leading-snug font-medium tracking-[-0.01em] text-foreground\">\n          {title}\n        </Title>\n        {children ? (\n          <div data-slot=\"step-body\" className=\"mt-1.5 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3 leading-6 text-muted-foreground group-data-[summary]/steps:hidden\">\n            {children}\n          </div>\n        ) : null}\n      </div>\n    </li>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/step-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "Numbers come from a CSS counter, so any content between steps keeps its place. start continues a guide, summaryOnly folds every step to its title for an overview, and a step with an id can be linked to. Pick the heading level of the titles with as.",
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}

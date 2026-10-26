@@ -7556,6 +7556,655 @@
       ]
     },
     {
+      "name": "copyable-text",
+      "type": "registry:ui",
+      "title": "Copyable text",
+      "description": "A value you copy with one click, such as an order id, an email or a hash: the text is the button, the icon is always visible, and a check confirms the copy in place.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-copy.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/copyable-text.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/copyable-text.tsx"
+        }
+      ],
+      "docs": "label names what is copied, so the button reads \"Copy order id: ORD-1048\". display writes a short form while value is copied whole, and truncate=\"middle\" keeps the end of a long id visible. A value that wraps carries its icon along, so it stays beside the last word. Where the browser blocks the clipboard the text is selected and the tooltip asks for Ctrl C. status shows the copied or the blocked state without a press, for a preview."
+    },
+    {
+      "name": "copyable-text-demo",
+      "type": "registry:example",
+      "title": "Copyable text demo",
+      "description": "A working preview of Copyable text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/copyable-text.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/copyable-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "middle-truncate",
+      "type": "registry:ui",
+      "title": "Middle truncate",
+      "description": "Truncates in the middle so file names, hashes and URLs keep their ending, in pure CSS: quarterly-report-fin…2026.pdf, with the whole text for screen readers and the tooltip.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/middle-truncate/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/middle-truncate/index.tsx"
+        },
+        {
+          "path": "registry/primitives/middle-truncate/tip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/middle-truncate/tip.tsx"
+        }
+      ],
+      "docs": "Two spans, a start that truncates and an end that never shrinks, so there is no measuring. tail sets how many end characters stay; left out, a file keeps its extension and about five characters before it, moved to the start of the nearest word, so the end reads harbour.jpg and not rbour.jpg. In a table cell, give the table a fixed layout or the cell a max width, and in a flex row give the text min-w-0."
+    },
+    {
+      "name": "middle-truncate-demo",
+      "type": "registry:example",
+      "title": "Middle truncate demo",
+      "description": "A working preview of Middle truncate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/middle-truncate.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/middle-truncate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "match-highlight",
+      "type": "registry:ui",
+      "title": "Match highlight",
+      "description": "Marks the part of a string that matches a search with a real mark element, ignoring case and accents, with several terms and no regular expression to break.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/match-highlight.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/match-highlight.tsx"
+        }
+      ],
+      "docs": "The query is matched as plain text, so typing a bracket never throws. \"cafe\" marks Café and cafetière; caseSensitive and accentSensitive turn either off. Pass an array of terms to mark each of them, and markClassName to restyle the mark."
+    },
+    {
+      "name": "match-highlight-demo",
+      "type": "registry:example",
+      "title": "Match highlight demo",
+      "description": "A working preview of Match highlight.",
+      "registryDependencies": [
+        "https://rhsui.com/r/match-highlight.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/match-highlight-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "check-list",
+      "type": "registry:ui",
+      "title": "Check list",
+      "description": "A list with a check or a dash on each line: what is included and what is not, said in words for screen readers, with hints and tooltips for plan cards and requirements.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/check-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/check-list/index.tsx"
+        },
+        {
+          "path": "registry/primitives/check-list/tip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/check-list/tip.tsx"
+        }
+      ],
+      "docs": "Every line carries a hidden \"Included\" or \"Not included\". tone=\"inverted\" is for a card with a solid fill: the focus ring and the tooltip swap colours there, so both still show on the card. A line with a tooltip gets a small info button that opens on hover, focus and tap; without tooltips the list is a Server Component."
+    },
+    {
+      "name": "check-list-demo",
+      "type": "registry:example",
+      "title": "Check list demo",
+      "description": "A working preview of Check list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/check-list.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/check-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "step-list",
+      "type": "registry:ui",
+      "title": "Step list",
+      "description": "How-to steps for docs: numbered markers on a hairline that ends after the last step, a real ordered list, and any content (text, code, images) inside each step.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/step-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/step-list.tsx"
+        }
+      ],
+      "docs": "Numbers come from a CSS counter, so any content between steps keeps its place. start continues a guide, summaryOnly folds every step to its title for an overview, and a step with an id can be linked to. Pick the heading level of the titles with as."
+    },
+    {
+      "name": "step-list-demo",
+      "type": "registry:example",
+      "title": "Step list demo",
+      "description": "A working preview of Step list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/step-list.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/step-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "date-tile",
+      "type": "registry:ui",
+      "title": "Date tile",
+      "description": "The little calendar leaf: month, day and weekday in a small fixed-width square for event lists, deadlines and invoices, with today, past and range variants.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/date-tile.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/date-tile.tsx"
+        }
+      ],
+      "docs": "A time element with the calendar day in dateTime; a screen reader hears the whole date. tone=\"today\" inverts the tile and adds \"Today\" to what is heard; you decide what is today, so the server and the browser never disagree. A date-only string never shifts with the time zone."
+    },
+    {
+      "name": "date-tile-demo",
+      "type": "registry:example",
+      "title": "Date tile demo",
+      "description": "A working preview of Date tile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/date-tile.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/date-tile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "date-range-text",
+      "type": "registry:ui",
+      "title": "Date range text",
+      "description": "A date range written the way people say it: 12 to 15 March 2026, with the shared month and year said once, times, open ends and nights, in the reader's language.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/date-range-text.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/date-range-text.tsx"
+        }
+      ],
+      "docs": "Built on Intl.DateTimeFormat formatRangeToParts, with a time element for each end. English reads \"to\"; other languages keep their own range mark, or pass separator. includeTime adds the clock, nights appends \"3 nights\", and a missing start or end reads \"from\" or \"until\". Pass labels for those words in another language."
+    },
+    {
+      "name": "date-range-text-demo",
+      "type": "registry:example",
+      "title": "Date range text demo",
+      "description": "A working preview of Date range text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/date-range-text.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/date-range-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "duration-text",
+      "type": "registry:ui",
+      "title": "Duration text",
+      "description": "A duration in few characters that still reads in full aloud: 1h 30m for the eye, 1 hour, 30 minutes for the ear, with an ISO 8601 value for machines.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/duration-text.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/duration-text.tsx"
+        }
+      ],
+      "docs": "Built on the Intl number and list formats, not the newer duration format, so the server and the browser write the same text. format is narrow, short, long or clock; largestUnit and maxUnits decide how much is written, and the rest is cut, not rounded. Zero reads 0m."
+    },
+    {
+      "name": "duration-text-demo",
+      "type": "registry:example",
+      "title": "Duration text demo",
+      "description": "A working preview of Duration text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/duration-text.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/duration-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "masked-value",
+      "type": "registry:ui",
+      "title": "Masked value",
+      "description": "A sensitive value hidden until asked, such as •••• 4242 or j•••@example.com, with a reveal button that says what it does and a timer that hides it again.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/masked-value/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/masked-value/index.tsx"
+        },
+        {
+          "path": "registry/primitives/masked-value/masks.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/masked-value/masks.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-countdown": {
+          "from": {
+            "stroke-dashoffset": "0"
+          },
+          "to": {
+            "stroke-dashoffset": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-countdown": "rhs-countdown var(--rhs-countdown, 10s) linear forwards"
+        }
+      },
+      "docs": "While hidden the markup holds only the masked text. The value is still a prop, so from a Server Component it is in the page payload: fetch it in onReveal if that matters. mask is card, email, phone, iban, full or your own function (from a client component); autoHideAfter hides it again and a polite status says so. Control it with revealed and onRevealedChange."
+    },
+    {
+      "name": "masked-value-demo",
+      "type": "registry:example",
+      "title": "Masked value demo",
+      "description": "A working preview of Masked value.",
+      "registryDependencies": [
+        "https://rhsui.com/r/masked-value.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/masked-value-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "show-more-list",
+      "type": "registry:ui",
+      "title": "Show more list",
+      "description": "A list that shows its first few items and a Show 7 more reviews button for the rest, with focus kept on the button and the count announced politely.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/show-more-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/show-more-list.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-list-reveal": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(6px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-list-reveal": "rhs-list-reveal 280ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards"
+        }
+      },
+      "docs": "Pass items and renderItem, or the drawn items as children when you are in a Server Component, where a function cannot be passed. noun names what the button reveals, as a string or as { one, other } when a single item can be left; step reveals in chunks. It works on data already in memory and makes no request. New items ease in unless reduced motion is on."
+    },
+    {
+      "name": "show-more-list-demo",
+      "type": "registry:example",
+      "title": "Show more list demo",
+      "description": "A working preview of Show more list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/show-more-list.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/show-more-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "country-label",
+      "type": "registry:ui",
+      "title": "Country label",
+      "description": "A country, language or currency named in the reader's language from a code, with its flag tile: for tables, addresses and profiles, with no data file.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/country-label.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/country-label.tsx"
+        }
+      ],
+      "docs": "Names come from Intl.DisplayNames. The flag is built from regional indicator letters in a tile of fixed size, so a platform without flag glyphs shows the two letters and the layout does not move. Chrome and Edge on Windows are such a platform: add a flag polyfill font such as Twemoji Country Flags to the font stack of your page to show flags there. Languages and currencies get a tile with their code or symbol; an unknown code shows itself, or your fallback."
+    },
+    {
+      "name": "country-label-demo",
+      "type": "registry:example",
+      "title": "Country label demo",
+      "description": "A working preview of Country label.",
+      "registryDependencies": [
+        "https://rhsui.com/r/country-label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/country-label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "code-tabs",
+      "type": "registry:ui",
+      "title": "Code tabs",
+      "description": "The same code in several languages or package managers as tabs that remember your choice across the page, with copy, a stable height and an optional localStorage key.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/code-block.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/code-tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-tabs.tsx"
+        }
+      ],
+      "docs": "Wrap the pages that show code in a CodeTabsProvider once, in a layout, and every CodeTabs with the same group switches together. storageKey keeps the choice in localStorage; it is read after the page has loaded, so the server and the first paint show defaultTab. All panels share one cell, so the block is as high as the tallest."
+    },
+    {
+      "name": "code-tabs-demo",
+      "type": "registry:example",
+      "title": "Code tabs demo",
+      "description": "A working preview of Code tabs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/code-tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/code-tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "review-score",
+      "type": "registry:ui",
+      "title": "Review score",
+      "description": "A review score in a box with a word: 8.9 Excellent and the review count, the compact rating for listings, named in full for screen readers.",
+      "categories": [
+        "primitives",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/review-score.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/review-score.tsx"
+        }
+      ],
+      "docs": "The whole is named \"Rated 8.9 out of 10, Excellent, 1,204 reviews\". The word comes from bands you can set with labels, and the fill of the box (solid, outlined, quiet) repeats it, so strength never depends on colour. A score without reviews says \"No reviews yet\". href makes it a link."
+    },
+    {
+      "name": "review-score-demo",
+      "type": "registry:example",
+      "title": "Review score demo",
+      "description": "A working preview of Review score.",
+      "registryDependencies": [
+        "https://rhsui.com/r/review-score.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/review-score-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -31474,6 +32123,432 @@
       "files": [
         {
           "path": "registry/examples/code-of-conduct-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "press-release-list",
+      "type": "registry:block",
+      "title": "Press release list",
+      "description": "Your own announcements by year: headline, date and optional PDF per row, with the company boilerplate and the media contact in sticky cards beside them.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/press-release-list/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/press-release-list/index.tsx"
+        },
+        {
+          "path": "registry/marketing/press-release-list/copy-boilerplate.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/press-release-list/copy-boilerplate.tsx"
+        }
+      ],
+      "docs": "Pass releases with an ISO dateTime: the year groups and the order (newest first) come from it, and a dateTime with a time is filed under the year it falls in timeZone, the same day the row shows. date is the short form shown in the row; leave it out and dateTime is written with locale. A release without pdfHref has no download link, and the PDF link is named by what it fetches: Download, the headline, PDF and the size. The boilerplate and contact cards are optional and sit beside the list from 1024px, held in view below --sticky-top (6rem by default; set it to the height of your sticky header) on screens at least 46rem tall, so a short laptop screen never cuts them off; without them the list takes the full width. Only the copy button is a client component, so the block works in a Server Component. Pass labels to translate the fixed words and linkAs={Link} to route the release links."
+    },
+    {
+      "name": "press-release-list-demo",
+      "type": "registry:example",
+      "title": "Press release list demo",
+      "description": "A working preview of Press release list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/press-release-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/press-release-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "roadmap-columns",
+      "type": "registry:block",
+      "title": "Roadmap columns",
+      "description": "A public roadmap in Now, Next and Later columns: each item with a status in words and a short why, and no dates you cannot keep.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/roadmap-columns.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/roadmap-columns.tsx"
+        }
+      ],
+      "docs": "Pass three or four columns. A column with the id now, next, later or shipped also gets that phase's mark in its heading; any other id can pass phase. A card with an href is one stretched link and a card without one stays plain. Write statuses in words (In progress, Designing, Exploring) and keep dates out: that is the point. Each column is a labelled list with its count in the heading, and the cards of every lane start on one line from 768px. shippedHref adds a link to your changelog under the board, and note replaces the built-in Plans change footnote (pass null to leave it out). Pass linkAs={Link} to route the card links."
+    },
+    {
+      "name": "roadmap-columns-demo",
+      "type": "registry:example",
+      "title": "Roadmap columns demo",
+      "description": "A working preview of Roadmap columns.",
+      "registryDependencies": [
+        "https://rhsui.com/r/roadmap-columns.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/roadmap-columns-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pay-bands-table",
+      "type": "registry:block",
+      "title": "Pay bands table",
+      "description": "Published salary bands by role family and level, with a zone switch, a bar for each range and a plain note on how pay is set.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/pay-bands-table.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/pay-bands-table.tsx"
+        }
+      ],
+      "docs": "bands are keyed by zone id; a level without a band in the chosen zone says so in words. The bars share one scale across every zone, so they move when the zone changes, and the two ends of the scale are written in the Range heading. Pass zone and onZoneChange to control the switch, or defaultZone to start on another zone; with a single zone the switch is left out. Amounts are written from currency and locale without decimals. List the levels from the first rung up. On a phone each bar sits under its level so the table fits; one that is still too wide scrolls inside its own container with the level column held in place. notes takes the facts about the rest of the package (bonus, equity, review cycle) and methodology a plain paragraph on how bands are set."
+    },
+    {
+      "name": "pay-bands-table-demo",
+      "type": "registry:example",
+      "title": "Pay bands table demo",
+      "description": "A working preview of Pay bands table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pay-bands-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pay-bands-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "subprocessor-list",
+      "type": "registry:block",
+      "title": "Subprocessor list",
+      "description": "The vendors that process customer data for you: purpose, data, location and transfer safeguard, sorted and dated, with a slot for the notify-me form.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/subprocessor-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/subprocessor-list.tsx"
+        }
+      ],
+      "docs": "Rows are sorted alphabetically for you. location takes one country or several, always as names, never a flag alone. The notice slot is yours: put the notify-me form or a line on how changes are announced there. Below 768px every row becomes a card with the same labels, so nothing is lost on a phone. caption is the table's accessible name, announced on arrival. An empty list says so in words instead of showing an empty table."
+    },
+    {
+      "name": "subprocessor-list-demo",
+      "type": "registry:example",
+      "title": "Subprocessor list demo",
+      "description": "A working preview of Subprocessor list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/subprocessor-list.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/subprocessor-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "accessibility-statement",
+      "type": "registry:block",
+      "title": "Accessibility statement",
+      "description": "The accessibility statement a site must publish: conformance in the heading, known gaps with workarounds and dates, how you tested and who to tell.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/accessibility-statement.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/accessibility-statement.tsx"
+        }
+      ],
+      "docs": "status is written into the heading as words (fully conforms, partially conforms, does not conform), so it never relies on a badge or a colour. Pass assessed with a dateTime so the date is a time element, and keep it honest: test again after every redesign and update the date. limitations={[]} states that there are none, and leaving it out drops the section. fixBy takes a string or the dated object. Pass labels to translate the headings and the heading sentence."
+    },
+    {
+      "name": "accessibility-statement-demo",
+      "type": "registry:example",
+      "title": "Accessibility statement demo",
+      "description": "A working preview of Accessibility statement.",
+      "registryDependencies": [
+        "https://rhsui.com/r/accessibility-statement.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/accessibility-statement-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "document-library",
+      "type": "registry:block",
+      "title": "Document library",
+      "description": "Downloadable documents grouped by category: format, size, pages, language and date on every row, real download links and optional search.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/document-library.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/document-library.tsx"
+        }
+      ],
+      "docs": "Every Download is a plain anchor with the download attribute, and its name reads Download, then the title, the type and the size. Pass filename when the saved name should differ from the file on the server. searchable adds a field that filters by title, description, type and language and announces how many documents are left. Dates follow locale, and a date without a time is never shifted. Downloads are not routes, so there is no linkAs. The block is a client component because of the search: use it from a Server Component with plain data. labels are plain strings too, with {query}, {shown}, {total} and {noun} as placeholders, so they can cross from a Server Component."
+    },
+    {
+      "name": "document-library-demo",
+      "type": "registry:example",
+      "title": "Document library demo",
+      "description": "A working preview of Document library.",
+      "registryDependencies": [
+        "https://rhsui.com/r/document-library.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/document-library-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "video-library",
+      "type": "registry:block",
+      "title": "Video library",
+      "description": "A library of talks, demos and tutorials: 16:9 cards with a duration chip, speaker and date, grouped by playlist, as links or buttons for your own player.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/video-library.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/video-library.tsx"
+        }
+      ],
+      "docs": "duration is written m:ss or h:mm:ss: it is shown as given, spoken in full by the card's link name (12 minutes 4 seconds) and added up into the playlist's total. thumbnail is a 16:9 picture URL; without one the card shows the first letter of the title. featured lets the first video lead the first playlist: two columns, and from 1024px two rows when the playlist has three or more videos (a playlist of three fills that block exactly). With onPlay the cards are buttons and href is ignored, so use that from a Client Component. A playlist without videos says so. Pass linkAs={Link} to route the links."
+    },
+    {
+      "name": "video-library-demo",
+      "type": "registry:example",
+      "title": "Video library demo",
+      "description": "A working preview of Video library.",
+      "registryDependencies": [
+        "https://rhsui.com/r/video-library.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/video-library-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "class-timetable",
+      "type": "registry:block",
+      "title": "Class timetable",
+      "description": "A weekly timetable for a gym, school or studio: the week at a glance on wide screens, a day at a time on a phone, with spots left and full classes in words.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/class-timetable.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/class-timetable.tsx"
+        }
+      ],
+      "docs": "Pass days with Monday first, each with its classes (start and end on the 24-hour clock; 9:30 and 09:30 both work, and the classes are listed by the clock). The week is a grid once the timetable itself is 64rem wide, about 9rem a day; narrower, and in a narrow column on a wide screen, day tabs open on today. today is the id of the current day: work it out for your visitor's time zone, or leave it out and nothing is marked. spots: 0 flags a class as Full in words and with a dashed edge, and waitlistHref adds the waitlist link only then, named after its class for screen readers (labels.waitlistFor words that). locale decides how times are written: en-US 6:30 PM, en-GB 18:30. A range that does not fit its card wraps after the dash. legend is a line under the timetable. Pass linkAs={Link} to route the class links."
+    },
+    {
+      "name": "class-timetable-demo",
+      "type": "registry:example",
+      "title": "Class timetable demo",
+      "description": "A working preview of Class timetable.",
+      "registryDependencies": [
+        "https://rhsui.com/r/class-timetable.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/class-timetable-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-area-list",
+      "type": "registry:block",
+      "title": "Service area list",
+      "description": "The places you work, as links to local pages in balanced columns grouped by region, with a radius note and an Other places line.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "content"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-area-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-area-list.tsx"
+        }
+      ],
+      "docs": "Places are sorted for you: alphabetically, or largest first when places carry a priority (any number, a population works). A place without an href is plain text, so no link goes nowhere. radius is two parts, label and from, joined into one sentence. The Other places line shows when contactHref is set; labels changes its words. Pass linkAs={Link} to route the place links."
+    },
+    {
+      "name": "service-area-list-demo",
+      "type": "registry:example",
+      "title": "Service area list demo",
+      "description": "A working preview of Service area list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-area-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-area-list-demo.tsx",
           "type": "registry:example"
         }
       ]

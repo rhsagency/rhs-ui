@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "show-more-list",
+  "title": "Show more list",
+  "description": "A list that shows its first few items and a Show 7 more reviews button for the rest, with focus kept on the button and the count announced politely.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/show-more-list.tsx",
+      "content": "\"use client\";\n\nimport { Children, isValidElement, useId, useRef, useState, type ComponentProps, type Key, type ReactNode } from \"react\";\n\nimport { IconChevronDown } from \"@rhs-ui/icons\";\nimport { Button, type ButtonProps } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\ninterface ShowMoreListBase extends Omit<ComponentProps<\"ul\">, \"children\" | \"className\"> {\n  /** Classes for the wrapper around the list and its button. */\n  className?: string;\n  /** Classes for the list itself. It is a grid with a 12px gap; replace that to suit rows or cards. */\n  listClassName?: string;\n  /** Classes for every item. */\n  itemClassName?: string;\n  /** How many items show before anyone asks. Default 5. */\n  initialCount?: number;\n  /** How many more each press reveals. Leave it out to reveal everything at once. */\n  step?: number;\n  /** What the items are, so the button names what it reveals: \"Show 7 more reviews\". A string is used as it is; `{ one, other }` picks the singular when one is left. */\n  noun?: string | { one: string; other: string };\n  /** The words on the button and in the status, for another language. `more` gets how many a press reveals and how many are hidden. */\n  labels?: { more?: (count: number, hidden: number) => string; less?: string; status?: (shown: number, total: number) => string };\n  /** `ol` when the order matters. Default \"ul\". */\n  as?: \"ul\" | \"ol\";\n  /** The look of the button. Default \"outline\". */\n  toggleVariant?: ButtonProps[\"variant\"];\n  /** Classes for the button. */\n  toggleClassName?: string;\n}\n\nexport type ShowMoreListProps<T> = ShowMoreListBase &\n  (\n    | {\n        /** The data, already in memory. Only the items that show are rendered. */\n        items: readonly T[];\n        /** How one item looks. It must be a plain function; from a Server Component pass `children` instead. */\n        renderItem: (item: T, index: number) => ReactNode;\n        /** A stable key for an item. Defaults to its position. */\n        getKey?: (item: T, index: number) => Key;\n        children?: never;\n      }\n    | {\n        /** The items, already drawn. Each child becomes one list item. Use this from a Server Component, where a function cannot be passed. */\n        children: ReactNode;\n        items?: never;\n        renderItem?: never;\n        getKey?: never;\n      }\n  );\n\n/**\n * A list that shows its first few items and a button for the rest: \"Show 7 more\n * reviews\", then \"Show less\". The button names what it reveals, carries\n * `aria-expanded` and `aria-controls`, and a polite status says how many are\n * showing. Newly revealed items do not take focus: it stays on the button, and\n * after \"Show less\" the button is scrolled back into view. With `step` it\n * reveals in chunks; the new items ease in unless reduced motion is on. Unlike\n * Load more it works on data you already have and makes no request. Pass `items`\n * and `renderItem`, or the drawn items as `children`.\n */\nexport function ShowMoreList<T>(props: ShowMoreListProps<T>) {\n  const {\n    items,\n    renderItem,\n    getKey,\n    children,\n    initialCount = 5,\n    step,\n    noun,\n    labels,\n    as: listTag = \"ul\",\n    className,\n    listClassName,\n    itemClassName,\n    toggleVariant = \"outline\",\n    toggleClassName,\n    ...rest\n  } = props;\n  // An `ol` takes the same attributes as a `ul`; only the type of its ref differs.\n  const List = listTag as \"ul\";\n  const listId = useId();\n  const toggle = useRef<HTMLButtonElement>(null);\n  const base = Math.max(0, Math.floor(initialCount));\n  const [visible, setVisible] = useState(base);\n  // Where the newest reveal began, so only those items ease in.\n  const [from, setFrom] = useState<number | null>(null);\n  const [status, setStatus] = useState(\"\");\n\n  const drawn = items === undefined ? Children.toArray(children) : null;\n  const total = items?.length ?? drawn?.length ?? 0;\n  const shown = Math.min(visible, total);\n  const hidden = total - shown;\n  const chunk = Math.min(step !== undefined && step > 0 ? Math.floor(step) : hidden, hidden);\n\n  const nameFor = (count: number) => (typeof noun === \"object\" ? (count === 1 ? noun.one : noun.other) : noun);\n  const more = labels?.more ? labels.more(chunk, hidden) : `Show ${chunk} more${nameFor(chunk) ? ` ${nameFor(chunk)}` : \"\"}`;\n  const label = hidden > 0 ? more : (labels?.less ?? \"Show less\");\n  const said = (count: number) => (labels?.status ? labels.status(count, total) : `Showing ${count} of ${total}${nameFor(total) ? ` ${nameFor(total)}` : \"\"}`);\n\n  const reveal = () => {\n    const to = Math.min(total, shown + chunk);\n    setFrom(shown);\n    setVisible(to);\n    setStatus(said(to));\n  };\n  const collapse = () => {\n    setFrom(null);\n    setVisible(base);\n    setStatus(said(Math.min(base, total)));\n    // The list gets shorter under the button; bring the button back to where the eye is.\n    requestAnimationFrame(() => toggle.current?.scrollIntoView({ block: \"nearest\" }));\n  };\n\n  const entries =\n    items !== undefined && renderItem\n      ? items.slice(0, shown).map((item, index): { key: Key; node: ReactNode } => ({ key: getKey ? getKey(item, index) : index, node: renderItem(item, index) }))\n      : (drawn ?? []).slice(0, shown).map((node, index): { key: Key; node: ReactNode } => ({ key: isValidElement(node) && node.key !== null ? node.key : index, node }));\n\n  if (total === 0) return null;\n  return (\n    <div data-slot=\"show-more-list\" data-expanded={shown > base} className={className}>\n      <List id={listId} className={cn(\"grid gap-3\", listClassName)} {...rest}>\n        {entries.map(({ key, node }, index) => (\n          <li\n            key={key}\n            className={cn(itemClassName, from !== null && index >= from && \"animate-rhs-list-reveal motion-reduce:animate-none\")}\n            style={from !== null && index >= from ? { animationDelay: `${Math.min(index - from, 8) * 40}ms` } : undefined}\n          >\n            {node}\n          </li>\n        ))}\n      </List>\n      {total > base ? (\n        <Button\n          ref={toggle}\n          type=\"button\"\n          variant={toggleVariant}\n          size=\"sm\"\n          aria-expanded={shown > base}\n          aria-controls={listId}\n          onClick={hidden > 0 ? reveal : collapse}\n          className={cn(\"mt-4\", toggleClassName)}\n        >\n          {label}\n          <IconChevronDown className={cn(\"transition-transform duration-200 motion-reduce:transition-none\", hidden === 0 && \"rotate-180\")} />\n        </Button>\n      ) : null}\n      <p role=\"status\" className=\"sr-only\">\n        {status}\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/show-more-list.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-list-reveal": "rhs-list-reveal 280ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards"
+    }
+  },
+  "css": {
+    "@keyframes rhs-list-reveal": {
+      "from": {
+        "opacity": "0",
+        "transform": "translateY(6px)"
+      },
+      "to": {
+        "opacity": "1",
+        "transform": "translateY(0)"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "Pass items and renderItem, or the drawn items as children when you are in a Server Component, where a function cannot be passed. noun names what the button reveals, as a string or as { one, other } when a single item can be left; step reveals in chunks. It works on data already in memory and makes no request. New items ease in unless reduced motion is on.",
+  "categories": [
+    "primitives",
+    "data-display"
+  ],
+  "type": "registry:ui"
+}
