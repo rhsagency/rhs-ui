@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "estimated-progress",
+  "title": "Estimated progress",
+  "description": "A bar for work with no progress signal: it eases toward 90 percent on an expected duration and only finishes when the work does.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/estimated-progress.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useId, useState, type ComponentProps } from \"react\";\n\nimport { IconAlertCircle, IconCheck } from \"@rhs-ui/icons\";\nimport { cn } from \"@/lib/utils\";\n\n/** Where the work stands: it is running, it finished, or it failed. */\nexport type EstimatedStatus = \"running\" | \"done\" | \"failed\";\n\n/** The words of the line under the bar. */\nexport interface EstimatedProgressLabels {\n  /** While the expected time has not passed. {time} is the expected time in words. Default \"About {time}\". */\n  expected: string;\n  /** Once it has. Default \"Still working\". */\n  overtime: string;\n  /** When the work is done. Default \"Done\". */\n  done: string;\n  /** When it failed. Default \"Failed\". */\n  failed: string;\n}\n\nexport interface EstimatedProgressProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** How long the work usually takes, in ms. The bar is paced by it and the first line says it in words. */\n  expectedMs: number;\n  /** `running` while the work goes on, `done` when it has finished, `failed` when it has not. Default \"running\". */\n  status?: EstimatedStatus;\n  /** What is being worked on, written above the bar and used as its name: \"Generating the summary\". */\n  label?: string;\n  /** When the work began, when that was before this component mounted (a page reload, a job found running). Default: now. */\n  startedAt?: number | Date;\n  /** The words of the line under the bar, for another language or your own wording. */\n  labels?: Partial<EstimatedProgressLabels>;\n  /** The locale the expected time is written in. Default \"en-US\". */\n  locale?: string;\n}\n\nconst LABELS: EstimatedProgressLabels = { expected: \"About {time}\", overtime: \"Still working\", done: \"Done\", failed: \"Failed\" };\n\n/**\n * How far unmeasured work is taken to be after `t` times its expected\n * duration. It eases out to 80 percent at t = 1, then keeps creeping toward\n * 90 and never gets there, so a slow job neither looks frozen nor claims it is\n * nearly done.\n */\nfunction curve(t: number): number {\n  if (t <= 0) return 0;\n  if (t <= 1) return 0.8 * (1 - (1 - t) * (1 - t));\n  return 0.8 + 0.1 * (1 - 1 / (1 + (t - 1) / 1.5));\n}\n\n/** \"30 seconds\", \"2 minutes\", \"1 hour\": the expected time in the nearest friendly unit. */\nfunction inWords(ms: number, locale: string): string {\n  const seconds = ms / 1000;\n  const [amount, unit] = seconds < 57.5 ? [Math.max(5, Math.round(seconds / 5) * 5), \"second\"] : seconds < 3570 ? [Math.round(seconds / 60), \"minute\"] : [Math.round(seconds / 3600), \"hour\"];\n  return new Intl.NumberFormat(locale, { style: \"unit\", unit, unitDisplay: \"long\" }).format(amount);\n}\n\n/**\n * A progress bar for work that cannot say how far along it is: an AI\n * generation, an export, a report build. It is paced by how long the work\n * usually takes: the fill eases out toward 90 percent and never reaches it on\n * its own, so a slow job neither looks frozen nor lies about being nearly done.\n * Set `done` and the rest fills quickly; set `failed` and the bar stays where it\n * stopped, in the destructive tone. The line under the bar says \"About 30\n * seconds\" at first and \"Still working\" once that time has passed, and the\n * word \"about\" keeps it honest. It is a progressbar with no value for screen\n * readers, because the value is a guess, and the line is its value text. Under\n * reduced motion the fill moves in steps of 10 percent instead of gliding.\n */\nexport function EstimatedProgress({ expectedMs, status = \"running\", label, startedAt, labels, locale = \"en-US\", className, ...props }: EstimatedProgressProps) {\n  const id = useId();\n  const words = { ...LABELS, ...labels };\n  const began = startedAt === undefined ? undefined : new Date(startedAt).getTime();\n  // A bar that arrives already failed rests where a job at 80 percent of its time would be.\n  const [progress, setProgress] = useState(() => (status === \"done\" ? 1 : status === \"failed\" ? curve(0.8) : 0));\n  const [overdue, setOverdue] = useState(false);\n\n  useEffect(() => {\n    if (status !== \"running\") return;\n    const origin = performance.now() - (began === undefined ? 0 : Math.max(0, Date.now() - began));\n    const tick = () => {\n      const t = (performance.now() - origin) / Math.max(1, expectedMs);\n      const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n      const next = curve(t);\n      setProgress(reduced ? Math.floor(next * 10) / 10 : next);\n      setOverdue(t >= 1);\n    };\n    tick();\n    const timer = window.setInterval(tick, 250);\n    return () => window.clearInterval(timer);\n  }, [status, expectedMs, began]);\n\n  useEffect(() => {\n    if (status === \"done\") setProgress(1);\n  }, [status]);\n\n  const text = status === \"done\" ? words.done : status === \"failed\" ? words.failed : overdue ? words.overtime : words.expected.replace(\"{time}\", inWords(expectedMs, locale));\n\n  return (\n    <div data-slot=\"estimated-progress\" data-status={status} className={cn(\"grid gap-2\", className)} {...props}>\n      {label ? (\n        <span id={`${id}-label`} className=\"text-sm font-medium\">\n          {label}\n        </span>\n      ) : null}\n      <div\n        role=\"progressbar\"\n        aria-labelledby={label ? `${id}-label` : undefined}\n        aria-label={label ? undefined : \"Progress\"}\n        aria-valuemin={0}\n        aria-valuemax={100}\n        aria-valuenow={status === \"done\" ? 100 : undefined}\n        aria-valuetext={text}\n        aria-busy={status === \"running\" || undefined}\n        className=\"relative h-2 w-full overflow-hidden rounded-full bg-muted\"\n      >\n        <div\n          data-slot=\"estimated-progress-fill\"\n          className={cn(\n            \"h-full w-full rounded-full transition-transform duration-300 ease-linear motion-reduce:transition-none\",\n            status === \"failed\" ? \"bg-destructive\" : \"bg-primary\",\n            status === \"done\" && \"duration-500 ease-out\",\n          )}\n          style={{ transform: `translateX(${(progress - 1) * 100}%)` }}\n        />\n      </div>\n      <p role=\"status\" className={cn(\"flex min-h-5 items-center gap-1.5 text-[0.8125rem]\", status === \"failed\" ? \"text-destructive\" : status === \"done\" ? \"font-medium text-foreground\" : \"text-muted-foreground\")}>\n        {status === \"done\" ? <IconCheck size={14} strokeWidth={2.5} aria-hidden=\"true\" /> : null}\n        {status === \"failed\" ? <IconAlertCircle size={14} aria-hidden=\"true\" /> : null}\n        <span key={text} className=\"motion-safe:animate-rhs-fade-in\">\n          {text}\n        </span>\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/estimated-progress.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+    }
+  },
+  "css": {
+    "@keyframes rhs-fade-in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Give it expectedMs and a status (running, done or failed). The fill follows an ease-out curve toward 90 percent and never reaches it by itself; done fills the rest, failed freezes it in the destructive tone. It says About 30 seconds at first and Still working once the expected time has passed. Pass startedAt when the work began before the component mounted. Under reduced motion the fill moves in 10 percent steps.",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

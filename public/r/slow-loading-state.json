@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slow-loading-state",
+  "title": "Slow loading state",
+  "description": "A loader that gets more honest the longer it waits: quiet at first, then a reassuring line, then Cancel and Try again.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/slow-loading-state.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState, type ComponentProps, type MouseEvent, type ReactNode } from \"react\";\n\nimport { IconRefresh } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Spinner } from \"@rhs-ui/primitives/spinner\";\nimport { cn } from \"@/lib/utils\";\n\n/** The words of the loader, for another language or your own wording. */\nexport interface SlowLoadingStateLabels {\n  /** The reassuring line after the first threshold. Default \"This is taking longer than usual\". */\n  slow: string;\n  /** What a screen reader is told when the buttons arrive. Default \"You can cancel or try again.\" */\n  options: string;\n  /** The text on the first button. Default \"Cancel\". */\n  cancel: string;\n  /** The text on the second. Default \"Try again\". */\n  retry: string;\n}\n\nexport interface SlowLoadingStateProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** True while the wait lasts. Everything starts over each time it turns true. */\n  loading: boolean;\n  /** What is being waited for, in the present tense: \"Generating your report\". Default \"Loading\". */\n  label?: string;\n  /** When the loader says more, in ms from the start of the wait: first the reassuring line, then Cancel and Try again. Default [8000, 20000]. */\n  thresholds?: readonly [number, number];\n  /** How long the wait is silent before anything shows, in ms, so a quick one never flashes. Default 300. */\n  delay?: number;\n  /** Adds a Cancel button once the second threshold has passed. Stop the work and set `loading` to false here. Focus rests on this component until you move it to the content, or to the control that started the wait. */\n  onCancel?: () => void;\n  /** Adds a Try again button once the second threshold has passed. Start the work again here; the stages start over. */\n  onRetry?: () => void;\n  /** The words of the loader. */\n  labels?: Partial<SlowLoadingStateLabels>;\n  /** What to show when the wait is over. */\n  children?: ReactNode;\n}\n\nconst LABELS: SlowLoadingStateLabels = { slow: \"This is taking longer than usual\", options: \"You can cancel or try again.\", cancel: \"Cancel\", retry: \"Try again\" };\n\n/** -1 is silent, 0 is the spinner and the label, 1 adds the reassuring line, 2 adds the buttons. */\ntype Stage = -1 | 0 | 1 | 2;\n\nfunction stageAt(elapsed: number, delay: number, slow: number, stuck: number): Stage {\n  return elapsed >= stuck ? 2 : elapsed >= slow ? 1 : elapsed >= delay ? 0 : -1;\n}\n\n/**\n * A loader that gets more honest the longer the wait. For the first moments\n * (`delay`, 300 ms) it shows nothing, so a quick load never flashes. Then a\n * spinner and what is being waited for. After the first threshold (8 s) it adds\n * \"This is taking longer than usual\", and after the second (20 s) it offers\n * Cancel and Try again, so a bare spinner never leaves anyone guessing. Each\n * stage is announced politely; the thresholds are plain numbers you can change;\n * and everything starts over when `loading` flips or Try again is pressed, which\n * goes straight to the spinner because the person has just acted. The two\n * buttons go when they are used, so keyboard focus rests on the component\n * itself and nobody is thrown back to the top of the page. Use it for blocking\n * waits, such as generating a report or opening a large file, and give it the\n * content that appears when the wait is over.\n */\nexport function SlowLoadingState({ loading, label = \"Loading\", thresholds = [8000, 20000], delay = 300, onCancel, onRetry, labels, children, className, ...props }: SlowLoadingStateProps) {\n  const words = { ...LABELS, ...labels };\n  const [slowAt, stuckAt] = thresholds;\n  const [attempt, setAttempt] = useState(0);\n  const retried = useRef(false);\n  const [stage, setStage] = useState<Stage>(() => (loading ? stageAt(0, delay, slowAt, stuckAt) : -1));\n\n  useEffect(() => {\n    if (!loading) {\n      setStage(-1);\n      return;\n    }\n    // After Try again there is no silent moment: the person has just asked for something and should see it happen.\n    const quiet = retried.current ? 0 : delay;\n    retried.current = false;\n    const timers: number[] = [];\n    let now: Stage = -1;\n    for (const [at, next] of [[quiet, 0], [slowAt, 1], [stuckAt, 2]] as const) {\n      if (at <= 0) now = next;\n      else timers.push(window.setTimeout(() => setStage(next), at));\n    }\n    setStage(now);\n    return () => timers.forEach((timer) => window.clearTimeout(timer));\n  }, [loading, delay, slowAt, stuckAt, attempt]);\n\n  const said = !loading ? \"\" : stage === 0 ? label : stage === 1 ? words.slow : stage === 2 ? words.options : \"\";\n\n  /** The button that was pressed is about to go: park focus on the component so a keyboard user keeps their place. */\n  function holdFocus(event: MouseEvent<HTMLButtonElement>) {\n    event.currentTarget.closest<HTMLElement>('[data-slot=\"slow-loading-state\"]')?.focus({ preventScroll: true });\n  }\n\n  return (\n    <>\n      <div\n        data-slot=\"slow-loading-state\"\n        data-stage={loading && stage >= 0 ? stage : undefined}\n        aria-busy={loading || undefined}\n        // Never in the tab order: only a place for focus to rest while a button is gone.\n        tabIndex={-1}\n        className={cn(\"relative outline-none\", className)}\n        {...props}\n      >\n        {loading ? (\n          <div className=\"flex flex-col items-center px-6 py-10 text-center text-sm\">\n            {stage >= 0 ? (\n              <div className=\"grid justify-items-center gap-1 motion-safe:animate-rhs-fade-in\">\n                <Spinner size={22} label=\"\" aria-hidden=\"true\" role=\"presentation\" className=\"mb-2 text-foreground\" />\n                <p className=\"font-medium\">{label}</p>\n              </div>\n            ) : null}\n            {stage >= 1 ? <p className=\"mt-1 text-muted-foreground motion-safe:animate-rhs-fade-in\">{words.slow}</p> : null}\n            {stage >= 2 ? (\n              <div className=\"mt-5 flex flex-wrap justify-center gap-2 motion-safe:animate-rhs-fade-in\">\n                {onCancel ? (\n                  <Button\n                    type=\"button\"\n                    variant=\"ghost\"\n                    size=\"sm\"\n                    onClick={(event) => {\n                      holdFocus(event);\n                      onCancel();\n                    }}\n                  >\n                    {words.cancel}\n                  </Button>\n                ) : null}\n                {onRetry ? (\n                  <Button\n                    type=\"button\"\n                    variant=\"outline\"\n                    size=\"sm\"\n                    onClick={(event) => {\n                      holdFocus(event);\n                      retried.current = true;\n                      setAttempt((count) => count + 1);\n                      onRetry();\n                    }}\n                  >\n                    <IconRefresh />\n                    {words.retry}\n                  </Button>\n                ) : null}\n              </div>\n            ) : null}\n          </div>\n        ) : (\n          children\n        )}\n      </div>\n      {/* Outside the busy region: a live region inside aria-busy is held back by some screen readers until the region is no longer busy. */}\n      <span role=\"status\" className=\"sr-only\">\n        {said}\n      </span>\n    </>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/slow-loading-state.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+    }
+  },
+  "css": {
+    "@keyframes rhs-fade-in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Wrap the content that will appear when loading ends. Nothing shows for the first 300 ms (delay), then a spinner and the label; thresholds are two plain numbers in ms, 8000 and 20000 by default, for the reassuring line and for Cancel and Try again. Each stage is announced politely. Everything resets when loading flips or Try again is pressed. When Cancel or Try again goes away, keyboard focus rests on the component; move it on in onCancel to the content or the trigger.",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

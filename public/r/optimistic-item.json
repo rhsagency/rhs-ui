@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "optimistic-item",
+  "title": "Optimistic item",
+  "description": "Wraps a list item the server has not confirmed yet: dimmed and busy while pending, with Retry and Discard if it failed.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/optimistic-item.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ComponentProps, type ReactNode } from \"react\";\n\nimport { IconAlertCircle, IconRefresh } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { Spinner } from \"@rhs-ui/primitives/spinner\";\nimport { cn } from \"@/lib/utils\";\n\n/** Whether the server has confirmed the item. */\nexport type OptimisticStatus = \"confirmed\" | \"pending\" | \"failed\";\n\n/** The words of the item, for another language or your own wording. */\nexport interface OptimisticItemLabels {\n  /** What a screen reader hears while the item is being saved. Default \"Saving\". */\n  saving: string;\n  /** The line that says it was not saved. Default \"Could not save\". */\n  failed: string;\n  /** The text on the first button. Default \"Retry\". */\n  retry: string;\n  /** The text on the second. Default \"Discard\". */\n  discard: string;\n}\n\nexport interface OptimisticItemProps extends ComponentProps<\"div\"> {\n  /** `confirmed` once the server has it, `pending` while it is being saved, `failed` when it could not be. Default \"confirmed\". */\n  status?: OptimisticStatus;\n  /** Why it failed, in words someone can act on: \"You are offline. Your comment is still here.\" Shown after \"Could not save\". */\n  error?: ReactNode;\n  /** Adds a Retry button to the failure line. Set the status back to `pending` here and send it again. */\n  onRetry?: () => void;\n  /** Adds a Discard button. Remove the item from your list here. */\n  onDiscard?: () => void;\n  /** The words of the item. */\n  labels?: Partial<OptimisticItemLabels>;\n  /** The row, comment or card that is being saved. */\n  children: ReactNode;\n}\n\nconst LABELS: OptimisticItemLabels = { saving: \"Saving\", failed: \"Could not save\", retry: \"Retry\", discard: \"Discard\" };\n\n/**\n * Wraps anything you add before the server has said yes: a new comment, a todo,\n * a rename. While it is `pending` the item is dimmed a little and a quiet\n * spinner sits in its top right corner, and it is marked busy so a screen reader\n * knows it is still being saved; it is never blocked, and everything on it can\n * still be read. When it is `confirmed` the wrapper adds nothing, and the move\n * from pending is instant and silent. When it `failed` the item stays where it\n * is, with \"Could not save\", the reason, and Retry and Discard under it. A\n * failure is announced once as an alert, and focus is never moved by it; after\n * Retry it rests on the item, so it is not lost when the buttons go. Keep the\n * top right corner of what you wrap free of text, for the spinner.\n */\nexport function OptimisticItem({ status = \"confirmed\", error, onRetry, onDiscard, labels, className, children, onBlur, ...props }: OptimisticItemProps) {\n  const words = { ...LABELS, ...labels };\n  const pending = status === \"pending\";\n  const failed = status === \"failed\";\n  // After Retry, focus rests on the item itself until the person moves on, so it can be focused for as long as it is needed.\n  const [parked, setParked] = useState(false);\n  return (\n    <div\n      data-slot=\"optimistic-item\"\n      data-status={status}\n      aria-busy={pending || undefined}\n      tabIndex={failed || parked ? -1 : undefined}\n      onBlur={(event) => {\n        onBlur?.(event);\n        if (event.target === event.currentTarget) setParked(false);\n      }}\n      // The ring is for focus parked here after Retry, so a keyboard user can see where they are. It follows the item's corners: pass your own radius in `className` if it is not rounded-xl.\n      className={cn(\"relative rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\", className)}\n      {...props}\n    >\n      {/* The transition is only there while pending, so the move to confirmed is instant. */}\n      <div className={pending ? \"opacity-80 transition-opacity duration-200 motion-reduce:transition-none\" : undefined}>{children}</div>\n      {pending ? (\n        <>\n          <span aria-hidden=\"true\" className=\"pointer-events-none absolute top-3 right-3 text-muted-foreground\">\n            <Spinner size={16} label=\"\" aria-hidden=\"true\" role=\"presentation\" />\n          </span>\n          <span className=\"sr-only\">{words.saving}</span>\n        </>\n      ) : null}\n      {failed ? (\n        <div data-slot=\"optimistic-item-error\" className=\"mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-lg border border-destructive/30 bg-destructive/5 py-2 pr-2 pl-3 text-sm motion-safe:animate-rhs-fade-in\">\n          <p role=\"alert\" className=\"flex min-w-0 flex-1 basis-52 items-start gap-2\">\n            <IconAlertCircle size={16} aria-hidden=\"true\" className=\"mt-0.5 shrink-0 text-destructive\" />\n            <span className=\"min-w-0 [overflow-wrap:anywhere]\">\n              <span className=\"font-medium\">{words.failed}.</span>\n              {error ? <span className=\"text-muted-foreground\"> {error}</span> : null}\n            </span>\n          </p>\n          {onRetry || onDiscard ? (\n            <div className=\"flex shrink-0 gap-1.5\">\n              {onRetry ? (\n                <Button\n                  type=\"button\"\n                  variant=\"outline\"\n                  size=\"sm\"\n                  onClick={(event) => {\n                    // The button is about to go: park focus on the item so a keyboard user keeps their place.\n                    setParked(true);\n                    event.currentTarget.closest<HTMLElement>('[data-slot=\"optimistic-item\"]')?.focus({ preventScroll: true });\n                    onRetry();\n                  }}\n                >\n                  <IconRefresh />\n                  {words.retry}\n                </Button>\n              ) : null}\n              {onDiscard ? (\n                <Button type=\"button\" variant=\"ghost\" size=\"sm\" onClick={onDiscard}>\n                  {words.discard}\n                </Button>\n              ) : null}\n            </div>\n          ) : null}\n        </div>\n      ) : null}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/optimistic-item.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+    }
+  },
+  "css": {
+    "@keyframes rhs-fade-in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "feedback"
+  },
+  "docs": "Wrap a row, comment or card and pass status: confirmed adds nothing, pending dims the item and marks it busy without blocking it, failed keeps it visible with Could not save and Retry and Discard buttons. error says why. Moving from pending to confirmed is instant and silent; a failure is announced once as an alert and focus is never moved by it (after Retry it rests on the item). Keep the top right corner of the wrapped item free: the pending spinner sits there.",
+  "categories": [
+    "primitives",
+    "feedback"
+  ],
+  "type": "registry:ui"
+}

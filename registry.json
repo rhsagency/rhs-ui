@@ -8790,6 +8790,583 @@
       ]
     },
     {
+      "name": "new-items-pill",
+      "type": "registry:ui",
+      "title": "New items pill",
+      "description": "The floating pill over a live feed or chat that counts what arrived, scrolls to it on click and hides itself once the reader gets there.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/new-items-pill.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/new-items-pill.tsx"
+        }
+      ],
+      "docs": "Put it inside a relative wrapper next to the scroller and pass scrollRef (give the scroller tabIndex 0 so it can be scrolled by keyboard); without scrollRef the page itself is watched and the pill wants a fixed position. count is how many items arrived while the reader was away. onClick runs before the scroll, so merge your buffered items there; onReach runs when the reader gets to the new content on their own, so you can merge and reset the count. label takes a string with {count}, or one, other and so on for plural forms."
+    },
+    {
+      "name": "new-items-pill-demo",
+      "type": "registry:example",
+      "title": "New items pill demo",
+      "description": "A working preview of New items pill.",
+      "registryDependencies": [
+        "https://rhsui.com/r/new-items-pill.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/new-items-pill-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "infinite-scroll-status",
+      "type": "registry:ui",
+      "title": "Infinite scroll status",
+      "description": "The footer of an auto-loading list: it asks for the next page near the viewport, then shows loading, an error with Retry, or the end.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/infinite-scroll-status.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/infinite-scroll-status.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "Place it after the last item. Set loading while a page is being fetched: that is what lets it ask again when the new page still leaves it in view. When the list scrolls inside a box, pass that box as root so rootMargin applies to it. A Load more button stays visible as the fallback for keyboard users and browsers without IntersectionObserver; pressing it, or Retry, keeps keyboard focus in the footer while the page comes. Pass count (and total) to have what each page added announced."
+    },
+    {
+      "name": "infinite-scroll-status-demo",
+      "type": "registry:example",
+      "title": "Infinite scroll status demo",
+      "description": "A working preview of Infinite scroll status.",
+      "registryDependencies": [
+        "https://rhsui.com/r/infinite-scroll-status.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/infinite-scroll-status-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pull-to-refresh",
+      "type": "registry:ui",
+      "title": "Pull to refresh",
+      "description": "The mobile pull-down gesture for refreshing a list: an elastic indicator, a spinner while it works, and a visible Refresh button for everyone else.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/pull-to-refresh.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pull-to-refresh.tsx"
+        }
+      ],
+      "docs": "Give the component a height: the list scrolls inside it, is reachable by keyboard, and listLabel names it. onRefresh returns the promise of the work; the spinner stays until it settles. Only touch input starts a pull, so wheels and desktop scrolling are untouched, and the Refresh button in the bar runs the same handler. The scroller sets overscroll-behavior so the browser's own refresh does not fight it. Letting go early, or taking the finger back above where it began, cancels the pull."
+    },
+    {
+      "name": "pull-to-refresh-demo",
+      "type": "registry:example",
+      "title": "Pull to refresh demo",
+      "description": "A working preview of Pull to refresh.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pull-to-refresh.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pull-to-refresh-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "eta-progress",
+      "type": "registry:ui",
+      "title": "ETA progress",
+      "description": "A progress bar that says how long is left, from the real pace so far, with an estimate that is smoothed so the text stays calm.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/eta-progress/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/eta-progress/index.tsx"
+        },
+        {
+          "path": "registry/primitives/eta-progress/estimate.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/eta-progress/estimate.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "Pass value (0 to 1) and startedAt. The text says Calculating for the first seconds, then an estimate rounded to friendly steps that only changes when it has drifted meaningfully, then Almost done and Finished in 1 min 20 s. The bar's aria-valuetext holds the sentence, and the sentence is announced at most every 15 seconds. Pass finishedAt when you know when it ended; now freezes the clock for tests and snapshots."
+    },
+    {
+      "name": "eta-progress-demo",
+      "type": "registry:example",
+      "title": "ETA progress demo",
+      "description": "A working preview of ETA progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/eta-progress.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/eta-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "strength-meter",
+      "type": "registry:ui",
+      "title": "Strength meter",
+      "description": "A four-segment strength bar with a word for the level and the one thing to fix next, for passwords and other scored input.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/strength-meter.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/strength-meter.tsx"
+        }
+      ],
+      "docs": "Hand it the 0 to 4 score of whichever estimator you use (zxcvbn's fits as it is) and an optional hint. Point your field's aria-describedby at the id. labels takes the five words for another language. A change is announced politely once it has held still for 800 ms. It stands alone from a password rules checklist, and the two can sit together."
+    },
+    {
+      "name": "strength-meter-demo",
+      "type": "registry:example",
+      "title": "Strength meter demo",
+      "description": "A working preview of Strength meter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/strength-meter.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/strength-meter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "milestone-progress",
+      "type": "registry:ui",
+      "title": "Milestone progress",
+      "description": "A progress bar with named stops along the way, for goals with steps: a funding target, a loyalty ladder, free-shipping tiers.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/milestone-progress.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/milestone-progress.tsx"
+        }
+      ],
+      "docs": "Pass value, max and milestones ({ at, label }). formatValue turns a number into words (\"1,280 points\") for the value, the stops and the next-stop line. nextLabel is the template for that line, with {remaining} and {milestone}; the last stop reads Goal reached. Reached stops carry a check, upcoming ones a ring, and the list says so in words. On a narrow container the labels alternate above and below the track."
+    },
+    {
+      "name": "milestone-progress-demo",
+      "type": "registry:example",
+      "title": "Milestone progress demo",
+      "description": "A working preview of Milestone progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/milestone-progress.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/milestone-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "estimated-progress",
+      "type": "registry:ui",
+      "title": "Estimated progress",
+      "description": "A bar for work with no progress signal: it eases toward 90 percent on an expected duration and only finishes when the work does.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/estimated-progress.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/estimated-progress.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "Give it expectedMs and a status (running, done or failed). The fill follows an ease-out curve toward 90 percent and never reaches it by itself; done fills the rest, failed freezes it in the destructive tone. It says About 30 seconds at first and Still working once the expected time has passed. Pass startedAt when the work began before the component mounted. Under reduced motion the fill moves in 10 percent steps."
+    },
+    {
+      "name": "estimated-progress-demo",
+      "type": "registry:example",
+      "title": "Estimated progress demo",
+      "description": "A working preview of Estimated progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/estimated-progress.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/estimated-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "slow-loading-state",
+      "type": "registry:ui",
+      "title": "Slow loading state",
+      "description": "A loader that gets more honest the longer it waits: quiet at first, then a reassuring line, then Cancel and Try again.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/slow-loading-state.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/slow-loading-state.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "Wrap the content that will appear when loading ends. Nothing shows for the first 300 ms (delay), then a spinner and the label; thresholds are two plain numbers in ms, 8000 and 20000 by default, for the reassuring line and for Cancel and Try again. Each stage is announced politely. Everything resets when loading flips or Try again is pressed. When Cancel or Try again goes away, keyboard focus rests on the component; move it on in onCancel to the content or the trigger."
+    },
+    {
+      "name": "slow-loading-state-demo",
+      "type": "registry:example",
+      "title": "Slow loading state demo",
+      "description": "A working preview of Slow loading state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/slow-loading-state.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/slow-loading-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "activity-toast",
+      "type": "registry:ui",
+      "title": "Activity toast",
+      "description": "A toast for what someone else just did: their avatar, the action, a time and View, merging bursts into one counted toast.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/activity-toast.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/activity-toast.tsx"
+        }
+      ],
+      "docs": "Mount the house Toaster once, then call toastActivity({ actor, action, target, at, group, onView }). Events with the same group inside mergeWindow merge into one toast whose count updates in place; mergedLabel is the sentence for that, with {count} and {target}, and moreLabel words the overflow after two names, with {count}. An actor with self: true is skipped, so it never shows for the person's own actions. The toast pauses on hover and focus like every toast and is announced politely once."
+    },
+    {
+      "name": "activity-toast-demo",
+      "type": "registry:example",
+      "title": "Activity toast demo",
+      "description": "A working preview of Activity toast.",
+      "registryDependencies": [
+        "https://rhsui.com/r/activity-toast.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/activity-toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "optimistic-item",
+      "type": "registry:ui",
+      "title": "Optimistic item",
+      "description": "Wraps a list item the server has not confirmed yet: dimmed and busy while pending, with Retry and Discard if it failed.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/optimistic-item.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/optimistic-item.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-fade-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-fade-in": "rhs-fade-in 160ms ease-out"
+        }
+      },
+      "docs": "Wrap a row, comment or card and pass status: confirmed adds nothing, pending dims the item and marks it busy without blocking it, failed keeps it visible with Could not save and Retry and Discard buttons. error says why. Moving from pending to confirmed is instant and silent; a failure is announced once as an alert and focus is never moved by it (after Retry it rests on the item). Keep the top right corner of the wrapped item free: the pending spinner sits there."
+    },
+    {
+      "name": "optimistic-item-demo",
+      "type": "registry:example",
+      "title": "Optimistic item demo",
+      "description": "A working preview of Optimistic item.",
+      "registryDependencies": [
+        "https://rhsui.com/r/optimistic-item.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/optimistic-item-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
