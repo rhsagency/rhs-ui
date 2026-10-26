@@ -73,9 +73,18 @@ export function ModelViewer({ model, poster, className, active = false }: ModelV
         const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js");
         const loader = new GLTFLoader();
         const cache = new Map<string, Promise<import("three/addons/loaders/GLTFLoader.js").GLTF>>();
+        // An inline GLB is decoded here instead of fetched: a fetch of a data: URL is blocked by any
+        // Content-Security-Policy whose connect-src does not list data:, and then the model never appears.
+        const load = (url: string) => {
+          if (!url.startsWith("data:")) return loader.loadAsync(url);
+          const binary = atob(url.slice(url.indexOf(",") + 1));
+          const bytes = new Uint8Array(binary.length);
+          for (let index = 0; index < binary.length; index++) bytes[index] = binary.charCodeAt(index);
+          return loader.parseAsync(bytes.buffer, "");
+        };
         for (const asset of model.assets) {
           let pending = cache.get(asset.url);
-          if (!pending) { pending = loader.loadAsync(asset.url); cache.set(asset.url, pending); }
+          if (!pending) { pending = load(asset.url); cache.set(asset.url, pending); }
           const loaded = await pending;
           const node = loaded.scene.clone(true);
           node.traverse((object) => {

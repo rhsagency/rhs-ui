@@ -61,6 +61,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 10 more: `directions-by-mode`, `allergen-matrix`, `founder-letter`, `values-rows`, `topic-hub`, `key-takeaways`, `article-series-outline`, `interview-layout`, `version-support-table`, `open-source-credits`.
 - Application, 9 more: `like-button`, `vote-buttons`, `watch-button`, `approval-buttons`, `social-sign-in-buttons`, `translate-toggle`, `use-location-button`, `keep-awake-toggle`, `listen-button`.
 - Application, 9 more: `reaction-bar`, `inset-sidebar-shell`, `top-nav-shell`, `settings-shell`, `filter-rail-shell`, `wizard-shell`, `dashboard-shell`, `focus-shell`, `mobile-tab-shell`.
+- Fixed: `model-viewer` decodes an inline GLB itself instead of fetching its data: URL, so the free models also appear on a site whose Content-Security-Policy keeps connect-src to its own origin (rhsui.com was such a site: Explore in 3D did nothing).
 
 ## Unreleased (0.7.0)
 
