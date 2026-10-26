@@ -1364,6 +1364,482 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "like-button",
+      "type": "registry:component",
+      "title": "Like button",
+      "description": "A like button where the count is the point: it answers at once, rolls the number, plays one quiet ring and tells screen readers the exact count.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/like-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/like-button.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-like-ring": "rhs-like-ring 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both",
+          "animate-rhs-like-dot": "rhs-like-dot 560ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+        }
+      },
+      "css": {
+        "@keyframes rhs-like-ring": {
+          "from": {
+            "opacity": "0.5",
+            "transform": "scale(0.5)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "scale(1.7)"
+          }
+        },
+        "@keyframes rhs-like-dot": {
+          "from": {
+            "opacity": "0.8",
+            "transform": "rotate(var(--angle)) translateY(-5px) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "rotate(var(--angle)) translateY(-13px) scale(0.3)"
+          }
+        }
+      },
+      "docs": "Controlled: keep liked and count in state and update both in onToggle once the request has succeeded; the button already shows the new state while it waits, and rolls back with a message if onToggle rejects. defaultLiked leaves the state to the button, and count then stays as written for that starting state and moves with the button. Counts above 999 abbreviate by locale (1.2K, 1,2 Mio.) while the accessible name and the tooltip keep the exact number. Pass names to make the tooltip read \"Liked by ...\", and any @rhs-ui/icons glyph as icon: it is drawn filled once liked."
+    },
+    {
+      "name": "like-button-demo",
+      "type": "registry:example",
+      "title": "Like button demo",
+      "description": "A working preview of Like button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/like-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/like-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "vote-buttons",
+      "type": "registry:component",
+      "title": "Vote buttons",
+      "description": "Up and down arrows around a score for questions, answers and feature requests: one vote each, changeable, with the score announced.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/vote-buttons.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/vote-buttons.tsx"
+        }
+      ],
+      "docs": "Controlled: keep value and score in state and update both in onVote once the request has succeeded. onVote receives \"up\", \"down\" or \"none\" (pressing the chosen arrow again clears the vote). The control moves the score by the right amount while the request is on its way, including two for a switch from down to up, and puts both back with a message in a bubble beside the control (to the right of a vertical one, to the left of a row, whichever side has room) if onVote rejects. score is written for the vote the control starts in. Set subject to name what is voted on, and allowDownvote={false} for a single arrow with a count."
+    },
+    {
+      "name": "vote-buttons-demo",
+      "type": "registry:example",
+      "title": "Vote buttons demo",
+      "description": "A working preview of Vote buttons.",
+      "registryDependencies": [
+        "https://rhsui.com/r/vote-buttons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/vote-buttons-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "watch-button",
+      "type": "registry:component",
+      "title": "Watch button",
+      "description": "A watch button with levels: all activity, mentions only or nothing, as a split button whose words and bell always say what you will be told.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/button-group.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/watch-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/watch-button.tsx"
+        }
+      ],
+      "docs": "Controlled: keep level and count in state and update both in onLevelChange once the request has succeeded. The main button switches between the last level that was on and \"ignore\"; the chevron opens a radio menu. Pass levels to change the words (id must stay all, mentions or ignore) and subject for the accessible name (\"Watching this issue, all activity\"). The count moves by one when watching starts or stops. A rejected onLevelChange rolls everything back with a message."
+    },
+    {
+      "name": "watch-button-demo",
+      "type": "registry:example",
+      "title": "Watch button demo",
+      "description": "A working preview of Watch button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/watch-button.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/watch-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "approval-buttons",
+      "type": "registry:component",
+      "title": "Approval buttons",
+      "description": "Approve and Reject as one decision: a reason when rejecting, who decided and when, and a short window to change your mind.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-check-circle.json",
+        "https://rhsui.com/r/animated-x-circle.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/approval-buttons.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/approval-buttons.tsx"
+        }
+      ],
+      "docs": "Uncontrolled it runs by itself: Approve and Reject call onApprove and onReject (each may return a promise and shows its own busy and error state), then the status line takes over with Change decision for undoWindow seconds. Controlled, pass status, decidedBy, decidedAt and reason, and set status back to pending in onChangeDecision. Reject always asks for a reason first (requireReason makes it required). Pass locale and timeZone so the time reads the same on the server and in the browser. A decision made here shows just the time on the day it was made and adds the date on any other day; a time you pass in decidedAt always carries its date, so a page rendered on the server reads the same once it has loaded. In a narrow space Change decision drops under the sentence. The control holds no form of its own, so it can sit inside yours, and Ctrl or Cmd with Enter confirms a rejection."
+    },
+    {
+      "name": "approval-buttons-demo",
+      "type": "registry:example",
+      "title": "Approval buttons demo",
+      "description": "A working preview of Approval buttons.",
+      "registryDependencies": [
+        "https://rhsui.com/r/approval-buttons.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/approval-buttons-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "social-sign-in-buttons",
+      "type": "registry:component",
+      "title": "Social sign-in buttons",
+      "description": "Continue-with buttons for sign-in providers: monogram marks instead of brand logos, a last-used tag first in the list, and one busy state.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/social-sign-in-buttons.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/social-sign-in-buttons.tsx"
+        }
+      ],
+      "docs": "Pass providers (id, label and an optional mark) and onSelect(id). While onSelect runs, that provider's button shows a spinner and the others disable; a rejection puts a message under the list. For a redirect flow pass busy yourself. lastUsed moves a provider first and tags it. The default marks are neutral monogram tiles built from the name (GH for GitHub, G for Google, one letter more when two would match), so no trademarked logo ships; bring your own with mark. In a narrow row the name moves up against its mark so it still fits. layout is stacked, grid or icons (square buttons with a tooltip); the list is labelled for screen readers."
+    },
+    {
+      "name": "social-sign-in-buttons-demo",
+      "type": "registry:example",
+      "title": "Social sign-in buttons demo",
+      "description": "A working preview of Social sign-in buttons.",
+      "registryDependencies": [
+        "https://rhsui.com/r/social-sign-in-buttons.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/social-sign-in-buttons-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "translate-toggle",
+      "type": "registry:component",
+      "title": "Translate toggle",
+      "description": "Translate a review or comment and back to the original with one quiet control that shows loading, translated-from and failed states.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/translate-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/translate-toggle.tsx"
+        }
+      ],
+      "docs": "Nothing is translated unless you pass onTranslate(text), which returns the translated string and runs only when the control is pressed; the result is kept, so going back and forth asks once. Uncontrolled it manages its own state. To control it, pass state with onStateChange, and translation once the state is translated. sourceLocale and locale are the language codes that mark each version with lang, so screen readers switch voice. labels changes the words of the control for a site that is not in English."
+    },
+    {
+      "name": "translate-toggle-demo",
+      "type": "registry:example",
+      "title": "Translate toggle demo",
+      "description": "A working preview of Translate toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/translate-toggle.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/translate-toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "use-location-button",
+      "type": "registry:component",
+      "title": "Use location button",
+      "description": "A Use my location button that handles every outcome in words: finding you, found with its accuracy, blocked, unavailable and timed out.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/use-location-button.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/use-location-button.tsx"
+        }
+      ],
+      "docs": "navigator.geolocation is called only when the button is pressed, never on load. onLocate receives latitude, longitude and accuracy in metres and nothing is sent anywhere; onError receives denied, unavailable or timeout. Where the Permissions API exists, a site that is already blocked says so before the first press. The button renders nothing where there is no geolocation. Pass geolocation to supply your own source (a native shell, or a stub to try every outcome), and labels to change the words."
+    },
+    {
+      "name": "use-location-button-demo",
+      "type": "registry:example",
+      "title": "Use location button demo",
+      "description": "A working preview of Use location button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/use-location-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/use-location-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "keep-awake-toggle",
+      "type": "registry:component",
+      "title": "Keep awake toggle",
+      "description": "A switch that keeps the screen on for recipes, scripts and slides with the Wake Lock API, taking it again after a tab switch.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-sun-moon.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/keep-awake-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/keep-awake-toggle.tsx"
+        }
+      ],
+      "docs": "The lock is requested when the switch is turned on, requested again when the tab becomes visible (browsers let go of it while a tab is hidden) and released when it is turned off or the page goes. Nothing is requested on load: a switch that starts on (defaultOn or on) asks for the lock at the first touch or key press. If the browser refuses, the switch returns to off, onChange(false) is called and one line says why. Where the Wake Lock API does not exist the component renders nothing. Pass wakeLock to supply your own source."
+    },
+    {
+      "name": "keep-awake-toggle-demo",
+      "type": "registry:example",
+      "title": "Keep awake toggle demo",
+      "description": "A working preview of Keep awake toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/keep-awake-toggle.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/keep-awake-toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "listen-button",
+      "type": "registry:component",
+      "title": "Listen button",
+      "description": "Listen to this article with the browser's own speech: play, pause and stop, a choice of speed, and the sentence being read highlighted.",
+      "categories": [
+        "application",
+        "actions"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-play-pause.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/button-group.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/listen-button/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/listen-button/index.tsx"
+        },
+        {
+          "path": "registry/application/listen-button/speech.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/listen-button/speech.ts"
+        }
+      ],
+      "docs": "Pass text, or targetRef for an element whose text is read sentence by sentence (the sentence being read is highlighted with the CSS Custom Highlight API, without touching your markup; mark anything that should not be read with data-listen-skip). lang picks the voice and how sentences are cut. The button reads in sentences, which also avoids Chrome stopping long utterances, and stops when the page is hidden or unmounts. Progress is shown as sentences, not time. A page has one voice: pressing a second button stops the first, and if anything else cuts the speech off the button goes back to rest. Where the browser has no speech synthesis it renders nothing; pass engine to supply your own."
+    },
+    {
+      "name": "listen-button-demo",
+      "type": "registry:example",
+      "title": "Listen button demo",
+      "description": "A working preview of Listen button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/listen-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/listen-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
