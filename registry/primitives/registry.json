@@ -9182,6 +9182,441 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "update-highlight",
+      "type": "registry:ui",
+      "title": "Update highlight",
+      "description": "Marks a row, card or number that just changed with a tint that fades out, an \"Updated\" marker when motion is reduced and a polite message for screen readers.",
+      "categories": [
+        "primitives",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/update-highlight.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/update-highlight.tsx"
+        }
+      ],
+      "docs": "Hand it a changeKey: the value, a version or a timestamp. When the key changes, the element is tinted with the foreground colour and fades over duration (1500 ms). The first value is never marked unless skipFirst is false, and changes that land while it is fading restart the same highlight. Nothing is added inside the element, so asChild works on a table row (the tint is then drawn on its cells). Under reduced motion, or with reduceMotion, there is no fade: a small marker with label hangs on the top edge for a few seconds. Pass label or announce and a screen reader hears a polite message on every change; messages that arrive together are read as one."
+    },
+    {
+      "name": "update-highlight-demo",
+      "type": "registry:example",
+      "title": "Update highlight demo",
+      "description": "A working preview of Update highlight.",
+      "registryDependencies": [
+        "https://rhsui.com/r/update-highlight.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/update-highlight-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "email-field",
+      "type": "registry:ui",
+      "title": "Email field",
+      "description": "An email input that catches typos before they cost a signup: it offers the likely domain, such as gmail.com for gmial.com, and reports a clean address.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/email-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/email-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/email-field/emails.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/email-field/emails.ts"
+        },
+        {
+          "path": "registry/primitives/email-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/email-field/blur-guard.ts"
+        }
+      ],
+      "docs": "Controlled with value and onValueChange(email, { valid }), or uncontrolled with defaultValue. The reported address is trimmed with its domain in lower case, and name sends that clean form in a hidden input. Nothing shows while typing: on leaving the field a malformed address is explained in words, or, when the domain is one or two edits from a provider in domains, a button offers 'Use rick@gmail.com instead'. Set suggest={false} to turn the suggestion off. The domain list, editDistance, suggestEmail, describeEmail and isValidEmail are exported from email-field/emails for your own checks. Set noValidate on the form if you prefer these messages to the browser's own."
+    },
+    {
+      "name": "email-field-demo",
+      "type": "registry:example",
+      "title": "Email field demo",
+      "description": "A working preview of Email field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/email-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/email-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "username-field",
+      "type": "registry:ui",
+      "title": "Username field",
+      "description": "A handle field with an @ prefix, the rules stated in words and an availability check you supply, so people know a name is free before they submit.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/username-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/username-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/username-field/usernames.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/username-field/usernames.ts"
+        }
+      ],
+      "docs": "Give it onCheck(username, { signal }) and it asks once typing has paused for debounce ms (400 by default): return true or false, or { available, suggestions } with up to three names that are free. Pass the signal to fetch so a question for an older name is cancelled; an answer for an older name is thrown away either way. onStatusChange(status, username) says when the name is available, for example to enable a submit button. reserved takes names that are refused without asking, and RESERVED_USERNAMES in username-field/usernames is a starting list. Without onCheck the field only checks the format and calls nothing."
+    },
+    {
+      "name": "username-field-demo",
+      "type": "registry:example",
+      "title": "Username field demo",
+      "description": "A working preview of Username field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/username-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/username-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "url-field",
+      "type": "registry:ui",
+      "title": "URL field",
+      "description": "A web address field with a protocol menu: paste a full link and it splits, type a bare domain and it adds https, and it reports one clean URL.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/url-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/url-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/url-field/urls.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/url-field/urls.ts"
+        },
+        {
+          "path": "registry/primitives/url-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/url-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value is the whole address and onValueChange(url, { valid }) reports one clean URL: the protocol from the menu, the host in lower case and the rest as typed. A pasted link moves its protocol into the menu. protocols sets the menu (the first is used for a bare domain), requireHttps refuses http:// and offers a switch to https://, allowPath={false} takes a bare domain only, and name sends the URL in a hidden input. A valid address gets a link that opens a new tab with rel noopener noreferrer. The checks run when the field is left, then follow the typing until the address is right."
+    },
+    {
+      "name": "url-field-demo",
+      "type": "registry:example",
+      "title": "URL field demo",
+      "description": "A working preview of URL field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/url-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/url-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "slug-field",
+      "type": "registry:ui",
+      "title": "Slug field",
+      "description": "A URL slug that writes itself from the title until you edit it, shows the final address and hands control back with a single click.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/slug-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/slug-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/slug-field/slugify.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/slug-field/slugify.ts"
+        }
+      ],
+      "docs": "Pass the title and the slug follows it. value and onValueChange(slug, { auto }) make it controlled; a slug that is there when the field mounts starts locked, because someone chose it, and so does one that arrives from outside later (the saved slug of a record that loads after the form), unless it is only the slug the field itself reported while following the title. Typing locks it, and the Follow title button or an emptied field gives it back. baseUrl feeds the preview, taken flags a clash and offers the next free slug, maxLength cuts it. slugify(text, maxLength), cleanSlugInput and nextFreeSlug are exported from slug-field/slugify. Letters of other scripts have no plain form and are dropped by slugify: transliterate them first."
+    },
+    {
+      "name": "slug-field-demo",
+      "type": "registry:example",
+      "title": "Slug field demo",
+      "description": "A working preview of Slug field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/slug-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/slug-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "name-field",
+      "type": "registry:ui",
+      "title": "Name field",
+      "description": "A person's name without the usual mistakes: no forced first and last split, sensible casing on blur and Dutch and other name particles respected.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/name-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/name-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/name-field/names.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/name-field/names.ts"
+        },
+        {
+          "path": "registry/primitives/name-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/name-field/blur-guard.ts"
+        }
+      ],
+      "docs": "One field for the whole name; onValueChange receives { full, given, particle, family }. On leaving the field, a name typed all in lower case or all in capitals gets its capitals, with the words in particles (lower case) kept down after the first word. Mixed case is never touched. The change is announced, and Undo restores exactly what was typed and stays undone for that text. splitable adds a Split into parts disclosure (defaultOpen starts it open), and with name the three parts also go out as name-given, name-particle and name-family. splitName, joinName and fixNameCase are exported from name-field/names."
+    },
+    {
+      "name": "name-field-demo",
+      "type": "registry:example",
+      "title": "Name field demo",
+      "description": "A working preview of Name field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/name-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/name-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "masked-input",
+      "type": "registry:ui",
+      "title": "Masked input",
+      "description": "A text input that formats as you type from a simple pattern such as (###) ###-#### or AA-####, with a caret that never jumps.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/masked-input/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/masked-input/index.tsx"
+        },
+        {
+          "path": "registry/primitives/masked-input/mask.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/masked-input/mask.ts"
+        }
+      ],
+      "docs": "mask: # is a digit, A a letter (made a capital), * a letter or a digit, a backslash makes the next character a literal, and anything else is written for you. value and onValueChange(raw, formatted, { complete }) work with the bare characters. showMask draws the unfilled part as quiet text, and definitions adds tokens such as { H: /[0-9a-f]/i } or replaces #, A and *. inputMode is numeric when the mask only takes digits. The field is not controlled by React, because the caret has to be set by hand after every edit; name posts the formatted text."
+    },
+    {
+      "name": "masked-input-demo",
+      "type": "registry:example",
+      "title": "Masked input demo",
+      "description": "A working preview of Masked input.",
+      "registryDependencies": [
+        "https://rhsui.com/r/masked-input.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/masked-input-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "date-field",
+      "type": "registry:ui",
+      "title": "Date field",
+      "description": "A date you can type: day, month and year as separate segments in your locale's order, stepping with the arrow keys, with an optional calendar button.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/calendar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/date-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/date-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/date-field/dates.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/date-field/dates.ts"
+        }
+      ],
+      "docs": "value and onValueChange(iso, { valid }) speak ISO dates (2026-03-14), with an empty string while the date is incomplete or impossible. The order of the parts and the separator come from locale (en-US by default), and min and max are ISO dates. Digits move on by themselves, ArrowUp and ArrowDown step a part, Backspace clears it and a pasted date fills all three (a two-digit year is 20xx up to 68, 19xx from 69). An impossible date such as 31 February is explained once all three parts are filled. showCalendar adds a button that opens the Calendar in a popover under the field, name adds a hidden input with the ISO date, and labels renames the parts for another language. id goes on the first part, so a label's htmlFor focuses the field; name the whole group with aria-labelledby."
+    },
+    {
+      "name": "date-field-demo",
+      "type": "registry:example",
+      "title": "Date field demo",
+      "description": "A working preview of Date field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/date-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/date-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

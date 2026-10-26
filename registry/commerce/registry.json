@@ -3007,6 +3007,474 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "warranty-registration",
+      "type": "registry:block",
+      "title": "Warranty registration",
+      "description": "Register a purchase for its warranty: serial number, purchase date and shop, proof of purchase, then the end date of the cover, shown before sending.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/date-picker.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/file-trigger.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/warranty-registration/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/warranty-registration/index.tsx"
+        },
+        {
+          "path": "registry/commerce/warranty-registration/confirmation.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/warranty-registration/confirmation.tsx"
+        },
+        {
+          "path": "registry/commerce/warranty-registration/warranty.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/warranty-registration/warranty.ts"
+        },
+        {
+          "path": "registry/commerce/warranty-registration/words.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/warranty-registration/words.ts"
+        }
+      ],
+      "docs": "Pass product ({ name, model?, image? }) when you know it: it is shown beside the form and the form does not ask for it; without it the form has a Product field. warrantyMonths (default 24) says how long the cover runs from the day of purchase. As soon as a day is chosen the form says 'Covered until 14 March 2028' before anything is sent, and a day in the future, or so old that the cover has already ended, is refused in words. serialPattern is a regular expression (a RegExp, or a string with its source, which can cross from a Server Component and is matched without regard to case): a serial number that does not fit is explained, with serialExample quoted ('It looks like HX-4821-K9Q2'; the same example is the empty field's placeholder, written 'For example HX-4821-K9Q2' so the field never looks filled in), and serialHelp says where the number is printed. The proof of purchase is one file up to maxFileSize bytes (default 5 MB) and is required unless proofRequired is false. onSubmit(values) receives { product, serial, purchaseDate (yyyy-mm-dd), store, proof (a File, or null), consent, coveredUntil (yyyy-mm-dd) }. Return a message and the form stays with every answer in it, the receipt's name too, and says so in a notice that takes focus; return nothing, or resolve, and the form is replaced by the confirmation: the end of the cover as the one big fact, what was registered, what is covered (covers) and what is not (excludes). Return { reference } to print the registration's reference there, or pass submitted to show the confirmation for a registration your page already holds. defaultValues fills the shop and the day for a customer who comes from an order. now and timeZone decide which calendar day 'today' is (pass now from the server so the first render matches the browser's), locale writes the dates, privacyHref turns the consent line into a link, headingAs is 'h3' inside a section that has its own h2, and labels holds every fixed word for another language."
+    },
+    {
+      "name": "warranty-registration-demo",
+      "type": "registry:example",
+      "title": "Warranty registration demo",
+      "description": "A working preview of Warranty registration.",
+      "registryDependencies": [
+        "https://rhsui.com/r/warranty-registration.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/warranty-registration-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-passport",
+      "type": "registry:block",
+      "title": "Product passport",
+      "description": "A digital product passport: what it is made of, where it was made, certifications, care and repair, and how to recycle it.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-passport/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/product-passport/index.tsx"
+        },
+        {
+          "path": "registry/commerce/product-passport/groups.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/product-passport/groups.tsx"
+        },
+        {
+          "path": "registry/commerce/product-passport/passport.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/product-passport/passport.ts"
+        }
+      ],
+      "docs": "Pass the parts you know and leave out the rest: a section without content is not drawn, never shown empty. materials ({ name, share in percent, note? }) draw one stacked bar with a list under it that writes every share in words, so the bar is never the only carrier of the numbers (the bar itself is hidden from screen readers); when the shares come to less than 100 the bar says 'Other materials' for the rest instead of claiming more than it knows. origin is { place, factory?, year?, note? }. certificates are { name, issuer?, number?, href }: each one is a real link to the certificate, opens in a new tab and says so to a screen reader. footprint is { value ('8.4 kg CO₂e'), label?, method? } with the method in one line. care, repair and endOfLife are lists of { title, detail?, icon?, href?, linkLabel? } in an accordion; defaultOpen says which of them start open (all three by default, [] for none). updatedAt is a Date, an ISO string or epoch milliseconds, and a plain yyyy-mm-dd is a calendar day; title and identifier name the product and the passport. locale writes the percentages and the date, timeZone reads updatedAt, headingAs is 'h3' inside a section that has its own h2 (the section titles, and the accordion's, go one level below it), and labels holds the fixed words. Apart from the accordion it keeps no state, so it renders on the server."
+    },
+    {
+      "name": "product-passport-demo",
+      "type": "registry:example",
+      "title": "Product passport demo",
+      "description": "A working preview of Product passport.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/product-passport.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-passport-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-safety-info",
+      "type": "registry:block",
+      "title": "Product safety information",
+      "description": "The product safety facts regulations ask for: manufacturer and EU contact, model and batch, warnings, compliance marks and documents.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-safety-info/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/product-safety-info/index.tsx"
+        },
+        {
+          "path": "registry/commerce/product-safety-info/safety.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/product-safety-info/safety.ts"
+        }
+      ],
+      "docs": "Pass what you have: a section without content is left out, never shown empty. warnings are { severity ('danger' | 'warning' | 'caution' | 'notice'), title?, text }, most serious first. Every severity is written as a word ('Danger', 'Warning', 'Caution', 'Note') in front of the text, with an icon and a fill that grow stronger as the risk does, so nothing relies on colour or an icon alone. marks are { name ('CE'), description?, href? } and link to the declaration behind them. manufacturer and euContact are { name, address (an array of lines, or one string with line breaks), email?, phone?, website?, role? }, written in an address element with mail, call and web links. identifiers are { label, value, where? } for the model, the batch and the serial number and where each is printed. documents are { title, href, type?, size? (bytes), language? }, each with a download button that is only the icon in a narrow panel. updatedAt, locale and timeZone write 'Checked 12 October 2026' and the file sizes. linkAs renders the links with your router's Link, and action puts something at the right of the heading, such as the close button of a dialog, so nothing lies over the panel's own text, and stickyHeader pins that heading, and the button with it, to the top of whatever scrolls the panel, so the close button of a dialog never scrolls out of reach on a phone. The panel has no width of its own, so it sits as well in a tab or a dialog as on the page, and it keeps no state, so it renders on the server."
+    },
+    {
+      "name": "product-safety-info-demo",
+      "type": "registry:example",
+      "title": "Product safety information demo",
+      "description": "A working preview of Product safety information.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/product-safety-info.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-safety-info-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ranked-product-list",
+      "type": "registry:block",
+      "title": "Ranked product list",
+      "description": "Best sellers as a numbered list: a big rank figure, thumbnail, price, proof and a movement word, with a week, month or all-time switch.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/ranked-product-list/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/ranked-product-list/index.tsx"
+        },
+        {
+          "path": "registry/commerce/ranked-product-list/add-button.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/ranked-product-list/add-button.tsx"
+        },
+        {
+          "path": "registry/commerce/ranked-product-list/ranking.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/ranked-product-list/ranking.ts"
+        }
+      ],
+      "docs": "Pass items best first: a product's rank is its place in the array. An item is { id, name, href (the whole row is this link), price in minor units (8900 is 89.00), compareAtPrice?, subtitle?, image? ({ src, alt?, width?, height? }, drawn with renderImage so next/image plugs in), proof? (the line, already written: '1,240 sold this week'), rating?, ratingCount?, movement? and available? }. Movement is { kind: 'new' } | { kind: 'same' } | { kind: 'up' | 'down', by } and is always a word as well as an arrow ('New', 'Up 2', 'Down 1', 'Steady'): under the rank figure on a wide list, under the name on a phone. available false keeps the place but switches Add off and says 'Sold out'; a screen reader hears the product's name with 'is sold out' (soldOutName), so the words it sees are in the name it hears. The list is controlled: you hold period and pass the items for it. periods defaults to This week, This month and All time, and onPeriodChange is called with the value that was chosen (without it the periods are not offered and the list just names the one it shows). A polite status says which period the list shows and how many products. onAddToCart(item) may return a promise: the button shows it is working, says Added with a check and goes back to rest; when the promise rejects the button says Try again for a few seconds and a polite message tells a screen reader that the product could not be added; without it there are no buttons. The button is as wide as its longest word in every state, so the columns of the row never move when it changes. limit shows only the first places, linkAs renders the row links with your router's Link, currency and locale write the prices and numbers, and labels holds the fixed words. On a phone the picture shrinks, the proof moves under the name and the Add button is a square with the plus."
+    },
+    {
+      "name": "ranked-product-list-demo",
+      "type": "registry:example",
+      "title": "Ranked product list demo",
+      "description": "A working preview of Ranked product list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ranked-product-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ranked-product-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "age-verification-gate",
+      "type": "registry:block",
+      "title": "Age verification gate",
+      "description": "A gate for age-restricted shops: what the shop sells, a date of birth or a plain over-18 choice, and a calm way out for those who fail.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/age-verification-gate/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/age-verification-gate/index.tsx"
+        },
+        {
+          "path": "registry/commerce/age-verification-gate/age.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/age-verification-gate/age.ts"
+        }
+      ],
+      "docs": "mode 'birthdate' (the default) asks for a date of birth in three number fields in the order of locale (day, month, year in most of the world, month first for en-US, year first for ja-JP) with the autofill hints a browser knows. It refuses dates that do not exist (31 February, month 13), a year that is not four digits and a day in the future, and puts focus on the field that is wrong. mode 'confirm' is two buttons: 'I am 18 or older' and 'I am under 18'. minimumAge defaults to 18. onVerify(birthdate, remember) is called when the visitor passes: birthdate is yyyy-mm-dd (undefined in confirm mode) and remember is the checkbox you get with rememberLabel; remembering the visitor, with a cookie or otherwise, is yours. A visitor who is too young gets a calm message and a way out, not an error and never a dead end: pass onDecline (the button 'Leave this site') or leaveHref (the same, as a link that works without a script), at least one of them, and in birthdate mode 'Typed the wrong date? Try again' goes back to the fields. presentation 'dialog' (the default) is a named modal that cannot be dismissed with Escape or a click outside, keeps focus inside, leaves nothing behind it reachable and gives focus back to what had it before it opened; without open it stays until the visitor passes, or pass open to control it. It is drawn in the browser, so the HTML from the server does not contain it and the shop behind it is reachable until the page has loaded: use presentation 'page' for a gate that has to be in the HTML. presentation 'page' renders the gate as a whole page (a section named by its heading, which is an h2, or an h1 with headingAs when the gate is the page), and nothing when open is false. title says what the shop sells ('This shop sells alcohol'); brand, note and helpHref ('Why do we ask?') add the rest. defaultDeclined starts on the message for a visitor who has answered already, now and timeZone decide what today is, autoFocus can be turned off when the gate is one of several things on a page, and labels holds the fixed words."
+    },
+    {
+      "name": "age-verification-gate-demo",
+      "type": "registry:example",
+      "title": "Age verification gate demo",
+      "description": "A working preview of Age verification gate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/age-verification-gate.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/age-verification-gate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "payment-plan-picker",
+      "type": "registry:block",
+      "title": "Payment plan picker",
+      "description": "Pay in full or in parts: plans as choice cards with the amount per payment, the total, and the schedule of the chosen plan beneath.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/payment-plan-picker/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/payment-plan-picker/index.tsx"
+        },
+        {
+          "path": "registry/commerce/payment-plan-picker/plans.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/payment-plan-picker/plans.ts"
+        }
+      ],
+      "docs": "total is the price of the order in minor units. plans are { id, payments, amount (one regular payment), total (everything the plan costs), apr?, firstPaymentToday?, label? }: a plan with one payment is 'Pay in full', what a plan costs above total is its interest, and a plan without any says 'No interest'. When total is not payments times amount the first payment takes the difference, so the schedule always adds up to the plan's total to the cent, and a line under the schedule says so in words ('The first payment is €205.45 because the cents do not divide evenly. The others are €205.41.'). The chosen plan's schedule is a real list beneath the cards: today, then one date a month in words (a plan that starts next month, firstPaymentToday false, has no 'today'; 31 January plus a month is 28 February), with the total, the interest and the representative APR under it. value, defaultValue and onValueChange control the choice, and onContinue(plan) adds a button. disclosure is whatever the law makes you say about this credit (a representative example, who provides it, what a missed payment means): it is always on the page under the plans, never behind a tooltip. now and timeZone give the calendar day the dates start from: pass now from the server so the first render already shows dates; without it the schedule says 'In 1 month' until the browser's clock is known and then turns those into dates. currency and locale write the amounts, a polite status says which plan was chosen, headingAs is 'h3' inside a section that has its own h2, and labels holds the fixed words."
+    },
+    {
+      "name": "payment-plan-picker-demo",
+      "type": "registry:example",
+      "title": "Payment plan picker demo",
+      "description": "A working preview of Payment plan picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/payment-plan-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/payment-plan-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-transparency",
+      "type": "registry:block",
+      "title": "Price transparency",
+      "description": "Show where the money goes: a stacked bar of materials, making, shipping, duties and margin, with the typical retail price beside it.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-transparency/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/price-transparency/index.tsx"
+        },
+        {
+          "path": "registry/commerce/price-transparency/parts.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/price-transparency/parts.ts"
+        }
+      ],
+      "docs": "price is what the customer pays, in minor units; parts are { label, amount, note? } in minor units, in the order they are drawn. The bar is computed from the parts: a part with no money in it is left out, when the parts add up to less than the price the rest is drawn dashed as 'Other costs', and when they add up to more the price is what they add up to, so the bar always sums to the price; with no usable part at all the bar and the list are left out and the price stands alone, never as zero, and the comparison with the retail price still works. Every part is also a row with its amount and its share, the shares are whole percentages that add up to exactly 100, and the bar is hidden from screen readers because the list carries every number. A part's note opens from its name in a popover named after the part; hovering or focusing a row lights its part of the bar. retail is the typical retail price: with it the panel says how much lower this price is and shows both figures, without it there is nothing to compare. note is the small print under everything (what the figures are based on and when they were checked). currency and locale write the amounts and percentages, title and description name the product, headingAs is 'h3' inside a section that has its own h2, and labels holds the fixed words."
+    },
+    {
+      "name": "price-transparency-demo",
+      "type": "registry:example",
+      "title": "Price transparency demo",
+      "description": "A working preview of Price transparency.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-transparency.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-transparency-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sample-request",
+      "type": "registry:block",
+      "title": "Sample request",
+      "description": "Order free samples before a big purchase: pick up to five swatches, see what is on its way, and add the delivery address in one short form.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/sample-request/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/sample-request/index.tsx"
+        },
+        {
+          "path": "registry/commerce/sample-request/confirmation.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/sample-request/confirmation.tsx"
+        },
+        {
+          "path": "registry/commerce/sample-request/samples.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/sample-request/samples.ts"
+        },
+        {
+          "path": "registry/commerce/sample-request/swatch.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/sample-request/swatch.tsx"
+        }
+      ],
+      "docs": "swatches are { id, name, color?, image?, note? }: a colour, a picture of the material (a URL or a data URI) or both, each a real checkbox with its name under it. limit (default 5) is the most samples one request can hold; at the limit the rest are switched off and the text beside the counter says why, while the chosen ones stay on so one can always be taken out. The counter ('Samples chosen: 3 of 5') is also the status region. value and onChange control the choice (the ids, in the order they were chosen), defaultValue starts it, and address fills the form for a customer who is signed in. Beside the grid sit the chosen samples, each with a button to take it out (focus moves to the next one), the delivery promise (deliveryNote: 'Free, arrives in 3 to 5 days') and the address. onSubmit({ swatchIds, address }) may return a promise. Return a message and the form stays with the samples and the address in it, and says so in a notice that takes focus; return nothing, or resolve, and the form is replaced by what is coming, where it is going and the order reference (return { reference } to print it). submitted shows that confirmation for a request your page already holds, shopHref adds the link back to the shop, locale writes the numbers, headingAs is 'h3' inside a section that has its own h2, and labels holds the fixed words."
+    },
+    {
+      "name": "sample-request-demo",
+      "type": "registry:example",
+      "title": "Sample request demo",
+      "description": "A working preview of Sample request.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sample-request.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sample-request-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
