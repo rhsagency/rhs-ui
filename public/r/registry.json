@@ -35381,6 +35381,439 @@
       ]
     },
     {
+      "name": "verify-email-card",
+      "type": "registry:block",
+      "title": "Verify email card",
+      "description": "The check-your-inbox step after sign-up: the address, a shortcut to webmail, a resend that counts down, a typo fix and an optional six-digit code.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/otp-input.json",
+        "https://rhsui.com/r/resend-button.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/verify-email-card/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/verify-email-card/index.tsx"
+        },
+        {
+          "path": "registry/application/verify-email-card/mail-links.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/verify-email-card/mail-links.ts"
+        }
+      ],
+      "docs": "email is the address the email went to. It sits in a row of its own, in bold, with a Change email button, under a line that says how long the link works (expiresInHours, default 24). mode is link (the default, it waits for the click) or code, which adds six boxes that check as the last digit is typed: onVerify(code) returns an error message or nothing, a wrong code is announced under the boxes and the first box takes the focus again, and a right one swaps the card to Email verified. onResend is called by the resend button, which starts counting resendAfter seconds (default 30) as the card appears, in tabular figures instead of vanishing; it speaks only when the wait starts, at ten seconds and when it ends, and a rejection shows its message without restarting the wait. onChangeEmail(address) turns the address into a field: return an error message to show under it, or nothing, and the card then shows the new address, hides the shortcuts while the field is open, and starts the wait again; leave it out for no Change email button. mailLinks adds Open Gmail, Open Outlook or Open Yahoo Mail as plain external links, only when the domain of the address belongs to one (pass your own list of { id, label, href, domains }, or false for none; DEFAULT_MAIL_LINKS and mailLinksFor are exported from verify-email-card/mail-links). A short Didn't get it? list covers spam, a typo and waiting a minute. verified flips the card to Email verified for an app that polls, onVerified runs on its Continue button, defaultEditing opens the field for a preview, footer sits under the card, titleAs sets the heading element and labels translates every word."
+    },
+    {
+      "name": "verify-email-card-demo",
+      "type": "registry:example",
+      "title": "Verify email card demo",
+      "description": "A working preview of Verify email card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/verify-email-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/verify-email-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "set-new-password",
+      "type": "registry:block",
+      "title": "Set new password",
+      "description": "The second half of a password reset: a new password with live rules, a confirm field that checks on blur, and a choice to sign out other devices.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/set-new-password.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/set-new-password.tsx"
+        }
+      ],
+      "docs": "email names the account being reset, as an initials avatar and the address with the middle of the name masked (showFullEmail turns the mask off). The new password shows its rules ticked off live (rules: default at least 12 characters, upper and lower case, a number or a symbol) and the confirm field reports a mismatch when it is left, never on every keystroke. Sign out of all other devices starts ticked (defaultSignOutOthers). The submit button waits until every rule passes and both fields match, but it stays reachable and a line under it says why in words (how many rules are left, type it again, the two need to match), so a grey button is never the only explanation; pressing it early moves the focus to what is missing. onSubmit({ password, signOutOthers }) returns an error message to show above the form, with the field focused and selected, or nothing; a throw shows a general message, and a second submit is ignored while it runs. On success the card becomes a done panel, with the look of the result state but the card's own heading (so the page keeps its h1) and Continue to sign in (onBackToSignIn, which also adds the quiet Back to sign in under the form) and a line about the other devices when they were signed out. defaultDone starts there for a preview; footer, titleAs and labels work as in the other auth cards."
+    },
+    {
+      "name": "set-new-password-demo",
+      "type": "registry:example",
+      "title": "Set new password demo",
+      "description": "A working preview of Set new password.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/password-input.json",
+        "https://rhsui.com/r/set-new-password.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/set-new-password-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "invite-accept-card",
+      "type": "registry:block",
+      "title": "Invite accept card",
+      "description": "A team invite as a card: the workspace, who invited you and as what, a role you can hover for its powers, and one-click join or a short sign-up form.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/confirm-popover.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/password-input.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/invite-accept-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/invite-accept-card.tsx"
+        }
+      ],
+      "docs": "workspace is { name, logo?, members? } and inviter is { name, email?, avatar? }; role is the word, and roleSummary the lines of what that role can do, which become a tooltip on the role chip (on hover, on focus and on a tap) and a hidden description for screen readers, so nobody joins blind. expiresAt says how long the invite stays good (Expires in 5 days, and the date, written with locale and timeZone, default en-US and UTC); pass now for the server HTML and tests, or leave it out and the card reads the clock once after the first paint. Once the date has passed the card says so and names who to ask, with no buttons. mode existing joins with the signed-in address: Join and Decline, plus Not you? (onSwitchAccount). mode new asks for a name and a password with its rules (rules) and calls onAccept({ name, password }); the address the invite went to is fixed in the form, and onSwitchAccount becomes Already have an account? Sign in. onAccept returns an error message or nothing; while either button works the other one waits, and the button that was pressed keeps the focus, so a failed try is one more press away. Once joined the card is finished: the button stays a solid Joined, the fields turn read-only, Decline, Not you? and Sign in stop working and the expiry line goes (it goes after a decline too, and the notice then takes the focus). A long workspace name wraps in the heading and on the Join button instead of stretching the card. Decline (onDecline) asks a small confirmation first. defaultOutcome starts on joined or declined for a preview; footer, titleAs, locale, timeZone and labels as in the other cards."
+    },
+    {
+      "name": "invite-accept-card-demo",
+      "type": "registry:example",
+      "title": "Invite accept card demo",
+      "description": "A working preview of Invite accept card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/invite-accept-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/invite-accept-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sso-sign-in",
+      "type": "registry:block",
+      "title": "SSO sign-in",
+      "description": "Work-email sign-in for companies with single sign-on: the domain finds the identity provider and the button names exactly where you are going.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sso-sign-in.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/sso-sign-in.tsx"
+        }
+      ],
+      "docs": "resolveDomain(domain, { signal }) is yours: resolve to { organisation, providers } when single sign-on is set up, to null when it is not, and reject when the lookup itself failed. It runs once the address has a whole domain (acme.io, never acme.i) and the typing has paused for debounceMs (default 450); the answer for a domain the person has already left is thrown out and its signal aborts the request, and a domain is never looked up twice. The field is never disabled, so a slow lookup cannot block typing: a spinner sits inside it, and a status region says politely that a lookup is running and what it found. One provider gives a button that names the company (Continue with Acme SSO) under the company's name; several give tiles to choose from with nothing preselected (each provider can carry its own icon), and the button waits until one is chosen; a long company name wraps on the button instead of stretching the card; no providers gives a notice (No single sign-on is set up for acme.io) with an optional helpHref and the password route (onUsePassword), which is also a quiet button in the other states. onContinue({ domain, providerId }) sends the person on, and its busy state keeps the button in place and in focus, also when the call fails. Enter submits, and pressing Continue before the lookup has run makes it run at once. defaultEmail is looked up as soon as the card appears; footer, titleAs and labels as in the other cards."
+    },
+    {
+      "name": "sso-sign-in-demo",
+      "type": "registry:example",
+      "title": "SSO sign-in demo",
+      "description": "A working preview of SSO sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sso-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sso-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reauthenticate-card",
+      "type": "registry:block",
+      "title": "Reauthenticate card",
+      "description": "'Confirm it is you' before a sensitive action, in a card or a dialog: it names what is about to happen, then takes a password or a passkey.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/reauthenticate-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/reauthenticate-card.tsx"
+        }
+      ],
+      "docs": "email says who is signed in (an initials avatar, or avatar as an image address) and action what is about to happen, in a few words: Change your email address, Delete this workspace. onConfirm(password) returns an error message or nothing: the message is announced once, against the field, which keeps the focus and empties itself for the next try; counting attempts and locking are the server's job, and the card shows whatever message you return (a throw shows a general one). onPasskey is the second route, Use a passkey instead: you own the WebAuthn call, and a returned message shows above the field. onCancel adds a Cancel button next to Confirm, and grace is the line about how long the answer holds (You will not be asked again for 10 minutes), so people do not feel nagged. The button that was pressed keeps the focus, also when the passkey fails. After success the button shows Confirmed and the card stays still. defaultError starts with a message under the field, for a preview. Inside a dialog, set titleAs to p, give the dialog its own title, drop the frame with className (border-0 shadow-none) and pass titleId if you want aria-labelledby to point at the card's heading."
+    },
+    {
+      "name": "reauthenticate-card-demo",
+      "type": "registry:example",
+      "title": "Reauthenticate card demo",
+      "description": "A working preview of Reauthenticate card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/reauthenticate-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reauthenticate-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "account-chooser",
+      "type": "registry:block",
+      "title": "Account chooser",
+      "description": "A 'Choose an account' list of the people already known on this device, with 'Use another account' and a remove control per row.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/account-chooser.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/account-chooser.tsx"
+        }
+      ],
+      "docs": "accounts is the list of { id, name, email, avatar?, signedIn? }. Every row is one plain button with an avatar, the name, the address and a word for its state, Signed in, or Signed out with a lock so state never rests on colour, and its own menu button beside it, so Tab walks the list and there are no composite-widget keyboard rules. onChoose(account) may return a promise: that row alone shows Signing in and a rejection shows a message above the list. onUseAnother is the row under the list, which stays in view when more than six accounts make the list scroll inside the card (the list then shows half of the next row and a slim scrollbar that is always there, and takes no Tab stop of its own). onRemove(account) adds the menu with Remove from this device: choosing it turns the row into a question (Remove the address from this device?) with Keep focused and Escape to cancel; resolve onRemove and drop the account from accounts, and the focus moves to the next row (or the previous one, or Use another account). In a narrow card the state word drops under the address, so the name keeps the whole row. title, description, titleAs, footer and labels change the words; defaultConfirming opens a question for a preview, without taking the focus."
+    },
+    {
+      "name": "account-chooser-demo",
+      "type": "registry:example",
+      "title": "Account chooser demo",
+      "description": "A working preview of Account chooser.",
+      "registryDependencies": [
+        "https://rhsui.com/r/account-chooser.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/account-chooser-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "verification-method-picker",
+      "type": "registry:block",
+      "title": "Verification method picker",
+      "description": "The 'try another way' step of two-step sign-in: authenticator, security key, text message or recovery code, each with a line on what happens.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/verification-method-picker.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/verification-method-picker.tsx"
+        }
+      ],
+      "docs": "methods is { id, label, description, icon?, unavailableReason? }[]. lastUsed marks one with Last used and chooses it first (value and onValueChange control the choice, defaultValue sets the first one); a method with an unavailableReason stays on the list, disabled, with the reason in text under its name at full contrast rather than faded away with the card. It is a real radio group, so the arrow keys move and choose and skip disabled methods, but choosing never submits: onContinue(id) runs only when Continue is pressed, so a stray keypress can never send a text message. While it runs the button keeps the focus and shows a spinner; a returned message, or a throw, shows above the button and the choice stays. When nothing can be used a notice says so and Continue stays quiet, and a choice that has become unavailable since the card opened counts as no choice. onBack adds a Back button, help sits under Continue (a link to a recovery code, to support), and titleAs and labels as in the other cards."
+    },
+    {
+      "name": "verification-method-picker-demo",
+      "type": "registry:example",
+      "title": "Verification method picker demo",
+      "description": "A working preview of Verification method picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/verification-method-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/verification-method-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "authorize-app-card",
+      "type": "registry:block",
+      "title": "Authorize app card",
+      "description": "The OAuth consent screen: which app wants access, as whom, to what, in plain-language scopes, with Allow and Deny as two filled buttons of one size.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/authorize-app-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/authorize-app-card.tsx"
+        }
+      ],
+      "docs": "app is { name, publisher?, verified?, icon?, logo? }: verified is said in words with an icon (Verified, Unverified), and an unverified app also gets a warning, written in the card's own greys with a warning icon (no colour needed). account is { email, name?, avatar? }, with onSwitchAccount for Not you?. scopes are { id, label, description, access: 'read' or 'write', required? }, listed in a Read group and a Write group: a required scope shows a lock and the word Required instead of a checkbox, a write scope carries the word Write as well as its icon, and the whole row is a click target for its checkbox. defaultGranted lists the optional scopes that start ticked (default all of them). onAllow(grantedScopeIds) receives the required ids and the ticked ones; onDeny is a filled button of the same size as Allow and the first of the two in the tab order, never a text link. Both buttons wait while either works, the one pressed shows a spinner and then Allowed or Denied, and a rejection shows a message and loses nothing. redirectHost is named in the footer line, with the reminder that access can be removed in settings. footer, titleAs (the permissions heading sits one level under it) and labels as in the other cards."
+    },
+    {
+      "name": "authorize-app-card-demo",
+      "type": "registry:example",
+      "title": "Authorize app card demo",
+      "description": "A working preview of Authorize app card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/authorize-app-card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/authorize-app-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",

@@ -79,6 +79,7 @@ own `meta.version` and are listed when they change.
 - Application, 11 more: `typing-indicator`, `reply-summary`, `help-launcher`, `call-log-row`, `chat-header`, `sla-timer`, `attendee-list`, `task-relations`, `two-column-sign-in`, `magic-link-sign-in`, `passkey-sign-in`.
 - Primitives, 8 more: `time-field`, `birthday-field`, `scoped-search-field`, `recent-searches-field`, `autosuggest-field`, `markdown-field`, `image-picker`, `postal-code-field`.
 - Primitives, 8 more: `multi-currency-field`, `percentage-field`, `amount-presets`, `time-range-field`, `due-date-field`, `recipient-field`, `link-field`, `bulk-paste-field`.
+- Application, 8 more: `verify-email-card`, `set-new-password`, `invite-accept-card`, `sso-sign-in`, `reauthenticate-card`, `account-chooser`, `verification-method-picker`, `authorize-app-card`.
 
 ## Unreleased (0.7.0)
 
