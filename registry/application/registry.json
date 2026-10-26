@@ -3197,6 +3197,537 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "member-row",
+      "type": "registry:component",
+      "title": "Member row",
+      "description": "A team member as a list row: avatar, name and email, a role you can change, a status that includes pending invites, and a menu of actions.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/member-row.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/member-row.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "Put the rows in a ul. member is { id, name, email, image, role, status, invitedAt, owner } and roles is a list of { value, label, description }. Pass onRoleChange to make the role a select: it receives the new role and the member and may return a promise, in which case the select shows the choice while it runs, goes back and says so if it rejects, and the change is announced (\"Sofia Rossi's role is now Admin.\"). An invited member reads \"Invited 3 days ago\" with Resend and Revoke in the menu, a suspended one can be restored, owner fixes the role and gives the reason (a tooltip on a wide row with a pointer, plain text on a narrow one and on a touch screen), and isYou adds a You tag and leaves out every destructive action. The menu fits the status unless you pass actions, and onAction reports the choice: Remove and Revoke only report, so confirm them in your own dialog. onRoleChange must update member.role by the time it resolves, because the change is announced then. The row reads its own width: it folds into two lines in a narrow container, and below 26rem the invite words move to a line of their own so the address stays readable. Pass now to get the relative time in server HTML; dates use locale and timeZone."
+    },
+    {
+      "name": "member-row-demo",
+      "type": "registry:example",
+      "title": "Member row demo",
+      "description": "A working preview of Member row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/member-row.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/member-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "integration-card",
+      "type": "registry:component",
+      "title": "Integration card",
+      "description": "A connected tool on a settings page: status in words, what it syncs, the last sync, and connect or disconnect with a confirmation and a retry.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/integration-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/integration-card.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0) scale(1)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-in": "rhs-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "integration is { id, name, description, mark, syncs, account, lastSyncedAt, problem, consequence } and status is connected, attention or disconnected. The status is written as a sentence first (Connected as anna@studio.nl, Needs attention with the problem, Not connected) and the badge only repeats it. onConnect and onDisconnect may return promises: the card shows a busy state until they settle, and a rejection keeps the card where it is with the reason and a Try again button, and the result is announced. Disconnect asks in an alert dialog; consequence names what stops, or a default line about syncing is used. busy and error let you track a request yourself. A card fills its grid cell and keeps its buttons on one line, so cards with different amounts of text stay level; in a card narrower than 24rem Configure becomes the gear alone, with the word as its name. The last sync reads \"12 minutes ago\" once the page is live; pass now to fix it."
+    },
+    {
+      "name": "integration-card-demo",
+      "type": "registry:example",
+      "title": "Integration card demo",
+      "description": "A working preview of Integration card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/integration-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/integration-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "event-chip",
+      "type": "registry:component",
+      "title": "Event chip",
+      "description": "A calendar event small enough for a grid cell: a bar, the time and a title, in timed, all-day and multi-day styles, with a +3 more companion.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/event-chip.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-chip.tsx"
+        }
+      ],
+      "docs": "event is { id, title, start, end, allDay, calendar, tone, tentative } and variant is timed (a bar and the start time), all-day or multi-day (a filled chip); it defaults from event.allDay. Tones are four steps of the page's own ink (ink, graphite, stone, mist): change the TONES table to use your brand's hues. The chip is one button whose name reads \"Design review, 10:00 to 11:30, Studio\", so colour is never the only signal, and a tooltip shows the whole title when it is cut. dense draws the 20px chip for a month grid and keeps that height inside a flex or grid column. For a multi-day event draw one chip per week row, place it with a grid column span, and set continuesBefore and continuesAfter where it carries on. OverflowChip is the \"+3 more\" under a crowded cell. Times use locale and timeZone."
+    },
+    {
+      "name": "event-chip-demo",
+      "type": "registry:example",
+      "title": "Event chip demo",
+      "description": "A working preview of Event chip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/event-chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/event-chip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "week-strip",
+      "type": "registry:component",
+      "title": "Week strip",
+      "description": "Seven days in a row for choosing a day on a phone: weekday and date, today ringed, dots for days with events.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/week-strip/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/week-strip/index.tsx"
+        },
+        {
+          "path": "registry/application/week-strip/dates.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/week-strip/dates.ts"
+        }
+      ],
+      "docs": "value, defaultValue, min, max and marked use calendar days written as 2026-10-26, so they never shift with a time zone. marked is a list of days (one dot each) or an object that maps a day to how many events it has (up to three dots, and \"has 3 events\" in the day's name). The row is one tab stop: arrow keys move between days and choose as they go, Home and End go to the ends of the week, and Page Up and Page Down change the week; onWeekChange receives the first day of the new week. weekStart is 1 (Monday) by default and 0 is Sunday. Weekday names, the month and the full dates come from locale; today comes from the browser's clock in timeZone, or from the today prop. A page that is cached or built ahead of time must pass today: without it the first week drawn comes from the clock of whoever renders it, and a visitor after the week turned hydrates with a different week than the HTML holds. hideNav drops the month and the arrows, for a header of your own."
+    },
+    {
+      "name": "week-strip-demo",
+      "type": "registry:example",
+      "title": "Week strip demo",
+      "description": "A working preview of Week strip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/week-strip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/week-strip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-gate",
+      "type": "registry:component",
+      "title": "Feature gate",
+      "description": "A locked-feature panel: the real content dimmed and inert behind a clear message and one upgrade action.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/feature-gate.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/feature-gate.tsx"
+        }
+      ],
+      "docs": "While locked, the children stay where they are, muted and inert (the inert attribute and aria-hidden), and a panel on top is a labelled region with the plan in a badge, a title, a description and one action: a button, or a link when it has an href. Unlocked, the children are rendered as they are and keep their state; if the panel's button had focus, focus moves to the gate, and the unlock is announced. There is no blur and no gradient, on purpose. The panel reads the gate's own width: a stacked card in a narrow gate, and from 36rem a single-row bar with the lock, the words and the action, so a short feature still shows behind it. The gate is as tall as its children, or as the panel when that is taller."
+    },
+    {
+      "name": "feature-gate-demo",
+      "type": "registry:example",
+      "title": "Feature gate demo",
+      "description": "A working preview of Feature gate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/feature-gate.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-gate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "activity-entry",
+      "type": "registry:component",
+      "title": "Activity entry",
+      "description": "One activity as a sentence: who, what, which object and the from-to change, with a time and an icon.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/activity-entry.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/activity-entry.tsx"
+        }
+      ],
+      "docs": "Put the entries in a ul. actor is { name, image, system }: a system actor, a bot or a job, has a square tile with the icon instead of an avatar. The sentence is the actor, the verb, the object (a link when it has an href, cut to one line with the full name in its title) and the change, drawn as two quiet chips around an arrow, with \"from\" and \"to\" for screen readers so the row reads as one string. The time reads 12 minutes ago, yesterday, 3 days ago and then the date, with the exact moment in its title; pass now to fix it. On a narrow row the time drops under the sentence."
+    },
+    {
+      "name": "activity-entry-demo",
+      "type": "registry:example",
+      "title": "Activity entry demo",
+      "description": "A working preview of Activity entry.",
+      "registryDependencies": [
+        "https://rhsui.com/r/activity-entry.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/activity-entry-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "time-tracker",
+      "type": "registry:component",
+      "title": "Time tracker",
+      "description": "A start, pause and stop timer for time tracking that keeps true elapsed time even when the tab sleeps.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/time-tracker/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/time-tracker/index.tsx"
+        },
+        {
+          "path": "registry/application/time-tracker/time.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/time-tracker/time.ts"
+        }
+      ],
+      "docs": "The tracker is controlled: keep running, startedAt and accumulated yourself, in state, a store or localStorage. onStart receives the moment to store as startedAt, onPause the total in ms to store as accumulated, and onStop the total and the description. The elapsed time is accumulated plus the time since startedAt, read from the clock and never counted, so it stays right after the tab sleeps, the machine suspends or the page reloads. The display uses tabular numbers and the seconds are never announced: screen readers hear \"Timer started\", \"Timer paused at 12 minutes\" and \"Timer stopped. 12 minutes recorded.\". descriptionLabel adds a text field for what you are doing. formatClock and formatWords are in time-tracker/time."
+    },
+    {
+      "name": "time-tracker-demo",
+      "type": "registry:example",
+      "title": "Time tracker demo",
+      "description": "A working preview of Time tracker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/time-tracker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/time-tracker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checklist-card",
+      "type": "registry:component",
+      "title": "Checklist card",
+      "description": "A titled checklist with a progress count, strike-through on done items and an add row, for launch and packing lists.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/checklist-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/checklist-card.tsx"
+        }
+      ],
+      "docs": "items is a list of { id, label, done, note }. onToggle receives the id and the state asked for, onAdd the trimmed text of the add row (Enter adds) and onRemove the id; leave a callback out and its control is not drawn. The count and the bar come from the items, progressLabel changes the words (\"{done} of {total} packed\"), and when everything is checked the count reads \"Everything is checked\". hideCompleted folds checked items away behind a button, controlled or with defaultHideCompleted. Each item is a checkbox with its own label in a labelled group; checking, adding and removing are announced, and removing an item, or checking one while the checked items are folded away, moves focus to its neighbour."
+    },
+    {
+      "name": "checklist-card-demo",
+      "type": "registry:example",
+      "title": "Checklist card demo",
+      "description": "A working preview of Checklist card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checklist-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/checklist-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "note-card",
+      "type": "registry:component",
+      "title": "Note card",
+      "description": "A note as a card: title, a clamped preview, last edited time, a pin and a label, ready for a notes grid.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/note-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/note-card.tsx"
+        }
+      ],
+      "docs": "note is { id, title, preview, editedAt, href, labels, code }. The card is one stretched link (note.href) or button (onOpen) with a ring around all of it on focus; the pin (pinned, onPinChange) and the menu (a list of { id, label, icon, destructive, onSelect }) sit above it as separate controls. A pinned note says \"Pinned\" in its footer as well as in the icon. Labels are { name, tone } with four tones, the name is always written out, and past maxLabels they fold into \"+2\". A note with no text shows \"No content yet\", code switches the preview to a monospace face, and NoteCardSkeleton is the loading state. Cards fill their grid cell, so a grid keeps equal heights."
+    },
+    {
+      "name": "note-card-demo",
+      "type": "registry:example",
+      "title": "Note card demo",
+      "description": "A working preview of Note card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/note-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/note-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inbox-row",
+      "type": "registry:component",
+      "title": "Inbox row",
+      "description": "A message list row: sender, subject, snippet, time, unread and starred states, labels and an attachment mark.",
+      "categories": [
+        "application",
+        "application"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/inbox-row.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/inbox-row.tsx"
+        }
+      ],
+      "docs": "Put the rows in a ul. message is { id, sender, image, subject, snippet, time, unread, starred, attachment, labels, href }. The whole row opens the message (a link with href, a button with onOpen) and sits under the checkbox (onSelect, selected) and the star (onStar), which are separate controls. An unread message is set heavier, has a dot and says Unread to screen readers. density is comfortable (three lines, with an avatar) or compact (one line from 42rem wide, two below it); showAvatar overrides the default. The time reads as a clock time for today, the weekday for the last six days and then the date; pass now to fix it."
+    },
+    {
+      "name": "inbox-row-demo",
+      "type": "registry:example",
+      "title": "Inbox row demo",
+      "description": "A working preview of Inbox row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inbox-row.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inbox-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

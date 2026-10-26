@@ -72,6 +72,7 @@ own `meta.version` and are listed when they change.
 - Application, 8 more: `workbench-shell`, `map-panel-shell`, `notification-item`, `comment-item`, `message-bubble`, `task-row`, `task-card`, `project-card`.
 - Primitives, 8 more: `update-highlight`, `email-field`, `username-field`, `url-field`, `slug-field`, `name-field`, `masked-input`, `date-field`.
 - Commerce, 8 more: `warranty-registration`, `product-passport`, `product-safety-info`, `ranked-product-list`, `age-verification-gate`, `payment-plan-picker`, `price-transparency`, `sample-request`.
+- Application, 10 more: `member-row`, `integration-card`, `event-chip`, `week-strip`, `feature-gate`, `activity-entry`, `time-tracker`, `checklist-card`, `note-card`, `inbox-row`.
 
 ## Unreleased (0.7.0)
 

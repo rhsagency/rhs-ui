@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checklist-card-demo",
+  "title": "Checklist card demo",
+  "description": "A working preview of Checklist card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/checklist-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/checklist-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\n\nimport { ChecklistCard, type ChecklistItem } from \"@rhs-ui/application/checklist-card\";\n\nconst LAUNCH: readonly ChecklistItem[] = [\n  { id: \"notes\", label: \"Write the release notes\", done: true, note: \"Mara, in the shared draft\" },\n  { id: \"rollback\", label: \"Rehearse the rollback on staging\", done: true, note: \"Tomas, Tuesday afternoon\" },\n  { id: \"analytics\", label: \"Review the analytics events for the new checkout\", note: \"Waiting on Priya\" },\n  { id: \"support\", label: \"Tell support about the new returns flow\" },\n  { id: \"email\", label: \"Schedule the announcement email for Thursday 09:00\", done: true },\n];\n\nconst PACKING: readonly ChecklistItem[] = [\n  { id: \"passport\", label: \"Passport and boarding passes\", done: true },\n  { id: \"charger\", label: \"Laptop, phone and chargers\", done: true },\n  { id: \"adapter\", label: \"Travel adapter\", done: true },\n  { id: \"meds\", label: \"Medication\", done: true },\n  { id: \"camera\", label: \"Camera and two spare batteries\", done: true },\n  { id: \"jacket\", label: \"Rain jacket\", done: true },\n];\n\nfunction useList(start: readonly ChecklistItem[]) {\n  const [items, setItems] = useState(start);\n  const next = useRef(0);\n  return {\n    items,\n    onToggle: (id: string, done: boolean) => setItems((list) => list.map((item) => (item.id === id ? { ...item, done } : item))),\n    onAdd: (label: string) => {\n      next.current += 1;\n      setItems((list) => [...list, { id: `new-${next.current}`, label }]);\n    },\n    onRemove: (id: string) => setItems((list) => list.filter((item) => item.id !== id)),\n  };\n}\n\nexport default function Demo(): React.JSX.Element {\n  const launch = useList(LAUNCH);\n  const packing = useList(PACKING);\n\n  return (\n    <div className=\"grid w-full max-w-4xl items-start gap-4 md:grid-cols-2\">\n      <div className=\"grid gap-2\">\n        <ChecklistCard title=\"Launch checklist\" description=\"Everything that has to happen before Thursday's release.\" {...launch} />\n        <p className=\"text-xs text-muted-foreground\">Check an item, add one with Enter, or fold the finished ones away.</p>\n      </div>\n      <div className=\"grid gap-2\">\n        <ChecklistCard title=\"Packing list\" description=\"Lisbon, four days.\" progressLabel=\"{done} of {total} packed\" {...packing} onAdd={undefined} onRemove={undefined} />\n        <p className=\"text-xs text-muted-foreground\">With every item checked the count gives way to a quiet line. Uncheck one to see it count again.</p>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
