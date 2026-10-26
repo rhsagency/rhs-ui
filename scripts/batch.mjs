@@ -122,6 +122,8 @@ async function renderPhase(demos, all, out) {
   const pages = new Set(all.filter((i) => i.categories?.[0] === "templates").map((i) => `${i.name}-demo`));
   const file = path.join(out, "render.cjs");
   await build({
+    // The aliases are relative: resolve them against this repository, not the caller's cwd.
+    absWorkingDir: root,
     stdin: {
       contents: [
         'import { createElement } from "react";',
@@ -179,6 +181,8 @@ function themeLayer(all) {
 async function buildHarness(demos, all, out) {
   const frame = new Set(all.filter((i) => i.meta?.preview === "frame").map((i) => `${i.name}-demo`));
   await build({
+    // The aliases are relative: resolve them against this repository, not the caller's cwd.
+    absWorkingDir: root,
     stdin: {
       contents: [
         'import { createElement, StrictMode } from "react";',
