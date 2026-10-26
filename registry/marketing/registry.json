@@ -4859,6 +4859,479 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "directions-by-mode",
+      "type": "registry:block",
+      "title": "Getting here",
+      "description": "How to arrive by train, bus, car, bike and on foot, with routes that start at the station, a facts line for each and a step-free access panel.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-bike.json",
+        "https://rhsui.com/r/animated-bus.json",
+        "https://rhsui.com/r/animated-car.json",
+        "https://rhsui.com/r/animated-plane.json",
+        "https://rhsui.com/r/animated-ship.json",
+        "https://rhsui.com/r/animated-train.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/directions-by-mode.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/directions-by-mode.tsx"
+        }
+      ],
+      "docs": "Pass the address, a mapHref and the modes in the order people use them. Each mode has a kind (train, bus, car, bike, walk, ferry or plane) that picks its icon, a title that names it in words, and a body: one paragraph, or an array for numbered steps. Write every route from the place people start, with stop names, line numbers and the last 200 metres, and wrap those in strong. facts are label and value pairs such as the journey time from a named origin and the parking cost; link adds a timetable or parking-map link, routed with linkAs. access is the separate panel for step-free entry, lifts, accessible parking and assistance dogs: its points are sentences, or a short label with its sentence. From 1024px it stays in view beside the routes while they scroll past; set --sticky-top on the section to the height of a sticky header you have (2rem by default). The icons that have a motion play it when a row is hovered or focused and stay still for reduced motion. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "directions-by-mode-demo",
+      "type": "registry:example",
+      "title": "Getting here demo",
+      "description": "A working preview of Getting here.",
+      "registryDependencies": [
+        "https://rhsui.com/r/directions-by-mode.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/directions-by-mode-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "allergen-matrix",
+      "type": "registry:block",
+      "title": "Allergen matrix",
+      "description": "Every dish against the fourteen EU allergens in a sticky-header table, with chips that hide dishes containing what you cannot eat.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/allergen-matrix/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/allergen-matrix/index.tsx"
+        },
+        {
+          "path": "registry/marketing/allergen-matrix/allergens.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/allergen-matrix/allergens.ts"
+        }
+      ],
+      "docs": "Pass dishes with a course and the ids of the allergens they contain and may contain. The columns are the fourteen EU allergens by default (EU_ALLERGENS, exported from the allergens file); pass allergens to use another list, each with an id, a full name and an optional short name for the narrow column head. A cell says Contains or May contain in words for screen readers and draws a solid disc or a ring, so colour is never the signal. The chips are a toggle group: value, defaultValue and onValueChange control which allergens are picked. Dishes that contain a picked allergen are hidden, and so are dishes that may contain it unless the reader switches that off (defaultHideMayContain starts it on). The count is announced as the list changes. The first column and the header row stay in place inside the scrolling table, and a soft shade on the right and bottom edge shows while there is more behind it; set --matrix-max-height (40rem by default) to change how tall it gets before it scrolls. legend, updated and note sit under the table. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "allergen-matrix-demo",
+      "type": "registry:example",
+      "title": "Allergen matrix demo",
+      "description": "A working preview of Allergen matrix.",
+      "registryDependencies": [
+        "https://rhsui.com/r/allergen-matrix.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/allergen-matrix-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "founder-letter",
+      "type": "registry:block",
+      "title": "Founder letter",
+      "description": "A letter from the person behind the company: dated, addressed to the reader, set for reading and signed with name, role and portrait.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/founder-letter.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/founder-letter.tsx"
+        }
+      ],
+      "docs": "Pass the date (a label and an ISO dateTime), the place, a salutation and the paragraphs as children: plain p, ul, ol, blockquote, strong and a elements are styled, so Markdown output works as it is. signoff is the line before the signature and signer is a name, a role and a portrait URL; initials stand in until the portrait loads or when it fails. postscript is inline content that gets a paragraph of its own and is never collapsed; links and strong in it are styled like the body. title adds a subject line (an h2 unless you set headingLevel). The column is 38rem wide at a generous line height, and nothing about it is decorative. Pass labels to change the words that open the postscript."
+    },
+    {
+      "name": "founder-letter-demo",
+      "type": "registry:example",
+      "title": "Founder letter demo",
+      "description": "A working preview of Founder letter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/founder-letter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/founder-letter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "values-rows",
+      "type": "registry:block",
+      "title": "Values rows",
+      "description": "Company values as hairline rows: the value in large type, its meaning in a sentence, and a concrete We do and We do not pair.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/values-rows.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/values-rows.tsx"
+        }
+      ],
+      "docs": "Pass an eyebrow, a title and three to six values. Each value needs a name, a one-sentence meaning, and one behaviour for does and one for doesNot, each checkable in a day at work; the component asks for the pair so a bare list is not possible. A value with an href gets a link under its pair, set with labels.more and routed with linkAs. Rows are an ordered list with an index, and stack on a phone with the name first. The two columns carry their own icon and words, so neither relies on colour. headingLevel is the section title's level; the value names sit one below it."
+    },
+    {
+      "name": "values-rows-demo",
+      "type": "registry:example",
+      "title": "Values rows demo",
+      "description": "A working preview of Values rows.",
+      "registryDependencies": [
+        "https://rhsui.com/r/values-rows.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/values-rows-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "topic-hub",
+      "type": "registry:block",
+      "title": "Topic hub header",
+      "description": "The top of a topic page: description, a fact strip, a numbered Start here reading path and related topics as chips.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/topic-hub.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/topic-hub.tsx"
+        }
+      ],
+      "docs": "title is the topic's name and the page's h1 by default; set headingLevel to 2 when the page already has one (the Start here panel and the related topics sit one level below). facts are label and value pairs: articles, contributors, a time element for the last update. startHere takes three to five pieces with a title, href, reading time in minutes and a line about them; it is an ordered list, so the sequence is announced, and each row is one stretched link. related are chips that link to their own hubs, with an optional count that is read out in words. children is placed under the related topics for the latest articles or a newsletter form. Pass linkAs={Link} to route the links and labels to translate the fixed words."
+    },
+    {
+      "name": "topic-hub-demo",
+      "type": "registry:example",
+      "title": "Topic hub header demo",
+      "description": "A working preview of Topic hub header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/topic-hub.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/topic-hub-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "key-takeaways",
+      "type": "registry:block",
+      "title": "Key takeaways",
+      "description": "A summary box for the top of a long article: three to five takeaways, reading time, intended audience and up to three jump links.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/key-takeaways.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/key-takeaways.tsx"
+        }
+      ],
+      "docs": "Pass three to five points, short enough to read in ten seconds. minutes, audience and jumps fill the footer; give it any of them, and up to three jumps are shown, each an anchor to a section of the article. The box is a section labelled by its own heading (title, an h2 unless you set headingLevel), so assistive technology lists it as a landmark and can skip to it or past it. That is the difference from Callout, which is not a landmark. Pass labels to translate the reading time, the audience words and the jump label."
+    },
+    {
+      "name": "key-takeaways-demo",
+      "type": "registry:example",
+      "title": "Key takeaways demo",
+      "description": "A working preview of Key takeaways.",
+      "registryDependencies": [
+        "https://rhsui.com/r/key-takeaways.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/key-takeaways-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "article-series-outline",
+      "type": "registry:block",
+      "title": "Series outline",
+      "description": "Where you are in a multi-part series: every part in order, with Read, You are here and Soon told in words, as a card or a strip.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/article-series-outline.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/article-series-outline.tsx"
+        }
+      ],
+      "docs": "Pass the series (a title and an optional href) and the parts in order. current is the number of the page you are on, counted from 1; leave it out on the series' own page. A part before it is Read, the current one is You are here and carries aria-current, and a part after it is plain text marked Soon, with its releaseDate when it has one, unless it has an href: then it is a published part and links. Set state on a part to override that, for a site that knows what each reader has read. layout is card (a sidebar, or the end of an article beside the pager) or strip (across the top of the body); both follow the width of their own column. Upcoming parts are never dead links. The outline is a navigation landmark named after the series; give two outlines on one page their own aria-label. Pass linkAs={Link} to route the links and labels to translate the words."
+    },
+    {
+      "name": "article-series-outline-demo",
+      "type": "registry:example",
+      "title": "Series outline demo",
+      "description": "A working preview of Series outline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/article-series-outline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/article-series-outline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "interview-layout",
+      "type": "registry:block",
+      "title": "Interview layout",
+      "description": "A Q&A article with questions set apart from answers, a sticky guest card and room for pull quotes between exchanges.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/pull-quote.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/interview-layout.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/interview-layout.tsx"
+        }
+      ],
+      "docs": "Pass the guest (a name, role, portrait, a line about them and links) and the exchanges. Each exchange is one item of an ordered list with the question as a heading, so a reader can jump from question to question; answer is a string (one paragraph), an array (one paragraph each) or your own markup, and quote is a string attributed to the guest or an object that names another speaker. The guest card is sticky beside the questions from 1024px (set --sticky-top to the height of your sticky header) and sits above the first question on a phone. title, eyebrow, intro, interviewer, date and readingTime make up the header, and children follows the last answer. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "interview-layout-demo",
+      "type": "registry:example",
+      "title": "Interview layout demo",
+      "description": "A working preview of Interview layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/interview-layout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/interview-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "version-support-table",
+      "type": "registry:block",
+      "title": "Version support table",
+      "description": "Which versions you still support: release date, end of active support, end of life and a status in words, with the next change flagged.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/version-support-table.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/version-support-table.tsx"
+        }
+      ],
+      "docs": "Pass versions with a name, an ISO released date, activeUntil and securityUntil, and optionally a status (current, supported, security-only or end-of-life) and a notesHref. Without a status it is worked out from the dates; Current is always your call. A date that has passed says Ended, and the one date across the table that will change a status next is flagged where it sits, so colour is never the only signal. Dates are written year first by default (dateFormat iso) and sit in time elements; dateFormat medium writes them with locale. Pass a fixed today for stable rendering and tests; without it the current day in timeZone is used. Below 768px each version becomes a card that keeps every label. note sits under the table for what active support and security fixes mean. Pass linkAs={Link} to route the release-notes links."
+    },
+    {
+      "name": "version-support-table-demo",
+      "type": "registry:example",
+      "title": "Version support table demo",
+      "description": "A working preview of Version support table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/version-support-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/version-support-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "open-source-credits",
+      "type": "registry:block",
+      "title": "Open source credits",
+      "description": "The libraries your product ships, with version and licence, searchable and linked to each full licence text in a dialog.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/open-source-credits/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/open-source-credits/index.tsx"
+        },
+        {
+          "path": "registry/marketing/open-source-credits/licenses.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/open-source-credits/licenses.ts"
+        }
+      ],
+      "docs": "Pass packages (a name, version, SPDX license and optional repository) and licenseTexts keyed by SPDX id. Packages are grouped by licence family, so BSD-2-Clause and BSD-3-Clause sit together, with a count for each, and sorted by name within a licence. A licence with a text opens it in a dialog with a button that copies it, for a notice file; a browser that refuses to copy gets the text selected instead. The dialog joins the line breaks of hand-wrapped paragraphs so the text reads on a phone; the button copies it exactly as you supplied it. A licence without a text is shown as plain words, an empty licence reads Unknown, and a dual licence such as MIT OR Apache-2.0 opens either text. The search field filters by package name and announces how many are left; searchable={false} drops it for a short list. licenseFamily and licenseParts are exported from the licenses file. Supply the real text of each licence: it carries each project's own copyright line. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "open-source-credits-demo",
+      "type": "registry:example",
+      "title": "Open source credits demo",
+      "description": "A working preview of Open source credits.",
+      "registryDependencies": [
+        "https://rhsui.com/r/open-source-credits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/open-source-credits-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

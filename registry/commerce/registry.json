@@ -1619,6 +1619,462 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "kitchen-ticket",
+      "type": "registry:component",
+      "title": "Kitchen ticket",
+      "description": "A kitchen order ticket: number, order type, items with modifiers, an elapsed timer that escalates in words, allergies read first and a Bump button.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/kitchen-ticket/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/kitchen-ticket/index.tsx"
+        },
+        {
+          "path": "registry/commerce/kitchen-ticket/ticket.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/kitchen-ticket/ticket.ts"
+        }
+      ],
+      "docs": "Pass one clock as now to every ticket on the board (a number, a date or an ISO string), so they tick together and render the same on the server. thresholds sets in minutes when a ticket runs slow (default 8) and when it is late (default 12). Without status the ticket keeps its own open or bumped state; pass status and handle onBump and onRecall to control it from your list, and take the ticket off the screen yourself. Allergies are set apart in an inverted block and come first in the reading order. A bumped ticket stops its timer at order.bumpedAt, or at the moment of the bump. labels holds every word, for another language."
+    },
+    {
+      "name": "kitchen-ticket-demo",
+      "type": "registry:example",
+      "title": "Kitchen ticket demo",
+      "description": "A working preview of Kitchen ticket.",
+      "registryDependencies": [
+        "https://rhsui.com/r/kitchen-ticket.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/kitchen-ticket-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bank-transfer-details",
+      "type": "registry:component",
+      "title": "Bank transfer details",
+      "description": "How to pay by bank transfer: beneficiary, IBAN, BIC, the exact amount and the reference, each with a copy button, and the deadline.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/bank-transfer-details/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/bank-transfer-details/index.tsx"
+        },
+        {
+          "path": "registry/commerce/bank-transfer-details/transfer.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/bank-transfer-details/transfer.ts"
+        }
+      ],
+      "docs": "details (a BankTransferAccount) holds the account: beneficiary, iban, an optional bic, amount in minor units and the reference. The IBAN is shown in groups of four and copied without spaces, the amount is copied without a symbol and with the decimal mark of locale, and the reference is copied exactly as given. onCopy receives the row (\"iban\") and the text that reached the clipboard. deadline is when the order lapses, written in timeZone; pass now from the server and a deadline that has passed turns the buttons off and says so at the top of the card, in place of the instructions. Without now nothing is ever shown as lapsed. In a card narrower than 26rem the copy buttons are only their icon (still named Copy IBAN), so an account number keeps one line. labels holds every word, for another language."
+    },
+    {
+      "name": "bank-transfer-details-demo",
+      "type": "registry:example",
+      "title": "Bank transfer details demo",
+      "description": "A working preview of Bank transfer details.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bank-transfer-details.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bank-transfer-details-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "seller-card",
+      "type": "registry:component",
+      "title": "Seller card",
+      "description": "Who sells this: name, verification in words, rating, items sold, reply time and member since, with Contact and Visit store as separate actions.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/seller-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/seller-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/seller-card/seller.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/seller-card/seller.ts"
+        }
+      ],
+      "docs": "Pass the seller as data: name, an optional logo (initials are drawn without one), verified, rating with reviews, itemsSold, replyMinutes and memberSince as an ISO date. What is missing is left out; a seller with no sales and no reviews shows New seller, and a rating is only shown with a review count above zero. The rating is the inline rating, so it says the same sentence to a screen reader. Contact is a button (onContact) or, with contactHref, a link; Visit store appears when you pass storeHref. The figures sit in a row once the card is wide enough and in a list when it is not, whatever the screen. compact is the smaller card for beside the price; a long name wraps to two lines and is in the title of the heading. Always pass locale so the numbers and the date match on the server and in the browser; a bare memberSince date is a calendar day and ignores timeZone. labels holds every word."
+    },
+    {
+      "name": "seller-card-demo",
+      "type": "registry:example",
+      "title": "Seller card demo",
+      "description": "A working preview of Seller card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/seller-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/seller-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "care-instructions",
+      "type": "registry:component",
+      "title": "Care instructions",
+      "description": "Garment care as a row of drawn symbols, each with its meaning in words: wash, bleach, tumble dry, dry, iron and professional care.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/care-instructions/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/care-instructions/index.tsx"
+        },
+        {
+          "path": "registry/commerce/care-instructions/symbols.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/care-instructions/symbols.tsx"
+        }
+      ],
+      "docs": "care is an object of settings: wash (\"95\", \"60\", \"50\", \"40\", \"30\", \"hand\", \"no\"), bleach, tumbleDry, dry, iron and dryClean. Leave one out, or pass a value that is not known, and it is skipped, never drawn as something close; with nothing to show it renders nothing. layout=\"row\" puts the words under each symbol, layout=\"list\" beside it. showLabels={false} gives a row of bare symbols that are focusable and say their instruction in a tooltip and to a screen reader. labels replaces the words by key, for example { \"wash-30\": \"Wasmachine, max 30 degrees\" }."
+    },
+    {
+      "name": "care-instructions-demo",
+      "type": "registry:example",
+      "title": "Care instructions demo",
+      "description": "A working preview of Care instructions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/care-instructions.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/care-instructions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "grade-scale",
+      "type": "registry:component",
+      "title": "Grade scale",
+      "description": "A letter-grade scale such as an energy class or eco score: the whole range drawn, steps that differ in length, the product's grade enlarged.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/commerce/grade-scale.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/grade-scale.tsx"
+        }
+      ],
+      "docs": "grades runs from the best grade to the worst, so the first step is the shortest bar and the last the longest. value must be one of them: anything else draws the scale without a marker and the sentence says the product is not graded. label names what is graded and starts the sentence a screen reader hears. It draws a scale, not an official label: bring certified data to it."
+    },
+    {
+      "name": "grade-scale-demo",
+      "type": "registry:example",
+      "title": "Grade scale demo",
+      "description": "A working preview of Grade scale.",
+      "registryDependencies": [
+        "https://rhsui.com/r/grade-scale.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/grade-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "order-matrix",
+      "type": "registry:component",
+      "title": "Order matrix",
+      "description": "Order a product by size and colour in one grid: a quantity field per cell, stock hints, row and column totals, and paste from a spreadsheet.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/order-matrix/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-matrix/index.tsx"
+        },
+        {
+          "path": "registry/commerce/order-matrix/matrix.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/order-matrix/matrix.ts"
+        }
+      ],
+      "docs": "rows are the variants (colours or widths, with an optional swatch) and columns the sizes. stock holds what can be ordered per row id and column id: a cell that is missing is not made in that size and is disabled (a dash), zero is sold out and says Sold out under the field, and a quantity is held to its stock and said so; with lowStockAt or fewer left a cell says how many. Control the quantities with value and onChange or leave them to defaultValue; a cell at zero is left out of the object. minPerCell flags a quantity above zero but below the minimum and keeps Add from being pressed. unitPrice (minor units) adds the money. onAddAll receives every line and the totals and may return a promise. Arrow keys and Enter move between cells, and pasting a block of numbers from a spreadsheet fills the grid from the cell you are in. A grid wider than its frame scrolls sideways, keeps its first column in view (the field the keyboard moves to is scrolled clear of that column) and says so under the grid. Every field is named Navy, size M; labels holds every word, including the name pattern. Always pass locale."
+    },
+    {
+      "name": "order-matrix-demo",
+      "type": "registry:example",
+      "title": "Order matrix demo",
+      "description": "A working preview of Order matrix.",
+      "registryDependencies": [
+        "https://rhsui.com/r/order-matrix.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/order-matrix-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shipment-group",
+      "type": "registry:component",
+      "title": "Shipment group",
+      "description": "Items grouped by shipment: where it ships from, the delivery method and window, a status, then the lines that travel in that parcel.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/shipment-group/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipment-group/index.tsx"
+        },
+        {
+          "path": "registry/commerce/shipment-group/shipment.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/shipment-group/shipment.ts"
+        }
+      ],
+      "docs": "Pass the shipment (where it ships from, the delivery method with its price in minor units and an arrival window as ISO dates, and kind and shipsOn for a pre-order or a backorder), index and total, a status and the lines as children. Give each line its own vertical padding: the group draws the rules between them. With total of 1 the heading is dropped and only the delivery and the lines remain. status writes a badge that follows the shipment from Not shipped yet to Delivered, Delayed or Cancelled, and the card follows it: a delivered shipment says Arrived (pass the day it came as method.from), a cancelled one says nothing is on its way and mutes its price and lines, and a pre-order or backorder only says when it ships until it has left. Change is a button (onChangeMethod) or, with changeHref, a link, and it is only offered while the method can still change: not once the shipment is shipped, out for delivery, delivered or cancelled. Pass canChange to decide yourself. The group is a labelled region named by its heading. Always pass locale; a bare ISO date is a calendar day and ignores timeZone. labels holds every word."
+    },
+    {
+      "name": "shipment-group-demo",
+      "type": "registry:example",
+      "title": "Shipment group demo",
+      "description": "A working preview of Shipment group.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shipment-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shipment-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dimension-diagram",
+      "type": "registry:component",
+      "title": "Dimension diagram",
+      "description": "Product dimensions drawn as a simple box, cylinder or flat shape with width, height and depth labelled, switchable between cm and inches.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/dimension-diagram/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/dimension-diagram/index.tsx"
+        },
+        {
+          "path": "registry/commerce/dimension-diagram/geometry.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/dimension-diagram/geometry.ts"
+        }
+      ],
+      "docs": "width, height and depth are in unit (centimetres by default); a cylinder takes its diameter as width, and without a depth the drawing is a flat elevation. The drawing scales to its container and the labels keep their size; when the drawing is small or the product narrow, the width label drops just below its line so the arrows stay in sight, and a label on the object gives up its name and keeps its figure (the names are always in the text above the drawing). A switch converts between the units in units and rounds the way a shop writes it (80 cm is 31.5 in); keep the choice yourself with displayUnit and onDisplayUnitChange so one switch can drive every diagram on the page, or leave it to defaultDisplayUnit. extras adds measurements such as { label: \"Seat height\", value: 46 } as a dashed line across the drawing. The same numbers are written above the drawing and as one sentence for a screen reader. Always pass locale."
+    },
+    {
+      "name": "dimension-diagram-demo",
+      "type": "registry:example",
+      "title": "Dimension diagram demo",
+      "description": "A working preview of Dimension diagram.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dimension-diagram.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dimension-diagram-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "refund-tracker",
+      "type": "registry:component",
+      "title": "Refund tracker",
+      "description": "Where a refund is: requested, received, approved and paid out, with dates, the amount and the expected arrival once it is approved.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/refund-tracker/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/refund-tracker/index.tsx"
+        },
+        {
+          "path": "registry/commerce/refund-tracker/refund.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/refund-tracker/refund.ts"
+        }
+      ],
+      "docs": "refund holds the amount in minor units, where it goes, and steps: an ISO date for each step that has happened (requested, received, approved, paid). The latest step with a date is the current one; steps before it count as done. expectedBy is shown only once the refund is approved, and without it the item says Usually 3 to 5 working days after approval. Pass now from the server and a date that has passed is called late. refund.issue explains a failed refund (it stops at its step and shows reason and action) or a partial one (refunded is the amount that is paid). Always pass locale; labels holds every word, for another language."
+    },
+    {
+      "name": "refund-tracker-demo",
+      "type": "registry:example",
+      "title": "Refund tracker demo",
+      "description": "A working preview of Refund tracker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/refund-tracker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/refund-tracker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "key-takeaways-demo",
+  "title": "Key takeaways demo",
+  "description": "A working preview of Key takeaways.",
+  "registryDependencies": [
+    "https://rhsui.com/r/key-takeaways.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/key-takeaways-demo.tsx",
+      "content": "import { KeyTakeaways } from \"@rhs-ui/marketing/key-takeaways\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-2xl px-6 py-10 sm:py-16\">\n      <p className=\"text-xs font-medium tracking-[0.18em] text-muted-foreground uppercase\">Operations guide</p>\n      <h2 className=\"mt-4 text-4xl leading-[1.08] font-medium tracking-[-0.04em] text-balance sm:text-5xl\">A planning session your team will not dread</h2>\n      <p className=\"mt-5 text-lg leading-relaxed text-pretty text-muted-foreground\">Most quarterly planning fails in the first twenty minutes, long before anyone argues about the plan. This guide is about those twenty minutes.</p>\n\n      <KeyTakeaways\n        className=\"mt-10\"\n        points={[\n          \"Send the numbers two days ahead, so the meeting is for decisions and not for reading.\",\n          \"Cap the agenda at three bets. Anything that does not fit is a candidate for next quarter.\",\n          \"Give every bet one owner and one measure that someone outside the team could check.\",\n          \"Write down what you decided not to do, and read that list out before you close.\",\n        ]}\n        minutes={9}\n        audience=\"team leads running their first planning cycle\"\n        jumps={[\n          { label: \"Before the session\", href: \"#before\" },\n          { label: \"The agenda\", href: \"#agenda\" },\n          { label: \"Following up\", href: \"#follow-up\" },\n        ]}\n      />\n\n      <p className=\"mt-10 text-base leading-[1.75] text-foreground/90\">Planning has a reputation for being the meeting where good teams lose a day. It does not have to be. The teams we spoke to for this guide all run theirs in under two hours, and every one of them starts the same way: with the numbers already in everyone&rsquo;s hands.</p>\n\n      <div className=\"mt-16 border-t border-border pt-10\">\n        <p className=\"mb-6 text-xs text-muted-foreground\">A shorter summary with its own label and nothing in the footer but the reading time</p>\n        <KeyTakeaways\n          title=\"In short\"\n          headingLevel={3}\n          points={[\n            \"A price rise is easier to accept when the reason is specific and the date is fixed.\",\n            \"Tell existing customers first, in writing, at least 30 days ahead.\",\n            \"Keep the old price for anyone who is mid-contract.\",\n          ]}\n          minutes={4}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

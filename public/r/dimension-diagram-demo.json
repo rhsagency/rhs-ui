@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dimension-diagram-demo",
+  "title": "Dimension diagram demo",
+  "description": "A working preview of Dimension diagram.",
+  "registryDependencies": [
+    "https://rhsui.com/r/dimension-diagram.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/dimension-diagram-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { DimensionDiagram, type Unit } from \"@rhs-ui/commerce/dimension-diagram\";\n\nfunction Example({ caption, title, children }: { caption: string; title: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      <div className=\"grid gap-2\">\n        <h2 className=\"text-sm font-semibold tracking-[-0.01em]\">{title}</h2>\n        {children}\n      </div>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  // One choice for the whole page: switch any diagram and the others follow, as a shopper would expect.\n  const [unit, setUnit] = useState<Unit>(\"cm\");\n  const shared = { displayUnit: unit, onDisplayUnitChange: setUnit, locale: \"en-GB\" } as const;\n\n  return (\n    <div className=\"grid w-full max-w-4xl min-w-0 gap-x-8 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr))]\">\n      <Example caption=\"A box in light perspective: width, depth and height, written out above the drawing\" title=\"Kestrel two-door wardrobe\">\n        <DimensionDiagram width={80} depth={45} height={120} {...shared} />\n      </Example>\n\n      <Example caption=\"An extra measurement across the drawing: the height of the seat\" title=\"Northwind oak dining chair\">\n        <DimensionDiagram width={46} depth={52} height={88} extras={[{ label: \"Seat height\", value: 46 }]} {...shared} />\n      </Example>\n\n      <Example caption=\"A cylinder: the width is its diameter\" title=\"Halcyon storage drum\">\n        <DimensionDiagram shape=\"cylinder\" width={40} height={60} {...shared} />\n      </Example>\n\n      <Example caption=\"A flat shape seen from above: the thickness is told in numbers, not drawn to scale\" title=\"Linen runner rug\">\n        <DimensionDiagram shape=\"flat\" width={200} depth={140} height={1.5} {...shared} />\n      </Example>\n\n      <Example caption=\"No depth given: a flat elevation, and a single unit so there is no switch\" title=\"Wall mirror, oak frame\">\n        <DimensionDiagram width={60} height={90} units={[\"cm\"]} locale=\"en-GB\" />\n      </Example>\n\n      <Example caption=\"Large and exact: a desk with the height of the lowest shelf\" title=\"Northwind standing desk\">\n        <DimensionDiagram width={160} depth={70} height={110} extras={[{ label: \"Shelf\", value: 74 }]} {...shared} />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -57,6 +57,8 @@ own `meta.version` and are listed when they change.
 - Fixed: in the `agency-services` and `event-conference` page templates the grid of cards had `overflow-hidden`, which made it the scroll container their reveals follow, so the reveals never ran and two speaker cards stayed half faded. The grid clips with `overflow-clip` now.
 - Marketing, 9 more: `press-release-list`, `roadmap-columns`, `pay-bands-table`, `subprocessor-list`, `accessibility-statement`, `document-library`, `video-library`, `class-timetable`, `service-area-list`.
 - Primitives, 13 more: `copyable-text`, `middle-truncate`, `match-highlight`, `check-list`, `step-list`, `date-tile`, `date-range-text`, `duration-text`, `masked-value`, `show-more-list`, `country-label`, `code-tabs`, `review-score`.
+- Commerce, 9 more: `kitchen-ticket`, `bank-transfer-details`, `seller-card`, `care-instructions`, `grade-scale`, `order-matrix`, `shipment-group`, `dimension-diagram`, `refund-tracker`.
+- Marketing, 10 more: `directions-by-mode`, `allergen-matrix`, `founder-letter`, `values-rows`, `topic-hub`, `key-takeaways`, `article-series-outline`, `interview-layout`, `version-support-table`, `open-source-credits`.
 
 ## Unreleased (0.7.0)
 
