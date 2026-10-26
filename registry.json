@@ -10236,6 +10236,457 @@
       ]
     },
     {
+      "name": "multi-currency-field",
+      "type": "registry:ui",
+      "title": "Multi-currency field",
+      "description": "An amount and its currency in one field: search the menu, and the decimals follow the currency, reported as whole minor units so a yen is never in hundredths.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/multi-currency-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/multi-currency-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/multi-currency-field/amounts.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/multi-currency-field/amounts.ts"
+        },
+        {
+          "path": "registry/primitives/multi-currency-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/multi-currency-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { minor, currency }: minor is a whole number in the minor units of the currency (1250 is 12.50 EUR and 1,250 JPY), or null while the field is empty, and the second argument says whether there is an amount that is allowed. The decimals of every currency are asked of Intl (JPY none, EUR two, KWD three), the amount is written the locale's way when the field is left, and either decimal sign is understood when typing (12,5, 12.5, 1.250,00 and 1,250.00). Changing the currency keeps the typed number, works out the minor value again (12.50 EUR is 13 JPY) and announces the result, rounding included; if the number no longer fits min and max in the new currency, that is said at once and not only when the field is left. min and max are minor units, a number for every currency or an object with one per code, and a refusal names the limit in the chosen currency. allowNegative accepts a minus and asks a phone for the full keyboard, because a number pad has none. currencies lists the ISO codes of the menu (one code shows no menu), labels renames every message and screen reader phrase, and name adds a hidden input with the minor units plus <name>-currency with the code. Pass id for a label's htmlFor; it lands on the amount. With no id, aria-label or aria-labelledby the amount is named Amount, so it is never unnamed."
+    },
+    {
+      "name": "multi-currency-field-demo",
+      "type": "registry:example",
+      "title": "Multi-currency field demo",
+      "description": "A working preview of Multi-currency field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/multi-currency-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/multi-currency-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "percentage-field",
+      "type": "registry:ui",
+      "title": "Percentage field",
+      "description": "A percentage you can type or nudge: it understands 12,5 and 12.5%, stays in range, and can show what the rate comes to on a base amount.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/percentage-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/percentage-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/percentage-field/percentages.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/percentage-field/percentages.ts"
+        },
+        {
+          "path": "registry/primitives/percentage-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/percentage-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak a plain number (12.5), or null while the field is empty, always inside min and max (0 and 100 unless you say otherwise) and rounded to precision (2 unless you say otherwise). It reads 12,5, 12.5 and 12.5% alike, so the percent sign is the field's own and a typed one is dropped. The arrow keys add or take away step, Shift or Page Up and Page Down make it ten times as much, and Ctrl or Cmd with Home and End go to the limits (Home and End themselves move the caret, as in any field). With a min below zero the field asks a phone for the full keyboard, because a number pad has no minus. A number that was out of range is brought in when the field is left, and a quiet line says so (Capped at 100%.). With base (minor units, 48000 is 480.00) and currency it writes the sentence under the field as the number changes, in the currency's own decimals, and a screen reader hears it once the number is settled; labels renames every phrase. The input is a spinbutton with the value, the limits and the sentence as its text. name adds a hidden input with the number, and id lands on the input, so a label's htmlFor focuses it (with no id, aria-label or aria-labelledby the field is named Percentage)."
+    },
+    {
+      "name": "percentage-field-demo",
+      "type": "registry:example",
+      "title": "Percentage field demo",
+      "description": "A working preview of Percentage field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/percentage-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/percentage-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "amount-presets",
+      "type": "registry:ui",
+      "title": "Amount presets",
+      "description": "Pick a gift, donation or top-up amount from preset chips that work as a radio group, or choose Other and type your own within limits.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/amount-presets/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/amount-presets/index.tsx"
+        },
+        {
+          "path": "registry/primitives/amount-presets/amounts.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/amount-presets/amounts.ts"
+        }
+      ],
+      "docs": "presets is a list of { amount, impact }: amount in minor units (2500 is 25.00 EUR and 2,500 JPY), impact an optional line shown under the chips while that preset is chosen, and suggested names the amount to mark with the words Most popular. value and onValueChange speak one amount in minor units, or null while nothing is chosen and while the Other field is empty or refused; a custom amount outside min and max is never reported, so a form cannot submit it. The chips are a Radix radio group: arrow keys move and choose, the group is one tab stop, and the chosen chip is filled with a check. Choosing Other by click or Space opens the amount field and moves the focus into it (an arrow key leaves the focus on the chip), choosing a preset clears and closes it, and a value that arrives from outside opens or closes it to match. The Other field is written in the currency's own decimals, accepts either decimal sign, and a refusal names both limits in words (Choose between 5 EUR and 500 EUR.) in a polite live region. label names the group, labels renames every phrase, name adds a hidden input with the amount, and currency and locale decide how the amounts are written."
+    },
+    {
+      "name": "amount-presets-demo",
+      "type": "registry:example",
+      "title": "Amount presets demo",
+      "description": "A working preview of Amount presets.",
+      "registryDependencies": [
+        "https://rhsui.com/r/amount-presets.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/amount-presets-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "time-range-field",
+      "type": "registry:ui",
+      "title": "Time range field",
+      "description": "A start and an end time with the length between them: type or pick each end, move the start and the end follows, and a bad range is refused in words.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/time-range-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-range-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/time-range-field/ranges.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-range-field/ranges.ts"
+        },
+        {
+          "path": "registry/primitives/time-range-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-range-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { start, end, minutes }: start and end are 24-hour \"HH:MM\" strings and minutes is the length, with the night counted when the end is on the next day. It is reported once both times are set and the range is allowed, and null whenever it is not, so a form never sees half a range. Each end is an input that takes what people type (9, 930, 0930, 9:30, 9h30, 2:30 pm) and a button that opens the same list of slots the Time picker offers, every step minutes from min to max; the end list says how long each choice makes the range, and slots at or before the start are disabled unless allowOvernight is on, when they show the length and +1 day. A range that ends on the next day says +1 day after its length beside the field too. The arrow keys move a time to the next slot on the grid, Alt+ArrowDown opens the list. Times are settled when the field is left, on Enter, on a pick and on an arrow key, never on every keystroke. An end that is not after the start is refused with the reason in words and aria-invalid on the end input; a time outside min and max, or a text that is no time, is explained on its own input. keepDuration moves the end along when the start changes and says so in a polite live region; without allowOvernight the end stops at max. name adds <name>-start and <name>-end hidden inputs, id lands on the start input (the end gets it with -end after it), and name the group with aria-labelledby or aria-label. labels renames every phrase."
+    },
+    {
+      "name": "time-range-field-demo",
+      "type": "registry:example",
+      "title": "Time range field demo",
+      "description": "A working preview of Time range field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/time-range-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/time-range-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "due-date-field",
+      "type": "registry:ui",
+      "title": "Due date field",
+      "description": "A date field for tasks and deadlines: Today, Tomorrow and Next week as chips, a calendar for everything else, and No date, each said in words.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/calendar.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/due-date-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/due-date-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/due-date-field/due-dates.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/due-date-field/due-dates.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak an ISO date (\"2026-10-23\") or null for no date. now (a Date, a timestamp or an ISO string) and timeZone say what today is: Today, Tomorrow and Next week (the coming Monday, a week away when today is a Monday) are worked out as calendar dates in that zone, so a task due tomorrow in Amsterdam is tomorrow for the server too. Without now the browser's clock is read once the page has hydrated and the server marks no quick chip, so nothing mismatches; pass now to render everything on the server. The chips are one radio group with a roving tab stop (arrow keys move and choose, Home and End jump, the chosen chip is filled with a check); Pick a date is the last dated option and opens the Calendar in a popover with its own arrow-key grid, an arrow key landing on the chip does not open it, and the focus comes back to the chip when the calendar closes. The line under the chips writes the date with its weekday and distance in the locale (Fri 23 Oct, in 3 days) and marks a date that has passed with Overdue by 2 days and an icon, and that date stays chosen and readable in the calendar; labels renames every word, and chips replaces the quick picks with { id, label, date } where date is an ISO date or a function of today's. allowPast lets the calendar offer past days, allowClear={false} removes the No date chip, weekStartsOn sets the calendar's first day, name adds a hidden input with the ISO date, and aria-labelledby or aria-label names the group."
+    },
+    {
+      "name": "due-date-field-demo",
+      "type": "registry:example",
+      "title": "Due date field demo",
+      "description": "A working preview of Due date field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/due-date-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/due-date-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recipient-field",
+      "type": "registry:ui",
+      "title": "Recipient field",
+      "description": "The To line of a message: type a name or an address, pick a contact, paste a whole list, and keep addresses that fail visible and marked so they can be fixed.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/recipient-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/recipient-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/recipient-field/recipients.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/recipient-field/recipients.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak a list of { email, name } (the name is optional) and the second argument says whether every address passed the check and which did not. Chips whose address fails stay in the list: nothing is dropped, they are drawn with a warning icon and a dashed edge, the reason is written under the field (Not a valid address, or the reason your validate returns; with several, the first one's), and a click or Enter on the chip puts its text back into the field to be fixed. Typing shows contacts (initials, name, address, the match in bold, people already on the line left out) in a listbox the input drives with aria-activedescendant; Enter takes the highlighted contact or, with none, keeps the typed text, and so do a comma, a semicolon and leaving the field. A typed address that matches a contact gets the contact's name. Pasting a list split by commas, semicolons, tabs or line breaks, also \"Name <address>\" and quoted names with commas, makes one chip per entry. Chips are reached with Left from the start of the text or Backspace in an empty field, then Left and Right, removed with Backspace or Delete (the focus goes to the next chip), edited with Enter or F2; only the input is a tab stop. A chip shows its address, or the reason it failed, as a tooltip. A duplicate and the limit set by max are said in a polite line and to a screen reader, and a paste that did not fit says how many went in. validate replaces the default check and may return a reason. contacts is the pool for suggestions, label and hideLabel name the line, name adds a hidden input with the addresses that passed, and labels renames every phrase."
+    },
+    {
+      "name": "recipient-field-demo",
+      "type": "registry:example",
+      "title": "Recipient field demo",
+      "description": "A working preview of Recipient field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recipient-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recipient-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "link-field",
+      "type": "registry:ui",
+      "title": "Link field",
+      "description": "A link as a CMS stores it: the text, where it goes and whether it opens a new tab, with the address checked, recognised in words and made safe.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/link-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/link-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/link-field/links.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/link-field/links.ts"
+        },
+        {
+          "path": "registry/primitives/link-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/link-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { text, href, newTab, rel }: text is trimmed, href is the destination as it is stored, empty while the destination is refused or not a link yet, so a refused address is never reported or submitted, newTab is false for a kind of link that cannot open in a new tab, and rel is \"noopener noreferrer\" for an external link that does, so the page it opens cannot reach back into yours. The second argument says whether the link is usable: a recognised destination of an allowed kind and, with requireText, some text. The destination takes a web address, a path (\"/pricing\"), an anchor (\"#faq\"), mailto: and tel: links, and the bare forms of them: northwind.example/pricing gets https:// in front, ines@orbit.example becomes mailto:, +31 20 555 0142 becomes tel:+31205550142. It says in words which kind it recognised (a line under the field and a matching icon in front of it), and refuses what could harm a visitor: javascript:, data:, file: and other schemes, and a path that starts with two slashes, or with a slash and a backslash. allow limits the kinds (external, relative, anchor, email, phone) and a destination of another kind is explained in words. Messages for what is wrong wait until a field is left (and until a press is over, so a submit is not swallowed) and then follow the typing; the line under the destination always has one line of room, so nothing jumps. The checkbox is disabled, with a line saying why, for anchors, emails and phone links. The preview is the link as a button, with a small arrow when it leaves the site in a new tab. label and hideLabel name the group (a fieldset), name adds hidden inputs <name>-text, <name>-href, <name>-new-tab and <name>-rel, disabled disables every control, and labels renames every phrase."
+    },
+    {
+      "name": "link-field-demo",
+      "type": "registry:example",
+      "title": "Link field demo",
+      "description": "A working preview of Link field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/link-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/link-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bulk-paste-field",
+      "type": "registry:ui",
+      "title": "Bulk paste field",
+      "description": "Paste a list of emails, SKUs or URLs and see what was understood: valid, invalid and duplicate counts, the bad lines listed, and one-click tidying.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/bulk-paste-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/bulk-paste-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/bulk-paste-field/lines.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/bulk-paste-field/lines.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the text, one item per line; onItemsChange speaks the clean list (normalised, valid, each once, in order, up to max) after a pause in the typing and whenever a tidy action changes it. validate gets the normalised line and returns true or nothing when it is fine, false for the default reason, or the reason in words; normalise decides what a line is for the duplicate check and the list (trim and lower-case an address, upper-case a SKU), and by default only trims. Under the field a summary reads 38 valid, 2 invalid, 5 duplicates in a polite live region that is worked out once the typing pauses, never on every key, together with the panel and the marks beside the line numbers; the check is one pass with a Set, so ten thousand lines take a few milliseconds. The lines that need attention (invalid ones and, with max, the lines past the limit) are listed in a compact panel, five at a time with a Show more, each a button that selects the line and scrolls it into view. Remove duplicates, Remove invalid and, with max, Keep the first N each rewrite the text in one click, keep every other line in order, and offer Undo. A paste that holds commas, semicolons or tabs becomes one item per line through the browser's own insertText, so the text keeps its undo history; a plain column pastes as it is. The line numbers are drawn only for the lines in view, with fixed pixel metrics, so they follow the scrolling and stay on their lines. It is a plain textarea, so it stays fast with thousands of lines. A change to validate or normalise is picked up on the next edit. name goes on the textarea, rows sets how many lines are visible, label and hideLabel name the field, and labels renames every phrase."
+    },
+    {
+      "name": "bulk-paste-field-demo",
+      "type": "registry:example",
+      "title": "Bulk paste field demo",
+      "description": "A working preview of Bulk paste field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bulk-paste-field.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bulk-paste-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
