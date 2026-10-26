@@ -63,6 +63,7 @@ own `meta.version` and are listed when they change.
 - Application, 9 more: `reaction-bar`, `inset-sidebar-shell`, `top-nav-shell`, `settings-shell`, `filter-rail-shell`, `wizard-shell`, `dashboard-shell`, `focus-shell`, `mobile-tab-shell`.
 - Fixed: `model-viewer` decodes an inline GLB itself instead of fetching its data: URL, so the free models also appear on a site whose Content-Security-Policy keeps connect-src to its own origin (rhsui.com was such a site: Explore in 3D did nothing).
 - Commerce, 9 more: `bill-splitter`, `rental-rates`, `shelf-label`, `search-results-header`, `checkout-sign-in-choice`, `returns-policy-section`, `shipping-rates-table`, `customer-account-home`, `order-help-options`.
+- Marketing, 9 more: `incident-postmortem`, `recipe-layout`, `article-footnotes`, `newsletter-card`, `sticky-cta-bar`, `pricing-rows`, `contact-form-centered`, `enterprise-plan-band`, `guarantee-panel`.
 
 ## Unreleased (0.7.0)
 

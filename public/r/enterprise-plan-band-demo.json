@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "enterprise-plan-band-demo",
+  "title": "Enterprise band demo",
+  "description": "A working preview of Enterprise band.",
+  "registryDependencies": [
+    "https://rhsui.com/r/enterprise-plan-band.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/enterprise-plan-band-demo.tsx",
+      "content": "import { IconFileSignature, IconHeadphones, IconShieldCheck } from \"@rhs-ui/icons\";\nimport { EnterprisePlanBand } from \"@rhs-ui/marketing/enterprise-plan-band\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst capabilities = [\n  { icon: <IconShieldCheck />, label: \"SSO and SCIM\", description: \"Okta, Entra ID and Google Workspace, with automatic deprovisioning.\" },\n  { icon: <IconFileSignature />, label: \"Custom contracts and invoicing\", description: \"Purchase orders, net 60 terms and your security addendum.\" },\n  { icon: <IconHeadphones />, label: \"A named support engineer\", description: \"Someone who knows your setup, with a four-hour reply on critical issues.\" },\n];\n\nconst contact = { email: \"sales@halcyon.example\", phone: \"+1 (415) 555-0142\" };\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">Under the plan cards, full width: the capabilities in three columns, the line to sales on the right</p>\n      <EnterprisePlanBand\n        title=\"Need something bigger?\"\n        description=\"Larger teams buy differently. Enterprise comes with the security review, the paperwork and the person to call that a procurement team expects.\"\n        capabilities={capabilities}\n        contact={contact}\n        note=\"Usually teams of 200 or more\"\n        action={<Button size=\"lg\">Talk to sales</Button>}\n      />\n\n      <div className=\"mt-16 max-w-md border-t border-border pt-10\">\n        <p className=\"mb-6 text-xs text-muted-foreground\">In a narrow column, and on a phone: one column, with the button before the list</p>\n        <EnterprisePlanBand\n          headingLevel={3}\n          title=\"Running a larger team?\"\n          description=\"Enterprise adds the security review, the paperwork and one person to call.\"\n          capabilities={capabilities.slice(0, 2)}\n          contact={{ email: \"sales@halcyon.example\" }}\n          note=\"Usually teams of 200 or more\"\n          action={<Button size=\"lg\">Talk to sales</Button>}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

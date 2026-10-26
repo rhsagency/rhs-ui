@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "contact-form-centered-demo",
+  "title": "Centered contact form demo",
+  "description": "A working preview of Centered contact form.",
+  "registryDependencies": [
+    "https://rhsui.com/r/contact-form-centered.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/contact-form-centered-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { ContactFormCentered } from \"@rhs-ui/marketing/contact-form-centered\";\n\nconst topics = [\n  { value: \"sales\", label: \"Talk to sales\", description: \"Pricing, demos and quotes\" },\n  { value: \"support\", label: \"Get help\", description: \"Something is not working as expected\" },\n  { value: \"billing\", label: \"Billing\", description: \"Invoices, refunds and VAT\" },\n  { value: \"press\", label: \"Press\", description: \"Interviews, facts and images\" },\n  { value: \"other\", label: \"Something else\" },\n];\n\n/** A request that takes a moment and works, so the busy and success states can be seen by trying it. */\nconst send = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nconst copy = {\n  description: \"Questions about pricing, a rollout or something that is not working? Write to us and a person answers.\",\n  promise: \"We reply within one working day.\",\n  privacyHref: \"#privacy\",\n  topics,\n  onSubmit: send,\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <div className=\"grid gap-x-12 gap-y-16 lg:grid-cols-2\">\n        <Example caption=\"Try it: send it empty to see the mistakes, then fill it in to see the busy and sent states\">\n          <ContactFormCentered {...copy} title=\"Get in touch\" headingLevel={2} />\n        </Example>\n        <Example caption=\"After a first attempt: each mistake is said in words next to its field, and the first one takes focus\">\n          <ContactFormCentered {...copy} title=\"Talk to us\" headingLevel={2} defaultStatus=\"invalid\" defaultValues={{ name: \"Maria Jansen\", email: \"maria@halcyon\" }} />\n        </Example>\n        <Example caption=\"When sending fails: everything typed is kept, and the button tries again\">\n          <ContactFormCentered\n            {...copy}\n            title=\"Write to us\"\n            headingLevel={2}\n            defaultStatus=\"error\"\n            defaultValues={{\n              name: \"Maria Jansen\",\n              email: \"maria@halcyon.studio\",\n              topic: \"billing\",\n              message: \"Our March invoice shows 14 seats, but we only had 12 active at the end of the month. Could you check?\",\n              consent: true,\n            }}\n          />\n        </Example>\n        <Example caption=\"Sent: the form gives way to a status message that repeats the address it will answer\">\n          <ContactFormCentered {...copy} title=\"Say hello\" headingLevel={2} defaultStatus=\"done\" defaultValues={{ name: \"Maria Jansen\", email: \"maria@halcyon.studio\", topic: \"billing\" }} />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

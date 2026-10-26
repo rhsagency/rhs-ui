@@ -5332,6 +5332,471 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "incident-postmortem",
+      "type": "registry:block",
+      "title": "Incident postmortem",
+      "description": "A blameless post-incident report: severity in words, impact in tabular figures, a UTC timeline, the root cause in plain words and actions with owners.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/incident-postmortem/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/incident-postmortem/index.tsx"
+        },
+        {
+          "path": "registry/marketing/incident-postmortem/contents.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/incident-postmortem/contents.tsx"
+        },
+        {
+          "path": "registry/marketing/incident-postmortem/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/incident-postmortem/format.ts"
+        },
+        {
+          "path": "registry/marketing/incident-postmortem/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/incident-postmortem/types.ts"
+        }
+      ],
+      "docs": "Pass the incident (id, title, severity as critical, major or minor with an optional code such as SEV 2, start and end as ISO times, what was affected, and a summary that can be several paragraphs), the impact (figures with a label, a number or text, and a note, plus a body), the timeline (events with a time, text and an optional milestone word such as Detected, Mitigated or Resolved), the rootCause (a one-sentence summary, an explanation and contributing factors), the lessons (wentWell and wentPoorly) and the actions (title, owner, due date and status as done, in-progress or planned, with an optional ticket and link). Blameless by design: owners are teams, and a person is shown only when you pass person. Every section has an anchor and a link beside its heading, so #timeline sends a customer straight to the timeline; idPrefix keeps the anchors apart when a page holds more than one report. All times are written in one zone, UTC by default (timeZone), with the time since the start beside each event, a day label when the incident spans midnight, and a duration worked out from the two ends or Ongoing when there is no end. A contents list follows the reader beside the page on wide screens and becomes a row of links on a phone; the actions table becomes cards below 768px. Events are sorted by time, numbers are tabular, and linkAs routes the ticket links. Pass labels to translate every fixed word and note to change or remove the blameless line."
+    },
+    {
+      "name": "incident-postmortem-demo",
+      "type": "registry:example",
+      "title": "Incident postmortem demo",
+      "description": "A working preview of Incident postmortem.",
+      "registryDependencies": [
+        "https://rhsui.com/r/incident-postmortem.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/incident-postmortem-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recipe-layout",
+      "type": "registry:block",
+      "title": "Recipe layout",
+      "description": "A recipe page that cooks well: times and servings up front, ingredients that rescale, large-numeral steps with timers and a nutrition panel.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/recipe-layout/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/index.tsx"
+        },
+        {
+          "path": "registry/marketing/recipe-layout/keep-awake.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/keep-awake.tsx"
+        },
+        {
+          "path": "registry/marketing/recipe-layout/step-timer.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/step-timer.tsx"
+        },
+        {
+          "path": "registry/marketing/recipe-layout/scale.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/scale.ts"
+        },
+        {
+          "path": "registry/marketing/recipe-layout/schema.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/schema.ts"
+        },
+        {
+          "path": "registry/marketing/recipe-layout/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-layout/types.ts"
+        }
+      ],
+      "docs": "Pass title, intro, times (prep, cook and total in minutes; the total is worked out when left out), servings (the number the quantities are written for), ingredients (quantity, unit, name, note, with unitPlural and plural for words that change, and group for a heading such as For the sauce), steps (text, an optional image and an optional timer in minutes), nutrition per serving, tips and onServingsChange. The stepper rescales every quantity the way a cook writes it: halves, thirds and quarters as fractions (1½ tbsp), grams and millilitres to the nearest 5 once they are big and as kilograms and litres past a thousand, 3 tsp as 1 tbsp, and a line without a quantity never scales. Set whole on an ingredient such as eggs to keep it a whole number. The new count is announced, and an amount that changes lights up for a moment. Steps are an ordered list with large numerals; a timer counts down in place against the clock, can be paused and reset, and is announced when it starts and ends; Start gives way to Pause and Reset brings Start back, with focus handed on so the keyboard keeps its place. Where the browser has the Wake Lock API a Keep screen awake switch appears; set keepAwake to false to remove it. The ingredients stay in view beside the steps from 1024px and come first on a phone. For search engines, structuredData writes schema.org Recipe data into the page from the same props (pass true, or an object with image, author, cuisine, category, datePublished and keywords); recipeJsonLd() in recipe-layout/schema gives you the same object to place yourself, written for the servings the recipe is written for. Pass labels and locale for another language."
+    },
+    {
+      "name": "recipe-layout-demo",
+      "type": "registry:example",
+      "title": "Recipe layout demo",
+      "description": "A working preview of Recipe layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recipe-layout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recipe-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "article-footnotes",
+      "type": "registry:block",
+      "title": "Article footnotes",
+      "description": "Footnote references and a notes list with working back links, so a long article can cite sources without breaking the flow.",
+      "categories": [
+        "marketing",
+        "content"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/article-footnotes.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/article-footnotes.tsx"
+        }
+      ],
+      "docs": "Wrap the article in Footnotes with a list of notes, each with a stable id, its content and optionally a source (label, href and the day you read it). Put FootnoteRef note=\"id\" in the text where a claim needs one and FootnoteList wherever the notes belong, usually at the end. A reference takes its number from the place of its note in the list, so numbers follow the list while the anchors (#fn-id for a note, #fnref-id for the spot in the text) keep working when notes are added or moved. Following a reference puts focus on the note, which is also highlighted when a link targets it; the back link returns focus to the exact sentence. A note that is cited twice sets mentions to 2, and the second FootnoteRef passes mention=2. Notes use the muted colour at 14px or larger, with the source line in the foreground colour. Pass labels, title and backLabel to translate the fixed words, and locale for the date."
+    },
+    {
+      "name": "article-footnotes-demo",
+      "type": "registry:example",
+      "title": "Article footnotes demo",
+      "description": "A working preview of Article footnotes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/article-footnotes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/article-footnotes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-card",
+      "type": "registry:block",
+      "title": "Newsletter card",
+      "description": "A compact subscribe card for sidebars and article ends: a line of promise, one field, one button and a note on frequency.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/newsletter-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/newsletter-card.tsx"
+        }
+      ],
+      "docs": "Pass title, description, onSubmit (resolve to confirm, reject to show the error), promise, cta, privacyHref and compact. The card is built to be 20rem wide in a sidebar and lays out in two columns when it is wide, because it follows its own width rather than the screen's. The address is checked in words before anything is sent. A failure keeps what was typed and turns the button into a retry; success replaces the form with a message that says what happens next, takes focus and is announced, and offers to start again. Compact leaves out the icon and the description for a footer column. value, defaultValue and onValueChange control the field; defaultStatus starts the card in success or error for a page that already knows the result. Pass labels to translate every fixed word and error."
+    },
+    {
+      "name": "newsletter-card-demo",
+      "type": "registry:example",
+      "title": "Newsletter card demo",
+      "description": "A working preview of Newsletter card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sticky-cta-bar",
+      "type": "registry:block",
+      "title": "Sticky CTA bar",
+      "description": "A bar fixed to the bottom that appears once the hero has scrolled away, with the product, a price or promise and one action; it can be dismissed.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/sticky-cta-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sticky-cta-bar.tsx"
+        }
+      ],
+      "docs": "Pass label, description, action and, when it should appear, showAfter: a number of pixels from the top, or the id of an element (usually the hero) that has to scroll out of view first. hideWhen is the id of an element, such as the footer or a sign-up form, that hides the bar for as long as any part of it is on screen. The bar watches both with IntersectionObserver, so there is no scroll handler. It slides in with a short transform that becomes a fade for people who prefer less motion, floats as a card from 640px and is a full-width strip on a phone, keeps clear of the safe area, and is out of the tab order and the accessibility tree whenever it is hidden. While it shows it adds room at the bottom of the page and a scroll padding, so it never covers the last lines or a focused field. dismissible adds a labelled close button, onDismiss is called, and storageKey remembers the choice for the browser session; closed from the keyboard, focus goes back to the element it came from. Inside a preview frame, a dialog or any pane that scrolls instead of the window, pass that element as scrollRoot (a ref): the bar is then positioned inside it rather than fixed to the screen."
+    },
+    {
+      "name": "sticky-cta-bar-demo",
+      "type": "registry:example",
+      "title": "Sticky CTA bar demo",
+      "description": "A working preview of Sticky CTA bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sticky-cta-bar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sticky-cta-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pricing-rows",
+      "type": "registry:block",
+      "title": "Pricing rows",
+      "description": "Plans as stacked rows: name and pitch on the left, price in the middle, action on the right, for four tiers or more.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/pricing-rows.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/pricing-rows.tsx"
+        }
+      ],
+      "docs": "Pass plans (id, name, pitch, limits, price, period, action and featured), a title and a note. A numeric price is written as money in currency and locale and counts to its new value; text such as Free or Custom is shown as written. Give price and period as objects keyed by monthly and yearly and a billing toggle appears; control it with interval and onIntervalChange, or let it run itself from defaultInterval, and put yearlySaving beside the yearly option. A plan that gives only one interval keeps it for both. Switching is announced once. The featured plan gets a badge (its text can be changed per plan) and a heavier outline. The layout follows its own width: four columns when it is wide, name and limits beside price and action in the middle, and name, pitch, limits, price and action stacked on a phone, with full-width buttons. The action is any element, normally a Button; give the featured plan the solid one, and give each action an accessible name that includes its plan, such as aria-label=\"Start 14-day trial, Team plan\", so a list of buttons does not read the same words several times. The names are headings one level below the title."
+    },
+    {
+      "name": "pricing-rows-demo",
+      "type": "registry:example",
+      "title": "Pricing rows demo",
+      "description": "A working preview of Pricing rows.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pricing-rows.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pricing-rows-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contact-form-centered",
+      "type": "registry:block",
+      "title": "Centered contact form",
+      "description": "A narrow, centred contact form with a topic select, a message and a clear promise of when you will answer, for sites that need one simple way in.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/contact-form-centered.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/contact-form-centered.tsx"
+        }
+      ],
+      "docs": "Pass title, description, topics (value, label and an optional second line), onSubmit (called with name, email, topic and message, trimmed; resolve to confirm, reject to show the error), promise and privacyHref. Mistakes are said in words next to the field, only once the reader has been in that field or has tried to send, and the first one takes focus. Sending disables the button but keeps its label. A failure keeps everything typed and hands focus back to the button. Success replaces the form with a status message that repeats the address it will answer and the promise, takes focus and is announced; Send another message starts again at the name field. messageLimit sets the counter, defaultValues pre-fills what you already know, and defaultStatus starts the form in the invalid, error or done state for a page that already knows it. Every fixed word and every error can be translated with labels."
+    },
+    {
+      "name": "contact-form-centered-demo",
+      "type": "registry:example",
+      "title": "Centered contact form demo",
+      "description": "A working preview of Centered contact form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-form-centered.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-form-centered-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "enterprise-plan-band",
+      "type": "registry:block",
+      "title": "Enterprise band",
+      "description": "The 'need more?' band under the plan cards: what large buyers ask for, who it suits, and a direct line to sales.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/enterprise-plan-band.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/enterprise-plan-band.tsx"
+        }
+      ],
+      "docs": "Pass title, description, capabilities (an icon, a label and an optional line that makes it concrete), contact (email and phone), note and action. The capabilities are plain text with a decorative icon, the email and phone are real mailto and tel links, and the action is any element, normally a large Button, that fills its panel. The band follows its own width: capabilities in three columns beside the panel when it is wide, and one column on a phone with the action coming before the list. The panel on the right holds the button, the contact lines and the note on who the plan suits, such as Usually teams of 200 or more. labels translates the line above the contact details."
+    },
+    {
+      "name": "enterprise-plan-band-demo",
+      "type": "registry:example",
+      "title": "Enterprise band demo",
+      "description": "A working preview of Enterprise band.",
+      "registryDependencies": [
+        "https://rhsui.com/r/enterprise-plan-band.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/enterprise-plan-band-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "guarantee-panel",
+      "type": "registry:block",
+      "title": "Guarantee panel",
+      "description": "Take the risk out of the decision: a clear promise (30-day refund, free replacement) with the terms in three plain lines.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/guarantee-panel.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/guarantee-panel.tsx"
+        }
+      ],
+      "docs": "Pass title (the promise that follows the period: full refund, no questions), period (a value and a unit), terms (a term and a detail each, usually three: what is covered, how to ask, how fast the money comes back), policyHref and an optional action. The heading reads the period first, 30 days, full refund, no questions; write {period} inside the title to put it elsewhere, or word the whole heading yourself. The seal is drawn inline from concentric rings, a milled edge and a check, takes the page's colours in both themes and is hidden from assistive technology, so the promise reads without it. The terms are a real description list: three columns when the panel is wide and a stack when it is narrow. Place it beside pricing or just before the final call to action. labels translates the small line above the heading and the policy link."
+    },
+    {
+      "name": "guarantee-panel-demo",
+      "type": "registry:example",
+      "title": "Guarantee panel demo",
+      "description": "A working preview of Guarantee panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/guarantee-panel.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/guarantee-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

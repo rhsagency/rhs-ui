@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "guarantee-panel-demo",
+  "title": "Guarantee panel demo",
+  "description": "A working preview of Guarantee panel.",
+  "registryDependencies": [
+    "https://rhsui.com/r/guarantee-panel.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/guarantee-panel-demo.tsx",
+      "content": "import { GuaranteePanel } from \"@rhs-ui/marketing/guarantee-panel\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst terms = [\n  { term: \"What is covered\", detail: \"Every plan, monthly or yearly, and every add-on you bought with it.\" },\n  { term: \"How to ask\", detail: \"Reply to any receipt or write to billing@halcyon.example. No form, and you do not have to say why.\" },\n  { term: \"How fast\", detail: \"The money is back on the card you paid with within five working days.\" },\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">Before the final call to action: the promise as a heading, three plain terms, the action and the policy</p>\n      <GuaranteePanel\n        title=\"full refund, no questions\"\n        period={{ value: 30, unit: \"days\" }}\n        terms={terms}\n        policyHref=\"#refund-policy\"\n        action={<Button size=\"lg\">Start free for 14 days</Button>}\n      />\n\n      <div className=\"mt-16 max-w-md border-t border-border pt-10\">\n        <p className=\"mb-6 text-xs text-muted-foreground\">Beside pricing, in a narrow column: the seal sits on top and the terms stack</p>\n        <GuaranteePanel\n          headingLevel={3}\n          title=\"A full refund within {period}, however you ask\"\n          period={{ value: 60, unit: \"days\" }}\n          terms={terms.slice(0, 2)}\n          policyHref=\"#refund-policy\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
