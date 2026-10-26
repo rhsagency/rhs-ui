@@ -29581,6 +29581,370 @@
       ]
     },
     {
+      "name": "rail-panel-shell",
+      "type": "registry:block",
+      "title": "Rail and panel shell",
+      "description": "A two-level app frame: a slim icon rail for the areas, a panel with the pages of the one you are in, and the content beside them. The panel folds, or opens as a sheet on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/notification-badge.json",
+        "https://rhsui.com/r/sheet.json",
+        "https://rhsui.com/r/skip-link.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/rail-panel-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/rail-panel-shell/index.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-rail-panel-in": "rhs-rail-panel-in 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-rail-panel-out": "rhs-rail-panel-out 140ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-rail-panel-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateX(-0.75rem)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        },
+        "@keyframes rhs-rail-panel-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "none"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateX(-0.75rem)"
+          }
+        }
+      },
+      "docs": "Pass areas ({ id, label, icon, badge }), the id of the active one and onAreaChange; switch panel (usually a SidebarNav) when the area changes. Each area is a button named for screen readers and in a tooltip, the current one carries aria-current and a filled tile. The panel folds with the toggle at the foot of the rail: panelOpen and onPanelOpenChange control it, or leave them out and the shell keeps it. Below md the panel is a sheet that opens beside the rail when you press an area (pressing another area while it is open switches it in place; an area without a panel opens nothing), closes when you follow a link or press the toggle, and gives focus back to the button you pressed. brand and railFooter fill the top and the foot of the rail, panelActions sits beside the panel's heading. The shell is as tall as its container: it is h-dvh unless you pass a height in className. Pass mainId when the page already uses id=main."
+    },
+    {
+      "name": "rail-panel-shell-demo",
+      "type": "registry:example",
+      "title": "Rail and panel shell demo",
+      "description": "A working preview of Rail and panel shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rail-panel-shell.json",
+        "https://rhsui.com/r/sidebar-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rail-panel-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "section-sidebar-shell",
+      "type": "registry:block",
+      "title": "Section sidebar shell",
+      "description": "Two-tier navigation: the sections of a product along the top, and a sidebar that lists the pages of the current section only. Sheet and scrolling tabs on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json",
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/skip-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/section-sidebar-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/section-sidebar-shell/index.tsx"
+        },
+        {
+          "path": "registry/application/section-sidebar-shell/section-row.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/section-sidebar-shell/section-row.tsx"
+        },
+        {
+          "path": "registry/application/section-sidebar-shell/sidebar-menu.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/section-sidebar-shell/sidebar-menu.tsx"
+        }
+      ],
+      "docs": "Pass sections ({ id, label, href }), the id of the active one, sidebars (the pages of each section in the SidebarNav shape, by section id) and currentHref; the current section is underlined with aria-current, the current page is marked in the sidebar. Pass your router's Link as linkAs: both the sections and the pages use it, so switching section is a normal navigation and focus stays on the link you used. A section without an entry in sidebars has no sidebar. brand and account fill the header; sidebarFooter sits under the sidebar and in the sheet. Below md the sidebar is a left sheet opened from a menu button (focus returns to it, following a link closes it) and the sections scroll sideways under the brand with faded edges. The header never moves and the page scrolls inside the shell, which is as tall as its container: it is h-dvh unless you pass a height in className. menuLabel, sectionsLabel, pagesLabel and skipLabel translate the words. Pass mainId when the page already uses id=main."
+    },
+    {
+      "name": "section-sidebar-shell-demo",
+      "type": "registry:example",
+      "title": "Section sidebar shell demo",
+      "description": "A working preview of Section sidebar shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/section-sidebar-shell.json",
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/section-sidebar-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "record-page-shell",
+      "type": "registry:block",
+      "title": "Record page shell",
+      "description": "The frame for one record, an order, a contact or a ticket: back link, title with status, actions, tabs, and a main column beside a details rail.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/record-page-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/record-page-shell/index.tsx"
+        }
+      ],
+      "docs": "Give it backHref (and backLabel, the list's name, which is read as 'Back to Orders'), the record's title (the page's h1; pass titleAs=\"h2\" inside a preview), a status, a meta line, actions, and the two columns: main and rail. tabs, activeTab and onTabChange come as a set: the tabs scroll sideways with faded edges when they do not fit, and the main column is the tab panel of the current one, so put that tab's content in main. rail takes a DescriptionList with layout=\"stacked\" (or anything); it is a labelled aside with railTitle as its heading, sticky from lg and under the main column below it. meta takes one node or a list of nodes set off with dots. The shell renders on the server unless you pass tabs; pass your router's Link as linkAs. It adds its own page padding: pass className=\"p-0\" when your app shell already pads."
+    },
+    {
+      "name": "record-page-shell-demo",
+      "type": "registry:example",
+      "title": "Record page shell demo",
+      "description": "A working preview of Record page shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/record-page-shell.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/record-page-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inspector-shell",
+      "type": "registry:block",
+      "title": "Inspector shell",
+      "description": "A list or table with a detail panel that opens beside it when a row is picked, with previous and next, and turns into a sheet on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/inspector-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/inspector-shell/index.tsx"
+        }
+      ],
+      "docs": "Put the list or table in children and a search, filters or buttons in toolbar. Keep the selected record and open in your own state: set open when a row is picked, give the record's details as panel and its name as panelTitle, and answer onOpenChange(false) by closing. onPrevious and onNext walk the list: leave one out at the end and its button dims but keeps focus, so stepping with the keyboard never loses its place; leave both out for no buttons. Opening moves focus to the panel's heading (once the person has used the page: a panel that opens by itself on load does not take focus), Escape or the close button closes it and gives focus back to the row you pressed last (so put a real button or link in each row; a press elsewhere in the row counts as a press on its first one), and a change of record while open is announced. The panel opens by animating its width in 200ms, instantly under reduced motion. Below lg it is a sheet from the right with a focus trap; labels translates the words. The shell is as tall as its container: it is h-dvh unless you pass a height in className."
+    },
+    {
+      "name": "inspector-shell-demo",
+      "type": "registry:example",
+      "title": "Inspector shell demo",
+      "description": "A working preview of Inspector shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inspector-shell.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inspector-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "summary-aside-shell",
+      "type": "registry:block",
+      "title": "Summary aside shell",
+      "description": "A two-column flow layout: the steps on the left and a sticky summary card on the right, which becomes a bottom bar with a sheet on phones.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/summary-aside-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/summary-aside-shell/index.tsx"
+        }
+      ],
+      "docs": "Put the steps or the form in children, the order, booking or quote in summary, and give the total already formatted (the shell does no arithmetic). action is the primary button: it is shown in the card, in the bottom bar and in the sheet, so give it form=\"your-form-id\" and no id of its own. From lg the summary is a 22rem card that sticks under the header while the steps scroll; below lg a bar fixed to the bottom shows the total, the action and a Show summary button that opens the whole summary in a bottom sheet. The bar and the sheet respect the safe-area insets, and the steps get matching bottom padding so the bar never covers the last field. Changes of the total are announced politely. The steps are the main landmark (pass mainId when the page already uses id=main) and the card is a complementary one. header is a sticky bar for your mark and a note about secure payment; totalNote adds a line under the total, labels translates the words. The page scrolls like a normal page."
+    },
+    {
+      "name": "summary-aside-shell-demo",
+      "type": "registry:example",
+      "title": "Summary aside shell demo",
+      "description": "A working preview of Summary aside shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/summary-aside-shell.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/summary-aside-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feed-shell",
+      "type": "registry:block",
+      "title": "Feed shell",
+      "description": "Three columns for community and social apps: navigation on the left, a narrow centre feed with a sticky header, and widgets on the right.",
+      "categories": [
+        "application",
+        "app-shell"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "app-shell"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skip-link.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/feed-shell/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/feed-shell/index.tsx"
+        }
+      ],
+      "docs": "Pass nav (three to five { href, label, icon, badge, badgeLabel } entries; badgeLabel says what the count is about, \"new\" by default) with currentHref and your router's Link as linkAs, a header (the feed's title) and the posts as children. From md the navigation is a list in the left column with brand, primaryAction and account around it; below md it is a bottom tab bar that clears the home indicator, and primaryAction floats above it (it is rendered once, in the same place in the page). tabs, activeTab and onTabChange come as a set: equal tabs under the title that stay on screen with it, and the posts of the current one go in children. widgets fills the right column from xl and follows the feed below it. The page itself scrolls, not a box inside it, so scroll restoration, find in page and the back button behave as on any page. The shell renders on the server unless you pass tabs; pass mainId when the page already uses id=main."
+    },
+    {
+      "name": "feed-shell-demo",
+      "type": "registry:example",
+      "title": "Feed shell demo",
+      "description": "A working preview of Feed shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/feed-shell.json",
+        "https://rhsui.com/r/follow-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feed-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
