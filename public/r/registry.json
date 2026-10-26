@@ -24817,6 +24817,224 @@
       ]
     },
     {
+      "name": "raci-matrix",
+      "type": "registry:component",
+      "title": "RACI matrix",
+      "description": "Who does what on a project: tasks down, people across, an R, A, C or I in each cell, and a check that every task has exactly one accountable person.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/raci-matrix/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/raci-matrix/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/raci-matrix/roles.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/raci-matrix/roles.ts"
+        }
+      ],
+      "docs": "Give it `tasks`, `people` and a `value` map where `value[taskId][personId]` is R, A, C or I. Control it with `value` and `onValueChange` (which also receives what changed), or let it keep its own state from `defaultValue`. It never forces exactly one accountable person: a row with none or with two is flagged in words and counted above the table, and the decision stays yours. Tasks that share a `group` fold under a heading, and a folded group still marks a task that needs attention. From the keyboard, arrow keys move between cells, R, A, C and I set a role, plus and minus step through the roles and Backspace clears one. `readOnly` draws plain letters for an approval screen or a report."
+    },
+    {
+      "name": "raci-matrix-demo",
+      "type": "registry:example",
+      "title": "RACI matrix demo",
+      "description": "A working preview of RACI matrix.",
+      "registryDependencies": [
+        "https://rhsui.com/r/raci-matrix.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/raci-matrix-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-diff-table",
+      "type": "registry:component",
+      "title": "Field diff table",
+      "description": "What changed on a record: each field's old and new value side by side, with added and removed values marked in words. For audit trails and approvals.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/field-diff-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/field-diff-table/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/field-diff-table/diff.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/field-diff-table/diff.ts"
+        },
+        {
+          "path": "registry/dashboard/field-diff-table/diff-rows.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/field-diff-table/diff-rows.tsx"
+        }
+      ],
+      "docs": "The table is a Server Component, so `formatters` can be plain functions keyed by field name; they are called only for values that are not empty. Only the \"Show full text\" and \"unchanged fields\" buttons run in the browser. Leave `kind` out and it follows from `before` and `after`: an empty value (undefined, null, \"\" or []) reads \"was empty\" or \"removed\", while 0 and false are values. Dates are `Date` objects drawn with `locale` and `timeZone`; strings are shown as given. A field name is tidied into a label (\"due_date\" becomes \"Due date\"); pass `label` for anything else, such as \"SKU\"."
+    },
+    {
+      "name": "field-diff-table-demo",
+      "type": "registry:example",
+      "title": "Field diff table demo",
+      "description": "A working preview of Field diff table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/field-diff-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/field-diff-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-preview-table",
+      "type": "registry:component",
+      "title": "Data preview table",
+      "description": "A peek at tabular data: row numbers, a type chip on every column, nulls shown as nulls and a clear 'Showing 10 of 12,430 rows'.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/data-preview-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/data-preview-table/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/data-preview-table/cells.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/data-preview-table/cells.ts"
+        }
+      ],
+      "docs": "Rows are arrays in the order of `columns`, or objects keyed by column name. Pass `total` when the data has more rows than you are showing. Numbers are written exactly as they are (no rounding), and a number that arrives as text, as it does from a CSV, keeps every digit and trailing zero (\"184.50\"). A date without a time (\"2026-11-04\") stays on that day in every time zone, a day that does not exist (\"2026-02-30\") is shown as written, and `truncateAt` cuts only text and JSON; a cut value shows in full on hover, on focus and on a tap. Ctrl+C or Cmd+C on a focused cell copies its raw value, so a number is copied without grouping and an object as compact JSON. Giving `onColumnClick` turns the headers into buttons. `maxHeight` makes the rows scroll under a header that stays put."
+    },
+    {
+      "name": "data-preview-table-demo",
+      "type": "registry:example",
+      "title": "Data preview table demo",
+      "description": "A working preview of Data preview table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/data-preview-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/data-preview-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "virtualized-table",
+      "type": "registry:component",
+      "title": "Virtualized table",
+      "description": "Thousands of rows rendered as a few dozen: a windowed table with a fixed row height, a sticky header and true row counts for screen readers.",
+      "categories": [
+        "dashboard",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboard/virtualized-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/virtualized-table/index.tsx"
+        },
+        {
+          "path": "registry/dashboard/virtualized-table/window.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/dashboard/virtualized-table/window.ts"
+        }
+      ],
+      "docs": "Every row is the same height (`rowHeight`, default 44) and a cell is one line; longer content is cut with an ellipsis, because a taller row would make the scrollbar lie. Keep rows times rowHeight below about 15 million pixels (a few hundred thousand rows at 44px): browsers cap the height of an element. `aria-rowcount` is the number of rows plus the header, so a screen reader says \"row 4,813 of 12,431\" for the 4,812th row. Selection plugs in through `getRowProps` (return `data-state=\"selected\"`) and sorting through a column's `sort` and `onSort`, which turn the header into the Table's sort button. Use `getRowKey` when rows are sorted or filtered, `onRangeChange` to load the next page near the end, and a CSS length such as \"60vh\" for `height`. A column's `cell` is a function, so use the table from a Client Component; columns that only name a key (`id` and a text `header`) also work from a Server Component. Find-in-page cannot see rows that are not rendered."
+    },
+    {
+      "name": "virtualized-table-demo",
+      "type": "registry:example",
+      "title": "Virtualized table demo",
+      "description": "A working preview of Virtualized table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/virtualized-table.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/virtualized-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "empty-state",
       "type": "registry:component",
       "title": "Empty State",

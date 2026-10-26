@@ -52,6 +52,7 @@ own `meta.version` and are listed when they change.
   `resend-button`, `heading-anchor-link`, `paste-button`, `autoplay-toggle`,
   `insert-between-button`, `swap-button`, `status-badge`, `chip`, `tag-list`,
   `formatted-number`, `money-amount`, `link-card`, `due-date-label` and `inline-code`.
+- Dashboard, 4 more: `raci-matrix`, `field-diff-table`, `data-preview-table`, `virtualized-table`.
 
 ## Unreleased (0.7.0)
 
