@@ -25978,6 +25978,474 @@
       ]
     },
     {
+      "name": "category-product-rows",
+      "type": "registry:block",
+      "title": "Category product rows",
+      "description": "Several categories on one page, each with its name, a View all link and a short row of product cards, so the whole catalogue reads at a glance.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/product-card.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/category-product-rows.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/category-product-rows.tsx"
+        }
+      ],
+      "docs": "Pass categories: each has a name (the heading of its section), an href, an optional description line, total (how many products the category holds in all, the number in 'View all 48') and products in the ProductCard shape. perRow (2 to 6, default 4) says how many cards a row holds on a wide screen and so how many of the products are drawn; a phone always shows two across, and the grid answers to the width of the block itself rather than the screen, so it also works beside a sidebar. A category with fewer products than a row shows what it has, with no placeholders; one with none says so, and a category whose total is 0 has no link. Hairlines divide the sections and every section is a region named by its own heading. The 'View all' link is named for a screen reader as 'View all 48 in Kitchen knives', so six of them are not six of the same. onAddToCart and renderImage go to every card. linkAs renders the links with your router's Link, locale writes the totals and labels holds the fixed words. Apart from the cards it keeps no state, so it renders on the server."
+    },
+    {
+      "name": "category-product-rows-demo",
+      "type": "registry:example",
+      "title": "Category product rows demo",
+      "description": "A working preview of Category product rows.",
+      "registryDependencies": [
+        "https://rhsui.com/r/category-product-rows.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/category-product-rows-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reorder-list",
+      "type": "registry:block",
+      "title": "Reorder list",
+      "description": "Order again: the products a customer buys regularly, with the last order date, a quantity on every line and a button to add one line or all of them.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/number-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/reorder-list/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/reorder-list/index.tsx"
+        },
+        {
+          "path": "registry/commerce/reorder-list/reorder.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/reorder-list/reorder.ts"
+        }
+      ],
+      "docs": "Pass items: id, name, an optional variant, image and href, price in minor units (1850 is 18.50) with an optional per ('each', 'per case'), lastOrderedAt (an ISO date), lastQuantity (the quantity starts there, kept inside max) and unavailable, the reason in words for a product that cannot be bought now: its line stays in the list, switched off, with the reason where 'Last ordered' would be. Every line has a checkbox, a quantity and an Add button. onAdd(id, quantity) receives the quantity to add now (return a promise and the button shows it is working; reject and the line says so). The list remembers what it put in the bag, so the number on a line and the number in the bag never disagree: a line that is in the bag says Added with a check, raising its quantity makes the button say 'Add 2 more' and sends only those 2, and lowering it under what is in the bag switches the button off and says 'In bag: 4'. The footer adds up what is still to add in an animated price, and its button calls onAddAll(lines) with every ticked line that has something left to add, each line's quantity being that difference; without onAddAll it calls onAdd for each line. Once everything ticked is in the bag, the footer says what is in the bag. onRemove(id) is called by 'Not interested': the line gives way to 'Removed. Undo' for six seconds and then leaves, and Undo calls onUnremove(id) so you can take the saved choice back. Pass now from the server so 'Last ordered 3 weeks ago' matches in the browser; without it the dates are shown first and the browser's clock turns them into words once the page has loaded. currency, locale and timeZone format the prices and the calendar days. A polite status says what was added and, once ticking settles, what is selected. headingAs and labels do the usual."
+    },
+    {
+      "name": "reorder-list-demo",
+      "type": "registry:example",
+      "title": "Reorder list demo",
+      "description": "A working preview of Reorder list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reorder-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reorder-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "brand-index",
+      "type": "registry:block",
+      "title": "Brand index",
+      "description": "A shop-by-brand page: popular brands as tiles, every brand under its letter with a product count, a search field and an A to Z jump bar.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/brand-index/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/brand-index/index.tsx"
+        },
+        {
+          "path": "registry/commerce/brand-index/brand-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/brand-index/brand-list.tsx"
+        },
+        {
+          "path": "registry/commerce/brand-index/groups.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/brand-index/groups.ts"
+        }
+      ],
+      "docs": "Pass brands (name, href, an optional count and logo { src, alt }) in any order: they are sorted for the locale and grouped under their first letter, with accents folded (Élan sits under E) and names that start with a number or a symbol under #. popular is a list of brand names to draw as tiles above the list, in that order. A tile shows the logo as a one-colour silhouette in the text colour, so pass a transparent SVG or PNG, or the brand's initials when there is no logo. The A to Z bar fills the width, scrolls sideways on a phone (the next letter peeks in to say so, and a search scrolls it to the first letter that still has a brand), sticks to the top (or below the CSS variable --sticky-top, which you set to the height of your own sticky header) and shows the letters that have no brand without linking them. The search field filters as you type, ignoring case and accents; the bar follows the matches, a polite status says how many brands match, and an empty result offers to show all brands. Every group is an h3 that a screen reader hears as 'Brands starting with A', and the columns balance on a wide screen and become one on a phone. linkAs renders every link with your router's Link: the links are drawn on the server and handed to the searchable part, so it works from a Server Component, and without JavaScript the whole list is there. With no brands at all it says so, with no count above it. locale, title, description, headingAs and labels do the usual."
+    },
+    {
+      "name": "brand-index-demo",
+      "type": "registry:example",
+      "title": "Brand index demo",
+      "description": "A working preview of Brand index.",
+      "registryDependencies": [
+        "https://rhsui.com/r/brand-index.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/brand-index-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reviews-to-write",
+      "type": "registry:block",
+      "title": "Reviews to write",
+      "description": "Delivered products waiting for a review: a star pick per product that folds into a thank-you, with Write a review and a Skip that can be undone.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/reviews-to-write/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/reviews-to-write/index.tsx"
+        },
+        {
+          "path": "registry/commerce/reviews-to-write/reviews.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/reviews-to-write/reviews.ts"
+        }
+      ],
+      "docs": "Pass items: id, name, an optional variant, image, href and reviewHref, deliveredAt (an ISO date, written as '12 May' in locale and timeZone) and an optional rating when the customer already gave stars somewhere else, such as an order email: the row then starts as a thank-you. Picking a star calls onRate(id, rating). A click or a tap answers at once; with the keyboard the arrow keys move through the stars and Space or Enter gives the answer, as does moving focus away from them; only three seconds without a change give it for the person. The row folds into 'Thanks, you gave it 4 out of 5: Very good.' with an 'Add a few words' link, an anchor when the item has reviewHref and otherwise a button that calls onWrite(id, rating), and a 'Change' button that brings the stars back so a slip can be put right: the next answer calls onRate again. Return a promise from onRate: if it rejects, the row goes back to its stars and says so. Skip calls onSkip(id), closes the row and shows a toast with Undo, which calls onUnskip(id): mount the RHS UI Toaster once in your app. Focus follows the row that folds, leaves or comes back, a polite status says what happened, and when nothing is left an empty state says so kindly. ratingWords and every other word are in labels."
+    },
+    {
+      "name": "reviews-to-write-demo",
+      "type": "registry:example",
+      "title": "Reviews to write demo",
+      "description": "A working preview of Reviews to write.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reviews-to-write.json",
+        "https://rhsui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reviews-to-write-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pickup-ready-card",
+      "type": "registry:block",
+      "title": "Pickup ready card",
+      "description": "Your order is ready to collect: a large pickup code with copy and a QR slot, the shop, today's hours, what to bring and how long it is held.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/pickup-ready-card/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/pickup-ready-card/index.tsx"
+        },
+        {
+          "path": "registry/commerce/pickup-ready-card/pickup.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/pickup-ready-card/pickup.ts"
+        }
+      ],
+      "docs": "Pass order, code, store ({ name, address: string[], phone }), hours (today's opening hours in words), heldUntil, bring (a list; it defaults to a photo ID and the code), directionsHref and, for shops that scan, qr: a QR code from your own library, drawn in a white box so it reads in the dark theme too. heldUntil is a date such as '2026-10-30', which holds the order through the end of that day in timeZone, or a date-time, which holds it until then; it is written as a <time> element. Once it has passed the card says 'Pickup window ended', takes the code out of use, drops the copy button and the QR code and shows a contact line with the shop's number as a tel: link, and a polite status says so once. Pass now from the server for a first render that matches the browser's; without it the browser's clock is read after the page has loaded and again when the tab comes back or a minute passes. The code is plain selectable text and is read out one character at a time. The shop and the hours sit beside their words once the card is wide enough and under them in a narrow column. onCopy receives the code. locale, timeZone, headingAs and labels do the usual."
+    },
+    {
+      "name": "pickup-ready-card-demo",
+      "type": "registry:example",
+      "title": "Pickup ready card demo",
+      "description": "A working preview of Pickup ready card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pickup-ready-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pickup-ready-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trade-account-application",
+      "type": "registry:block",
+      "title": "Trade account application",
+      "description": "A dealer or trade account request: company and VAT details, business type, expected spend and a reference, then what happens next.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/file-trigger.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/trade-account-application/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-account-application/index.tsx"
+        },
+        {
+          "path": "registry/commerce/trade-account-application/confirmation.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-account-application/confirmation.tsx"
+        },
+        {
+          "path": "registry/commerce/trade-account-application/options.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-account-application/options.tsx"
+        },
+        {
+          "path": "registry/commerce/trade-account-application/validate.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-account-application/validate.ts"
+        },
+        {
+          "path": "registry/commerce/trade-account-application/words.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-account-application/words.ts"
+        }
+      ],
+      "docs": "onSubmit(values) receives the company name, registration number, VAT number (cleaned, in capitals), country code, contact name, job title, email, phone, the businessType and monthlySpend values, the attached reference File or null and acceptedTerms. Return a string to say the shop could not take it: it is shown at the top and every answer stays. Return nothing, or resolve, and the form is replaced by the confirmation. The checks run on send: company, registration and VAT numbers (two letters, then the number), country, name, email, a phone with at least six digits when one is given, the type, the spend and the terms. The problems are listed in a group at the top that takes focus and links to each field, and a field that shows one is checked again as it changes. businessTypes (value, title, description, icon) are the cards, spendBands (value, label) fill the select and countries is a list of ISO codes written in locale. The business types sit in one column until the form itself is wide enough for two cards, and every required answer is marked as required for assistive technology. termsHref makes the words 'trade terms' a link, reviewDays is the promise (default 2) and defaultValues prefills. submitted shows the confirmation for answers a page has already taken: what was given, what happens next (the steps are in labels) and a link to shopHref. It is not a <form> element, because Radix inputs inside one make React warn in development, but Enter in a text field still sends it. Every word is in labels."
+    },
+    {
+      "name": "trade-account-application-demo",
+      "type": "registry:example",
+      "title": "Trade account application demo",
+      "description": "A working preview of Trade account application.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trade-account-application.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trade-account-application-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "delivery-instructions",
+      "type": "registry:block",
+      "title": "Delivery instructions",
+      "description": "Where the courier should leave it: hand over, door, neighbour or locker, with the safe choice first and only the fields that choice needs.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/textarea-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/delivery-instructions/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/delivery-instructions/index.tsx"
+        },
+        {
+          "path": "registry/commerce/delivery-instructions/instructions.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/delivery-instructions/instructions.tsx"
+        }
+      ],
+      "docs": "A fieldset that is controlled with value and onChange or keeps its own state from defaultValue; the value is { dropOff, neighbour, code, phone, note, saveAsDefault }. options (value, title, description, icon, flag, fields) are the cards, safest first: description is the line about the risk the choice carries, flag is a short word such as 'Safest', and fields lists which of 'neighbour', 'code', 'phone' and 'note' that choice needs. Only those fields are shown, in place, and a polite status names the choice and the fields that appeared. The layout answers to the width of the fieldset, not of the screen: the cards sit one above the other until there is room for two, so it also works in a drawer or beside a sidebar on a wide screen. The code and the phone number share a row, and whichever of them is asked for alone takes the whole row. The access or gate code is masked with a button to show it, the note is a textarea with a counter against noteLimit (default 200) and showPhone={false} leaves out the phone number for the courier. Under 'Save as my default for future orders' a line says in words whether the instructions apply to this order only or to the next ones too. locale joins the list that is read out after a choice and labels holds every word."
+    },
+    {
+      "name": "delivery-instructions-demo",
+      "type": "registry:example",
+      "title": "Delivery instructions demo",
+      "description": "A working preview of Delivery instructions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/delivery-instructions.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/delivery-instructions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trade-credit-summary",
+      "type": "registry:block",
+      "title": "Trade credit summary",
+      "description": "A trade customer's credit at a glance: what is available, a meter that warns in words, payment terms, what is overdue and the next due date.",
+      "categories": [
+        "commerce",
+        "commerce"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "commerce"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/meter.json",
+        "https://rhsui.com/r/money.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/trade-credit-summary/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-credit-summary/index.tsx"
+        },
+        {
+          "path": "registry/commerce/trade-credit-summary/credit.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/commerce/trade-credit-summary/credit.ts"
+        }
+      ],
+      "docs": "Pass limit and used in minor units, terms in words ('30 days net'), nextDue ({ date, amount }) and overdue ({ amount, count, since }); account is a line under the heading. The big figure is what is available to spend and the meter shows what is used. It warns in words from warnAt (default 0.8) of the limit, 'You have used 91% of your credit. An order over €2,250.00 may wait until a payment clears.', and says so when nothing is left. The meter, the badge and the words read the same unrounded share, so they agree on where 'near' begins; the meter turns red from 95 percent, or from warnAt when that is higher. The badge reads Good standing, Near your limit, Limit reached, Payment overdue or On hold, always as words with a glyph. overdue gets its own line with the amount, how many invoices and the oldest due date, and a Pay now button when onPay is passed: return a promise and it shows it is working; reject and the line says the payment could not start. blocked ({ reason, contact }) puts a notice at the top, takes the figure to zero and says who to call. requestForm is a slot that opens under 'Request a higher limit' (defaultRequestOpen opens it at first) and onRequestIncrease is called when it opens; without a form the button only calls it, and without either there is no button. The limit, the terms and the next due date sit beside their words once the card is wide enough and under them in a narrow column. Due dates are <time> elements, every amount is in tabular figures, and currency, locale, timeZone, headingAs and labels do the usual."
+    },
+    {
+      "name": "trade-credit-summary-demo",
+      "type": "registry:example",
+      "title": "Trade credit summary demo",
+      "description": "A working preview of Trade credit summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/trade-credit-summary.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trade-credit-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "metric-strip",
       "type": "registry:component",
       "title": "Metric strip",

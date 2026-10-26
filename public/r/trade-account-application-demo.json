@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trade-account-application-demo",
+  "title": "Trade account application demo",
+  "description": "A working preview of Trade account application.",
+  "registryDependencies": [
+    "https://rhsui.com/r/trade-account-application.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/trade-account-application-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { TradeAccountApplication, type TradeApplicationValues } from \"@rhs-ui/commerce/trade-account-application\";\n\nconst SENT: TradeApplicationValues = {\n  companyName: \"Fieldwork Kitchens B.V.\",\n  registrationNumber: \"81234567\",\n  vatNumber: \"NL862345678B01\",\n  country: \"NL\",\n  contactName: \"Sanne de Vries\",\n  jobTitle: \"Purchasing manager\",\n  email: \"sanne@fieldwork.example\",\n  phone: \"+31 6 5555 0142\",\n  businessType: \"restaurant\",\n  monthlySpend: \"10000-25000\",\n  reference: typeof File === \"undefined\" ? null : new File([\"supplier invoice\"], \"supplier-invoice-0921.pdf\", { type: \"application/pdf\" }),\n  acceptedTerms: true,\n};\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nfunction Example({ caption, note, children }: { caption: string; note?: ReactNode; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n      {note ? (\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">\n          {note}\n        </p>\n      ) : null}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [log, setLog] = useState(\"Send it empty to see the list of problems, or use the VAT number NL000000000B00 to see a send that fails and keeps every answer.\");\n  return (\n    <div className=\"mx-auto grid w-full max-w-4xl min-w-0 gap-16 px-4 py-10 sm:px-6 sm:py-14\">\n      <Example caption=\"A dealer asks for a trade account: three groups of fields, then the promise of an answer\" note={log}>\n        <TradeAccountApplication\n          termsHref=\"#trade-terms\"\n          shopHref=\"#shop\"\n          locale=\"en-GB\"\n          reviewDays={2}\n          onSubmit={async (values) => {\n            await wait(900);\n            if (values.vatNumber === \"NL000000000B00\") return \"We could not check that VAT number against the register. Check it and send again.\";\n            setLog(`onSubmit received ${values.companyName}, ${values.vatNumber}, ${values.businessType}, ${values.monthlySpend}`);\n          }}\n        />\n      </Example>\n      <div className=\"border-t border-border pt-12\">\n        <Example caption=\"After a send the form is replaced by the confirmation, which a page can also show on its own with the answers it saved\">\n          <TradeAccountApplication headingAs=\"h3\" submitted={SENT} shopHref=\"#shop\" locale=\"en-GB\" reviewDays={2} />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

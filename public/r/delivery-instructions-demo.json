@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "delivery-instructions-demo",
+  "title": "Delivery instructions demo",
+  "description": "A working preview of Delivery instructions.",
+  "registryDependencies": [
+    "https://rhsui.com/r/delivery-instructions.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/delivery-instructions-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { IconMailbox, IconUserCheck } from \"@rhs-ui/icons\";\nimport { DeliveryInstructions, type DeliveryInstructionsValue, type DeliveryOption } from \"@rhs-ui/commerce/delivery-instructions\";\n\n/** A shop that offers two ways to receive the parcel: only the cards it passes are drawn. */\nconst TWO_WAYS: readonly DeliveryOption[] = [\n  { value: \"hand\", title: \"Hand it to me\", description: \"Someone has to be home, so nothing is left outside.\", flag: \"Safest\", icon: <IconUserCheck />, fields: [\"phone\", \"note\"] },\n  { value: \"locker\", title: \"Use a parcel locker\", description: \"Collect it with a code within 3 days. Nobody has to be home.\", icon: <IconMailbox />, fields: [] },\n];\n\nfunction Example({ caption, note, children }: { caption: string; note?: ReactNode; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n      {note ? <p className=\"text-xs text-muted-foreground\">{note}</p> : null}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<DeliveryInstructionsValue>({\n    dropOff: \"neighbour\",\n    neighbour: \"14, Van Dijk (left of the green gate)\",\n    code: \"4821\",\n    phone: \"+31 6 5555 0142\",\n    note: \"The bell is quiet, so knock twice. The parcel is fragile.\",\n    saveAsDefault: false,\n  });\n  return (\n    <div className=\"mx-auto grid w-full max-w-2xl min-w-0 gap-14 px-4 py-10 sm:px-6 sm:py-14\">\n      <Example caption=\"Controlled: choosing a neighbour brings in their address, the gate code, a phone number and a note\" note={`value.dropOff is \"${value.dropOff}\", and the code has ${value.code.length} characters.`}>\n        <DeliveryInstructions value={value} onChange={setValue} locale=\"en-GB\" />\n      </Example>\n      <Example caption=\"Left to itself, with no phone number asked for and a shorter note\">\n        <DeliveryInstructions defaultValue={{ dropOff: \"door\" }} showPhone={false} noteLimit={120} locale=\"en-GB\" />\n      </Example>\n      <Example caption=\"In a checkout drawer or a side column the cards stack, whatever the width of the screen; this shop offers two ways\">\n        <div className=\"max-w-sm min-w-0\">\n          <DeliveryInstructions options={TWO_WAYS} defaultValue={{ dropOff: \"locker\" }} locale=\"en-GB\" />\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
