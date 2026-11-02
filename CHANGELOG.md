@@ -85,6 +85,7 @@ own `meta.version` and are listed when they change.
 - Commerce, 4 more: `address-confirm-dialog`, `offer-list`, `line-items-table`, `price-matrix`.
 - Primitives, 9 more: `quick-phrases-field`, `number-range-field`, `code-field`, `variable-textarea`, `sms-message-field`, `limit-field`, `filename-field`, `image-url-field`, `color-area-picker`.
 - Marketing, 8 more: `feature-filter-grid`, `feature-carousel`, `feature-with-quote`, `feature-outcomes`, `capability-questions`, `good-fit-section`, `deployment-options`, `platform-availability`.
+- Application, 10 more: `terms-update-gate`, `workspace-url-sign-in`, `phone-sign-in`, `device-code-entry`, `pin-lock-screen`, `relative-time`, `expandable-text`, `priority-indicator`, `testimonial-card`, `article-card`.
 
 ## Unreleased (0.7.0)
 

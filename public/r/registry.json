@@ -36995,6 +36995,550 @@
       ]
     },
     {
+      "name": "terms-update-gate",
+      "type": "registry:block",
+      "title": "Terms update gate",
+      "description": "A re-consent gate for changed legal text: what changed in plain lines, the full documents, one unticked box, and a Continue that says why it waits.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/separator.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/terms-update-gate.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/terms-update-gate.tsx"
+        }
+      ],
+      "docs": "effectiveDate is when the new terms apply (a Date, an ISO string or a timestamp, written with locale and timeZone, default en-US and UTC; a date-only string such as 2026-12-01 is a calendar day and is written as that day in any zone) and versionLabel names the version in a chip. changes is three to five plain sentences, { text, href?, linkLabel? }; an href adds a link after the sentence. documents is the list of { label, href } links to the full text, which open in new tabs so the gate stays where it is. excerpt (any markup) adds a box that scrolls, named by excerptTitle, with its scrollbar always drawn and a ring around the box while it has the keyboard focus. The consent box starts unticked and cannot start any other way. Continue is aria-disabled until it is ticked but stays reachable: pressing it early moves the focus to the box, marks it invalid, and a line under the buttons says why in words. onAccept() records the consent and may return a promise (the button is busy while it runs; a rejection shows a message and keeps the tick). Once it resolves the card shows Thank you, you are all set, says it politely and moves the focus to it, and onAccepted runs acceptedDelay ms later (default 1200), so a screen reader has spoken before the page changes: navigate there, not in onAccept. onDecline() is a button of the same size as Continue, next to a note saying what declining does. defaultDone starts on the accepted state for a preview; footer, titleAs and labels (every word, with {date}) work as in the other auth cards."
+    },
+    {
+      "name": "terms-update-gate-demo",
+      "type": "registry:example",
+      "title": "Terms update gate demo",
+      "description": "A working preview of Terms update gate.",
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/terms-update-gate.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/terms-update-gate-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "workspace-url-sign-in",
+      "type": "registry:block",
+      "title": "Workspace URL sign-in",
+      "description": "Sign in to a workspace by its address: your domain after the name, recent workspaces that skip the typing, and a way to find a forgotten one.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/workspace-url-sign-in/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workspace-url-sign-in/index.tsx"
+        },
+        {
+          "path": "registry/application/workspace-url-sign-in/slug.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/workspace-url-sign-in/slug.ts"
+        }
+      ],
+      "docs": "domain is your product's domain, written after the field as .example.com. The field cleans what is typed or pasted: lower case, no spaces, only letters, digits and hyphens, and a whole address such as https://Acme.example.com/login leaves acme (cleanWorkspaceSlug is exported from workspace-url-sign-in/slug). Enter submits. onContinue(slug) returns an error message or nothing: a message (it may contain {address}, filled with the address that was tried, acme.example.com) is announced against the field, which keeps the value, selects it and takes the focus; nothing means go, and that is where you navigate. A throw shows a general message. recent is { slug, name, logo? }[]: each row is a button that skips the typing and shows busy while it opens; in a card narrower than 22rem the hover arrow of a row is dropped, so the address has the room. onRemoveRecent adds a remove button per row that turns the row into a question (Remove Northwind Studio from this device?) with Keep focused and Escape to cancel; resolve and drop the item from recent and the focus moves to the next row. onFindWorkspace adds Forgot your workspace address? for an email lookup. defaultSlug, defaultError and defaultConfirming set the start for previews; footer, titleAs and labels work as in the other auth cards."
+    },
+    {
+      "name": "workspace-url-sign-in-demo",
+      "type": "registry:example",
+      "title": "Workspace URL sign-in demo",
+      "description": "A working preview of Workspace URL sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/workspace-url-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/workspace-url-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "phone-sign-in",
+      "type": "registry:block",
+      "title": "Phone sign-in",
+      "description": "Sign in with a phone number: a country code and number checked on blur, a text with a code, then six boxes with resend and a way to change the number.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/otp-input.json",
+        "https://rhsui.com/r/phone-input.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/phone-sign-in/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/phone-sign-in/index.tsx"
+        },
+        {
+          "path": "registry/application/phone-sign-in/phone.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/phone-sign-in/phone.ts"
+        }
+      ],
+      "docs": "onRequestCode(phone) receives the number in the international form, +31612345678 (the phone field's own output), and resolves whether or not the number has an account; reject only when the request itself failed. The first step catches a number that cannot be right when the field is left and again on submit, with the shape it should have in words (Enter a Dutch number: 9 digits after +31, like 6 12 34 56 78 for the eight countries of the field, a length rule for any other); phoneProblem and formatPhone are exported from phone-sign-in/phone. Step two shows the number as +31 6 12 34 56 78 with Change number (which also stops the resend wait and clears what was last said), and codeLength boxes (default 6): the first asks the phone to offer the code from the message, pasting fills them all, and the last digit calls onVerify(code), which resolves true (sign in and navigate) or false: a wrong code is announced once, the boxes are cleared and the first has the focus. Resend code waits resendAfter seconds (default 30), counting down in tabular figures from timestamps, and speaks only when the wait starts and when it ends. smsNotice is the optional line about message rates, onUseEmail adds Use email instead, defaultCountry and countries go to the phone field. defaultPhone, defaultSent, defaultError and defaultCodeError set the start for previews; footer, titleAs and labels work as in the other auth cards."
+    },
+    {
+      "name": "phone-sign-in-demo",
+      "type": "registry:example",
+      "title": "Phone sign-in demo",
+      "description": "A working preview of Phone sign-in.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/phone-sign-in.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/phone-sign-in-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "device-code-entry",
+      "type": "registry:block",
+      "title": "Device code entry",
+      "description": "The page behind a CLI or TV login: type the short code from the device, check which device it is, then approve or deny.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/otp-input.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/device-code-entry/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/device-code-entry/index.tsx"
+        },
+        {
+          "path": "registry/application/device-code-entry/code.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/device-code-entry/code.ts"
+        }
+      ],
+      "docs": "onSubmitCode(code) receives the code as the device shows it, in groups (WDJB-MJHT), and returns { deviceName, location?, requestedAt? } to move on, or a string for a code that is wrong or expired, which is announced and leaves the code in the boxes for correcting; a throw shows a general message. The boxes take only the characters of alphabet (default twenty consonants, so O and 0 can never be confused; cleanDeviceCode and formatDeviceCode are exported from device-code-entry/code): letters are upper-cased as typed, a character outside the alphabet is stopped before it lands and named in a polite line, and pasting works in any case, with or without the hyphen. codeLength (default 8) and groupAfter (default 4) shape the boxes. Step two asks Connect {client} on {device}? (clientName and account are yours) with the device, its approximate location, when it asked (written with locale and timeZone, with the zone's name after the time) and the code as facts, the line Only continue if you started this on your own device, and Approve and Deny as two buttons of one size; onApprove and onDeny may return promises, and the answer is shown and announced. defaultCode, defaultError, defaultRequest and defaultOutcome set the start for previews; locale, timeZone, footer, titleAs and labels work as in the other auth cards."
+    },
+    {
+      "name": "device-code-entry-demo",
+      "type": "registry:example",
+      "title": "Device code entry demo",
+      "description": "A working preview of Device code entry.",
+      "registryDependencies": [
+        "https://rhsui.com/r/device-code-entry.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/device-code-entry-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pin-lock-screen",
+      "type": "registry:block",
+      "title": "PIN lock screen",
+      "description": "A locked-session screen with a numeric keypad: avatar, dots that fill as digits land, a shake on a wrong PIN and a way out to sign out.",
+      "categories": [
+        "application",
+        "auth"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "auth"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/pin-lock-screen.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/application/pin-lock-screen.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-pin-shake": "rhs-pin-shake 420ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both"
+        }
+      },
+      "css": {
+        "@keyframes rhs-pin-shake": {
+          "10%, 90%": {
+            "transform": "translateX(-2px)"
+          },
+          "20%, 80%": {
+            "transform": "translateX(4px)"
+          },
+          "30%, 50%, 70%": {
+            "transform": "translateX(-7px)"
+          },
+          "40%, 60%": {
+            "transform": "translateX(7px)"
+          }
+        }
+      },
+      "docs": "user is { name, image?, detail? }; lockedAt (written as a clock time with locale and timeZone) and length (default 4) shape the screen. The keypad is a plain grid of buttons; the number row, Backspace and Escape work too, a held key does not repeat, and keyboard={false} turns the listener off. The dots are drawn only: a polite status says 3 of 4 digits entered, and the digits themselves are never written into the page. When the last digit lands onUnlock(pin) runs and resolves true (unlock) or false: the dots turn red and shake once (not under reduced motion), the PIN clears and Wrong PIN, 2 tries left is announced from attemptsLeft, which you count. With attemptsLeft at 0 the keys stop and Sign out is the way on. busy holds the keys while something of yours checks; onForgot and onSignOut add the two buttons. defaultWrong starts with the wrong-PIN message for a preview; titleAs and labels work as in the other auth cards. The screen fills the viewport (min-h-dvh), and the rhs-pin-shake keyframes are added to your CSS with it."
+    },
+    {
+      "name": "pin-lock-screen-demo",
+      "type": "registry:example",
+      "title": "PIN lock screen demo",
+      "description": "A working preview of PIN lock screen.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/pin-lock-screen.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pin-lock-screen-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "relative-time",
+      "type": "registry:component",
+      "title": "Relative time",
+      "description": "A time element that reads '5 minutes ago', keeps itself current without ticking, and shows the exact date, time and zone in a tooltip.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/relative-time/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/relative-time/index.tsx"
+        },
+        {
+          "path": "registry/application/relative-time/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/relative-time/format.ts"
+        }
+      ],
+      "docs": "value is the moment (a Date, an ISO string or a timestamp). The words are cut, never rounded up: 59 minutes never reads 1 hour, and yesterday is the previous calendar day in timeZone, not 24 hours ago. After threshold days (default 7; Infinity never, 0 always) the words give way to a date written by format (short, medium, long, datetime, or your own Intl options). The text is rewritten at the moments it changes, with one timer that waits for the next change instead of ticking; updateEvery (seconds, default 60) is the longest it goes without a check and 0 reads the clock once. Nothing runs while the tab is hidden and nothing is announced. now pins the clock for tests, previews and words in server HTML; without it the server and the first paint write the date with its year and the words take over once the browser's clock is known. The exact moment sits in datetime, in a tooltip that hover, tap and (with focusable) keyboard focus open, and in text for screen readers; tooltip={false} leaves it in the title. justNow words a time under a minute. relative-time/format exports the same functions (relativeText, dateText, exactText) for a Server Component."
+    },
+    {
+      "name": "relative-time-demo",
+      "type": "registry:example",
+      "title": "Relative time demo",
+      "description": "A working preview of Relative time.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/relative-time.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/relative-time-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "expandable-text",
+      "type": "registry:component",
+      "title": "Expandable text",
+      "description": "Long text folded to a few lines, with a Show more toggle that appears only when something is actually hidden and moves the height.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/expandable-text.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/expandable-text.tsx"
+        }
+      ],
+      "docs": "children is the text; lines (default 3) is how many lines show folded. The text is measured with a ResizeObserver against the height of those lines, again on resize, on a text change and when a web font arrives, so the toggle exists only while something is cut. In the browser the first measure runs before the first paint, so a client render never shows the toggle late; in server-rendered HTML it appears once the page is live. The whole text is always in the DOM and folded by CSS (a line clamp), so search, translation and screen readers have all of it; the toggle has aria-expanded and aria-controls. Controlled with expanded and onExpandedChange, or uncontrolled with defaultExpanded. moreLabel and lessLabel are the words on the toggle. The height moves over 200ms with the ellipsis switched off for that time, and snaps under reduced motion. textClassName styles the paragraph, className the wrapper; the line height must be a real length (leading-relaxed, not normal)."
+    },
+    {
+      "name": "expandable-text-demo",
+      "type": "registry:example",
+      "title": "Expandable text demo",
+      "description": "A working preview of Expandable text.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/expandable-text.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/expandable-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "priority-indicator",
+      "type": "registry:component",
+      "title": "Priority indicator",
+      "description": "Priority as a drawn mark and a word: urgent, high, medium, low or none, readable without colour, and optionally a menu to change it.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/priority-indicator/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/priority-indicator/index.tsx"
+        },
+        {
+          "path": "registry/application/priority-indicator/glyph.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/priority-indicator/glyph.tsx"
+        }
+      ],
+      "docs": "priority is urgent, high, medium, low or none. Low, medium and high are three ascending bars with 1, 2 and 3 filled; urgent is a filled square with an exclamation mark cut out of it; none is three flat dashes. Each level has its own shape, so it reads in one colour and without colour vision, and the word is real text. size is sm (14px mark, 12px type), md (16px, 14px) or lg (20px, 16px) on one 16 unit grid. showLabel={false} keeps the mark alone, with the word in a tooltip and in the text a screen reader hears (Priority: High). editable makes it a button that opens a menu of the five levels; onPriorityChange receives the choice and the mark follows the priority you pass, so the value stays yours. labels translates the five words, label is the noun a screen reader hears first and menuLabel the menu heading. PriorityGlyph, PRIORITIES and PRIORITY_WORDS are exported from priority-indicator/glyph for a Server Component or a table cell of your own."
+    },
+    {
+      "name": "priority-indicator-demo",
+      "type": "registry:example",
+      "title": "Priority indicator demo",
+      "description": "A working preview of Priority indicator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/priority-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/priority-indicator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-card",
+      "type": "registry:component",
+      "title": "Testimonial card",
+      "description": "One customer quote as a card: the words, the person with a portrait or initials, their role and an optional rating written in words.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/expandable-text.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/testimonial-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/testimonial-card.tsx"
+        }
+      ],
+      "docs": "quote and author ({ name, role?, company?, image? }) are all it needs. It renders a figure with the quote in a blockquote and the person in its figcaption, so the attribution belongs to the quote. rating (0 to ratingMax, default 5, halves allowed) draws stars and is written in words for screen readers (Rated 5 out of 5, translated with labels.rated). A quote longer than lines (6, or 7 when featured) folds with a Read more toggle. href makes the name a link whose target covers the card, with the toggle staying a button on top of it. featured sets one quote larger on a tinted surface. The card has no margin and no width of its own, fills the height of its grid cell and pins the person to the bottom, so it drops into grids, carousels and marquees as it is. It is a Server Component."
+    },
+    {
+      "name": "testimonial-card-demo",
+      "type": "registry:example",
+      "title": "Testimonial card demo",
+      "description": "A working preview of Testimonial card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonial-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "article-card",
+      "type": "registry:component",
+      "title": "Article card",
+      "description": "A post or article preview as a single link: cover, topic, date, headline, summary, author and reading time, vertical or horizontal.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/article-card.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/article-card.tsx"
+        }
+      ],
+      "docs": "href, title, excerpt, image ({ src, alt?, width?, height?, placeholder? }), category, author ({ name, image? }), date, readingTime and orientation. The headline is the link and its target stretches over the whole card, so a click anywhere on it opens the article (the text on it cannot be selected by dragging) and the focus ring goes around the whole card. The cover is boxed in a fixed shape (aspect, default 1.6) from the first paint, with a blurred placeholder behind it (a tiny data URL, the way Next.js hands one over), so a list never jumps while pictures arrive; media replaces the plain img with your own element, such as next/image with fill. The headline is cut to two lines and the summary to three, and the author sits at the bottom, so cards of different lengths line up in a grid. date becomes a time element written with locale and timeZone (default en-US and UTC; a date-only string such as 2026-10-14 is a calendar day, written as that day in any zone and kept as it is in datetime). orientation horizontal puts the picture beside the text once the card itself is 40rem wide, by container query, and stacks it in a narrower one. titleAs sets the heading element. It is a Server Component."
+    },
+    {
+      "name": "article-card-demo",
+      "type": "registry:example",
+      "title": "Article card demo",
+      "description": "A working preview of Article card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/article-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/article-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
