@@ -10967,6 +10967,449 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "week-picker",
+      "type": "registry:ui",
+      "title": "Week picker",
+      "description": "Pick a whole week for timesheets and reports: Week 43 with its dates, arrows to step, and a grid where a click on any day takes the row.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/week-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/week-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/week-picker/weeks.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/week-picker/weeks.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { start, end, week, year } with ISO dates; only value.start is read, and week counts in its own year (2025-12-29 is week 1 of 2026). numbering is iso (Monday start) or us (Sunday start). Without now the browser's clock is read, so the server renders no today marker."
+    },
+    {
+      "name": "week-picker-demo",
+      "type": "registry:example",
+      "title": "Week picker demo",
+      "description": "A working preview of Week picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/week-picker.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/week-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dimensions-field",
+      "type": "registry:ui",
+      "title": "Dimensions field",
+      "description": "Width by height in one field, with a lock that keeps the aspect ratio: change either side and the other follows the ratio set when you locked it.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/dimensions-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dimensions-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/dimensions-field/dimensions.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dimensions-field/dimensions.ts"
+        },
+        {
+          "path": "registry/primitives/dimensions-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/dimensions-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { width, height, locked }; a size is a number between min (1) and max, or null while its field is empty. The lock keeps the ratio the sizes had when it went on, so rounding never drifts. name adds hidden inputs <name>-width and <name>-height."
+    },
+    {
+      "name": "dimensions-field-demo",
+      "type": "registry:example",
+      "title": "Dimensions field demo",
+      "description": "A working preview of Dimensions field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dimensions-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dimensions-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "height-field",
+      "type": "registry:ui",
+      "title": "Height field",
+      "description": "A height in centimetres or in feet and inches, with a unit switch that converts what is typed and always reports one number in centimetres.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/height-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/height-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/height-field/heights.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/height-field/heights.ts"
+        },
+        {
+          "path": "registry/primitives/height-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/height-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value speaks whole centimetres whatever unit was typed, or null; the second argument of onValueChange says whether it is inside min and max (50 and 250), and a height outside them is still reported. unit and onUnitChange control the cm / ftin switch; without unit the field guesses from locale. Switching never changes the stored height."
+    },
+    {
+      "name": "height-field-demo",
+      "type": "registry:example",
+      "title": "Height field demo",
+      "description": "A working preview of Height field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/height-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/height-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shorthand-number-field",
+      "type": "registry:ui",
+      "title": "Shorthand number field",
+      "description": "Type 250k, 1.2M or 3b and it understands: a number field that reads shorthand, shows the full figure under it and reports a plain number.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/shorthand-number-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shorthand-number-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/shorthand-number-field/shorthand.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shorthand-number-field/shorthand.ts"
+        },
+        {
+          "path": "registry/primitives/shorthand-number-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shorthand-number-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak a plain number, or null when the field was emptied or could not be read; the second argument says whether it is inside min and max, and a number outside them is still reported. It commits on Enter or when the field is left, never while typing. 1,2k and 1.2k both read as 1200."
+    },
+    {
+      "name": "shorthand-number-field-demo",
+      "type": "registry:example",
+      "title": "Shorthand number field demo",
+      "description": "A working preview of Shorthand number field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shorthand-number-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shorthand-number-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "natural-date-field",
+      "type": "registry:ui",
+      "title": "Natural date field",
+      "description": "Type a date the way you would say it, such as tomorrow, next friday or in 3 weeks, and see the date it was understood as before you commit.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/calendar.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/natural-date-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/natural-date-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/natural-date-field/natural.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/natural-date-field/natural.ts"
+        },
+        {
+          "path": "registry/primitives/natural-date-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/natural-date-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak an ISO date (2026-10-23) or null; the second argument says whether it is inside min and max. Pass now and timeZone so tomorrow is the same day on the server and in the browser. The calendar button's Calendar reads the browser's own clock. parseNaturalDate is the parser as a function."
+    },
+    {
+      "name": "natural-date-field-demo",
+      "type": "registry:example",
+      "title": "Natural date field demo",
+      "description": "A working preview of Natural date field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/natural-date-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/natural-date-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wheel-picker",
+      "type": "registry:ui",
+      "title": "Wheel picker",
+      "description": "Scrolling columns that snap to a value, for times, durations and numbers on a phone: swipe, tap or use the arrow keys.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/wheel-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/wheel-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/wheel-picker/wheel.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/wheel-picker/wheel.ts"
+        }
+      ],
+      "docs": "columns is a list of { id, options, loop, label }, and wheelRange(from, to, { step, pad }) from wheel-picker/wheel writes numbers as options. value and onValueChange speak an array with the chosen value of every column, reported when a swipe comes to rest. It draws no surface of its own: put it on a card, or in a Drawer."
+    },
+    {
+      "name": "wheel-picker-demo",
+      "type": "registry:example",
+      "title": "Wheel picker demo",
+      "description": "A working preview of Wheel picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/wheel-picker.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/drawer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wheel-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "currency-exchange-field",
+      "type": "registry:ui",
+      "title": "Currency exchange field",
+      "description": "You send, they get: two linked amounts in two currencies tied together by the rates you supply, so editing either side updates the other.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/currency-exchange-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/currency-exchange-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/currency-exchange-field/exchange.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/currency-exchange-field/exchange.ts"
+        },
+        {
+          "path": "registry/primitives/currency-exchange-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/currency-exchange-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { send, receive, fixed }: each side is { minor, currency } in minor units (1250 is 12.50 in euros and 1,250 in yen) and fixed is the side typed last. rates is a table or a function (from, to) => rate. min, max and fee.flat are minor units of the currency sent, so pass one figure per currency code when several can be sent."
+    },
+    {
+      "name": "currency-exchange-field-demo",
+      "type": "registry:example",
+      "title": "Currency exchange field demo",
+      "description": "A working preview of Currency exchange field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/currency-exchange-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/currency-exchange-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "time-estimate-field",
+      "type": "registry:ui",
+      "title": "Time estimate field",
+      "description": "Type 1h 30m, 90m or 1.5h and it understands: a text field that parses durations the way task trackers do and shows what it read.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/time-estimate-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-estimate-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/time-estimate-field/estimates.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-estimate-field/estimates.ts"
+        },
+        {
+          "path": "registry/primitives/time-estimate-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/time-estimate-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak minutes, or null when the field was emptied or could not be read; the second argument says whether it is inside max, and a longer estimate is still reported. It commits on Enter or when the field is left and rewrites the text as 1h 30m. A day is hoursPerDay hours (8) and a week daysPerWeek days (5)."
+    },
+    {
+      "name": "time-estimate-field-demo",
+      "type": "registry:example",
+      "title": "Time estimate field demo",
+      "description": "A working preview of Time estimate field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/time-estimate-field.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/time-estimate-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
