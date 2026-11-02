@@ -84,6 +84,7 @@ own `meta.version` and are listed when they change.
 - Commerce, 9 more: `vat-price-field`, `card-fieldset`, `radio-accordion`, `rating-filter`, `product-pricing-fieldset`, `stock-adjust-field`, `category-nav`, `region-switcher`, `price-breakdown-popover`.
 - Commerce, 4 more: `address-confirm-dialog`, `offer-list`, `line-items-table`, `price-matrix`.
 - Primitives, 9 more: `quick-phrases-field`, `number-range-field`, `code-field`, `variable-textarea`, `sms-message-field`, `limit-field`, `filename-field`, `image-url-field`, `color-area-picker`.
+- Marketing, 8 more: `feature-filter-grid`, `feature-carousel`, `feature-with-quote`, `feature-outcomes`, `capability-questions`, `good-fit-section`, `deployment-options`, `platform-availability`.
 
 ## Unreleased (0.7.0)
 

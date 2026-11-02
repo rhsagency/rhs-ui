@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "good-fit-section-demo",
+  "title": "Good fit section demo",
+  "description": "A working preview of Good fit section.",
+  "registryDependencies": [
+    "https://rhsui.com/r/good-fit-section.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/good-fit-section-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { GoodFitSection } from \"@rhs-ui/marketing/good-fit-section\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Two honest lists on one surface: who it suits, with the action, and who it does not, with what to use instead\">\n        <GoodFitSection\n          align=\"center\"\n          eyebrow=\"Is it for you?\"\n          title=\"Who Kestrel is for, and who it is not\"\n          description=\"We would rather you know in two minutes than find out in two weeks.\"\n          fit={[\n            \"Your team is between 5 and 200 people\",\n            \"Work passes through three or more people before it is done\",\n            \"You want to see who owns what without having to ask\",\n            \"Decisions currently live in email and chat threads\",\n            \"You plan in weeks and quarters, not in minutes\",\n          ]}\n          notFit={[\n            \"You work on your own: a spreadsheet will do\",\n            \"You bill by the minute and need detailed timesheets\",\n            \"You run hundreds of linked projects with strict dependencies\",\n            \"Your company cannot use a cloud service\",\n          ]}\n          alternative={{ text: \"For one-person shops, a spreadsheet is enough. Here is ours, free.\", href: \"#spreadsheet\" }}\n          cta={{ label: \"Start your free trial\", href: \"#trial\" }}\n        />\n      </Example>\n      <div className=\"mx-auto mt-20 max-w-xl border-t border-border pt-12 sm:mt-24\">\n        <Example caption=\"In a narrow column the two lists stack, good fit first, each under its own heading\">\n          <GoodFitSection\n            headingLevel={3}\n            title=\"Is a retainer right for you?\"\n            fit={[\n              \"You will have design and development work every month\",\n              \"One person on your side can decide quickly\",\n              \"You would rather brief once than quote each job\",\n              \"You want the same two people on it, every month\",\n            ]}\n            notFit={[\n              \"You have a single launch to get out\",\n              \"You need a fixed price before we have talked\",\n              \"Your work comes in bursts, a few times a year\",\n              \"You want to run the project day to day yourself\",\n            ]}\n            alternative={{ text: \"For a single launch, a fixed-price project is the better start.\", href: \"#project\" }}\n            cta={{ label: \"Plan a retainer\", href: \"#retainer\" }}\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

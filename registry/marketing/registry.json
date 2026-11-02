@@ -7631,6 +7631,395 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "feature-filter-grid",
+      "type": "registry:block",
+      "title": "Feature filter grid",
+      "description": "A grid of many features with chips to filter by area or role, announcing how many are shown and holding its height so nothing jumps.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/feature-filter-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-filter-grid.tsx"
+        }
+      ],
+      "docs": "Pass features (an id, an icon, a title, a line, the ids of the groups it belongs to, and optionally an href and a tag) and groups (an id and a label for each chip after All). A chip is only offered when at least one feature belongs to it, and each shows how many features it holds. The chips are a toggle group: arrow keys move between them, Space or Enter chooses, Tab leaves, and choosing the chosen chip again changes nothing. Choosing a chip narrows the grid in place and says, politely, \"Showing 7 of 24 features\"; the grid keeps the height it had while the new cells arrive and then settles to its own, so the page below does not jump. Under reduced motion it changes at once. A feature can sit in several groups, and one with none shows only under All. With an href the whole cell is a link named by its title; its arrow shows on hover and focus, and always on a touch screen. The cells come in one, two or three columns by the width of the block, not of the screen. Use defaultGroup to start on a chip, or group and onGroupChange to control it (\"all\" is the id of the first chip), label to name the chips for assistive technology, headingLevel for the heading, and labels to translate the fixed words.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-feature-in": "rhs-feature-in 240ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards"
+        }
+      },
+      "css": {
+        "@keyframes rhs-feature-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(6px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      }
+    },
+    {
+      "name": "feature-filter-grid-demo",
+      "type": "registry:example",
+      "title": "Feature filter grid demo",
+      "description": "A working preview of Feature filter grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-filter-grid.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-filter-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-carousel",
+      "type": "registry:block",
+      "title": "Feature carousel",
+      "description": "Feature cards on native scroll snapping with the next card peeking, a counter and arrows, for many features in little room.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/feature-carousel.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-carousel.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and eyebrow, items (an id, an image or an icon, a title, a line and an optional href) and cardWidth (in px, 320 by default). The cards sit on native scroll snapping, so a swipe on a phone and the trackpad on a laptop feel right. The next card always shows by about a quarter of its width: where the width would hide it, or show it nearly whole and cut, the cards are resized a little to make it so. Because the server cannot know the width, the row waits, hidden, until the page has fitted the cards and then fades in, so it never visibly changes size; without scripting it is shown as it is. Pass bleed (a number of px or a CSS length such as \"1.5rem\" or \"var(--page-gutter)\", 0 by default) as your page's side padding and the row runs on past the block, so the card that peeks goes off the edge of the screen on a phone instead of stopping at the margin; a variable lets it be 0 where the page has margin to spare. The heading and the Previous and Next buttons share one row where they fit: a short title keeps them beside it on a phone, and a long one sends them to a row of their own below it. The counter (\"3 of 8\") counts the last card fully in view and follows the real scroll position whether the reader used the buttons, a swipe or the keyboard. It is said politely as it changes, but only once the reader has moved the row, so opening the page announces nothing. The buttons dim at the ends but stay focusable, so keyboard focus is never lost. While the row has focus the arrow keys move one card and Home and End go to the ends; every link inside stays in the tab order. Nothing autoplays, and under reduced motion scrolling is instant. A card with an image shows it in a 16:10 frame; one with an icon and no image gets a tile. A card with an href is a whole-card link named after its title. labels translates the fixed words."
+    },
+    {
+      "name": "feature-carousel-demo",
+      "type": "registry:example",
+      "title": "Feature carousel demo",
+      "description": "A working preview of Feature carousel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-carousel.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-carousel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-with-quote",
+      "type": "registry:block",
+      "title": "Feature with quote",
+      "description": "One feature explained on one side and the customer who proves it on the other: description, points and a quote card with the result.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/feature-with-quote.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-with-quote.tsx"
+        }
+      ],
+      "docs": "Pass feature (an eyebrow, a title, a description, three points, an href and the link's text) and quote (the words, the name, the role, the company, the address of a picture and the result). The words are a blockquote with the person in its caption: their picture (their initials until it loads, or when there is none), name, job and company. The result is one bold line on a band under the quote, outside it, so it reads as a fact the customer measured and not as something they said; leave it out for a quote without a number. On a phone the feature comes first; reverse swaps the sides from 768px of width. The card sets its padding and type from its own width, so it holds in a narrow column. headingLevel sets the level of the title, and labels translates the word over the result and the button's default text."
+    },
+    {
+      "name": "feature-with-quote-demo",
+      "type": "registry:example",
+      "title": "Feature with quote demo",
+      "description": "A working preview of Feature with quote.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-with-quote.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-with-quote-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feature-outcomes",
+      "type": "registry:block",
+      "title": "Feature outcomes",
+      "description": "Each feature paired with the result a named customer measured: the feature, what it does and the number it moved.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/feature-outcomes.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/feature-outcomes.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and eyebrow, items (the feature, an href, a line, the metric as a value and a label, and the customer) and a note. Each row is a ruled line: the feature's name as a link (the whole row is the target), what it does, and on the right a large figure with what was measured and who measured it. The customer is always required, and the note is where you say how the figures were measured and over what period: both are what keep the section honest. Figures use tabular numbers and never wrap, and a word after the number (\"11 hrs\") is set smaller than the number. A value that starts with a minus or a plus is read out as down or up (\"first reply time: down 38%, measured by Northwind\"), because a dash is not read as a direction; a hyphen is drawn as a proper minus sign. Under 672px of width each row stacks as feature, description, figure. labels translates up, down and the words read before the customer."
+    },
+    {
+      "name": "feature-outcomes-demo",
+      "type": "registry:example",
+      "title": "Feature outcomes demo",
+      "description": "A working preview of Feature outcomes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feature-outcomes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feature-outcomes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "capability-questions",
+      "type": "registry:block",
+      "title": "Capability questions",
+      "description": "The questions sales hears most, answered with a verdict: yes, yes on a plan, not yet, with the how underneath.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/capability-questions.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/capability-questions.tsx"
+        }
+      ],
+      "docs": "Pass title, items (a question, a verdict of \"yes\", \"plan\", \"soon\" or \"no\", the plan's name for a plan verdict, an answer, an href and a group id), groups (an id and a heading each) and contact (a line, a link text and an href). Every answer is on the page: it is a list, not an accordion, so it can be scanned, found with the browser's search and indexed. The verdict is a pill with a word and a shape: a check for Yes, a plus for \"On Business\", a clock for Not yet and a dash for No, each on its own fill, so none depends on colour. The question is the heading; a screen reader hears it, then the verdict, then the answer. A not-yet or no answer should name what to do instead. The questions sit in two columns from 768px of width and in one under that. With groups, each topic gets a heading one level under the section's and the questions sit one more under it; without, the questions sit directly under the section's heading. labels translates the pills and the docs link."
+    },
+    {
+      "name": "capability-questions-demo",
+      "type": "registry:example",
+      "title": "Capability questions demo",
+      "description": "A working preview of Capability questions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/capability-questions.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/capability-questions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "good-fit-section",
+      "type": "registry:block",
+      "title": "Good fit section",
+      "description": "Who it suits and who it does not: two honest columns that save the wrong customers and reassure the right ones.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/good-fit-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/good-fit-section.tsx"
+        }
+      ],
+      "docs": "Pass title, fit and notFit (four to six short lines each), alternative (the line and its href) and cta (a label and an href). Two columns sit on one bordered surface under \"A good fit if\" with checks and \"Probably not if\" with dashes; the second is tinted so it reads as the quieter one. The action sits under the first list and, under the second, a line points to what to use instead; the whole line is the link when you give an href. Both lists are real lists under real headings, and the check and dash icons repeat what the headings already say, so they are hidden from assistive technology. Under 768px of width the columns stack with the good fit first. align centres the heading; labels translates the two column heads."
+    },
+    {
+      "name": "good-fit-section-demo",
+      "type": "registry:example",
+      "title": "Good fit section demo",
+      "description": "A working preview of Good fit section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/good-fit-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/good-fit-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "deployment-options",
+      "type": "registry:block",
+      "title": "Deployment options",
+      "description": "Cloud, self-hosted or hybrid side by side: who runs it, where data lives, what you manage and who it is for.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/deployment-options.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/deployment-options.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, and two to four options: an id, a name, a bestFor line that finishes \"Best for ...\", facts as label and value pairs, one cta and recommended. Use the same fact labels, in the same order, in every option. On a wide block every card is a subgrid over the same rows, so the Nth fact of every card sits on one line and each row is as tall as its tallest answer; under that the cards stack, each a column of facts, with the label beside its answer from 576px of width and above it on a phone. An option that lacks a fact the others have shows a dash, so the rows still line up. Recommended is written on the card, which also gets a heavier border and a solid button. No price appears: this is about fit, not billing. Two options sit side by side from 672px of width, three from 896px, and four go two by two and then four across from 1152px. align centres the heading; labels translates the fixed words."
+    },
+    {
+      "name": "deployment-options-demo",
+      "type": "registry:example",
+      "title": "Deployment options demo",
+      "description": "A working preview of Deployment options.",
+      "registryDependencies": [
+        "https://rhsui.com/r/deployment-options.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/deployment-options-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "platform-availability",
+      "type": "registry:block",
+      "title": "Platform availability",
+      "description": "Where it runs: web, iOS, Android, desktop and API as tiles with status, version and a link to get it.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/platform-availability.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/platform-availability.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, platforms and a footnote. Each platform has an id, a label, an icon, a status (\"available\", \"beta\" or \"soon\"), an optional version and releasedAt (an ISO date, written in the locale and timeZone you pass), an href with a linkLabel (\"Open the app\", \"App Store\", \"Download\") and a note. The status is a pill with its word and a shape, never colour alone. A tile with a link is a whole-tile link named after its platform. A coming-soon tile has no download: pass an href and it becomes a plain link to a waiting list (\"Tell me when it is ready\" unless you give a linkLabel). The tiles are a list, so a screen reader hears how many there are. Edit the data and the page stays honest; visitors stop asking whether there is an Android app. labels translates the status words and the fixed text."
+    },
+    {
+      "name": "platform-availability-demo",
+      "type": "registry:example",
+      "title": "Platform availability demo",
+      "description": "A working preview of Platform availability.",
+      "registryDependencies": [
+        "https://rhsui.com/r/platform-availability.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/platform-availability-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
