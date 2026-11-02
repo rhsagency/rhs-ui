@@ -31,8 +31,11 @@ const MUG = picture(
   '<rect width="640" height="480" fill="#dfe3e6"/><circle cx="320" cy="240" r="170" fill="#eef0f2"/><rect x="215" y="140" width="210" height="190" rx="30" fill="#fcfcfc"/><path d="M425 182c66 0 66 104 0 104" fill="none" stroke="#fcfcfc" stroke-width="26" stroke-linecap="round"/><rect x="215" y="140" width="210" height="46" rx="23" fill="#c7c7c7"/><rect x="170" y="340" width="300" height="16" rx="8" fill="#a8b0b5"/>',
 );
 
-/** A host under .example never resolves (RFC 2606), so this address fails the same way everywhere, offline included. */
-const BROKEN = "https://images.northwind.example/products/kestrel-kettle.jpg";
+/**
+ * A dead link that fails the same way everywhere: a data: address whose bytes are not a picture. It asks no network, so it fails offline too,
+ * and it fails quietly. A host that never resolves does not: a strict img-src (rhsui.com's) refuses it with an error in the console.
+ */
+const BROKEN = "data:image/jpeg;base64,bm90IGEgcGljdHVyZQ==";
 
 function Field({ label, ...props }: Omit<ImageUrlFieldProps, "id"> & { label: string }): React.JSX.Element {
   const id = useId();
@@ -52,7 +55,7 @@ function ProductPhoto(): React.JSX.Element {
     <form noValidate onSubmit={(event) => event.preventDefault()} className="grid gap-5 rounded-xl border border-border bg-card p-5 shadow-xs">
       <div className="grid gap-1">
         <h2 className="text-sm font-medium tracking-[-0.02em]">Kestrel kettle, main photo</h2>
-        <p className="text-xs text-muted-foreground">Paste an address and the picture shows up beside it. Nothing is uploaded. These pictures are drawn in the demo, so their addresses start with data:</p>
+        <p className="text-xs text-muted-foreground">Paste an address and the picture shows up beside it. Nothing is uploaded. The pictures here are drawn in the demo and the dead link holds no picture, so their addresses start with data:</p>
       </div>
       <div className="grid gap-2">
         <Label htmlFor={id}>Image address</Label>
@@ -107,7 +110,7 @@ export default function Demo(): React.JSX.Element {
 
       <div className="grid min-w-0 content-start gap-9">
         <Example caption="An address that does not load as an image says so in words">
-          <Field label="Banner" defaultValue={BROKEN} />
+          <Field label="Banner" defaultValue={BROKEN} allowData />
         </Example>
         <Example caption="http:// is turned down before any request is made when requireHttps is on. A data: address is turned down the same way unless allowData is on">
           <Field label="Logo" defaultValue="http://images.northwind.example/logo.png" requireHttps />
