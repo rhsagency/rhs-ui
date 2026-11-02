@@ -5830,6 +5830,537 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "class-session-card",
+      "type": "registry:component",
+      "title": "Class session card",
+      "description": "A class you can book: date tile, time and length, coach, room and level, spots left with a fill bar, and a Book, Join waitlist or Cancel action.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/class-session-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/class-session-card/index.tsx"
+        },
+        {
+          "path": "registry/application/class-session-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/class-session-card/format.ts"
+        }
+      ],
+      "docs": "start and end are exact moments (a Date, a timestamp or an ISO string with its offset); timeZone is where the session takes place and every time on the card is written in it, locale is the language, and the length is worked out from the two. spots is how many places are left and capacity how many there are in all: together they write '3 spots left of 14' and fill a real progress bar named 'Spots taken' that is read as '11 of 14 spots taken'. An open session with no spots left turns into a full one, which says 'All 14 spots taken' in words of its own ('Class full' when it does not know its capacity). status is open, full, booked or cancelled: open shows Book (onBook), full shows Join waitlist (onWaitlist, falling back to onBook), booked shows a 'Booked' badge with a check and Cancel (onCancel), and cancelled mutes the card, strikes the title and the time through and drops the actions. Every handler may return a promise: the button keeps its focus and shows a spinner with aria-busy while it runs, a rejection shows an alert saying that nothing was changed (press the button again to retry), and each result is announced politely in a status region. The buttons are named with the class and its time, so a list of them is not a list of 'Book'. coach is a name or { name, image? } (initials stand in for a missing picture), room and level are plain words, headingLevel sets the title's level, and labels carries every word for translation."
+    },
+    {
+      "name": "class-session-card-demo",
+      "type": "registry:example",
+      "title": "Class session card demo",
+      "description": "A working preview of Class session card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/class-session-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/class-session-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-card",
+      "type": "registry:component",
+      "title": "Service card",
+      "description": "A bookable service: name, what is included, and duration and price as a labelled pair, with a select or book action and a from-price state.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/service-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/service-card/index.tsx"
+        },
+        {
+          "path": "registry/application/service-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/service-card/format.ts"
+        }
+      ],
+      "docs": "duration is a number of minutes (written '45 min', '1 h 30 min') or your own words ('Half a day'); price is a number written in the currency and locale you name, with whole amounts losing their cents and 0 saying 'Free', or your own words ('On request'). Duration and price are a description list, so a screen reader hears 'Duration: 45 min' and 'Price: from €60, 3 options'. priceFrom, or options of two or more, writes 'from' before the price and counts the options after it. includes is a short check list and badge puts a word beside the name. Giving onSelect or selected makes the action a toggle with aria-pressed, controlled with selected or uncontrolled with defaultSelected: picked, it shows a check, a heavier border and 'Selected', and the whole card is a place to click. The action is named with the words on it and then the service ('Select Colour and tone', 'Selected Colour and tone'), so a voice control that says what it sees reaches it. With href and no onSelect the action is a link, 'Book'; with both, the name links to href. unavailable is the reason a service cannot be booked: it is written on the card, the card mutes, and the action is aria-disabled and described by the reason, so keyboard users still find it and hear why. labels carries every word."
+    },
+    {
+      "name": "service-card-demo",
+      "type": "registry:example",
+      "title": "Service card demo",
+      "description": "A working preview of Service card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "specialist-card",
+      "type": "registry:component",
+      "title": "Specialist card",
+      "description": "A person you can book: photo, name, specialties, languages, rating and the next free slot in words, with a book action kept apart from the profile link.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/specialist-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/specialist-card/index.tsx"
+        },
+        {
+          "path": "registry/application/specialist-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/specialist-card/format.ts"
+        }
+      ],
+      "docs": "name is the one link of the card (href, with onOpen for a client-side router; without an href but with onOpen it becomes a button) and the Book button (onBook) is its own target above it, named with the person. image falls back to initials, taken from the name without the titles in front of it ('Dr. Ines Kowalski' is IK) or from initials when you give them. rating and ratingCount draw the stars to the exact average and are read as a sentence ('Rated 4.9 out of 5 from 128 reviews'); a count of zero says 'No reviews yet'. specialties and languages are word chips under their own labels. nextAvailable is an exact moment, written the way a person says it ('Today, 16:45', 'Tomorrow, 10:30', 'Thursday, 14:15', then '12 Nov, 09:00') in a time element, counted in timeZone against now: leave now out to use the browser's clock after the first paint, and until then the slot is written as a date so the server and the browser agree. null says 'No slots this week' and disables Book (aria-disabled, described by that line); leave it out to show no slot at all. labels carries every word."
+    },
+    {
+      "name": "specialist-card-demo",
+      "type": "registry:example",
+      "title": "Specialist card demo",
+      "description": "A working preview of Specialist card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/specialist-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/specialist-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "vehicle-card",
+      "type": "registry:component",
+      "title": "Vehicle card",
+      "description": "A vehicle listing for a dealer: photo gallery, price with an optional monthly figure, key specs as a labelled list, status in words and a save button.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/vehicle-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/vehicle-card/index.tsx"
+        },
+        {
+          "path": "registry/application/vehicle-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/vehicle-card/format.ts"
+        }
+      ],
+      "docs": "images is { src, alt }[] and every photo needs its alt: the gallery is a carousel group whose slides read 'Photo 2 of 6', steps with the arrows (which wrap around) or a swipe, and a click or a tap on a photo opens the listing. One photo has no arrows; none shows a quiet placeholder, and so does a photo that does not load. Photos load lazily; priority fetches the first one at once, for the card above the fold. title is make and model and the one link of the card (href, with onOpen for a client-side router), variant the trim under it. price is a number written whole in the currency and locale you name, large and in tabular numerals, or your own words; monthlyPrice adds 'or €459 / month'. year, mileage (with mileageUnit, km or mi, written with its unit by Intl), fuel, transmission and power are a description list, and a last spec on its own takes the full row. status is available, reserved or sold: reserved gets a dashed badge with a clock glyph and sold a solid one, both with the word on the first photo, both mute the title, the price and the specs, and a sold vehicle's photos lose their colour. saved, defaultSaved and onSave make a heart toggle with aria-pressed, named 'Save Halcyon E-Tourer', above the card's link; leave them out for no heart. labels carries every word."
+    },
+    {
+      "name": "vehicle-card-demo",
+      "type": "registry:example",
+      "title": "Vehicle card demo",
+      "description": "A working preview of Vehicle card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/vehicle-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/vehicle-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "venue-card",
+      "type": "registry:component",
+      "title": "Venue card",
+      "description": "A local business in a directory: photo, name, category, rating, price level, distance and an open-now status in words, with a save button.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/venue-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/venue-card/index.tsx"
+        },
+        {
+          "path": "registry/application/venue-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/venue-card/format.ts"
+        }
+      ],
+      "docs": "name is the one link of the card (href, with onOpen for a client-side router). image is an address or { src, alt }; without one a quiet tile says 'No photo yet', and a photo that does not load gets the same tile saying 'Photo unavailable'. category, priceLevel and distance sit on one line: priceLevel is 1 to 4, drawn as priceSymbol repeated with the unspent symbols faint and said to screen readers as Inexpensive, Moderate, Expensive or Very expensive, and distance is a number of metres (written '450 m', '1.2 km', or with units='imperial' '0.3 mi' and '350 ft') or your own words. rating and ratingCount draw the stars to the exact average and read as a sentence. openNow says whether the venue is open, as a word with a glyph: a filled dot and 'Open until 22:00', a hollow one and 'Closed, opens at 09:30'. You work it out from the venue's own clock; the card only says it. closesAt and opensAt are a wall-clock string ('22:00', written as it says in the locale) or a moment written in timeZone. tags show the first three as chips and count the rest. saved, defaultSaved and onSave make a heart toggle with aria-pressed, named 'Save Café Halcyon', above the card's link. labels carries every word."
+    },
+    {
+      "name": "venue-card-demo",
+      "type": "registry:example",
+      "title": "Venue card demo",
+      "description": "A working preview of Venue card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/venue-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/venue-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tour-card",
+      "type": "registry:component",
+      "title": "Tour card",
+      "description": "A guided tour or activity in a listing: photo, title, duration, group size, languages, rating and the price from, with cancellation stated in words.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/tour-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/tour-card/index.tsx"
+        },
+        {
+          "path": "registry/application/tour-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/tour-card/format.ts"
+        }
+      ],
+      "docs": "title is the one link of the card (href, with onOpen for a client-side router). image is an address or { src, alt } (a photo that does not load gives way to a quiet tile) and badge a word on it; location sits above the title. duration is a number of minutes, written in words by Intl in the reader's language ('1 hour 30 minutes', '3 uur'), or your own words; groupSize is a number ('Up to 12 people') or words; languages is a short list ('English, Dutch'). The facts are a description list, so each is read with its name. cancellation is true for 'Free cancellation', a string for your own words, and the line is left out when it is not offered. priceFrom is the lowest price per person in whole units of the currency, written 'From €45 per person' by Intl. rating and ratingCount draw the stars to the exact average and read as a sentence. soldOut is true or a reason: the hint at the foot says 'Sold out' in place of 'Check availability', the price is muted, and a string says why on the card; the title stays a link so people can still find other dates. saved, defaultSaved and onSave make a heart toggle with aria-pressed above the card's link. labels carries every word, locale the numbers, the units and the currency."
+    },
+    {
+      "name": "tour-card-demo",
+      "type": "registry:example",
+      "title": "Tour card demo",
+      "description": "A working preview of Tour card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tour-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tour-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "app-listing-card",
+      "type": "registry:component",
+      "title": "App listing card",
+      "description": "An app in a directory or store: icon, name, developer, rating and size, with an action that goes from Get to a progress, then Open or Update.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/rating-inline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/app-listing-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/app-listing-card/index.tsx"
+        },
+        {
+          "path": "registry/application/app-listing-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/app-listing-card/format.ts"
+        }
+      ],
+      "docs": "name is the one link of the card (href, with onOpen for a client-side router). icon is an address; the initials of the name stand in while it loads or if it fails. state is get, installing, installed or update and the action follows it: Get, Installing with its percentage and a progress bar along its foot (progress is 0 to 100; leave it out for a bar of unknown length), Open or Update, each named with the app ('Get Pocketwise'). It is one button throughout, busy and inert while the app installs, so keyboard focus stays on it from Get to Open. Beside the text it shows just the percentage, as wide as Get was, so the text does not move when the install starts; under the text it says 'Installing 42%'. onAction receives the state it was pressed in. A change of state is announced politely once ('Installing Pocketwise', 'Pocketwise installed. You can open it now.'), never every percent. rating and ratingCount draw the stars to the exact average and read as a sentence ('Rated 4.7 from 12,400 ratings'). size is a number of bytes, written '48 MB', or your own words; version '3.2.1' is written 'v3.2.1'. On a card narrower than 24rem the action moves under the text. labels carries every word."
+    },
+    {
+      "name": "app-listing-card-demo",
+      "type": "registry:example",
+      "title": "App listing card demo",
+      "description": "A working preview of App listing card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/app-listing-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/app-listing-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "fundraiser-card",
+      "type": "registry:component",
+      "title": "Fundraiser card",
+      "description": "A fundraiser: the story in a line, the amount raised against the goal as a real progress bar, donors, days left, the organiser and a donate action.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/fundraiser-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/fundraiser-card/index.tsx"
+        },
+        {
+          "path": "registry/application/fundraiser-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/fundraiser-card/format.ts"
+        }
+      ],
+      "docs": "raised and goal are whole units of the currency: the card writes '€4,820 raised of €10,000' with the percentage beside it (rounded down, and never 100% before the goal is reached), and a progress bar named 'Fundraising progress' that is read in the same words, so the figure is in text and the bar only repeats it. At or over the goal it says 'Goal reached' in place of the percentage and keeps the donate button. donors and the days left are a description list; days are counted in timeZone between now and endsAt ('Days left 12', 'Ends Today'), and leaving now out reads the browser's clock after the first paint (until then the end date is written). Once endsAt has passed the card says 'Ended on 3 Oct', hides the donate button and mutes the picture. organiser is { name, image? }, credited with an avatar. A picture that does not load gives way to a quiet tile of the same shape. With href (or onOpen) the title is the one link of the card, and the Donate button (onDonate) stays its own target above it. labels carries every word."
+    },
+    {
+      "name": "fundraiser-card-demo",
+      "type": "registry:example",
+      "title": "Fundraiser card demo",
+      "description": "A working preview of Fundraiser card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/fundraiser-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/fundraiser-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "delivery-stop-card",
+      "type": "registry:component",
+      "title": "Delivery stop card",
+      "description": "One stop on a delivery route: sequence marker, recipient and address, time window and parcels, with call, navigate and outcome actions.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/delivery-stop-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/delivery-stop-card/index.tsx"
+        },
+        {
+          "path": "registry/application/delivery-stop-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/delivery-stop-card/format.ts"
+        }
+      ],
+      "docs": "sequence is the stop's number, written in a marker; address is { recipient, lines, notes? }; window is { from, to }, written in locale and timeZone ('12:30 – 13:00') and read as 'Delivery window'; parcels counts the parcels. status is upcoming, next, delivered, failed or skipped. The next stop is emphasised, carries a 'Next stop' badge and aria-current='step', and gets large Call (onCall), Navigate (onNavigate) and Delivered buttons, with Could not deliver and Skip one tap away in a menu; every outcome is reported through onStatusChange('delivered' | 'failed' | 'skipped'). An upcoming stop shows Call and Navigate. A stop that is done mutes and says what happened in its badge, in words and with the time ('Delivered at 11:52', from completedAt), shows reason in a callout (an error one when it failed), and offers Undo, which reports 'upcoming' so that you decide which stop is next. The card is one stop and keeps no order of its own: put them in a list, and in a sortable list for route planning. Every change of status is said once in a polite status line ('Stop 3, Sana Haddad: Delivered at 11:52'), and when the control that had focus leaves the card, focus stays inside it: on Undo after an outcome, on the first action after Undo, on the card itself when it has none. Focus you have moved on yourself, to the next stop, is left where you put it. labels carries every word."
+    },
+    {
+      "name": "delivery-stop-card-demo",
+      "type": "registry:example",
+      "title": "Delivery stop card demo",
+      "description": "A working preview of Delivery stop card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/delivery-stop-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/delivery-stop-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "book-card",
+      "type": "registry:component",
+      "title": "Book card",
+      "description": "A book in a catalogue: a 2:3 cover with a typographic fallback, title, authors, rating, formats and whether it is available, reserved or out on loan.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating-inline.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/book-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/book-card/index.tsx"
+        },
+        {
+          "path": "registry/application/book-card/cover.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/book-card/cover.tsx"
+        },
+        {
+          "path": "registry/application/book-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/book-card/format.ts"
+        }
+      ],
+      "docs": "title is the one link of the card (href); authors are written as a list in the reader's language ('Tom Calder and Ana Ruiz'). cover is an address or { src, alt }, kept in a 2:3 box from the first paint; a typographic tile with the title and the first author sits under it, so it also stands in while the picture loads, when there is none and when it fails. rating and ratingCount draw the stars to the exact average and read as a sentence. formats (print, ebook, audio) are word chips. availability is available, reserved or out, written in words with a glyph; for out, dueDate ('2026-11-12' is the day it says in any time zone, any other moment is written in timeZone) adds 'Due back 12 Nov'. price is a number in the currency and locale you name, whole amounts losing their cents, or your own words ('Free to borrow'). orientation is horizontal (the cover beside the text, for lists) or vertical (the cover on a quiet shelf above it, for grids). The card keeps no state and renders on the server; only the cover is a small client component, which takes itself away when the picture fails to load, so the jacket shows. labels carries every word."
+    },
+    {
+      "name": "book-card-demo",
+      "type": "registry:example",
+      "title": "Book card demo",
+      "description": "A working preview of Book card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/book-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/book-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

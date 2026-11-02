@@ -91,6 +91,7 @@ own `meta.version` and are listed when they change.
 - Application, 11 more: `commit-list`, `appointment-card`, `company-card`, `invitation-card`, `api-endpoint`, `repo-card`, `experience-list`, `job-card`, `property-card`, `amenity-list`, `curriculum-list`.
 - Primitives, 8 more: `cron-field`, `barcode-field`, `national-id-field`, `password-generator`, `rating-breakdown-field`, `aspect-ratio-picker`, `position-picker`, `contrast-pair-field`.
 - Marketing, 9 more: `two-sided-features`, `extension-points`, `stack-layers`, `region-list`, `model-lineup`, `sync-mapping`, `automation-recipes`, `materials-section`, `certifications-explained`.
+- Application, 10 more: `class-session-card`, `service-card`, `specialist-card`, `vehicle-card`, `venue-card`, `tour-card`, `app-listing-card`, `fundraiser-card`, `delivery-stop-card`, `book-card`.
 
 ## Unreleased (0.7.0)
 
