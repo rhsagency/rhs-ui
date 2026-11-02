@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "angle-field-demo",
+  "title": "Angle field demo",
+  "description": "A working preview of Angle field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/angle-field.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/angle-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type ReactNode } from \"react\";\n\nimport { IconArrowUp } from \"@rhs-ui/icons\";\nimport { AngleField, type AngleFieldProps } from \"@rhs-ui/primitives/angle-field\";\nimport { Label } from \"@rhs-ui/primitives/label\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-1 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\n/** The visible label is also the name a screen reader reads, so what is seen and what is said are the same words. */\nfunction Field({ label, ...props }: { label: string } & Omit<AngleFieldProps, \"id\" | \"label\">): React.JSX.Element {\n  const id = useId();\n  return (\n    <div className=\"grid justify-items-start gap-3\">\n      <Label htmlFor={id}>{label}</Label>\n      <AngleField id={id} label={label} {...props} />\n    </div>\n  );\n}\n\nfunction Badge(): React.JSX.Element {\n  const id = useId();\n  const [angle, setAngle] = useState(45);\n  return (\n    <div className=\"grid grid-cols-1 gap-5 rounded-xl border border-border bg-card p-5 shadow-xs\">\n      <div className=\"grid gap-1\">\n        <h2 className=\"text-sm font-medium tracking-[-0.01em]\">Rotate the Kestrel badge</h2>\n        <p className=\"text-xs text-muted-foreground\">Drag the dial, type an angle or use the arrow keys. Shift snaps to 15 degrees.</p>\n      </div>\n      <div className=\"grid justify-items-start gap-3\">\n        <Label htmlFor={id}>Rotation</Label>\n        <AngleField id={id} label=\"Rotation\" value={angle} onValueChange={setAngle} name=\"badge-rotation\" />\n      </div>\n      <div className=\"grid h-28 place-items-center rounded-lg bg-muted/50\">\n        <span style={{ transform: `rotate(${angle}deg)` }} className=\"grid size-14 place-items-center rounded-xl border border-border bg-background text-foreground shadow-xs\">\n          <IconArrowUp size={24} aria-hidden=\"true\" />\n        </span>\n      </div>\n      <p role=\"status\" className=\"flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t border-border pt-4 text-xs text-muted-foreground\">\n        <span>Reported</span>\n        <code className=\"font-mono text-[0.6875rem] text-foreground\">{angle}</code>\n      </p>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-4xl grid-cols-1 gap-x-10 gap-y-9 md:grid-cols-2 md:items-start\">\n      <Example caption=\"Try it: drag the handle, type, or press the arrow keys, Home for 0\">\n        <Badge />\n      </Example>\n\n      <div className=\"grid min-w-0 content-start gap-9\">\n        <Example caption=\"Large, with a compass: the direction is named for the eye and for a screen reader\">\n          <Field label=\"Wind direction\" size=\"lg\" compass defaultValue={225} />\n        </Example>\n        <Example caption=\"Small, and not wrapped: a tilt that stops at 45 degrees either way\">\n          <Field label=\"Tilt\" size=\"sm\" min={-45} max={45} wrap={false} defaultValue={-20} />\n        </Example>\n        <Example caption=\"Disabled\">\n          <Field label=\"Locked angle\" disabled defaultValue={135} />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

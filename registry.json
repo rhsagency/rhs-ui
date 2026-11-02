@@ -12073,6 +12073,538 @@
       ]
     },
     {
+      "name": "font-family-select",
+      "type": "registry:ui",
+      "title": "Font family select",
+      "description": "Choose a typeface from a list where every font is set in its own face, with a live sample that previews the highlighted one.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/font-family-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/font-family-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/font-family-select/fonts.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/font-family-select/fonts.ts"
+        }
+      ],
+      "docs": "fonts is a list of { family, stack, label?, group? }: stack is the CSS font-family list the font is drawn with and the value the field reports, so a font that is not there still draws as the next family in its list. The field never loads a font. It draws each name in its own stack and asks the browser which fonts it can draw (a web font that finishes loading is noticed), marks the ones it cannot with 'Not loaded', and says in words which font the sample falls back to. The list opens under the sample, so the sample is never covered: it follows the highlighted font while the list is open, and Escape closes the list and puts it back on the chosen font. Nothing above the list changes height with the font on show: the sample box is always sampleLines tall (2 lines by default, 3 in a field narrower than about 17rem, and a longer sample ends in an ellipsis) and the line that says a font is not loaded keeps its row while any font in the list is missing, so the list never moves under the pointer or the arrow keys. groups sets the order of the headings, recent takes the stacks to pin under Recent (without it the field remembers what was chosen since it appeared), and a screen reader hears each font's name and group. messages replaces the words."
+    },
+    {
+      "name": "font-family-select-demo",
+      "type": "registry:example",
+      "title": "Font family select demo",
+      "description": "A working preview of Font family select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/font-family-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/font-family-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "font-size-field",
+      "type": "registry:ui",
+      "title": "Font size field",
+      "description": "A font size you can type, step or pick: minus, a number with its unit and plus, joined to a menu of common sizes, the way editors draw it.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/font-size-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/font-size-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/font-size-field/sizes.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/font-size-field/sizes.ts"
+        }
+      ],
+      "docs": "value is a number in unit, and sizes is the ladder the list shows and the arrow keys walk: from 16 the up arrow goes to 18, not to 17. Shift with an arrow adds or takes away one step, Alt with the down arrow opens the list, and Enter or leaving the field checks what was typed and brings it into min and max. The number is a spin button read as 'Font size, 16 pixels'. The minus, plus and list buttons are not tab stops, so the whole control is one stop in a toolbar, and they announce the size they set."
+    },
+    {
+      "name": "font-size-field-demo",
+      "type": "registry:example",
+      "title": "Font size field demo",
+      "description": "A working preview of Font size field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/font-size-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/font-size-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "angle-field",
+      "type": "registry:ui",
+      "title": "Angle field",
+      "description": "A rotation in degrees as a dial and a number box: drag the handle, type a value or step with the arrow keys, with an optional compass reading.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/angle-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/angle-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/angle-field/angle.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/angle-field/angle.ts"
+        }
+      ],
+      "docs": "0 is straight up and the angle grows clockwise, as in CSS, so the value drops into a gradient, a shadow direction or a rotate(). Drag the dial (Shift snaps to snap, 15 degrees by default), press the arrow keys (Shift jumps along the grid, Home goes to 0), or type in the box. With wrap on, the default, past 359 comes 0; with wrap off the angle stops at min and max. The dial is a slider that reads '90 degrees', or with compass '90 degrees, east', and size is sm, default or lg."
+    },
+    {
+      "name": "angle-field-demo",
+      "type": "registry:example",
+      "title": "Angle field demo",
+      "description": "A working preview of Angle field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/angle-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/angle-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "box-sides-field",
+      "type": "registry:ui",
+      "title": "Box sides field",
+      "description": "Edit padding or margin on four sides: a small box with a number on each edge and a link in the middle that moves all four at once.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/box-sides-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/box-sides-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/box-sides-field/sides.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/box-sides-field/sides.ts"
+        }
+      ],
+      "docs": "value is { top, right, bottom, left } and onValueChange is also told whether the sides are linked. With the link on, changing one side sets all four. sides={2} shows a vertical and a horizontal field and mirrors them on the other two edges. The sides are checked as they are typed, the arrow keys step the side the cursor is in (Shift for ten steps), and Tab goes clockwise from the top. Each number is a spin button read as 'Padding top, 16 pixels', and the link is a real toggle named 'Link all sides'. The box is 254px wide and narrows with its container (the number boxes go from 72px to 56px below 238px), down to about 200px, so it fits a small phone and an editor's inspector."
+    },
+    {
+      "name": "box-sides-field-demo",
+      "type": "registry:example",
+      "title": "Box sides field demo",
+      "description": "A working preview of Box sides field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/box-sides-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/box-sides-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-field",
+      "type": "registry:ui",
+      "title": "Inline field",
+      "description": "A checkbox, switch or radio with its label beside it, plus a description and an error beneath, wired together as one tap target.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/inline-field.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-field.tsx"
+        }
+      ],
+      "docs": "Put one Checkbox, Switch or RadioGroupItem inside it. InlineField gives the control its id, aria-describedby, aria-invalid, required and disabled, so the label, the description and the error are read in that order. The whole row is the click target, at least 44px high on a touch screen, the focus ring stays on the control, and a link in the label (terms, privacy) opens as a link without toggling the control. placement='end' pushes the control to the far edge, as a settings row does; invalid and disabled look the same on all three controls; a disabled row dims the control and its label and keeps the description at full strength, because that is where the reason goes."
+    },
+    {
+      "name": "inline-field-demo",
+      "type": "registry:example",
+      "title": "Inline field demo",
+      "description": "A working preview of Inline field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inline-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "choice-list",
+      "type": "registry:ui",
+      "title": "Choice list",
+      "description": "One list for choosing one or several: label, description, media and a trailing value on every row, divided by hairlines, with an exclusive None row.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/choice-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/choice-list/index.tsx"
+        },
+        {
+          "path": "registry/primitives/choice-list/choices.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/choice-list/choices.ts"
+        }
+      ],
+      "docs": "mode='single' (the default) makes the rows radios and mode='multiple' makes them checkboxes; value and onValueChange are controlled or uncontrolled. Every row is a real control, so with a name a form submits name=value natively. Mark an option exclusive for 'None of these': choosing it clears the others and choosing any other clears it. media takes an icon or an avatar, trailing a price or a count, and a disabled option can say why in its description. A row without media keeps the room for it, so the labels stay in one line. A chosen row shows the control, a heavier label and a tint, never colour alone, and the count of picks is announced in multiple mode."
+    },
+    {
+      "name": "choice-list-demo",
+      "type": "registry:example",
+      "title": "Choice list demo",
+      "description": "A working preview of Choice list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/choice-list.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/choice-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "disabled-reason",
+      "type": "registry:ui",
+      "title": "Disabled reason",
+      "description": "Say why a control is unavailable: it stays focusable with aria-disabled, shows the reason on hover, focus and tap, and refuses the click.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/disabled-reason.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/disabled-reason.tsx"
+        }
+      ],
+      "docs": "Wrap one control and pass disabled and reason; do not also set disabled on the control. For a select or a menu wrap its trigger (SelectTrigger), not its root, which renders no element to refuse; the arrow keys and typing that would open or change it are refused too, and a refused Button does not dip on a press or change on hover. It sets aria-disabled instead of the native attribute, so the control stays in the tab order, is read as unavailable, and refuses the click, Enter and Space (a text field becomes read-only). The reason shows in a tooltip on hover, on focus and when the control is tapped, and is tied in with aria-describedby. inline prints it under the control, always or with 'touch' only where there is no hover; put the pair in a block or column container. With disabled false nothing is left behind, the markup is the control's own, and the control keeps its focus."
+    },
+    {
+      "name": "disabled-reason-demo",
+      "type": "registry:example",
+      "title": "Disabled reason demo",
+      "description": "A working preview of Disabled reason.",
+      "registryDependencies": [
+        "https://rhsui.com/r/disabled-reason.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/disabled-reason-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "async-select",
+      "type": "registry:ui",
+      "title": "Async select",
+      "description": "A select that asks your server as you type: debounced, with a loading row, a no-results line that repeats the query and stale answers dropped.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/async-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/async-select/index.tsx"
+        }
+      ],
+      "docs": "loadOptions(query, signal) resolves with the options; pass the signal to fetch. Each new question aborts the one before it and a late answer is dropped, so an old answer can never replace a new one. value is the chosen option itself, so the field names it before anything has loaded. defaultOptions lists options before anything is typed (or true to ask the loader with an empty text), minChars and debounce set when it asks, and clearable adds a button that clears the choice and hands the focus to the field. A quick answer just swaps the list; a slow one shows a loading row. The list keeps one minimum height, so the loading row, the 'No results for acme' line and the error line with Retry never move anything under the input. messages replaces the words."
+    },
+    {
+      "name": "async-select-demo",
+      "type": "registry:example",
+      "title": "Async select demo",
+      "description": "A working preview of Async select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/async-select.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/async-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "creatable-select",
+      "type": "registry:ui",
+      "title": "Creatable select",
+      "description": "Choose from a list or add a new entry: when nothing matches, a Create row appears as the last option, in single mode or as chips.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/creatable-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/creatable-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/creatable-select/options.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/creatable-select/options.ts"
+        }
+      ],
+      "docs": "onCreate(input) may be async and return the new option, or nothing to use the text itself. Enter takes the highlighted row, which is the Create row when it is all there is; Ctrl or Cmd with Enter always creates what was typed, and the Create row shows that shortcut when other rows are listed above it. While it runs, the Create row shows a spinner and the list cannot be touched; if it rejects, its message shows under the field and the typed text is kept. The new entry is chosen at once. normalise decides when two entries are the same (by default capitals and spaces at the ends do not count): a duplicate is never created, the existing one is chosen, and typing the name of something already chosen and pressing Enter says so instead of removing it. multiple turns the choice into removable chips, and Backspace in the empty search takes the last one back; taking a chip back with its own button leaves the focus on the next chip, else the one before it, else the field, and aria-invalid draws the destructive border around the whole chips field. messages replaces the words. Options have the shape of a Combobox option."
+    },
+    {
+      "name": "creatable-select-demo",
+      "type": "registry:example",
+      "title": "Creatable select demo",
+      "description": "A working preview of Creatable select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/creatable-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/creatable-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "language-select",
+      "type": "registry:ui",
+      "title": "Language select",
+      "description": "Languages named in themselves and in your language, searchable by either name, with a short list of suggestions pinned on top.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/language-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/language-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/language-select/languages.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/language-select/languages.ts"
+        }
+      ],
+      "docs": "Only codes go in (languages, suggested) and one code comes out; there is no data to ship, because the names come from Intl.DisplayNames in the browser: the language in itself, large, and in locale, quietly beside it. The search ignores capitals and accents and reads the native name, the translated name, the code and the names in each locale of alsoSearch, so 'ger', 'deut' and, with alsoSearch={['en', 'fr']}, 'allem' all find German. A right-to-left name keeps its own direction inside the row while the layout stays left to right, every name carries lang so Chinese and Japanese get their own letterforms, and variants (pt-BR) sort next to their language. messages replaces the headings and the other words, so they can follow locale."
+    },
+    {
+      "name": "language-select-demo",
+      "type": "registry:example",
+      "title": "Language select demo",
+      "description": "A working preview of Language select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/language-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/language-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",

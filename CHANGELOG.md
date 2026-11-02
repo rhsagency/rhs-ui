@@ -94,6 +94,7 @@ own `meta.version` and are listed when they change.
 - Application, 10 more: `class-session-card`, `service-card`, `specialist-card`, `vehicle-card`, `venue-card`, `tour-card`, `app-listing-card`, `fundraiser-card`, `delivery-stop-card`, `book-card`.
 - Application, 9 more: `recipe-card`, `ingredient-list`, `match-score-card`, `player-card`, `availability-calendar`, `membership-card`, `certificate-card`, `stamp-card`, `match-timeline`.
 - Marketing, 7 more: `spend-breakdown`, `commitments-progress`, `membership-tiers`, `rollout-plan`, `app-screens-row`, `keyboard-features`, `prompt-examples`.
+- Primitives, 10 more: `font-family-select`, `font-size-field`, `angle-field`, `box-sides-field`, `inline-field`, `choice-list`, `disabled-reason`, `async-select`, `creatable-select`, `language-select`.
 
 ## Unreleased (0.7.0)
 
