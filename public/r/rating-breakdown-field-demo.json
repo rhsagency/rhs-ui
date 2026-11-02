@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-breakdown-field-demo",
+  "title": "Rating breakdown field demo",
+  "description": "A working preview of Rating breakdown field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rating-breakdown-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rating-breakdown-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { RatingBreakdownField, type RatingAspect, type RatingBreakdownValue } from \"@rhs-ui/primitives/rating-breakdown-field\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-1 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nconst STAY: readonly RatingAspect[] = [\n  { id: \"cleanliness\", label: \"Cleanliness\", description: \"The room, the bathroom and the shared spaces.\", required: true },\n  { id: \"location\", label: \"Location\", description: \"How easy it was to get to the sights and the station.\", required: true },\n  { id: \"value\", label: \"Value for money\", required: true },\n  { id: \"staff\", label: \"Staff\" },\n  { id: \"breakfast\", label: \"Breakfast\", description: \"Leave it if you did not have any.\" },\n];\n\nconst SELLER: readonly RatingAspect[] = [\n  { id: \"communication\", label: \"Communication\", required: true },\n  { id: \"shipping\", label: \"Shipping speed\", required: true },\n  { id: \"accuracy\", label: \"Item as described\", required: true },\n  { id: \"packaging\", label: \"Packaging\" },\n];\n\nfunction Stay(): React.JSX.Element {\n  const [answers, setAnswers] = useState<RatingBreakdownValue>({ cleanliness: 4, location: 5, staff: 4 });\n  return (\n    <form noValidate onSubmit={(event) => event.preventDefault()} className=\"rounded-xl border border-border bg-card p-5 shadow-xs\">\n      <RatingBreakdownField\n        aspects={STAY}\n        value={answers}\n        onValueChange={setAnswers}\n        label=\"How was your stay at Hotel Halcyon?\"\n        description=\"Rate each part on its own, and tick Not applicable for what you did not use.\"\n        name=\"stay\"\n      />\n    </form>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-4xl grid-cols-1 gap-x-10 gap-y-9 md:grid-cols-2 md:items-start\">\n      <Example caption=\"Try it: use the arrow keys on a row, or tick Not applicable. Value is still needed\">\n        <Stay />\n      </Example>\n      <div className=\"grid min-w-0 content-start gap-9\">\n        <Example caption=\"Every required row answered, one marked Not applicable: the average of what is rated\">\n          <div className=\"rounded-xl border border-border bg-card p-5 shadow-xs\">\n            <RatingBreakdownField aspects={SELLER} label=\"Rate the seller, Kestrel Outdoor\" defaultValue={{ communication: 5, shipping: 4, accuracy: 4, packaging: null }} />\n          </div>\n        </Example>\n        <Example caption=\"Nothing rated yet\">\n          <div className=\"rounded-xl border border-border bg-card p-5 shadow-xs\">\n            <RatingBreakdownField aspects={SELLER.slice(0, 3)} label=\"Rate the seller\" />\n          </div>\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

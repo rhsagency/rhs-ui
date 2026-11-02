@@ -89,6 +89,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 8 more: `week-picker`, `dimensions-field`, `height-field`, `shorthand-number-field`, `natural-date-field`, `wheel-picker`, `currency-exchange-field`, `time-estimate-field`.
 - Marketing, 8 more: `api-endpoints`, `sdk-grid`, `quickstart-steps`, `trust-documents`, `service-levels`, `which-one-guide`, `industry-index`, `import-sources`.
 - Application, 11 more: `commit-list`, `appointment-card`, `company-card`, `invitation-card`, `api-endpoint`, `repo-card`, `experience-list`, `job-card`, `property-card`, `amenity-list`, `curriculum-list`.
+- Primitives, 8 more: `cron-field`, `barcode-field`, `national-id-field`, `password-generator`, `rating-breakdown-field`, `aspect-ratio-picker`, `position-picker`, `contrast-pair-field`.
 
 ## Unreleased (0.7.0)
 

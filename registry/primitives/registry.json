@@ -11410,6 +11410,435 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "cron-field",
+      "type": "registry:ui",
+      "title": "Cron field",
+      "description": "A cron field that explains itself: type 0 9 * * 1-5 and read “At 09:00, Monday to Friday”, with the next runs listed in your time zone.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/cron-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cron-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/cron-field/cron.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cron-field/cron.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the expression as typed, with { valid } as a second argument: valid is true once the expression is complete and every field is right. A cron expression has five fields (minute, hour, day of month, month, day of week) and the parser reads * and ?, numbers, lists (1,15), ranges (1-5), steps (*/15 and 10-40/10), JAN to DEC and SUN to SAT, the @hourly, @daily, @weekly, @monthly and @yearly shortcuts, and 7 as Sunday. Under the input the five fields are drawn apart so the reading can be seen, and a sentence says what the expression does in plain English. The sentence is English whatever the locale, the names of the days and months included, so it never mixes two languages; locale decides whether the clock is written on 12 or 24 hours (in the sentence and in the menu of schedules) and how the dates and the distances in the list of runs are written, and a locale that is not a language tag, such as en_US, is read as en-US. Where a schedule runs in bursts it says so (Every 15 minutes during every 2nd hour) and a window runs from the first run to the last (from 09:00 to 17:45). A field that is wrong is named in words (Minute must be 0 to 59) and marked in the drawing, but only once its word is finished: while the caret is still in the last word nothing is flagged, and a field that is not focused is always judged. timeZone sets the clock the schedule follows (an IANA name, default UTC) and the next runs, count of them (default 3), are worked out and written on it, each with how far away it is (in 15 minutes, in 6 hr 15 min, tomorrow, in 3 days). A time that daylight saving skips is left out and a time that happens twice is listed once. now fixes the moment the runs are counted from (a Date, a timestamp or an ISO string); without it the browser's clock is read after mount and again every half minute, so the server and the browser never disagree. presets replaces the menu of six schedules ({ label, value }[]) or turns it off with false. Like the other fields it never blocks a submit; the parser, describeCron and nextRuns are plain functions in cron-field/cron, for a server to check an expression with the same rules."
+    },
+    {
+      "name": "cron-field-demo",
+      "type": "registry:example",
+      "title": "Cron field demo",
+      "description": "A working preview of Cron field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cron-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cron-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "barcode-field",
+      "type": "registry:ui",
+      "title": "Barcode field",
+      "description": "EAN-13, UPC-A and EAN-8 numbers grouped as printed on the pack, with the check digit verified and a missing one added in a tap.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/barcode-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/barcode-field/gs1.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/barcode-field/gs1.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { digits, format, valid }: digits are the digits without spaces, format is ean13, upca or ean8 (null while a number in auto is too short to tell) and valid is true when the number is complete and its GS1 check digit is right. The text is written in groups as it is printed, 4 006381 333931 for an EAN-13, 0 36000 29145 2 for a UPC-A and 7351 3537 for an EAN-8, however it is typed or pasted (spaces, hyphens and letters are dropped, and an extra zero in front of a pasted GTIN-14 is dropped too), and the caret stays after the same digit. format fixes one format, or auto (the default) reads it from the length: 13 digits is an EAN-13, 12 a UPC-A, 8 an EAN-8. While the field is in use, twelve digits that are a right UPC-A are not called finished, since they may be the front of an EAN-13: the line stays neutral (Valid as a UPC-A. Typing an EAN-13? One more digit.), the check mark waits until the field is left and Add check digit offers the one the EAN-13 asks for. A wrong last digit is said at once and says what it should have been; a number one digit short offers the check digit it asks for as a button (Add check digit 1); a number that is still short is only called wrong once the field has been left. The line under the field says which format was read and how far along the number is. trailing takes something of your own at the end of the field, such as a Scan button. name adds a hidden input with the digits, id lands on the input, and required, disabled and placeholder work as on any input. checkDigit, isValidBarcode, groupBarcode and readBarcode are plain functions in barcode-field/gs1, for the server."
+    },
+    {
+      "name": "barcode-field-demo",
+      "type": "registry:example",
+      "title": "Barcode field demo",
+      "description": "A working preview of Barcode field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/barcode-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/barcode-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "national-id-field",
+      "type": "registry:ui",
+      "title": "National ID field",
+      "description": "A personal identity number per country, such as a Dutch BSN or a US SSN, formatted as printed and checked with its own checksum, masked by default.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/national-id-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/national-id-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/national-id-field/ids.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/national-id-field/ids.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the number without separators and { valid, country }: valid is true when the number is complete and passes its country's checks. country and onCountryChange choose the country by ISO code (defaultCountry when you do not control it); the menu comes with Belgium, Canada, Germany, Spain, France, the United Kingdom, Italy, the Netherlands, Poland, Portugal, Sweden and the United States, each with its own arithmetic (the Dutch eleven test, the Luhn digit, the Spanish check letter, the Italian check character, the areas of a Social Security number that are never issued), and countries adds a country or replaces one with a rule of your own { name, label, describe, example, maxLength, keyboard, clean, format, check, messages }. The number is written as it is printed (111 222 333, 123-45-6789, AB 12 34 56 C) and only the characters of that country are accepted. A wrong number is explained in words (A BSN has nine digits and passes the eleven test) once the field has been left, or at once when the number is as long as it gets, and the words never repeat the number, so nothing is read out, logged or kept. With masked (the default) the number is hidden behind dots as soon as the field is left and a button, named Show number, shows it again; masked={false} keeps it in view. autoComplete is off and password managers are told to ignore the field. name adds a hidden input with the number and <name>-country with the country; id lands on the number input. The checks are arithmetic only, so they catch a typo, not a number that was never issued. checkNationalId, isNationalId, formatNationalId and the table itself are plain functions in national-id-field/ids."
+    },
+    {
+      "name": "national-id-field-demo",
+      "type": "registry:example",
+      "title": "National ID field demo",
+      "description": "A working preview of National ID field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/national-id-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/national-id-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "password-generator",
+      "type": "registry:ui",
+      "title": "Password generator",
+      "description": "Make a strong password or passphrase on demand: length, character sets, copy and regenerate, using the browser's secure random source.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/password-generator/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/password-generator/index.tsx"
+        },
+        {
+          "path": "registry/primitives/password-generator/generate.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/password-generator/generate.ts"
+        },
+        {
+          "path": "registry/primitives/password-generator/words.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/password-generator/words.ts"
+        }
+      ],
+      "docs": "onUse is called with the password when Use this password is pressed; the button is only there when you give it. defaultMode is password or passphrase and defaultLength the length it starts at: characters for a password (12 to 64, default 20) and words for a passphrase (3 to 8, default 6). A password is made from the length, the numbers and symbols switches and Avoid look-alikes (I l 1 | O 0 o), and every set that is on is used at least once; a passphrase is words drawn from wordlist (default: over a thousand everyday words, about ten bits each, and the estimate follows the list you give) with a capital on each and, if you like, one digit. Every character and every word comes from crypto.getRandomValues through rejection sampling, so none is likelier than another, and nothing is sent, stored or logged; where the browser has no secure random source the field says so instead of making a weak password. Nothing is made while rendering, so the server never produces a password: it appears as soon as the page is on screen. The strength is stated as bits, a word (Weak, Fair, Strong, Very strong) and a sentence from the entropy and a billion guesses a second (Would take centuries at a billion guesses a second). Digits are drawn in weight and symbols in a lighter tone so look-alikes are easy to tell apart. Each new result is announced once, politely, without reading the password aloud. The box keeps its height from one result to the next, so Regenerate and Copy stay under the pointer: a password is broken at any character, so a length always takes the same lines, and a passphrase keeps room for words of a typical length. label names the result for a screen reader (default Generated password), and locale writes the numbers (a tag that is not a language tag, such as en_US, is read as en-US). It needs nothing from a Password input, so it also serves an admin screen that sets a temporary password. secureRandom, generatePassword, generatePassphrase, passwordEntropy and guessTime are plain functions in password-generator/generate."
+    },
+    {
+      "name": "password-generator-demo",
+      "type": "registry:example",
+      "title": "Password generator demo",
+      "description": "A working preview of Password generator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/password-generator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/password-generator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rating-breakdown-field",
+      "type": "registry:ui",
+      "title": "Rating breakdown field",
+      "description": "Rate several things at once, such as Cleanliness, Location and Value, with stars per row, a Not applicable option and the overall average.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/rating-breakdown-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rating-breakdown-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/rating-breakdown-field/ratings.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rating-breakdown-field/ratings.ts"
+        }
+      ],
+      "docs": "aspects is the list of rows, { id, label, description, required }[]. value and onValueChange speak every answer by the id of its row: a number from 1 to max is a rating, null is Not applicable, and a row that is missing has not been answered; onValueChange gets the whole record. The group is a fieldset named by label (description adds a line under it that says what to do), and each row is a group a screen reader announces by name (Cleanliness, 4 stars); it keeps one tab stop and the arrow keys change the stars. Ticking Not applicable switches the row's stars off and drops its rating. The overall score is the mean of the rows that have a rating, shown with one decimal (locale writes it; a tag that is not a language tag, such as en_US, is read as en-US) and partial stars; until every required row has an answer, where an answer is a rating or Not applicable, it says how many rows are rated (3 of 5 rated) and which are still needed instead of showing a number. Optional rows are marked Optional once at least one row is required, on the page and in the name a screen reader reads. showOverall hides the panel, max sets the number of stars (default 5), and name adds the answers to a plain form submit as <name>-<id>: the rating, or na for Not applicable. A change to the overall score is told to a screen reader once the rating has stopped changing. summarizeRatings and averageRating are plain functions in rating-breakdown-field/ratings."
+    },
+    {
+      "name": "rating-breakdown-field-demo",
+      "type": "registry:example",
+      "title": "Rating breakdown field demo",
+      "description": "A working preview of Rating breakdown field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rating-breakdown-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rating-breakdown-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio-picker",
+      "type": "registry:ui",
+      "title": "Aspect ratio picker",
+      "description": "Choose a crop shape from drawn outlines (1:1, 4:3, 16:9, 9:16) or enter your own ratio, as a radio group.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/aspect-ratio-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/aspect-ratio-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/aspect-ratio-picker/ratios.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/aspect-ratio-picker/ratios.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { width, height } in lowest terms, such as { width: 16, height: 9 }; any size is read as its ratio, so 1920 by 1080 is 16 by 9. ratios is the list on offer, drawn in that order and each at its true proportion with the ratio under it (default 1:1, 4:3, 3:2, 16:9 and 9:16). It is a radio group: the arrow keys move and choose, Tab leaves the group, and the chosen outline is filled and checked. allowCustom (the default) adds a last option, Custom, that opens a width and a height; whatever is typed is reduced and reported, a line says what it reduces to, and the outline of Custom is drawn with it. Where the picker is narrower than 22rem the plus and minus buttons of the two numbers give way, so a number of five digits keeps its room (the arrow keys and typing still work), and below 12rem the numbers stack. A short last row of shapes is stretched to the edge so no cell is left empty, and a shape too thin to hold a check mark is only filled. A value that is not on offer opens Custom by itself. orientationToggle adds a switch that turns every shape on its side; the list is then read as landscape shapes, so 16:9 and 9:16 are one and the same option, and the value turns with the switch. name adds a hidden input with the ratio as 16:9, label names the group for a screen reader, and disabled turns the whole picker off. reduceRatio, sameRatio, flipRatio and ratioLabel are plain functions in aspect-ratio-picker/ratios."
+    },
+    {
+      "name": "aspect-ratio-picker-demo",
+      "type": "registry:example",
+      "title": "Aspect ratio picker demo",
+      "description": "A working preview of Aspect ratio picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio-picker.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/aspect-ratio-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "position-picker",
+      "type": "registry:ui",
+      "title": "Position picker",
+      "description": "A 3 by 3 grid to pick where something sits, such as an image anchor, a watermark corner or the position of a toast.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/position-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/position-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/position-picker/positions.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/position-picker/positions.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak one of top-left, top-center, top-right, center-left, center, center-right, bottom-left, bottom-center and bottom-right. The nine places sit in a thin frame that reads as a small version of the surface, each dot toward its own edge or corner; the chosen place is a filled dot and the others are hollow. It is a radio group in two dimensions: the arrow keys move along the row and down the column, going round the edge, Home and End jump to the first and last place, and places that cannot be chosen are passed over. positions limits the choice to a subset (CORNERS, exported from position-picker/positions, is the four corners); the others are drawn as faint dots and cannot be reached. The group is named with the choice in words (Watermark position: Top right), label names what is being placed, and the choice is also shown under the frame unless showValue is false. size is sm, default or lg, name adds a hidden input with the place, and disabled turns the picker off. movePosition, positionLabel, POSITIONS and CORNERS are plain helpers in position-picker/positions."
+    },
+    {
+      "name": "position-picker-demo",
+      "type": "registry:example",
+      "title": "Position picker demo",
+      "description": "A working preview of Position picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/position-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/position-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contrast-pair-field",
+      "type": "registry:ui",
+      "title": "Contrast pair field",
+      "description": "Choose a text colour and a background and see the contrast ratio with AA and AAA verdicts in words, before the pair ships.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/color-picker.json",
+        "https://rhsui.com/r/swap-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/contrast-pair-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/contrast-pair-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/contrast-pair-field/contrast.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/contrast-pair-field/contrast.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { foreground, background } and, going out, the ratio too: onValueChange gets { foreground, background, ratio } with the ratio from 1 to 21. Colours are #rrggbb (#rgb is read as well). Two colour pickers, Text and Background, share the swatches you give (swatches); a Swap button trades the two colours and says so. Where the field is narrower than 17.5rem the two pickers stack, Text above Background, and the Swap button turns to point up and down. Below them a sample is set in the pair, a large line (24px) and a normal one (16px), both of which you can change with sample. The ratio is written large in tabular figures (4.8:1) to two decimals, as the browsers' tools write it, but never rounded up to a number it does not reach: 4.499 is 4.49, not 4.5. Four checks are answered in words, each with an icon and a word and never by colour alone: Normal text AA (4.5:1) and AAA (7:1), Large text AA (3:1) and AAA (4.5:1). The verdicts are told to a screen reader once the colours stop changing. name adds hidden inputs <name>-foreground and <name>-background, and label names the group for a screen reader. normalizeHex, relativeLuminance, contrastRatio, formatRatio and contrastVerdicts are plain functions in contrast-pair-field/contrast, for a build step or a server."
+    },
+    {
+      "name": "contrast-pair-field-demo",
+      "type": "registry:example",
+      "title": "Contrast pair field demo",
+      "description": "A working preview of Contrast pair field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contrast-pair-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contrast-pair-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
