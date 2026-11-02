@@ -83,6 +83,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 10 more: `contact-form-routed`, `limited-offer-panel`, `name-your-price`, `join-count-cta`, `affiliate-offer`, `project-capacity`, `savings-receipt`, `cta-giant-link`, `screenshot-features`, `pillars-section`.
 - Commerce, 9 more: `vat-price-field`, `card-fieldset`, `radio-accordion`, `rating-filter`, `product-pricing-fieldset`, `stock-adjust-field`, `category-nav`, `region-switcher`, `price-breakdown-popover`.
 - Commerce, 4 more: `address-confirm-dialog`, `offer-list`, `line-items-table`, `price-matrix`.
+- Primitives, 9 more: `quick-phrases-field`, `number-range-field`, `code-field`, `variable-textarea`, `sms-message-field`, `limit-field`, `filename-field`, `image-url-field`, `color-area-picker`.
 
 ## Unreleased (0.7.0)
 

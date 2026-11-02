@@ -10478,6 +10478,495 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "quick-phrases-field",
+      "type": "registry:ui",
+      "title": "Quick phrases field",
+      "description": "A textarea with one-tap phrases underneath, such as Leave at the door or Ring twice: tap to add, tap again to take it out, typing stays free.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/quick-phrases-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/quick-phrases-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/quick-phrases-field/phrases.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/quick-phrases-field/phrases.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the whole text as a plain string; defaultValue starts it uncontrolled. phrases is a list of strings or { id, text } (use ids when the same words appear twice or the text is translated). A tap adds the phrase behind the text after separator (a line break by default, or \", \", \". \" or \" \" to keep one sentence going, or two line breaks to keep paragraphs apart, where taking a phrase out takes its gap with it; a phrase that ends its own sentence with a full stop, exclamation mark or question mark is not given a second full stop), and a second tap takes it out again together with its separator. A long phrase wraps inside its chip instead of being cut off, and on a touch screen the chips are taller so a thumb can hit them. A phrase counts as present when it stands as a piece of its own between the separators, whatever the capitals and with or without a closing full stop, so typing it by hand presses its chip too. maxLength is the textarea's own limit and also disables any chip that would not fit, with a line under the chips saying how many need more room than is left; a chip that is already in the text can always be removed. Every add and remove is announced politely (Added Leave at the door). label names the field (hideLabel keeps it for assistive technology), phrasesLabel renames the small heading over the chips, name posts the text, and labels renames the announcements and the lines about the limit. The pure helpers addPhrase, removePhrase and locate live in quick-phrases-field/phrases."
+    },
+    {
+      "name": "quick-phrases-field-demo",
+      "type": "registry:example",
+      "title": "Quick phrases field demo",
+      "description": "A working preview of Quick phrases field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quick-phrases-field.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quick-phrases-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "number-range-field",
+      "type": "registry:ui",
+      "title": "Number range field",
+      "description": "From and To fields for filters: either end can stay open, an end below the start is explained in words, and one unit sits beside both.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/number-range-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/number-range-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/number-range-field/numbers.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/number-range-field/numbers.ts"
+        },
+        {
+          "path": "registry/primitives/number-range-field/blur-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/number-range-field/blur-guard.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak { min, max } where an open end is null. A range whose end is below its start is never reported: it is explained in words when a field is left (The maximum cannot be below the minimum of 60,000 km) and the later field carries aria-invalid until it is right. min and max bound both ends (typing outside them is brought in when the field is left, with a line saying so), step is what an arrow key adds and Shift makes ten times as much, and the arrow keys never take the end below the start. Home and End go to the limits. unit is shown at the end of both fields, label is the legend of the group, locale writes the numbers and decides what a lone comma or point means (1,500 is fifteen hundred where a comma groups; digits of any script, such as Arabic-Indic, Bengali or Devanagari, are understood when typing), grouping=false drops the thousands separator for numbers that are not amounts, such as a year, name posts <name>-min and <name>-max, and labels renames every phrase including the No min and No max placeholders. The two ends sit side by side while the group is wide enough for a number and its unit in each, and stack in a column (with a small to between them) when the group itself is narrower, the sooner the longer the unit is, which is a matter of the group's width and not of the screen's, so a card on a phone does not clip a number. The fields are spinbuttons that read their value with the unit."
+    },
+    {
+      "name": "number-range-field-demo",
+      "type": "registry:example",
+      "title": "Number range field demo",
+      "description": "A working preview of Number range field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/number-range-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/number-range-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "code-field",
+      "type": "registry:ui",
+      "title": "Code field",
+      "description": "A monospace field for JSON, CSS or a webhook body: line numbers, Tab indents, Escape then Tab leaves, and JSON mistakes are named by line.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/code-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/code-field/json.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-field/json.ts"
+        },
+        {
+          "path": "registry/primitives/code-field/edit.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-field/edit.ts"
+        },
+        {
+          "path": "registry/primitives/code-field/labels.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/code-field/labels.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the text. Tab indents (to the next tab stop, or every line the selection touches), Shift+Tab takes one level off, Enter keeps the indentation and goes one level deeper behind a bracket, all through the browser's own editing so undo still works. Escape followed by Tab leaves the field, so a keyboard user is never trapped, and a visible hint says so. language=\"json\" checks the text after a pause with a parser of its own, so the message is the same in every browser: Unexpected token } at line 4, column 3, Trailing comma before }, Missing comma, single quotes, comments, an unclosed bracket, and a character nobody can see is named (Unexpected non-breaking space, Unexpected byte order mark). The line is marked in the gutter and across the text, Go to line jumps to it, and onValidate receives { valid: true, empty } or { valid: false, message, line, column, offset } each time a check settles. The Format button pretty-prints valid JSON at token level, so numbers keep every digit and keys keep their order. language=\"plain\" is for CSS or any other text. rows sets the visible lines, readOnly drops the editing keys and the hint, name posts the text, and a label is paired by id. labels renames every word the field says (Format, Valid JSON, the hint, the status row); the messages that name a mistake come from the checker and are in English. validateJson and formatJson live in code-field/json."
+    },
+    {
+      "name": "code-field-demo",
+      "type": "registry:example",
+      "title": "Code field demo",
+      "description": "A working preview of Code field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/code-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/code-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "variable-textarea",
+      "type": "registry:ui",
+      "title": "Variable textarea",
+      "description": "A template box with an Insert variable menu: pick first_name and the token lands at the caret, with a preview that fills in sample data.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/variable-textarea/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/variable-textarea/index.tsx"
+        },
+        {
+          "path": "registry/primitives/variable-textarea/tokens.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/variable-textarea/tokens.ts"
+        }
+      ],
+      "docs": "value and onValueChange speak the raw template, always, also while the preview is showing. variables is a list of { key, label, sample }, where a key is letters of any script, digits, underscores, dots and hyphens (no spaces); delimiters is the pair around a key ([\"{{\", \"}}\"] by default, [\"%\", \"%\"] works too). Insert variable opens the house dropdown with each label, its token and its sample; choosing one puts the token where the caret was, in place of any selection (at the end if the text never had the focus), through the browser's own editing so undo takes it out, and returns the focus to the text. The Preview toggle (preview, defaultPreview and onPreviewChange when you want to drive it) swaps the text for the same message with every sample filled in. A variable that is written but was not passed is flagged in words ({{frist_name}} is not a variable) with the nearest real one offered, and the text carries aria-invalid. maxLength limits the raw template and disables a variable that no longer fits, saying how many characters it needs. labels renames every phrase, the name the text has for a screen reader included. parseTemplate and fillTemplate live in variable-textarea/tokens."
+    },
+    {
+      "name": "variable-textarea-demo",
+      "type": "registry:example",
+      "title": "Variable textarea demo",
+      "description": "A working preview of Variable textarea.",
+      "registryDependencies": [
+        "https://rhsui.com/r/variable-textarea.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/variable-textarea-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sms-message-field",
+      "type": "registry:ui",
+      "title": "SMS message field",
+      "description": "A text message box that counts messages, not characters, and names the emoji or curly quote that turns one message into several.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/sms-message-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sms-message-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/sms-message-field/sms.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sms-message-field/sms.ts"
+        }
+      ],
+      "docs": "value and onValueChange(value, count) speak the message and what it costs. One message holds 160 characters in the standard GSM alphabet and 70 as soon as one character is outside it; a text that is split holds 153 or 67 per part. Characters of the extension table (€ [ ] { } ~ ^ \\ |) and emoji take two places, and a character is never split over two parts. The counter reads 2 messages, 214 characters, Unicode beside a bar with one segment per message, and a line names what forced Unicode (an emoji, a curly apostrophe) so it can be taken out, and adds that emoji count as two characters each while one is in the text; Use plain characters swaps curly quotes, dashes, the ellipsis and special spaces for the standard ones through the browser's own editing, so undo brings them back. maxSegments is a soft limit: past it the counter, the bar and aria-invalid turn to the error colour and nothing is cut off. senderLabel is shown beside the label and is not counted. The number of messages is announced politely, only when it changes. countSms, plainText and the alphabet tables live in sms-message-field/sms."
+    },
+    {
+      "name": "sms-message-field-demo",
+      "type": "registry:example",
+      "title": "SMS message field demo",
+      "description": "A working preview of SMS message field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sms-message-field.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sms-message-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "limit-field",
+      "type": "registry:ui",
+      "title": "Limit field",
+      "description": "A number that can also be no limit: a switch for Unlimited that reveals the number field, for usage limits, seats and quotas.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/limit-field.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/limit-field.tsx"
+        }
+      ],
+      "docs": "value and onValueChange speak a number, or null for no limit; defaultValue null starts unlimited. Turning the switch on brings back the last number (defaultLimit, 100, the first time) and moves the focus into the number field; turning it off reports null and keeps the number for next time. min defaults to 1, because a limit of 0 would be no use, and max bounds the number. unit is a word shown behind the number, or { one, other } to follow the number (1 seat, 10 seats) with locale choosing the plural. offLabel is what the field says while it is unlimited. The switch controls the number, and the number is named after the switch and read with its unit (Usage limit, 100 uses). name posts the number, or an empty value while it is unlimited. id, aria-invalid, aria-describedby, aria-label and aria-labelledby go to the number, so a form label and an error line can be wired to it; aria-invalid gives it the error border."
+    },
+    {
+      "name": "limit-field-demo",
+      "type": "registry:example",
+      "title": "Limit field demo",
+      "description": "A working preview of Limit field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/limit-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/limit-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filename-field",
+      "type": "registry:ui",
+      "title": "File name field",
+      "description": "Rename a file without breaking it: the name is editable, the extension stays fixed beside it and forbidden characters are explained.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/filename-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/filename-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/filename-field/names.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/filename-field/names.ts"
+        }
+      ],
+      "docs": "value and onValueChange(name, { valid }) speak the whole name, extension included. The input holds the name only; the extension sits behind it as a fixed part of the field (.tar.gz and its kin stay together) and is put back on the reported name. Focusing the field selects the name. Characters a file name cannot hold (/ \\ : * ? \" < > | and control characters) are refused with the reason in words (Names cannot contain a slash (/)), spaces at the start are dropped and spaces at the end are trimmed when the field is left, and typing or pasting the extension again is caught. taken lists the names that exist; a match (capitals ignored) is flagged with aria-invalid and the next free name is offered (Use report (2).pdf). maxLength counts the whole name. extensionEditable gives the extension a box of its own and warns while it differs from the one it started with. The box stays whatever it holds: it is sized to its text, a lone dot is kept while it has the focus (so deleting an extension down to its dot does not empty it), and an empty box shows its .ext placeholder, so an extension can be typed back or added to a name that had none. name posts the whole name in a hidden input, labels renames every phrase."
+    },
+    {
+      "name": "filename-field-demo",
+      "type": "registry:example",
+      "title": "File name field demo",
+      "description": "A working preview of File name field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/filename-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filename-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-url-field",
+      "type": "registry:ui",
+      "title": "Image URL field",
+      "description": "Paste an image address and see it load: a live thumbnail, a clear failed state and optional https-only, with no server call.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/image-url-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/image-url-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/image-url-field/urls.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/image-url-field/urls.ts"
+        }
+      ],
+      "docs": "value and onValueChange(url, { status, width, height }) speak the address. The thumbnail is a plain image element in the field, so no script fetches anything and no server is involved; the request carries referrerPolicy no-referrer and the thumbnail has an empty alt because the label names the field. status is empty, loading, loaded (with the natural size in pixels), failed (That address did not load as an image, also after 15 seconds without an answer) or invalid, an address turned down before any request: not an address, http:// when requireHttps is on, a data: address unless allowData is on, and any scheme other than https, http and data:image. onValueChange is called on every change and again whenever what is known changes: when the image has answered, and when the address comes from outside. debounce (500 ms) keeps half an address from being requested while someone types; a pasted address, or one set from outside, loads at once. The status line is a polite live region, labels renames every phrase, and name posts the address."
+    },
+    {
+      "name": "image-url-field-demo",
+      "type": "registry:example",
+      "title": "Image URL field demo",
+      "description": "A working preview of Image URL field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/image-url-field.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-url-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "color-area-picker",
+      "type": "registry:ui",
+      "title": "Color area picker",
+      "description": "Any colour, not just swatches: a saturation and brightness area, a hue slider, optional alpha and a typed code, all keyboard operable.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/color-area-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/color-area-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/color-area-picker/colors.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/color-area-picker/colors.ts"
+        }
+      ],
+      "docs": "value and onValueChange(value, color) speak the colour as a string in format (hex #2563eb, rgb(37, 99, 235) or hsl(221, 83%, 53%); with alpha the code carries it: eight hex digits, rgba() or hsla()) and as { h, s, v, a } (hue in degrees, saturation and brightness in percent, alpha 0 to 1). value takes a string in any of those formats or the object, and the picker keeps its own hue, so dragging into black, white or grey does not lose it the way a code would. The area is a two-axis slider: arrow keys move 1%, Shift 10%, Home and End go to the left and right edge, Page Up and Page Down to the top and bottom, and its value text reads Saturation 80%, brightness 60%. The hue and opacity sliders are Radix sliders over a rainbow and a quiet checkerboard. The code box accepts #rgb, #rrggbb, #rrggbbaa, rgb() and hsl() whatever the format and says what is wrong in words. The chosen colour is shown beside its code with its contrast against white and black in words (4.6:1, passes AA). swatches is a row of presets (a radio group), inline puts the picker in the page instead of behind a button, and the eye dropper button appears only where the browser has one, inside the code box so the code has the whole row (an rgba() or hsla() code keeps its alpha in view, and on the narrowest phone the colour tile beside the box gives way to it). The button shows the code on one line. id, aria-invalid, aria-describedby, aria-label and aria-labelledby go to the button, or to the area when the picker is inline, so a form label and error can be wired to it. name posts the colour. The colour helpers (parseColor, formatColor, contrastRatio) live in color-area-picker/colors."
+    },
+    {
+      "name": "color-area-picker-demo",
+      "type": "registry:example",
+      "title": "Color area picker demo",
+      "description": "A working preview of Color area picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/color-area-picker.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/color-area-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
