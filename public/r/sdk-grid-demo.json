@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sdk-grid-demo",
+  "title": "SDK grid demo",
+  "description": "A working preview of SDK grid.",
+  "registryDependencies": [
+    "https://rhsui.com/r/sdk-grid.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/sdk-grid-demo.tsx",
+      "content": "import { SdkGrid } from \"@rhs-ui/marketing/sdk-grid\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">Seven libraries and a card for community ones; each status is a word with its own shape</p>\n      <SdkGrid\n        eyebrow=\"Libraries\"\n        title=\"Use Northwind from your own stack\"\n        description=\"Official libraries wrap the same API, ship their own types and follow the same version of it. Pick yours and have the first call working in a minute.\"\n        communityHref=\"#community-libraries\"\n        sdks={[\n          { id: \"ts\", label: \"TypeScript\", install: \"npm install @northwind/sdk\", version: \"4.2.1\", status: \"stable\", docsHref: \"#docs-typescript\", sourceHref: \"#source-typescript\" },\n          { id: \"py\", label: \"Python\", install: \"pip install northwind\", version: \"3.8.0\", status: \"stable\", docsHref: \"#docs-python\", sourceHref: \"#source-python\" },\n          { id: \"go\", label: \"Go\", install: \"go get github.com/northwind/northwind-go/v2\", version: \"2.5.3\", status: \"stable\", docsHref: \"#docs-go\", sourceHref: \"#source-go\" },\n          { id: \"rb\", label: \"Ruby\", install: \"gem install northwind\", version: \"1.9.2\", status: \"stable\", docsHref: \"#docs-ruby\", sourceHref: \"#source-ruby\" },\n          { id: \"php\", label: \"PHP\", install: \"composer require northwind/northwind-php\", version: \"3.1.0\", status: \"stable\", docsHref: \"#docs-php\", sourceHref: \"#source-php\" },\n          { id: \"dart\", label: \"Dart\", install: \"dart pub add northwind\", version: \"0.8.0\", status: \"beta\", docsHref: \"#docs-dart\", sourceHref: \"#source-dart\" },\n          { id: \"ex\", label: \"Elixir\", install: '{:northwind, \"~> 0.9\"}', version: \"0.9.4\", status: \"community\", docsHref: \"#docs-elixir\", sourceHref: \"#source-elixir\" },\n        ]}\n      />\n\n      <p className=\"mt-20 mb-8 text-xs text-muted-foreground\">A narrow column with no community card: a command too long for its line wraps, and its button drops under it</p>\n      <div className=\"max-w-md\">\n        <SdkGrid\n          headingLevel={3}\n          title=\"Server libraries\"\n          sdks={[\n            { id: \"js\", label: \"JavaScript\", install: \"npm install @northwind/sdk\", version: \"4.2.1\", status: \"stable\", docsHref: \"#docs-javascript\", sourceHref: \"#source-javascript\" },\n            { id: \"go2\", label: \"Go\", install: \"go get github.com/northwind/northwind-go/v2\", version: \"2.5.3\", status: \"stable\", docsHref: \"#docs-go-2\", sourceHref: \"#source-go-2\" },\n          ]}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

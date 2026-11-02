@@ -87,6 +87,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 8 more: `feature-filter-grid`, `feature-carousel`, `feature-with-quote`, `feature-outcomes`, `capability-questions`, `good-fit-section`, `deployment-options`, `platform-availability`.
 - Application, 10 more: `terms-update-gate`, `workspace-url-sign-in`, `phone-sign-in`, `device-code-entry`, `pin-lock-screen`, `relative-time`, `expandable-text`, `priority-indicator`, `testimonial-card`, `article-card`.
 - Primitives, 8 more: `week-picker`, `dimensions-field`, `height-field`, `shorthand-number-field`, `natural-date-field`, `wheel-picker`, `currency-exchange-field`, `time-estimate-field`.
+- Marketing, 8 more: `api-endpoints`, `sdk-grid`, `quickstart-steps`, `trust-documents`, `service-levels`, `which-one-guide`, `industry-index`, `import-sources`.
 
 ## Unreleased (0.7.0)
 

@@ -8020,6 +8020,387 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "api-endpoints",
+      "type": "registry:block",
+      "title": "API endpoints",
+      "description": "Every endpoint of an API at a glance, grouped by resource: the method as a word, the path with parameters dimmed, a one-line job and a link to the reference.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/api-endpoints.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/api-endpoints.tsx"
+        }
+      ],
+      "docs": "Pass groups (a label and its endpoints, each with a method, a path, a one-line description and an href), plus baseUrl for the copy field over the list and docsHref for the link beside the heading. The method is always a word in a fixed-width label: GET is quiet and outlined, POST is solid, PATCH and PUT are a strong outline and DELETE a strong dashed one, so nothing depends on colour. Parameters written as {id} or :id are dimmed in the path. Chips filter by method, show how many endpoints each holds, and a polite status says how many are on screen; a method nothing uses is never offered. Use defaultMethod to start on a chip, or method and onMethodChange to control it. On a wide block a row is four columns; on a narrow one it stacks as method and path, then the description and the link. A base URL too long for its line wraps under its button instead of hiding behind a scrollbar. Words are translated through labels."
+    },
+    {
+      "name": "api-endpoints-demo",
+      "type": "registry:example",
+      "title": "API endpoints demo",
+      "description": "A working preview of API endpoints.",
+      "registryDependencies": [
+        "https://rhsui.com/r/api-endpoints.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/api-endpoints-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sdk-grid",
+      "type": "registry:block",
+      "title": "SDK grid",
+      "description": "Official libraries as cards: language, version, a written status, a copyable install command and links to docs and source, plus a card for community libraries.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/sdk-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sdk-grid.tsx"
+        }
+      ],
+      "docs": "Pass sdks (an id, a label, the install command, the version, a status of stable, beta or community, and the docs and source links) and, optionally, communityHref for a last dashed card that says plainly those libraries are not official. The status is always a word with its own shape: a check for Stable, a flask for Beta, a group for Community. The install command is real text in a copy field, and each copy button is named after its language, so a page of eight does not give a screen reader eight identical buttons. A command that does not fit beside its button wraps, with the button under it, instead of hiding behind a scrollbar. Give an sdk a mark (a logo or glyph at 22px) or let the card show the first letters of its name. The block has no state of its own and renders on the server. Words are translated through labels."
+    },
+    {
+      "name": "sdk-grid-demo",
+      "type": "registry:example",
+      "title": "SDK grid demo",
+      "description": "A working preview of SDK grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sdk-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sdk-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quickstart-steps",
+      "type": "registry:block",
+      "title": "Quickstart steps",
+      "description": "Up and running in three commands: numbered steps, each with a copyable command and what you should see, and a package manager switch.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/quickstart-steps.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/quickstart-steps.tsx"
+        }
+      ],
+      "docs": "Pass steps (a title, the command, optionally what the terminal should print and a one-line note) and, optionally, next for the last node that links on. Add variants, one list of commands per package manager in step order, to get a switch in the heading, over the steps; a step a list leaves out keeps its own command, and the switch says politely which commands it is showing. Where the output depends on the package manager, give expected as an object keyed like variants: the reader sees the output of the manager they chose. Every copy button is named with its step number and title, the expected output is plain text that can be selected, and nothing is tracked or stored: use manager and onManagerChange if you want the choice remembered. A command that does not fit beside its button wraps, with the button under it. Words are translated through labels."
+    },
+    {
+      "name": "quickstart-steps-demo",
+      "type": "registry:example",
+      "title": "Quickstart steps demo",
+      "description": "A working preview of Quickstart steps.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quickstart-steps.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quickstart-steps-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trust-documents",
+      "type": "registry:block",
+      "title": "Trust documents",
+      "description": "The documents a security review asks for, each with its date and size, as a download or a request that opens a short form and calls your handler.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/trust-documents.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/trust-documents.tsx"
+        }
+      ],
+      "docs": "Pass documents (an id, a title, a line about it, the format, the size, the date it applies to, access as public or request, and the href of a public file) and onRequest, called with the document id and the checked details (email and company) when someone asks for one. Resolve it to confirm; reject it to show an error that keeps everything typed. A public document is a real download link whose name carries the title, the type and the size; one on request is marked in words and opens a dialog that checks a work email and a company, confirms with a focused status message, and afterwards reads Requested. A request in flight cannot be closed away, so its failure is never lost, and on a short screen the dialog keeps a margin and scrolls inside itself, so its title and the retry button can always be reached. On a wide block the date and the size get a column of their own. Nothing is sent or stored by the block. Use contact for the line under the list and the fallback in the error, locale and timeZone for the dates, and labels to translate every word, error messages included."
+    },
+    {
+      "name": "trust-documents-demo",
+      "type": "registry:example",
+      "title": "Trust documents demo",
+      "description": "A working preview of Trust documents.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trust-documents.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trust-documents-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-levels",
+      "type": "registry:block",
+      "title": "Service levels",
+      "description": "Commitments in numbers: response times by priority, each defined in a sentence, and uptime targets with the downtime they allow and the credit owed.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-levels.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-levels.tsx"
+        }
+      ],
+      "docs": "Pass support (a priority code, an optional name, a one-sentence definition, the first response, the update interval and the channels) and availability (the uptime target, what it allows per month, the service credit and optionally the plan it belongs to). Add hours for the line under the tables that says when support applies, and slaHref for a link to the full agreement. The two tables sit side by side from 76rem, the inside of an 80rem page container, and stack on anything narrower so neither column is cramped; both switch together between real tables and lists of cards with the same labels, so on a phone nothing hides in a horizontal scroll. Figures are tabular, and both tables have captions. Words are translated through labels."
+    },
+    {
+      "name": "service-levels-demo",
+      "type": "registry:example",
+      "title": "Service levels demo",
+      "description": "A working preview of Service levels.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-levels.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-levels-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "which-one-guide",
+      "type": "registry:block",
+      "title": "Which one guide",
+      "description": "If you are this, pick that: scenario rows that point each kind of buyer to the right plan, model or product.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/which-one-guide.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/which-one-guide.tsx"
+        }
+      ],
+      "docs": "Pass rows (a scenario in the reader's own voice and the recommendation: a name, a one-line reason and a link) and, optionally, a fallback for the reader nobody wrote a sentence for. A row reads scenario, arrow, then the option as a chip with its reason; on a medium block it is two columns, the scenario beside the answer, with the arrow leading into the chip; on a narrow block the arrow turns downward and the answer sits under the scenario. The chip names the option in words and screen readers hear Recommended before it. It is a static decision aid with no quiz and no state, so it renders on the server and works with JavaScript off. Words are translated through labels."
+    },
+    {
+      "name": "which-one-guide-demo",
+      "type": "registry:example",
+      "title": "Which one guide demo",
+      "description": "A working preview of Which one guide.",
+      "registryDependencies": [
+        "https://rhsui.com/r/which-one-guide.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/which-one-guide-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "industry-index",
+      "type": "registry:block",
+      "title": "Industry index",
+      "description": "Twelve to thirty industries as a compact index grouped by sector, each a link with a quiet customer count, and an optional live search.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/industry-index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/industry-index.tsx"
+        }
+      ],
+      "docs": "Pass sectors (a label and its industries, each with a name, an href, optionally a customer count and a featured flag). A featured industry leads its sector and is marked Popular in words; counts are tabular, quiet and read out as customers. Lists flow into one, two or three columns by the width of the block, and no industry is split across two. Set filterable to add a search field that narrows the index as you type and says how many are left; when nothing matches it says so and offers the contact link. Use locale for the numbers and labels to translate every word."
+    },
+    {
+      "name": "industry-index-demo",
+      "type": "registry:example",
+      "title": "Industry index demo",
+      "description": "A working preview of Industry index.",
+      "registryDependencies": [
+        "https://rhsui.com/r/industry-index.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/industry-index-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "import-sources",
+      "type": "registry:block",
+      "title": "Import sources",
+      "description": "Where your data can come from: the tools you can import from, what comes across and how long it takes.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/import-sources.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/import-sources.tsx"
+        }
+      ],
+      "docs": "Pass sources (an id, the tool's name, an optional mark, what comes across as short names, a time estimate in plain words and the link to its import guide), plus csv for a closing dashed tile and help for the line under the grid. Each tile is one link: the name is a link stretched over the tile, named by the tool and import guide. The chips and the estimate say only what you pass in. A tool without a mark shows its first letter. The block has no state and renders on the server. Words are translated through labels."
+    },
+    {
+      "name": "import-sources-demo",
+      "type": "registry:example",
+      "title": "Import sources demo",
+      "description": "A working preview of Import sources.",
+      "registryDependencies": [
+        "https://rhsui.com/r/import-sources.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/import-sources-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
