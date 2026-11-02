@@ -93,6 +93,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 9 more: `two-sided-features`, `extension-points`, `stack-layers`, `region-list`, `model-lineup`, `sync-mapping`, `automation-recipes`, `materials-section`, `certifications-explained`.
 - Application, 10 more: `class-session-card`, `service-card`, `specialist-card`, `vehicle-card`, `venue-card`, `tour-card`, `app-listing-card`, `fundraiser-card`, `delivery-stop-card`, `book-card`.
 - Application, 9 more: `recipe-card`, `ingredient-list`, `match-score-card`, `player-card`, `availability-calendar`, `membership-card`, `certificate-card`, `stamp-card`, `match-timeline`.
+- Marketing, 7 more: `spend-breakdown`, `commitments-progress`, `membership-tiers`, `rollout-plan`, `app-screens-row`, `keyboard-features`, `prompt-examples`.
 
 ## Unreleased (0.7.0)
 

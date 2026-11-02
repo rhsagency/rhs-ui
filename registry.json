@@ -49069,6 +49069,351 @@
       ]
     },
     {
+      "name": "spend-breakdown",
+      "type": "registry:block",
+      "title": "Spend breakdown",
+      "description": "Where every 100 goes: a ten-by-ten unit chart in tones and patterns, beside a legend that says what each share pays for.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/spend-breakdown/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/spend-breakdown/index.tsx"
+        },
+        {
+          "path": "registry/marketing/spend-breakdown/allocate.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/spend-breakdown/allocate.ts"
+        }
+      ],
+      "docs": "Pass title, description, parts (up to six, largest first, each with an id, a label, a share and a sentence on what it pays for) and optionally total (the whole as an amount, with a currency and a few words such as raised in 2025) and source (who says so, a link and a year). The shares are read as percentages of a hundred, and if they do not add up to 100 they are scaled, so the grid is always full. The hundred squares are allotted by the largest remainder method: 33.4, 33.3 and 33.3 become 34, 33 and 33 squares, the grid is exactly full, and the legend keeps the exact figures. Every part has a tone and a pattern of its own (solid, hatch, dots, cross hatch, a mid tone with sparse lines, vertical lines), so the chart still reads in greyscale and in print and no part looks like an empty square. The squares are hidden from assistive technology; the table beside them, with each percentage, name and sentence, is the content. Hovering a row of the legend keeps its squares lit and dims the rest, with no script. The percentage of a row is its row header, so a screen reader names a sentence by its share and not by the whole sentence. The legend sits beside the squares from 768px of width and under them on a narrower section, and on a small phone it gives up some padding so the sentences keep their room. Amounts are written short (€3.44M, €462K) with their digits pinned, so the server and the browser print the same text; where a locale's own data differs between the two runtimes (en-GB writes €4.2M in one and €4.2m in another) the figures are marked so the server's text stays and the page is not rebuilt. labels translates the fixed words, and the section renders on the server."
+    },
+    {
+      "name": "spend-breakdown-demo",
+      "type": "registry:example",
+      "title": "Spend breakdown demo",
+      "description": "A working preview of Spend breakdown.",
+      "registryDependencies": [
+        "https://rhsui.com/r/spend-breakdown.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/spend-breakdown-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "commitments-progress",
+      "type": "registry:block",
+      "title": "Commitments progress",
+      "description": "Public goals with their progress: target, current value, deadline and last-updated date, in rows a reader can check.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/commitments-progress.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/commitments-progress.tsx"
+        }
+      ],
+      "docs": "Pass title, description, groups (a heading and its commitments; each commitment has an id, a title, the current and target values with an optional unit, a deadline written as 2028, 2028-06 or 2028-12-31, a status of done, on-track, at-risk or missed, and an optional note), updatedAt (required) and reportHref. Each row shows its progress as a labelled progressbar whose value text is the same figures written out (62% of 100%, or 4 of 6 warehouses when the unit is a word), the deadline in a time element and the status as a chip with a word and an icon, so nothing depends on colour: weight does the telling, with at risk the solid chip and missed the destructive one (its text is darkened in the light theme to keep AA contrast). A tally under the heading counts the commitments in each state. The date of the last update is always shown, and once it is older than staleAfterDays (180 by default), measured against the now you pass or the current time, the section says so in words. The current time is the moment the section renders, so a page that is generated once shows the note only as of its build: revalidate it on a schedule, or pass a now that you keep fresh. Rows stack on a phone and sit in three columns from 768px of width. State each goal as a number that grows towards its target, such as a cut achieved. labels translates the fixed words, and locale and timeZone format the numbers and dates."
+    },
+    {
+      "name": "commitments-progress-demo",
+      "type": "registry:example",
+      "title": "Commitments progress demo",
+      "description": "A working preview of Commitments progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/commitments-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/commitments-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "membership-tiers",
+      "type": "registry:block",
+      "title": "Membership tiers",
+      "description": "A loyalty or membership ladder: tiers earned by spend or time, with thresholds, perks and a marker for where the member stands.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/membership-tiers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/membership-tiers.tsx"
+        }
+      ],
+      "docs": "Pass title, description, tiers (three or four, lowest first, each with an id, a name, a threshold written as you want it read and a list of perks) and optionally cta (the action under the ladder) and note (fine print). The tiers are an ordered list joined by a rail: columns from 768px of width for up to three tiers and from 896px for four, and one under the other with the rail on the left below that. Without more it is the ladder a visitor sees and nothing is marked. Give it the member's tier as current and how far they are as progress (a value and nextAt, with a currency such as EUR or a unit such as months) and their own tier carries aria-current and the words Your tier, the tiers below it say Reached, the rail is filled up to a marker between the member's tier and the next, and a progress bar says the same in numbers and in words, such as 180 euros to go until Gold. The rail is decoration; everything it shows is also said in text. labels translates the fixed words and locale formats the numbers."
+    },
+    {
+      "name": "membership-tiers-demo",
+      "type": "registry:example",
+      "title": "Membership tiers demo",
+      "description": "A working preview of Membership tiers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/membership-tiers.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/membership-tiers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rollout-plan",
+      "type": "registry:block",
+      "title": "Rollout plan",
+      "description": "What happens after you sign: a timeline from day one to day ninety, with who does what at each point.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/rollout-plan.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/rollout-plan.tsx"
+        }
+      ],
+      "docs": "Pass title, description, milestones (four to six, each with a time label such as Day 1 or Week 2, a title, a sentence and an owner of us, you or both) and optionally a note for the fine print about what the dates assume. The first milestone is marked Start and the last Outcome, in words under its time label; flag another milestone with outcome to move the payoff. The time labels and owners are text, and the spine is a hairline between a filled start, open markers and a filled outcome, never an image, so order and ownership read without colour. On a wide section the heading sits beside the plan and each row has three columns (time, spine, milestone); on a phone the time label stacks above the title. It is an ordered list, so a screen reader announces each step's position. labels translates the fixed words, so Us and You can read Halcyon and Your team."
+    },
+    {
+      "name": "rollout-plan-demo",
+      "type": "registry:example",
+      "title": "Rollout plan demo",
+      "description": "A working preview of Rollout plan.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rollout-plan.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rollout-plan-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "app-screens-row",
+      "type": "registry:block",
+      "title": "App screens row",
+      "description": "A row of CSS-drawn phone frames with a caption under each, the middle one larger, scrolling sideways with snap on a phone.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/app-screens-row/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/app-screens-row/index.tsx"
+        },
+        {
+          "path": "registry/marketing/app-screens-row/scroll-region.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/app-screens-row/scroll-region.tsx"
+        }
+      ],
+      "docs": "Pass title, description and screens (four to six, each with a src, alt text, a caption, the image's width and height, and optionally a srcSet, sizes, a blurDataUrl and priority). Every screen is a figure with a caption, in a phone drawn in CSS that follows both themes and costs no bytes; the screenshots are shown on a 9:19.5 screen, so crop them to that. On a section 896px wide or more the row is a grid in which the featured screen (the middle one, or featuredIndex) is larger and the others stand on the same line, a little lower, with their captions level; below that it is a sideways scroller that snaps to a screen and lets the next one peek in. The scroller is a region named App screens that the keyboard can reach and scroll with the arrow keys, Home and End, and it is a stop in the tab order only while there is something to scroll. With a mouse it shows a thin scrollbar to drag, and on touch the scrollbar is hidden. Give each row its own labels.region when a page has more than one. Pass bleed (your page's side padding) and the scroller runs to the edge of the screen on a phone. Pictures keep their proportions before they load, show a blurred seed from blurDataUrl until they arrive and are lazy unless priority is set; renderImage plugs in next/image. Only the scroll region is a client component."
+    },
+    {
+      "name": "app-screens-row-demo",
+      "type": "registry:example",
+      "title": "App screens row demo",
+      "description": "A working preview of App screens row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/app-screens-row.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/app-screens-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "keyboard-features",
+      "type": "registry:block",
+      "title": "Keyboard features",
+      "description": "A keyboard-first product's shortcuts as cards: the keys, what they do, and a card that lights up when you press them.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/keyboard-features/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/keyboard-features/index.tsx"
+        },
+        {
+          "path": "registry/marketing/keyboard-features/keys.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/keyboard-features/keys.ts"
+        }
+      ],
+      "docs": "Pass title, description, shortcuts (six to nine, each with an id, keys, a verb-first title and a line of detail) and optionally cta, platform and preventDefault. Keys are written as text: Mod+K is a chord (Mod is Cmd on a Mac and Ctrl elsewhere), G then P is a sequence, and ? or Esc are single keys; the modifiers are Mod, Ctrl, Alt, Shift and Meta. Press a real shortcut while no field has focus and its card lights for a second, its keys turn solid and its title is announced politely; in a sequence the first key lights and the second has a moment to follow. Under reduced motion the card gets a bold outline instead and nothing lifts, fades or flips. platform is auto by default, which reads the keyboard after hydration, so until then Mod is written Cmd/Ctrl and no reader is shown a key they do not have; mac and other fix it. Mac symbols come with their spoken names, so every key is also text. Keys are never taken from the browser unless preventDefault is set. The helpers that parse and match shortcuts live in keys.ts, which needs no client code. labels translates the fixed words."
+    },
+    {
+      "name": "keyboard-features-demo",
+      "type": "registry:example",
+      "title": "Keyboard features demo",
+      "description": "A working preview of Keyboard features.",
+      "registryDependencies": [
+        "https://rhsui.com/r/keyboard-features.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/keyboard-features-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "prompt-examples",
+      "type": "registry:block",
+      "title": "Prompt examples",
+      "description": "What an AI feature can do, shown as written prompts and answers, with a tab per task and a Try this prompt action.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/prompt-examples.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/prompt-examples.tsx"
+        }
+      ],
+      "docs": "Pass title, description and examples (three to five, each with an id, a tab label and optional icon, the prompt, the answer and an optional note), and onTry to hand a prompt to your product; without onTry the action is not shown. The answer is any content you write, dressed as prose, so plain paragraphs, lists and strong text are enough and a Table sits in it as it is. Static and honest: nothing is generated, so it needs no key and has no rate limit, and a note such as Example output, edited for length is only shown when you pass one. The tabs are real tabs with arrow keys and roving focus, controlled with value and onValueChange or left to open on defaultValue. All the panels share one cell of a grid and only the open one is visible, so the section is as tall as its tallest answer and nothing below it jumps; the closed answers stay in the page but are hidden from the screen and the keyboard. Tab icons show from 512px of width, and below 340px the tabs give up some padding and a point of type so all four fit on a small phone. Try this prompt always sits at the end of its line, with or without a note, and a panel's focus outline wraps its own answer. labels translates the fixed words."
+    },
+    {
+      "name": "prompt-examples-demo",
+      "type": "registry:example",
+      "title": "Prompt examples demo",
+      "description": "A working preview of Prompt examples.",
+      "registryDependencies": [
+        "https://rhsui.com/r/prompt-examples.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/prompt-examples-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "studio-portfolio",
       "type": "registry:block",
       "title": "Studio portfolio",
