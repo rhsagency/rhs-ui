@@ -30316,6 +30316,226 @@
       ]
     },
     {
+      "name": "address-confirm-dialog",
+      "type": "registry:component",
+      "title": "Address confirm dialog",
+      "description": "A checkout dialog for an address that cannot be verified exactly: what was typed beside the suggestion, the differences in bold, to choose from or to edit.",
+      "categories": [
+        "commerce",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/callout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/address-confirm-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/address-confirm-dialog/index.tsx"
+        },
+        {
+          "path": "registry/commerce/address-confirm-dialog/address.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/address-confirm-dialog/address.ts"
+        }
+      ],
+      "docs": "entered and suggested are lists of lines, { id, value }, in the order of your form; the id is the field a line comes from ('street', 'postalCode') and lines are matched across the two addresses by id. Within a line the words are compared, so only the words that differ are bold and a screen reader hears 'Changed' before each of them; a line only one address has is bold as a whole. reason says why the address could not be verified, and the sentence under it counts the lines that differ. The suggestion is chosen to begin with (defaultValue, or value with onValueChange). 'Use this address' calls onUseSuggested(suggested), or onKeepEntered(entered) when the typed address is chosen; return a promise and the button shows it is working, the dialog closes when it resolves and stays open when it rejects. 'Edit address' closes the dialog and, once it has closed, calls onEdit with the id of the first line that differs so you can focus that field; the dialog leaves focus to you then (without onEdit, focus goes back to where it was). allowKeep makes the typed address a second choice, 'Keep what I typed', and choosing it opens a warning that delivery may fail; without it the typed address is shown to compare and cannot be chosen. open, defaultOpen and onOpenChange control the dialog and trigger is the element that opens it (without one, focus goes back to where it was). On a short screen the content scrolls and the buttons stay in view. AddressConfirmPanel is the same content without the dialog, for a step in the page. address.ts exports compareAddresses for your own use. Always pass locale; labels holds every word. Nothing is sent anywhere by the component itself."
+    },
+    {
+      "name": "address-confirm-dialog-demo",
+      "type": "registry:example",
+      "title": "Address confirm dialog demo",
+      "description": "A working preview of Address confirm dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/address-confirm-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/address-confirm-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "offer-list",
+      "type": "registry:component",
+      "title": "Offer list",
+      "description": "Other offers for the same product: seller and rating, condition, delivery and the price with shipping, sortable, with the best price named and an add button per row.",
+      "categories": [
+        "commerce",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/offer-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/offer-list/index.tsx"
+        },
+        {
+          "path": "registry/commerce/offer-list/offers.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/offer-list/offers.ts"
+        }
+      ],
+      "docs": "offers holds one entry per seller: id, seller, rating and ratingCount, condition ('new', 'like-new', 'very-good', 'good' or 'acceptable'), price and shipping in minor units (shipping 0 is free), delivery as { from, to? } ISO days and an optional note. The cheapest price with shipping is marked 'Best price' in words and with a bar on the row (highlightBest, on by default, needs two offers or more). The list sorts itself by price with shipping, delivery, condition or the seller's rating (the Seller rating column): pass sort and onSort to control it, or defaultSort; offers that tie are put cheapest first, offers without a rating go last, and the change is announced ('Sorted by price, lowest first'). The column heads are real sort buttons with aria-sort. Each condition is a tooltip on the table, reachable from the keyboard; on a device without hover the meaning is written out under the badge instead. Below the container width of 56rem the table becomes cards with a sort control, the condition written out under its badge and the same information. onAdd(offer) may return a promise: the button shows it is working, then 'Added' for a moment, and it is announced; without onAdd there are no buttons. Pass currency, locale and timeZone, so amounts and days read the same on the server and in the browser. A delivery given as a date only ('2026-11-05') is a calendar day and reads the same in every time zone; timeZone places the ones that carry a time of day. labels holds every word, the conditions and their explanations included. sortOffers, totalOf and deliveryText are exported from offers.ts."
+    },
+    {
+      "name": "offer-list-demo",
+      "type": "registry:example",
+      "title": "Offer list demo",
+      "description": "A working preview of Offer list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/offer-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/offer-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "line-items-table",
+      "type": "registry:component",
+      "title": "Line items table",
+      "description": "Priced lines as a table: description, quantity, unit price and amount, with subtotal, discount, shipping, VAT and total in a real tfoot, counted in whole cents.",
+      "categories": [
+        "commerce",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-price.json",
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/line-items-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/line-items-table/index.tsx"
+        },
+        {
+          "path": "registry/commerce/line-items-table/totals.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/line-items-table/totals.ts"
+        }
+      ],
+      "docs": "lines holds { id, description, detail?, quantity, unit?, unitAmount }, with unitAmount in minor units (8900 is 89.00) and a quantity that may be a fraction (hours, metres). Every amount is worked out in whole minor units and rounded once per row, so the rows always add up to the total: a line is quantity times unitAmount, discount is { label?, percent?, amount? } (the percentage of the subtotal first, then the fixed amount, never more than the subtotal), shipping is an amount or { label, amount } (0 shows 'Free') and taxRate is a percentage (21 for 21%), worked out on the subtotal less the discount plus shipping. The prices exclude VAT unless you set taxIncluded, as on a shop receipt: the row then reads 'Includes VAT 21%' and the total does not change. A row that does not apply is left out, and with nothing to add or take off there is only the total. The footer is a real tfoot with row headers, the total is set apart by a heavier rule and counts to a new value (AnimatedPrice) when the lines, the discount or the shipping change. title names the table; without it labels.caption does. Below the container width of 36rem each line becomes a card with its own subtotal and the footer a description list. It needs no client code of its own, so a Server Component can render it. totalsOf is exported, so your server works out the same figures. Always pass locale; labels holds every word."
+    },
+    {
+      "name": "line-items-table-demo",
+      "type": "registry:example",
+      "title": "Line items table demo",
+      "description": "A working preview of Line items table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/line-items-table.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/line-items-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-matrix",
+      "type": "registry:component",
+      "title": "Price matrix",
+      "description": "A price grid for made-to-order products: sizes down, materials or quantities across, every price a radio in one group, the chosen row and column quietly marked.",
+      "categories": [
+        "commerce",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/money.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-matrix/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-matrix/index.tsx"
+        },
+        {
+          "path": "registry/commerce/price-matrix/matrix.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-matrix/matrix.ts"
+        }
+      ],
+      "docs": "rows and columns are { id, label }; prices is a map by row id and then column id of an amount in minor units (1450 is 14.50), where null or a missing entry means the combination is not offered. Every price that is offered is a radio in one radiogroup named 'A3, 250 g paper, 14.50' (row, column, price), so one choice works with the arrow keys and Space: left and right move along a row, up and down along a column, past combinations that are not offered, and Home and End go to the ends of the row (with Ctrl, of the grid). A combination that is not offered says 'Not available' and cannot be picked. Control the choice with value and onValueChange(value, amount), where value is { row, column } or null, or leave it to defaultValue. The row and the column of the choice are quietly emphasised, markCheapest (on by default) writes 'Lowest price' on the cheapest combination, and the chosen price repeats under the grid in a polite status. The grid shows plain numbers in tabular figures and the currency is said once, in the caption, after your own caption text. Below the container width of 42rem the grid becomes one list per row, with the same radios, and the arrows walk the options in the order they are read. title names the group; without it labels.group does. Always pass locale; labels holds every word, the corner of the grid included."
+    },
+    {
+      "name": "price-matrix-demo",
+      "type": "registry:example",
+      "title": "Price matrix demo",
+      "description": "A working preview of Price matrix.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-matrix.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-matrix-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "metric-strip",
       "type": "registry:component",
       "title": "Metric strip",

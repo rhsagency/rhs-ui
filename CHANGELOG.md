@@ -82,6 +82,7 @@ own `meta.version` and are listed when they change.
 - Application, 8 more: `verify-email-card`, `set-new-password`, `invite-accept-card`, `sso-sign-in`, `reauthenticate-card`, `account-chooser`, `verification-method-picker`, `authorize-app-card`.
 - Marketing, 10 more: `contact-form-routed`, `limited-offer-panel`, `name-your-price`, `join-count-cta`, `affiliate-offer`, `project-capacity`, `savings-receipt`, `cta-giant-link`, `screenshot-features`, `pillars-section`.
 - Commerce, 9 more: `vat-price-field`, `card-fieldset`, `radio-accordion`, `rating-filter`, `product-pricing-fieldset`, `stock-adjust-field`, `category-nav`, `region-switcher`, `price-breakdown-popover`.
+- Commerce, 4 more: `address-confirm-dialog`, `offer-list`, `line-items-table`, `price-matrix`.
 
 ## Unreleased (0.7.0)
 
