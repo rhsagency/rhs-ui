@@ -81,6 +81,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 8 more: `multi-currency-field`, `percentage-field`, `amount-presets`, `time-range-field`, `due-date-field`, `recipient-field`, `link-field`, `bulk-paste-field`.
 - Application, 8 more: `verify-email-card`, `set-new-password`, `invite-accept-card`, `sso-sign-in`, `reauthenticate-card`, `account-chooser`, `verification-method-picker`, `authorize-app-card`.
 - Marketing, 10 more: `contact-form-routed`, `limited-offer-panel`, `name-your-price`, `join-count-cta`, `affiliate-offer`, `project-capacity`, `savings-receipt`, `cta-giant-link`, `screenshot-features`, `pillars-section`.
+- Commerce, 9 more: `vat-price-field`, `card-fieldset`, `radio-accordion`, `rating-filter`, `product-pricing-fieldset`, `stock-adjust-field`, `category-nav`, `region-switcher`, `price-breakdown-popover`.
 
 ## Unreleased (0.7.0)
 

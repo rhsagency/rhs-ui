@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-filter-demo",
+  "title": "Rating filter demo",
+  "description": "A working preview of Rating filter.",
+  "registryDependencies": [
+    "https://rhsui.com/r/rating-filter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/rating-filter-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { RatingFilter } from \"@rhs-ui/commerce/rating-filter\";\n\nfunction Example({ title, caption, children }: { title: string; caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4\">\n      <p className=\"text-xs leading-relaxed text-muted-foreground sm:min-h-12\">{caption}</p>\n      <div className=\"grid gap-3 rounded-xl border border-border bg-card p-4 text-card-foreground\">\n        <h2 className=\"text-sm leading-none font-medium\">{title}</h2>\n        {children}\n      </div>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [minimum, setMinimum] = useState<number | null>(4);\n\n  return (\n    <div className=\"grid w-full max-w-3xl min-w-0 gap-x-12 gap-y-12 [grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr))]\">\n      <Example title=\"Customer rating\" caption=\"With counts. The numbers are cumulative, so 4 and up includes the 5s, and the answer is read out in words.\">\n        <RatingFilter value={minimum} onValueChange={setMinimum} counts={{ any: 593, 4: 128, 3: 211, 2: 240, 1: 252 }} />\n        <p className=\"text-xs text-muted-foreground\">\n          Minimum{\" \"}\n          <code className=\"rounded-sm bg-muted px-1.5 py-0.5 font-mono text-foreground tabular-nums [overflow-wrap:anywhere]\">{String(minimum)}</code>\n        </p>\n      </Example>\n\n      <Example title=\"Rating\" caption=\"Without counts, for a directory that cannot tell you how many each choice leaves. Any rating is the way it starts.\">\n        <RatingFilter defaultValue={null} />\n      </Example>\n\n      <Example title=\"Rating\" caption=\"A row with no products is disabled and says so: 0 products.\">\n        <RatingFilter defaultValue={3} counts={{ any: 9, 4: 0, 3: 2, 2: 5, 1: 5 }} />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

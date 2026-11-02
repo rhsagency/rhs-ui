@@ -3915,6 +3915,460 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "vat-price-field",
+      "type": "registry:component",
+      "title": "VAT price field",
+      "description": "Enter a price once and see both sides, with and without VAT, with a switch for which one you type and the VAT worked out between them.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/vat-price-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/vat-price-field/index.tsx"
+        },
+        {
+          "path": "registry/commerce/vat-price-field/vat.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/vat-price-field/vat.ts"
+        }
+      ],
+      "docs": "value is the amount as typed, in minor units (1240 is 12.40): the price without VAT when mode is 'excluding', the price with VAT when it is 'including'; mode and rate are controlled the same way, or start with defaultValue, defaultMode and defaultRate (the highest of rates). rates are percentages, 0, 9 and 21 unless you pass your own; a rate with decimals (7.7) works. onChange(price, input) gets { net, vat, gross, rate } in minor units, worked out in whole numbers and rounded half up exactly once so net + vat is always gross, or null for an empty field, and input is { value, mode, rate } to hand back when you control the field. Changing the switch keeps the typed number and works out the other side. currency sets the symbol and the decimals (two for euros, none for yen), a comma or a point both work as the decimal sign, and name adds hidden inputs for net, vat, gross and rate. A screen reader hears the result when the field is left or the switch or the rate changes. vat.ts exports fromNet, fromGross and vatPrice, so your server can work out the same numbers. locale writes the amounts and labels holds the fixed words, 'VAT {rate}' among them, for another language or another tax."
+    },
+    {
+      "name": "vat-price-field-demo",
+      "type": "registry:example",
+      "title": "VAT price field demo",
+      "description": "A working preview of VAT price field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/vat-price-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/vat-price-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-fieldset",
+      "type": "registry:component",
+      "title": "Card fieldset",
+      "description": "Card number, expiry and security code as one connected group with spacing, brand detection and a Luhn check, ready to swap for hosted fields.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/card-fieldset/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/card-fieldset/index.tsx"
+        },
+        {
+          "path": "registry/commerce/card-fieldset/card.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/card-fieldset/card.ts"
+        }
+      ],
+      "docs": "A frame for the card form, with no payment in it: nothing is stored, logged or sent, and the inputs have no name, so a surrounding form cannot post them. onChange(value, state) gets { number, expiry, code, name } (number is digits only, expiry is 'MM/YY') and { brand, valid }; control it with value or start it with defaultValue. The number is spaced as you type (4-4-4-4, or 4-6-5 for American Express), the network is named in words beside the field, and the length of the code follows it. The Luhn check, a month from 01 to 12 and 'not in the past' run when a field is left, each message tied to its input with aria-describedby and aria-invalid; a message that shows follows the typing, and showErrors shows every message now, empty fields too. The focus moves on to the expiry and the code only when the part before is complete, and Backspace in an empty field goes back. The fields carry the cc-number, cc-exp, cc-csc and cc-name tokens and numeric keyboards. renderField(part, field) mounts your processor's hosted field for 'number', 'expiry' or 'code' in the same frame (return undefined to keep the built-in one); a part you replace does not count towards valid. showName adds the optional name, now fixes the moment the expiry is checked against, disabled dims the whole frame and turns the fields off (a hosted field is handed disabled to pass on), and labels holds the fixed words."
+    },
+    {
+      "name": "card-fieldset-demo",
+      "type": "registry:example",
+      "title": "Card fieldset demo",
+      "description": "A working preview of Card fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/card-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/card-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-accordion",
+      "type": "registry:component",
+      "title": "Radio accordion",
+      "description": "Payment or delivery methods as radio rows where the chosen one opens its own panel beneath and the others stay shut.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/radio-accordion.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/radio-accordion.tsx"
+        }
+      ],
+      "docs": "options are { value, label, description?, trailing?, icon?, content?, disabled? }; control the group with value and onValueChange or start it with defaultValue. The group is a radio group, so arrow keys choose and move the focus and Tab leaves it; name it with label (or aria-labelledby). The row is one big target: the label stretches over it and the radio keeps the focus ring. The panel of the chosen row is a region labelled by that row and opens beneath it, the others stay shut, and the focus never moves into a panel by itself. trailing is text at the end of the row ('Free', 'Instant', '4.95'), read out after the description. A closed panel is not in the page: its fields cannot be reached with Tab and a required field in it never blocks a form, so keep what is typed in state of your own, as the demo does. The height animates and is instant under reduced motion."
+    },
+    {
+      "name": "radio-accordion-demo",
+      "type": "registry:example",
+      "title": "Radio accordion demo",
+      "description": "A working preview of Radio accordion.",
+      "registryDependencies": [
+        "https://rhsui.com/r/radio-accordion.json",
+        "https://rhsui.com/r/card-fieldset.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/radio-accordion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rating-filter",
+      "type": "registry:component",
+      "title": "Rating filter",
+      "description": "'4 stars and up' as a filter: a radio list of star rows with the number of products beside each and an Any rating choice.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/rating-filter.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/rating-filter.tsx"
+        }
+      ],
+      "docs": "value is the lowest rating that passes, or null for any rating; control it with value and onValueChange or start it with defaultValue. options are the ratings to offer, from the highest (4, 3, 2 and 1 by default) and max is how many stars a rating has. counts is { any, 4, 3, 2, 1 }: how many products each choice leaves, cumulative, and optional; without it no counts are shown. It is a radio group, so arrow keys choose and Tab leaves; the stars are decoration and a row is named in words, '4 stars and up, 128 products'. A row whose count is 0 is disabled and reads '0 products'. The chosen row is bold with a check, never only coloured stars, and every row is 44px tall. locale writes the counts and labels holds the fixed words."
+    },
+    {
+      "name": "rating-filter-demo",
+      "type": "registry:example",
+      "title": "Rating filter demo",
+      "description": "A working preview of Rating filter.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rating-filter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rating-filter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-pricing-fieldset",
+      "type": "registry:component",
+      "title": "Product pricing fieldset",
+      "description": "Price, compare-at price and cost for a product form, with the discount, profit and margin worked out as you type.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/product-pricing-fieldset/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-pricing-fieldset/index.tsx"
+        },
+        {
+          "path": "registry/commerce/product-pricing-fieldset/pricing.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/product-pricing-fieldset/pricing.ts"
+        }
+      ],
+      "docs": "value is { price, compareAt, cost } in minor units (4900 is 49.00), with null for a field that is empty; control it with value and onValueChange or start it with defaultValue. Below the three fields the discount ('20% off', with what it saves), the profit and the margin are worked out in whole minor units and divided once at the end, so nothing is rounded before it is calculated. A fact that cannot be known yet says 'Not enough information', a compare-at price below the price is flagged in words under its field, and a margin below zero is shown plainly with a warning icon and 'Selling below cost'. A screen reader hears the discount, the profit and the margin when a field is left. showCost (true by default) turns the cost field and the profit and margin rows off. currency sets the symbol and the decimals, a comma or a point both work, locale writes the amounts and percentages, and labels holds the fixed words. pricing.ts exports pricingOf(), so your server can check the same numbers."
+    },
+    {
+      "name": "product-pricing-fieldset-demo",
+      "type": "registry:example",
+      "title": "Product pricing fieldset demo",
+      "description": "A working preview of Product pricing fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-pricing-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-pricing-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stock-adjust-field",
+      "type": "registry:component",
+      "title": "Stock adjust field",
+      "description": "Adjust stock without doing sums: add, remove or set a quantity, give a reason, and see on hand before and after.",
+      "categories": [
+        "commerce",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/stock-adjust-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/stock-adjust-field/index.tsx"
+        },
+        {
+          "path": "registry/commerce/stock-adjust-field/stock.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/stock-adjust-field/stock.ts"
+        }
+      ],
+      "docs": "onHand is the stock now. value is { mode, quantity, reason, note }, with mode 'add', 'remove' or 'set'; control it with value and onValueChange or start it with defaultValue. onValueChange gets the adjustment plus newOnHand (what the stock will be, null while the change is refused) and valid (a usable quantity, a reason, and the note when the reason asks for one), so saving needs no arithmetic, and both follow the number as it is typed (half-typed text such as '2.' waits until the field is left). Each mode keeps its own quantity and Set to starts at what is on hand. The result line always reads 'On hand 24, after 36' in tabular figures and is announced politely; a change that would take the stock below zero is refused with the numbers, unless allowNegative is on. reasons are { value, label, requiresNote? } and default to Received, Sold in store, Damaged, Count correction and Other, where Other makes the note required. unit follows every number, locale writes them and labels holds the fixed words. stock.ts exports stockAfter() and problemsOf() for the same checks on your server."
+    },
+    {
+      "name": "stock-adjust-field-demo",
+      "type": "registry:example",
+      "title": "Stock adjust field demo",
+      "description": "A working preview of Stock adjust field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stock-adjust-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stock-adjust-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "category-nav",
+      "type": "registry:component",
+      "title": "Category nav",
+      "description": "A category tree that shows only the current branch: parents above, siblings beside, children below, with counts.",
+      "categories": [
+        "commerce",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/category-nav/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/category-nav/index.tsx"
+        },
+        {
+          "path": "registry/commerce/category-nav/tree.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/category-nav/tree.ts"
+        }
+      ],
+      "docs": "tree is the top-level categories as { id, label, href, count?, children? }; currentId says where you are (leave it out at the top, where 'All categories' is the current one). Only that branch is drawn: a link back to all categories, the parents as links, the categories beside the current one (showSiblings), the current one in bold with aria-current='page', and its children indented with counts. More children than maxChildren (6) fold under 'Show N more', and the button stays where it is so the focus is never lost; a fold of a single category is not made. A category with a count of 0 is dimmed, not removed. onNavigate(category, event) runs on a click: call event.preventDefault() to route on the client. linkAs renders the links with your router's Link, allHref is where 'All categories' goes, showCounts turns the counts off, and labels holds the fixed words. It is one nav landmark named Categories and renders on the server."
+    },
+    {
+      "name": "category-nav-demo",
+      "type": "registry:example",
+      "title": "Category nav demo",
+      "description": "A working preview of Category nav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/category-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/category-nav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "region-switcher",
+      "type": "registry:component",
+      "title": "Region switcher",
+      "description": "Where you ship to and what you pay in: a country and a currency in one small panel, saved with one button.",
+      "categories": [
+        "commerce",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/region-switcher/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/region-switcher/index.tsx"
+        }
+      ],
+      "docs": "countries are { code, name, currency, accepts? } and currencies the currencies on offer (the countries' own by default). The trigger reads 'Ship to NL, EUR'; its panel has a searchable list of countries, a currency choice that follows the country but can be changed, and Save. value is the pair that applies now ({ country, currency }); update it in onSave, or start with defaultValue. Nothing applies until Save, and Escape or a click outside closes the panel and drops what was chosen. accepts lists the currencies an order to that country can be paid in besides its own: a currency outside it shows a hint and cannot be saved. note sits above the button (a free shipping threshold, say). open, defaultOpen and onOpenChange control the panel; a panel that starts open does not take the focus, one the visitor opens does. The component never navigates and sets no cookie: what saving means is up to you. locale writes the currency names and labels holds the fixed words."
+    },
+    {
+      "name": "region-switcher-demo",
+      "type": "registry:example",
+      "title": "Region switcher demo",
+      "description": "A working preview of Region switcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/region-switcher.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/region-switcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "price-breakdown-popover",
+      "type": "registry:component",
+      "title": "Price breakdown popover",
+      "description": "A price you can press to see how it is made up: base, discounts, shipping and VAT as lines that add up to the total, with the rate named.",
+      "categories": [
+        "commerce",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/commerce/price-breakdown-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-breakdown-popover/index.tsx"
+        },
+        {
+          "path": "registry/commerce/price-breakdown-popover/breakdown.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/commerce/price-breakdown-popover/breakdown.ts"
+        }
+      ],
+      "docs": "total is what the customer pays, in minor units (4900 is 49.00). lines are { label, amount, kind?, rate?, note? } with kind 'charge' (the default), 'discount' or 'tax'. They render as a real table: a discount shows a minus and the word Discount, a tax shows its rate ('VAT 21%'), and a rule above the total makes the sum readable. Charges add, a discount (passed positive) is taken off, and taxes are added too unless includesTax is on, where they are already in the total and listed under it as 'Includes VAT 21%'. In development a console warning says so when the lines do not add up to the total. Money is formatted in the given currency and locale from whole minor units. The trigger is a button named 'Price breakdown, 49.00 euros' that shows the total with an info icon, or your own trigger; the popover is not modal, so the page stays usable. title, align, open, defaultOpen and onOpenChange work as you would expect (a popover that starts open does not take the focus), and labels holds the fixed words. The trigger has no negative margin, so it never reaches over the word before it; pass className=\"-ml-1\" to line a price up with the text above it. sumOf() in breakdown.ts is the same sum."
+    },
+    {
+      "name": "price-breakdown-popover-demo",
+      "type": "registry:example",
+      "title": "Price breakdown popover demo",
+      "description": "A working preview of Price breakdown popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/price-breakdown-popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/price-breakdown-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

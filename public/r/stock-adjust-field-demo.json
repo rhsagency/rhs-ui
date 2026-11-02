@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stock-adjust-field-demo",
+  "title": "Stock adjust field demo",
+  "description": "A working preview of Stock adjust field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/stock-adjust-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/stock-adjust-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { StockAdjustField, type StockChange } from \"@rhs-ui/commerce/stock-adjust-field\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4\">\n      {/* Three lines tall in a two-column row, so the forms line up across the columns. */}\n      <p className=\"text-xs leading-relaxed text-muted-foreground sm:min-h-12\">{caption}</p>\n      <div className=\"rounded-xl border border-border bg-card p-5 text-card-foreground\">{children}</div>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [reported, setReported] = useState<Pick<StockChange, \"newOnHand\" | \"valid\">>({ newOnHand: 36, valid: true });\n\n  return (\n    <div className=\"grid w-full max-w-4xl min-w-0 gap-x-10 gap-y-12 [grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))]\">\n      <Example caption=\"Halcyon chilli oil, 24 on hand. Add 12 received and the result line reads On hand 24, after 36.\">\n        <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4\">\n          <StockAdjustField onHand={24} unit=\"pcs\" defaultValue={{ mode: \"add\", quantity: 12, reason: \"received\", note: \"\" }} onValueChange={setReported} />\n          <p className=\"text-xs text-muted-foreground\">\n            Reports{\" \"}\n            {/* A space after each comma, so a narrow screen breaks the line there and nowhere else. */}\n            <code className=\"rounded-sm bg-muted px-1.5 py-0.5 font-mono text-foreground tabular-nums [overflow-wrap:anywhere]\">\n              {JSON.stringify({ newOnHand: reported.newOnHand, valid: reported.valid }).replace(/,/g, \", \")}\n            </code>\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"A removal that would take the stock below zero is refused, with the numbers, and the result says it is not possible.\">\n        <StockAdjustField onHand={24} unit=\"pcs\" defaultValue={{ mode: \"remove\", quantity: 30, reason: \"damaged\", note: \"\" }} />\n      </Example>\n\n      <Example caption=\"Set to counts the stock at a number. It starts at what is on hand, and Add and Remove keep their own numbers.\">\n        <StockAdjustField onHand={24} unit=\"pcs\" defaultValue={{ mode: \"set\", quantity: 18, reason: \"count-correction\", note: \"Recount of shelf B4.\" }} />\n      </Example>\n\n      <Example caption=\"Other asks for a note, so no adjustment is left unexplained. Back orders can allow stock below zero.\">\n        <StockAdjustField onHand={24} unit=\"pcs\" allowNegative defaultValue={{ mode: \"remove\", quantity: 30, reason: \"other\", note: \"\" }} />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

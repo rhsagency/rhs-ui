@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "product-pricing-fieldset-demo",
+  "title": "Product pricing fieldset demo",
+  "description": "A working preview of Product pricing fieldset.",
+  "registryDependencies": [
+    "https://rhsui.com/r/product-pricing-fieldset.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/product-pricing-fieldset-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { ProductPricingFieldset, type PricingValue } from \"@rhs-ui/commerce/product-pricing-fieldset\";\n\nfunction Example({ caption, className, children }: { caption: string; className?: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className={`grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4 ${className ?? \"\"}`}>\n      {/* Two lines tall in a two-column row, so the fieldsets line up across the columns. */}\n      <p className=\"text-xs leading-relaxed text-muted-foreground sm:min-h-10\">{caption}</p>\n      <div className=\"rounded-xl border border-border bg-card p-5 text-card-foreground\">{children}</div>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [reported, setReported] = useState<PricingValue>({ price: 8000, compareAt: 10000, cost: 3200 });\n\n  return (\n    <div className=\"grid w-full max-w-4xl min-w-0 gap-x-10 gap-y-12 [grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))]\">\n      <Example caption=\"Kestrel down vest. Type in any field and the discount, the profit and the margin follow, worked out in whole cents.\" className=\"col-span-full\">\n        <div className=\"grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4\">\n          <ProductPricingFieldset defaultValue={{ price: 8000, compareAt: 10000, cost: 3200 }} onValueChange={setReported} />\n          <p className=\"text-xs text-muted-foreground\">\n            Reports{\" \"}\n            {/* A space after each comma, so a narrow screen breaks the line there and nowhere else. */}\n            <code className=\"rounded-sm bg-muted px-1.5 py-0.5 font-mono text-foreground tabular-nums [overflow-wrap:anywhere]\">{JSON.stringify(reported).replace(/,/g, \", \")}</code>\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"A compare-at price below the price is flagged in words instead of being accepted quietly.\">\n        <ProductPricingFieldset defaultValue={{ price: 8000, compareAt: 6500, cost: 3200 }} />\n      </Example>\n\n      <Example caption=\"Below cost: a negative margin is shown plainly, with a warning icon and text.\">\n        <ProductPricingFieldset defaultValue={{ price: 2400, compareAt: null, cost: 2900 }} />\n      </Example>\n\n      <Example caption=\"Nothing typed yet: no nonsense numbers, only a plain 'Not enough information'.\">\n        <ProductPricingFieldset />\n      </Example>\n\n      <Example caption=\"Without a cost field, and in a currency with no decimals.\">\n        <ProductPricingFieldset showCost={false} currency=\"JPY\" locale=\"ja-JP\" defaultValue={{ price: 12800, compareAt: 16000, cost: null }} />\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
