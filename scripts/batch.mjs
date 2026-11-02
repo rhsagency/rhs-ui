@@ -234,10 +234,18 @@ async function buildHarness(demos, all, out) {
   const fonts = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap";
   writeFileSync(
     path.join(out, "preview.html"),
-    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="${fonts}"><link rel="stylesheet" href="./preview.css"></head><body><div id="root"></div><script src="./preview.js"></script></body></html>`,
+    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="${SITE_CSP}"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="${fonts}"><link rel="stylesheet" href="./preview.css"></head><body><div id="root"></div><script src="./preview.js"></script></body></html>`,
   );
   return pathToFileURL(path.join(out, "preview.html")).href;
 }
+
+/**
+ * What rhsui.com lets a demo load (the Content-Security-Policy in rhs-ui-website's src/proxy.ts): pictures, media, fetches, frames and
+ * workers from the site itself or inline. A demo that shows a picture from another host works in a plain page, and on the site the
+ * browser refuses it with an error in the console, so the harness page carries the same rules and such a demo fails here, in its batch.
+ * Scripts, styles and fonts are left out: the harness loads its own bundle from disk and its fonts from Google.
+ */
+const SITE_CSP = "img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' data:; frame-src 'self'; worker-src 'self' blob:; object-src 'none'";
 
 const IGNORED_CONSOLE = [/fonts\.(googleapis|gstatic)\.com/, /Failed to load resource/, /Download the React DevTools/];
 
