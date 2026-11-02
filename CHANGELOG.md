@@ -92,6 +92,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 8 more: `cron-field`, `barcode-field`, `national-id-field`, `password-generator`, `rating-breakdown-field`, `aspect-ratio-picker`, `position-picker`, `contrast-pair-field`.
 - Marketing, 9 more: `two-sided-features`, `extension-points`, `stack-layers`, `region-list`, `model-lineup`, `sync-mapping`, `automation-recipes`, `materials-section`, `certifications-explained`.
 - Application, 10 more: `class-session-card`, `service-card`, `specialist-card`, `vehicle-card`, `venue-card`, `tour-card`, `app-listing-card`, `fundraiser-card`, `delivery-stop-card`, `book-card`.
+- Application, 9 more: `recipe-card`, `ingredient-list`, `match-score-card`, `player-card`, `availability-calendar`, `membership-card`, `certificate-card`, `stamp-card`, `match-timeline`.
 
 ## Unreleased (0.7.0)
 

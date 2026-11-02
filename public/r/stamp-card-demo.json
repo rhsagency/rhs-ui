@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stamp-card-demo",
+  "title": "Stamp card demo",
+  "description": "A working preview of Stamp card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/stamp-card.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/stamp-card-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { StampCard } from \"@rhs-ui/application/stamp-card\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nfunction Case({ caption, children }: { caption: string; children: ReactNode }) {\n  return (\n    <div className=\"flex min-w-0 flex-col\">\n      {/* A caption that wraps on one side must not push its card below the card beside it: from sm the two share the height of two lines. */}\n      <p className=\"mb-2.5 flex text-xs text-muted-foreground sm:min-h-8 sm:items-end\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\n/** Stands in for a request that marks the reward as used: the button shows a spinner until it settles. */\nconst redeem = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nexport default function Demo(): React.JSX.Element {\n  const [filled, setFilled] = useState(6);\n  // The date of the last stamp goes with the count: giving a stamp dates it today, and a card with no stamps has no date.\n  const [lastStamp, setLastStamp] = useState<Date | string>(\"2026-10-28\");\n\n  return (\n    <div className=\"grid w-full max-w-3xl items-start gap-x-6 gap-y-8 sm:grid-cols-2\">\n      <Case caption=\"Give a stamp: it presses in, the count is announced, and the tenth unlocks the reward.\">\n        <div className=\"grid gap-3\">\n          <StampCard total={10} filled={filled} label=\"Cappuccino card\" reward=\"Free cappuccino\" lastStampedAt={filled > 0 ? lastStamp : undefined} locale=\"en-GB\" timeZone=\"Europe/Amsterdam\" onRedeem={redeem} />\n          <div className=\"flex items-center gap-2\">\n            <Button\n              type=\"button\"\n              size=\"sm\"\n              variant=\"outline\"\n              disabled={filled >= 10}\n              onClick={() => {\n                setFilled((count) => Math.min(10, count + 1));\n                setLastStamp(new Date());\n              }}\n            >\n              Give a stamp\n            </Button>\n            <Button type=\"button\" size=\"sm\" variant=\"ghost\" disabled={filled === 0} onClick={() => setFilled(0)}>\n              Start over\n            </Button>\n          </div>\n        </div>\n      </Case>\n\n      <Case caption=\"Full: the reward is unlocked and Redeem appears.\">\n        <StampCard total={8} filled={8} label=\"Car wash card\" reward=\"Free full valet\" lastStampedAt=\"2026-11-01\" locale=\"en-GB\" timeZone=\"Europe/Amsterdam\" onRedeem={redeem} />\n      </Case>\n\n      <Case caption=\"A card of six: three to a row.\">\n        <StampCard total={6} filled={2} label=\"Salon card\" reward=\"10% off your next cut\" lastStampedAt=\"2026-10-30\" locale=\"en-GB\" timeZone=\"Europe/Amsterdam\" />\n      </Case>\n\n      <Case caption=\"A new card, nothing stamped yet.\">\n        <StampCard total={8} filled={0} label=\"Bakery card\" reward=\"A free croissant\" locale=\"en-GB\" timeZone=\"Europe/Amsterdam\" />\n      </Case>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

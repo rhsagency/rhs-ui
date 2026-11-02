@@ -6361,6 +6361,487 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "recipe-card",
+      "type": "registry:component",
+      "title": "Recipe card",
+      "description": "A recipe in a card: photo, title, total time with prep and cook in a tooltip, difficulty, servings, dietary marks as words and a rating.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/recipe-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recipe-card/index.tsx"
+        },
+        {
+          "path": "registry/application/recipe-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recipe-card/format.ts"
+        }
+      ],
+      "docs": "time is minutes in all (45) or { prep, cook, total? } in minutes: it is written in the locale's short units ('45 min', '1 hr 15 min'), and when both prep and cook are given the breakdown opens in a tooltip on hover, on focus and on a tap (a press of the button toggles it, so a touch screen and a screen reader reach it too, and a tap outside closes it; the total is prep plus cook unless you give it). difficulty is easy, medium or hard, written as a word beside three small bars; servings reads 'Serves 4'. dietary is a list of words and every one is shown, so nobody has to open the recipe to learn that it holds nuts or dairy: never icons alone. rating (0 to 5) and ratingCount draw the stars and are read as one sentence ('Rated 4.6 from 212 reviews'); a count of 0 says 'No reviews yet'. title is the one link of the card (href, with onOpen for a client-side router; without an href but with onOpen it becomes a button), and image falls back to a quiet 'No photo yet' tile, also when the picture fails to load. The heart beside the title is a toggle with aria-pressed, named with the recipe ('Save Lemon ricotta pasta as a favourite'): controlled with saved and onSave, or uncontrolled with defaultSaved. Without saved or onSave it keeps its own state, so a prototype works at once; saveable={false} removes it. It is its own target above the card's link. labels carries every word."
+    },
+    {
+      "name": "recipe-card-demo",
+      "type": "registry:example",
+      "title": "Recipe card demo",
+      "description": "A working preview of Recipe card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recipe-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recipe-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ingredient-list",
+      "type": "registry:component",
+      "title": "Ingredient list",
+      "description": "A recipe's ingredients that scale: change the servings and the amounts follow, as kitchen fractions or metric decimals, with lines you can tick off.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/number-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/ingredient-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ingredient-list/index.tsx"
+        },
+        {
+          "path": "registry/application/ingredient-list/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/ingredient-list/format.ts"
+        }
+      ],
+      "docs": "ingredients are lines with an id, name, quantity, unit, note and group, written for baseServings. A numeric quantity scales with the servings; a string quantity ('a pinch', 'a handful') stays as written, and scales: false keeps a number fixed. A line with no quantity is a name with a note ('maple syrup, to taste'). Cups, spoons, ounces and pounds are written as kitchen fractions ('1 1/2 cups') and never as decimals: an amount snaps to the nearest eighth or third (a tie goes up, and 1/8 is the least), counted things come in quarters, and a name with a plural takes it ('1 egg', '3 eggs'); grams and millilitres are decimals that roll over to kilograms and litres at a thousand. Units pluralise through Intl.PluralRules by the amount as it is written ('1 cup', '2 cups', and '3/4 cup' stays singular), the metric and imperial ones take the locale's own short form, and units lets you add words or translate them. servings is controlled with onServingsChange or uncontrolled with defaultServings; the stepper is the kit's number input, and Reset appears after a change. checkable adds a checkbox to each line: a ticked line is struck through and stays where it is, the count ('2 of 9 ticked') is a polite live region, and Clear ticks empties them; checked, defaultChecked and onCheckedChange control which. Lines with the same group sit under one heading, and the amounts line up in one column across groups. labels carries every word."
+    },
+    {
+      "name": "ingredient-list-demo",
+      "type": "registry:example",
+      "title": "Ingredient list demo",
+      "description": "A working preview of Ingredient list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ingredient-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ingredient-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "match-score-card",
+      "type": "registry:component",
+      "title": "Match score card",
+      "description": "A fixture or result: two teams, the score, the state (live, full time or kickoff time) and the competition, read as one sentence.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/match-score-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/match-score-card/index.tsx"
+        },
+        {
+          "path": "registry/application/match-score-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/match-score-card/format.ts"
+        }
+      ],
+      "docs": "home and away are { name, logo?, score? } and status is scheduled, live or finished. A live match shows 'Live' beside a pulsing dot that holds still under reduced motion, with the minute written 'N min' (a number, or text such as '45+2'); a finished one shows 'Full time' and, when kickoff is given, its date; a scheduled one shows the kickoff time and date, or 'TBC' without one. kickoff is an exact moment (a Date, a timestamp or an ISO string with its offset) written in timeZone and locale, so the server and the browser agree. Scores are tabular, and the winner of a finished match is set in heavier type and said in words ('Halcyon FC won', or 'Draw'). The card is read as one sentence and its drawing is hidden from assistive technology: 'Halcyon FC 2, Kestrel United 1, full time', 'Halcyon FC 2, Kestrel United 1, live, 67 minutes' or 'Halcyon FC versus Kestrel United, Sunday 9 November, 14:30'. With href the whole card is the link. A missing crest becomes the team's initials, and long names are cut with an ellipsis and carry the full name as their title. The score column grows for a score of three digits, and the scores keep one right edge. labels carries every word."
+    },
+    {
+      "name": "match-score-card-demo",
+      "type": "registry:example",
+      "title": "Match score card demo",
+      "description": "A working preview of Match score card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/match-score-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/match-score-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "player-card",
+      "type": "registry:component",
+      "title": "Player card",
+      "description": "A squad member for a club site: portrait, shirt number, name, position, nationality and season stats, with injured and suspended players marked in words.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/player-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/player-card/index.tsx"
+        }
+      ],
+      "docs": "name is the one link of the card (href, with onOpen for a client-side router; without an href but with onOpen it becomes a button). number is set large beside the name and read as 'Number 9'; position is always a word, with an optional positionCode ('FW') drawn as a small tag that is not read. stats are label and value pairs (three or four fit) in a description list with tabular numerals, kept at the foot so a grid of cards lines up whatever each one has, and every card has the same 4:5 portrait. The figures sit in columns once the card is 12.5rem wide (16rem for four) and as rows of label and figure below that, in capitals only from 17rem, and a label that is too long is cut with an ellipsis and never runs into the next figure. A missing photo, or one that fails to load, becomes a tonal tile with the initials. status is fit, injured or suspended: the last two are marked in words in a bar across the photo, 'Injured' or 'Suspended', with returns written as you want it read ('Back around 24 Nov'), and the photo loses some of its colour. In a card narrower than 8.5rem the bar keeps to the word, and the return is still read aloud. captain puts a 'Captain' badge on the photo. nationality and age (read as '24 years') sit under the position. The card answers to its own width, not the screen's: in a column narrower than 12rem the number sits above the name instead of beside it, so a two-column squad grid on a phone still reads. labels carries every word."
+    },
+    {
+      "name": "player-card-demo",
+      "type": "registry:example",
+      "title": "Player card demo",
+      "description": "A working preview of Player card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/player-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/player-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "availability-calendar",
+      "type": "registry:component",
+      "title": "Availability calendar",
+      "description": "A read-only calendar of free, booked and on-request days for rentals, venues and rooms, told apart by pattern and a legend in words, never by colour.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/availability-calendar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/availability-calendar/index.tsx"
+        },
+        {
+          "path": "registry/application/availability-calendar/dates.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/availability-calendar/dates.ts"
+        }
+      ],
+      "docs": "booked and onRequest are lists of days ('2026-03-14') and runs ({ start, end }, both included): a day is a day on the calendar, so nothing shifts with a time zone, and a booked day wins over a day on request. Every day is a grid cell named in full ('Friday 14 March, available', '..., booked', '..., on request', '..., past'), with a pattern of its own: blank for free, a diagonal hatch for booked, dots and a dashed edge for on request. The legend names them in words, and minStay writes 'Minimum stay: 3 nights' beside it. On a hatched or dotted day the number sits on a small chip, so the pattern never runs through it. The grid is a keyboard grid with one tab stop: arrow keys move by day and week, Home and End to the ends of the week, Page Up and Page Down by month (Shift for a year), and the view follows. months is 1 or 2: two months sit side by side, each with its own title and an arrow at the outer edge, once the calendar itself is 36rem wide (a container query), and stack with one toolbar above them when it is narrower. today ('2026-03-09') mutes the days before it and puts a dot under it; leave it out to use the browser's clock in timeZone, read once the page is live: until then, and unless defaultMonth or month names the month, the calendar only holds its place at a fixed height and the grid appears once the page is live, so a page that is built ahead of time (static, cached) should pass defaultMonth. month and onMonthChange control the first month shown, or defaultMonth sets it. locale writes the month and day names, weekStartsOn is 1 (Monday) or 0, and labels carries every word. It only displays: pair it with the date range picker when people must choose dates."
+    },
+    {
+      "name": "availability-calendar-demo",
+      "type": "registry:example",
+      "title": "Availability calendar demo",
+      "description": "A working preview of Availability calendar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/availability-calendar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/availability-calendar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "membership-card",
+      "type": "registry:component",
+      "title": "Membership card",
+      "description": "A digital membership card: member, tier, member since and valid until, with a QR code that opens large for scanning and a copyable member number.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/membership-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/membership-card/index.tsx"
+        },
+        {
+          "path": "registry/application/membership-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/membership-card/format.ts"
+        }
+      ],
+      "docs": "member is { name, number, image? } and tier is set large. since is written as month and year and validUntil as a date, in locale and timeZone (a day such as '2027-01-17' never shifts with the zone). qr is a node, so you can pass the kit's QR code, an svg, an img or your own: it must fill its box and be drawn with dark modules, because the code always sits on a white tile, in light and in dark. Tapping the tile opens the same code large in a dialog, also on white, with the name and number below it, for scanning. The member number is a mono value with a copy button that says when it is copied. status is active or expired: an expired card says 'Expired on 3 Mar 2026', mutes the tier and the picture, and hides the code, so nobody holds up something that no longer opens the door. organisation replaces the small line at the top, and it wraps to two lines before it is cut. The card answers to its own width: on a narrow card the code sits beside the tier and the member takes a full row below. The card is named by the member and the tier ('Maya Okafor, Gold membership'), and labels carries every word."
+    },
+    {
+      "name": "membership-card-demo",
+      "type": "registry:example",
+      "title": "Membership card demo",
+      "description": "A working preview of Membership card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/membership-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/membership-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "certificate-card",
+      "type": "registry:component",
+      "title": "Certificate card",
+      "description": "A certificate of completion as a card: recipient, course, dates, a copyable credential ID, and download and verify actions that still read in black and white.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/certificate-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/certificate-card/index.tsx"
+        },
+        {
+          "path": "registry/application/certificate-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/certificate-card/format.ts"
+        }
+      ],
+      "docs": "recipient and title are set large inside a double frame, with issuer, issuedAt and expiresAt in a labelled list in locale and timeZone (a day such as '2026-01-12' never shifts with the zone). credentialId is a mono value you can copy. verifyHref is a link that opens in a new tab (rel noopener) and says so to screen readers; onDownload may return a promise, and the button then shows a spinner until it settles. A certificate whose expiresAt has passed, or one you mark with expired, says 'Expired on 3 Mar 2026' in a badge and mutes its frame and seal (the list then leaves the end date out, because the badge has it); left to the clock it reads as valid until the page is live, so the server and the browser agree. The card is an article whose heading is the title (headingLevel sets its level), and when it is printed the buttons give way to the address that verifies it and every border and text falls back to black on white, on a dark page as well. labels carries every word."
+    },
+    {
+      "name": "certificate-card-demo",
+      "type": "registry:example",
+      "title": "Certificate card demo",
+      "description": "A working preview of Certificate card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/certificate-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/certificate-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stamp-card",
+      "type": "registry:component",
+      "title": "Stamp card",
+      "description": "A digital loyalty stamp card: a grid of stamps with the filled ones drawn, the reward on the last one, and a Redeem button once the card is full.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/stamp-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/stamp-card/index.tsx"
+        },
+        {
+          "path": "registry/application/stamp-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/stamp-card/format.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-stamp-press": {
+          "0%": {
+            "transform": "scale(1.45)",
+            "opacity": "0"
+          },
+          "55%": {
+            "transform": "scale(0.9)",
+            "opacity": "1"
+          },
+          "100%": {
+            "transform": "scale(1)",
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-stamp-press": "rhs-stamp-press 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+        }
+      },
+      "docs": "total is how many stamps the card has and filled how many are given; they sit in a grid (ten make two rows of five) of circles, the filled ones in the foreground with a check, the empty ones dashed and counting up, and the last one is the reward, drawn with a gift. The card reads as one sentence ('Cappuccino card, 6 of 10 stamps, 4 to go') and the grid is hidden from assistive technology. When filled goes up, each new stamp plays a short press (skipped under reduced motion) and the new count is announced politely. A full card changes its badge to 'Reward ready' and, with onRedeem, shows a Redeem button named with the reward; onRedeem may return a promise and the button shows a spinner until it settles. Without it a full card only says that the reward is unlocked. lastStampedAt is written as a short date in locale and timeZone. label is the heading, headingLevel sets its level, and labels carries every word."
+    },
+    {
+      "name": "stamp-card-demo",
+      "type": "registry:example",
+      "title": "Stamp card demo",
+      "description": "A working preview of Stamp card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stamp-card.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stamp-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "match-timeline",
+      "type": "registry:component",
+      "title": "Match timeline",
+      "description": "The events of a match on a centre line: goals, cards and substitutions with the minute, the player and the side, in one column on a phone.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/match-timeline/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/match-timeline/index.tsx"
+        },
+        {
+          "path": "registry/application/match-timeline/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/match-timeline/format.ts"
+        }
+      ],
+      "docs": "events are { id, minute, extraMinute?, side, type, player, assist?, detail? } in any order: they are sorted by the clock, and added time reads '45+2'. type is goal, penalty, own-goal, penalty-missed, yellow-card, red-card or substitution, and each has an icon and a word, so it reads without colour (a yellow card is an outlined card, a red one a solid card). The running score is written after every goal, penalty and own goal (an own goal counts for the other side). Home events sit on the left of the line and away events on the right once the timeline itself is 32rem wide (a container query, so it works in a sidebar as well as a page), under the two team names; below that everything runs in one column and each event names its team. status is finished (the default: a labelled 'Half time' break at halfTimeAt, 45 by default, and 'Full time' with the score), live (ending in a pulsing 'Live' that holds still under reduced motion) or scheduled. Goals have a solid icon, the rest a quiet one. It is an ordered list, and each line is read as one sentence in the order minute, event, player, team, score whatever side it sits on ('Minute 45 plus 2, Penalty, Mila Kowalski, Halcyon FC, Score 2 to 1'). For a substitution player is who comes on and detail names who goes off. labels carries every word."
+    },
+    {
+      "name": "match-timeline-demo",
+      "type": "registry:example",
+      "title": "Match timeline demo",
+      "description": "A working preview of Match timeline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/match-timeline.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/match-timeline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "certificate-card-demo",
+  "title": "Certificate card demo",
+  "description": "A working preview of Certificate card.",
+  "registryDependencies": [
+    "https://rhsui.com/r/certificate-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/certificate-card-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { CertificateCard } from \"@rhs-ui/application/certificate-card\";\n\nfunction Case({ caption, children }: { caption: string; children: ReactNode }) {\n  return (\n    <div className=\"flex min-w-0 flex-col\">\n      <p className=\"mb-2.5 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\n/** Stands in for a request that builds the PDF: the button shows a spinner until it settles. */\nconst download = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-4xl items-start gap-x-6 gap-y-8 md:grid-cols-2\">\n      <Case caption=\"Valid: copy the credential ID, download it, or verify it in a new tab.\">\n        <CertificateCard\n          recipient=\"Priya Ramanathan\"\n          title=\"Advanced Accessibility Engineering\"\n          issuer=\"Northwind Academy\"\n          issuedAt=\"2026-01-12\"\n          expiresAt=\"2029-01-12\"\n          credentialId=\"NWA-ACC-2026-004817\"\n          verifyHref=\"https://verify.northwind.academy/c/NWA-ACC-2026-004817\"\n          onDownload={download}\n          expired={false}\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n        />\n      </Case>\n\n      <Case caption=\"Expired: the date is stated, and the frame and the seal go quiet.\">\n        <CertificateCard\n          recipient=\"Daniel Okonkwo\"\n          title=\"Introduction to Cloud Networking\"\n          issuer=\"Northwind Academy\"\n          issuedAt=\"2024-03-04\"\n          expiresAt=\"2026-03-03\"\n          credentialId=\"NWA-NET-2024-001302\"\n          verifyHref=\"https://verify.northwind.academy/c/NWA-NET-2024-001302\"\n          onDownload={download}\n          expired\n          locale=\"en-GB\"\n          timeZone=\"Europe/Amsterdam\"\n        />\n      </Case>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

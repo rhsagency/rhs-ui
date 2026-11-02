@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "availability-calendar-demo",
+  "title": "Availability calendar demo",
+  "description": "A working preview of Availability calendar.",
+  "registryDependencies": [
+    "https://rhsui.com/r/availability-calendar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/availability-calendar-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { AvailabilityCalendar } from \"@rhs-ui/application/availability-calendar\";\n\nfunction Case({ caption, children }: { caption: string; children: ReactNode }) {\n  return (\n    <div className=\"flex min-w-0 flex-col\">\n      {/* A caption that wraps on one side must not push its card below the card beside it: from lg the two share the height of two lines. */}\n      <p className=\"mb-2.5 flex text-xs text-muted-foreground lg:min-h-8 lg:items-end\">{caption}</p>\n      <div className=\"rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-7\">{children}</div>\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-14\">\n      <div className=\"mb-8\">\n        <h2 className=\"text-2xl font-semibold tracking-[-0.03em]\">Fernleaf Cabin</h2>\n        <p className=\"mt-1.5 text-sm text-muted-foreground\">Sleeps 6 · Two bedrooms · From €145 a night</p>\n      </div>\n\n      <div className=\"grid items-start gap-x-10 gap-y-10 lg:grid-cols-[minmax(0,1fr)_21rem]\">\n        <Case caption=\"Two months. Today is pinned to 9 March, so the days before it go quiet. Use the arrow keys inside a month.\">\n          <AvailabilityCalendar\n            months={2}\n            today=\"2026-03-09\"\n            minStay={3}\n            booked={[{ start: \"2026-03-02\", end: \"2026-03-05\" }, { start: \"2026-03-14\", end: \"2026-03-18\" }, { start: \"2026-03-26\", end: \"2026-03-29\" }, { start: \"2026-04-03\", end: \"2026-04-06\" }, { start: \"2026-04-17\", end: \"2026-04-20\" }]}\n            onRequest={[{ start: \"2026-03-20\", end: \"2026-03-22\" }, { start: \"2026-04-10\", end: \"2026-04-12\" }]}\n          />\n        </Case>\n\n        <Case caption=\"One month, in Dutch, with the week from Monday.\">\n          <AvailabilityCalendar\n            today=\"2026-04-09\"\n            defaultMonth=\"2026-04-01\"\n            locale=\"nl-NL\"\n            timeZone=\"Europe/Amsterdam\"\n            minStay={1}\n            booked={[{ start: \"2026-04-03\", end: \"2026-04-06\" }, { start: \"2026-04-17\", end: \"2026-04-20\" }, \"2026-04-28\"]}\n            onRequest={[{ start: \"2026-04-10\", end: \"2026-04-12\" }]}\n            labels={{\n              available: \"Beschikbaar\",\n              booked: \"Bezet\",\n              onRequest: \"Op aanvraag\",\n              past: \"voorbij\",\n              today: \"Vandaag\",\n              legend: \"Legenda\",\n              previous: \"Vorige maand\",\n              next: \"Volgende maand\",\n              minStayOne: \"Minimaal {count} nacht\",\n              minStayOther: \"Minimaal {count} nachten\",\n            }}\n          />\n        </Case>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

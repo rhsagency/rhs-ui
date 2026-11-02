@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "match-timeline-demo",
+  "title": "Match timeline demo",
+  "description": "A working preview of Match timeline.",
+  "registryDependencies": [
+    "https://rhsui.com/r/match-timeline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/match-timeline-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { MatchTimeline, type MatchEvent } from \"@rhs-ui/application/match-timeline\";\n\n/** Given out of order on purpose: the timeline sorts them by the clock. */\nconst FINISHED: readonly MatchEvent[] = [\n  { id: \"e12\", minute: 12, side: \"home\", type: \"goal\", player: \"Mila Kowalski\", assist: \"Jonas Weber\", detail: \"Left foot from the edge of the box\" },\n  { id: \"e27\", minute: 27, side: \"away\", type: \"yellow-card\", player: \"Rafael Costa\", detail: \"Late challenge\" },\n  { id: \"e34\", minute: 34, side: \"away\", type: \"goal\", player: \"Dario Lindqvist\", assist: \"Noah Fischer\", detail: \"Header from a corner\" },\n  { id: \"e452\", minute: 45, extraMinute: 2, side: \"home\", type: \"penalty\", player: \"Mila Kowalski\" },\n  { id: \"e53\", minute: 53, side: \"away\", type: \"substitution\", player: \"Ivo Marek\", detail: \"for Dario Lindqvist\" },\n  { id: \"e61\", minute: 61, side: \"home\", type: \"own-goal\", player: \"Tariq Aziz\", detail: \"Deflected in off his shin\" },\n  { id: \"e68\", minute: 68, side: \"home\", type: \"yellow-card\", player: \"Jonas Weber\" },\n  { id: \"e74\", minute: 74, side: \"home\", type: \"substitution\", player: \"Sofia Marin\", detail: \"for Mila Kowalski\" },\n  { id: \"e79\", minute: 79, side: \"away\", type: \"penalty-missed\", player: \"Rafael Costa\", detail: \"Saved by Elias Moreau\" },\n  { id: \"e88\", minute: 88, side: \"home\", type: \"goal\", player: \"Sofia Marin\", assist: \"Jonas Weber\" },\n  { id: \"e904\", minute: 90, extraMinute: 4, side: \"away\", type: \"red-card\", player: \"Ivo Marek\", detail: \"Second yellow card\" },\n];\n\nconst LIVE: readonly MatchEvent[] = [\n  { id: \"l9\", minute: 9, side: \"away\", type: \"goal\", player: \"Anouk de Vries\", assist: \"Lena Fischer\" },\n  { id: \"l31\", minute: 31, side: \"home\", type: \"yellow-card\", player: \"Marta Silva\" },\n  { id: \"l44\", minute: 44, side: \"home\", type: \"goal\", player: \"Ines Laurent\", detail: \"Volley at the back post\" },\n];\n\nfunction Case({ caption, children }: { caption: string; children: ReactNode }) {\n  return (\n    <div className=\"flex min-w-0 flex-col\">\n      <p className=\"mb-4 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-2xl gap-14\">\n      <Case caption=\"Finished: home on the left, away on the right, the running score after each goal, half time and full time as breaks. On a phone it runs in one column.\">\n        <MatchTimeline home=\"Halcyon FC\" away=\"Kestrel United\" events={FINISHED} status=\"finished\" />\n      </Case>\n\n      <Case caption=\"Live: it ends with a pulsing Live that holds still under reduced motion.\">\n        <MatchTimeline home=\"Fernleaf Athletic\" away=\"Larkspur Town\" events={LIVE} status=\"live\" />\n      </Case>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
