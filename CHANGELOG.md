@@ -88,6 +88,7 @@ own `meta.version` and are listed when they change.
 - Application, 10 more: `terms-update-gate`, `workspace-url-sign-in`, `phone-sign-in`, `device-code-entry`, `pin-lock-screen`, `relative-time`, `expandable-text`, `priority-indicator`, `testimonial-card`, `article-card`.
 - Primitives, 8 more: `week-picker`, `dimensions-field`, `height-field`, `shorthand-number-field`, `natural-date-field`, `wheel-picker`, `currency-exchange-field`, `time-estimate-field`.
 - Marketing, 8 more: `api-endpoints`, `sdk-grid`, `quickstart-steps`, `trust-documents`, `service-levels`, `which-one-guide`, `industry-index`, `import-sources`.
+- Application, 11 more: `commit-list`, `appointment-card`, `company-card`, `invitation-card`, `api-endpoint`, `repo-card`, `experience-list`, `job-card`, `property-card`, `amenity-list`, `curriculum-list`.
 
 ## Unreleased (0.7.0)
 

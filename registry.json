@@ -37990,6 +37990,602 @@
       ]
     },
     {
+      "name": "commit-list",
+      "type": "registry:component",
+      "title": "Commit list",
+      "description": "Commits grouped by day under sticky headings: subject link, author, time in words, CI status as a glyph and word, and a short hash that copies.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/commit-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/commit-list/index.tsx"
+        },
+        {
+          "path": "registry/application/commit-list/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/commit-list/format.ts"
+        }
+      ],
+      "docs": "commits is { hash, message, body?, author: { name, image? }, committedAt, status?, merge?, href? }[], newest first, and they are grouped by calendar day in timeZone (default UTC) under headings that stick while their commits scroll past; set --commit-list-top on the list to park them under a fixed header. The first line of message is the subject: with href it is a link, without one but with onSelect a button. onSelect(commit, event) runs on both, so a client-side router can call event.preventDefault(). Whatever follows the first line of message (or body) folds behind a disclosure button. status is success, failure, running, pending or cancelled and is always a glyph plus a word (labels.statuses to translate). The short hash copies the full hash. Times are words (3 minutes ago, yesterday) with the exact moment in a tooltip that a tap opens too; pass now to pin the clock for server HTML and tests, otherwise the list reads the browser clock after the first paint and writes the full date until then. The row lays itself out by the width of the list, not of the window, so it also works in a narrow column."
+    },
+    {
+      "name": "commit-list-demo",
+      "type": "registry:example",
+      "title": "Commit list demo",
+      "description": "A working preview of Commit list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/commit-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/commit-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "appointment-card",
+      "type": "registry:component",
+      "title": "Appointment card",
+      "description": "An upcoming appointment at a glance: a date leaf, the time and its length, who and where, a status badge, and actions to reschedule, cancel or add to a calendar.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/add-to-calendar-button.json",
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/appointment-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/appointment-card/index.tsx"
+        },
+        {
+          "path": "registry/application/appointment-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/appointment-card/format.ts"
+        }
+      ],
+      "docs": "start and end are exact moments (a Date, a timestamp or an ISO string with its offset); timeZone is where the appointment takes place and every time on the card is written in it (Thu, Nov 5, 2026 and 10:00 AM – 10:45 AM · 45 min). readerTimeZone is the zone of the person looking: when its clock tells another time the card names the zone (10:00 – 10:45 GMT-5), and without it the card reads the browser zone after the first paint. status is confirmed, pending or cancelled; an appointment whose end has passed (against now, or the browser clock) mutes and says Completed (Expired when it was never confirmed). location.url makes it an Online appointment with a Join video call link while it is still to come, location.address an On site one. actions: onReschedule adds a button; onCancel adds a Cancel appointment entry in a menu that asks first in a dialog whose safe answer has the focus, shows a busy state while your promise runs and stays open with a message when it rejects, and once it resolves the card shows itself cancelled; calendar (default true) adds Add to calendar built from the appointment. labels carries every word, with {title}, {person} and {date} filled in."
+    },
+    {
+      "name": "appointment-card-demo",
+      "type": "registry:example",
+      "title": "Appointment card demo",
+      "description": "A working preview of Appointment card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/appointment-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/appointment-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "company-card",
+      "type": "registry:component",
+      "title": "Company card",
+      "description": "A company at a glance for CRMs and directories: logo, name, domain, status, and facts for industry, size, place, owner and last contact.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/company-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/company-card/index.tsx"
+        },
+        {
+          "path": "registry/application/company-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/company-card/format.ts"
+        }
+      ],
+      "docs": "name is the one primary link of the card (href, or onOpen for a button); the whole card opens it. domain is the website, with or without the scheme and the path (https://www.halcyon-freight.com/about shows halcyon-freight.com) and opens in a new tab, with that said in the link for screen readers. The logo is an image address; without one, or while it loads, the card shows the initials of the name. size is a number (written 240 employees) or your own words. owner is { name, image? }. lastContact is a date written in words (3 days ago, yesterday) with the exact date in a tooltip a tap opens too; null says Not contacted yet and leaving it out shows no line. status is lead, prospect, customer or lost: a badge with its own glyph, weight and word. Facts you leave out leave no empty row. Pass now to pin the clock for server HTML and tests; otherwise the card reads the browser clock after the first paint and writes the date until then. labels carries every word."
+    },
+    {
+      "name": "company-card-demo",
+      "type": "registry:example",
+      "title": "Company card demo",
+      "description": "A working preview of Company card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/company-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/company-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "invitation-card",
+      "type": "registry:component",
+      "title": "Invitation card",
+      "description": "An invitation you received: who sent it, what to and as which role, with Accept and Decline of equal weight and the outcome in words afterwards.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/invitation-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/invitation-card/index.tsx"
+        },
+        {
+          "path": "registry/application/invitation-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/invitation-card/format.ts"
+        }
+      ],
+      "docs": "inviter is { name, image? }, target is { name, type, image?, href? } (type is the kind of thing in lower case, workspace or project or team, and is written into the words) and role is the role in words. state is controlled (pending, accepted, declined or expired) with onStateChange, or leave it out and the card moves itself once your callbacks resolve; defaultState starts it elsewhere. Pending shows Accept and Decline as two buttons of the same size and style, a glyph each: while onAccept or onDecline runs neither answers a second press (both are aria-disabled, so the keyboard stays on the button that was pressed) and the pressed one is busy, and a rejection keeps the card pending and says so. Once a decision is made the keyboard moves to the outcome, so nobody has to Tab back from the top of the page. Accepted states the outcome and links to target.href (Open workspace). Declined says so and offers Undo for undoSeconds (default 10, 0 turns it off) through onUndo. expiresAt shows Expires in 5 days with the date; once it has passed, against now or the browser clock, the card shows itself expired whatever state says, explains why and offers Ask for a new invite when onRequestNew is given. Pass now to pin the clock for server HTML and tests. labels carries every word, with {inviter}, {role}, {target} and {type} filled in."
+    },
+    {
+      "name": "invitation-card-demo",
+      "type": "registry:example",
+      "title": "Invitation card demo",
+      "description": "A working preview of Invitation card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/invitation-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/invitation-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "api-endpoint",
+      "type": "registry:component",
+      "title": "API endpoint",
+      "description": "An API route as one row: the method as a label told apart by weight and outline, the path with its parameters quieter, a line on what it does and the auth it needs.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/api-endpoint.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/api-endpoint.tsx"
+        }
+      ],
+      "docs": "method is GET, POST, PUT, PATCH or DELETE, drawn as a label in monospace whose fill, outline (thin, heavy or dashed) and weight tell the five apart in black and white (only DELETE borrows the destructive token). path is the route with its parameters written :id or {id} (a query string works too): fixed parts are set in a medium weight and the parameters in a quieter one, so the shape of the route reads at a glance. baseUrl is what the routes hang from; the copy button copies baseUrl + path, so the clipboard holds an address that works in a terminal (fullUrl and routeParts are exported if you need them). auth is the words (Bearer token, API key, OAuth 2 · orders:read), false says it needs nothing and leaving it out says nothing; screen readers hear Authentication: before it. deprecated strikes the route through and adds a Deprecated mark. With href the route is the row's one link and the whole row opens it, while the copy button stays a separate target. Every link and copy button names its route (GET /v1/orders, Copy URL of GET /v1/orders), so a screen reader listing them can tell the routes apart. A Server Component; labels carries the words, and labels.copy takes {method} and {path}."
+    },
+    {
+      "name": "api-endpoint-demo",
+      "type": "registry:example",
+      "title": "API endpoint demo",
+      "description": "A working preview of API endpoint.",
+      "registryDependencies": [
+        "https://rhsui.com/r/api-endpoint.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/api-endpoint-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "repo-card",
+      "type": "registry:component",
+      "title": "Repo card",
+      "description": "A code repository as a card: owner and name as one link, description, topics, language, stars, forks and when it last changed.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/repo-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/repo-card/index.tsx"
+        },
+        {
+          "path": "registry/application/repo-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/repo-card/format.ts"
+        }
+      ],
+      "docs": "name is the one link of the card (href, or onOpen for a button) and owner is written before it in a quieter weight; the whole card opens the repository, while the counts and the date stay separate targets above it. language is words beside a small neutral marker, never a brand colour. stars and forks are written short (12.4K) in the locale's own way and say the full number (12,384 stars) in a tooltip, which a tap opens too, and to screen readers. updatedAt is written in words (3 days ago) with the exact date in a tooltip; pass now to pin the clock for server HTML and tests, otherwise the card reads the browser clock after the first paint and writes the date until then. visibility is public or private, a badge with a glyph and the word. topics are tags, maxTopics (default 4) of them before +N, which screen readers hear as 3 more topics. labels carries every word, with {count} and {time} filled in."
+    },
+    {
+      "name": "repo-card-demo",
+      "type": "registry:example",
+      "title": "Repo card demo",
+      "description": "A working preview of Repo card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/repo-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/repo-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "experience-list",
+      "type": "registry:component",
+      "title": "Experience list",
+      "description": "A CV section: roles with organisation, dates and duration, a few lines on what was done and skills as tags, in a two-column rhythm that stacks on a phone.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/experience-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/experience-list/index.tsx"
+        },
+        {
+          "path": "registry/application/experience-list/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/experience-list/format.ts"
+        }
+      ],
+      "docs": "entries is { role, organisation, logo?, start, end?, location?, bullets?, skills? }[], newest first, drawn as an ordered list of articles, each with a heading (the role; headingLevel sets it). Dates sit in a left column, written in months (Mar 2022 – Present) with how long it lasted under them, and move above the details on a phone. A start or end such as 2022-03 is a month and 2022-03-14 a calendar day: neither shifts with timeZone, and a month given as the end counts as worked through, so Jan 2019 to Mar 2023 is 4 yrs 3 mos. A role without an end says Present in words and is measured to now; leave now out to use the browser clock, which the list reads after the first paint (until then the length of a current role is left out, so server and browser agree). Entries with the same organisation next to each other group under one heading with the time at the organisation added up and the roles on a thin timeline. variant education writes years only and no lengths. labels carries the words, with {count} filled in."
+    },
+    {
+      "name": "experience-list-demo",
+      "type": "registry:example",
+      "title": "Experience list demo",
+      "description": "A working preview of Experience list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/experience-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/experience-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "job-card",
+      "type": "registry:component",
+      "title": "Job card",
+      "description": "A job opening as one card: company, title, a labelled list of place, mode, contract and pay, skill tags, how fresh it is, and a save toggle.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-bookmark.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/job-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/job-card/index.tsx"
+        },
+        {
+          "path": "registry/application/job-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/job-card/format.ts"
+        }
+      ],
+      "docs": "title is the one link of the card (href, or onOpen for a button; a screen reader also hears at {company}) and the whole card opens it. location, workMode (onsite, hybrid or remote) and type are facts in a definition list with a glyph each, and salary is { min?, max?, currency, period? } formatted with Intl in the locale you name: 85000 to 105000 EUR per year reads €85K – €105K / year (a range is written in one style: from 10,000 up both ends are short, 9500 to 12500 reads €9.5K – €12.5K), with a minimum only From €85K, with a maximum only Up to €105K, and with no salary there is no pay row at all. postedAt is written in words (Posted 2 days ago) with the exact date in a tooltip a tap opens too, and a posting under three days old gets New in words; pass now to pin the clock for server HTML and tests, otherwise the card reads the browser clock after the first paint. The save button is a toggle with aria-pressed whose name says which job it saves (Save Senior Product Designer at Halcyon Freight); saved controls it (or defaultSaved lets the card keep it), onSave(next) reports it, and it is a separate target above the card's link. labels carries every word."
+    },
+    {
+      "name": "job-card-demo",
+      "type": "registry:example",
+      "title": "Job card demo",
+      "description": "A working preview of Job card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/job-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/job-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "property-card",
+      "type": "registry:component",
+      "title": "Property card",
+      "description": "A home listing as a card: a gallery of photos with arrows, the price in tabular numerals, the address, bedrooms, bathrooms and area with units, a status and a save toggle.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/property-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/property-card/index.tsx"
+        },
+        {
+          "path": "registry/application/property-card/format.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/property-card/format.ts"
+        }
+      ],
+      "docs": "images is { src, alt }[]: the first is on show, they scroll with native snapping (swipe, trackpad) or with the two arrows, which loop and appear on hover and focus, and a counter says which photo you are on; from the keyboard the gallery itself is one tab stop and the left and right arrow keys step through it (the arrow buttons are for the pointer and for screen readers); one photo has no arrows and none shows a quiet placeholder. Every photo needs an alt, which is what the gallery reads out. price is a number written in currency (default EUR) and locale as tabular numerals with no cents, or your own words (€2,150 / month). facts is { beds, baths, area, plot } and is written with its units as a labelled list (3 beds, 2 baths, 142 m², 310 m² plot): for square feet set labels.area to {count} sq ft. status is for-sale, under-offer, sold or new, a badge in a word on the first photo; a sold listing is muted (black and white photos, a quiet price). The address is the one link of the card (href, or onOpen for a button) and a tap or click on a photo opens it too, while the arrows and the heart are separate targets above it. The heart is a toggle with aria-pressed whose name carries the address (Save Prinsengracht 214, Amsterdam): saved controls it (or defaultSaved lets the card keep it) and onSave(next) reports it. labels carries every word."
+    },
+    {
+      "name": "property-card-demo",
+      "type": "registry:example",
+      "title": "Property card demo",
+      "description": "A working preview of Property card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/property-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/property-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "amenity-list",
+      "type": "registry:component",
+      "title": "Amenity list",
+      "description": "What a place offers as an icon grid of amenities, sorted under headings, with a 'Show all 24 amenities' toggle for the long tail.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/amenity-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/amenity-list.tsx"
+        }
+      ],
+      "docs": "amenities is { id, label, icon?, available?, note?, group? }[]: icon is an element drawn at 20px (<IconWifi />), and without one the item shows a check. An amenity with available: false is struck through, says Not included to the eye and, as hidden text, to a screen reader, and keeps its note after it. The first visibleCount (default 8, in reading order) show; the rest sit behind a toggle that says how many there are in all (Show all 24 amenities) and reports aria-expanded and aria-controls. With no more than visibleCount items there is no toggle. groups is { id, label }[]: the amenities are sorted under those headings in that order, a heading is drawn as soon as one of its items shows, and amenities whose group is missing or unknown go under Other. expanded (or defaultExpanded) and onExpandedChange control the toggle. labels carries every word, with {count} filled in."
+    },
+    {
+      "name": "amenity-list-demo",
+      "type": "registry:example",
+      "title": "Amenity list demo",
+      "description": "A working preview of Amenity list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/amenity-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/amenity-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "curriculum-list",
+      "type": "registry:component",
+      "title": "Curriculum list",
+      "description": "A course outline: modules that fold open to lessons with type, length and state, so learners see what is done, current, locked or free to preview.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/curriculum-list.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/curriculum-list.tsx"
+        }
+      ],
+      "docs": "modules is { id, title, lessons }[] and each lesson { id, title, type (video, reading or quiz), minutes?, state?, href?, reason? }. A module header says how far the learner is (3 of 5 lessons, counted from lessons whose state is completed) and how long the module takes in all, with a thin bar that shows it. current is the id of the lesson the learner is on: its row says Current in words, is marked aria-current (page when it is a link, true when it is a button) and, when you leave expanded to the list, its module starts open. state is completed, locked, preview or available (the default, which says nothing): a locked lesson is not a link or a button, takes no tab stop and says why through reason; a preview lesson is marked Preview. A lesson with an href is a link and onSelect(lesson, module, event) runs on it, so a client-side router can call event.preventDefault(); without an href but with onSelect it is a button. expanded (the ids of the open modules) with onExpandedChange controls the folds; defaultExpanded only sets where they start. Several modules can be open at once. The open and close animation is height-based and switches off under reduced motion. labels carries every word, with {done}, {total} and {count} filled in.",
+      "cssVars": {
+        "theme": {
+          "animate-rhs-lessons-down": "rhs-lessons-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-lessons-up": "rhs-lessons-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "css": {
+        "@keyframes rhs-lessons-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
+        },
+        "@keyframes rhs-lessons-up": {
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      }
+    },
+    {
+      "name": "curriculum-list-demo",
+      "type": "registry:example",
+      "title": "Curriculum list demo",
+      "description": "A working preview of Curriculum list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/curriculum-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/curriculum-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",

@@ -1,0 +1,170 @@
+"use client";
+
+import { useState } from "react";
+
+import { PropertyCard, type PropertyImage } from "@rhs-ui/application/property-card";
+
+/** Photos drawn in flat shapes, so the demo needs no files. Use real photographs in an app. */
+const uri = (body: string) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'>${body}</svg>`);
+
+interface Palette {
+  sky: string;
+  ground: string;
+  wall: string;
+  roof: string;
+  trim: string;
+  door: string;
+  glass: string;
+  side: string;
+}
+
+const win = (x: number, y: number, w: number, h: number, p: Palette) =>
+  `<rect x='${x}' y='${y}' width='${w}' height='${h}' fill='${p.trim}'/><rect x='${x + 6}' y='${y + 6}' width='${w - 12}' height='${h - 12}' fill='${p.glass}'/><rect x='${x + w / 2 - 2}' y='${y + 6}' width='4' height='${h - 12}' fill='${p.trim}'/>`;
+
+const exterior = (p: Palette) =>
+  uri(
+    `<rect width='800' height='600' fill='${p.sky}'/>` +
+      `<rect x='20' y='250' width='200' height='270' fill='${p.side}'/><rect x='580' y='230' width='200' height='290' fill='${p.side}'/>` +
+      `<path d='M165 200 400 76 635 200Z' fill='${p.roof}'/><rect x='165' y='200' width='470' height='320' fill='${p.wall}'/>` +
+      win(212, 238, 76, 100, p) + win(362, 238, 76, 100, p) + win(512, 238, 76, 100, p) +
+      win(212, 376, 76, 100, p) + win(512, 376, 76, 100, p) +
+      `<rect x='364' y='372' width='72' height='148' fill='${p.door}'/><rect x='372' y='384' width='56' height='60' fill='${p.glass}'/>` +
+      `<rect y='520' width='800' height='80' fill='${p.ground}'/>`,
+  );
+
+const living = (wall: string, floor: string, sofa: string, accent: string) =>
+  uri(
+    `<rect width='800' height='600' fill='${wall}'/><rect y='440' width='800' height='160' fill='${floor}'/>` +
+      `<rect x='80' y='100' width='260' height='280' fill='#f6f4ef'/><rect x='92' y='112' width='236' height='256' fill='#cfd8de'/><rect x='208' y='112' width='4' height='256' fill='#f6f4ef'/>` +
+      `<ellipse cx='400' cy='520' rx='290' ry='42' fill='${accent}'/>` +
+      `<rect x='170' y='330' width='430' height='130' rx='20' fill='${sofa}'/><rect x='150' y='360' width='60' height='110' rx='18' fill='${sofa}'/><rect x='560' y='360' width='60' height='110' rx='18' fill='${sofa}'/>` +
+      `<rect x='230' y='350' width='140' height='70' rx='12' fill='${accent}' opacity='.55'/>` +
+      `<rect x='660' y='150' width='4' height='300' fill='#4a4e55'/><path d='M630 150h64l-14-50h-36z' fill='#e8e4da'/>` +
+      `<rect x='430' y='130' width='170' height='120' fill='#f6f4ef'/><rect x='442' y='142' width='146' height='96' fill='${accent}'/>`,
+  );
+
+const kitchen = (wall: string, cabinet: string, top: string) =>
+  uri(
+    `<rect width='800' height='600' fill='${wall}'/><rect y='450' width='800' height='150' fill='#cfc8bb'/>` +
+      `<rect x='60' y='80' width='300' height='130' fill='${cabinet}' opacity='.18'/><rect x='430' y='80' width='300' height='130' fill='${cabinet}' opacity='.18'/>` +
+      `<rect x='470' y='240' width='200' height='150' fill='#f6f4ef'/><rect x='480' y='250' width='180' height='130' fill='#cfd8de'/>` +
+      `<rect x='60' y='300' width='330' height='170' fill='${cabinet}'/><rect x='50' y='284' width='350' height='20' fill='${top}'/>` +
+      `<rect x='160' y='388' width='140' height='6' rx='3' fill='${top}'/>` +
+      `<rect x='260' y='420' width='460' height='160' rx='6' fill='${cabinet}'/><rect x='244' y='392' width='492' height='34' rx='5' fill='${top}'/>` +
+      `<path d='M360 0v70M520 0v90' stroke='#4a4e55' stroke-width='4'/><path d='M336 70h48l-8 36h-32zM496 90h48l-8 36h-32z' fill='${top}'/>`,
+  );
+
+const bedroom = (wall: string, bed: string, linen: string) =>
+  uri(
+    `<rect width='800' height='600' fill='${wall}'/><rect y='450' width='800' height='150' fill='#cfc8bb'/>` +
+      `<rect x='540' y='90' width='190' height='250' fill='#f6f4ef'/><rect x='552' y='102' width='166' height='226' fill='#cfd8de'/>` +
+      `<rect x='120' y='170' width='420' height='190' rx='14' fill='${bed}'/>` +
+      `<rect x='100' y='330' width='460' height='170' rx='16' fill='${linen}'/><rect x='100' y='400' width='460' height='100' rx='10' fill='${bed}' opacity='.35'/>` +
+      `<rect x='150' y='290' width='150' height='58' rx='20' fill='#f6f4ef'/><rect x='340' y='290' width='150' height='58' rx='20' fill='#f6f4ef'/>` +
+      `<rect x='600' y='400' width='110' height='100' rx='6' fill='${bed}'/><rect x='636' y='330' width='38' height='70' fill='#e8e4da'/>`,
+  );
+
+const garden = (sky: string, lawn: string, tree: string, house: string) =>
+  uri(
+    `<rect width='800' height='600' fill='${sky}'/><rect x='430' y='170' width='370' height='260' fill='${house}'/><path d='M410 180 615 90 820 180Z' fill='#6b7078'/>` +
+      `<rect y='400' width='800' height='200' fill='${lawn}'/>` +
+      `<rect x='168' y='250' width='26' height='190' fill='#7a6b5a'/><circle cx='181' cy='220' r='110' fill='${tree}'/><circle cx='120' cy='280' r='64' fill='${tree}' opacity='.8'/><circle cx='248' cy='285' r='60' fill='${tree}' opacity='.8'/>` +
+      `<g fill='#efece4'>${Array.from({ length: 12 }, (_, i) => `<rect x='${460 + i * 32}' y='400' width='14' height='70'/>`).join("")}</g><rect x='452' y='424' width='400' height='12' fill='#efece4'/>`,
+  );
+
+const CANAL: Palette = { sky: "#dde3e8", ground: "#b4ada0", wall: "#a8664f", roof: "#4a4e55", trim: "#f2efe8", door: "#2f3a36", glass: "#aebcc6", side: "#c9c2b6" };
+const SUBURB: Palette = { sky: "#e3e6e1", ground: "#c1c6b4", wall: "#e9e2d3", roof: "#7a5f52", trim: "#ffffff", door: "#3d4a52", glass: "#b9c7cf", side: "#d4ccbd" };
+const HARBOUR: Palette = { sky: "#d6dde2", ground: "#a7aaa6", wall: "#8d949b", roof: "#3b3f45", trim: "#e8eaeb", door: "#c98f4a", glass: "#a4b2bb", side: "#b9bdbf" };
+
+const photo = (src: string, alt: string): PropertyImage => ({ src, alt });
+
+const LISTINGS = [
+  {
+    id: "prinsengracht",
+    address: "Prinsengracht 214, Amsterdam",
+    price: 1250000,
+    status: "for-sale" as const,
+    facts: { beds: 4, baths: 2, area: 168 },
+    images: [
+      photo(exterior(CANAL), "Brick canal house with a stepped gable and white window frames"),
+      photo(living("#e9e4da", "#c9bfae", "#8a8f94", "#d8d0c2"), "Living room with a grey sofa and a tall window"),
+      photo(kitchen("#e6e8e8", "#4b5258", "#f1efe9"), "Kitchen with dark cabinets and a white island"),
+      photo(bedroom("#e8e4dc", "#b8b0a2", "#f1efe9"), "Bedroom with a linen bed under a window"),
+      photo(garden("#dfe6ea", "#b6c4a8", "#8fa58a", "#d9d3c6"), "Walled garden with an old tree"),
+    ],
+  },
+  {
+    id: "elmstraat",
+    address: "Elmstraat 9, Utrecht",
+    price: 575000,
+    status: "under-offer" as const,
+    facts: { beds: 3, baths: 1, area: 112, plot: 240 },
+    images: [
+      photo(exterior(SUBURB), "Semi-detached house with a tiled roof and a front garden"),
+      photo(living("#ece8df", "#d3c8b6", "#b8a58c", "#cfc6b4"), "Living room with a warm sofa and a rug"),
+      photo(garden("#e1e8e6", "#b2c2a0", "#91a98d", "#e9e2d3"), "Back garden with a lawn and a fence"),
+    ],
+  },
+  {
+    id: "havenweg",
+    address: "Havenweg 31, Rotterdam",
+    price: 389000,
+    status: "sold" as const,
+    facts: { beds: 2, baths: 1, area: 78 },
+    images: [photo(exterior(HARBOUR), "Harbour-side apartment building with a yellow door"), photo(bedroom("#e5e6e6", "#a8aeb3", "#eef0f0"), "Bedroom with a grey bed")],
+  },
+  {
+    id: "kanaaldijk",
+    address: "Kanaaldijk 5, Leiden",
+    price: "€2,150 / month",
+    status: "new" as const,
+    facts: { beds: 2, baths: 1, area: 84 },
+    images: [photo(living("#e8e6e0", "#cbc4b5", "#7f858b", "#d6cfc1"), "Bright living room with a grey sofa")],
+  },
+];
+
+export default function Demo(): React.JSX.Element {
+  const [saved, setSaved] = useState<ReadonlySet<string>>(new Set(["elmstraat"]));
+  const [opened, setOpened] = useState<string | null>(null);
+
+  return (
+    <div className="grid w-full max-w-3xl gap-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <div>
+          <h2 className="text-base font-semibold tracking-[-0.02em]">Homes near the water</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Step through the photos with the arrows or a swipe. The heart saves; the rest of the card opens the listing.</p>
+        </div>
+        <p role="status" className="text-xs text-muted-foreground">
+          {opened ? `Opened ${opened}.` : ""}
+        </p>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {LISTINGS.map((listing) => (
+          <PropertyCard
+            key={listing.id}
+            images={listing.images}
+            price={listing.price}
+            address={listing.address}
+            facts={listing.facts}
+            status={listing.status}
+            href={`#${listing.id}`}
+            onOpen={(event) => {
+              // A preview has nowhere to go: a router would navigate here.
+              event.preventDefault();
+              setOpened(listing.address);
+            }}
+            saved={saved.has(listing.id)}
+            onSave={(next) =>
+              setSaved((current) => {
+                const copy = new Set(current);
+                if (next) copy.add(listing.id);
+                else copy.delete(listing.id);
+                return copy;
+              })
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
+}

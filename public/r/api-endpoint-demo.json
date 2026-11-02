@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-endpoint-demo",
+  "title": "API endpoint demo",
+  "description": "A working preview of API endpoint.",
+  "registryDependencies": [
+    "https://rhsui.com/r/api-endpoint.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/api-endpoint-demo.tsx",
+      "content": "import { ApiEndpoint } from \"@rhs-ui/application/api-endpoint\";\n\nconst BASE = \"https://api.northwind.dev\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-3xl gap-4\">\n      <div>\n        <h2 className=\"text-base font-semibold tracking-[-0.02em]\">Orders</h2>\n        <p className=\"mt-1 text-sm text-muted-foreground\">\n          Every route hangs from <code className=\"font-mono text-[0.8125rem] text-foreground\">{BASE}</code>. The copy button copies the whole address.\n        </p>\n      </div>\n      <div className=\"grid gap-2.5\">\n        <ApiEndpoint method=\"GET\" path=\"/v1/orders\" baseUrl={BASE} href=\"#list-orders\" auth=\"Bearer token\" description=\"List orders, newest first. Filter by status or customer; 50 per page.\" />\n        <ApiEndpoint\n          method=\"POST\"\n          path=\"/v1/orders\"\n          baseUrl={BASE}\n          href=\"#create-order\"\n          auth=\"Bearer token\"\n          description=\"Create an order from a cart. Send an Idempotency-Key header, so a retry never charges twice.\"\n        />\n        <ApiEndpoint method=\"GET\" path=\"/v1/orders/:id\" baseUrl={BASE} href=\"#get-order\" auth=\"Bearer token\" description=\"Retrieve one order with its line items, shipments and refunds.\" />\n        <ApiEndpoint\n          method=\"GET\"\n          path=\"/v1/orders/:id/events?limit=20\"\n          baseUrl={BASE}\n          href=\"#order-events\"\n          auth=\"Bearer token · orders:read\"\n          description=\"The history of an order, newest first: paid, packed, shipped, delivered.\"\n        />\n        <ApiEndpoint\n          method=\"PUT\"\n          path=\"/v1/orders/{id}/shipping-address\"\n          baseUrl={BASE}\n          href=\"#replace-address\"\n          auth=\"Bearer token · orders:write\"\n          description=\"Replace the shipping address of an order that has not shipped yet.\"\n        />\n        <ApiEndpoint\n          method=\"PATCH\"\n          path=\"/v1/orders/{id}\"\n          baseUrl={BASE}\n          href=\"#update-order\"\n          auth=\"API key\"\n          description=\"Change the note, the tags or the metadata. Fields you leave out stay as they are.\"\n        />\n        <ApiEndpoint\n          method=\"DELETE\"\n          path=\"/v1/orders/:id\"\n          baseUrl={BASE}\n          href=\"#delete-order\"\n          deprecated\n          auth=\"Bearer token\"\n          description=\"Use POST /v1/orders/:id/cancel instead. This route stops working on 1 March 2027.\"\n        />\n        <ApiEndpoint method=\"GET\" path=\"/v1/status\" baseUrl={BASE} href=\"#status\" auth={false} description=\"The health of the API. Safe to poll every ten seconds.\" />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
