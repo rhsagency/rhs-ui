@@ -8401,6 +8401,428 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "two-sided-features",
+      "type": "registry:block",
+      "title": "Two sided features",
+      "description": "A platform explained to both sides: what buyers get and what sellers get, mirrored around a centre line, each side with benefits and an action of its own.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/labeled-divider.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/two-sided-features.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/two-sided-features.tsx"
+        }
+      ],
+      "docs": "Pass sides, a pair of audiences: each has a label (\"For hosts\"), a heading, benefits (an icon, a title and a description) and a cta. The benefits sit on the same rows across the centre rule, so each pair reads straight across, and both sides get the same button, so neither reads as an afterthought. On a narrow block the sides stack with a labelled divider between them (the word is labels.and). The heading is centred by default; align=\"start\" sets it from the left. The heading of each side is always set smaller than the title, at level 3 as at level 2, so the title stays the focal point. The block has no state and renders on the server."
+    },
+    {
+      "name": "two-sided-features-demo",
+      "type": "registry:example",
+      "title": "Two sided features demo",
+      "description": "A working preview of Two sided features.",
+      "registryDependencies": [
+        "https://rhsui.com/r/two-sided-features.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/two-sided-features-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "extension-points",
+      "type": "registry:block",
+      "title": "Extension points",
+      "description": "How far you can bend the product, from no-code to code: custom fields, rules, webhooks, plugins and the API, each with its level, examples and a guide.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/extension-points.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/extension-points.tsx"
+        }
+      ],
+      "docs": "Pass levels (an id, a label and, if you like, a description) from the least technical to the most, and points (a name, the id of its level, a description, example chips and a guide link). The levels set the order of the ladder, so it can never be shown upside down, and the level is always written out beside the name. A step marker on the left grows by one bar on every row; it is decoration and hidden from assistive technology, because the list is an ordered list. When any level has a description a key above the ladder says what each level takes; the levels sit in equal columns by their number, or stack, and never as two and one. Add a footnote for the promise that answers the fear of lock-in. The block has no state and renders on the server."
+    },
+    {
+      "name": "extension-points-demo",
+      "type": "registry:example",
+      "title": "Extension points demo",
+      "description": "A working preview of Extension points.",
+      "registryDependencies": [
+        "https://rhsui.com/r/extension-points.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/extension-points-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stack-layers",
+      "type": "registry:block",
+      "title": "Stack layers",
+      "description": "Your architecture as horizontal layers, edge to storage: each with its technologies, a one-line promise and a metric, along a rail that marks a request's path.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/stack-layers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/stack-layers.tsx"
+        }
+      ],
+      "docs": "Pass layers in the order a request meets them: an id, a name, the technologies as chips, a one-line promise and, if you have one, a metric (a value and what it measures). The block is an ordered list read from top to bottom; the metric is plain text, and the rail on the left is decoration that marks the path of a request. On a wide block the layers are bands separated by hairlines; on a narrow one each becomes a card, joined to the next by a short line. A layer without a metric simply has none. Add a footnote for where the figures come from. Nothing animates, the block has no state and it renders on the server."
+    },
+    {
+      "name": "stack-layers-demo",
+      "type": "registry:example",
+      "title": "Stack layers demo",
+      "description": "A working preview of Stack layers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stack-layers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stack-layers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "region-list",
+      "type": "registry:block",
+      "title": "Region list",
+      "description": "Where your data can live: regions by continent with city, status, latency and compliance tags in a real, filterable table, not a map.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/region-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/region-list.tsx"
+        }
+      ],
+      "docs": "Pass regions (a code, a city, a country, a continent, a status of available, beta or planned, latencyMs and tags) and latencyFrom, the place the latency is measured from. Chips filter by tag, show how many regions each holds and say politely how many are on screen; a tag no region carries is never offered. Use defaultTag to start on a chip, or tag and onTagChange to control it. A planned region has no latency and the row says so. On a wide block the list is a real table with headers and a caption, grouped by continent, whose columns hold their places while a chip filters; on a narrow one every region is a card with the latency written out (\"about 12 ms from Amsterdam\"). Add selectHref, with {code} for the region's code, to give each live region a link. Words are translated through labels and numbers follow locale."
+    },
+    {
+      "name": "region-list-demo",
+      "type": "registry:example",
+      "title": "Region list demo",
+      "description": "A working preview of Region list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/region-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/region-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "model-lineup",
+      "type": "registry:block",
+      "title": "Model lineup",
+      "description": "A model family compared on what matters: best for, context window, speed and price per million tokens, with one model marked Recommended in words.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/model-lineup.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/model-lineup.tsx"
+        }
+      ],
+      "docs": "Pass models (an id, a name, a tier, bestFor, context in tokens, speed from 1 to 3, priceIn and priceOut per million tokens, an href and, for the one you would pick first, recommended), plus currency and locale for the prices. Context is written compactly (\"200K\") and every figure is tabular. Speed is a three-segment meter with a word beside it: Fast, Faster or Fastest, never the meter alone. On a wide block the models are rows of a real table with a caption, where the row header is the model's name, its tier and the Recommended mark, and what it is best for has a column of its own; the column of links is left out when no model has an href. On a narrow block each is a card with the same labels. Add a note under it for billing details. The block has no state and renders on the server. Words are translated through labels."
+    },
+    {
+      "name": "model-lineup-demo",
+      "type": "registry:example",
+      "title": "Model lineup demo",
+      "description": "A working preview of Model lineup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/model-lineup.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/model-lineup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sync-mapping",
+      "type": "registry:block",
+      "title": "Sync mapping",
+      "description": "What syncs between two tools: object pairs, direction, how often and what stays manual, in a clear table with the limits listed underneath.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/sync-mapping.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sync-mapping.tsx"
+        }
+      ],
+      "docs": "Pass left and right (a name and an optional mark for each tool), rows (your object, theirs, a direction of to-right, to-left or both, a frequency and an optional note) and limits, a plain list of what does not sync. The direction is drawn as an arrow and written out, and a screen reader hears it in full (\"Contacts to Customers, two way\"). The table scrolls sideways in a region of its own on a narrow block, which can be focused and scrolled with the keyboard, and says so underneath. The first column, your object, stays pinned while it scrolls, so a row never loses its name. The region is a tab stop at every width, also where the table fits: a scroller that cannot be reached by keyboard is worse, and knowing that it overflows takes a script. The block has no state and renders on the server. Words are translated through labels."
+    },
+    {
+      "name": "sync-mapping-demo",
+      "type": "registry:example",
+      "title": "Sync mapping demo",
+      "description": "A working preview of Sync mapping.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sync-mapping.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sync-mapping-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "automation-recipes",
+      "type": "registry:block",
+      "title": "Automation recipes",
+      "description": "Ready-made automations as trigger and action rows: when this happens, do that, with the apps named and a button to use the recipe, under tabs by team.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/automation-recipes.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/automation-recipes.tsx"
+        }
+      ],
+      "docs": "Pass recipes (an id, an outcome, a trigger with app and event, and one to three actions with app and action) and onUse, which is called with the recipe's id and the recipe when its button is pressed; the block starts nothing itself. Add groups (an id and a label each, with a group on every recipe) to put the recipes under tabs by team. Each row is a list item with the outcome as its heading, and app names are plain text with no logos. The chips wrap on a narrow block and the arrow turns to point down. Use defaultGroup, or group and onGroupChange, to choose the tab. Words are translated through labels."
+    },
+    {
+      "name": "automation-recipes-demo",
+      "type": "registry:example",
+      "title": "Automation recipes demo",
+      "description": "A working preview of Automation recipes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/automation-recipes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/automation-recipes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "materials-section",
+      "type": "registry:block",
+      "title": "Materials section",
+      "description": "What it is made of and where it comes from: materials with share, origin and certification beside a short story, for products that must prove it.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/materials-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/materials-section.tsx"
+        }
+      ],
+      "docs": "Pass a title, a story and materials (a name, a share in percent, an origin, an optional certification and a swatch, a CSS colour for the material's own tone), plus care, a short list for washing or maintenance. The share is written as text first and the thin bar under it is decoration, hidden from assistive technology. The shares should add up to 100: while you develop, the block warns in the console when they do not. Origins are plain places and a certification is a word in a badge. The halves sit side by side by the width of the block. The block has no state and renders on the server. Words are translated through labels, and the shares follow locale."
+    },
+    {
+      "name": "materials-section-demo",
+      "type": "registry:example",
+      "title": "Materials section demo",
+      "description": "A working preview of Materials section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/materials-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/materials-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "certifications-explained",
+      "type": "registry:block",
+      "title": "Certifications explained",
+      "description": "Labels in plain words: what each certification means, who issues it, its number and where to verify it, as cards with a description list.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/certifications-explained.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/certifications-explained.tsx"
+        }
+      ],
+      "docs": "Pass certifications (an id, a name, an issuer, a meaning in one plain sentence, and optionally a number, since, a verifyHref and a mark) and a footnote. Each card has the name as its heading with the issuer under it, and a description list so the facts read as pairs. The number is set in monospace, a since that is a day is written in the locale and time zone you pass, and a fact you leave out is simply not shown. The Verify link opens in a new tab and says so to screen readers. No seal image is required: without a mark, a typographic one is drawn from the name. The columns follow the number of labels: one is a single card, two or four sit in pairs, and any other number fills three columns on a wide block, so no column is left empty. The block has no state and renders on the server. Words are translated through labels."
+    },
+    {
+      "name": "certifications-explained-demo",
+      "type": "registry:example",
+      "title": "Certifications explained demo",
+      "description": "A working preview of Certifications explained.",
+      "registryDependencies": [
+        "https://rhsui.com/r/certifications-explained.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/certifications-explained-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
