@@ -7157,6 +7157,480 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "contact-form-routed",
+      "type": "registry:block",
+      "title": "Routed contact form",
+      "description": "One form, the right team: the topic you pick changes the questions (order number for support, company size for sales) and who answers.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/radio-cards.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/contact-form-routed.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/contact-form-routed.tsx"
+        }
+      ],
+      "docs": "Pass routes (an id, a label, a line on what the topic is for, its own questions as fields, and a promise of who answers and how fast), onSubmit and a title. Topic cards sit at the top as a real radio group, two across on a wide form (an odd last card takes the whole row) and one under the other on a narrow one; the questions of the chosen topic appear between email and message, in a tinted group named after the topic, and the promise under the button changes with it. A field is text, email, tel, url, date, select (options) or textarea, and may be required, carry a placeholder and a hint. Name, email and message are shared by every topic, so nothing typed in them is lost when the topic changes, and the answers to a topic's own questions are kept per topic. Focus stays on the card the reader used, and the promise is said politely to a screen reader as it changes. onSubmit receives the topic id and every answer, trimmed, keyed by field name (name, email and message are reserved). Mistakes are said in words only once a field has been visited or a send was tried, the first one takes focus, a failed send keeps everything typed, and success replaces the form with a status message that names the topic. Use route and onRouteChange to control the topic, defaultValues to prefill, defaultStatus to start in a state, privacyHref for the link under the button, and labels to translate every fixed word and error."
+    },
+    {
+      "name": "contact-form-routed-demo",
+      "type": "registry:example",
+      "title": "Routed contact form demo",
+      "description": "A working preview of Routed contact form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-form-routed.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-form-routed-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "limited-offer-panel",
+      "type": "registry:block",
+      "title": "Limited offer panel",
+      "description": "A founding-member or launch offer with a real count of what is left, what you get and the rule for when the price changes.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/limited-offer-panel.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/limited-offer-panel.tsx"
+        }
+      ],
+      "docs": "Pass title, price (written as you want it, with its currency), priceNote, claimed, total, perks, condition and action. The count is yours and the state follows it: while places are left the button takes the buyer in; when claimed reaches total the meter reads All claimed, the price is struck through and marked as no longer available, and the button turns into Join the waiting list, which goes where waitlist says. Without a waitlist the panel never sends anyone to the action of a closed offer: the button is replaced by a line saying the offer has closed. A closed offer, sold out or ended, never says how many places are left. Write condition in the tense that is true now: The price goes to 249 when all 100 places are gone becomes The price is now 249 once they are. The meter is a progress bar with a name and its value in words, the count of places left gets weight in the last tenth, and every figure is tabular. endsAt is an ISO time with its offset or a plain day that ends with that day in timeZone; it is written in a time element, and once it has passed the panel closes the same way. No timer runs: a page built once corrects itself in the browser, and passing now (the same on the server and in the browser) makes the first paint right when you render per request. locale writes the numbers and the date; labels translates every fixed word."
+    },
+    {
+      "name": "limited-offer-panel-demo",
+      "type": "registry:example",
+      "title": "Limited offer panel demo",
+      "description": "A working preview of Limited offer panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/limited-offer-panel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/limited-offer-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "name-your-price",
+      "type": "registry:block",
+      "title": "Name your price",
+      "description": "Pay what you want: suggested amounts, a custom amount with a minimum and a line on what the money does, for creators selling digital work.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/currency-input.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/name-your-price.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/name-your-price.tsx"
+        }
+      ],
+      "docs": "Pass presets (usually three amounts in minor units: 500, 1200, 2500), suggested, min, currency, locale, onSubmit(amount, recurring) and an optional impact. Amounts are in minor units, as in CurrencyInput, so 1200 is 12.00. The presets are tiles in a real radio group (arrow keys move and choose); the suggested one carries a tag and is chosen at the start, because a suggested amount anchors the choice. The tiles share the row by how many there are: two or three fill it, four go four across on a wide card and two by two on a narrow one, five or more go three across. Every amount is set in one size, the largest that lets the longest of them fit its tile. impact is a list of lines with the smallest amount each is true for, and the line of the highest one the chosen amount reaches is said under the tiles, for a preset and for a custom amount, and read out politely when it changes. The custom field states its minimum; an amount below it is said in plain words next to the field and what was typed stays, and pressing the button then returns the reader to the field. Choosing a tile clears the custom amount, so the button never pays an amount the reader cannot see. Turn on monthly to add the switch that repeats the amount, and the button reads Pay 12 every month. Sending keeps the button's label, a failure keeps the choice, and success thanks the reader with what they gave; Change the amount then puts focus back on the chosen tile, or on the field when the amount was typed. onValueChange reports the chosen amount as it changes. defaultAmount and defaultStatus start the panel in a state; labels translates every fixed word."
+    },
+    {
+      "name": "name-your-price-demo",
+      "type": "registry:example",
+      "title": "Name your price demo",
+      "description": "A working preview of Name your price.",
+      "registryDependencies": [
+        "https://rhsui.com/r/name-your-price.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/name-your-price-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "join-count-cta",
+      "type": "registry:block",
+      "title": "Join count CTA",
+      "description": "A closing ask anchored by a big number: how many people already did it, a stack of faces, and the button.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/join-count-cta.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/join-count-cta.tsx"
+        }
+      ],
+      "docs": "Pass count, unit, action and, for the full effect, avatars, description, note and asOf. The heading carries the whole figure as text (Join 48,213 teams) in the locale's number format, so the count is the same for everyone and for search. The number is set very large, with a size that follows the width of the band. When the band scrolls into view from below, the number rises once to its value; where it is already on screen when the page loads, or the reader prefers reduced motion, it stands still, so the figure is never wrong and nothing flashes. The faces are decoration and hidden from assistive technology; a face without a picture shows initials. Use only a count you can verify, and pass asOf (an ISO day or a date) so the figure is dated underneath it, written for locale in a time element. labels translates the dating line; lead is the word before the number."
+    },
+    {
+      "name": "join-count-cta-demo",
+      "type": "registry:example",
+      "title": "Join count CTA demo",
+      "description": "A working preview of Join count CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/join-count-cta.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/join-count-cta-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "affiliate-offer",
+      "type": "registry:block",
+      "title": "Affiliate offer",
+      "description": "Recruit partners: the commission in big figures, how it works in three steps and one apply action.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/affiliate-offer.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/affiliate-offer.tsx"
+        }
+      ],
+      "docs": "Pass title, facts (a value and a label each, three read best), steps (a title and a description each), audience, action and termsHref. This is the public page for people who might become partners, not the screen a customer sees (that is Refer a friend). The facts are a description list set in large figures, the steps an ordered list joined by a line from one number to the next, and termsHref is required and sits right next to the button, because a claim about earnings needs its conditions beside it. The figures share one size, the largest that lets the longest word of any of them fit its cell, so four or five of them never break a word. audience says who the programme suits in one sentence. From 768px the facts run in a row and the steps sit side by side; under that both stack and the line runs down. Nothing animates. eyebrow and description are optional; labels translates the terms link and the names of the two lists."
+    },
+    {
+      "name": "affiliate-offer-demo",
+      "type": "registry:example",
+      "title": "Affiliate offer demo",
+      "description": "A working preview of Affiliate offer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/affiliate-offer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/affiliate-offer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "project-capacity",
+      "type": "registry:block",
+      "title": "Project capacity",
+      "description": "Show honestly how many slots are left in the coming months: month tiles with filled and open places, and a reserve button.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/project-capacity.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/project-capacity.tsx"
+        }
+      ],
+      "docs": "Pass months (a label, a total and a number taken each, three to six), action, waitlistHref, a title and an optional note. Each month is a tile with a row of dots, filled for a booked place and outlined for an open one, and the same thing in words: 1 of 3 open, or Full. The dots are decoration and hidden from assistive technology, so colour is never the only signal; the numbers come from you, which is what makes the scarcity honest. Full months stay visible and link to the waiting list (the link is named after its month for a screen reader). The button reserves a slot, and becomes Join the waiting list when no month has a place left. Tiles are rows on a narrow section and share the width from 576px, in a column count that follows the number of months, so a lonely tile never wraps to its own row. Up to six places a month sit in one row of dots, more are split into two even rows, and above 24 only the words are shown. labels translates every fixed word."
+    },
+    {
+      "name": "project-capacity-demo",
+      "type": "registry:example",
+      "title": "Project capacity demo",
+      "description": "A working preview of Project capacity.",
+      "registryDependencies": [
+        "https://rhsui.com/r/project-capacity.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/project-capacity-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "savings-receipt",
+      "type": "registry:block",
+      "title": "Savings receipt",
+      "description": "What you would pay for the tools this replaces, added up like a receipt against your single price and the saving it makes.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/savings-receipt.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/savings-receipt.tsx"
+        }
+      ],
+      "docs": "Pass items (a generic label and a price each), ours (your name and price), action, asOf and, for the right figures, period (month or year), currency and locale. Prices are in whole currency units for one period. The receipt is a real table: a row per tool with a dotted leader to its price in tabular figures, a total row with the sum struck through, then your price in large type. The saving line is computed from the numbers, in whole cents so the sums are exact: it is always said for a year, the percent is rounded down so the claim is never larger than the sum, and when your price is not lower the receipt says there is no saving instead of claiming one. asOf is required: it is printed under the button as Prices checked 1 October 2026, in a time element, because price comparisons age fast. note says how the comparison was made. Use generic names for the tools, never a competitor's. labels translates every fixed word, including the saving sentence."
+    },
+    {
+      "name": "savings-receipt-demo",
+      "type": "registry:example",
+      "title": "Savings receipt demo",
+      "description": "A working preview of Savings receipt.",
+      "registryDependencies": [
+        "https://rhsui.com/r/savings-receipt.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/savings-receipt-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cta-giant-link",
+      "type": "registry:block",
+      "title": "Giant link CTA",
+      "description": "The ask as one enormous line of type that is itself the link, with an email and a short note beneath, for studios and freelancers.",
+      "categories": [
+        "marketing",
+        "conversion"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/cta-giant-link/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cta-giant-link/index.tsx"
+        },
+        {
+          "path": "registry/marketing/cta-giant-link/copy-email.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/cta-giant-link/copy-email.tsx"
+        }
+      ],
+      "docs": "Pass label (the line, such as Let's work together) and href (where it goes), and under it optionally email, note (how fast you reply) and availability (the next free slot). The whole line is the link and sits between two hairlines in a heading. Its size follows the width of the section, not the screen, so it fits a narrow column as well as a wide page, and it breaks only between words, with the arrow kept to the last one so it never sits alone on a row. Hover softens the colour and moves the arrow up and to the right, and so does keyboard focus, which also draws a ring around the whole line; nothing else moves, and reduced motion removes the arrow's travel. The address is a mailto link with a Copy button that turns to Copied in words, tells a screen reader, and says so beside the button when the browser refuses. Only the copy button is a client component, so the section itself renders on the server. labels translates the names of the details and the copy button."
+    },
+    {
+      "name": "cta-giant-link-demo",
+      "type": "registry:example",
+      "title": "Giant link CTA demo",
+      "description": "A working preview of Giant link CTA.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cta-giant-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cta-giant-link-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "screenshot-features",
+      "type": "registry:block",
+      "title": "Screenshot features",
+      "description": "A big framed product screenshot with three or four feature columns underneath, each tied to what you can see above.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/screenshot-features.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/screenshot-features.tsx"
+        }
+      ],
+      "docs": "Pass title (and optionally eyebrow and description), screenshot (src, alt, width, height and a title for the window's bar) and features (a title and a description each, with an optional href and marker). The screenshot sits full width in a window frame with a hairline border and a title bar with three quiet dots. The frame takes its proportions from width and height before the picture loads, blurDataUrl is a tiny picture that stands in blurred until it arrives, sizes tells the browser how wide it is shown, and the picture is lazy unless you set priority because the section is above the fold. Pass renderImage to use next/image. The alt text should describe the screen in one sentence. Give a feature a marker (x and y as percentages of the screenshot) and its number is drawn on the picture where the feature lives, matching the number of its column; the marks are decoration, sized from the picture so that on a phone they shrink with it, and each belongs on empty canvas beside what it points at. The columns are an ordered list and stack under 768px while the screenshot stays full width; four features sit two by two before four across. Nothing animates. labels translates the link and the name of the list."
+    },
+    {
+      "name": "screenshot-features-demo",
+      "type": "registry:example",
+      "title": "Screenshot features demo",
+      "description": "A working preview of Screenshot features.",
+      "registryDependencies": [
+        "https://rhsui.com/r/screenshot-features.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/screenshot-features-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pillars-section",
+      "type": "registry:block",
+      "title": "Pillars section",
+      "description": "Three big ideas set as tall columns divided by hairlines: a numeral, a heading, a paragraph and a short list under each.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/pillars-section.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/pillars-section.tsx"
+        }
+      ],
+      "docs": "Pass title (and optionally eyebrow and description) and pillars, two to four of them: each has a title and a description, and optionally a marker, points (a short list), href and linkLabel. The marker is a large numeral or a 36px icon; without one the pillar's number is used. It is decoration, and an ordered list carries the sequence. The columns are rows of one grid (subgrid), so the headings, paragraphs, lists and links line up across them whatever their length, and a pillar without a list or a link keeps its row. Vertical hairlines divide the columns and become horizontal rules under the breakpoint: 672px for two pillars, 768px for three, 896px for four. align sets the heading and the columns from the start or from the middle. Nothing animates. The pillar headings are one level under the section's heading. labels translates the link."
+    },
+    {
+      "name": "pillars-section-demo",
+      "type": "registry:example",
+      "title": "Pillars section demo",
+      "description": "A working preview of Pillars section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pillars-section.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pillars-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

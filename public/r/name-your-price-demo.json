@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "name-your-price-demo",
+  "title": "Name your price demo",
+  "description": "A working preview of Name your price.",
+  "registryDependencies": [
+    "https://rhsui.com/r/name-your-price.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/name-your-price-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { NameYourPrice } from \"@rhs-ui/marketing/name-your-price\";\n\n/** A request that takes a moment and works, so the busy and thank-you states can be seen by trying it. */\nconst pay = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nconst copy = {\n  title: \"Pay what feels right\",\n  description: \"Tidewater Icons is free to use. If it saved you time, choose an amount and help us keep drawing.\",\n  presets: [500, 1200, 2500],\n  suggested: 1200,\n  min: 300,\n  currency: \"EUR\",\n  locale: \"en-IE\",\n  impact: [\n    { from: 300, text: \"covers a week of hosting.\" },\n    { from: 1000, text: \"pays for a month of updates.\" },\n    { from: 2000, text: \"funds a whole new icon family.\" },\n  ],\n  onSubmit: pay,\n};\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"flex min-w-0 flex-col items-center\">\n      <p className=\"mb-6 max-w-md self-start text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10 sm:py-16\">\n      <div className=\"grid justify-items-center gap-x-10 gap-y-14 lg:grid-cols-2\">\n        <Example caption=\"Try it: choose a tile or type your own amount. The line under the tiles and the button follow the choice, and the arrow keys move between tiles\">\n          <NameYourPrice {...copy} monthly />\n        </Example>\n        <Example caption=\"An amount under the minimum is said in words and stays in the field; the monthly switch changes the button\">\n          <NameYourPrice {...copy} monthly defaultMonthly defaultAmount={150} defaultStatus=\"invalid\" headingLevel={3} title=\"Support Tidewater\" />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -80,6 +80,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 8 more: `time-field`, `birthday-field`, `scoped-search-field`, `recent-searches-field`, `autosuggest-field`, `markdown-field`, `image-picker`, `postal-code-field`.
 - Primitives, 8 more: `multi-currency-field`, `percentage-field`, `amount-presets`, `time-range-field`, `due-date-field`, `recipient-field`, `link-field`, `bulk-paste-field`.
 - Application, 8 more: `verify-email-card`, `set-new-password`, `invite-accept-card`, `sso-sign-in`, `reauthenticate-card`, `account-chooser`, `verification-method-picker`, `authorize-app-card`.
+- Marketing, 10 more: `contact-form-routed`, `limited-offer-panel`, `name-your-price`, `join-count-cta`, `affiliate-offer`, `project-capacity`, `savings-receipt`, `cta-giant-link`, `screenshot-features`, `pillars-section`.
 
 ## Unreleased (0.7.0)
 

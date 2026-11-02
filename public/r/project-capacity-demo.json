@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "project-capacity-demo",
+  "title": "Project capacity demo",
+  "description": "A working preview of Project capacity.",
+  "registryDependencies": [
+    "https://rhsui.com/r/project-capacity.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/project-capacity-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { ProjectCapacity } from \"@rhs-ui/marketing/project-capacity\";\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-6 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6 py-10 sm:py-16\">\n      <Example caption=\"Four months: a filled dot is a booked place, an outlined one is open, and the words say the same. A full month stays visible with a link to the waiting list\">\n        <ProjectCapacity\n          title=\"Where we have room\"\n          description=\"We take on three projects a month, so each one gets the whole team. Here is what is still open.\"\n          months={[\n            { label: \"November\", total: 3, taken: 2 },\n            { label: \"December\", total: 3, taken: 3 },\n            { label: \"January\", total: 3, taken: 1 },\n            { label: \"February\", total: 3, taken: 0 },\n          ]}\n          action={{ label: \"Reserve a slot\", href: \"#reserve\" }}\n          waitlistHref=\"#waitlist\"\n          note=\"A slot is confirmed after a short intro call. Nothing is charged until then.\"\n        />\n      </Example>\n      <div className=\"mt-16 border-t border-border pt-12\">\n        <Example caption=\"Six months with eight places each: the tiles share the width, and a booked place is never told by colour alone\">\n          <ProjectCapacity\n            headingLevel={3}\n            title=\"Coaching intake, autumn to spring\"\n            months={[\n              { label: \"November\", total: 8, taken: 8 },\n              { label: \"December\", total: 8, taken: 6 },\n              { label: \"January 2027\", total: 8, taken: 3 },\n              { label: \"February\", total: 8, taken: 1 },\n              { label: \"March\", total: 8, taken: 0 },\n              { label: \"April\", total: 8, taken: 0 },\n            ]}\n            action={{ label: \"Reserve a slot\", href: \"#reserve\" }}\n            waitlistHref=\"#waitlist\"\n          />\n        </Example>\n      </div>\n      <div className=\"mt-16 max-w-md border-t border-border pt-12\">\n        <Example caption=\"In a narrow column, with every month taken: the tiles become rows and the button becomes the waiting list\">\n          <ProjectCapacity\n            headingLevel={3}\n            title=\"Fully booked\"\n            months={[\n              { label: \"November\", total: 3, taken: 3 },\n              { label: \"December\", total: 3, taken: 3 },\n              { label: \"January\", total: 3, taken: 3 },\n            ]}\n            action={{ label: \"Reserve a slot\", href: \"#reserve\" }}\n            waitlistHref=\"#waitlist\"\n            note=\"You will hear from us the day a place opens.\"\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

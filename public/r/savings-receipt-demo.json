@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "savings-receipt-demo",
+  "title": "Savings receipt demo",
+  "description": "A working preview of Savings receipt.",
+  "registryDependencies": [
+    "https://rhsui.com/r/savings-receipt.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/savings-receipt-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { SavingsReceipt } from \"@rhs-ui/marketing/savings-receipt\";\n\n/** On a wide page the two examples share their rows (a subgrid), so the receipts start on one line however many lines each caption takes. */\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 justify-items-center lg:row-span-2 lg:grid-rows-subgrid\">\n      <p className=\"mb-6 max-w-md justify-self-start text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10 sm:py-16\">\n      <div className=\"grid justify-items-center gap-x-10 gap-y-14 lg:grid-cols-2 lg:gap-y-0\">\n        <Example caption=\"Monthly prices in euros: every figure and the saving are worked out from the numbers, the percent rounded down, and the date is part of the receipt\">\n          <SavingsReceipt\n            currency=\"EUR\"\n            locale=\"en-IE\"\n            items={[\n              { label: \"Email platform\", price: 79 },\n              { label: \"Survey tool\", price: 49 },\n              { label: \"Scheduling tool\", price: 35 },\n              { label: \"Form builder\", price: 29 },\n              { label: \"Customer database\", price: 59 },\n            ]}\n            ours={{ name: \"Halcyon Suite\", price: 119 }}\n            action={{ label: \"Switch and save\", href: \"#switch\" }}\n            asOf=\"2026-10-01\"\n            note=\"List prices of each tool's cheapest plan for a team of ten.\"\n          />\n        </Example>\n        <Example caption=\"Yearly prices in dollars, with a title of its own: the saving is still said for a year\">\n          <SavingsReceipt\n            headingLevel={3}\n            title=\"Your analytics stack\"\n            period=\"year\"\n            currency=\"USD\"\n            items={[\n              { label: \"Product analytics\", price: 588 },\n              { label: \"Session replay\", price: 1188 },\n              { label: \"Feature flags\", price: 480 },\n            ]}\n            ours={{ name: \"Kestrel Insights\", price: 1490 }}\n            action={{ label: \"Start a free trial\", href: \"#trial\" }}\n            asOf=\"2026-10-01\"\n            note=\"Annual plans for 50,000 monthly visitors.\"\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

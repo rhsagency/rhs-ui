@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "join-count-cta-demo",
+  "title": "Join count CTA demo",
+  "description": "A working preview of Join count CTA.",
+  "registryDependencies": [
+    "https://rhsui.com/r/join-count-cta.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/join-count-cta-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { JoinCountCta, type JoinCountAvatar } from \"@rhs-ui/marketing/join-count-cta\";\n\n/** A head and shoulders in two neutral greys, drawn as an image so the demo needs no files. */\nconst portrait = (background: string, figure: string) =>\n  \"data:image/svg+xml;utf8,\" +\n  encodeURIComponent(\n    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='${background}'/><circle cx='32' cy='26' r='11' fill='${figure}'/><path d='M10 64c2-14 12-22 22-22s20 8 22 22z' fill='${figure}'/></svg>`,\n  );\n\nconst people: JoinCountAvatar[] = [\n  { name: \"Maria Jansen\", src: portrait(\"#e7e7e7\", \"#8c8c8c\") },\n  { name: \"Tomas Berg\", src: portrait(\"#cfcfcf\", \"#4d4d4d\") },\n  { name: \"Aisha Rahman\", src: portrait(\"#f1f1f1\", \"#a6a6a6\") },\n  { name: \"Luca Ferri\", src: portrait(\"#3d3d3d\", \"#b3b3b3\") },\n  { name: \"Noor Haddad\", src: portrait(\"#dcdcdc\", \"#6b6b6b\") },\n  { name: \"Jonas Weber\", src: portrait(\"#8f8f8f\", \"#e9e9e9\") },\n  { name: \"Ines Costa\", src: portrait(\"#ececec\", \"#7a7a7a\") },\n];\n\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [message, setMessage] = useState(\"\");\n  return (\n    <div className=\"mx-auto max-w-5xl px-6 py-10 sm:py-16\">\n      <Example caption=\"The count is the biggest thing on the page and is dated underneath. Scrolled into view from below, it rises once; it stands still under reduced motion\">\n        <JoinCountCta\n          count={48213}\n          unit=\"teams\"\n          avatars={people}\n          description=\"Teams that plan their week in Kestrel and have not opened a spreadsheet since.\"\n          action={{ label: \"Start free\", onClick: () => setMessage(\"Demo only: nothing was started.\") }}\n          note=\"Free for 14 days. No card needed.\"\n          asOf=\"2026-10-01\"\n        />\n      </Example>\n      <p role=\"status\" className=\"min-h-6 text-center text-sm text-muted-foreground\">\n        {message}\n      </p>\n      <div className=\"mt-10 border-t border-border pt-10\">\n        <Example caption=\"In Dutch: the number and the date follow the locale, and labels says the fixed words in Dutch. No faces, no note\">\n          <JoinCountCta\n            headingLevel={3}\n            locale=\"nl-NL\"\n            lead=\"Sluit je aan bij\"\n            count={48213}\n            unit=\"teams\"\n            description=\"Teams die hun week in Kestrel plannen en sindsdien geen spreadsheet meer hebben geopend.\"\n            action={{ label: \"Gratis beginnen\", href: \"#start\" }}\n            asOf=\"2026-10-01\"\n            labels={{ asOf: \"per {date}\" }}\n          />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
