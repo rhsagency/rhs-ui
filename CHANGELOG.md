@@ -96,6 +96,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 7 more: `spend-breakdown`, `commitments-progress`, `membership-tiers`, `rollout-plan`, `app-screens-row`, `keyboard-features`, `prompt-examples`.
 - Primitives, 10 more: `font-family-select`, `font-size-field`, `angle-field`, `box-sides-field`, `inline-field`, `choice-list`, `disabled-reason`, `async-select`, `creatable-select`, `language-select`.
 - Primitives, 9 more: `chip-select`, `slider-field`, `weekday-picker`, `async-switch`, `likert-scale`, `radio-table`, `step-slider`, `listbox`, `expiry-select`.
+- Application, 11 more: `season-strip`, `color-token-card`, `team-clocks`, `achievement-tile`, `stack-trace`, `offline-state`, `first-run-state`, `unavailable-state`, `update-available-bar`, `mode-bar`, `trial-status-bar`.
 
 ## Unreleased (0.7.0)
 

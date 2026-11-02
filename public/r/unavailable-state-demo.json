@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "unavailable-state-demo",
+  "title": "Unavailable state demo",
+  "description": "A working preview of Unavailable state.",
+  "registryDependencies": [
+    "https://rhsui.com/r/unavailable-state.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/unavailable-state-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { UnavailableState } from \"@rhs-ui/application/unavailable-state\";\n\n/** Stands in for the request that sends a new link: the button shows a spinner until it settles, then the cooldown starts. */\nconst requestNew = () => new Promise<void>((resolve) => setTimeout(resolve, 900));\n\nfunction Case({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-rows-[auto_1fr] gap-3\">\n      <p className=\"min-h-8 text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-5xl items-stretch gap-x-6 gap-y-9 md:grid-cols-2\">\n      <Case caption=\"Expired: ask for a new one. After a request the button waits out a cooldown (20 seconds here, 30 by default) and says how long is left.\">\n        <UnavailableState className=\"h-full justify-start\" reason=\"expired\" subject=\"invite\" occurredAt=\"2026-10-28T09:30:00Z\" timeZone=\"Europe/Amsterdam\" locale=\"en-GB\" onRequestNew={requestNew} homeHref=\"#home\" cooldownSeconds={20} />\n      </Case>\n\n      <Case caption=\"Used: sign in is the main action, because it was probably you. Asking again sits beside it.\">\n        <UnavailableState className=\"h-full justify-start\" reason=\"used\" subject=\"reset link\" occurredAt=\"2026-11-01T18:04:00Z\" timeZone=\"Europe/Amsterdam\" locale=\"en-GB\" signInHref=\"#sign-in\" onRequestNew={requestNew} homeHref=\"#home\" />\n      </Case>\n\n      <Case caption=\"Withdrawn: nothing to request, so the way forward is a person. Children carry that line.\">\n        <UnavailableState className=\"h-full justify-start\" reason=\"revoked\" subject=\"share link\" occurredAt=\"2026-10-30T12:00:00Z\" timeZone=\"Europe/Amsterdam\" locale=\"en-GB\" homeHref=\"#home\">\n          <p className=\"max-w-xs text-xs leading-5 text-muted-foreground\">Ask Mara Jansen at Kestrel Studio to share the folder again.</p>\n        </UnavailableState>\n      </Case>\n\n      <Case caption=\"Removed: give up gracefully. A date without a time is written as a day.\">\n        <UnavailableState className=\"h-full justify-start\" reason=\"removed\" subject=\"page\" occurredAt=\"2026-09-15\" locale=\"en-GB\" homeHref=\"#home\" />\n      </Case>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

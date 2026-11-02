@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "achievement-tile",
+  "title": "Achievement tile",
+  "description": "A badge you earned or can still earn: icon, name, how to get it, and a locked, in progress or unlocked state that reads in words, with a one-time shine.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/card.json",
+    "https://rhsui.com/r/icons.json",
+    "https://rhsui.com/r/progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/application/achievement-tile.tsx",
+      "content": "\"use client\";\n\nimport { useId, useState, type ComponentProps, type ReactNode } from \"react\";\n\nimport { IconCheck, IconLock, IconMedal } from \"@rhs-ui/icons\";\nimport { Card } from \"@rhs-ui/primitives/card\";\nimport { Progress } from \"@rhs-ui/primitives/progress\";\nimport { cn } from \"@/lib/utils\";\n\n/** Where an achievement stands: not started, on its way, or earned. */\nexport type AchievementState = \"locked\" | \"progress\" | \"unlocked\";\n\n/** The words the tile uses, for translation. `{date}`, `{current}`, `{goal}` and `{title}` are filled in. */\nexport interface AchievementTileLabels {\n  /** The footer of a tile that is still locked. Default \"Locked\". */\n  locked?: string;\n  /** The footer of an earned tile that has a date. Default \"Unlocked {date}\". */\n  unlocked?: string;\n  /** The footer of an earned tile without a date. Default \"Unlocked\". */\n  unlockedNoDate?: string;\n  /** The count beside the bar, which is also its spoken value. Default \"{current} of {goal}\". */\n  progress?: string;\n  /** The name of the bar for a screen reader. Default \"Progress towards {title}\". */\n  progressName?: string;\n  /** Said politely when the tile is unlocked while you watch. Default \"Achievement unlocked: {title}\". */\n  announce?: string;\n}\n\nexport interface AchievementTileProps extends Omit<ComponentProps<\"div\">, \"title\" | \"children\"> {\n  /** The name of the achievement: \"First export\". It is the heading. */\n  title: string;\n  /** How to earn it: \"Export a project to PDF\". It stays visible whatever the state, so a locked tile still says what to do. */\n  description: string;\n  /** The picture in the medal, drawn at 20px: an icon from `@rhs-ui/icons` or your own SVG. Default a medal. */\n  icon?: ReactNode;\n  /** \"locked\" is outlined and dim, \"progress\" shows a bar with a count, \"unlocked\" is a filled tile with its date. */\n  state: AchievementState;\n  /** How far along it is, for the \"progress\" state: `{ current: 7, goal: 10 }`. Ignored in the other states. */\n  progress?: { current: number; goal: number };\n  /** When it was earned. A string such as \"2026-10-12\" is a day on the calendar and never shifts with the time zone. */\n  unlockedAt?: Date | string | number;\n  /** Heading level of the title. Default 3. */\n  headingLevel?: 2 | 3 | 4;\n  /** The language of the date and the numbers. Default \"en-US\". */\n  locale?: string;\n  /** The time zone the date is written in, so the server and the browser agree. Default \"UTC\". */\n  timeZone?: string;\n  /** The words the tile uses, for translation. */\n  labels?: AchievementTileLabels;\n}\n\nconst DEFAULT_LABELS = {\n  locked: \"Locked\",\n  unlocked: \"Unlocked {date}\",\n  unlockedNoDate: \"Unlocked\",\n  progress: \"{current} of {goal}\",\n  progressName: \"Progress towards {title}\",\n  announce: \"Achievement unlocked: {title}\",\n} satisfies Required<AchievementTileLabels>;\n\nconst fill = (template: string, values: Record<string, string>) => template.replace(/\\{(\\w+)\\}/g, (_, key: string) => values[key] ?? \"\");\n\nconst DATE_ONLY = /^\\d{4}-\\d{2}-\\d{2}$/;\n\n/** A date written in the locale, in the zone. A date-only string is a day on the calendar, so it is read and written in UTC and never shifts. Null when the input is not a date. */\nfunction dateIn(input: Date | string | number, locale: string, timeZone: string): string | null {\n  const calendar = typeof input === \"string\" && DATE_ONLY.test(input);\n  const at = new Date(calendar ? `${input}T00:00:00Z` : input).getTime();\n  if (Number.isNaN(at)) return null;\n  const options: Intl.DateTimeFormatOptions = { day: \"numeric\", month: \"short\", year: \"numeric\" };\n  const zone = calendar ? \"UTC\" : timeZone;\n  let text: string;\n  try {\n    text = new Intl.DateTimeFormat(locale, { ...options, timeZone: zone }).format(at);\n  } catch {\n    // An unknown locale or zone must not take the page down.\n    text = new Intl.DateTimeFormat(\"en-US\", { ...options, timeZone: \"UTC\" }).format(at);\n  }\n  // Intl writes some spaces as narrow no-break spaces, and the version of its data decides which: a plain space looks the same and every engine agrees on it.\n  return text.replace(/\\s/g, \" \");\n}\n\nfunction numberIn(value: number, locale: string): string {\n  try {\n    return new Intl.NumberFormat(locale).format(value);\n  } catch {\n    return new Intl.NumberFormat(\"en-US\").format(value);\n  }\n}\n\n/** The medal, by state: filled, plain, or a dashed outline. */\nconst MEDAL: Record<AchievementState, string> = {\n  unlocked: \"border-background/25 bg-background/12 text-background\",\n  progress: \"border-border bg-muted text-foreground\",\n  locked: \"border-dashed border-border bg-transparent text-muted-foreground\",\n};\n\n/**\n * An achievement as a tile in a grid: a medal with its icon, the name, how to\n * earn it, and a footer that tells the state in words. Unlocked is a filled\n * tile with the date, in progress is a bar with \"7 of 10\" in text, and locked\n * is an outline with the word \"Locked\" while the how-to-earn line stays\n * readable. Every tile has the same height in a row, so they line up. When a\n * tile is unlocked while you watch, a short shine crosses it once (left out\n * under reduced motion) and the unlock is announced politely.\n */\nexport function AchievementTile({ title, description, icon, state, progress, unlockedAt, headingLevel = 3, locale = \"en-US\", timeZone = \"UTC\", labels, className, ...props }: AchievementTileProps) {\n  const text: Required<AchievementTileLabels> = { ...DEFAULT_LABELS, ...labels };\n  const id = useId();\n  const Heading = `h${headingLevel}` as \"h2\" | \"h3\" | \"h4\";\n\n  // A tile that turns unlocked after it was drawn is a moment: the shine plays and the tile says so. Worked out while rendering, from the state it saw last.\n  const [seen, setSeen] = useState(state);\n  const [moment, setMoment] = useState(0);\n  const [said, setSaid] = useState(\"\");\n  if (state !== seen) {\n    setSeen(state);\n    if (state === \"unlocked\") {\n      setMoment((count) => count + 1);\n      setSaid(fill(text.announce, { title }));\n    } else {\n      setSaid(\"\");\n    }\n  }\n\n  const goal = Math.max(1, progress?.goal ?? 1);\n  const current = Math.min(goal, Math.max(0, progress?.current ?? 0));\n  const counted = fill(text.progress, { current: numberIn(current, locale), goal: numberIn(goal, locale) });\n  // The date is written with no-break spaces: in a narrow tile the footer wraps between \"Unlocked\" and the date, never inside the date.\n  const date = unlockedAt === undefined ? null : dateIn(unlockedAt, locale, timeZone)?.replace(/ /g, \"\\u00a0\") ?? null;\n  const when = unlockedAt === undefined || date === null ? undefined : new Date(unlockedAt).toISOString();\n\n  return (\n    <Card\n      data-slot=\"achievement-tile\"\n      data-state={state}\n      role=\"group\"\n      aria-labelledby={`${id}-title`}\n      className={cn(\n        \"relative h-full min-h-44 min-w-0 gap-0 overflow-hidden px-4 py-4\",\n        state === \"unlocked\" && \"border-foreground bg-foreground text-background shadow-sm\",\n        state === \"locked\" && \"border-dashed border-muted-foreground/40 bg-transparent shadow-none\",\n        className,\n      )}\n      {...props}\n    >\n      {state === \"unlocked\" && moment > 0 ? (\n        <span key={moment} aria-hidden=\"true\" className=\"pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-background/40 opacity-0 blur-md motion-safe:animate-rhs-achievement-shine motion-reduce:hidden\" />\n      ) : null}\n\n      <span aria-hidden=\"true\" className={cn(\"grid size-11 shrink-0 place-items-center rounded-xl border [&_svg]:size-5\", MEDAL[state])}>\n        {icon ?? <IconMedal />}\n      </span>\n\n      <div className=\"mt-4 grid min-w-0 gap-1\">\n        <Heading id={`${id}-title`} className={cn(\"text-[0.9375rem] leading-5 font-semibold tracking-[-0.02em] [overflow-wrap:anywhere]\", state === \"locked\" && \"text-foreground/80\")}>\n          {title}\n        </Heading>\n        <p className={cn(\"text-[0.8125rem] leading-5 text-pretty\", state === \"unlocked\" ? \"text-background/75\" : \"text-muted-foreground\")}>{description}</p>\n      </div>\n\n      <div className=\"mt-auto pt-4\">\n        {state === \"unlocked\" ? (\n          <p className=\"flex items-start gap-1.5 text-[0.8125rem] leading-5 font-medium tabular-nums\">\n            <IconCheck className=\"mt-0.5 size-4 shrink-0\" />\n            {date && when ? <time dateTime={when}>{fill(text.unlocked, { date })}</time> : text.unlockedNoDate}\n          </p>\n        ) : state === \"progress\" ? (\n          <div className=\"grid gap-1.5\">\n            <p className=\"text-[0.8125rem] leading-5 font-medium tabular-nums\">{counted}</p>\n            <Progress value={(current / goal) * 100} aria-label={fill(text.progressName, { title })} getValueLabel={() => counted} className=\"h-1.5\" />\n          </div>\n        ) : (\n          <p className=\"flex items-start gap-1.5 text-[0.8125rem] leading-5 text-muted-foreground\">\n            <IconLock className=\"mt-0.5 size-4 shrink-0\" />\n            {text.locked}\n          </p>\n        )}\n      </div>\n\n      <p role=\"status\" className=\"sr-only\">\n        {said}\n      </p>\n    </Card>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/rhs-ui/application/achievement-tile.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-achievement-shine": "rhs-achievement-shine 1000ms cubic-bezier(0.4, 0, 0.2, 1) both"
+    }
+  },
+  "css": {
+    "@keyframes rhs-achievement-shine": {
+      "0%": {
+        "transform": "translateX(-130%) skewX(-20deg)",
+        "opacity": "0"
+      },
+      "20%": {
+        "opacity": "1"
+      },
+      "80%": {
+        "opacity": "1"
+      },
+      "100%": {
+        "transform": "translateX(520%) skewX(-20deg)",
+        "opacity": "0"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "data-display"
+  },
+  "docs": "title and description are the heading and the how-to-earn line, which stays visible in every state. state is 'locked' (an outline, dim, with the word Locked), 'progress' (a bar with '7 of 10' in text, from progress { current, goal }) or 'unlocked' (a filled tile with the date from unlockedAt, written in locale and timeZone; a date-only string is a day on the calendar). Every tile has the same minimum height and fills its grid cell, so a row lines up. When the state changes to unlocked after the tile was drawn, a short shine crosses it once (left out under reduced motion) and the unlock is announced politely. icon is any node, drawn at 20px. labels carries every word.",
+  "categories": [
+    "application",
+    "data-display"
+  ],
+  "type": "registry:component"
+}

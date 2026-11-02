@@ -41048,6 +41048,576 @@
       ]
     },
     {
+      "name": "season-strip",
+      "type": "registry:component",
+      "title": "Season strip",
+      "description": "Twelve months in a strip that show when something is at its best, with states you read without colour, a legend in words and a note in a tooltip.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/season-strip/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/season-strip/index.tsx"
+        },
+        {
+          "path": "registry/application/season-strip/months.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/season-strip/months.ts"
+        }
+      ],
+      "docs": "months is twelve entries from January to December, each 'best', 'good', 'off' or 'closed', or { state, note } with a note that opens in a tooltip on hover, focus or tap. Each month is a tile with its short name and a state drawn as a fill: solid and bold for the best months, a lighter fill for the good ones, an empty outline out of season and a hatch when closed, with a legend in words, so colour never carries the meaning. A screen reader first hears one sentence ('Best in April, May and September'), then each month with its state. The current month is ringed and marked 'Now' in words once the browser's clock is read, or from now when you pin it. firstMonth (1 to 12) starts the strip somewhere else without reordering the data, locale writes the month names and the sentence, timeZone decides which month it is, and labels carries every word. Twelve tiles in a row where there is room, two rows of six on a phone."
+    },
+    {
+      "name": "season-strip-demo",
+      "type": "registry:example",
+      "title": "Season strip demo",
+      "description": "A working preview of Season strip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/season-strip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/season-strip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "color-token-card",
+      "type": "registry:component",
+      "title": "Color token card",
+      "description": "A design colour documented: swatch, name and token, a value that copies as hex, rgb or oklch, and its contrast on white and black with pass marks.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/color-token-card/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/color-token-card/index.tsx"
+        },
+        {
+          "path": "registry/application/color-token-card/color.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/color-token-card/color.ts"
+        }
+      ],
+      "docs": "name, value, token and usage describe the colour. value may be hex ('#0A7D5C'), rgb ('rgb(10 125 92)') or oklch ('oklch(0.55 0.115 169)'), with or without alpha, and is read in the browser. The card starts on the format the value is written in, and keeps its digits when that format is showing; one button cycles through copyFormats (hex, rgb, oklch by default) and the other copies what is showing, with the result said politely (onCopied is called with the text and its format). Contrast against white and black is worked out with the WCAG 2 formula on the 8-bit values (a colour with alpha is laid over each background first), and each result is a grade in words with a glyph: AAA with a double check, AA with a check, 'AA large' with a warning for large text only, Fail with a cross. A screen reader hears one sentence per result ('4.8:1 on white, AA: meets AA for text of any size'). A value that is not hex, rgb or oklch is shown as written and gets no contrast. Put the cards in a grid for a palette page. labels carries every word and locale writes the numbers."
+    },
+    {
+      "name": "color-token-card-demo",
+      "type": "registry:example",
+      "title": "Color token card demo",
+      "description": "A working preview of Color token card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/color-token-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/color-token-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "team-clocks",
+      "type": "registry:component",
+      "title": "Team clocks",
+      "description": "The time for each teammate: name, city and local time as a list or an analog face, with Working or Off hours in words and the offset to you.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/team-clocks/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/team-clocks/index.tsx"
+        },
+        {
+          "path": "registry/application/team-clocks/zones.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/team-clocks/zones.ts"
+        }
+      ],
+      "docs": "people lists the team with a name, a time zone and optionally a city, an image and workHours (start, end and days; the default is 09:00 to 17:00 on weekdays, and an end before the start is a shift through midnight). Each entry shows the local time, the weekday in front of it when it differs from the reader's day ('Tue 08:30'), the offset to the reader after the city ('+6 h', said in full to a screen reader; a long city wraps and the offset is never cut) and 'Working' with a sun or 'Off hours' with a moon, as words. variant is 'list' (one row per person, with their picture or initials) or 'analog' (a card with an SVG face and the digital time beside it as text, in as many columns as the box it sits in has room for, not as many as the screen has: one to a row in a narrow box, then two, then three). hour12 writes 8:30 AM instead of 08:30, and sort='offset' puts the team in order of UTC offset. The clocks tick once a minute, on the minute, and again when a sleeping tab wakes. They wait for the browser's clock before drawing a time, so the server and the browser never disagree, or take now to pin the moment. The reader's zone is read in the browser, or passed as viewerTimeZone."
+    },
+    {
+      "name": "team-clocks-demo",
+      "type": "registry:example",
+      "title": "Team clocks demo",
+      "description": "A working preview of Team clocks.",
+      "registryDependencies": [
+        "https://rhsui.com/r/team-clocks.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/team-clocks-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "achievement-tile",
+      "type": "registry:component",
+      "title": "Achievement tile",
+      "description": "A badge you earned or can still earn: icon, name, how to get it, and a locked, in progress or unlocked state that reads in words, with a one-time shine.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/achievement-tile.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/achievement-tile.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-achievement-shine": {
+          "0%": {
+            "transform": "translateX(-130%) skewX(-20deg)",
+            "opacity": "0"
+          },
+          "20%": {
+            "opacity": "1"
+          },
+          "80%": {
+            "opacity": "1"
+          },
+          "100%": {
+            "transform": "translateX(520%) skewX(-20deg)",
+            "opacity": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-achievement-shine": "rhs-achievement-shine 1000ms cubic-bezier(0.4, 0, 0.2, 1) both"
+        }
+      },
+      "docs": "title and description are the heading and the how-to-earn line, which stays visible in every state. state is 'locked' (an outline, dim, with the word Locked), 'progress' (a bar with '7 of 10' in text, from progress { current, goal }) or 'unlocked' (a filled tile with the date from unlockedAt, written in locale and timeZone; a date-only string is a day on the calendar). Every tile has the same minimum height and fills its grid cell, so a row lines up. When the state changes to unlocked after the tile was drawn, a short shine crosses it once (left out under reduced motion) and the unlock is announced politely. icon is any node, drawn at 20px. labels carries every word."
+    },
+    {
+      "name": "achievement-tile-demo",
+      "type": "registry:example",
+      "title": "Achievement tile demo",
+      "description": "A working preview of Achievement tile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/achievement-tile.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/achievement-tile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "stack-trace",
+      "type": "registry:component",
+      "title": "Stack trace",
+      "description": "An error's stack trace made readable: your own frames in full weight, library frames folded away, copyable file locations and one button for the whole trace.",
+      "categories": [
+        "application",
+        "data-display"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "data-display"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/stack-trace/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/stack-trace/index.tsx"
+        },
+        {
+          "path": "registry/application/stack-trace/parse.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/stack-trace/parse.ts"
+        }
+      ],
+      "docs": "Pass an error ({ name, message, stack }) and the stack is parsed into frames (V8's 'at fn (file:1:2)' and the 'fn@file:1:2' of Firefox and Safari), or pass frames you parsed yourself. Frames in node_modules, in Node's own modules, in native code or outside projectRoot are library code: runs of them fold under 'Show 8 library frames' with the packages they come from, or are open from the start with defaultExpanded. Your own frames show the function in full weight with the file location under it, relative to projectRoot, and the first one is set apart as 'Start here'. Every file location is a button that copies 'src/cart.tsx:42:13' (its copy glyph shows on hover and focus, and always on a touch screen, and a long path wraps after a slash and not in the middle of a file name), and Copy trace copies the whole trace as plain text, the original stack when you gave one. The frames are an ordered list under a heading, and copies are announced politely (onCopied is called with the text); a clipboard that refuses is said on the card too, in words, not only to a screen reader. parseStack and the other helpers are in stack-trace/parse for servers and tests."
+    },
+    {
+      "name": "stack-trace-demo",
+      "type": "registry:example",
+      "title": "Stack trace demo",
+      "description": "A working preview of Stack trace.",
+      "registryDependencies": [
+        "https://rhsui.com/r/stack-trace.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stack-trace-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "offline-state",
+      "type": "registry:component",
+      "title": "Offline state",
+      "description": "The page-sized 'you are offline' state: what still works on the device, a Try again button, and a Back online moment with an automatic retry.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/offline-state/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/offline-state/index.tsx"
+        }
+      ],
+      "docs": "It follows the browser's online and offline events, or your own online prop, and it is hidden whenever the browser knows it is online, including the first paint. Offline it shows a wifi-off icon, 'You are offline', what is safe on the device, an optional last-saved line from cachedAt (written in locale and timeZone), your children under 'Still works offline', and a Try again button that calls onRetry, shows a spinner and says 'Still offline' if it did not help, on a line that has its room from the start so the button never moves. When the connection returns it says 'Back online' for a moment, calls onRetry once and steps aside. The change is announced through a polite status region and focus never moves. It is page-sized: cover your page with className='fixed inset-0 z-50 bg-background' or place it in the content area. The title is a heading at headingLevel (2 by default, 1 when the state is the whole page). labels carries every word."
+    },
+    {
+      "name": "offline-state-demo",
+      "type": "registry:example",
+      "title": "Offline state demo",
+      "description": "A working preview of Offline state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/offline-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/offline-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "first-run-state",
+      "type": "registry:component",
+      "title": "First run state",
+      "description": "The empty state for a brand new account: one promise and two to four ways to begin, as cards in one keyboard group, with a Recommended one and a quiet Skip.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/first-run-state/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/first-run-state/index.tsx"
+        }
+      ],
+      "docs": "title is the one promise and description a line of context. options are two to four ways to begin ({ id, title, description, icon, onSelect or href }): a card with href is a link, any other is a button. recommendedId puts the word Recommended on one card, and onSkip adds a quiet 'Skip for now'. The cards are one labelled group: Tab reaches each card, and the arrow keys, Home and End move between them, up and down to the nearest card in the row above or below. Two and four cards sit in two columns, three in a row once the container is wide enough, and all stack on a phone. It is deliberately not a checklist: nothing is ticked and nothing counts. Use Empty State when there is nothing to choose."
+    },
+    {
+      "name": "first-run-state-demo",
+      "type": "registry:example",
+      "title": "First run state demo",
+      "description": "A working preview of First run state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/first-run-state.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/first-run-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "unavailable-state",
+      "type": "registry:component",
+      "title": "Unavailable state",
+      "description": "For a link that no longer works (expired, used, revoked or removed): the reason in words, the date it happened and the next step, with a resend cooldown.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/unavailable-state/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/unavailable-state/index.tsx"
+        }
+      ],
+      "docs": "reason is 'expired', 'used', 'revoked' or 'removed': each has its own icon, title and explanation, and subject names what the link was ('invite', 'reset link'). occurredAt is written as a date in locale and timeZone (a date-only string as a day). The action fits the reason: expired offers onRequestNew, used offers signInHref first, revoked and removed offer homeHref. Asking for a new link shows a spinner while onRequestNew runs, then a cooldown (cooldownSeconds, default 30) with the seconds left, and says politely when the request went through, when it failed and when asking is possible again, on a line that has its room from the start so the card does not grow. It never shows a technical code. children add a line under the actions. The title is a heading at headingLevel (2 by default, 1 when the state is the whole page). labels carries every word."
+    },
+    {
+      "name": "unavailable-state-demo",
+      "type": "registry:example",
+      "title": "Unavailable state demo",
+      "description": "A working preview of Unavailable state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/unavailable-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/unavailable-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "update-available-bar",
+      "type": "registry:component",
+      "title": "Update available bar",
+      "description": "A slim bar saying a new version is ready, with Reload now, Later (remembered for the session) and a link to what changed. Announced once, never steals focus.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/update-available-bar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/update-available-bar/index.tsx"
+        }
+      ],
+      "docs": "onReload reloads into the new version: wire it to your service worker's skipWaiting message and reload on controllerchange, or to location.reload(), which is also what the button does without it. Reload shows a busy state while the page restarts. onLater is called after the bar was hidden; Later also remembers the snooze for snoozeMinutes (60 by default) in sessionStorage, per version, so the bar comes back after the interval and not on every navigation. version, appName and changesHref add the version, the product's name and a 'What changed' link. position is 'top' (the default: in the flow of the page, above everything, so it pushes the page down instead of covering the header, and scrolls away with the page) or 'bottom' (fixed over the bottom edge of the viewport, clearing the safe-area inset; className='absolute' places it inside a box of your own). sticky keeps a top bar in view while the page scrolls, and writes its height as it grows in and out to --update-bar-height on the element it sits in, so a sticky header can hang under it with top-[var(--update-bar-height,0px)] instead of being covered; put the bar in the element that holds the page, because it sticks inside its parent. It grows or slides in and out (it appears at once under reduced motion), is announced once through a status region and never takes focus."
+    },
+    {
+      "name": "update-available-bar-demo",
+      "type": "registry:example",
+      "title": "Update available bar demo",
+      "description": "A working preview of Update available bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/update-available-bar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/update-available-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mode-bar",
+      "type": "registry:component",
+      "title": "Mode bar",
+      "description": "A bar that says you are in a special mode (test data, viewing as someone else, read-only or beta) and gives the one way out. It cannot be dismissed.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/mode-bar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/mode-bar/index.tsx"
+        }
+      ],
+      "docs": "kind is 'test', 'viewing-as', 'read-only' or 'beta': each has its own icon, its own word in a chip and its own weight (hatched, inverted, plain, a card), so the mode reads without colour. title adds whose account it is for viewing-as, description says what is different in plain words, and onExit adds the single Exit button, named 'Exit: Test mode' for a screen reader. There is no close button on purpose: a mode that can be hidden is how mistakes on real data happen. Without onExit there is no button at all, for a mode the person cannot leave. The bar is a labelled region, so screen reader users can jump to it. sticky pins it under the header; pass className='top-14' to sit under a 56px header. labels carries every word."
+    },
+    {
+      "name": "mode-bar-demo",
+      "type": "registry:example",
+      "title": "Mode bar demo",
+      "description": "A working preview of Mode bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/mode-bar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mode-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trial-status-bar",
+      "type": "registry:component",
+      "title": "Trial status bar",
+      "description": "A header strip counting the days left in a trial, with a thin progress line and an Upgrade button that gets firmer in the last days and after the end.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/trial-status-bar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/trial-status-bar/index.tsx"
+        },
+        {
+          "path": "registry/application/trial-status-bar/days.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/trial-status-bar/days.ts"
+        }
+      ],
+      "docs": "startedAt and endsAt are ISO moments, timeZone is the zone days are counted in, and now pins the clock for tests. With four days or more left it reads 'Trial: 12 days left' with the date it ends and an outline Upgrade; from three days on the sentence changes ('Trial ends in 3 days', 'Trial ends tomorrow', 'Trial ends today'), the bar turns solid and Upgrade stands out; after the end it reads 'Your trial has ended' with the same action. Days are calendar days in timeZone, so the number only changes at midnight there. The thin track shows how much of the trial has passed and is hidden from assistive technology. The strip keeps its height until the browser's clock is read, so the page does not jump. onUpgrade is called on press, or give upgradeHref for a link."
+    },
+    {
+      "name": "trial-status-bar-demo",
+      "type": "registry:example",
+      "title": "Trial status bar demo",
+      "description": "A working preview of Trial status bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trial-status-bar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trial-status-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
