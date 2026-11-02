@@ -95,6 +95,7 @@ own `meta.version` and are listed when they change.
 - Application, 9 more: `recipe-card`, `ingredient-list`, `match-score-card`, `player-card`, `availability-calendar`, `membership-card`, `certificate-card`, `stamp-card`, `match-timeline`.
 - Marketing, 7 more: `spend-breakdown`, `commitments-progress`, `membership-tiers`, `rollout-plan`, `app-screens-row`, `keyboard-features`, `prompt-examples`.
 - Primitives, 10 more: `font-family-select`, `font-size-field`, `angle-field`, `box-sides-field`, `inline-field`, `choice-list`, `disabled-reason`, `async-select`, `creatable-select`, `language-select`.
+- Primitives, 9 more: `chip-select`, `slider-field`, `weekday-picker`, `async-switch`, `likert-scale`, `radio-table`, `step-slider`, `listbox`, `expiry-select`.
 
 ## Unreleased (0.7.0)
 

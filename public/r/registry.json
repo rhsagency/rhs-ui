@@ -12605,6 +12605,468 @@
       ]
     },
     {
+      "name": "chip-select",
+      "type": "registry:ui",
+      "title": "Chip select",
+      "description": "Choose from a wrapping set of chips, one or several, with a check on the chosen ones, a minimum and maximum, and a spoken count that says why the rest turn off.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/chip-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/chip-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/chip-select/choices.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/chip-select/choices.ts"
+        }
+      ],
+      "docs": "mode=\"single\" (the default) takes value as a string or null and reports the chip that was chosen; mode=\"multiple\" takes and reports an array of values, always in the order of the chips. With max, the chips that are not chosen turn off once the limit is reached and the polite line under the chips says why (\"Pick up to 5, 5 chosen\"). With min the same line states the rule (\"Pick at least 3\"), and a shortfall turns into an error once the group has been left or a form with it is submitted: the browser's own bubble is cancelled, focus goes to the first chip and the line becomes the error. error shows a message from outside, labels.hint rewrites the line for another language, and name sends the choice with a plain form (one hidden input per value, or a radio in single mode). An icon is an element such as <IconStar />; a chosen chip swaps it for its check. Chips are 36px tall, with a 44px touch target on touch screens."
+    },
+    {
+      "name": "chip-select-demo",
+      "type": "registry:example",
+      "title": "Chip select demo",
+      "description": "A working preview of Chip select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chip-select.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chip-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "slider-field",
+      "type": "registry:ui",
+      "title": "Slider field",
+      "description": "A slider with its label, live value in the right unit, end labels, a default marker with reset and an exact-value box.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/slider-field/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/slider-field/index.tsx"
+        },
+        {
+          "path": "registry/primitives/slider-field/values.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/slider-field/values.ts"
+        }
+      ],
+      "docs": "value, defaultValue and onValueChange work as on any field; defaultValue is also the default, so a tick on the track marks it and a Reset button, which only exists while the value is somewhere else, puts it back. formatValue writes the value in your unit and is used in the readout, at the ends and in aria-valuetext, so a screen reader hears \"45 min\". showInput adds a number field beside the track: it follows the slider and the slider follows it, what is typed is clamped and stepped (counted from min, like the slider) when you leave the field or press Enter, Escape takes it back and the arrow keys step. onValueCommit fires once when a drag or a key press settles, for a save that should not run on every pixel. marks takes numbers or { value, label }; a labelled mark at an end replaces the end label. name sends the value with a plain form, and labels changes the words of the buttons. locale (default en-US) decides how the number field reads what is typed and how it writes the value while you edit: with en-US \"3,000\" is three thousand and \"1,5\" one and a half, with nl-NL \"3.000\" is three thousand. A sign that is not the decimal one of the locale groups only when it stands alone with three digits after it, behind a number that does not start with a zero."
+    },
+    {
+      "name": "slider-field-demo",
+      "type": "registry:example",
+      "title": "Slider field demo",
+      "description": "A working preview of Slider field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/slider-field.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/slider-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "weekday-picker",
+      "type": "registry:ui",
+      "title": "Weekday picker",
+      "description": "The days of the week as toggle chips: first day set by locale, weekday and weekend shortcuts and a spoken summary like Monday to Friday.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/weekday-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/weekday-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/weekday-picker/days.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/weekday-picker/days.ts"
+        }
+      ],
+      "docs": "value is a list of getDay() numbers, 0 for Sunday to 6 for Saturday, in any order; onValueChange reports them in ascending order. The row starts on weekStartsOn, by default the first day of the week in the locale (Sunday for en-US, Monday for en-GB and nl-NL). The names come from Intl.DateTimeFormat in the language of locale, so \"M\", \"Mon\" and \"maandag\" are all right, and every chip is named by the whole day. The sentence under the chips (\"Monday to Friday\", \"Weekends\", \"Every day\", \"Tuesday and Thursday\") and the preset labels exist in English, Dutch, German, French and Spanish; for another language pass labels. presets is true for Weekdays, Weekend and Every day, or a list mixing those keys with your own { label, days }; a preset is pressed while the choice equals it. With requireOne the last chosen day refuses to turn off and says why for a few seconds. name sends one hidden input per day."
+    },
+    {
+      "name": "weekday-picker-demo",
+      "type": "registry:example",
+      "title": "Weekday picker demo",
+      "description": "A working preview of Weekday picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/weekday-picker.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/weekday-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "async-switch",
+      "type": "registry:ui",
+      "title": "Async switch",
+      "description": "A switch for settings that save at once: a spinner in the thumb while it waits, a rollback with a retry if the save fails, and the result read out.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/async-switch.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/async-switch.tsx"
+        }
+      ],
+      "docs": "onCheckedChange(next) gets the position the switch is moving to. Return a promise and the switch waits for it: it moves at once, shows a spinner in the thumb, ignores further presses and says aria-busy; if the promise rejects, the thumb slides back and the message appears under the label with a Retry button, and if it resolves, Saved shows for successFor milliseconds (default 2000), in the row of the label so the description never narrows or wraps again (in a column narrower than 16rem it is the check alone, so a long label does not wrap either). Pass checked and update it in the handler once the save worked, or use defaultChecked and let the switch keep its own state the same way. A handler that returns nothing just changes the switch. status drives the display yourself, for example status={mutation.status}; Retry then calls onCheckedChange with the position that failed. successMessage, errorMessage and retryLabel change the words, which are read out politely. Under reduced motion the thumb jumps and the spinner is a still ellipsis."
+    },
+    {
+      "name": "async-switch-demo",
+      "type": "registry:example",
+      "title": "Async switch demo",
+      "description": "A working preview of Async switch.",
+      "registryDependencies": [
+        "https://rhsui.com/r/async-switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/async-switch-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "likert-scale",
+      "type": "registry:ui",
+      "title": "Likert scale",
+      "description": "Agree or disagree in five labelled steps: horizontal with a label under each step, a single column on a phone and one tab stop.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/likert-scale/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/likert-scale/index.tsx"
+        },
+        {
+          "path": "registry/primitives/likert-scale/scale.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/likert-scale/scale.ts"
+        }
+      ],
+      "docs": "value is the number of the chosen point, counted from 1, or \"na\" for the Not applicable choice, or null for no answer; onValueChange reports the number or \"na\". points (5 or 7) chooses the default labels, Strongly disagree to Strongly agree; options replaces them with your own, such as [\"Never\", \"Rarely\", \"Sometimes\", \"Often\", \"Always\"]. The layout follows the width of the container, not the screen: from 520px the points sit in a row on a line, below it they stack as a column of large targets. required makes the group aria-required and a form refuse to submit until a point is chosen; the missing answer shows as an error under the group (requiredMessage) once the group has been left or a submit was tried. error shows a message from outside. notApplicable adds a choice that stands apart, with your own words if you pass a string. name sends the number, or na, with a plain form."
+    },
+    {
+      "name": "likert-scale-demo",
+      "type": "registry:example",
+      "title": "Likert scale demo",
+      "description": "A working preview of Likert scale.",
+      "registryDependencies": [
+        "https://rhsui.com/r/likert-scale.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/likert-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-table",
+      "type": "registry:ui",
+      "title": "Radio table",
+      "description": "Compare while you choose: a radio per row, the specs in columns, a real table to a screen reader and cards on a phone.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/radio-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/radio-table/index.tsx"
+        },
+        {
+          "path": "registry/primitives/radio-table/rows.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/radio-table/rows.ts"
+        }
+      ],
+      "docs": "columns describe the table: the first column is the name of each choice and carries the radio, the others are the figures to compare, each with an optional align (start, center or end, the default), format (how the value is written) and speak (how it is read out). rows give a value, their cells by column key, an optional note under the name, and disabled: true, or a string that says why. To a screen reader it is a table with headers, and every radio is described by its row read in column order (\"8 GB memory, 4 CPUs, 160 GB disk, 48 euros per month\"); underneath the radios are real radio inputs that share one name, so there is one tab stop and the arrow keys move and choose. Where the container is narrower than 560px each row is a card with the heading beside each figure. name and required work as on any radio group in a form, and locale writes the numbers of columns without a format."
+    },
+    {
+      "name": "radio-table-demo",
+      "type": "registry:example",
+      "title": "Radio table demo",
+      "description": "A working preview of Radio table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/radio-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/radio-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "step-slider",
+      "type": "registry:ui",
+      "title": "Step slider",
+      "description": "A slider that snaps to named steps such as Weekly, Monthly and Yearly, with labels under the track and the label spoken as the value.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/step-slider/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/step-slider/index.tsx"
+        },
+        {
+          "path": "registry/primitives/step-slider/steps.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/step-slider/steps.ts"
+        }
+      ],
+      "docs": "steps are { value, label, description? } in order, and the knob snaps to equally spaced stops whatever their number; value is the value of the chosen step. A screen reader hears the label and the place (\"Monthly, 2 of 3\") through aria-valuetext, the arrow keys move one stop, Home and End jump to the ends, and pressing a label chooses its stop. When the container is too narrow for every label (about 3.75rem for each) every other one steps aside, together with the two beside the chosen one, which always stays (with five stops an end label gives way beside the chosen one only below 17.5rem, a little later than the rest). The description of the chosen step shows under the track, and a polite live region reads it out; every description sits in one cell, so nothing moves when the knob does. showLabels={false} leaves the ticks alone and writes the chosen label beside the heading. name sends the chosen value with a plain form."
+    },
+    {
+      "name": "step-slider-demo",
+      "type": "registry:example",
+      "title": "Step slider demo",
+      "description": "A working preview of Step slider.",
+      "registryDependencies": [
+        "https://rhsui.com/r/step-slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/step-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "listbox",
+      "type": "registry:ui",
+      "title": "Listbox",
+      "description": "An always-open list to choose from: one or several with Shift ranges, grouped options with descriptions, typeahead and an optional search.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/listbox/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/listbox/index.tsx"
+        },
+        {
+          "path": "registry/primitives/listbox/options.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/listbox/options.ts"
+        }
+      ],
+      "docs": "options are { value, label, description, icon, disabled, group }; options with the same group are shown together under one sticky heading. The list is one tab stop and keeps the focus on itself (or on the search field when searchable), pointing at the active option with aria-activedescendant. Arrow keys move, Home and End go to the ends, typing jumps to the next option that starts with it, Enter and Space choose. With selectionMode=\"multiple\", Space toggles, Shift with the arrows or a click chooses the range from the anchor, Control or Command with A chooses every option (from the search field only while it is empty), and a live line reads \"N selected\". searchable adds a search field above the list: every word typed must be in the label or the description, ignoring case and accents, the matches are marked, the arrow keys and Enter work from inside the field and Escape clears it. Pressing an option never moves the focus into the field: with a mouse the field keeps the focus if it has it, and otherwise (always on a touch screen) the list takes it, so a tap does not raise the on-screen keyboard. height is the tallest the list grows before it scrolls inside its box. name sends the chosen values with a plain form."
+    },
+    {
+      "name": "listbox-demo",
+      "type": "registry:example",
+      "title": "Listbox demo",
+      "description": "A working preview of Listbox.",
+      "registryDependencies": [
+        "https://rhsui.com/r/listbox.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/listbox-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "expiry-select",
+      "type": "registry:ui",
+      "title": "Expiry select",
+      "description": "Choose how long something lasts: presets such as 7 days, 30 days or never, a custom date, and the resulting date written out under the field.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/date-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/expiry-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/expiry-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/expiry-select/expiry.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/expiry-select/expiry.ts"
+        }
+      ],
+      "docs": "value is an absolute calendar date such as \"2026-12-02\", or null for never, so what is stored cannot drift with the clock; onValueChange reports the date a choice comes to. presets are { label, days } counted from from (a date, a Date or a timestamp; default now, in timeZone, default UTC). A preset that would end after max (a date) is turned off and says where the limit is, and Custom date opens the house date picker, limited to between the start and max. The line under the field writes the date out (\"Expires Tue 17 Nov 2026\") or says \"Never expires\"; a date that has passed, or lies beyond max, marks the field invalid and says so there. allowNever adds the Never choice. The server render writes nothing that depends on the clock, so nothing mismatches. name sends the date, or never. labels changes the words, and locale the language the dates are written in (default en-US; en-GB writes \"Tue 17 Nov 2026\")."
+    },
+    {
+      "name": "expiry-select-demo",
+      "type": "registry:example",
+      "title": "Expiry select demo",
+      "description": "A working preview of Expiry select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/expiry-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/expiry-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
