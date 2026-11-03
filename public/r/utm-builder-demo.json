@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utm-builder-demo",
+  "title": "UTM link builder demo",
+  "description": "A working preview of UTM link builder.",
+  "registryDependencies": [
+    "https://rhsui.com/r/utm-builder.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/utm-builder-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { UtmBuilder, type UtmValue } from \"@rhs-ui/application/utm-builder\";\n\n/** A caption above a case, in the quiet voice the rest of the demo uses. */\nfunction Case({ caption, children }: { caption: ReactNode; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs leading-relaxed text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [value, setValue] = useState<UtmValue>({\n    url: \"https://northwind.example/spring-sale?ref=partner#compare\",\n    source: \"Newsletter\",\n    medium: \"email\",\n    campaign: \"spring-sale\",\n    term: \"\",\n    content: \"header-button\",\n  });\n\n  return (\n    <div className=\"@container w-full\">\n      <div className=\"mx-auto grid max-w-2xl gap-12\">\n        <Case caption=\"The page already has a ref parameter and a #compare section: both are kept, and the tags are encoded. Newsletter with a capital gets a quiet warning and a one-click fix.\">\n          <UtmBuilder value={value} onValueChange={setValue} />\n        </Case>\n\n        <Case caption=\"The page is known, so its address is locked. The term is required here, and these campaign names are the ones the team already uses. Until every required tag has a value, the result says what is still needed.\">\n          <UtmBuilder baseUrl=\"https://northwind.example/pricing\" requireTerm suggestions={{ campaign: [\"spring-sale\", \"black-friday\", \"launch-week\"] }} />\n        </Case>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

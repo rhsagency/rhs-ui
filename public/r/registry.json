@@ -43410,6 +43410,435 @@
       ]
     },
     {
+      "name": "drop-overlay",
+      "type": "registry:component",
+      "title": "Drop overlay",
+      "description": "Let people drop files anywhere on a page or panel: an overlay appears the moment a file is dragged over it and says what will happen, or why not.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/drop-overlay/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/drop-overlay/index.tsx"
+        },
+        {
+          "path": "registry/application/drop-overlay/accept.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/drop-overlay/accept.ts"
+        }
+      ],
+      "docs": "Wrap a region (or pass global to take a drop anywhere in the window) and give it onFiles. While files are dragged over, an overlay with a dashed frame, an icon and message (default Drop files to upload) fills the region; it follows the radius and border you give the wrapper. Enter and leave are counted, so children never make it flicker, and dragged text and links are ignored. accept takes the same rules as the input (image/*,.pdf): the drag is judged by type from dataTransfer.items, and when none of the dragged files can match, the overlay shows rejectMessage and the drop is not allowed. Types that are ambiguous between platforms (a .csv is often application/vnd.ms-excel) and files whose type the browser does not reveal are never refused during the drag. The drop is checked exactly, by name and type: matching files go to onFiles, the others to onReject. The message is spoken as a polite status. The overlay is not a place to click, so pair it with a file button (the File trigger or your own) for the keyboard and for anyone who does not drag. DropOverlayPanel is the overlay itself, exported for previews, and labels carries the words under the message."
+    },
+    {
+      "name": "drop-overlay-demo",
+      "type": "registry:example",
+      "title": "Drop overlay demo",
+      "description": "A working preview of Drop overlay.",
+      "registryDependencies": [
+        "https://rhsui.com/r/drop-overlay.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/drop-overlay-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-actions",
+      "type": "registry:component",
+      "title": "Form actions",
+      "description": "The button row that ends a form: primary last, Cancel beside it, a destructive action kept apart, a pending state, a hint and an optional sticky bar.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/form-actions.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-actions.tsx"
+        }
+      ],
+      "docs": "primary is the main button (label, onClick, type, disabled) and is last in the DOM, so Tab finishes on it; secondary is the quiet one beside it (usually Cancel) and never submits; start is a slot at the far start for an action of another kind, such as Delete project. pending switches every button off together, shows a spinner on the primary without changing its label, sets aria-busy on the row and tells a screen reader once (labels.pending). The browser drops the focus of a button that is switched off, so the row gives it back to the primary when the wait ends. hint is a polite live region for a line such as Unsaved changes. align places the buttons at the end (default) or the start, sticky pins the row to the bottom of its scroll container with a hairline above and safe-area padding, and under 480px of the row's own width the buttons stack at full width with the primary on top (a visual order: Tab still goes Cancel, then the primary). From 480px up the row wraps rather than squeezes: the hint keeps the width of its words, and what does not fit goes to a line of its own. shortcut makes Command or Control plus Enter press the primary from anywhere in the form, also in a textarea: on (default), hint (also shows the keys on the button) or off. The press is a click on the primary, so onClick, native validation and the form's onSubmit all run as for a mouse press."
+    },
+    {
+      "name": "form-actions-demo",
+      "type": "registry:example",
+      "title": "Form actions demo",
+      "description": "A working preview of Form actions.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-actions.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-actions-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-section",
+      "type": "registry:component",
+      "title": "Form section",
+      "description": "A fieldset with a legend, help text and a Required or Optional note, stacked or split into a sticky title column and a card of fields.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/form-section.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-section.tsx"
+        }
+      ],
+      "docs": "title is the legend, so a screen reader names the group before the first field; description and the requirement note (required or optional) describe it through aria-describedby. layout is stacked (title above the fields, the default) or split (title and help in a left column that is sticky on wide screens, the fields in a bordered card on the right); both are one column below 48rem of the section's own width, so also at 320px. error is a problem with the group as a whole: it renders above the fields with role alert and is tied to the fieldset; errors of one field belong to that field. disabled is the native fieldset attribute and switches off every control inside, the footer included; only the title is dimmed, because the note and the help beside it say why. footer is a slot for a section-level action such as Save. divided (default true) draws a hairline and a fixed space above every section after the first, so sections placed one after another read as one column. The legend is floated: that makes it an ordinary box beside the fields instead of the browser's special one on the border, and the fieldset contains the float. labels carries the words Required and Optional."
+    },
+    {
+      "name": "form-section-demo",
+      "type": "registry:example",
+      "title": "Form section demo",
+      "description": "A working preview of Form section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-section.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "translatable-field",
+      "type": "registry:component",
+      "title": "Translatable field",
+      "description": "One field in many languages: a tab per language with a clear missing mark, so editors see what is translated and what is not.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/translatable-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/translatable-field/index.tsx"
+        }
+      ],
+      "docs": "locales is the list of { code, label }; defaultLocale (default: the first) is the source language: it is moved to the front, it is what required applies to and what Copy from copies from. value is a record such as { en: \"Welcome\", nl: \"Welkom\" } and onValueChange gets the whole record on every change; a language that is emptied loses its key. Each tab says where its language stands in an icon and words: a check when filled, a dash and Missing when empty, Required for the default language when required is set, or Over limit; the tabs wrap onto a second line when the languages do not fit, and a screen reader hears each as its code, its language and where it stands (NL, Nederlands filled), so a voice command that says the code on show finds the tab. maxLength is a guide and not a wall (a German translation is often longer than its English source): a longer text is allowed, counted in red and marked on its tab. A line above the tabs says how many languages are filled. In any other language the default text is shown above the field with a Copy from English button that fills the field and offers Undo for a few seconds. The tabs use manual activation: arrow keys move focus between them, Enter, Space or a click chooses one and the focus goes into the field, ready to write in that language. locale and onLocaleChange let several fields on one form follow the same language. With name, each language also goes out in a hidden input called name[code]; a hidden input has no native required check, so validate required in your schema and set invalid to show the result. labels carries every word."
+    },
+    {
+      "name": "translatable-field-demo",
+      "type": "registry:example",
+      "title": "Translatable field demo",
+      "description": "A working preview of Translatable field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/translatable-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/translatable-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "utm-builder",
+      "type": "registry:component",
+      "title": "UTM link builder",
+      "description": "Build a tracked link: a base URL plus source, medium and campaign, with the result live, encoded and ready to copy.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/utm-builder/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/utm-builder/index.tsx"
+        },
+        {
+          "path": "registry/application/utm-builder/link.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/utm-builder/link.ts"
+        }
+      ],
+      "docs": "value holds the page and the tags ({ url, source, medium, campaign, term, content }; any you leave out are empty), with defaultValue and onValueChange for the uncontrolled and the reporting side. The link is built live: the page keeps its own parameters and its #fragment, every tag is encoded with encodeURIComponent (a space is %20), tags go in a fixed order, and a utm_ tag already in the address is replaced instead of doubled. Source, medium and campaign are required, term only with requireTerm and content never (it is marked Optional). suggestions gives the names your team already uses, shown as chips under each tag so naming stays consistent; the defaults are a few common sources and mediums. A value with capitals or spaces gets a quiet warning in words (Reports treat Email and email as different sources) and a one-click fix that lower-cases it and puts hyphens for spaces. An address without a scheme is explained and fixed in a click, and an address that is not http or https is refused. The result is a status that settles after typing pauses, and onLinkChange reports the finished link, or null while it is incomplete, at the same moment. baseUrl fills the address and locks it, for when the page is chosen elsewhere. name adds a hidden input with the finished link. locale is for the lists in messages and labels carries every word."
+    },
+    {
+      "name": "utm-builder-demo",
+      "type": "registry:example",
+      "title": "UTM link builder demo",
+      "description": "A working preview of UTM link builder.",
+      "registryDependencies": [
+        "https://rhsui.com/r/utm-builder.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/utm-builder-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-message-field",
+      "type": "registry:component",
+      "title": "Status message field",
+      "description": "Set what you are up to: a short status with an icon, quick presets such as In a meeting, and when it should clear itself.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/status-message-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-message-field/index.tsx"
+        },
+        {
+          "path": "registry/application/status-message-field/glyphs.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-message-field/glyphs.tsx"
+        },
+        {
+          "path": "registry/application/status-message-field/options.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-message-field/options.ts"
+        }
+      ],
+      "docs": "A text input with a glyph button on its left that opens a menu of presets, and a Clear after select (the house Select) under it. Choosing a preset fills the text, the icon and its usual clear time; the focus then goes to the text, so it can be edited. presets is a list of { id, text, icon, clearAfter } where icon is the name of one of sixteen glyphs (calendar, target, palm-tree, thermometer, car, coffee, headphones, laptop, home, plane, phone, utensils, moon, book, bike, dumbbell) and clearAfter the id of a clear option, so a status can come straight from a server. clearOptions is a list of { id, label, minutes } or { id, label, until: today | week }; the defaults are Don't clear, 30 minutes, 1 hour, 4 hours, Today and This week. onValueChange(value, clearsAt) reports { text, icon, clearAfter } and the moment it clears as an ISO timestamp, counted from now (or the moment of the change) in timeZone: Today ends at that zone midnight and This week at the coming Monday midnight, daylight saving included. The preview shows the status as it will appear next to displayName, with the time it clears in locale and timeZone; pass now for a stable preview. A status with an icon and no text is allowed. name submits the text as name, plus nameIcon and nameClearAfter. labels carries every word."
+    },
+    {
+      "name": "status-message-field-demo",
+      "type": "registry:example",
+      "title": "Status message field demo",
+      "description": "A working preview of Status message field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-message-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-message-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "focal-point-field",
+      "type": "registry:component",
+      "title": "Focal point field",
+      "description": "Mark the part of an image that must never be cropped: click or drag a point and see square, wide and tall crops that keep it in view.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/focal-point-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/focal-point-field/index.tsx"
+        },
+        {
+          "path": "registry/application/focal-point-field/focal.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/focal-point-field/focal.ts"
+        }
+      ],
+      "docs": "The image carries a crosshair handle that works like a two-axis slider: click or drag anywhere on the picture, or focus the handle and use the arrow keys (1%, Shift 10%) and Home to centre it. step is the unit in percent: the point snaps to its multiples and the keys move by it, Shift by ten times as much. The handle is role slider and says its place as 45% across, 30% down (labels.position). Beside the image, previews (default square, wide 16:9 and tall 3:4; pass your own { label, ratio } list) show the same picture cropped with object-position set to the point, side by side at one height (a row that is full wraps to the next, and a very narrow shape keeps a width a crop can be judged at), so the result is seen before saving. onValueChange reports { x, y } as numbers from 0 to 100, ready for object-position: ${x}% ${y}%; value and defaultValue control it. Pointer events make it work with mouse, touch and pen, and a handle grabbed by its edge does not jump to the pointer. The image is shown as large as fits in 26rem of height; while it loads there is a skeleton, and an image that fails shows a calm error with the reason and a Try again button. name submits the point as nameX and nameY. labels carries every word."
+    },
+    {
+      "name": "focal-point-field-demo",
+      "type": "registry:example",
+      "title": "Focal point field demo",
+      "description": "A working preview of Focal point field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/focal-point-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/focal-point-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-cropper",
+      "type": "registry:component",
+      "title": "Image cropper",
+      "description": "Choose the crop of a photo: drag it under a fixed frame, zoom with a slider or the keys, lock an aspect ratio and get the rectangle back.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/image-cropper/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/image-cropper/index.tsx"
+        },
+        {
+          "path": "registry/application/image-cropper/crop.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/image-cropper/crop.ts"
+        }
+      ],
+      "docs": "The frame keeps the shape you chose and stays in the middle; the picture moves under it. Drag the picture, zoom with the slider, the plus and minus buttons or keys, a two-finger pinch or Ctrl and the wheel (a notch zooms by about a third); what is outside the frame is dimmed. onValueChange reports { x, y, width, height, zoom } with the rectangle in the picture's own pixels (rounded to two decimals; round before a server cuts with them) and zoom 1 meaning the largest crop of that shape, 2 half as wide. value and defaultValue control it; value null means none yet and the cropper reports the centred one. It also reports once when the picture has loaded and whenever a change of aspect or shape makes a new crop, keeping the middle and the zoom. aspect is a number (1, 4 / 3, 16 / 9) or free, which shows handles on the frame's edges and corners to drag (the frame settles back to fill the stage when the hand lets go); shape round is a circle for avatars. minZoom (at least 1) and maxZoom (default 4) limit the zoom. The frame is the keyboard target and a slider for assistive technology: arrow keys move the crop 1% of the picture (Shift 10%), plus and minus zoom, Home resets, Alt and the arrow keys resize a free frame, and the place is announced as 40% from the left, 25% from the top, zoom 150%. Reset restores the centred fit. A picture that fails to load shows an error with the reason (offline, not an image, or a bad address) and Try again. onReady hands over the loaded image element; cropToBlob(image, crop, { type, quality, maxWidth, shape }), imported from the item's crop module (@rhs-ui/application/image-cropper/crop), cuts the crop out in the browser and returns a Blob (round gives transparent corners, use PNG or WebP). A picture from another site needs crossOrigin anonymous and CORS headers, or the browser refuses the cut. labels carries every word."
+    },
+    {
+      "name": "image-cropper-demo",
+      "type": "registry:example",
+      "title": "Image cropper demo",
+      "description": "A working preview of Image cropper.",
+      "registryDependencies": [
+        "https://rhsui.com/r/image-cropper.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-cropper-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",
