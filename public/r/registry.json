@@ -41618,6 +41618,499 @@
       ]
     },
     {
+      "name": "payment-failed-banner",
+      "type": "registry:component",
+      "title": "Payment failed banner",
+      "description": "A banner for a failed subscription payment: which card, the date it becomes a problem, and one button to fix it. Turns destructive once access is paused.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/payment-failed-banner.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/payment-failed-banner.tsx"
+        }
+      ],
+      "docs": "cardLabel is what follows \"your\" (\"card ending 4242\"), graceEndsAt is the end of the grace period and status is 'grace' (the default) or 'overdue', which turns the banner destructive and says that access is paused. onUpdate runs when Update payment method is pressed and may return a promise: the button shows a spinner until it settles and then takes the focus back, which a disabled button loses. invoiceHref adds a quiet View invoice link. The date is a time element written in timeZone and locale, with the full day, time and zone in its title. There is no close button on purpose: render the banner only while the payment is unresolved. The banner is a labelled region, not a live one. labels carries every word."
+    },
+    {
+      "name": "payment-failed-banner-demo",
+      "type": "registry:example",
+      "title": "Payment failed banner demo",
+      "description": "A working preview of Payment failed banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/payment-failed-banner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/payment-failed-banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "verify-email-banner",
+      "type": "registry:component",
+      "title": "Verify email banner",
+      "description": "A banner for unverified accounts that names the address, resends the email with a cooldown that survives a reload, and lets people fix a typo.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/verify-email-banner.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/verify-email-banner.tsx"
+        }
+      ],
+      "docs": "email is the address to verify and reason finishes the sentence (\"to start sending invites\"). onResend returns a promise: a rejection shows its message under the buttons and does not start the wait. After a send the button counts down for cooldownSeconds (60), worked out from timestamps and kept in sessionStorage under storageKey, so a reload does not reset it; the countdown is spoken at its start and its end only, while the button's own name is what it shows (\"Resend in 28s\"), so voice control can reach it. onChangeEmail(address) turns the address into a field: return an error message to show under it, or nothing, and the new address gets its own email and its own wait. When verified turns true the banner swaps to a short Email verified and folds away; if it is true on first render nothing is drawn. labels carries every word."
+    },
+    {
+      "name": "verify-email-banner-demo",
+      "type": "registry:example",
+      "title": "Verify email banner demo",
+      "description": "A working preview of Verify email banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/verify-email-banner.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/verify-email-banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bulk-result-summary",
+      "type": "registry:component",
+      "title": "Bulk result summary",
+      "description": "The outcome of a batch job in numbers: what worked, what was skipped and what failed, with each failure's reason and a retry.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/bulk-result-summary.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/bulk-result-summary.tsx"
+        }
+      ],
+      "docs": "total, succeeded, skipped and failures ({ id, label, reason }[]) give the counts; a fourth, not processed, appears when they do not add up to total. verb (\"Imported\") and noun (\"contacts\", or { one, other }) write the headline. With no failures the panel is one calm line. More than foldAfter (5) failures fold behind Show all n. onRetryFailed and onDownloadReport may return promises and show a spinner meanwhile; when Retry settles the panel takes the focus, so a screen reader reads the new counts (settle it once they are in), and Download report takes its own focus back. The bar never relies on colour: each part has a pattern (solid, dots, hatch) and a written count, and a screen reader hears the counts as the panel's description. The panel takes focus once on mount unless autoFocus is false."
+    },
+    {
+      "name": "bulk-result-summary-demo",
+      "type": "registry:example",
+      "title": "Bulk result summary demo",
+      "description": "A working preview of Bulk result summary.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bulk-result-summary.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bulk-result-summary-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "batch-progress",
+      "type": "registry:component",
+      "title": "Batch progress",
+      "description": "Progress for work on many items at once: one bar, a count of done, failed and waiting, and a Cancel that stops the rest.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/batch-progress.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/batch-progress.tsx"
+        }
+      ],
+      "docs": "total, done and failed are counts of items; done and failed are kept apart, so the bar shows done plus failed and the rest is waiting. label names the progress bar. status is 'running', 'cancelling' or 'complete'; onCancel adds the Cancel button, and on complete it gives way to Done. The failed share is hatched at the end of the bar, never thinner than 6px, so a few failures in a big batch still show. The bar is a real progressbar with aria-valuetext; the counts line is not a live region, and a status is spoken only at each tenth of the way, when cancelling starts and when the batch is done."
+    },
+    {
+      "name": "batch-progress-demo",
+      "type": "registry:example",
+      "title": "Batch progress demo",
+      "description": "A working preview of Batch progress.",
+      "registryDependencies": [
+        "https://rhsui.com/r/batch-progress.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/batch-progress-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "permission-primer",
+      "type": "registry:component",
+      "title": "Permission primer",
+      "description": "The soft ask before the browser's permission prompt: why you need notifications, camera, microphone or location, and what to do if blocked.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/permission-primer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/permission-primer.tsx"
+        }
+      ],
+      "docs": "kind picks the permission (notifications, camera, microphone or location), with its icon and words; benefit is one line on what the person gets. onRequest asks the browser and returns its answer; leave it out and the card asks the browser itself. state fixes the permission for a preview, or when you track it yourself; otherwise the card reads the browser (the Permissions API, or Notification.permission) and follows changes made in its settings. Not now is remembered in localStorage for snoozeDays (14) under storageKey. The browser's own prompt opens only from the Allow button, never on load, and the card is drawn after the page is live. If the browser closes its prompt without an answer, or cannot ask, the card says so (spoken too) and Allow takes the focus back. labels carries every word, including the steps shown when it is blocked."
+    },
+    {
+      "name": "permission-primer-demo",
+      "type": "registry:example",
+      "title": "Permission primer demo",
+      "description": "A working preview of Permission primer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/permission-primer.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/permission-primer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pwa-install-prompt",
+      "type": "registry:component",
+      "title": "PWA install prompt",
+      "description": "A prompt to install your web app: a real Install button where the browser supports it, and share-sheet steps on iPhone.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/pwa-install-prompt.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/pwa-install-prompt.tsx"
+        }
+      ],
+      "docs": "It listens for beforeinstallprompt and shows Install with Not now; on iOS Safari, which has no such event, it shows the Share, then Add to Home Screen steps after delay ms. It is hidden when the app already runs standalone, a dismissal is remembered in localStorage for dismissDays (14), and it never appears on first paint. platform=\"ios\" forces the steps for a preview. The root is a window-sized, click-through box that the card measures itself against: a bottom sheet below 36rem and a corner card above, with safe-area padding; pass className=\"absolute\" to place it inside a box of your own. Mount it once, high in the app, so it is listening before the browser fires its event. icon is an element for the app tile; onInstalled and onDismiss are callbacks."
+    },
+    {
+      "name": "pwa-install-prompt-demo",
+      "type": "registry:example",
+      "title": "PWA install prompt demo",
+      "description": "A working preview of PWA install prompt.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pwa-install-prompt.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pwa-install-prompt-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "queue-position",
+      "type": "registry:component",
+      "title": "Queue position",
+      "description": "A waiting-room panel for being in line: your place, an honest wait range, and a Leave button that asks before it lets go of the spot.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inline-confirm.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/queue-position.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/queue-position.tsx"
+        }
+      ],
+      "docs": "position is the place (1 is next); total, joinedAt (written in timeZone), startPosition (the bar fills from there; default the farthest back the panel has seen) and estimateSeconds (written as a range, never a promise) fill in the rest. status 'ready' shows It is your turn with the action (onEnter) and the hold counting down (holdSeconds, or holdEndsAt from your server), then calls onExpire when it runs out. onLeave runs on the second press of Leave the line. The number counts through whole places to each new place, and its suffix steps aside while it counts when a place on the way would need another one (5th to 2nd); Enter now takes the focus back once its promise settles. A screen reader is told the place only every fifth place and for each of the last three, and the hold only at its start, at thirty seconds and at its end."
+    },
+    {
+      "name": "queue-position-demo",
+      "type": "registry:example",
+      "title": "Queue position demo",
+      "description": "A working preview of Queue position.",
+      "registryDependencies": [
+        "https://rhsui.com/r/queue-position.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/queue-position-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "coming-soon-state",
+      "type": "registry:component",
+      "title": "Coming soon state",
+      "description": "A placeholder for a feature that is not ready: what it will do, roughly when, and a button to be told when it launches.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/feature-badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/coming-soon-state.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/coming-soon-state.tsx"
+        }
+      ],
+      "docs": "title gets the Soon badge, description says what the feature will do and expected completes \"Planned for …\". onNotify returns the promise of the sign-up: a rejection shows its message and the button comes back; success turns the button into \"We will email you\" (which takes the focus; after a rejection the button gets it back), remembered in localStorage under storageKey (default one per title). notified shows that state at once for people your server already knows. There is no countdown and no urgency. icon replaces the sparkle in the tile."
+    },
+    {
+      "name": "coming-soon-state-demo",
+      "type": "registry:example",
+      "title": "Coming soon state demo",
+      "description": "A working preview of Coming soon state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/coming-soon-state.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/coming-soon-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "suspicious-activity-alert",
+      "type": "registry:component",
+      "title": "Suspicious activity alert",
+      "description": "A 'was this you?' alert for an unfamiliar sign-in, with device and place, and two clear answers: yes, or secure my account.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/suspicious-activity-alert.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/suspicious-activity-alert.tsx"
+        }
+      ],
+      "docs": "event is { device, place, at, ip }: the IP address is hidden in part whatever you pass (203.0.x.x), and the place is called approximate. onConfirm (Yes, it was me) folds the alert away; onSecure (No, secure my account) runs and then shows the next steps, by default change your password and sign out other sessions. Pass steps with an href or an onSelect to make them buttons. Both callbacks may return promises and show a spinner, and a rejection is said in words. The alert is announced once as role=\"alert\"; nothing takes the focus when it appears, the heading of the steps takes it after No, and a failed answer or step gives it back to the button that was pressed. defaultStep=\"secured\" opens on the steps."
+    },
+    {
+      "name": "suspicious-activity-alert-demo",
+      "type": "registry:example",
+      "title": "Suspicious activity alert demo",
+      "description": "A working preview of Suspicious activity alert.",
+      "registryDependencies": [
+        "https://rhsui.com/r/suspicious-activity-alert.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/suspicious-activity-alert-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "draft-restored-notice",
+      "type": "registry:component",
+      "title": "Draft restored notice",
+      "description": "Tells people their unsaved work came back after a crash or a closed tab: when it was saved, Keep or Start over, plus a useLocalDraft hook.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "feedback"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/inline-confirm.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/draft-restored-notice/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/draft-restored-notice/index.tsx"
+        },
+        {
+          "path": "registry/application/draft-restored-notice/use-local-draft.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/draft-restored-notice/use-local-draft.ts"
+        }
+      ],
+      "docs": "DraftRestoredNotice takes savedAt, summary (\"3 fields changed\", \"412 words\"), timeZone and locale, onKeep, onDiscard (called after a second press of Start over) and onClosed (after it has folded away). It is a polite status, never an alert, and never takes the focus. useLocalDraft(key, value, { delay, enabled }) returns { draft, clear }: it saves value to localStorage a moment after the last change (and when the tab is hidden), reports a draft found on mount in draft (null on the server and on the first paint), never overwrites it before the form has changed, and clear() deletes it: call it after the form was saved for real, and from Start over. value must survive JSON."
+    },
+    {
+      "name": "draft-restored-notice-demo",
+      "type": "registry:example",
+      "title": "Draft restored notice demo",
+      "description": "A working preview of Draft restored notice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/draft-restored-notice.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/draft-restored-notice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-section",
       "type": "registry:block",
       "title": "Pricing Section",

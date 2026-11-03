@@ -98,6 +98,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 9 more: `chip-select`, `slider-field`, `weekday-picker`, `async-switch`, `likert-scale`, `radio-table`, `step-slider`, `listbox`, `expiry-select`.
 - Application, 11 more: `season-strip`, `color-token-card`, `team-clocks`, `achievement-tile`, `stack-trace`, `offline-state`, `first-run-state`, `unavailable-state`, `update-available-bar`, `mode-bar`, `trial-status-bar`.
 - Marketing, 6 more: `tour-chapters`, `locale-demo`, `theme-preview`, `dashboard-hero`, `ui-snippets-hero`, `trusted-by-hero`.
+- Application, 10 more: `payment-failed-banner`, `verify-email-banner`, `bulk-result-summary`, `batch-progress`, `permission-primer`, `pwa-install-prompt`, `queue-position`, `coming-soon-state`, `suspicious-activity-alert`, `draft-restored-notice`.
 
 ## Unreleased (0.7.0)
 
