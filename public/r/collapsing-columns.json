@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsing-columns",
+  "title": "Collapsing columns",
+  "description": "Equal columns that stack all at once when their own container gets narrow, with no awkward two-plus-one in between.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/collapsing-columns.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/** The space between the cells, in a row and once stacked: a step, or any CSS length such as `2.5rem`. `none` 0, `sm` 0.75rem, `md` 1.5rem, `lg` 2.5rem. */\nexport type CollapsingColumnsGap = \"none\" | \"sm\" | \"md\" | \"lg\" | (string & {});\n\n/** How the cells line up across the row: top, middle, bottom, or all as tall as the tallest. */\nexport type CollapsingColumnsAlign = \"start\" | \"center\" | \"end\" | \"stretch\";\n\nexport interface CollapsingColumnsProps extends ComponentProps<\"div\"> {\n  /** The width of the container below which the cells stack, any CSS length. It is measured on the content box of this element, never on the window. Default `40rem`. */\n  threshold?: string;\n  /** The space between cells. Default `md`. */\n  gap?: CollapsingColumnsGap;\n  /** The cross-axis alignment of the cells in a row. Default `stretch`. */\n  align?: CollapsingColumnsAlign;\n  /** The element to render. Use `ul` or `ol` with `li` cells for a list. Default `div`. */\n  as?: \"div\" | \"section\" | \"ul\" | \"ol\";\n}\n\nconst GAPS: Record<string, string> = { none: \"0px\", sm: \"0.75rem\", md: \"1.5rem\", lg: \"2.5rem\" };\n\nconst ALIGN: Record<CollapsingColumnsAlign, string> = { start: \"items-start\", center: \"items-center\", end: \"items-end\", stretch: \"items-stretch\" };\n\n/**\n * A row of two to five equal cells that stays a row until its own width drops\n * below a threshold, and then becomes a single column in one step. A wrapping\n * grid cannot do that: three cards become two and one, and the lone card is\n * an orphan. Here every cell's basis is a number that is zero while the\n * container is wide enough and enormous once it is not, so either they all\n * share one line or each takes a line of its own. The threshold reads the\n * container, not the viewport, so the same component works on a wide page, in\n * a narrow sidebar and in a dialog, with no media query and no script. The\n * source order is the stacked order, and the cells share the width evenly\n * with a minimum of zero, so a long word breaks instead of pushing a cell\n * wider than its share.\n */\nexport function CollapsingColumns({ threshold = \"40rem\", gap = \"md\", align = \"stretch\", as = \"div\", className, style, ...props }: CollapsingColumnsProps) {\n  const Root = as as \"div\";\n  return (\n    <Root\n      data-slot=\"collapsing-columns\"\n      // A list keeps its meaning where the reset of its bullets would take it away (Safari).\n      role={as === \"ul\" || as === \"ol\" ? \"list\" : undefined}\n      style={{ \"--cc-threshold\": threshold, \"--cc-gap\": GAPS[gap] ?? gap, ...style } as CSSProperties}\n      className={cn(\n        \"flex flex-wrap gap-(--cc-gap)\",\n        ALIGN[align],\n        // (threshold - width) is negative while the row is wide enough, and the basis clamps to zero; below it the basis is up to 999 times the shortfall, far more than a line can hold.\n        \"[&>*]:min-w-0 [&>*]:grow [&>*]:basis-[calc((var(--cc-threshold)_-_100%)_*_999)] [&>*]:[overflow-wrap:anywhere]\",\n        as === \"ul\" || as === \"ol\" ? \"m-0 list-none p-0\" : undefined,\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/collapsing-columns.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "layout"
+  },
+  "docs": "The cells are the children, two to five of them. threshold is the width of the container, any CSS length, below which they stack in one step (40rem by default). It is measured on the content width of this element, never on the window, so the same component is a row on a wide page and a column in a sidebar or a dialog, with no media query and no script. gap is none, sm, md, lg or a length, and applies between the columns and between the rows once stacked; align is start, center, end or stretch (the default: equal heights); as is div, section, ul or ol, with li cells for a list. The cells share the width evenly and may shrink to nothing, so a long word breaks instead of widening its cell. The source order is the stacked order.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

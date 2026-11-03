@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-list",
+  "title": "Inline list",
+  "description": "Meta lines whose separators never dangle: a byline wraps without a dot at the start or end of a line.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/inline-list.tsx",
+      "content": "import { Children, type ComponentProps, type CSSProperties, type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/** The mark between two items: a centred dot, a slash, a thin vertical bar, or only space. */\nexport type InlineListSeparator = \"dot\" | \"slash\" | \"pipe\" | \"none\";\n\n/** The space between two items, separator included: `sm` 0.9em, `md` 1.25em, `lg` 1.75em, or any CSS length. */\nexport type InlineListGap = \"sm\" | \"md\" | \"lg\" | (string & {});\n\n/** The type size: `xs` 12px, `sm` 14px, `md` 16px. */\nexport type InlineListSize = \"xs\" | \"sm\" | \"md\";\n\nexport interface InlineListProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** The items, in order. Anything empty (`null`, `false`) is skipped, so a conditional item leaves no stray separator. */\n  children: ReactNode;\n  /** The mark between items. Default `dot`. */\n  separator?: InlineListSeparator;\n  /** The space between items. Default `md`. */\n  gap?: InlineListGap;\n  /** `ul` keeps the list semantics for assistive technology, `div` is plain text. Default `div`. */\n  as?: \"div\" | \"ul\";\n  /** Where the lines sit when the items wrap. Default `start`. */\n  align?: \"start\" | \"center\" | \"end\";\n  /** The type size. Default `sm`. */\n  size?: InlineListSize;\n  /** Keep every item on one line, so a wrap only ever happens between items. Turn it off for items that can be long. Default `true`. */\n  nowrap?: boolean;\n}\n\nconst GAPS: Record<string, string> = { sm: \"0.9em\", md: \"1.25em\", lg: \"1.75em\" };\n\nconst SIZE: Record<InlineListSize, string> = { xs: \"text-xs leading-5\", sm: \"text-sm leading-6\", md: \"text-base leading-7\" };\n\nconst ALIGN: Record<NonNullable<InlineListProps[\"align\"]>, string> = { start: \"text-start\", center: \"text-center\", end: \"text-end\" };\n\n/**\n * The separators are shapes painted behind a space, written out whole because Tailwind reads class names from the source. A dot is a\n * circle, a slash a diagonal hairline and a pipe a vertical one, all sized in em so they follow the type.\n */\nconst MARK: Record<InlineListSeparator, string> = {\n  dot: \"bg-[image:radial-gradient(circle,currentColor_0.1em,transparent_0.14em)]\",\n  slash: \"bg-[image:linear-gradient(to_bottom_right,transparent_calc(50%-0.5px),currentColor_calc(50%-0.5px),currentColor_calc(50%+0.5px),transparent_calc(50%+0.5px))] bg-[length:0.5em_0.9em] bg-center bg-no-repeat\",\n  pipe: \"bg-[image:linear-gradient(currentColor,currentColor)] bg-[length:1px_0.9em] bg-center bg-no-repeat\",\n  none: \"\",\n};\n\n/**\n * A line of small facts that wraps without ever dangling a separator: a\n * byline, a row of legal links, a fact line under a listing. A text\n * separator (` · `) ends up at the start or the end of a wrapped line; here\n * the separator is a shape painted behind the one space between two items,\n * and the browser drops that space where the line breaks, so the shape goes\n * with it. It never starts a line, never ends one, and never follows the last\n * item, in any alignment. There is no script and no measuring, so it is the\n * same on the server. With `as=\"ul\"` the items stay a list and the\n * separators are hidden from assistive technology.\n */\nexport function InlineList({ children, separator = \"dot\", gap = \"md\", as = \"div\", align = \"start\", size = \"sm\", nowrap = true, className, style, ...props }: InlineListProps) {\n  const Root = as as \"div\";\n  const Item = (as === \"ul\" ? \"li\" : \"span\") as \"span\";\n  const items = Children.toArray(children);\n  return (\n    <Root\n      data-slot=\"inline-list\"\n      data-separator={separator}\n      role={as === \"ul\" ? \"list\" : undefined}\n      style={{ \"--il-gap\": GAPS[gap] ?? gap, ...style } as CSSProperties}\n      className={cn(\"m-0 block list-none p-0 text-muted-foreground\", SIZE[size], ALIGN[align], className)}\n      {...props}\n    >\n      {items.map((item, index) => (\n        <Item key={index} data-slot=\"inline-list-item\" className=\"inline\">\n          <span className={cn(nowrap && \"whitespace-nowrap\")}>{item}</span>\n          {index < items.length - 1 ? (\n            // The space is the break opportunity and the width of the gap: its word spacing is what is left of the gap once the space itself is taken off.\n            <span aria-hidden=\"true\" data-slot=\"inline-list-separator\" className={cn(\"whitespace-normal text-muted-foreground/60 [word-spacing:calc(var(--il-gap)-0.26em)]\", MARK[separator])}>\n              {\" \"}\n            </span>\n          ) : null}\n        </Item>\n      ))}\n    </Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/inline-list.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "docs": "The items are the children, and anything empty (null, false) is skipped, so a conditional item leaves no stray separator. separator is dot (the default), slash, pipe or none; gap is sm, md, lg or a length, measured in the type size; align is start, center or end; size is xs, sm or md; as is div (plain text) or ul (a list, whose separators are hidden from assistive technology). Each item stays on one line unless you pass nowrap={false}, so a break only ever happens between items. The separator is a shape painted behind the space between two items, which the browser removes where a line breaks, so one never starts a line or ends one, in any alignment, and there is no script.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

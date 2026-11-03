@@ -13686,6 +13686,538 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "aligned-card-grid",
+      "type": "registry:ui",
+      "title": "Aligned card grid",
+      "description": "Cards that line up inside: every card is a subgrid, so titles, bodies and footers share rows and the buttons sit on one baseline.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/aligned-card-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/aligned-card-grid.tsx"
+        }
+      ],
+      "docs": "Build a grid with AlignedCardGrid and put AlignedCardGrid.Card in it: each card is a subgrid with one row for every part you list in rows (media, title, body and footer by default), so the parts of cards side by side share their rows. Write the parts of a card in the order of rows: Media (with an optional ratio such as 4/3; the picture runs to the edge of the card), Title (an h3, or the level you pass with as), Body and Footer, or Part with a name for a row of your own (rows={[\"title\", \"body\", \"price\", \"features\", \"footer\"]} and <AlignedCardGrid.Part name=\"price\">). A card may leave a part out and its neighbours keep their rows; list only the rows that exist, so a row nobody uses takes no room. The card itself has 20px of room under its last part, so a card without a footer still ends clear of its text (pass pb-0 to a card whose last part is a picture). minCardWidth is the narrowest a card may get (16rem by default) and the grid fits as many columns as the width allows, stretching the cards when a row is short; gap is sm, md, lg or any length. Where subgrid is missing the cards are flex columns of equal height with the footer pushed to the bottom. The cards use the Card surface. For a list, give the grid role=\"list\" and each card role=\"listitem\"."
+    },
+    {
+      "name": "aligned-card-grid-demo",
+      "type": "registry:example",
+      "title": "Aligned card grid demo",
+      "description": "A working preview of Aligned card grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/aligned-card-grid.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/aligned-card-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsing-columns",
+      "type": "registry:ui",
+      "title": "Collapsing columns",
+      "description": "Equal columns that stack all at once when their own container gets narrow, with no awkward two-plus-one in between.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/collapsing-columns.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/collapsing-columns.tsx"
+        }
+      ],
+      "docs": "The cells are the children, two to five of them. threshold is the width of the container, any CSS length, below which they stack in one step (40rem by default). It is measured on the content width of this element, never on the window, so the same component is a row on a wide page and a column in a sidebar or a dialog, with no media query and no script. gap is none, sm, md, lg or a length, and applies between the columns and between the rows once stacked; align is start, center, end or stretch (the default: equal heights); as is div, section, ul or ol, with li cells for a list. The cells share the width evenly and may shrink to nothing, so a long word breaks instead of widening its cell. The source order is the stacked order."
+    },
+    {
+      "name": "collapsing-columns-demo",
+      "type": "registry:example",
+      "title": "Collapsing columns demo",
+      "description": "A working preview of Collapsing columns.",
+      "registryDependencies": [
+        "https://rhsui.com/r/collapsing-columns.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/collapsing-columns-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "leader-list",
+      "type": "registry:ui",
+      "title": "Leader list",
+      "description": "Rows with a dotted leader between the name and the value, for menus, schedules, receipts and tables of contents.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/leader-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/leader-list.tsx"
+        }
+      ],
+      "docs": "items are the rows: a label, a value and an optional detail (a quieter line under the label), with an id when two labels could be the same. leader is dots (the default), dashes or line; size is sm, md or lg. as=\"ul\" (the default) renders a list, as=\"dl\" renders term and description pairs. The label and the value can be any node, so a total can be bold and a chapter number muted. The leader is CSS: it starts a little after the last word of the label and stops before the value, a long label wraps onto a second line while the leader and the value stay on its last line, and the value never wraps and uses tabular figures. The leader is hidden from assistive technology, and it follows the writing direction, so it works right to left."
+    },
+    {
+      "name": "leader-list-demo",
+      "type": "registry:example",
+      "title": "Leader list demo",
+      "description": "A working preview of Leader list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/leader-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/leader-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-list",
+      "type": "registry:ui",
+      "title": "Inline list",
+      "description": "Meta lines whose separators never dangle: a byline wraps without a dot at the start or end of a line.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/inline-list.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inline-list.tsx"
+        }
+      ],
+      "docs": "The items are the children, and anything empty (null, false) is skipped, so a conditional item leaves no stray separator. separator is dot (the default), slash, pipe or none; gap is sm, md, lg or a length, measured in the type size; align is start, center or end; size is xs, sm or md; as is div (plain text) or ul (a list, whose separators are hidden from assistive technology). Each item stays on one line unless you pass nowrap={false}, so a break only ever happens between items. The separator is a shape painted behind the space between two items, which the browser removes where a line breaks, so one never starts a line or ends one, in any alignment, and there is no script."
+    },
+    {
+      "name": "inline-list-demo",
+      "type": "registry:example",
+      "title": "Inline list demo",
+      "description": "A working preview of Inline list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inline-list.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "holy-grail-layout",
+      "type": "registry:ui",
+      "title": "Holy grail layout",
+      "description": "The classic page skeleton: header, navigation, main, aside and footer, with the footer pinned to the bottom of short pages.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/skip-link.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/holy-grail-layout.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/holy-grail-layout.tsx"
+        }
+      ],
+      "docs": "children is main; header, nav, aside and footer are optional and render as header, nav (named by navLabel), aside (named by asideLabel) and footer. In a layout 64rem wide the three columns stand side by side (navWidth and asideWidth, 14rem and 15rem by default); from 48rem the aside drops under main; below that the navigation is a block above everything and the aside comes last, in one column. The footer sits at the bottom of a page shorter than the screen: height is the screen (100dvh by default; give it a length to fill a box). stickyHeader pins the header, stickyColumns pins the navigation and the aside under it while main scrolls (they scroll inside themselves when taller than the screen, and they only pin where they stand beside main); headerHeight is the height of the header, 3.5rem by default. A skip link comes first and points at main (mainId, skipLabel, or false to leave it out). mainAs is main (the default) or div: a page has one main landmark, so a second layout on the page, a preview or a dialog uses div. classNames reaches each part. The layout is a size container, so it answers to its own width and works in a dialog or a preview."
+    },
+    {
+      "name": "holy-grail-layout-demo",
+      "type": "registry:example",
+      "title": "Holy grail layout demo",
+      "description": "A working preview of Holy grail layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/holy-grail-layout.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/holy-grail-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "split-screen",
+      "type": "registry:ui",
+      "title": "Split screen",
+      "description": "Two full-height halves, one for the task and one for a brand panel or picture, which folds away on a phone.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/split-screen.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/split-screen.tsx"
+        }
+      ],
+      "docs": "children is the task and becomes the main landmark; media is the other half. mediaSide is start or end (default end), ratio is 1:1 or 3:2, which gives the task three parts and the media two. mediaOnMobile is what the media does below 48rem of width: hidden (the default), banner (a short strip above the task) or top (a taller block above it), so the form is never pushed below the fold. stickyMedia (on by default) pins the media to the screen while a long task scrolls past; off, the media grows as tall as the task. mediaLabel makes the media a labelled complementary region; without it the media is decorative and hidden from assistive technology. height is the height of one screen, 100dvh by default; give it a length to fill a box. mediaClassName and taskClassName reach the halves. mainAs is main (the default) or div, for a second layout on one page, a preview or a dialog, because a page has one main landmark. In the document the task comes first, whichever side the picture is on."
+    },
+    {
+      "name": "split-screen-demo",
+      "type": "registry:example",
+      "title": "Split screen demo",
+      "description": "A working preview of Split screen.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/split-screen.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/split-screen-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "screen-frame",
+      "type": "registry:ui",
+      "title": "Screen frame",
+      "description": "A frame that fills the visible screen: header and footer stay put, the middle scrolls, and it copes with address bars, notches and keyboards.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/screen-frame/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/screen-frame/index.tsx"
+        },
+        {
+          "path": "registry/primitives/screen-frame/shell.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/screen-frame/shell.tsx"
+        }
+      ],
+      "docs": "header and footer render as header and footer landmarks and stay put; children is the middle, the one part that scrolls, and you put main there. scroll=\"body\" (the default) makes the middle one scrolling area; scroll=\"none\" makes it a row for ScreenFrame.Pane, each of which scrolls on its own (as is div, section, aside or nav). The frame is as tall as the dynamic viewport (h-dvh), so the browser bar never hides the footer; give it a height of your own (h-full, h-[34rem]) to fill a box. The safe-area insets are padding on the frame, and the browser reports them when the viewport meta tag has viewport-fit=cover. keyboardAware (on by default) lifts the footer above the on-screen keyboard, measured through the visual viewport and ignoring pinch zoom; keyboardInset replaces the measurement when you know the height. The body has its overscroll contained; bodyClassName, headerClassName and footerClassName reach each part."
+    },
+    {
+      "name": "screen-frame-demo",
+      "type": "registry:example",
+      "title": "Screen frame demo",
+      "description": "A working preview of Screen frame.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/screen-frame.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/screen-frame-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-bar",
+      "type": "registry:ui",
+      "title": "Status bar",
+      "description": "The thin strip at the foot of an editor or tool: facts on both sides, each a button or plain text, the least important dropping out when space runs out.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/status-bar/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/status-bar/index.tsx"
+        },
+        {
+          "path": "registry/primitives/status-bar/fit.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/status-bar/fit.ts"
+        }
+      ],
+      "docs": "start and end are arrays of segments, most important first: an id, a label, an optional icon (iconOnly shows it alone), onSelect (the segment becomes a button), tooltip, ariaLabel for a fuller name, live (a change of its label is announced politely, with announcement for a longer sentence), priority and disabled. A segment without onSelect is plain text. separators draws a hairline between neighbours, as is div (a labelled region) or footer, and label names the region. The bar measures the natural width of every segment and keeps the most important ones that fit, by priority and then by position, the first of each side first: a segment leaves whole and returns when there is room again, and one that has left is inert, so Tab never reaches it. It is 28px high and uses only the border and muted tokens."
+    },
+    {
+      "name": "status-bar-demo",
+      "type": "registry:example",
+      "title": "Status bar demo",
+      "description": "A working preview of Status bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/status-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-panes",
+      "type": "registry:ui",
+      "title": "Collapsible panes",
+      "description": "Stacked panes that share the height: open ones split the space and scroll on their own, closed ones fold to a header.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/collapsible-panes/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/collapsible-panes/index.tsx"
+        },
+        {
+          "path": "registry/primitives/collapsible-panes/fold.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/collapsible-panes/fold.ts"
+        }
+      ],
+      "docs": "panes is the list: an id, a title, an optional count and actions (buttons for the header, shown while the pane is open) and the content. openIds and onOpenIdsChange control which are open (defaultOpenIds when the component keeps the state); multiple (on by default) lets several share the height, off opens one at a time. The open panes divide the height of the component, so give it a height; each content scrolls inside its pane, and minPaneHeight (120px) is the least height an open pane gets. When there is not room for every open pane at that height, the ones that cannot meet it fold, the last first and never the one a person just opened, and they open again when there is room. Headers are buttons in headings (headingLevel, 3 by default) with aria-expanded and aria-controls; ArrowUp, ArrowDown, Home and End move between them. The content of an open pane takes focus, so the keyboard can scroll it; the content of a folded pane stays mounted and inert, so it keeps its scroll position and its state."
+    },
+    {
+      "name": "collapsible-panes-demo",
+      "type": "registry:example",
+      "title": "Collapsible panes demo",
+      "description": "A working preview of Collapsible panes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible-panes.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/collapsible-panes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "chrome-offsets",
+      "type": "registry:ui",
+      "title": "Chrome offsets",
+      "description": "Measures your fixed header and bottom bar and publishes their heights as CSS variables for sticky things to use.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/chrome-offsets/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/chrome-offsets/index.tsx"
+        },
+        {
+          "path": "registry/primitives/chrome-offsets/client.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/chrome-offsets/client.tsx"
+        }
+      ],
+      "docs": "Wrap the page in ChromeOffsets and wrap each fixed bar in a ChromeOffsets.Top, Bottom, Start or End. A part measures what it holds, which is the fixed bar inside it; or give the part the classes that fix it (and as, to make it a header, nav, footer or aside) and let it be the bar. The provider writes --chrome-top, --chrome-bottom, --chrome-start and --chrome-end on its own element as pixel lengths, kept current with a ResizeObserver on every bar, so calc(var(--chrome-top) + 1rem) works for a sticky sidebar, a scroll margin, an anchored heading or the padding of the page. Bars on one edge add up, and an edge whose bars have all gone is zero. defaults (top, bottom, start, end in pixels) are what the variables are on the server and without JavaScript: set them to the sizes at rest. useChromeOffsets() returns the same four sizes as numbers, inside the provider. FloatingStack reads the variables when you pass respectChrome."
+    },
+    {
+      "name": "chrome-offsets-demo",
+      "type": "registry:example",
+      "title": "Chrome offsets demo",
+      "description": "A working preview of Chrome offsets.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chrome-offsets.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chrome-offsets-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "floating-stack",
+      "type": "registry:ui",
+      "title": "Floating stack",
+      "description": "A corner for floating widgets that do not collide: back to top, a chat launcher and a feedback tab stack with safe gaps.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/floating-stack.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/floating-stack.tsx"
+        }
+      ],
+      "docs": "The children are your widgets, the first one nearest the corner. corner is bottom-end (the default), bottom-start, top-end or top-start; end and start follow the writing direction. gap is sm, md, lg or a length; offset is the distance from the edges in pixels or any CSS length, 20 by default, with the safe-area insets added. The stack ignores pointer events and only its children receive them, it hides in print, and the document order equals the visual order from the corner, so Tab reaches the widget in the corner first. respectChrome lifts a bottom stack above a fixed bottom bar or the on-screen keyboard, whichever reaches higher (the keyboard covers the bar and the home indicator, so the two are never added up), and drops a top stack under a fixed header: it reads --chrome-bottom and --chrome-top, which ChromeOffsets publishes, and measures the keyboard through the visual viewport (keyboardInset replaces the measurement). label names the group for assistive technology."
+    },
+    {
+      "name": "floating-stack-demo",
+      "type": "registry:example",
+      "title": "Floating stack demo",
+      "description": "A working preview of Floating stack.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chrome-offsets.json",
+        "https://rhsui.com/r/floating-stack.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/floating-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -105,6 +105,7 @@ own `meta.version` and are listed when they change.
 - Application, 8 more: `unsupported-browser-notice`, `needs-setup-state`, `notice-stack`, `streak-tracker`, `comment-composer`, `document-upload-row`, `image-upload-grid`, `image-alt-field`.
 - Marketing, 7 more: `donation-hero`, `service-start-hero`, `property-search-hero`, `reservation-hero`, `appointment-hero`, `timetable-hero`, `advisor-hero`.
 - Application, 8 more: `drop-overlay`, `form-actions`, `form-section`, `translatable-field`, `utm-builder`, `status-message-field`, `focal-point-field`, `image-cropper`.
+- Primitives, 11 more: `aligned-card-grid`, `collapsing-columns`, `leader-list`, `inline-list`, `holy-grail-layout`, `split-screen`, `screen-frame`, `status-bar`, `collapsible-panes`, `chrome-offsets`, `floating-stack`.
 
 ## Unreleased (0.7.0)
 
