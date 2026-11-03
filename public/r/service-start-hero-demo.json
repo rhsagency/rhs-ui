@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "service-start-hero-demo",
+  "title": "Service start hero demo",
+  "description": "A working preview of Service start hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/service-start-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/service-start-hero-demo.tsx",
+      "content": "import { ServiceStartHero } from \"@rhs-ui/marketing/service-start-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">With a hint on every item, other ways to apply and the date the page was checked.</p>\n      <ServiceStartHero\n        titleAs=\"h2\"\n        className=\"py-8 sm:py-10 lg:py-12\"\n        title=\"Apply for housing allowance\"\n        lead=\"Use this service if you rent your home and your income is low. You will hear within eight weeks whether you get an allowance and how much.\"\n        start={{ label: \"Start now\", href: \"#start\" }}\n        duration=\"Takes about 10 minutes\"\n        requirements={[\n          { label: \"Your ID\", hint: \"A passport, ID card or driving licence that is still valid today.\" },\n          { label: \"Last year's income statement\", hint: \"The yearly statement from your employer or the tax office, for everyone who lives with you.\" },\n          { label: \"Your account number\", hint: \"The IBAN of the account the allowance should be paid into.\" },\n        ]}\n        alternatives={[\n          { label: \"By post\", href: \"#post\" },\n          { label: \"At a service desk\", href: \"#desk\" },\n        ]}\n        updatedAt=\"2026-10-21\"\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">The shortest form: a title, a lead, the button and a list. No hints, no other ways, no date.</p>\n      <ServiceStartHero\n        titleAs=\"h2\"\n        className=\"py-8 sm:py-10 lg:py-12\"\n        title=\"Renew your driving licence\"\n        lead=\"You can renew up to four months before it runs out. Your new licence arrives by post within a week.\"\n        start={{ label: \"Start now\", href: \"#start\" }}\n        duration=\"Takes about 5 minutes\"\n        requirements={[{ label: \"Your current licence\" }, { label: \"A passport photo, as a file\" }, { label: \"Your digital ID, or a code from the post office\" }]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timetable-hero-demo",
+  "title": "Timetable hero demo",
+  "description": "A working preview of Timetable hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/timetable-hero.json",
+    "https://rhsui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/timetable-hero-demo.tsx",
+      "content": "import { TimetableHero, type TimetableSession } from \"@rhs-ui/marketing/timetable-hero\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nconst at = (day: string, time: string) => `${day}T${time}:00+01:00`;\n\nconst wednesday: TimetableSession[] = [\n  { id: \"wed-0700\", startsAt: at(\"2026-11-04\", \"07:00\"), name: \"Reformer Pilates\", coach: \"Ana Costa\", spots: 3, capacity: 12, href: \"#reformer-0700\" },\n  { id: \"wed-0930\", startsAt: at(\"2026-11-04\", \"09:30\"), name: \"Vinyasa flow\", coach: \"Lena Visser\", spots: 4, capacity: 16, href: \"#vinyasa-0930\" },\n  { id: \"wed-1215\", startsAt: at(\"2026-11-04\", \"12:15\"), name: \"Lunchtime strength\", coach: \"Mateo Ruiz\", spots: 0, capacity: 10, href: \"#strength-1215\" },\n  { id: \"wed-1730\", startsAt: at(\"2026-11-04\", \"17:30\"), name: \"Mobility and stretch\", coach: \"Ana Costa\", spots: 9, capacity: 16, href: \"#mobility-1730\" },\n  { id: \"wed-1900\", startsAt: at(\"2026-11-04\", \"19:00\"), name: \"Yin and restore\", coach: \"Lena Visser\", spots: 2, capacity: 14, href: \"#yin-1900\" },\n];\n\nconst thursday: TimetableSession[] = [\n  { id: \"thu-0700\", startsAt: at(\"2026-11-05\", \"07:00\"), name: \"Reformer Pilates\", coach: \"Ana Costa\", spots: 8, capacity: 12, href: \"#reformer-thu\" },\n  { id: \"thu-0930\", startsAt: at(\"2026-11-05\", \"09:30\"), name: \"Boxing fundamentals\", coach: \"Mateo Ruiz\", spots: 6, capacity: 12, href: \"#boxing-thu\" },\n];\n\nconst actions = (\n  <>\n    <Button asChild size=\"lg\">\n      <a href=\"#book\">Book a class</a>\n    </Button>\n    <Button asChild size=\"lg\" variant=\"outline\">\n      <a href=\"#timetable\">See the full timetable</a>\n    </Button>\n  </>\n);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">Wednesday at 08:15 in Utrecht: the 07:00 class has begun, lunchtime is full, and the last class has two places left.</p>\n      <TimetableHero\n        className=\"py-8 sm:py-10 lg:py-12\"\n        title=\"Today at Halcyon Studio\"\n        description=\"Pilates, yoga and strength in the middle of Utrecht. Book a spot, or just walk in.\"\n        actions={actions}\n        sessions={wednesday}\n        timeZone=\"Europe/Amsterdam\"\n        now=\"2026-11-04T08:15:00+01:00\"\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">Wednesday at 20:40, in 12-hour times: the last class has begun, so the row says so and shows how Thursday starts.</p>\n      <TimetableHero\n        className=\"py-8 sm:py-10 lg:py-12\"\n        title=\"Today at Halcyon Studio\"\n        description=\"Pilates, yoga and strength in the middle of Utrecht. Book a spot, or just walk in.\"\n        actions={actions}\n        sessions={[...wednesday, ...thursday]}\n        timeZone=\"Europe/Amsterdam\"\n        hourCycle=\"h12\"\n        now=\"2026-11-04T20:40:00+01:00\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

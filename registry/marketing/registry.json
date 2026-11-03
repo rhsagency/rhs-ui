@@ -9794,6 +9794,380 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "donation-hero",
+      "type": "registry:block",
+      "title": "Donation hero",
+      "description": "A nonprofit opening with the gift on the first screen: one-off or monthly, four amounts, your own, a campaign meter and what each gift pays for.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/currency-input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/meter.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/donation-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/donation-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/donation-hero/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/donation-hero/format.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-donation-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-donation-in": "rhs-donation-in 200ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "All money is in minor units, hundredths of the currency's unit, like CurrencyInput and most payment APIs: pass 2500 for 25.00. impactFor(amount, frequency) returns the end of a sentence (\"pays for a week of meals\") that is written over the picture and changes with every choice. onDonate({ amount, frequency, currency }) is where your checkout starts; return a promise and the button shows it is busy until it settles. impactFor and onDonate are functions, so use the hero inside a Client Component."
+    },
+    {
+      "name": "donation-hero-demo",
+      "type": "registry:example",
+      "title": "Donation hero demo",
+      "description": "A working preview of Donation hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/donation-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/donation-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "service-start-hero",
+      "type": "registry:block",
+      "title": "Service start hero",
+      "description": "The start page of a service: what it is, how long it takes, what to have ready and one clear Start button, in plain text with no image.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/service-start-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/service-start-hero.tsx"
+        }
+      ],
+      "docs": "The title is an h1 by default, because the start page of a service is a page of its own; pass titleAs=\"h2\" inside a page that has its own. The Start button is a link to the first step; a longer label, in another language, wraps to a second line instead of being cut off. updatedAt takes a Date or a day written \"2026-10-21\" and is shown in a time element."
+    },
+    {
+      "name": "service-start-hero-demo",
+      "type": "registry:example",
+      "title": "Service start hero demo",
+      "description": "A working preview of Service start hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/service-start-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/service-start-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "property-search-hero",
+      "type": "registry:block",
+      "title": "Property search hero",
+      "description": "A real-estate opening with Buy, Rent and Sold tabs over one search row: place, price range, bedrooms and popular places with counts.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tabs.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/property-search-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/property-search-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/property-search-hero/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/property-search-hero/format.ts"
+        }
+      ],
+      "docs": "Prices in priceSteps are whole currency units (150000 is 150,000), one list per mode. Switching mode swaps the steps, keeps a price that exists in the new list, clears one that does not, and announces the change politely. With no place chosen the button says Search everywhere, so a search never dead-ends. onSearch is a function, so use the hero inside a Client Component."
+    },
+    {
+      "name": "property-search-hero-demo",
+      "type": "registry:example",
+      "title": "Property search hero demo",
+      "description": "A working preview of Property search hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/property-search-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/property-search-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reservation-hero",
+      "type": "registry:block",
+      "title": "Reservation hero",
+      "description": "A restaurant opening with the table first: party size, a date and tonight's free times as chips, handed to your booking flow.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/date-picker.json",
+        "https://rhsui.com/r/toggle-group.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/reservation-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/reservation-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/reservation-hero/dates.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/reservation-hero/dates.ts"
+        }
+      ],
+      "docs": "Pass slots (the same times every day) or slotsFor(date, party), which may return a promise. Dates are plain yyyy-mm-dd strings in the restaurant's own calendar and times are the strings you give; closedDays takes weekdays (0 is Sunday) and dates. Answers that arrive late for a party or date that has since changed are ignored. onReserve({ party, date, time }) is where your booking starts. Today is the restaurant's own day in timeZone and is read from the browser's clock once the page is live: until then the date shows its placeholder and the times a skeleton, so a page built days ago never shows the day it was built. Pass today (\"2026-11-06\") to pin it for server HTML, tests and previews. slotsFor and onReserve are functions, so use the hero inside a Client Component."
+    },
+    {
+      "name": "reservation-hero-demo",
+      "type": "registry:example",
+      "title": "Reservation hero demo",
+      "description": "A working preview of Reservation hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reservation-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reservation-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "appointment-hero",
+      "type": "registry:block",
+      "title": "Appointment hero",
+      "description": "A clinic opening that reassures and offers the next free times as links, with a phone line for urgent cases.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/appointment-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/appointment-hero.tsx"
+        }
+      ],
+      "docs": "The title is an h1 by default, because a clinic's opening is the heading of its page; pass titleAs=\"h2\" inside a page that has its own. Every slot is a plain link to your booking page for that exact time, so there is no half-finished flow in the hero. Leave slots empty and pass nextOpening to say when new times open."
+    },
+    {
+      "name": "appointment-hero-demo",
+      "type": "registry:example",
+      "title": "Appointment hero demo",
+      "description": "A working preview of Appointment hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/appointment-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/appointment-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "timetable-hero",
+      "type": "registry:block",
+      "title": "Timetable hero",
+      "description": "A studio opening with today's sessions in a row of tiles: time, class, coach and spots left, each a link to book.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/meter.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/timetable-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/timetable-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/timetable-hero/time.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/timetable-hero/time.ts"
+        }
+      ],
+      "docs": "Pass the coming sessions with a start time as an ISO string with its offset (2026-11-04T18:30:00+01:00) and the studio's own timeZone: times and days are written in that zone, whatever the visitor's clock says. The hero shows today's sessions in the studio's zone and, when none are left, the first one of the next day with sessions. Leave `now` out and the browser's clock is read once the page is live; pass it for server HTML, tests and previews. On a small screen the row opens on the first class that has not begun, so the next one you can book leads."
+    },
+    {
+      "name": "timetable-hero-demo",
+      "type": "registry:example",
+      "title": "Timetable hero demo",
+      "description": "A working preview of Timetable hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/timetable-hero.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/timetable-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "advisor-hero",
+      "type": "registry:block",
+      "title": "Advisor hero",
+      "description": "A person-led opening for a consultant or lawyer: portrait, credentials, one line of promise and a link to book a first call.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/advisor-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/advisor-hero.tsx"
+        }
+      ],
+      "docs": "The portrait needs a real alt text. nextSlot is optional and renders as text with a time element, so pass dateTime as an ISO moment and label as the words (\"Thursday 10:00\"). availability is the small status pill over the portrait. The page asks for one thing, cta; phone is a quiet link beside it, never a second button. A longer cta label, in another language, wraps to a second line instead of being cut off."
+    },
+    {
+      "name": "advisor-hero-demo",
+      "type": "registry:example",
+      "title": "Advisor hero demo",
+      "description": "A working preview of Advisor hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/advisor-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/advisor-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
