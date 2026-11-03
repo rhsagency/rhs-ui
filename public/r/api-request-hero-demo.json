@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-request-hero-demo",
+  "title": "API request hero demo",
+  "description": "A working preview of API request hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/api-request-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/api-request-hero-demo.tsx",
+      "content": "import { ApiRequestHero } from \"@rhs-ui/marketing/api-request-hero\";\n\nconst json = (value: unknown) => JSON.stringify(value, null, 2);\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">A successful call: the status, the latency and the line that matters.</p>\n      <ApiRequestHero\n        eyebrow=\"Northwind Shipping API\"\n        title=\"Ship a parcel with one request.\"\n        description=\"Send an address and a weight. Northwind picks the carrier, buys the label and hands back a tracking link. No contracts, no SOAP.\"\n        install=\"npm install @northwind/shipping\"\n        docsHref=\"#reference\"\n        className=\"py-8 sm:py-10\"\n        request={{\n          method: \"POST\",\n          url: \"https://api.northwind.dev/v1/shipments\",\n          language: \"json\",\n          body: json({\n            from: \"ams-01\",\n            to: { city: \"Lyon\", country: \"FR\" },\n            weight_kg: 2.4,\n            service: \"express\",\n          }),\n        }}\n        response={{\n          status: \"201 Created\",\n          ms: 214,\n          language: \"json\",\n          highlight: [6],\n          body: json({\n            id: \"shp_4f9c2a\",\n            status: \"label_created\",\n            carrier: \"dhl-express\",\n            eta: \"2026-11-05\",\n            track: \"https://nw.dev/t/4f9c2a\",\n          }),\n        }}\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">A failed call: a request without a body, and a status that turns destructive and says so in words.</p>\n      <ApiRequestHero\n        eyebrow=\"Errors\"\n        title=\"Failures that explain themselves.\"\n        description=\"Every error carries a code, a plain message and a link to the fix, so a bad id never costs anyone an afternoon.\"\n        install=\"npm install @northwind/shipping\"\n        docsHref=\"#errors\"\n        docsLabel=\"Browse the error codes\"\n        className=\"py-8 sm:py-10\"\n        request={{ method: \"GET\", url: \"https://api.northwind.dev/v1/shipments/shp_0000\" }}\n        response={{\n          status: \"404 Not Found\",\n          ms: 38,\n          language: \"json\",\n          body: json({\n            error: {\n              code: \"shipment_not_found\",\n              message: \"Unknown shipment id.\",\n              doc: \"https://nw.dev/e/404\",\n            },\n          }),\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

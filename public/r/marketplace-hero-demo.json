@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marketplace-hero-demo",
+  "title": "Marketplace hero demo",
+  "description": "A working preview of Marketplace hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/marketplace-hero.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/marketplace-hero-demo.tsx",
+      "content": "import { IconBike, IconBook, IconBroom, IconGraduationCap, IconHanger, IconLaptop, IconPaintRoller, IconSofa, IconSprout, IconTree, IconTruck, IconWrench, IconZap } from \"@rhs-ui/icons\";\nimport { MarketplaceHero } from \"@rhs-ui/marketing/marketplace-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">Six categories and the closing tile: seven tiles, so the last one takes a whole row.</p>\n      <MarketplaceHero\n        className=\"py-8 sm:py-10\"\n        title=\"Find something worth keeping.\"\n        description=\"Pre-loved and handmade pieces from sellers across Europe, each one looked over by a person before it reaches you.\"\n        browse={{ label: \"Browse all listings\", href: \"#browse\" }}\n        sell={{ label: \"Start selling\", href: \"#sell\" }}\n        trust=\"Every seller verified, every payment protected.\"\n        categories={[\n          { label: \"Home & living\", count: 12480, href: \"#home\", icon: <IconSofa /> },\n          { label: \"Fashion\", count: 38214, href: \"#fashion\", icon: <IconHanger /> },\n          { label: \"Electronics\", count: 9306, href: \"#electronics\", icon: <IconLaptop /> },\n          { label: \"Books & music\", count: 21870, href: \"#books\", icon: <IconBook /> },\n          { label: \"Sports & outdoors\", count: 7145, href: \"#sports\", icon: <IconBike /> },\n          { label: \"Garden\", count: 5962, href: \"#garden\", icon: <IconSprout /> },\n        ]}\n        allCategories={{ href: \"#categories\", count: 94977 }}\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">Seven categories and the closing tile: a two-by-four grid. The unit and the closing tile are your own words.</p>\n      <MarketplaceHero\n        className=\"py-8 sm:py-10\"\n        title=\"Hire someone good, nearby.\"\n        description=\"Vetted local professionals, quotes within a day, and your payment held until the job is done.\"\n        browse={{ label: \"Find a pro\", href: \"#find\" }}\n        sell={{ label: \"Offer your services\", href: \"#offer\" }}\n        trust=\"Background-checked pros, paid only when you are happy.\"\n        labels={{ categories: \"Browse services by category\", listing: { one: \"pro\", other: \"pros\" } }}\n        categories={[\n          { label: \"Plumbing\", count: 412, href: \"#plumbing\", icon: <IconWrench /> },\n          { label: \"Electrical\", count: 286, href: \"#electrical\", icon: <IconZap /> },\n          { label: \"Painting\", count: 530, href: \"#painting\", icon: <IconPaintRoller /> },\n          { label: \"Cleaning\", count: 944, href: \"#cleaning\", icon: <IconBroom /> },\n          { label: \"Gardening\", count: 377, href: \"#gardening\", icon: <IconTree /> },\n          { label: \"Moving\", count: 198, href: \"#moving\", icon: <IconTruck /> },\n          { label: \"Tutoring\", count: 1206, href: \"#tutoring\", icon: <IconGraduationCap /> },\n        ]}\n        allCategories={{ label: \"All services\", href: \"#services\" }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

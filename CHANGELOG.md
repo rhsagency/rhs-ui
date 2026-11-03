@@ -100,6 +100,7 @@ own `meta.version` and are listed when they change.
 - Marketing, 6 more: `tour-chapters`, `locale-demo`, `theme-preview`, `dashboard-hero`, `ui-snippets-hero`, `trusted-by-hero`.
 - Application, 10 more: `payment-failed-banner`, `verify-email-banner`, `bulk-result-summary`, `batch-progress`, `permission-primer`, `pwa-install-prompt`, `queue-position`, `coming-soon-state`, `suspicious-activity-alert`, `draft-restored-notice`.
 - Primitives, 8 more: `emoji-scale`, `multi-date-picker`, `repeat-select`, `histogram-slider`, `threshold-slider`, `allocation-slider`, `preview-picker`, `cascade-select`.
+- Marketing, 6 more: `api-request-hero`, `promo-slider-hero`, `collection-hero`, `marketplace-hero`, `local-business-hero`, `course-enroll-hero`.
 
 ## Unreleased (0.7.0)
 

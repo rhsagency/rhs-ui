@@ -9493,6 +9493,307 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "api-request-hero",
+      "type": "registry:block",
+      "title": "API request hero",
+      "description": "A developer-tool opening: the pitch and an install command beside one request and its response, with status and latency written in words.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/copy-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/api-request-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/api-request-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "api-request-hero-demo",
+      "type": "registry:example",
+      "title": "API request hero demo",
+      "description": "A working preview of API request hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/api-request-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/api-request-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "promo-slider-hero",
+      "type": "registry:block",
+      "title": "Promo slider hero",
+      "description": "A hero that carries several campaigns: slides with their own copy and image, manual controls and a polite counter, never moving by itself.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/promo-slider-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/promo-slider-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "promo-slider-hero-demo",
+      "type": "registry:example",
+      "title": "Promo slider hero demo",
+      "description": "A working preview of Promo slider hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/promo-slider-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/promo-slider-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collection-hero",
+      "type": "registry:block",
+      "title": "Collection hero",
+      "description": "The top of a shop collection page: name, live product count, an editorial intro, a tall picture and quick links into sub-collections.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/breadcrumb.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/collection-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/collection-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/collection-hero/chips.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/collection-hero/chips.tsx"
+        },
+        {
+          "path": "registry/marketing/collection-hero/intro.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/collection-hero/intro.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collection-hero-demo",
+      "type": "registry:example",
+      "title": "Collection hero demo",
+      "description": "A working preview of Collection hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/collection-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/collection-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "marketplace-hero",
+      "type": "registry:block",
+      "title": "Marketplace hero",
+      "description": "A browse-first opening for a marketplace: the promise, a hairline grid of category tiles with counts and a clear way to start selling.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/marketplace-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/marketplace-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marketplace-hero-demo",
+      "type": "registry:example",
+      "title": "Marketplace hero demo",
+      "description": "A working preview of Marketplace hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/marketplace-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/marketplace-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "local-business-hero",
+      "type": "registry:block",
+      "title": "Local business hero",
+      "description": "The front of a local business: name, open or closed now in its own time zone, a call button, directions and a card with the week's hours.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/opening-hours.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/local-business-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/local-business-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/local-business-hero/status.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/local-business-hero/status.tsx"
+        },
+        {
+          "path": "registry/marketing/local-business-hero/hours.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/local-business-hero/hours.ts"
+        }
+      ]
+    },
+    {
+      "name": "local-business-hero-demo",
+      "type": "registry:example",
+      "title": "Local business hero demo",
+      "description": "A working preview of Local business hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/local-business-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/local-business-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "course-enroll-hero",
+      "type": "registry:block",
+      "title": "Course enroll hero",
+      "description": "An online-course opening with a sticky enrol card: preview video, price, what is included and the enrol button, beside the promise.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/course-enroll-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/course-enroll-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "course-enroll-hero-demo",
+      "type": "registry:example",
+      "title": "Course enroll hero demo",
+      "description": "A working preview of Course enroll hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/course-enroll-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/course-enroll-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
