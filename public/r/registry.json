@@ -13472,6 +13472,491 @@
       ]
     },
     {
+      "name": "icon-picker",
+      "type": "registry:ui",
+      "title": "Icon picker",
+      "description": "Choose an icon for a project or a list: a searchable grid of the icons you pass in, arrow keys in two directions and every name spoken.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/icon-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/icon-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/icon-picker/search.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/icon-picker/search.ts"
+        }
+      ],
+      "docs": "icons is a record of name to icon, each icon a rendered element ({ folder: <IconFolder />, rocket: <IconRocket /> }), so the same set can be passed from a Server Component and from a client module. value is the name of the chosen icon, or null, and onValueChange reports the name; the None cell, switched on with allowNone, reports null. labels gives each icon a name for people ({ rocket: \"Rocket launch\" }): it is what the search reads and what a screen reader says for the cell, and icons without one are named from their key. keywords adds words the search also finds an icon by. The search matches every word of the query in any order, ignores case and accents, and Enter chooses the first match. The grid is one tab stop: the arrow keys move in two dimensions, Home and End go to the ends of a row (with Ctrl, of the grid), Page Up and Page Down move by rows, and typing a letter on the grid moves to the search. columns is the most icons in a row (6 by default, fewer on a narrow screen); cells are 40px with a 44px target, and the grid scrolls inside the popover without moving the page. The popover keeps 12px from every edge of the screen and, on a short screen, shrinks to the room it has, so the search is always within reach. Name the field with aria-labelledby (the id of a visible label) or aria-label: the name of the chosen icon is added to it, so a screen reader hears the label and the choice together and voice control can say \"click Rocket\". messages replaces every sentence, name sends the chosen name with a plain form, and open, defaultOpen and onOpenChange control the popover."
+    },
+    {
+      "name": "icon-picker-demo",
+      "type": "registry:example",
+      "title": "Icon picker demo",
+      "description": "A working preview of Icon picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icon-picker.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/icon-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "rank-list",
+      "type": "registry:ui",
+      "title": "Rank list",
+      "description": "Put things in order: drag a row, or press Space and use the arrows, with the new position announced and numbers that follow the move.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/rank-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rank-list/index.tsx"
+        },
+        {
+          "path": "registry/primitives/rank-list/order.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/rank-list/order.ts"
+        }
+      ],
+      "docs": "items are the things to rank (an id, a label and an optional description); value is the ids in rank order and onValueChange reports the whole new order once, when a row is dropped, never during the drag. Each row has a grip for the mouse, a pen and a finger, and answers to the keyboard: Space or Enter picks a row up, Up and Down move it (Home and End go to the ends), Space or Enter drops it and Escape puts it back, with every step announced politely (\"Moved to position 2 of 5\"). moveButtons adds Move up and Move down buttons to each row, for people and devices that cannot drag. numbered shows each rank in tabular figures and renumbers it live as a row passes. The lifted row gets a fine outline instead of a shadow while the others make room, nothing animates under reduced motion, and a list given a maxHeight scrolls itself while a row is dragged near its edge (so does the page). name sends the ids, in order, with a plain form; messages replaces every sentence."
+    },
+    {
+      "name": "rank-list-demo",
+      "type": "registry:example",
+      "title": "Rank list demo",
+      "description": "A working preview of Rank list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/rank-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/rank-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "shortcut-recorder",
+      "type": "registry:ui",
+      "title": "Shortcut recorder",
+      "description": "A field that records a key combination: press the keys and see them as keycaps; Escape cancels, Backspace clears and conflicts are named.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/shortcut-recorder/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shortcut-recorder/index.tsx"
+        },
+        {
+          "path": "registry/primitives/shortcut-recorder/shortcut.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/shortcut-recorder/shortcut.ts"
+        }
+      ],
+      "docs": "value is a combination written the same on every platform, Mod+Shift+K, where Mod is Command on a Mac and Ctrl elsewhere; onValueChange reports the new one, or null when it is cleared. Focusing the field starts recording: the held modifiers show live as keycaps, and the combination is committed when a key that is not a modifier lands. Escape cancels, Backspace or Delete clears, and Tab always moves on, so the field never traps focus; a reminder under the field says so while it records. reserved is a list of combinations that cannot be used, or an object that gives the reason for each; findConflict is given a combination and returns the name of what already uses it. Either one refuses the combination with the reason in words (\"Already used by Search\"), and requireModifier also refuses a key pressed alone, naming keys the shown keyboard has (needsModifier in messages can be a function of the platform). platform shows the keys of a Mac (⌘ ⇧ ⌥) or of Windows and Linux (Ctrl Shift Alt), and by default is read from the browser after mount. A screen reader hears the shortcut as words (\"Command plus Shift plus K\"). While it has focus the field listens at the top of the window, so a dialog around it does not close on the Escape that cancels a recording. messages replaces every sentence, and name sends the combination with a plain form."
+    },
+    {
+      "name": "shortcut-recorder-demo",
+      "type": "registry:example",
+      "title": "Shortcut recorder demo",
+      "description": "A working preview of Shortcut recorder.",
+      "registryDependencies": [
+        "https://rhsui.com/r/shortcut-recorder.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/shortcut-recorder-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "container",
+      "type": "registry:ui",
+      "title": "Container",
+      "description": "The page-width wrapper: a centred column with fluid gutters, five named widths and room for the notch.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/container.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/container.tsx"
+        }
+      ],
+      "docs": "size is narrow (40rem), prose (46rem), default (72rem), wide (88rem) or full (no limit), and counts the gutters. The gutters are fluid, 16px on a phone growing to 32px on a desktop, and they add the safe-area inset, so content stays clear of a notch in landscape (the larger of the left and right inset on both sides, so the column stays centred). padded={false} turns the gutters off, for a Container inside another Container: it then only caps the width, so the padding never doubles. as renders main, section, header, footer, nav, article or aside instead of a div, which gives a page its landmarks without an extra wrapper. The gutter is available to anything inside as --container-gutter."
+    },
+    {
+      "name": "container-demo",
+      "type": "registry:example",
+      "title": "Container demo",
+      "description": "A working preview of Container.",
+      "registryDependencies": [
+        "https://rhsui.com/r/container.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/container-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-grid",
+      "type": "registry:ui",
+      "title": "Form grid",
+      "description": "A form layout on a 12-column grid: fields span columns, wrap predictably and stack at 320px with their hints aligned.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/form-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/form-grid.tsx"
+        }
+      ],
+      "docs": "FormGrid is a grid of columns (12 by default) and FormGrid.Item puts one field in it. span is the number of columns, as a number or as an object per width ({ base: 12, sm: 6, lg: 4 }); a plain number applies from the sm width up and below it the field takes the whole row, so a form stacks on a narrow screen by itself. start leaves room in front of an item, and fullWidth takes the whole row at every width. The widths are those of the grid itself, not of the window (sm from 28rem, md from 36rem, lg from 48rem), so the same form behaves the same in a page, a dialog and a sheet. Items align to the top, so a hint or an error under one field never pushes its neighbour out of line, and the DOM order is the reading order at every width. as=\"fieldset\" with a legend groups the fields, and disabled switches them all off together. gap is sm, md or lg."
+    },
+    {
+      "name": "form-grid-demo",
+      "type": "registry:example",
+      "title": "Form grid demo",
+      "description": "A working preview of Form grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-grid.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "section-shell",
+      "type": "registry:ui",
+      "title": "Section shell",
+      "description": "A titled page section: heading, description, actions and content in one landmark, with the spacing and anchor already right.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/section-shell.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/section-shell.tsx"
+        }
+      ],
+      "docs": "title names the section and the section is labelled by it, so it shows up in a screen reader's list of landmarks; level is h2 to h4. description sits under the title and actions on its line, where they wrap beneath it on a phone. tone is plain (a hairline under the header), bordered (a card with a ruled header and footer) or muted (a soft panel). footer is a row under the content, and empty is what to show when there are no children, so a section never shows a lonely heading. id makes the section a link target, with a scroll margin of --section-scroll-offset (5rem) so a sticky header never covers its heading. Stacked sections keep a gap of --section-shell-gap (2rem) between them, with no margin at the call site."
+    },
+    {
+      "name": "section-shell-demo",
+      "type": "registry:example",
+      "title": "Section shell demo",
+      "description": "A working preview of Section shell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/section-shell.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/section-shell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-layout",
+      "type": "registry:ui",
+      "title": "Sidebar layout",
+      "description": "A sidebar beside content that wraps above it by itself when the content gets too narrow, with no breakpoints.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/sidebar-layout.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sidebar-layout.tsx"
+        }
+      ],
+      "docs": "sidebar and children are the two columns; side is start or end, and the DOM follows what people see on the wide layout, so a start sidebar comes first and an end sidebar last. sidebarWidth is the width the sidebar prefers (18rem) and contentMin the least share of the row the content may have (60%): when the content would fall below it, the sidebar wraps onto its own line and fills it. The switch reads the space the layout has, not the viewport, so it works in a dialog, a sheet or a narrow card; it happens at (sidebarWidth + gap) / (1 - contentMin). gap is none, sm, md or lg, or any length. sticky pins the sidebar while the content scrolls (true for 1rem from the top, or a length such as 5rem to clear a header); it only pins while the two are side by side, and the sidebar scrolls inside itself when it is taller than the screen. Pinning makes the layout a size container, so it has to fill its parent."
+    },
+    {
+      "name": "sidebar-layout-demo",
+      "type": "registry:example",
+      "title": "Sidebar layout demo",
+      "description": "A working preview of Sidebar layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sidebar-layout.json",
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sidebar-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reading-column",
+      "type": "registry:ui",
+      "title": "Reading column",
+      "description": "A comfortable reading measure where figures, tables and code can break out wider, or all the way to the edge.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/reading-column.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/reading-column.tsx"
+        }
+      ],
+      "docs": "Children sit in the text column, measure wide (50 by default). measure is in ch, the width of a zero in the column's font, and not a count of characters: a zero is wider than the average letter, so 50ch holds about 60 to 75 characters on a line, depending on the font. ReadingColumn.Wide takes the width of the page content (wideWidth, 72rem) and ReadingColumn.Full runs edge to edge, for pictures, tables, code and pull quotes. Every track is sized from the grid itself and not from viewport units, so a wide or full child never causes sideways scroll, and on a phone everything collapses into one column with gutters (the fluid gutters of Container). gap is the space between blocks (sm, md, lg or any length) and as renders a div, article, main or section. Put the column in a parent that is as wide as the page, so Full can reach the edges."
+    },
+    {
+      "name": "reading-column-demo",
+      "type": "registry:example",
+      "title": "Reading column demo",
+      "description": "A working preview of Reading column.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reading-column.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reading-column-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "full-bleed-band",
+      "type": "registry:ui",
+      "title": "Full-bleed band",
+      "description": "A section background that runs edge to edge while its content stays on the page column, with no horizontal scrollbar.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/container.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/full-bleed-band.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/full-bleed-band.tsx"
+        }
+      ],
+      "docs": "A FullBleedBand breaks out of its column to the full width of the nearest FullBleedBand.Root, which you put around the page once. The break-out is measured from that wrapper (a container query unit) and not from 100vw, so a classic vertical scrollbar never adds a stray horizontal one, and the wrapper clips what could overshoot. The band must sit in a column that is centred in the wrapper, such as a Container. tone is default, muted or inverted: an inverted band swaps the semantic tokens for its children (background, foreground, muted, border, primary and the rest), so text, borders and buttons stay readable in both themes. size is the vertical padding (none, sm, md, lg, xl), bordered draws a line along the top, the bottom or both, contentWidth takes the sizes of Container so the content lines up with the page, and as renders a section, aside, header, footer or nav."
+    },
+    {
+      "name": "full-bleed-band-demo",
+      "type": "registry:example",
+      "title": "Full-bleed band demo",
+      "description": "A working preview of Full-bleed band.",
+      "registryDependencies": [
+        "https://rhsui.com/r/full-bleed-band.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/container.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/full-bleed-band-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inset-panel",
+      "type": "registry:ui",
+      "title": "Inset panel",
+      "description": "A padded panel whose images, tables and code can reach its edges: the inset cancels the padding and rounds with the corners.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "layout"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/inset-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/inset-panel.tsx"
+        }
+      ],
+      "docs": "padding is sm (16px), md (24px) or lg (32px), and is kept in one CSS variable, --inset-panel-padding. InsetPanel.Inset cancels it on the sides you choose: x (the default), y, all, top, bottom, start or end. top and bottom also reach the sides next to them, so a picture runs across the whole top; start and end also reach the top and bottom. An inset rounds only the corners that touch the panel's edge, with the panel's own radius less its 1px border, so no sliver of background shows. Content wider than the panel, such as a table, scrolls inside the inset and never widens the panel; where scrollbars are classic the inset shows a thin, soft one."
+    },
+    {
+      "name": "inset-panel-demo",
+      "type": "registry:example",
+      "title": "Inset panel demo",
+      "description": "A working preview of Inset panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inset-panel.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inset-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",

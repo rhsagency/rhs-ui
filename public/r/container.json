@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "container",
+  "title": "Container",
+  "description": "The page-width wrapper: a centred column with fluid gutters, five named widths and room for the notch.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/container.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/** How wide a Container may get: narrow 40rem, prose 46rem, default 72rem, wide 88rem, or full for no limit. */\nexport type ContainerSize = \"narrow\" | \"prose\" | \"default\" | \"wide\" | \"full\";\n\n/** The elements a Container can be, so a page gets its landmarks without a wrapper around them. */\nexport type ContainerElement = \"div\" | \"main\" | \"section\" | \"header\" | \"footer\" | \"nav\" | \"article\" | \"aside\";\n\nexport interface ContainerProps extends ComponentProps<\"div\"> {\n  /** The widest the container gets, gutters included: narrow 40rem, prose 46rem, default 72rem, wide 88rem, or full for no limit. */\n  size?: ContainerSize;\n  /** Side gutters that grow from 16px on a phone to 32px on a desktop, plus the safe-area inset. Turn them off on a Container inside another one, so the padding never doubles and only the width is capped. Default true. */\n  padded?: boolean;\n  /** The element to render. `main`, `section`, `header` and the rest give a page its landmarks with no extra wrapper. Default `div`. */\n  as?: ContainerElement;\n}\n\nconst SIZES: Record<ContainerSize, string> = {\n  narrow: \"max-w-[40rem]\",\n  prose: \"max-w-[46rem]\",\n  default: \"max-w-[72rem]\",\n  wide: \"max-w-[88rem]\",\n  full: \"max-w-none\",\n};\n\n/**\n * The page-width wrapper: a centred column with a maximum width and gutters\n * that grow smoothly from 16px on a phone to 32px on a desktop, so content\n * never touches the edge of the screen. The gutters also add the safe-area\n * inset (the larger of the left and the right, so the column stays centred),\n * which keeps text clear of a notch in landscape. Pick one of five named\n * widths. `as` renders any landmark element, and a Container inside another\n * one with `padded={false}` only caps the width, so nesting never doubles the\n * padding. The gutter is also exposed as `--container-gutter` for anything\n * inside that has to line up with it.\n */\nexport function Container({ size = \"default\", padded = true, as = \"div\", className, ...props }: ContainerProps) {\n  const Tag = as as \"div\";\n  return (\n    <Tag\n      data-slot=\"container\"\n      data-size={size}\n      data-padded={padded || undefined}\n      className={cn(\n        \"mx-auto w-full [--container-gutter:clamp(1rem,0.385rem_+_2.525vw,2rem)] [--container-inset:max(env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))]\",\n        SIZES[size],\n        padded && \"px-[calc(var(--container-gutter)+var(--container-inset))]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/container.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "layout"
+  },
+  "docs": "size is narrow (40rem), prose (46rem), default (72rem), wide (88rem) or full (no limit), and counts the gutters. The gutters are fluid, 16px on a phone growing to 32px on a desktop, and they add the safe-area inset, so content stays clear of a notch in landscape (the larger of the left and right inset on both sides, so the column stays centred). padded={false} turns the gutters off, for a Container inside another Container: it then only caps the width, so the padding never doubles. as renders main, section, header, footer, nav, article or aside instead of a div, which gives a page its landmarks without an extra wrapper. The gutter is available to anything inside as --container-gutter.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

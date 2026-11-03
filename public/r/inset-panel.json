@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inset-panel",
+  "title": "Inset panel",
+  "description": "A padded panel whose images, tables and code can reach its edges: the inset cancels the padding and rounds with the corners.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/primitives/inset-panel.tsx",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { Card } from \"@rhs-ui/primitives/card\";\nimport { cn } from \"@/lib/utils\";\n\n/** The padding of the panel: `sm` 16px, `md` 24px, `lg` 32px. */\nexport type InsetPanelPadding = \"sm\" | \"md\" | \"lg\";\n\n/** Which edges an inset reaches: all four, the left and right (`x`), the top and bottom (`y`), or one edge with the two sides next to it. */\nexport type InsetSide = \"all\" | \"x\" | \"y\" | \"top\" | \"bottom\" | \"start\" | \"end\";\n\nexport interface InsetPanelProps extends ComponentProps<\"div\"> {\n  /** How much room the content has from the edge: `sm` 16px, `md` 24px, `lg` 32px. Every `InsetPanel.Inset` reads it, so they always reach the edge. Default `md`. */\n  padding?: InsetPanelPadding;\n}\n\nconst PADDING: Record<InsetPanelPadding, string> = {\n  sm: \"[--inset-panel-padding:1rem]\",\n  md: \"[--inset-panel-padding:1.5rem]\",\n  lg: \"[--inset-panel-padding:2rem]\",\n};\n\n/**\n * A padded surface whose images, tables and code can reach its edges. Wrap a\n * child in `InsetPanel.Inset` and it cancels the panel's padding on the sides\n * you pick: a screenshot at the top of a card, a table at the bottom, a code\n * block between two paragraphs. The panel keeps its padding in one CSS\n * variable that every inset reads, so the negative margins always match, and\n * an inset rounds only the corners that touch the panel's edge, with the\n * inner radius so no sliver of background shows.\n */\nexport function InsetPanel({ padding = \"md\", className, ...props }: InsetPanelProps) {\n  return (\n    <Card\n      data-slot=\"inset-panel\"\n      data-padding={padding}\n      className={cn(\"min-w-0 max-w-full gap-4 p-(--inset-panel-padding)\", PADDING[padding], className)}\n      {...props}\n    />\n  );\n}\n\nexport interface InsetProps extends ComponentProps<\"div\"> {\n  /** Which edges to reach. `top` and `bottom` reach the sides next to them as well (a picture across the whole top), `start` and `end` reach the top and bottom (a picture down one side). Default `x`. */\n  side?: InsetSide;\n}\n\n/**\n * The margins that cancel the padding, and the corners that touch the panel's edge. The corner radius is the panel's own less its 1px\n * line, so an inset fits the corner exactly. Written out whole, because Tailwind reads class names from the source.\n */\nconst SIDES: Record<InsetSide, string> = {\n  all: \"-m-(--inset-panel-padding) rounded-[calc(var(--radius-xl,0.75rem)-1px)]\",\n  x: \"-mx-(--inset-panel-padding)\",\n  y: \"-my-(--inset-panel-padding)\",\n  top: \"-mx-(--inset-panel-padding) -mt-(--inset-panel-padding) rounded-t-[calc(var(--radius-xl,0.75rem)-1px)]\",\n  bottom: \"-mx-(--inset-panel-padding) -mb-(--inset-panel-padding) rounded-b-[calc(var(--radius-xl,0.75rem)-1px)]\",\n  start: \"-my-(--inset-panel-padding) -ms-(--inset-panel-padding) rounded-s-[calc(var(--radius-xl,0.75rem)-1px)]\",\n  end: \"-my-(--inset-panel-padding) -me-(--inset-panel-padding) rounded-e-[calc(var(--radius-xl,0.75rem)-1px)]\",\n};\n\n/**\n * Content that bleeds to the edge of an `InsetPanel`. It scrolls sideways\n * inside itself when it is wider than the panel, such as a table, so the\n * panel never grows. Where scrollbars are classic (Windows, Linux) the one it\n * shows is thin and soft, so it reads as a quiet hint and not as a stray control.\n */\nfunction Inset({ side = \"x\", className, ...props }: InsetProps) {\n  return (\n    <div\n      data-slot=\"inset-panel-inset\"\n      data-side={side}\n      className={cn(\n        \"relative min-w-0 overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-color:color-mix(in_oklab,var(--foreground)_28%,transparent)_transparent] [scrollbar-width:thin]\",\n        SIDES[side],\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nInsetPanel.Inset = Inset;\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/inset-panel.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline",
+    "family": "layout"
+  },
+  "docs": "padding is sm (16px), md (24px) or lg (32px), and is kept in one CSS variable, --inset-panel-padding. InsetPanel.Inset cancels it on the sides you choose: x (the default), y, all, top, bottom, start or end. top and bottom also reach the sides next to them, so a picture runs across the whole top; start and end also reach the top and bottom. An inset rounds only the corners that touch the panel's edge, with the panel's own radius less its 1px border, so no sliver of background shows. Content wider than the panel, such as a table, scrolls inside the inset and never widens the panel; where scrollbars are classic the inset shows a thin, soft one.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}

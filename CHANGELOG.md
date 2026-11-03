@@ -101,6 +101,7 @@ own `meta.version` and are listed when they change.
 - Application, 10 more: `payment-failed-banner`, `verify-email-banner`, `bulk-result-summary`, `batch-progress`, `permission-primer`, `pwa-install-prompt`, `queue-position`, `coming-soon-state`, `suspicious-activity-alert`, `draft-restored-notice`.
 - Primitives, 8 more: `emoji-scale`, `multi-date-picker`, `repeat-select`, `histogram-slider`, `threshold-slider`, `allocation-slider`, `preview-picker`, `cascade-select`.
 - Marketing, 6 more: `api-request-hero`, `promo-slider-hero`, `collection-hero`, `marketplace-hero`, `local-business-hero`, `course-enroll-hero`.
+- Primitives, 10 more: `icon-picker`, `rank-list`, `shortcut-recorder`, `container`, `form-grid`, `section-shell`, `sidebar-layout`, `reading-column`, `full-bleed-band`, `inset-panel`.
 
 ## Unreleased (0.7.0)
 

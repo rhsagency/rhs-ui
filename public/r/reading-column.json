@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reading-column",
+  "title": "Reading column",
+  "description": "A comfortable reading measure where figures, tables and code can break out wider, or all the way to the edge.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/reading-column.tsx",
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ReadingColumnProps extends ComponentProps<\"div\"> {\n  /** The width of the text column in `ch`, which is the width of a zero in the column's font, not a count of characters. A zero is wider than the average letter, so 50ch holds about 60 to 75 characters of text on a line, depending on the font. Default 50. */\n  measure?: number;\n  /** The space between blocks: `sm` 1rem, `md` 1.5rem, `lg` 2.5rem, or any CSS length. Default `md`. */\n  gap?: \"sm\" | \"md\" | \"lg\" | (string & {});\n  /** How wide `ReadingColumn.Wide` gets, any CSS length. It defaults to 72rem, the page content width of a default Container, so wide blocks line up with the rest of the page. */\n  wideWidth?: string;\n  /** The element to render. Default `div`. */\n  as?: \"div\" | \"article\" | \"main\" | \"section\";\n}\n\nconst GAPS: Record<string, string> = { sm: \"1rem\", md: \"1.5rem\", lg: \"2.5rem\" };\n\n/**\n * The named lines of the grid, from edge to edge: the outer gutters flex, the\n * two wide strips grow up to the page content width, and the text column sits\n * in the middle at its measure (never wider than the room minus the gutters).\n * Every track is sized from the grid itself, never from viewport units.\n */\nconst TRACKS = [\n  \"[full-start] minmax(var(--rc-pad), 1fr)\",\n  \"[wide-start] minmax(0, calc((var(--rc-wide) - var(--rc-measure)) / 2))\",\n  \"[content-start] min(var(--rc-measure), 100% - 2 * var(--rc-pad))\",\n  \"[content-end] minmax(0, calc((var(--rc-wide) - var(--rc-measure)) / 2))\",\n  \"[wide-end] minmax(var(--rc-pad), 1fr)\",\n  \"[full-end]\",\n].join(\" \");\n\n/**\n * A comfortable reading measure where figures, tables and code can break out\n * wider, or all the way to the edge. The column is a page grid with named\n * lines: every child sits in the text column (50ch, which is 60 to 75\n * characters a line in most fonts), a `ReadingColumn.Wide` child takes the\n * width of the page content, and a `ReadingColumn.Full` child runs edge to\n * edge. Because they size from the grid and not from viewport units, none of\n * them can cause horizontal scroll, and on a phone everything collapses into\n * one column with gutters.\n */\nexport function ReadingColumn({ measure = 50, gap = \"md\", wideWidth = \"72rem\", as = \"div\", className, style, ...props }: ReadingColumnProps) {\n  const Tag = as as \"div\";\n  return (\n    <Tag\n      data-slot=\"reading-column\"\n      style={\n        {\n          \"--rc-measure\": `${Math.max(20, measure)}ch`,\n          \"--rc-wide\": wideWidth,\n          \"--rc-gap\": GAPS[gap] ?? gap,\n          \"--rc-gutter\": \"clamp(1rem, 0.385rem + 2.525vw, 2rem)\",\n          \"--rc-pad\": \"calc(var(--rc-gutter) + max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)))\",\n          gridTemplateColumns: TRACKS,\n          ...style,\n        } as CSSProperties\n      }\n      // Every child goes in the text column unless it says otherwise; zero specificity, so a Wide or a Full (or your own class) wins.\n      className={cn(\"grid w-full gap-y-(--rc-gap) [:where(&>*)]:col-[content-start/content-end] [:where(&>*)]:min-w-0\", className)}\n      {...props}\n    />\n  );\n}\n\nexport interface ReadingColumnBlockProps extends ComponentProps<\"div\"> {\n  /** The element to render, `figure` for a picture with a caption. Default `div`. */\n  as?: \"div\" | \"figure\" | \"section\" | \"aside\" | \"blockquote\";\n}\n\n/** A child as wide as the page content: a screenshot, a table, a code sample. It never wraps wider than the room the grid has. */\nfunction ReadingColumnWide({ as = \"div\", className, ...props }: ReadingColumnBlockProps) {\n  const Tag = as as \"div\";\n  return <Tag data-slot=\"reading-column-wide\" className={cn(\"col-[wide-start/wide-end] min-w-0\", className)} {...props} />;\n}\n\n/** A child that runs edge to edge: a full-width picture, a pull quote on a band. */\nfunction ReadingColumnFull({ as = \"div\", className, ...props }: ReadingColumnBlockProps) {\n  const Tag = as as \"div\";\n  return <Tag data-slot=\"reading-column-full\" className={cn(\"col-[full-start/full-end] min-w-0\", className)} {...props} />;\n}\n\nReadingColumn.Wide = ReadingColumnWide;\nReadingColumn.Full = ReadingColumnFull;\n",
+      "type": "registry:ui",
+      "target": "components/rhs-ui/primitives/reading-column.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "layout"
+  },
+  "docs": "Children sit in the text column, measure wide (50 by default). measure is in ch, the width of a zero in the column's font, and not a count of characters: a zero is wider than the average letter, so 50ch holds about 60 to 75 characters on a line, depending on the font. ReadingColumn.Wide takes the width of the page content (wideWidth, 72rem) and ReadingColumn.Full runs edge to edge, for pictures, tables, code and pull quotes. Every track is sized from the grid itself and not from viewport units, so a wide or full child never causes sideways scroll, and on a phone everything collapses into one column with gutters (the fluid gutters of Container). gap is the space between blocks (sm, md, lg or any length) and as renders a div, article, main or section. Put the column in a parent that is as wide as the page, so Full can reach the edges.",
+  "categories": [
+    "primitives",
+    "layout"
+  ],
+  "type": "registry:ui"
+}
