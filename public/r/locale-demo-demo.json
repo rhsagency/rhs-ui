@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "locale-demo-demo",
+  "title": "Locale demo demo",
+  "description": "A working preview of Locale demo.",
+  "registryDependencies": [
+    "https://rhsui.com/r/locale-demo.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/locale-demo-demo.tsx",
+      "content": "import { LocaleDemo } from \"@rhs-ui/marketing/locale-demo\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-4xl px-6 py-10 sm:py-16\">\n      <p className=\"mb-8 text-xs text-muted-foreground\">Five markets, starting in German: the same amount, moment and count in every shape</p>\n      <LocaleDemo\n        eyebrow=\"Localisation\"\n        title=\"Your product, in every market\"\n        description=\"One price, one date and one number. Pick a language and each takes the shape that market expects, live.\"\n        defaultLocale=\"de-DE\"\n        timeZone=\"Europe/Amsterdam\"\n        sample={{ amount: 1299.5, currency: \"EUR\", date: \"2026-11-02T14:30:00Z\", count: 3, number: 1284300.75, days: -3 }}\n      />\n      <div className=\"mt-20 border-t border-border pt-12 sm:mt-24\">\n        <p className=\"mb-8 text-xs text-muted-foreground\">Starting in Arabic: the card turns around, the digits change and 11 takes its own plural form</p>\n        <LocaleDemo\n          headingLevel={3}\n          title=\"Right to left, too\"\n          description=\"Direction, digits and plural forms follow the language, not just the words.\"\n          defaultLocale=\"ar-EG\"\n          timeZone=\"Africa/Cairo\"\n          sample={{ amount: 2499.9, currency: \"EGP\", date: \"2026-11-14T07:05:00Z\", count: 11, number: 48210.5, days: 5 }}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -97,6 +97,7 @@ own `meta.version` and are listed when they change.
 - Primitives, 10 more: `font-family-select`, `font-size-field`, `angle-field`, `box-sides-field`, `inline-field`, `choice-list`, `disabled-reason`, `async-select`, `creatable-select`, `language-select`.
 - Primitives, 9 more: `chip-select`, `slider-field`, `weekday-picker`, `async-switch`, `likert-scale`, `radio-table`, `step-slider`, `listbox`, `expiry-select`.
 - Application, 11 more: `season-strip`, `color-token-card`, `team-clocks`, `achievement-tile`, `stack-trace`, `offline-state`, `first-run-state`, `unavailable-state`, `update-available-bar`, `mode-bar`, `trial-status-bar`.
+- Marketing, 6 more: `tour-chapters`, `locale-demo`, `theme-preview`, `dashboard-hero`, `ui-snippets-hero`, `trusted-by-hero`.
 
 ## Unreleased (0.7.0)
 

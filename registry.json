@@ -50978,6 +50978,344 @@
       ]
     },
     {
+      "name": "tour-chapters",
+      "type": "registry:block",
+      "title": "Tour chapters",
+      "description": "A product video with its chapters beside it: pick a topic and the video jumps there and plays, with each start time written out.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/tour-chapters/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/tour-chapters/index.tsx"
+        },
+        {
+          "path": "registry/marketing/tour-chapters/time.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/tour-chapters/time.ts"
+        }
+      ],
+      "docs": "Pass title, src (one address, or several files of different formats), poster, captions (a WebVTT address), transcriptHref and chapters, each with a start in seconds, a title and an optional description (two lines of it are shown, the rest is cut with an ellipsis). The video is a native player with controls and a captions track, and only its first frames and its length are fetched until someone plays it. Beside it, every chapter is a button named like \"Chapter 3 of 6, 1:42, Invite your team\": a click, a tap, Enter or Space jumps to that time and plays. The chapter the video is in is marked (its time turns solid, its row is filled and a hairline fills along it, and it carries aria-current), and the list keeps it in view without moving the page. The arrow keys, Home and End move between chapters. On a wide screen the list is as tall as the player and scrolls, and its scroll box is not a tab stop of its own (the chapters are the stops); on a phone it follows the player at full length, and picking a chapter far down it scrolls the player back into view, so the jump is seen. onChapterSelect reports the chapter a visitor picks, and labels carries the fixed words for another language."
+    },
+    {
+      "name": "tour-chapters-demo",
+      "type": "registry:example",
+      "title": "Tour chapters demo",
+      "description": "A working preview of Tour chapters.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tour-chapters.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tour-chapters-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "locale-demo",
+      "type": "registry:block",
+      "title": "Locale demo",
+      "description": "Show localisation instead of claiming it: pick a language and the same price, date, number and plural change shape live.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/locale-demo/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-demo/index.tsx"
+        },
+        {
+          "path": "registry/marketing/locale-demo/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-demo/format.ts"
+        },
+        {
+          "path": "registry/marketing/locale-demo/messages.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-demo/messages.ts"
+        }
+      ],
+      "docs": "Pass title, a sample (amount and currency, an ISO date, a count and, if you like, a number and a number of days) and optionally description, locales (a code and a label each), defaultLocale and timeZone. English, Dutch, German, Japanese and Arabic are built in, with the card's own words; for another language pass messages with its locale. Every value is made by Intl (NumberFormat, DateTimeFormat in the time zone you give, RelativeTimeFormat and PluralRules) and shown with the raw value it came from, as a caption under it. The card turns around for languages written from right to left, the switch wraps into evenly sized rows on a phone, and it is announced as \"Showing Deutsch\". locale and onLocaleChange control it from outside."
+    },
+    {
+      "name": "locale-demo-demo",
+      "type": "registry:example",
+      "title": "Locale demo demo",
+      "description": "A working preview of Locale demo.",
+      "registryDependencies": [
+        "https://rhsui.com/r/locale-demo.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/locale-demo-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "theme-preview",
+      "type": "registry:block",
+      "title": "Theme preview",
+      "description": "A product screen inside a frame with its own theme, and a switch between light, dark and high contrast, so theming is something visitors can see.",
+      "categories": [
+        "marketing",
+        "features"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "features"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/section-heading.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/theme-preview/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/theme-preview/index.tsx"
+        },
+        {
+          "path": "registry/marketing/theme-preview/themes.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/theme-preview/themes.ts"
+        },
+        {
+          "path": "registry/marketing/theme-preview/sample-panel.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/theme-preview/sample-panel.tsx"
+        }
+      ],
+      "docs": "Pass title and, optionally, description, themes, defaultTheme and children. The frame carries data-theme, redefines the semantic tokens on itself (background, foreground, card, border, ring and the rest) and sets color-scheme, so everything in it follows while the page keeps its own theme. Only the semantic tokens (and [data-theme] selectors) follow the frame: a dark: variant in your own markup still follows the page's dark mode, so scope it to the frame with @custom-variant dark (&:is(.dark *):not(.light *)); the frame carries a light or dark class for that. Light, dark and high contrast have colours built in; give a theme tokens (a map of custom properties) to show your own palette, and children to draw your own screen instead of the sample. The sample is made of RHS UI's own components, so hover, focus and press work in every theme. The switch is announced as \"Showing the Dark theme\"; theme and onThemeChange control it from outside."
+    },
+    {
+      "name": "theme-preview-demo",
+      "type": "registry:example",
+      "title": "Theme preview demo",
+      "description": "A working preview of Theme preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/theme-preview.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/theme-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dashboard-hero",
+      "type": "registry:block",
+      "title": "Dashboard hero",
+      "description": "A SaaS opening with the product drawn in HTML: the pitch on the left, a cropped dashboard with KPIs and a table on the right.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/dashboard-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/dashboard-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/dashboard-hero/window.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/dashboard-hero/window.tsx"
+        }
+      ],
+      "docs": "Pass title, primary (a label and an href), and optionally eyebrow, description and secondary. The window prop draws the product: a title for its bar, nav (labels, or labels with an icon; a label alone gets a quiet dot) with activeNav, three kpis (a label, a value and how it changed), and rows for the table, each with a name, a status word and an optional tone, detail and amount (the amount column is drawn when the picture is at least 36rem wide). The window runs off the right and bottom edges of its stage so it reads as a bigger product, follows light and dark because it is real markup, and is hidden and inert, with one sentence for screen readers made from its own figures (or your summary). Under 1024px it sits below the copy, still cropped."
+    },
+    {
+      "name": "dashboard-hero-demo",
+      "type": "registry:example",
+      "title": "Dashboard hero demo",
+      "description": "A working preview of Dashboard hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/dashboard-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/dashboard-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "ui-snippets-hero",
+      "type": "registry:block",
+      "title": "UI snippets hero",
+      "description": "A product opening where small interface cards flank a centred headline, instead of one big screenshot underneath.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/ui-snippets-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/ui-snippets-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/ui-snippets-hero/cards.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/ui-snippets-hero/cards.tsx"
+        }
+      ],
+      "docs": "Pass title, actions and two lists of cards, start and end (the left and right side in a language read from left to right). A card is a task (a title, an assignee, a due date, a label, done), a comment (an author, text, a time, a reply placeholder), an activity toast (a sentence and a time) or a status card (a title, a status, progress and a detail line). They are drawn with the real checkbox, badge and avatar, float at different heights with plain CSS translations and one soft shadow, and bleed a little past the content on wide screens. The cards are hidden and inert, and a screen reader hears one sentence for each (or your summary). Below 1024px they gather in a quiet stack under the actions: two columns on a tablet and, on a phone, the first two cards of each side."
+    },
+    {
+      "name": "ui-snippets-hero-demo",
+      "type": "registry:example",
+      "title": "UI snippets hero demo",
+      "description": "A working preview of UI snippets hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/ui-snippets-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/ui-snippets-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "trusted-by-hero",
+      "type": "registry:block",
+      "title": "Trusted by hero",
+      "description": "A left-aligned promise with two actions and a ruled strip of customer marks at the foot, so proof is on screen at first load.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "hero"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/trusted-by-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/trusted-by-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/trusted-by-hero/scroll-strip.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/trusted-by-hero/scroll-strip.tsx"
+        }
+      ],
+      "docs": "Pass title, actions, proofLabel (\"Trusted by 4,200 teams\"), logos (the Logo shape of LogoCloud: a name, a mark and an optional link) and, optionally, eyebrow, description and a rating with a score, a count and a source. The hero is at least 100svh tall with the strip pinned to its foot, so the proof is on the first screen; pass a min-h class that takes a header's height off when a bar sits above it. From 1280px the label, the six marks and the rating share one line; below that the label and the rating share a line above the marks. Where the marks still do not fit, such as on a phone, they scroll sideways and snap instead of wrapping, the edge with more past it fades out so it is plain there is more, and the strip is a stop for the keyboard only while there is something to scroll. Each mark is named for a screen reader and reaches full strength on hover and focus, and nothing animates."
+    },
+    {
+      "name": "trusted-by-hero-demo",
+      "type": "registry:example",
+      "title": "Trusted by hero demo",
+      "description": "A working preview of Trusted by hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/trusted-by-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/trusted-by-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "studio-portfolio",
       "type": "registry:block",
       "title": "Studio portfolio",

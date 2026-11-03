@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ui-snippets-hero-demo",
+  "title": "UI snippets hero demo",
+  "description": "A working preview of UI snippets hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/ui-snippets-hero.json",
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/ui-snippets-hero-demo.tsx",
+      "content": "import { IconArrowRight } from \"@rhs-ui/icons\";\nimport { UiSnippetsHero } from \"@rhs-ui/marketing/ui-snippets-hero\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-8 text-xs text-muted-foreground\">Three cards a side: a task, a comment, an activity toast and a status card</p>\n      <UiSnippetsHero\n        className=\"pt-8 sm:pt-8 lg:pt-12\"\n        eyebrow=\"Shared workspaces\"\n        title=\"Where the whole team keeps the work moving\"\n        description=\"Tasks, threads and updates in one place, so nobody has to ask where things stand.\"\n        actions={\n          <>\n            <Button size=\"lg\">\n              Start for free\n              <IconArrowRight />\n            </Button>\n            <Button size=\"lg\" variant=\"outline\">\n              Book a demo\n            </Button>\n          </>\n        }\n        start={[\n          { kind: \"task\", title: \"Draft the Q4 launch brief\", assignee: { name: \"Maya Chen\" }, due: \"Fri 14\", label: \"Marketing\" },\n          { kind: \"comment\", author: { name: \"Tomas Brandt\" }, text: \"Moved the review to Thursday so legal can join.\", time: \"2m\", replyPlaceholder: \"Reply to Tomas\" },\n          { kind: \"activity\", text: \"Priya completed Design handoff\", time: \"just now\" },\n        ]}\n        end={[\n          { kind: \"status\", title: \"Sprint 24\", status: \"On track\", progress: 72, detail: \"18 of 25 tasks done\" },\n          { kind: \"task\", title: \"Review the vendor contract\", assignee: { name: \"Priya Shah\" }, due: \"Mon 10\", label: \"Legal\", done: true },\n          { kind: \"comment\", author: { name: \"Sofia Ortiz\" }, text: \"Looks good to me. Sending the draft tonight.\", time: \"12m\", replyPlaceholder: \"Reply to Sofia\" },\n        ]}\n      />\n      <p className=\"border-t border-border pt-8 text-xs text-muted-foreground\">Two cards a side and one action, for a smaller story</p>\n      <UiSnippetsHero\n        className=\"pt-8 sm:pt-8 lg:pt-12\"\n        title=\"Design reviews that end with a decision\"\n        description=\"Comments stay on the frame they are about, and the thread closes when the change ships.\"\n        actions={\n          <Button size=\"lg\">\n            Try it with your team\n            <IconArrowRight />\n          </Button>\n        }\n        start={[\n          { kind: \"comment\", author: { name: \"Priya Shah\" }, text: \"Can we try the tighter spacing on the pricing frame?\", time: \"5m\", replyPlaceholder: \"Reply to Priya\" },\n          { kind: \"task\", title: \"Update the pricing frame\", assignee: { name: \"Maya Chen\" }, due: \"Tue 11\", label: \"Design\", done: true },\n        ]}\n        end={[\n          { kind: \"status\", title: \"Launch checklist\", status: \"At risk\", progress: 44, detail: \"4 of 9 items done\" },\n          { kind: \"activity\", text: \"Tomas approved the new header\", time: \"2 minutes ago\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}
