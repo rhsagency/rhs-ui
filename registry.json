@@ -13067,6 +13067,411 @@
       ]
     },
     {
+      "name": "emoji-scale",
+      "type": "registry:ui",
+      "title": "Emoji scale",
+      "description": "Five faces from awful to great as a real radio group, named for screen readers, with a quiet pop when chosen and no colour to tell them apart.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/emoji-scale/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/emoji-scale/index.tsx"
+        },
+        {
+          "path": "registry/primitives/emoji-scale/faces.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/emoji-scale/faces.tsx"
+        }
+      ],
+      "docs": "value is the number of the chosen face, 1 (awful) to 5 (great), or null for none; onValueChange reports the number. labels replaces the five words, worst first, and each one names its face for assistive technology: a screen reader hears \"Good, 4 of 5\". The faces differ in shape and not in colour (squeezed eyes and a deep frown, a small frown, a flat mouth, a small smile, laughing eyes over an open smile), so they read in monochrome and for colour-blind people. The chosen face fills its disc and grows a little, which is skipped under reduced motion. Pointing at or focusing a face writes its word under the row in a quieter weight without choosing it; showLabels={false} leaves that line out and the words stay in the accessible names. The chosen word is announced politely. size is sm, md or lg (24, 32 or 40px faces); every face sits in a target of 44px or more, and on a narrow screen the faces close up instead of running off the side. name sends the number with a plain form, and required marks the group."
+    },
+    {
+      "name": "emoji-scale-demo",
+      "type": "registry:example",
+      "title": "Emoji scale demo",
+      "description": "A working preview of Emoji scale.",
+      "registryDependencies": [
+        "https://rhsui.com/r/emoji-scale.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/emoji-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "multi-date-picker",
+      "type": "registry:ui",
+      "title": "Multi date picker",
+      "description": "Pick several separate days on one calendar: click to add, Shift-click for a run, a chip list underneath and a limit if you want one.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/multi-date-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/multi-date-picker/index.tsx"
+        },
+        {
+          "path": "registry/primitives/multi-date-picker/dates.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/multi-date-picker/dates.ts"
+        }
+      ],
+      "docs": "value is a list of ISO dates (\"2026-10-27\") in any order; onValueChange reports them in date order, each once. A click adds a day or takes it away, and Shift-click adds every day between the last pick and this one (days that cannot be picked are left out). The keyboard works as in the house Calendar: arrows move by day and week, Page Up and Down by month (Shift for a year), Home and End to the ends of the week, Enter or Space picks, and Shift with them adds a run. min and max bound the days that can be picked, disabledDates takes a list or a function for holidays and sold-out days, and a day that is out of reach is struck through inside its month. maxDates sets a limit: once it is reached the days that are not picked turn off and carry the reason (aria-describedby points at it), and a run that does not fit is cut short from the last pick outwards, with a line that says how many days were added. The chosen days are listed as removable chips with the weekday (\"Tue 27 Oct\", with the year added when the picks span years); Backspace or Delete on a chip's remove button hands the focus to the chip beside it. One polite line counts the picks (\"3 dates selected, up to 5\"), and Clear removes everything in one step. locale names the weekdays and months, weekStartsOn sets the first column, timeZone only decides which day is today, defaultMonth sets where an empty picker opens, and labels replaces every sentence. name sends one hidden input per day."
+    },
+    {
+      "name": "multi-date-picker-demo",
+      "type": "registry:example",
+      "title": "Multi date picker demo",
+      "description": "A working preview of Multi date picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/multi-date-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/multi-date-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "repeat-select",
+      "type": "registry:ui",
+      "title": "Repeat select",
+      "description": "Repeat options worked out from the start date (Every week on Tuesday, Every month on the 27th) that return a ready-to-use RRULE string.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/repeat-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/repeat-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/repeat-select/rules.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/repeat-select/rules.ts"
+        }
+      ],
+      "docs": "start is the first day, as an ISO date; the weekday, the day of the month and the month in the labels come from it, written by Intl in the locale you pass. value is the recurrence rule as a calendar file writes it (\"RRULE:FREQ=WEEKLY;BYDAY=TU\"), or null for no repeat; onValueChange reports the new rule. The choices are Does not repeat, Every day, Every week on Tuesday, Every month on the 27th (in the last seven days of a month it reads \"on the last Tuesday\" and becomes BYDAY=-1TU), Every year on 27 October and Every weekday (Monday to Friday); include picks which of them to offer, and they always keep that order. When start changes, the rule moves with it: a weekly rule on Tuesday becomes one on Thursday, the labels change together with it, onValueChange is called with the new rule and the change is announced. A rule that none of the choices describes (every other week, a count, an end date) shows as Custom with the rule under it; onCustom adds a Custom choice that hands the current rule to your own editor. Rules are read in any equivalent spelling, so FREQ=WEEKLY on a Tuesday is the weekly choice. labels replaces every sentence, for another language, and the helpers in repeat-select/rules.ts (ruleFor, kindOf) work without the component. name sends the rule with a plain form."
+    },
+    {
+      "name": "repeat-select-demo",
+      "type": "registry:example",
+      "title": "Repeat select demo",
+      "description": "A working preview of Repeat select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/repeat-select.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/repeat-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "histogram-slider",
+      "type": "registry:ui",
+      "title": "Histogram slider",
+      "description": "A range slider over a distribution: bars drawn in CSS behind the track fade outside the chosen range, with minimum and maximum fields.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/histogram-slider/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/histogram-slider/index.tsx"
+        },
+        {
+          "path": "registry/primitives/histogram-slider/values.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/histogram-slider/values.ts"
+        }
+      ],
+      "docs": "buckets are the counts of equal parts of the range, from min to max, one bar each. The bars are drawn in CSS behind the track, full strength inside the chosen range and faint outside, cut exactly at the handles, and hidden from assistive technology. The sentence under the heading (\"312 homes between 800 and 1,400 euros\") carries the information and is read out politely as the handles move: noun gives the singular and plural of what is counted, formatValue writes a value, and summary writes the whole sentence if you say it differently. The count is exact when the handles stand on the edges of the bars and an estimate between them. value and onValueChange work as on any field with a [low, high] pair; onValueCommit fires once when a drag ends or a key press settles. The handles never cross, so the minimum cannot pass the maximum. Each is a slider with a 44px target and takes the arrow keys, the Page keys (ten steps), Home and End; a press anywhere on the track moves the nearest one, and handles that stand together are told apart by the way the pointer goes. The minimum and maximum fields stay in step with the handles, are clamped between the limits and the other end, and read numbers the way the locale writes them (\"1,400\" or \"1.400\")."
+    },
+    {
+      "name": "histogram-slider-demo",
+      "type": "registry:example",
+      "title": "Histogram slider demo",
+      "description": "A working preview of Histogram slider.",
+      "registryDependencies": [
+        "https://rhsui.com/r/histogram-slider.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/histogram-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "threshold-slider",
+      "type": "registry:ui",
+      "title": "Threshold slider",
+      "description": "Set warning and critical levels on one track: two handles divide it into OK, Warning and Critical zones, named in words and shown by pattern.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/threshold-slider/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/threshold-slider/index.tsx"
+        },
+        {
+          "path": "registry/primitives/threshold-slider/zones.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/threshold-slider/zones.ts"
+        }
+      ],
+      "docs": "value is { warn, critical }: the warning starts at warn and the critical zone at critical, with OK below. min, max and step set the scale, unit is written after the numbers (a symbol such as % sticks to the number, a word such as ms stands apart) and zoneLabels renames OK, Warning and Critical. The handles never cross and never come closer than minGap (one step by default). Each is a slider with a 44px target and a spoken value that says the zone it opens (\"Warning starts at 70 percent\"; spokenUnit changes the word for the unit). The zones are told apart by tone, pattern and name: plain, hatched and dotted, so they read in monochrome and for colour-blind people. A scale under the bar shows the ends and both levels in tabular figures, and a number that would touch its neighbour makes way. The legend names and measures each zone (\"OK to 70%, Warning 70 to 90%, Critical above 90%\"), and each handle has its own number field, clamped between the other handle and the limits. Arrow keys move one step, Shift or the Page keys ten, Home and End go to the limits, and a press on the bar moves the nearest handle. onValueCommit fires once when a drag or a key press settles."
+    },
+    {
+      "name": "threshold-slider-demo",
+      "type": "registry:example",
+      "title": "Threshold slider demo",
+      "description": "A working preview of Threshold slider.",
+      "registryDependencies": [
+        "https://rhsui.com/r/threshold-slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/threshold-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "allocation-slider",
+      "type": "registry:ui",
+      "title": "Allocation slider",
+      "description": "Split 100% between parts: draggable dividers on one bar, a number field per part, a lockable part and a total that must read 100.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/allocation-slider/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/allocation-slider/index.tsx"
+        },
+        {
+          "path": "registry/primitives/allocation-slider/shares.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/allocation-slider/shares.ts"
+        }
+      ],
+      "docs": "parts are { id, label } in the order they stand on the bar, and value is a record of what each holds, by id; onValueChange reports the whole record. total (default 100), step and min (the least any part may hold) set the rules, and unit is written after the numbers. The dividers between the parts are sliders in their own right: dragging one moves the share between the part on its left and the part on its right, so the total stays fixed, and its spoken value names both (\"Email 40%, Social 35%\"). Arrow keys move a step, Shift or the Page keys ten, Home and End to the least either part can hold. Each part also has a number field: typing a share takes the difference from the other free parts, or gives it to them, in proportion to what they hold, and the number is kept to what they can make room for. With lockable every part gets a lock. A locked part keeps its share, its field is read-only, and the dividers on its sides slide along with it while the free parts on either side trade between themselves (locked and defaultLocked, with onLockedChange, set the locks). The readout at the top says \"Adds up to 100%\", or what is missing or too much, and Balance spreads that over the free parts; data that does not add up shows its unassigned part in the bar. Parts are told apart by name and by a shade of grey, never by colour alone. Several dividers that stand on one spot (a part with nothing in it) are told apart by the way the pointer goes. The helpers in allocation-slider/shares.ts (evenShares, setShare, balance) work without the component."
+    },
+    {
+      "name": "allocation-slider-demo",
+      "type": "registry:example",
+      "title": "Allocation slider demo",
+      "description": "A working preview of Allocation slider.",
+      "registryDependencies": [
+        "https://rhsui.com/r/allocation-slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/allocation-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "preview-picker",
+      "type": "registry:ui",
+      "title": "Preview picker",
+      "description": "Choose from a list while a preview of the highlighted option sits beside it: templates, email layouts, themes, export formats.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/preview-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/preview-picker/index.tsx"
+        }
+      ],
+      "docs": "options are { value, label, description?, preview?, disabled? } and the list on the left is a radio group: Tab enters it once; the arrow keys, Home and End move the focus and so preview an option without choosing it; Space, Enter or a click chooses. Pointing at an option previews it as well, and the preview goes back to the chosen one when the pointer leaves. renderPreview(option) draws the preview of the option being previewed; an option can also carry a ready preview node, which can come from a server component. The pane is a labelled region (previewLabel names it), keeps one shape for every option (previewClassName sets it, 4 by 3 by default) so the layout does not jump, never takes the focus, and says in a polite line which option is previewed and which is chosen (\"Previewing Minimal, current choice: Classic\"). The layout follows the width of the container, not the screen: from 720px the preview sits beside the list, and below it the preview moves under the list behind a Show preview button. A disabled option is skipped by the arrow keys. labels replaces the sentence and the two button names. name sends the chosen value with a plain form."
+    },
+    {
+      "name": "preview-picker-demo",
+      "type": "registry:example",
+      "title": "Preview picker demo",
+      "description": "A working preview of Preview picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/preview-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/preview-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cascade-select",
+      "type": "registry:ui",
+      "title": "Cascade select",
+      "description": "Pick a path through a hierarchy: columns that open to the right on desktop, a drill-down list on a phone and the full path in the field.",
+      "categories": [
+        "primitives",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "forms"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/cascade-select/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cascade-select/index.tsx"
+        },
+        {
+          "path": "registry/primitives/cascade-select/tree.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cascade-select/tree.ts"
+        }
+      ],
+      "docs": "options are { value, label, children?, disabled? } and the value is the path of values, one for each step (value, defaultValue, onValueChange). With changeOnSelect a choice that opens more can be the answer too, and a click picks it and opens it. On a screen wide enough for every level (14rem each) the panel shows one column per open level: Right opens a choice and moves into it, Left goes back, Up, Down, Home and End move in a column, Enter or Space picks, and Escape closes. Below that width the same panel is a drill-down list with a back row (\"Back to Electronics\") and the path above the list, and it opens at the level of the chosen choice. The field shows the whole path (separator sets what stands between the steps), with the front given up first when it is too long so the last step is read (when less than about three characters of the front would be left, it goes altogether, separator included, and the last step stands alone), and the full path as its tooltip. The search box flattens the tree to the paths that hold every word you type, ignoring case and accents, with the match in strong type; typing a letter on a choice sends it to the search, the first Escape empties it and Enter picks the first match. The columns are a tree, so every choice has aria-level, aria-setsize, aria-posinset and, when it opens more, aria-expanded and a spoken count of the choices inside it, and the depth you reach is announced; the matches of a search are a plain listbox. defaultOpen starts the panel open for a preview, and labels replaces every sentence. name sends the values of the path joined with a slash."
+    },
+    {
+      "name": "cascade-select-demo",
+      "type": "registry:example",
+      "title": "Cascade select demo",
+      "description": "A working preview of Cascade select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cascade-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cascade-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
