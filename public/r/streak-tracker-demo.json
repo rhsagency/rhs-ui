@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "streak-tracker-demo",
+  "title": "Streak tracker demo",
+  "description": "A working preview of Streak tracker.",
+  "registryDependencies": [
+    "https://rhsui.com/r/streak-tracker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/streak-tracker-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { StreakTracker, type StreakDay } from \"@rhs-ui/application/streak-tracker\";\nimport { addDays } from \"@rhs-ui/application/streak-tracker/dates\";\n\n// A fixed \"today\" keeps every example the same on every load. In an app, leave `today` out and the tracker reads the browser's clock.\nconst TODAY = \"2026-11-05\";\n\n/** `count` days in a row from `from`. */\nconst run = (from: string, count: number): string[] => Array.from({ length: count }, (_, index) => addDays(from, index));\n\nconst DUTCH = {\n  streak: \"Dag {count}\",\n  none: \"Nog geen reeks\",\n  label: \"Huidige reeks\",\n  doneToday: \"Vandaag gedaan\",\n  keepGoing: \"Doe het vandaag om door te gaan\",\n  start: \"Rond vandaag af om te beginnen\",\n  week: \"Deze week\",\n  done: \"gedaan\",\n  missed: \"gemist\",\n  upcoming: \"komt nog\",\n  todayOpen: \"vandaag, nog niet gedaan\",\n  todayDone: \"vandaag, gedaan\",\n};\n\nfunction Case({ caption, children }: { caption: ReactNode; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs leading-relaxed text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [days, setDays] = useState<string[]>(run(\"2026-10-25\", 11));\n\n  function toggle(day: StreakDay) {\n    setDays((current) => (day.done ? current.filter((date) => date !== day.date) : [...current, day.date]));\n  }\n\n  return (\n    <div className=\"w-full\">\n      <div className=\"mx-auto grid max-w-2xl gap-9\">\n        <Case caption=\"Twelve days in a row, today included. Done days are filled, today is ringed and the days to come are dashed. The week starts on Monday here because the locale is en-GB.\">\n          <StreakTracker days={run(\"2026-10-25\", 12)} today={TODAY} locale=\"en-GB\" />\n        </Case>\n\n        <Case caption=\"Today is still open, so the streak is alive at eleven. Press a day to change it: complete today and the count grows, undo it and it settles back. Every day is a button with a name like Thursday, today, not done yet.\">\n          <StreakTracker days={days} today={TODAY} locale=\"en-GB\" onDayClick={toggle} />\n        </Case>\n\n        <Case caption=\"After missed days. Missed days are plain empty circles, never red, and the message only says what to do next. Weekday letters, names and all the words are in Dutch here.\">\n          <StreakTracker days={[...run(\"2026-10-20\", 9), \"2026-11-02\"]} today={TODAY} locale=\"nl-NL\" labels={DUTCH} />\n        </Case>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

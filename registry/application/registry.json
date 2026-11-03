@@ -7884,6 +7884,407 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "unsupported-browser-notice",
+      "type": "registry:component",
+      "title": "Unsupported browser notice",
+      "description": "A calm notice for a browser that cannot run your app: what is missing in plain words, which browsers work, and Continue anyway.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/unsupported-browser-notice/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/unsupported-browser-notice/index.tsx"
+        },
+        {
+          "path": "registry/application/unsupported-browser-notice/support.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/unsupported-browser-notice/support.ts"
+        }
+      ],
+      "docs": "requires lists what the app needs: each entry has a label, shown when it is missing, and a test, either a function that returns false when the browser lacks it or data such as { css: \"container-type: inline-size\" } or { api: \"IntersectionObserver\" }, which also works from a Server Component. browsers lists the browsers that work, each with its name, minVersion and the official href. When the visitor's browser can be read from its user agent, is on the list and is older, the notice says so and its card shows the version it has. The checks run once the page is live, so the server renders nothing, and a browser that passes every check gets no notice and no gap. Continue anyway is always offered, is remembered for the session under storageKey and calls onContinue; dismissible adds a close button that hides it for this page view only and calls onDismiss. Above your content it pushes the page down once when it appears; give it className=\"fixed inset-x-4 bottom-4 z-50\" to float it over the page instead, and add max-h-[calc(100dvh-2rem)] overflow-y-auto if a screen can be shorter than the notice, so it scrolls instead of running off the top. userAgent overrides the visitor's own, for previews and tests. labels carries every word."
+    },
+    {
+      "name": "unsupported-browser-notice-demo",
+      "type": "registry:example",
+      "title": "Unsupported browser notice demo",
+      "description": "A working preview of Unsupported browser notice.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/unsupported-browser-notice.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/unsupported-browser-notice-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "needs-setup-state",
+      "type": "registry:component",
+      "title": "Needs setup state",
+      "description": "Stands in for a feature that needs one step first: what is missing, why, the steps done and left, and the action that fixes it.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/empty-state.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/needs-setup-state.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/needs-setup-state.tsx"
+        }
+      ],
+      "docs": "title says what is needed, as the action it asks for, and description says why. steps is a list of { label, done }: a finished step shows a check and the word Done, the first open step is marked Next and carries aria-current=\"step\", the rest are read out as not done, and a polite status says how many are finished. actionLabel and onAction make the main button; if onAction returns a promise the button shows a spinner and ignores presses until it settles, without losing focus. secondary is a node beside it, such as a link. minHeight is the height of the feature the panel stands in for, in pixels or any CSS length, so the page does not jump when setup finishes. icon replaces the plug. Use it for one missing prerequisite that blocks one specific thing, not for onboarding. labels carries every word."
+    },
+    {
+      "name": "needs-setup-state-demo",
+      "type": "registry:example",
+      "title": "Needs setup state demo",
+      "description": "A working preview of Needs setup state.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/needs-setup-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/needs-setup-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notice-stack",
+      "type": "registry:component",
+      "title": "Notice stack",
+      "description": "Several notices in one place: the most urgent on top, the rest folded under '+2 more', each closable on its own.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/notice-stack.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notice-stack.tsx"
+        }
+      ],
+      "docs": "notices is a list of { id, tone, title, body, action, dismissible } in any order: the stack sorts it by tone (error, warning, info) and keeps your order within a level. max (default 1) is how many show in full; the rest fold under a +N more button, whose name carries the count and which unfolds them in place. A dismissible notice has a close button that calls onDismiss(id); remove it from notices and the next one comes forward and takes focus. A notice that arrives after the first paint is announced politely, and an error is announced once, as an alert; what is there on load is not announced. Only errors use colour: a warning and information differ by icon, weight and the word read before the title. label names the region. labels carries every word."
+    },
+    {
+      "name": "notice-stack-demo",
+      "type": "registry:example",
+      "title": "Notice stack demo",
+      "description": "A working preview of Notice stack.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/notice-stack.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/notice-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "streak-tracker",
+      "type": "registry:component",
+      "title": "Streak tracker",
+      "description": "A week of days with the streak count: filled for days done, ringed for today, hollow for what was missed.",
+      "categories": [
+        "application",
+        "feedback"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/streak-tracker/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/streak-tracker/index.tsx"
+        },
+        {
+          "path": "registry/application/streak-tracker/dates.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/streak-tracker/dates.ts"
+        }
+      ],
+      "docs": "days lists the completed days as YYYY-MM-DD, and today is the day it is now: leave it out to read the browser's clock in timeZone once the page is live (until then the card holds its place with empty circles, so pass today when you render on the server). The count is the run of days in a row that ends today, or yesterday while today is still open, so it only falls to nothing after a whole day was missed. The week starts on weekStartsOn, or on the locale's own first weekday, and a page left open past midnight moves on to the new day by itself. Every day has a name that says its state in words, such as Tuesday, done, so nothing depends on colour, and missed days are plain empty circles, never red. With onDayClick the days that have come are buttons and receive { date, done, today }. The count is a status: it is read out when it changes and swells quietly when today is completed, unless motion is reduced. labels carries every word."
+    },
+    {
+      "name": "streak-tracker-demo",
+      "type": "registry:example",
+      "title": "Streak tracker demo",
+      "description": "A working preview of Streak tracker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/streak-tracker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/streak-tracker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "comment-composer",
+      "type": "registry:component",
+      "title": "Comment composer",
+      "description": "A comment box that stays one line until focused, then offers Cancel and Comment, sends with Cmd or Ctrl Enter and keeps the draft.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/comment-composer.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/comment-composer.tsx"
+        }
+      ],
+      "docs": "value and onChange keep the text in your state, so a draft survives re-renders and route changes, and a box with text stays open; leave value out and it keeps its own. onSubmit receives the trimmed text and may return a promise: the button shows a spinner and keeps focus while it runs, the box clears when it resolves and goes back to its one line with the cursor still in it, and when it rejects the text is kept and an alert shows the error's message, or labels.failed. Comment stays disabled until there is text, Cmd or Ctrl Enter sends, Escape folds an empty box and Cancel throws the draft away. maxLength adds a count near the end, author gives the avatar, and disabled locks the box for a closed thread: say why in placeholder. It is a form of its own, so do not nest it in another form. labels carries every word."
+    },
+    {
+      "name": "comment-composer-demo",
+      "type": "registry:example",
+      "title": "Comment composer demo",
+      "description": "A working preview of Comment composer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/comment-composer.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/comment-composer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "document-upload-row",
+      "type": "registry:component",
+      "title": "Document upload row",
+      "description": "One requested document, such as a passport or proof of address, with its status, the chosen file and replace and remove, ready to stack.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/document-upload-row/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/document-upload-row/index.tsx"
+        },
+        {
+          "path": "registry/application/document-upload-row/files.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/document-upload-row/files.ts"
+        }
+      ],
+      "docs": "label names the document and description says what is accepted. status is missing, uploading, uploaded or attention; leave it out and it follows the file. progress, from 0 to 100, fills the bar while uploading, error is the reason shown when it needs attention, and file is what was provided, a File or the { name, size } your server kept; leave file out and the row remembers the one that was chosen. accept and maxSize are checked before onFileChange runs, and a file that fails is turned away with the reason. onFileChange receives the File, or null on Remove and Cancel, and is where you start the upload. required is said in words beside the name and keeps a form from submitting without a file: the row says what is missing and focus goes to its Choose file button. name keeps the real file input in the form for FormData and server actions, and a file can be dropped on the row. The status is a polite live region. labels carries every word."
+    },
+    {
+      "name": "document-upload-row-demo",
+      "type": "registry:example",
+      "title": "Document upload row demo",
+      "description": "A working preview of Document upload row.",
+      "registryDependencies": [
+        "https://rhsui.com/r/document-upload-row.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/document-upload-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-upload-grid",
+      "type": "registry:component",
+      "title": "Image upload grid",
+      "description": "Manage the images of a product or a gallery: add tiles, mark the first as main, reorder with buttons or drag, and remove.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/image-upload-grid/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/image-upload-grid/index.tsx"
+        },
+        {
+          "path": "registry/application/image-upload-grid/files.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/image-upload-grid/files.ts"
+        }
+      ],
+      "docs": "images is the set to show, { id, src, alt }[], the first one the main image. The grid arranges and never uploads: files from the add tile, or dropped on the grid, pass the accept, maxSize and room checks and onFilesAdded receives those that passed; make an image of each (an object URL gives an instant preview), start the upload and put it in images. onImagesChange receives the new set after a move or a removal, by the buttons or by dragging a tile onto another. Each tile has Move earlier, Move later and Remove buttons, shown on hover and focus, always on a screen that cannot hover, and always reachable by keyboard. max shows the count as 5 of 8 and, once reached, switches the add tile off and says why. Moves, removals and additions are spoken, and focus stays on the button that was pressed. labels carries every word."
+    },
+    {
+      "name": "image-upload-grid-demo",
+      "type": "registry:example",
+      "title": "Image upload grid demo",
+      "description": "A working preview of Image upload grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/image-upload-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-upload-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-alt-field",
+      "type": "registry:component",
+      "title": "Image alt text field",
+      "description": "Upload an image and describe it in the same place: a preview, an alt text box with live advice, and a decorative checkbox that is a deliberate choice.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/image-alt-field.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/image-alt-field.tsx"
+        }
+      ],
+      "docs": "src is an image that already exists; a file the person chooses is previewed from the file itself and wins over it. value and onValueChange report { file, alt, decorative }, and defaultValue starts it when you do not control it. The decorative checkbox empties the description and switches the box off, and unchecking it brings the old text back, so decorative is a decision and not a field that was forgotten. The advice line under the box follows the text: empty, starting with image of or photo of, looking like a file name, very short, near maxLength, and fine. maxLength (125) limits the text and is counted. invalid shows a missing description as an error, and with required a missing image too; required also keeps a form from submitting without an image, and then the error shows and focus goes to Choose an image. accept and maxSize are checked before a file is taken, and name puts the file, the description (nameAlt) and the mark (nameDecorative) in the form. labels carries every word."
+    },
+    {
+      "name": "image-alt-field-demo",
+      "type": "registry:example",
+      "title": "Image alt text field demo",
+      "description": "A working preview of Image alt text field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/image-alt-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-alt-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
