@@ -142,6 +142,14 @@ export function composedVariantProblems(src) {
   return /\$\{[^}]+\}:[a-z[!-]/.test(src) ? ["builds a Tailwind variant in a template string (`${…}:class`); Tailwind never generates it, write the class out"] : [];
 }
 
+/**
+ * A table sizes to its content, so the 1px width of sr-only does not hold on a <table>: the hidden table stays as wide as
+ * its cells and runs off a phone (Pro's ab-test-results, 17 px at 390). Hide it inside <div className="sr-only">.
+ */
+export function hiddenTableProblems(src) {
+  return /<table\b[^>]*className=["'{`][^>]*\bsr-only\b/.test(src) ? ['puts sr-only on a <table>, which does not shrink it and overflows a phone; wrap the table in <div className="sr-only">'] : [];
+}
+
 const GROUP_USE =/(?<![\w-])(group|peer)-(?:\[[^\]]*\]|[\w-])+\/([a-z][\w-]*)(?=:)/g;
 const GROUP_DECLARE = /(?<![\w-])(group|peer)\/([a-z][\w-]*)(?![\w-]*:)/g;
 
@@ -234,6 +242,7 @@ export function checkItems(items, read = readSource) {
       for (const problem of clientProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clientExportProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of composedVariantProblems(src)) p(`${f.path} ${problem}`);
+      for (const problem of hiddenTableProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of nonPortableFontProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of hrefKeyProblems(src)) p(`${f.path} ${problem}`);
       for (const problem of clippedCurrentColorProblems(src)) p(`${f.path} ${problem}`);
@@ -367,6 +376,7 @@ const selfTests = [
   ["a variant composed in a template string", composedVariantProblems("const c = `${v}:w-max`;").length === 1],
   ["a font family only rhsui.com defines", nonPortableFontProblems('<h2 className="font-heading text-4xl">').length === 1 && nonPortableFontProblems('<p className="font-mono font-medium">').length === 0],
   ["a port in a template string is fine", composedVariantProblems("const u = `http://${host}:3000`;").length === 0],
+  ["sr-only on a table, and a table inside an sr-only div", hiddenTableProblems('<table className="sr-only"><tbody /></table>').length === 1 && hiddenTableProblems('<div className="sr-only"><table><tbody /></table></div>').length === 0],
   ["a named peer variant nobody declares", groupNameProblems(new Map([["a.tsx", '"peer-checked/box:opacity-100"']])).length === 1],
   ["an animated icon without a glyph or with a stale usage", animatedMetaProblems({ meta: { motion: "trigger", usage: "<IconOldAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 2],
   ["an animated icon naming a glyph that does not exist", animatedMetaProblems({ meta: { motion: "trigger", glyph: "IconNope", usage: "<IconBellAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 1],
