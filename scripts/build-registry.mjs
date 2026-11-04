@@ -5,6 +5,7 @@
  *     -> registry.json          (generated root: every item, root-relative paths; committed)
  *     -> public/r/<name>.json   (shadcn build: file contents inlined; committed)
  *     -> public/r/registry.json (the catalogue the CLI's list/search read)
+ *     -> public/r/component-index.json (what tools read instead of the source; component-index-file.mjs)
  *
  * The shadcn `include` mechanism cannot reference files above a fragment's
  * own folder, and this repository keeps one source tree for every category,
@@ -17,6 +18,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
+import { writeComponentIndex } from "./component-index-file.mjs";
 import { familyOf } from "./families.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -65,6 +67,15 @@ const built = readdirSync(out).filter((f) => f.endsWith(".json") && f !== "regis
 const missing = items.map((i) => i.name).filter((n) => !built.includes(`${n}.json`));
 if (missing.length) {
   console.error(`build-registry: no output for ${missing.join(", ")}`);
+  process.exit(1);
+}
+
+// The component index tools read instead of the source (component-index-file.mjs), from the registry just written.
+try {
+  const index = writeComponentIndex(root);
+  console.log(`build-registry: component index of ${index.items.length} items, ${index.entries.length} entries`);
+} catch (error) {
+  console.error(`build-registry: ${error instanceof Error ? error.message : String(error)}`);
   process.exit(1);
 }
 

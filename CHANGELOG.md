@@ -5,6 +5,11 @@ own `meta.version` and are listed when they change.
 
 ## Unreleased (0.8.0)
 
+- A component index for tools: `/r/component-index.json` lists every free item with
+  its kind, import path, exported components and their props, a usage example and
+  what it depends on, plus the theme tokens. Read it instead of the source; a
+  release never drops an item, an import path, an export or a theme variable
+  without a breaking version.
 - The whole icon set is free again: the 206 library glyphs (weather, travel, food,
   health, science, home, business, tools, play, animals, music) and the 380 animated
   icons that moved to Pro in 0.7.0 are back under their free names, `Icon<Name>` and

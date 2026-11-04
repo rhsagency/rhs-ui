@@ -69,6 +69,22 @@ Commit messages follow conventional commits (`feat(commerce): add product-galler
 `fix(kpi-card): announce delta sign`). One item per pull request. CI runs the
 same gates; a PR with a stale `public/r/` will fail.
 
+## What a release promises
+
+`pnpm registry:build` also writes `public/r/component-index.json`: every Free
+item with its kind, import path, exports, props and a usage example, plus the
+theme tokens. Tools read that file (rhsui.com serves it at
+`/r/component-index.json`) instead of this repository's source.
+
+`pnpm check:contract` compares it with `contract/baseline.json`, the last
+release: an item, an import path, an export or a theme variable that is gone
+fails, unless `package.json` moved to a breaking version (the next minor below
+1.0, the next major after). Adding never fails. At a release, after the tag:
+
+```bash
+pnpm check:contract --baseline   # the released index becomes the new baseline (commit it)
+```
+
 ## Licence
 
 By contributing you agree that your contribution is licensed under the MIT

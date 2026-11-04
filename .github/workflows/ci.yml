@@ -27,6 +27,8 @@ jobs:
         run: pnpm test:button
       - name: Built output is up to date
         run: pnpm check:built
+      - name: Nothing a release had is gone (with self-test)
+        run: pnpm check:contract
       - name: Every demo renders on the server, no visible native select
         run: pnpm test:render
       - name: No private material
