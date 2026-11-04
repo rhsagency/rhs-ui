@@ -31,10 +31,12 @@ jobs:
         run: pnpm check:contract
       - name: Every demo renders on the server, no visible native select
         run: pnpm test:render
+      # Docs may name the private repository, and two maintainer tools find its checkout by path (the batch kit and the
+      # registry gate it shares rules with); none of them carries Pro source. Registry content is never excepted.
       - name: No private material
         run: |
           set -euo pipefail
-          if git grep -nIE "rhs-ui-pro|pro-registry|SUPABASE_|STRIPE_" -- . ':!docs/ARCHITECTURE.md' ':!README.md' ':!.github/workflows/ci.yml' ':!CONTRIBUTING.md'; then
+          if git grep -nIE "rhs-ui-pro|pro-registry|SUPABASE_|STRIPE_" -- . ':!docs/ARCHITECTURE.md' ':!README.md' ':!.github/workflows/ci.yml' ':!CONTRIBUTING.md' ':!scripts/batch.mjs' ':!scripts/check-registry.mjs'; then
             echo "private material referenced in the public repo"; exit 1
           fi
       - name: Audit

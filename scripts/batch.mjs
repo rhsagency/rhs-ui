@@ -23,7 +23,7 @@
  *       contact sheets for demos already in the registry, nothing checked.
  *
  * The manifest: { "id": "f8-forms-01", "items": [ <registry entries> ] }.
- * Playwright comes from ../rhs-ui-website and the Tailwind CLI from
+ * Playwright comes from apps/rhsui and the Tailwind CLI from
  * ../rhs-ui-pro (the same versions the site and the Pro release use); the
  * tokens are rhsui.com's own, so a sheet looks like the site's preview.
  */
@@ -37,7 +37,7 @@ import { build } from "esbuild";
 import { checkItems, groupNameProblems, loadItems, registrySourcesOf } from "./check-registry.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
-const website = path.resolve(root, "..", "rhs-ui-website");
+const website = path.resolve(root, "..", "..", "apps", "rhsui");
 const pro = path.resolve(root, "..", "rhs-ui-pro");
 const slash = (p) => p.split(path.sep).join("/");
 const NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

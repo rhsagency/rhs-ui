@@ -135,7 +135,7 @@ const PAGES: Record<string, Page> = {
       ["Leo Martins deployed northwind-api", "Production · fix redirect loop on /pricing", "4 min ago"],
       ["Dan Cho added a firewall rule", "Rate limit /api/auth to 20 per minute", "2 hours ago"],
       ["Mara Okafor invited jonas.keller@northwind.example", "As a developer", "Yesterday"],
-      ["Priya Nair rotated STRIPE_SECRET_KEY", "Production and preview", "Yesterday"],
+      ["Priya Nair rotated PAYMENTS_API_KEY", "Production and preview", "Yesterday"],
       ["Hana Sato changed the billing email", "billing@halcyon.studio", "Monday"],
     ],
   },
@@ -186,7 +186,7 @@ const PAGES: Record<string, Page> = {
     blurb: "Secrets and settings the build and the running app can read.",
     rows: [
       ["DATABASE_URL", "Production, Preview", "Updated 3 days ago"],
-      ["STRIPE_SECRET_KEY", "Production", "Updated yesterday"],
+      ["PAYMENTS_API_KEY", "Production", "Updated yesterday"],
       ["SENTRY_DSN", "Production, Preview, Development", "Updated 2 weeks ago"],
       ["FEATURE_NEW_CHECKOUT", "Preview", "Updated 1 hour ago"],
     ],
