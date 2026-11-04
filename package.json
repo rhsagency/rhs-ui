@@ -26,10 +26,11 @@
     "check:registry": "node scripts/check-registry.mjs",
     "check:built": "node scripts/check-built.mjs",
     "check:contract": "node scripts/check-contract.mjs",
-    "check": "pnpm typecheck && pnpm icons:check && pnpm check:registry && pnpm check:contract && pnpm test:button && pnpm test:render",
+    "check": "pnpm typecheck && pnpm icons:check && pnpm check:registry && pnpm check:contract && pnpm test:index && pnpm test:button && pnpm test:render",
     "icons:generate": "node scripts/icons/generate-animated.mjs",
     "icons:check": "node scripts/icons/generate-animated.mjs --check",
     "test:button": "node scripts/test-button.mjs",
+    "test:index": "node scripts/test-component-index.mjs",
     "test:render": "node scripts/test-render.mjs",
     "test:install": "node scripts/test-install.mjs"
   },
