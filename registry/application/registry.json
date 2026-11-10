@@ -8706,6 +8706,1291 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "conditional-fields",
+      "type": "registry:component",
+      "title": "Conditional fields",
+      "description": "A checkbox, switch or radio that reveals its own fields when chosen: the reveal is announced, and hidden fields are inert and left out of the submit.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/conditional-fields.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/conditional-fields.tsx"
+        }
+      ],
+      "docs": "Put the fields inside; they open beneath the control when it is on. trigger is checkbox (the default), switch or radio. A checkbox or switch can keep its own state (defaultChecked) or be controlled (checked and onCheckedChange). A radio sits inside your RadioGroup and gets checked={value === \"its value\"}, because the group owns the choice. The control carries aria-controls (and aria-expanded on a checkbox or switch, the roles that may have it), and a polite status says that fields appeared or went. Closed, the fields are inert and in a disabled fieldset: Tab skips them, a screen reader does not find them and the form does not send them. keepValues (default true) keeps what was typed while the panel is shut; false removes the fields after the fold, so uncontrolled inputs start over. Focus never moves into the panel by itself. Each panel is a fieldset named by the label, so a ConditionalFields inside another one is a nested level."
+    },
+    {
+      "name": "conditional-fields-demo",
+      "type": "registry:example",
+      "title": "Conditional fields demo",
+      "description": "A working preview of Conditional fields.",
+      "registryDependencies": [
+        "https://rhsui.com/r/conditional-fields.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/conditional-fields-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-repeater",
+      "type": "registry:component",
+      "title": "Field repeater",
+      "description": "An 'Add another' group of fields that repeats row by row, with add, remove, a minimum and maximum, and focus that lands in the new row.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/field-repeater.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/field-repeater.tsx"
+        }
+      ],
+      "docs": "Give it value and onChange (or defaultValue, and the text stays in uncontrolled inputs), a createItem that makes a row with a new id every time, and a renderRow that draws the fields of one row. The third argument of renderRow has the row's number, its name (\"Contact 2\") and update(patch). Rows are keyed by item.id, so typed text stays with its row when a row above is removed. After Add, focus lands on the first field of the new row; after Remove, on the row that took its place, or on Add when none is left. A polite status says \"Contact 3 added\" or \"Contact 2 removed\". At max, Add is off and says why; at min, Remove is not shown; an empty list is one dashed Add row. itemLabel, itemsLabel, addLabel and labels carry the words."
+    },
+    {
+      "name": "field-repeater-demo",
+      "type": "registry:example",
+      "title": "Field repeater demo",
+      "description": "A working preview of Field repeater.",
+      "registryDependencies": [
+        "https://rhsui.com/r/field-repeater.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/field-repeater-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-dialog",
+      "type": "registry:component",
+      "title": "Form dialog",
+      "description": "A dialog that is a form: Enter submits, buttons lock while it saves, closing is blocked mid-save and a failed save keeps everything typed.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/form-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-dialog.tsx"
+        }
+      ],
+      "docs": "Pass the fields as children, each with a name, and an onSubmit that gets the FormData and may return a promise. Native validation runs first. While the promise is pending the fields, Cancel and the close button are disabled, Escape and the backdrop do nothing, and the save button stays focusable and says it is busy. A rejection puts its message in an alert at the top of the body and keeps everything typed; a resolution closes the dialog and focus returns to the trigger (pass trigger, or focus goes back to whatever had it). Focus starts on the first field. With dirtyGuard, closing a changed form asks \"Discard changes?\" in the footer, with Keep editing focused; changes are found by comparing the named fields with what they held when the dialog opened. open, defaultOpen and onOpenChange control it from outside. labels translates the words."
+    },
+    {
+      "name": "form-dialog-demo",
+      "type": "registry:example",
+      "title": "Form dialog demo",
+      "description": "A working preview of Form dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-tabs",
+      "type": "registry:component",
+      "title": "Form tabs",
+      "description": "A long form split across tabs that still submits as one: errors show on the tab, and a field inside a hidden panel is revealed before it is focused.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/form-tabs.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-tabs.tsx"
+        }
+      ],
+      "docs": "Put FormTabs inside your form. Every panel stays in the page, so one form sends everything and values survive a switch of tab. When a submit fails the browser cannot focus a field in a hidden panel and stays silent; FormTabs takes the first invalid field over, opens its tab, focuses it and asks the browser to point at it. A tab with problems says \"Pricing, 2 problems\" with the number beside the name, and a thin line under the tabs fills with the share of tabs that are clean. Problems are counted from the browser's own validation (required, pattern, min) once a submit fails, and update as fields are fixed. Pass errorCounts, keyed by tab id, for what only your server knows; it wins for the tabs it names. value and onValueChange control the tab. In a narrow form (under 19 rem) the tabs tighten so three with a count still fit; when they do not, the strip scrolls, fades at the end that has more and brings the tab that opens into view, also when a failed submit opened it. A field in a hidden Radix Select is not focusable: put required on text-like inputs."
+    },
+    {
+      "name": "form-tabs-demo",
+      "type": "registry:example",
+      "title": "Form tabs demo",
+      "description": "A working preview of Form tabs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-tabs.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "editable-section",
+      "type": "registry:component",
+      "title": "Editable section",
+      "description": "View or edit a group of details in place: a summary with an Edit button turns into fields with Save and Cancel, and focus returns when done.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/editable-section.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/editable-section.tsx"
+        }
+      ],
+      "docs": "Pass the facts as view (a DescriptionList is made for it) and the fields as children, each with a name. Edit swaps one for the other and moves focus to the first field; Escape cancels and focus lands on the Edit button; Save returns there too, after a polite \"Saved\". onSave gets the FormData and may return a promise: the fields and Cancel lock while it runs, the save button says it is busy, and a rejection keeps the form open with the message in an alert and everything as typed. Changed fields make Cancel and Escape ask \"Discard changes?\" in place; dirty overrides the automatic check. editing, defaultEditing and onEditingChange control it, and disabled switches the Edit button off so that other sections wait while one is open. The edit form is a real form: do not put the section inside another one. The Edit button is named \"Edit\" plus the title."
+    },
+    {
+      "name": "editable-section-demo",
+      "type": "registry:example",
+      "title": "Editable section demo",
+      "description": "A working preview of Editable section.",
+      "registryDependencies": [
+        "https://rhsui.com/r/editable-section.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/description-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/editable-section-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "danger-zone",
+      "type": "registry:component",
+      "title": "Danger zone",
+      "description": "The destructive actions of a settings page in one clearly marked section, each with its consequence in words and a confirm step.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/danger-zone.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/danger-zone.tsx"
+        }
+      ],
+      "docs": "Give it actions: id, title, description (the consequence, in words), label (the button), onConfirm (which may return a promise) and optionally confirmation, the name to type before the confirm button works. Each button opens an alert dialog that restates what will happen, with Cancel focused; the dialog stays open while onConfirm runs and shows its rejection in an alert. disabledReason switches a row off and writes the reason under its description, because a disabled button cannot say it. The destructive tone is only in the border and the button labels, and the heading says \"Danger zone\" in words. dialogTitle, dialogDescription and confirmLabel adjust the dialog; the description in the dialog is plain text or inline elements. labels translates the words."
+    },
+    {
+      "name": "danger-zone-demo",
+      "type": "registry:example",
+      "title": "Danger zone demo",
+      "description": "A working preview of Danger zone.",
+      "registryDependencies": [
+        "https://rhsui.com/r/danger-zone.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/danger-zone-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "contact-fieldset",
+      "type": "registry:component",
+      "title": "Contact fieldset",
+      "description": "Contact details for a checkout or enquiry: first and last name, email and phone with country code, with autofill tokens and per-field errors.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/phone-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/contact-fieldset.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/contact-fieldset.tsx"
+        }
+      ],
+      "docs": "A fieldset with first and last name side by side (stacked on a phone), email, a phone number with its country code and an optional company line. value (or defaultValue) and onValueChange carry { firstName, lastName, email, phone, company }; the email comes back trimmed and in lower case and the phone number in E.164. A number typed, pasted or filled in with its country code (\"+31 6 1234 5678\", \"0031 6 1234 5678\", \"+44 7911 123456\") picks that country and the field keeps the national number, so it is never stored under the wrong code; the (0) after a code is dropped. A code that is not in the list leaves the value empty and says \"Pick the country in the list and leave out the +.\" when the field is left (unknownCountry in labels). Inputs carry given-name, family-name, email and organization autocomplete tokens with type and inputMode; the phone field's token is tel-national because the country code is its own control. Fields are checked when left, not on every keystroke, and a message goes the moment the problem is fixed. errors adds your own, required lists the required fields, showCompany adds the company line, and disabled switches the whole group off. The phone value that is sent is a hidden input named phone. Nothing is sent anywhere."
+    },
+    {
+      "name": "contact-fieldset-demo",
+      "type": "registry:example",
+      "title": "Contact fieldset demo",
+      "description": "A working preview of Contact fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/contact-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/contact-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "social-links-fieldset",
+      "type": "registry:component",
+      "title": "Social links fieldset",
+      "description": "Profile links with each network's address pre-filled: paste a full URL and it is cut down to the handle, then checked.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/social-links-fieldset/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/social-links-fieldset/index.tsx"
+        },
+        {
+          "path": "registry/application/social-links-fieldset/links.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/social-links-fieldset/links.ts"
+        }
+      ],
+      "docs": "Pass networks (id, label, prefix, pattern, message) and value (or defaultValue) with onValueChange: the value is { website, [networkId]: handle }. Each network is an input group with its prefix in a cell of its own, so people type only the handle. A pasted link to that network is cut down to the handle on the spot, a leading @ is stripped, and a pattern check on blur says what is wrong in the network's message. The website takes anything that parses as an http or https address and adds https:// when it is missing. Only what passed leaves the fieldset: onValueChange, and the hidden input each field sends under its name, hold a handle that matches its pattern, a website that is an http or https address, or an empty string, never the text that failed, so a value is safe to use as a link. The text stays in the field until it is fixed, with the message beside it. What you pass as value or defaultValue is shown as given, not checked. The browser can be bypassed: cleanSocialLinks(networks, input), toHandle, checkHandle and toWebsite are exported from social-links-fieldset/links, a module without \"use client\", so a server can run the same check on what was posted. Optional rows say \"Optional\". A pattern can be a RegExp or its source as a string; from a Server Component pass the string. Networks are named in text, never with logos. errors adds your own messages. Nothing is sent anywhere."
+    },
+    {
+      "name": "social-links-fieldset-demo",
+      "type": "registry:example",
+      "title": "Social links fieldset demo",
+      "description": "A working preview of Social links fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/social-links-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/social-links-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "answers-review",
+      "type": "registry:component",
+      "title": "Answers review",
+      "description": "Check your answers before sending: grouped answers in a summary list, each with a Change link and a clear Not provided marker.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/answers-review.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/answers-review.tsx"
+        }
+      ],
+      "docs": "Pass groups (title, rows of key, label, value, files, href or onChange, error). Each group is a section with a heading and a real description list. A row with an href gets a Change link; otherwise it calls its own onChange or the review's onChange(key). A row with no answer says \"Not provided\" in muted text and offers Add instead of Change. Text keeps its line breaks and long words wrap; files are listed by name. Every link says \"Change\" and then the question, for screen readers, and is described by the row's error when there is one, so the page can be where a blocked submit gets fixed. headingLevel sets the section titles; emptyText and labels carry the words. It has no hooks of its own, so a Server Component can render it when every row has an href."
+    },
+    {
+      "name": "answers-review-demo",
+      "type": "registry:example",
+      "title": "Answers review demo",
+      "description": "A working preview of Answers review.",
+      "registryDependencies": [
+        "https://rhsui.com/r/answers-review.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/answers-review-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-outline",
+      "type": "registry:component",
+      "title": "Form outline",
+      "description": "The jump list of a long form: each section with Done, Needs attention or Not started in shape and text, the one in view marked as you scroll.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/form-outline/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-outline/index.tsx"
+        },
+        {
+          "path": "registry/application/form-outline/outline.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/form-outline/outline.ts"
+        }
+      ],
+      "docs": "sections is the list: each has an id (the id of an element on the page), a label, a status (done, attention or todo) and, for attention, an errorCount that is written as \"2 problems\". By default the outline follows the scroll, in the page or in whatever scrolling container holds the sections, and marks the section in view with aria-current=\"location\"; pass activeId to decide it yourself, or defaultActiveId to choose where it starts. Following a link scrolls the section to scrollOffset px under the top of the view (smoothly, at once under reduced motion) and moves focus to its first heading, which is made focusable by script; onNavigate receives the id first. sticky (default true) keeps the list in the side column, at lg:top-6 which className can change, and on a phone pins the compact bar to the top, where its own height is added to scrollOffset. The bar says \"Section 3 of 6\", shows the problem count of the current section and opens the list as a panel; Escape or a press outside closes it. A thin Progress counts the sections done. The nav is a landmark labelled \"Form sections\" (label), and labels renames every word."
+    },
+    {
+      "name": "form-outline-demo",
+      "type": "registry:example",
+      "title": "Form outline demo",
+      "description": "A working preview of Form outline.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-outline.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-outline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "status-select",
+      "type": "registry:component",
+      "title": "Status select",
+      "description": "Pick a status where the shape tells the state, not the colour: a marker and a word per option, grouped into open and closed, in a compact trigger.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/status-select/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-select/index.tsx"
+        },
+        {
+          "path": "registry/application/status-select/kinds.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-select/kinds.ts"
+        },
+        {
+          "path": "registry/application/status-select/marker.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/status-select/marker.tsx"
+        }
+      ],
+      "docs": "statuses is the list: value, label, kind (backlog, todo, progress, review, done or cancelled; leave it out when you pass a marker) and an optional group. Options with the same group are listed together under a quiet heading, in the order the groups first appear. The six markers are drawn on a 16 unit grid and differ in shape, not only in weight; marker replaces one with your own 16px drawing, so the same select can show a stage or a priority. The list is the house Select: arrow keys, Home and End, typeahead on the words, Escape returns focus. showShortcuts writes 1 to 9 beside the first nine options and lets the number keys pick them while the list is open. size sm with variant ghost is the compact trigger for a table cell or a detail panel. The trigger shows the marker and the word, and a screen reader hears the group after them (\"In progress, Open\"). Name the trigger with aria-label, or with a Label whose htmlFor is its id. name and required make it a form field."
+    },
+    {
+      "name": "status-select-demo",
+      "type": "registry:example",
+      "title": "Status select demo",
+      "description": "A working preview of Status select.",
+      "registryDependencies": [
+        "https://rhsui.com/r/status-select.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "guest-picker",
+      "type": "registry:component",
+      "title": "Guest picker",
+      "description": "Adults, children and infants in one popover: a stepper for each, ages as help text, and limits that explain themselves in words when they stop a button.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/guest-picker/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/guest-picker/index.tsx"
+        },
+        {
+          "path": "registry/application/guest-picker/counts.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/guest-picker/counts.ts"
+        }
+      ],
+      "docs": "groups is the list of kinds of guest: id, label, description, min, max, noun ({ one, other } for the summary) and countsTowardTotal (false for infants). value and onValueChange speak a number per group id, such as { adults: 2, children: 1, infants: 0 }. maxTotal caps the guests that count; the summary on the button reads \"2 adults, 1 child\" (formatSummary writes it differently). Minus and plus are real buttons named after the kind (\"Fewer adults\"); they are aria-disabled, never disabled, so they keep focus, and a stopped button points at the line that says why: under the row for a limit of its own (at least one adult), in the footer when the total is full (\"The limit is 6 guests in total. Infants are not counted.\"). The number between them is a spin button you can type into and step with the arrow keys, Home and End. Every change is announced politely. Escape closes the panel with focus back on the button. commit=\"done\" keeps the steps in the panel until Done is pressed, and closing any other way throws them away. open, defaultOpen (which does not take focus) and onOpenChange control the panel; labels renames every word; the button takes id and the usual button props."
+    },
+    {
+      "name": "guest-picker-demo",
+      "type": "registry:example",
+      "title": "Guest picker demo",
+      "description": "A working preview of Guest picker.",
+      "registryDependencies": [
+        "https://rhsui.com/r/guest-picker.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/guest-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "likert-matrix",
+      "type": "registry:component",
+      "title": "Likert matrix",
+      "description": "Several statements on one scale: a real table with one tab stop per row, a sticky statement column, and one card per statement on a phone.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/likert-matrix/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/likert-matrix/index.tsx"
+        },
+        {
+          "path": "registry/application/likert-matrix/matrix.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/likert-matrix/matrix.ts"
+        }
+      ],
+      "docs": "statements are the rows (id, text) and options the shared scale, first point first: a plain word is its own label and value, { value, label } keeps them apart. value maps a statement id to the chosen option value. The layout follows the width of its container, not the screen: from 36rem it is a real table with the scale as visible column headers in equal columns, each statement a row header and one point per cell; below that it is one card per statement with the scale as a vertical radio list. In the table every point is a radio named by its statement and its column, each row has one tab stop, and the arrow keys, Home and End move and choose inside it; the table scrolls inside its own frame with the statement column held in place. requireAll makes a form the grid sits in refuse to submit until every statement is answered: focus goes to the first that is not, those rows say \"Choose one\" in text, and an error lists them with a link to each. showErrors does the same for a submit of your own. name sends one field per statement, <name>.<statement id>. legend names the table and the list of cards, labels renames every word."
+    },
+    {
+      "name": "likert-matrix-demo",
+      "type": "registry:example",
+      "title": "Likert matrix demo",
+      "description": "A working preview of Likert matrix.",
+      "registryDependencies": [
+        "https://rhsui.com/r/likert-matrix.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/likert-matrix-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "answer-checklist",
+      "type": "registry:component",
+      "title": "Answer checklist",
+      "description": "A checklist where each item gets an answer, Pass, Fail or N/A, or Yes and No, with a note that opens on the answers that need explaining.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/answer-checklist/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/answer-checklist/index.tsx"
+        },
+        {
+          "path": "registry/application/answer-checklist/checklist.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/answer-checklist/checklist.ts"
+        }
+      ],
+      "docs": "items are the statements (id, label, hint, notePlaceholder) and options the answers: value, label and an optional tone (pass, fail or skip) that sets the shape of the mark; the default is Pass, Fail and Not applicable. value maps a statement id to { answer, note }, and onValueChange receives the whole map. noteOn lists the answers that need a note: choosing one opens a required textarea under the row, and the row stays open, marked \"Note required\", until it has text; the note is kept if the answer changes. Each row is a radio group (the house segmented control) named by its statement and hint, and shows its state in a mark and in words. The header counts what is left (\"7 of 12 answered, 1 note missing\") in a polite live region next to a thin Progress, and Jump to next unanswered moves focus to the first open row: to its answer, or to its empty note. On a phone the control wraps under the statement at full width. labels renames every word."
+    },
+    {
+      "name": "answer-checklist-demo",
+      "type": "registry:example",
+      "title": "Answer checklist demo",
+      "description": "A working preview of Answer checklist.",
+      "registryDependencies": [
+        "https://rhsui.com/r/answer-checklist.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/answer-checklist-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "event-time-fieldset",
+      "type": "registry:component",
+      "title": "Event time fieldset",
+      "description": "When does it happen: start and end date and time, an All day switch, and an end that moves with the start so the length is kept.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/date-picker.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/time-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/event-time-fieldset/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-time-fieldset/index.tsx"
+        },
+        {
+          "path": "registry/application/event-time-fieldset/moments.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-time-fieldset/moments.ts"
+        }
+      ],
+      "docs": "value is { start, end, allDay }: start and end are wall-clock text, \"YYYY-MM-DDTHH:mm\" (or \"\" while nothing is chosen), read in timeZone, so the same value means the same on every machine; convert to an instant with the zone when you save. Moving the start moves the end by the same amount, so a one-hour meeting stays one hour, and a start picked with no end yet gets an hour. An end at or before the start (a later day for all-day events, on or after the first) is refused with the reason in words, in an alert, and the old end stays; it is not reported. All day hides the times and keeps them, so turning it off brings them back. A sentence in a polite live region says the whole event: \"Tue 27 Oct, 14:00 to 15:00 (1 h), Europe/Amsterdam\". minuteStep sets the times in the list, minDate (\"YYYY-MM-DD\") the first day, locale the language of the dates. The pickers are the house Date picker and Time picker; start and end are each a group named \"Starts\" and \"Ends\", inside a fieldset with a legend. labels renames every word."
+    },
+    {
+      "name": "event-time-fieldset-demo",
+      "type": "registry:example",
+      "title": "Event time fieldset demo",
+      "description": "A working preview of Event time fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/event-time-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/event-time-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "send-schedule-field",
+      "type": "registry:component",
+      "title": "Send schedule field",
+      "description": "Send now or later: two choices, a day and time that open for later, the time zone in words, and a sentence saying exactly when it goes out.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/date-time-picker.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/send-schedule-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/send-schedule-field/index.tsx"
+        },
+        {
+          "path": "registry/application/send-schedule-field/zone.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/send-schedule-field/zone.ts"
+        }
+      ],
+      "docs": "value is { mode, at }: mode is \"now\" or \"later\", and at is an ISO time with an offset (\"2026-10-27T09:00:00+01:00\"), or null while the day or the time is missing or was refused. The two choices are a real radio group, so the arrow keys move and choose. Schedule opens the house Date time picker, read in timeZone (an IANA name; the offset comes from the zone at that moment, daylight saving included). A time sooner than now plus minLeadMinutes is refused with a message that names the earliest time that works, and is reported as at: null so a Send button can wait. A sentence in a polite live region always says the result: \"Goes out Tue 27 Oct at 09:00, Europe/Amsterdam, in 3 days\". now fixes the clock for tests and previews; without it the field reads the browser clock after the page has loaded, so the server and the browser agree, and again every half minute. minuteStep sets the times in the list, locale the language of the dates and of \"in 3 days\", labels renames every word."
+    },
+    {
+      "name": "send-schedule-field-demo",
+      "type": "registry:example",
+      "title": "Send schedule field demo",
+      "description": "A working preview of Send schedule field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/send-schedule-field.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/send-schedule-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quiet-hours-field",
+      "type": "registry:component",
+      "title": "Quiet hours field",
+      "description": "Do not disturb on a schedule: a switch, from and to times, the days it applies to, and a sentence that understands overnight ranges.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/time-picker.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/quiet-hours-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quiet-hours-field/index.tsx"
+        },
+        {
+          "path": "registry/application/quiet-hours-field/schedule.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quiet-hours-field/schedule.ts"
+        }
+      ],
+      "docs": "value is { enabled, from, to, days }: from and to are \"HH:MM\" in 24-hour time, and days are getDay() numbers (0 is Sunday) naming the days a quiet period starts on. A range that crosses midnight (22:00 to 07:00) is valid: the field says so, and a thin 24-hour track shows where the quiet falls in two pieces. From equal to To is refused with a message, and so is turning off the last day; a refused change is never reported. The days are toggle chips named by the whole weekday, in the language of locale, in a row that starts on weekStartsOn (default Monday). A sentence in a polite live region says the schedule, \"Quiet from 22:00 to 07:00, Monday to Friday\". Switching it off dims and locks the rest but clears nothing, so switching it on again brings the old schedule back. minuteStep sets the times in the list, disabled turns the whole field off, and labels renames every word, including the ones in the sentences."
+    },
+    {
+      "name": "quiet-hours-field-demo",
+      "type": "registry:example",
+      "title": "Quiet hours field demo",
+      "description": "A working preview of Quiet hours field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quiet-hours-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quiet-hours-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inherited-field",
+      "type": "registry:component",
+      "title": "Inherited field",
+      "description": "A setting that follows its parent until you override it: the inherited value shown and named, an Override switch, and Reset back to inherited.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/inherited-field/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/inherited-field/index.tsx"
+        },
+        {
+          "path": "registry/application/inherited-field/labels.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/inherited-field/labels.ts"
+        }
+      ],
+      "docs": "Pass the parent's value and who it comes from as inherited ({ value, source }), the person's own value as value (null while the setting follows the parent, which is also what onValueChange reports, so a form can send it as no value) and control, a function that renders your input from the value, onValueChange and the ids it is handed: spread them onto the input. The control is not rendered while the value is inherited, so a form never sends it. The Override switch starts the control from the inherited value, or from the value the person had before; Reset and the switch go back, and the typed value is remembered until the field unmounts, so key it after a save; a value equal to the inherited one is not worth remembering and is not (equals compares objects and arrays, default Object.is). format writes a value in words (\"30 days\"), description adds a line under the label, and labels translates the fixed words. error marks the control invalid (aria-invalid on what your control spreads it onto) and shows the message; Input and Select draw that themselves, while a control that frames itself on a wrapper, like NumberInput, needs has-[input[aria-invalid=true]]:border-destructive on its className."
+    },
+    {
+      "name": "inherited-field-demo",
+      "type": "registry:example",
+      "title": "Inherited field demo",
+      "description": "A working preview of Inherited field.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inherited-field.json",
+        "https://rhsui.com/r/number-input.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inherited-field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agreement-scroll",
+      "type": "registry:component",
+      "title": "Agreement scroll",
+      "description": "Terms in a scrolling box with a read-progress line; the accept checkbox unlocks at the end, and keyboard users and short texts still work.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/agreement-scroll/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/agreement-scroll/index.tsx"
+        },
+        {
+          "path": "registry/application/agreement-scroll/labels.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/agreement-scroll/labels.ts"
+        }
+      ],
+      "docs": "Pass title, version and the text as children (h4, p, ol and ul are styled). The checkbox stays disabled until the reader reaches the end of the scrolling region, or at once when the text fits; once reached it stays unlocked, and a text that is already accepted can always be un-accepted. Control it with accepted and onAcceptedChange, or defaultAccepted. requireScroll={false} offers the text without the lock and hides the hint, the percentage and the jump button. The region is focusable and named by the title, so the arrow keys, Page Up and Down, Space and End scroll it; Jump to the end scrolls there (instantly under reduced motion) and hands the focus to the checkbox. A ResizeObserver checks again when the width changes. height sets the region's height (default 16rem), acceptLabel the words by the checkbox, name submits it with a form, and labels translates the fixed words."
+    },
+    {
+      "name": "agreement-scroll-demo",
+      "type": "registry:example",
+      "title": "Agreement scroll demo",
+      "description": "A working preview of Agreement scroll.",
+      "registryDependencies": [
+        "https://rhsui.com/r/agreement-scroll.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/agreement-scroll-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "report-form",
+      "type": "registry:component",
+      "title": "Report form",
+      "description": "Report a post, a listing or a user: a short list of reasons, a detail box that opens when it helps, and clear words on what happens next.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/result-state.json",
+        "https://rhsui.com/r/textarea-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/report-form/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/report-form/index.tsx"
+        },
+        {
+          "path": "registry/application/report-form/report.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/report-form/report.ts"
+        }
+      ],
+      "docs": "Give it reasons ({ id, label, description, requiresDetail }), the subject being reported ({ kind, title, byline }) and onSubmit, which receives { reasonId, detail, block }; return a promise and the button shows it is working, and if it rejects the form stays and says so. A reason with requiresDetail opens a text box with a counter (maxDetail, default 500) and Send waits for minDetail characters (default 10); the line beside Send says what is missing. blockOption adds an 'Also block this user' checkbox, unticked, with your own words if you pass them. After a successful send a confirmation replaces the form, is announced politely and takes the focus; onDone adds its button, onCancel the Cancel button. value, defaultValue and onValueChange hold a draft ({ reasonId, detail, block }). In a Dialog, pass your DialogHeader as header so its title names the dialog; it stays in the page, unseen, after the report is sent, so the dialog keeps its name. In a Dialog that is shorter than the form, the subject, reasons and note scroll between the heading and the Send row, which both stay in view (the form is capped at the screen height less the dialog's margin and its default padding; elsewhere, give it a max-height with className and it scrolls the same way). labels translates the words."
+    },
+    {
+      "name": "report-form-demo",
+      "type": "registry:example",
+      "title": "Report form demo",
+      "description": "A working preview of Report form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/report-form.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/report-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tiered-rates-editor",
+      "type": "registry:component",
+      "title": "Tiered rates editor",
+      "description": "Edit price breaks, shipping bands or commission tiers: ranges that chain automatically, so there are never gaps or overlaps.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/currency-input.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/tiered-rates-editor/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/tiered-rates-editor/index.tsx"
+        },
+        {
+          "path": "registry/application/tiered-rates-editor/cell-input.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/tiered-rates-editor/cell-input.tsx"
+        },
+        {
+          "path": "registry/application/tiered-rates-editor/tiers.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/tiered-rates-editor/tiers.ts"
+        }
+      ],
+      "docs": "Pass the tiers as value ([{ from, rate }], first to last) with onValueChange. A tier ends one below where the next begins, so the To column is worked out and never typed, and the last row says 'and up'. The first tier starts where yours does and stays; every other From must lie between its neighbours, and a number that would make a tier end before it starts is refused with the reason in words: the cell keeps its last good number. A start is judged when typing pauses, when the cell is left and on Enter, so a number on its way ('7' before '75') is never refused; only one that more digits cannot repair (above the next tier's start) is refused at once. The reason replaces the note under the table while it is shown, and the band is kept as tall as the longest reason needs, so nothing moves. Below 20rem of width the Tier column is left out (the fields keep their names by row) so the table fits a small phone. Add appends a tier at a round number about twice the last start, with no rate yet; removing a tier hands its range to the one before it (the first tier's range goes to the next). With a currency the rate is money in minor units (cents), without one a plain number with rateSuffix after it. unit takes a word or { one, other }, rateLabel names the column and starts the note, minRows and maxRows limit the table, and labels translates the words."
+    },
+    {
+      "name": "tiered-rates-editor-demo",
+      "type": "registry:example",
+      "title": "Tiered rates editor demo",
+      "description": "A working preview of Tiered rates editor.",
+      "registryDependencies": [
+        "https://rhsui.com/r/tiered-rates-editor.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/tiered-rates-editor-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "transfer-list",
+      "type": "registry:component",
+      "title": "Transfer list",
+      "description": "Move items between Available and Chosen: two searchable listboxes, add and remove buttons, double-click or Enter, counts, and moves that are announced.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/transfer-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/transfer-list/index.tsx"
+        },
+        {
+          "path": "registry/application/transfer-list/pane.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/transfer-list/pane.tsx"
+        },
+        {
+          "path": "registry/application/transfer-list/transfer.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/transfer-list/transfer.ts"
+        }
+      ],
+      "docs": "Pass items ({ id, label, description, disabled }) and control the chosen ids with value and onValueChange (new items are added at the end), or use defaultValue. Each list is a multi-select listbox with its own search and a header checkbox: click or Space toggles an item, Shift with click or the arrows selects a range, Control A selects all, and Enter or a double click moves the item, or the whole selection when it is part of it. Add, Add all, Remove and Remove all are disabled when they would do nothing; while a search is on, 'all' means what is shown. After a move the cursor stands where the items were and the move is announced; moved items are tinted for a moment. Disabled items cannot be moved. titles names the lists, name sends one hidden input per chosen id, height sizes them, labels translates the words. Below 42rem of container width the lists stack and the buttons lie in a row, each with its word under the chevron. The row under the cursor wears a ring only for keyboard focus; a click shows the selection tint alone."
+    },
+    {
+      "name": "transfer-list-demo",
+      "type": "registry:example",
+      "title": "Transfer list demo",
+      "description": "A working preview of Transfer list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/transfer-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/transfer-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "record-lookup",
+      "type": "registry:component",
+      "title": "Record lookup",
+      "description": "Pick one record from a big table: a field with a Look up button that opens a searchable, sortable, paged table in a dialog, loaded from your server.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/spinner.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/record-lookup/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/record-lookup/index.tsx"
+        },
+        {
+          "path": "registry/application/record-lookup/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/record-lookup/panel.tsx"
+        },
+        {
+          "path": "registry/application/record-lookup/lookup.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/record-lookup/lookup.ts"
+        }
+      ],
+      "docs": "Give it columns ({ key, label, sortable, align, width }) and loadRows(query, signal), which answers { rows, total } for { search, page, pageSize, sort }, so the data can stay on the server. Each new question aborts the one before it, and a late answer is dropped even when your loader ignores the signal. Control the chosen record with value and onValueChange ({ id, plus a value per column key }; null when cleared). The field shows the record named by labelKey (the first column) with a muted line from detailKey (the second). In the dialog, Arrow Down moves from the search field into the rows, Enter in the field takes the chosen row or the first result, and Enter or a double click on a row takes it. title names the dialog, pageSize sets the rows, name sends the id with a form, labels translates the words. A width on any column (a CSS length, '12rem') fixes the layout, so the columns keep their places from one answer to the next and a long value is cut with an ellipsis; a column without a width shares what is left, and without any widths the table fits its columns to what it shows. The table keeps the room of a whole page so the dialog does not change height, and on a short screen it gives way and scrolls inside itself, so the paging, Select and Cancel are never covered. RecordLookupPanel is the same table without the dialog."
+    },
+    {
+      "name": "record-lookup-demo",
+      "type": "registry:example",
+      "title": "Record lookup demo",
+      "description": "A working preview of Record lookup.",
+      "registryDependencies": [
+        "https://rhsui.com/r/record-lookup.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/record-lookup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "seo-fieldset",
+      "type": "registry:component",
+      "title": "SEO fieldset",
+      "description": "Page title and description fields with a live search-result preview and a length meter that turns to words before text would be cut off.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/seo-fieldset/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/seo-fieldset/index.tsx"
+        },
+        {
+          "path": "registry/application/seo-fieldset/length-meter.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/seo-fieldset/length-meter.tsx"
+        },
+        {
+          "path": "registry/application/seo-fieldset/preview.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/seo-fieldset/preview.tsx"
+        },
+        {
+          "path": "registry/application/seo-fieldset/seo.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/seo-fieldset/seo.ts"
+        }
+      ],
+      "docs": "Give it baseUrl and control it with value ({ title, description, slug }) and onValueChange, or defaultValue. Lengths are counted in characters as a person sees them (an emoji is one) after runs of spaces are collapsed, against titleLimit (60) and descriptionLimit (160); titleMin (30) and descriptionMin (70) start the recommended range. The meter turns to 'Too long, cut off at 60' with a warning icon, and only a change of state is announced, never every keystroke. The preview cuts the text after exactly the limit and closes it with an ellipsis; an empty field shows fallbackTitle or fallbackDescription in grey, so it is never blank. The address line is built from baseUrl and the slug; editSlug adds a field for the slug, tidied to lower case and hyphens when you leave it. name sends the fields with a form, locale sets how characters are counted, labels translates the words."
+    },
+    {
+      "name": "seo-fieldset-demo",
+      "type": "registry:example",
+      "title": "SEO fieldset demo",
+      "description": "A working preview of SEO fieldset.",
+      "registryDependencies": [
+        "https://rhsui.com/r/seo-fieldset.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/seo-fieldset-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

@@ -10168,6 +10168,1481 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "podcast-hero",
+      "type": "registry:block",
+      "title": "Podcast hero",
+      "description": "A podcast's opening: cover art, the latest episode with a Play button that hands off to your player, and where to listen as plain text links.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/podcast-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/podcast-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/podcast-hero/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/podcast-hero/format.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-podcast-eq": {
+          "0%, 100%": {
+            "transform": "scaleY(0.35)"
+          },
+          "50%": {
+            "transform": "scaleY(1)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-podcast-eq": "rhs-podcast-eq 900ms ease-in-out infinite"
+        }
+      },
+      "docs": "Pass the show (title, hosts, description and an optional square cover with its alt text) and the latest episode: duration is in seconds and is written \"48 min\" and spoken \"48 minutes\", publishedAt is an ISO day, a timestamp or a Date. Leave the cover out and the hero sets one from the show name, black on white or the reverse. onPlay(episode) is where you tell your player what to play; the player itself lives elsewhere. Hand its state back with playing and the button says Pause and the card says Now playing; onPause is called then, or onPlay again if you leave it out, so one handler can toggle. listenLinks are services named in text, such as Apple Podcasts, Spotify and RSS, instead of logos, in a list named after the show so two shows on a page are told apart. Pass locale and timeZone for the dates and lengths, and labels to translate the fixed words. onPlay and onPause are functions, so use the hero inside a Client Component."
+    },
+    {
+      "name": "podcast-hero-demo",
+      "type": "registry:example",
+      "title": "Podcast hero demo",
+      "description": "A working preview of Podcast hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/podcast-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/podcast-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "book-hero",
+      "type": "registry:block",
+      "title": "Book hero",
+      "description": "An author's launch opening: the cover as a turned object with a hinge and a page block, praise to step through, and where to buy or read an extract.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/pull-quote.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/book-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/book-hero.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-book-quote-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(4px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-book-quote-in": "rhs-book-quote-in 240ms cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "docs": "Pass the cover (an image with its size, and an alt only if \"Cover of Title by Author\", which is the default, is not what you want), the title, subtitle and author. praise is an array of { quote, source }: with two or more, Previous and Next step between them and the room for the longest is reserved, so nothing jumps; nothing ever advances them by itself. retailers is an array of { label, href }: several make a Buy menu, one makes a plain link and none leaves the button out; extractHref adds Read an extract. publishedAt and format make the small line under the buttons; pass labels={{ published: \"Out {date}\" }} for a book that is not out yet. The cover is drawn with CSS transforms alone, no 3D library, and lies flat under reduced motion. Pass locale and timeZone for the date, and labels to translate the fixed words."
+    },
+    {
+      "name": "book-hero-demo",
+      "type": "registry:example",
+      "title": "Book hero demo",
+      "description": "A working preview of Book hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/book-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/book-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "lineup-hero",
+      "type": "registry:block",
+      "title": "Lineup hero",
+      "description": "A festival or conference poster set in type: the dates and the city as display type, and the names sized by billing, wrapping like a poster.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/lineup-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/lineup-hero.tsx"
+        }
+      ],
+      "docs": "Pass the festival's title, the dates as you want them set (\"12–14 June 2027\"), the venue (a city, or { city, name } to set the place small under it) and tiers: an array of { label, names } with the largest billing first, where each name is { name, role?, href? }. The first tier is set largest, the second at half that and every later tier small and quiet. The sizes follow the width of the names' own column, so the poster reflows inside a narrow container as well as on a wide page, and a long name wraps instead of overflowing. Each tier is a heading for screen readers; showTierLabels also writes it on the page, in a column beside the names. A name with an href is a link, and a role is set small after it. ticketsHref and programmeHref add the two buttons. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "lineup-hero-demo",
+      "type": "registry:example",
+      "title": "Lineup hero demo",
+      "description": "A working preview of Lineup hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/lineup-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/lineup-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recipe-hero",
+      "type": "registry:block",
+      "title": "Recipe hero",
+      "description": "The top of a recipe: the photo, title, stars, prep, cook and servings as one region of facts, and a Jump to recipe link that skips the story.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/recipe-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/recipe-hero/format.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/recipe-hero/format.ts"
+        }
+      ],
+      "docs": "Pass the title, a photo with its alt, a description, the author (a name, or { name, href }), publishedAt, the rating ({ value, count, href? }), the facts and the diet chips. facts are prep, cook and total in minutes (total is prep plus cook when you leave it out), servings (a number or words) and difficulty; each one you leave out is left out of the row, which is one region named Recipe facts and then the title, so two recipes on a page are told apart. Times are time elements with ISO durations, written \"25 min\" and spoken \"25 minutes\". jumpHref is the id of the recipe further down the page. Save reports aria-pressed: pass saved to control it or defaultSaved to start it saved, and onSave(saved) is where you keep it. Print opens the browser's print dialog unless you pass onPrint. Pass locale and timeZone for the numbers and the date, and labels to translate the fixed words. onSave and onPrint are functions, so use the hero inside a Client Component."
+    },
+    {
+      "name": "recipe-hero-demo",
+      "type": "registry:example",
+      "title": "Recipe hero demo",
+      "description": "A working preview of Recipe hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recipe-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recipe-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "matchday-hero",
+      "type": "registry:block",
+      "title": "Matchday hero",
+      "description": "A club's opening on matchday: the next fixture with both teams, kick-off and tickets, a countdown inside a week, and the last five results.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/matchday-hero/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/matchday-hero/index.tsx"
+        },
+        {
+          "path": "registry/marketing/matchday-hero/time.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/matchday-hero/time.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-matchday-ping": {
+          "0%": {
+            "transform": "scale(1)",
+            "opacity": "0.5"
+          },
+          "75%, 100%": {
+            "transform": "scale(2.6)",
+            "opacity": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-matchday-ping": "rhs-matchday-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite"
+        }
+      },
+      "docs": "Pass the fixture: competition, home and away (a name and an optional logo; the initials stand in for a missing crest), kickoff as an ISO string with its offset, and venue. The kick-off is written in timeZone, the venue's own, as a time element. When it is less than a week away a countdown in days and hours appears in the corner of the card, worked out in the browser so the server never prints a stale one; pass now to fix the moment for previews and tests. form is the last results, oldest first (result, opponent, score, and short, a few letters such as \"WAN\" that are set under the score): the last five are shown, Win, Draw and Loss are spelled out for screen readers, and the opponent is said in full after the score and shown as a tooltip, so leave short out and the chip and the score stand alone. position is { rank, league, points? }. Set fixture.status to \"live\" with a score and a minute and the card shows the score with Live in words, and ticketsHref gives way to liveHref as Watch live. Pass hourCycle and locale, and labels (ordinals and points take a form for each plural category of your language)."
+    },
+    {
+      "name": "matchday-hero-demo",
+      "type": "registry:example",
+      "title": "Matchday hero demo",
+      "description": "A working preview of Matchday hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/matchday-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/matchday-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "inline-image-hero",
+      "type": "registry:block",
+      "title": "Inline image hero",
+      "description": "An agency statement set at display size with small rounded pictures between the words, so the sentence and the work read together.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/inline-image-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/inline-image-hero.tsx"
+        }
+      ],
+      "docs": "parts is the sentence as data: strings and { image, alt?, ratio? } in the order they are read. Words are joined with a space and each picture is set as a pill between them, as high as the line itself and sized in em, so it wraps with the line and shrinks with the type on a phone. The heading reads as one plain sentence: a picture is hidden from assistive technology unless you pass an alt, which is then read at its place in the sentence. kicker sits above the sentence; meta is a list of small facts and cta the one button, both along a rule under it. titleAs makes the heading an h1 when the hero opens the page."
+    },
+    {
+      "name": "inline-image-hero-demo",
+      "type": "registry:example",
+      "title": "Inline image hero demo",
+      "description": "A working preview of Inline image hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/inline-image-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/inline-image-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "big-number-hero",
+      "type": "registry:block",
+      "title": "Big number hero",
+      "description": "One figure as the picture: a huge number at the largest size its container allows, what it measures, a dated source and the action that follows.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/animated-number.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/big-number-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/big-number-hero.tsx"
+        }
+      ],
+      "docs": "value is the figure, unit what it counts (\"million litres\", \"years\", \"%\"), label what it measures, and format takes options for Intl.NumberFormat, such as { maximumFractionDigits: 1 } or { style: \"percent\" }. The figure is set at the largest size its container allows, from a phone to a wide page: a short unit stays beside it, a longer one drops under it on a narrow screen. The heading holds the label and the final value as text from the first render. animate counts up from zero once, the first time the figure is on screen, using AnimatedNumber; duration is in seconds; under reduced motion, or without IntersectionObserver, the final value is simply there. source is words or { label, href }, asOf the day the figure was true (shown in a time element) and actions the buttons, the first of them solid. Pass locale and timeZone, and labels to translate the fixed words."
+    },
+    {
+      "name": "big-number-hero-demo",
+      "type": "registry:example",
+      "title": "Big number hero demo",
+      "description": "A working preview of Big number hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/big-number-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/big-number-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "gallery-hero",
+      "type": "registry:block",
+      "title": "Gallery hero",
+      "description": "A full-bleed photograph opening a series: the picture, caption and credit, a counter with Previous and Next, and thumbnails that switch it.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/gallery-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/gallery-hero.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-gallery-fade": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-gallery-photo": "rhs-gallery-fade 600ms ease-out",
+          "animate-rhs-gallery-caption": "rhs-gallery-fade 300ms ease-out"
+        }
+      },
+      "docs": "photos is an array of { src, alt, title, place?, year?, credit? } and initial the index shown first; give each photo srcSet and sizes for responsive files and thumb for a small file in the strip, so a series of large pictures does not load them all as thumbnails. The caption bar writes the title and place on the left, the year and credit on the right, and a \"03 / 08\" counter beside Previous and Next. A strip of thumbnails switches the picture, and so do the arrow keys, Home and End while focus is inside the gallery, and a swipe on a touch screen. A new picture fades in over the old one, the pictures either side are fetched ahead, the caption is announced through a polite live region, and no timer ever advances it. title stays small in a corner so the photograph carries the page; cta adds a link in the other corner. onIndexChange(index) tells your page which picture is showing; it is a function, so use the hero inside a Client Component then. Pass labels to translate the fixed words."
+    },
+    {
+      "name": "gallery-hero-demo",
+      "type": "registry:example",
+      "title": "Gallery hero demo",
+      "description": "A working preview of Gallery hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/gallery-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/gallery-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "community-hero",
+      "type": "registry:block",
+      "title": "Community hero",
+      "description": "A community opening built from its members: a mosaic of faces, the member count, the channels busy right now and one join button.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/community-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/community-hero.tsx"
+        }
+      ],
+      "docs": "Pass twelve to eighteen members (name and an optional square image): the first half sit on the left of the text and the rest on the right, a phone shows eight, and a member without a picture is drawn as initials. Pictures load lazily, so the faces a phone hides are never fetched. total is the figure on the line under the button, channels are the ones busy now with how many are in each, and joinHref is where the button goes. The mosaic is decoration: a screen reader gets one sentence naming the first few members, and the labels prop translates it with the other fixed words. The faces flank the text when the container is at least 68rem wide and become a row above and below it otherwise, so the hero follows the width of its parent, not the window."
+    },
+    {
+      "name": "community-hero-demo",
+      "type": "registry:example",
+      "title": "Community hero demo",
+      "description": "A working preview of Community hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/community-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/community-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "creator-hero",
+      "type": "registry:block",
+      "title": "Creator hero",
+      "description": "A link-in-bio opening for a creator: avatar, handle, a line of bio, three audience numbers and a column of link buttons, designed at 320px.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/feature-badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/creator-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/creator-hero.tsx"
+        }
+      ],
+      "docs": "Give name, handle, bio and an optional square avatar (without one the initials are drawn). stats are numbers, not strings: 48200 is shown as 48.2K in the locale you pass and read in full to a screen reader. links is the stack of buttons: a label, an href, an icon from @rhs-ui/icons, an optional badge (\"new\", \"beta\" or \"soon\") and featured for the one link to set in solid colour. A link to an absolute http(s) address opens in a new tab with rel=\"noopener noreferrer\" and says so to screen readers; pass external to override. socials are profiles named in text, not logos. Use nameAs=\"h1\" when the hero opens the page, and labels to translate the fixed words."
+    },
+    {
+      "name": "creator-hero-demo",
+      "type": "registry:example",
+      "title": "Creator hero demo",
+      "description": "A working preview of Creator hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/creator-hero.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/creator-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "breathing-hero",
+      "type": "registry:block",
+      "title": "Breathing hero",
+      "description": "A wellness opening with a ring that breathes in, holds and out on a 4-4-6 rhythm, the words to match, a pause control and a start button.",
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/breathing-hero.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/breathing-hero.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-breathe-in": {
+          "from": {
+            "scale": "0.6"
+          },
+          "to": {
+            "scale": "1"
+          }
+        },
+        "@keyframes rhs-breathe-out": {
+          "from": {
+            "scale": "1"
+          },
+          "to": {
+            "scale": "0.6"
+          }
+        },
+        "@keyframes rhs-breathe-fill": {
+          "from": {
+            "scale": "0 1"
+          },
+          "to": {
+            "scale": "1 1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-breathe-in": "rhs-breathe-in 4s cubic-bezier(0.37, 0, 0.63, 1) both",
+          "animate-rhs-breathe-out": "rhs-breathe-out 6s cubic-bezier(0.37, 0, 0.63, 1) both",
+          "animate-rhs-breathe-fill": "rhs-breathe-fill 4s linear both"
+        }
+      },
+      "docs": "pattern is seconds in, hold and out (4, 4 and 6 by default; a hold of 0 skips it). The ring is moved by CSS animations whose length comes from the pattern, so no script runs per frame; one timer wakes at each change of phase to update the words and the status announcement, which is polite and stops while paused. A Pause and Resume button is always there: leave paused out to let it work, or pass paused and onPausedChange to control it. onStart is called when the main button is pressed, or pass ctaHref to make it a link. Under reduced motion the ring stays still and the words and a thin progress line in three named parts (In 4s, Hold 4s, Out 6s) carry the timing. onStart is a function, so use the hero inside a Client Component. A pattern you change while it runs takes effect from the current phase; give the hero a new key to start again from the first breath. labels translates the fixed words, the three timing captions included ({count} stands for the seconds). Any other prop, such as an id for a nav anchor, aria or data attributes or a ref, goes to the section."
+    },
+    {
+      "name": "breathing-hero-demo",
+      "type": "registry:example",
+      "title": "Breathing hero demo",
+      "description": "A working preview of Breathing hero.",
+      "registryDependencies": [
+        "https://rhsui.com/r/breathing-hero.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/breathing-hero-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-centered-logo",
+      "type": "registry:block",
+      "title": "Centered logo navbar",
+      "description": "A navbar with the mark on the true middle, links on the left and actions on the right, folding into a menu button on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/navigation-menu.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-centered-logo.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-centered-logo.tsx"
+        }
+      ],
+      "docs": "The props match Navbar (brand, items, actions, currentHref, linkAs, sticky), so one can replace the other: items are links, or groups that open as panels in the shared navigation menu. The three zones are one grid, so the brand stays on the true middle. The links only sit beside it where they fit: a side of the bar has room for about three short links at 768px, five at 1024px and six at 1280px, and no more than that at any width. The bar folds them into the sheet below the width that suits their number (md up to three links, lg for four, xl beyond that, so keep the list to six); pass foldBelow (md, lg or xl) to choose it yourself, for a wide mark or long labels. The current page gets aria-current and a thin underline that grows from the centre on hover and focus. Where the links fold they move into a sheet opened from the menu button on the left (menuLabel names it), and below md the actions fold into one icon button on the right that opens them in a popover; actionsLabel names the button and the popover, and actionsIcon changes its icon. Pass linkAs={Link} for your router's links."
+    },
+    {
+      "name": "navbar-centered-logo-demo",
+      "type": "registry:example",
+      "title": "Centered logo navbar demo",
+      "description": "A working preview of Centered logo navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-centered-logo.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-centered-logo-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-with-search",
+      "type": "registry:block",
+      "title": "Navbar with search",
+      "description": "A navbar built around a search field that opens your command palette, with an icon button in its place on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/search-trigger.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-with-search.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-with-search.tsx"
+        }
+      ],
+      "docs": "The field is a real button: it calls onSearchOpen, so open your own command palette or search overlay there and the bar keeps no search logic. It shows the shortcut for the platform (the Command symbol on a Mac, Ctrl elsewhere) with the letter from shortcutKey, and the shortcut works anywhere on the page, also below lg where the field gives way to an icon button named by searchLabel. Under md the links move into a sheet with the actions at its foot. onSearchOpen is a function, so use the bar from a Client Component, next to the palette it opens. Pass linkAs={Link} for your router's links and currentHref to mark the current page, and navLabel and menuLabel to name the navigation landmark and the phone menu (its button and its sheet)."
+    },
+    {
+      "name": "navbar-with-search-demo",
+      "type": "registry:example",
+      "title": "Navbar with search demo",
+      "description": "A working preview of Navbar with search.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-with-search.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/description-list.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-with-search-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-transparent",
+      "type": "registry:block",
+      "title": "Transparent navbar",
+      "description": "A navbar that sits over the hero with no background and turns solid with a hairline as soon as the page scrolls.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/navigation-menu.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-transparent/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-transparent/index.tsx"
+        },
+        {
+          "path": "registry/marketing/navbar-transparent/scroll-header.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-transparent/scroll-header.tsx"
+        }
+      ],
+      "docs": "The bar is fixed to the top of the window and see-through at rest, so put it over a hero that is already dark (tone=\"light\", the default) or light (tone=\"dark\"). Once the page has scrolled past threshold (24px) it takes the page colour and a hairline. One passive scroll listener sets data-scrolled on the header for your own styling, and the state starts from the real scroll position. At rest with a light tone the text is white and the bar speaks the dark theme's tokens, so buttons you pass as actions are legible on a photograph; a theme with no dark tokens should give those buttons colours of their own. Once solid the bar hands everything back to the page. The phone menu opens on a solid sheet; navLabel names the navigation landmark, and menuLabel the menu button and the title of the sheet. In a layout that scrolls inside a container, the bar follows that container instead of the window: pass className=\"sticky -mb-16\" so the hero still slides under it. Pass scrolled to fix the state for a preview or a test."
+    },
+    {
+      "name": "navbar-transparent-demo",
+      "type": "registry:example",
+      "title": "Transparent navbar demo",
+      "description": "A working preview of Transparent navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-transparent.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-transparent-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-onepage",
+      "type": "registry:block",
+      "title": "One-page navbar",
+      "description": "A navbar for single-page sites: section links that scroll to their section, the current one marked, and one call to action.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-onepage/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-onepage/index.tsx"
+        },
+        {
+          "path": "registry/marketing/navbar-onepage/onepage-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-onepage/onepage-bar.tsx"
+        }
+      ],
+      "docs": "Give sections as an id and a label each, in the order they appear; every link is a real fragment link, so it works before script loads. Give each section scroll-mt-20 (as tall as offset, 80px by default) so a visitor who arrives with the hash in the address also clears the bar. The section in view is marked with aria-current=\"location\" as you scroll; pass currentId to mark one yourself. A click scrolls smoothly (instantly under reduced motion), moves focus to the section's heading and calls onNavigate. On a phone the links are in a sheet that closes itself before the scroll. The mark links to brandHref (\"#top\" scrolls to the top and drops the hash of the section you were in); a call to action with href=\"#contact\" scrolls like the rest. onNavigate is a function, so use the bar from a Client Component."
+    },
+    {
+      "name": "navbar-onepage-demo",
+      "type": "registry:example",
+      "title": "One-page navbar demo",
+      "description": "A working preview of One-page navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-onepage.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-onepage-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-link-rows",
+      "type": "registry:block",
+      "title": "Footer with link rows",
+      "description": "A footer that sets link groups as labelled rows instead of columns, for sites with a few short groups and room to breathe.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-link-rows.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-link-rows.tsx"
+        }
+      ],
+      "docs": "Each group is a label and its links; the label sits on the left and the links run inline to its right, wrapping naturally, and on a phone the label sits above them. Every group is a list named by its own heading, all inside one Footer navigation. A link with external: true opens in a new tab and says so. social profiles show as round icon links when you give an icon from @rhs-ui/icons and as text links when you do not. Pass linkAs={Link} for your router's links, and navLabel and labels to translate the fixed words. Where FooterSection spreads groups across columns and FooterMinimal gives everything one row, this suits a few short groups: product, company, legal."
+    },
+    {
+      "name": "footer-link-rows-demo",
+      "type": "registry:example",
+      "title": "Footer with link rows demo",
+      "description": "A working preview of Footer with link rows.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-link-rows.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-link-rows-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-folding-columns",
+      "type": "registry:block",
+      "title": "Folding columns footer",
+      "description": "A footer for large sites: up to six link columns that fold into tap-to-open groups on a phone, with a bar for social and legal.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-folding-columns.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-folding-columns.tsx"
+        }
+      ],
+      "docs": "Give up to six columns, each with a title and groups of links; a group may have a heading of its own. From md up everything is visible. Below md each column is a button with aria-expanded and a plus or a minus, and defaultOpen lists the titles that start open. The desktop heading and the phone button are separate elements, and the links are in the page either way, closed or not. Columns animate their height and snap open under reduced motion. aside is a slot beside the brand (a newsletter, a status link), social takes icon or text profiles, and legal with legalLinks fills the bottom bar. Pass linkAs={Link} for your router's links, and navLabel and labels to translate the fixed words."
+    },
+    {
+      "name": "footer-folding-columns-demo",
+      "type": "registry:example",
+      "title": "Folding columns footer demo",
+      "description": "A working preview of Folding columns footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-folding-columns.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-folding-columns-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mobile-nav-drilldown",
+      "type": "registry:block",
+      "title": "Drill-down mobile menu",
+      "description": "A phone menu where each group slides its links in as a new panel with a Back row, the way native apps navigate.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/mobile-nav-drilldown/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/mobile-nav-drilldown/index.tsx"
+        },
+        {
+          "path": "registry/marketing/mobile-nav-drilldown/client.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/mobile-nav-drilldown/client.tsx"
+        },
+        {
+          "path": "registry/marketing/mobile-nav-drilldown/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/mobile-nav-drilldown/types.ts"
+        }
+      ],
+      "docs": "Pass brand, the groups and, if you like, actions (sign in, start free) and current, the href of the page you are on. A group with links opens as a panel of its own; a group without links is a plain link, and one with links and an href offers an All row first that leads to the group's own page. Every link closes the sheet. Escape goes up a level before it closes the sheet, Up, Down, Home and End move between the rows, and the panels you cannot see are inert, so their links are never tabbable. DrilldownMenu is the same menu without the sheet, for a container of your own, and defaultGroup opens one panel first. The menu button is shown at every width: pass className=\"md:hidden\" to hide it from md up, or trigger to use a button of your own. open, defaultOpen and onOpenChange control the sheet, labels translates the fixed words, and linkAs renders your router's Link. onOpenChange is a function, so use the menu from a Client Component if you control it."
+    },
+    {
+      "name": "mobile-nav-drilldown-demo",
+      "type": "registry:example",
+      "title": "Drill-down mobile menu demo",
+      "description": "A working preview of Drill-down mobile menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/mobile-nav-drilldown.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mobile-nav-drilldown-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "utility-bar",
+      "type": "registry:block",
+      "title": "Utility bar",
+      "description": "A slim bar above the header with the practical things: phone, email, an open-now line in words, and language and login links.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/opening-hours.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/utility-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/utility-bar.tsx"
+        }
+      ],
+      "docs": "Give it phone, email, status and links. The phone and the email are tel: and mailto: links whose text is the number and the address themselves, so they can be read, copied and printed; phoneHref sets another tel: address for a number with an extension. status is the shape OpeningHours takes, { open, text }, worked out on your side from your clock in the business's time zone: the bar shows your words with a filled dot when open and a hollow one when closed, so it never leans on colour. Below sm only the phone and the status show; the email appears from sm and the links, which belong in the main menu on a phone, from md. Between md and lg the email makes way for the links, so the bar stays one row on a tablet, and it returns from lg. With no phone and no status the bar is not drawn where it would be empty: below md when it holds only links, below sm when it holds only an email. A link in another language takes lang, so a screen reader pronounces it right. linkAs renders your router's Link and labels translates the fixed words."
+    },
+    {
+      "name": "utility-bar-demo",
+      "type": "registry:example",
+      "title": "Utility bar demo",
+      "description": "A working preview of Utility bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/utility-bar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/utility-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb-bar",
+      "type": "registry:block",
+      "title": "Breadcrumb bar",
+      "description": "A slim bar under the header with the trail on the left and page actions on the right, folding to a single Back link on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/breadcrumb.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/breadcrumb-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/breadcrumb-bar.tsx"
+        }
+      ],
+      "docs": "Pass the trail from the top, the last crumb being the current page, which carries aria-current and is not a link. From md up the bar shows the ordered list; once it is longer than maxItems (4) the first crumb and the last ones stay and the levels between fold into a menu with a link each. Below md it is one Back link to the nearest parent that has an href. The trail has priority on the row: its crumbs never wrap, every crumb but the current page keeps its width (a very long label is cut at 10rem with an ellipsis) and only the current page gives way when the row runs short. actions is a slot for small buttons or links such as Share, Print or Edit; updated takes the words you format, in the language and time zone of the page, and the same moment as a machine-readable dateTime; it shows from lg up, where there is room for it beside the trail and the actions. labels translates the fixed words and linkAs renders your router's Link."
+    },
+    {
+      "name": "breadcrumb-bar-demo",
+      "type": "registry:example",
+      "title": "Breadcrumb bar demo",
+      "description": "A working preview of Breadcrumb bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/breadcrumb-bar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/breadcrumb-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-app-stores",
+      "type": "registry:block",
+      "title": "App store footer",
+      "description": "A footer with link columns, the two store buttons drawn in the house style and a QR code slot for visitors at a desk.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/app-download-hero.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-app-stores.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-app-stores.tsx"
+        }
+      ],
+      "docs": "stores takes the AppStoreLink shape of AppDownloadHero: a store (\"app-store\" or \"google-play\") and its href. appName is required because it goes into the name of each button: \"Get Atlas on the App Store\" is both what you see and what a screen reader reads. Under sm the buttons stack at the full width and a 48px height. qr is any node, an img or an svg dark on a clear ground; it shows from lg on a white tile, because a scanner needs a light margin in both themes, and a screen reader skips it, as it has the links. The columns and the legal row take the shapes FooterSection takes, and linkAs renders your router's Link. navLabel names the footer navigation, and labels translates the button lines and the caption under the code."
+    },
+    {
+      "name": "footer-app-stores-demo",
+      "type": "registry:example",
+      "title": "App store footer demo",
+      "description": "A working preview of App store footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-app-stores.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-app-stores-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-local-business",
+      "type": "registry:block",
+      "title": "Local business footer",
+      "description": "A footer for a shop, practice or tradesperson: address, phone, today's opening hours, a route button and the registration line.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/opening-hours.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-local-business.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-local-business.tsx"
+        }
+      ],
+      "docs": "address is an array of lines, set in a real address element with the phone and the email, whose links carry the number and the address as their own text; phoneHref sets another tel: address for a number with an extension. hours takes the shape OpeningHours takes: the days, today's index and the open-now line, which you work out in the business's time zone. The footer draws the week itself, so its heading, the word read out after today and the word for a closed day are all in labels. routeHref opens in a new tab and says so; routeNote adds a line beside the button and map takes a static map image or a drawing, which is hidden from assistive technology, so put nothing in it a visitor needs. registration lists the numbers a Dutch or German site shows, such as KvK, BTW, HRB or USt-IdNr., as a definition list in the legal row. labels translates the headings, the words of the hours and the route button, and linkAs renders your router's Link."
+    },
+    {
+      "name": "footer-local-business-demo",
+      "type": "registry:example",
+      "title": "Local business footer demo",
+      "description": "A working preview of Local business footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-local-business.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-local-business-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-region-selector",
+      "type": "registry:block",
+      "title": "Region footer",
+      "description": "A footer with a built-in region picker: country, language and currency chosen from house selects and handed to your callback.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/combobox.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-region-selector/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-region-selector/index.tsx"
+        },
+        {
+          "path": "registry/marketing/footer-region-selector/countries.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-region-selector/countries.ts"
+        },
+        {
+          "path": "registry/marketing/footer-region-selector/region-picker.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-region-selector/region-picker.tsx"
+        },
+        {
+          "path": "registry/marketing/footer-region-selector/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-region-selector/types.ts"
+        }
+      ],
+      "docs": "options lists the countries (leave countries out for all of them), the suggested countries that come first, the languages, each named in itself, and the currencies. Control it with region and onRegionChange, or let it keep the state with defaultRegion; either way the callback gets the full triple { country, language, currency } on every change and nothing navigates. The summary line says the choice in words, and the country names come from Intl.DisplayNames in the language of locale. Below md the group is one button, named by the summary, that opens a dialog with the same three fields. onRegionChange is a function, so use the footer from a Client Component or pass a Server Action. labels translates every visible word, the headings and the empty message of the country list included, navLabel names the footer navigation, and linkAs renders your router's Link."
+    },
+    {
+      "name": "footer-region-selector-demo",
+      "type": "registry:example",
+      "title": "Region footer demo",
+      "description": "A working preview of Region footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-region-selector.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-region-selector-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "locale-suggestion-bar",
+      "type": "registry:block",
+      "title": "Locale suggestion bar",
+      "description": "A polite bar that offers the local version of the site once, with Switch and Stay actions, and leaves remembering the answer to you.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/locale-suggestion-bar/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-suggestion-bar/index.tsx"
+        },
+        {
+          "path": "registry/marketing/locale-suggestion-bar/bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-suggestion-bar/bar.tsx"
+        },
+        {
+          "path": "registry/marketing/locale-suggestion-bar/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/locale-suggestion-bar/types.ts"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-locale-bar-in": {
+          "from": {
+            "grid-template-rows": "0fr",
+            "opacity": "0"
+          },
+          "to": {
+            "grid-template-rows": "1fr",
+            "opacity": "1"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-locale-bar-in": "rhs-locale-bar-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+        }
+      },
+      "docs": "Decide when to show it, for instance when Accept-Language names a language you have a version in and the page is another, and store the answer yourself: the bar never redirects, never guesses from an IP address and removes itself on any choice, so render it only if you have not asked before. suggested carries the question and the words of the buttons in the suggested language (switchLabel, stayLabel and closeLabel are all required, so nothing on the bar is left in English by accident), and its code becomes the lang of the region, so every word on the bar is pronounced right. When the buttons do not fit side by side on a narrow screen, Stay drops under Switch instead of being cut off. Switch is a link to suggested.href, so linkAs can be your router's Link; onSwitch, onStay (which gets current) and onDismiss are where you store the choice. The bar slides in once, and instantly under reduced motion. The callbacks are functions, so use the bar from a Client Component or pass Server Actions."
+    },
+    {
+      "name": "locale-suggestion-bar-demo",
+      "type": "registry:example",
+      "title": "Locale suggestion bar demo",
+      "description": "A working preview of Locale suggestion bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/locale-suggestion-bar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/locale-suggestion-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "smart-app-banner",
+      "type": "registry:block",
+      "title": "Smart app banner",
+      "description": "A smart banner for phones that points to your store app: icon, name, rating, one Get or Open button and a close, left to you.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/smart-app-banner.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/smart-app-banner.tsx"
+        }
+      ],
+      "docs": "Give it the name, a pitch, the icon (or let it draw a monogram of the name), the rating with its count, and storeHref. When you know the app is installed, pass installed and openHref, a deep link such as atlas://home: the button then reads Open. onAction tells you which button was followed, and onDismiss is where you store the choice and keep the banner away for thirty days; the banner hides itself when it is closed. showOn is \"phones\" by default (below 640px), \"tablets\" (below 1024px) or \"all\", and position says which page edge it sits on, \"top\" or \"bottom\": it picks the border side and pads the banner for the notch or the home indicator when the page sets viewport-fit=cover, while you place the banner in your layout yourself. The rating is stars and words, \"Rated 4.8 out of 5 from 12,400 reviews\", with the numbers formatted for locale. This is for an app in a store; installing a web app is a different prompt. labels translates the fixed words."
+    },
+    {
+      "name": "smart-app-banner-demo",
+      "type": "registry:example",
+      "title": "Smart app banner demo",
+      "description": "A working preview of Smart app banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/smart-app-banner.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/smart-app-banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-two-row",
+      "type": "registry:block",
+      "title": "Two-row navbar",
+      "description": "A header in two rows: brand, search and account links on top, the categories underneath, scrolling sideways on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-two-row/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-two-row/index.tsx"
+        },
+        {
+          "path": "registry/marketing/navbar-two-row/category-scroller.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-two-row/category-scroller.tsx"
+        }
+      ],
+      "docs": "Put the search field in search (a SearchTrigger, a form), the account, help and bag in utilities and the categories in categories; catalogue is the trailing link to everything. The header is sticky with a negative top, the height of the first row, so on scroll the first row slides away and only the categories stay: plain CSS, no scroll listener. While keyboard focus is inside the first row the whole bar unpins (CSS :has and :focus-visible), so a control you tab to is never out of sight above the window, and it pins again as soon as focus moves on. It counts on the first row's fixed height (56px on a phone, 48px more with the search row, 64px from md), so keep your mark within it, and it works when the header sits in the container that scrolls, the page or a layout of your own. Under md the search gets a row of its own and the categories are one scrolling line with fade edges and the current one brought into view. Mark the current page with currentHref, set sticky={false} to keep the bar in the flow, use linkAs for your router's Link and navLabel to name the categories landmark."
+    },
+    {
+      "name": "navbar-two-row-demo",
+      "type": "registry:example",
+      "title": "Two-row navbar demo",
+      "description": "A working preview of Two-row navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-two-row.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-trigger.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-two-row-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "docs-header",
+      "type": "registry:block",
+      "title": "Docs header",
+      "description": "The top bar of a documentation site: brand, a row of section links, a search field and icon links, folding into a menu on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-trigger.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/docs-header/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/docs-header/index.tsx"
+        },
+        {
+          "path": "registry/marketing/docs-header/section-scroller.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/docs-header/section-scroller.tsx"
+        }
+      ],
+      "docs": "brand, sections and currentHref fill the two rows; the section whose href matches currentHref is underlined and carries aria-current=\"page\". The sections are plain links, not an ARIA tablist, because each one goes to another page. onSearchOpen opens your own command palette from the field and from the shortcut (shortcutKey, Ctrl or Command and K), so use the header from a Client Component, next to the palette. links are icon links to the repository or the community: they open in a new tab and say so, and below md they fold into one menu. children is one compact control at the end of the first row, a theme toggle or a version select, and it stays on a phone. Both rows are sticky; set sticky={false} to let them scroll. labels translates the fixed words and linkAs renders your router's Link."
+    },
+    {
+      "name": "docs-header-demo",
+      "type": "registry:example",
+      "title": "Docs header demo",
+      "description": "A working preview of Docs header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/docs-header.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/command.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/sidebar-nav.json",
+        "https://rhsui.com/r/table-of-contents.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/docs-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

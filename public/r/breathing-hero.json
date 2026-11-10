@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breathing-hero",
+  "title": "Breathing hero",
+  "description": "A wellness opening with a ring that breathes in, holds and out on a 4-4-6 rhythm, the words to match, a pause control and a start button.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/breathing-hero.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useId, useRef, useState, type ComponentProps } from \"react\";\n\nimport { IconPause, IconPlay } from \"@rhs-ui/icons\";\nimport { Button } from \"@rhs-ui/primitives/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface BreathingPattern {\n  /** Seconds of breathing in. */\n  in: number;\n  /** Seconds of holding. 0 skips it. */\n  hold: number;\n  /** Seconds of breathing out. */\n  out: number;\n}\n\nexport interface BreathingHeroLabels {\n  /** The words in the ring while the ring grows. */\n  in: string;\n  /** The words while it rests. */\n  hold: string;\n  /** The words while it shrinks. */\n  out: string;\n  /** What a screen reader hears when the ring is paused. */\n  paused: string;\n  /** The pause button. */\n  pause: string;\n  /** The button that continues. */\n  resume: string;\n  /** The caption under the first part of the timing line, with its length. {count} stands for the seconds. Default \"In {count}s\". */\n  timeIn: string;\n  /** The caption under the second part. {count} stands for the seconds. Default \"Hold {count}s\". */\n  timeHold: string;\n  /** The caption under the third part. {count} stands for the seconds. Default \"Out {count}s\". */\n  timeOut: string;\n}\n\nexport interface BreathingHeroProps extends Omit<ComponentProps<\"section\">, \"title\" | \"children\"> {\n  /** The title's element: \"h2\" inside a page that has its own h1 (the default), \"h1\" when the hero opens the page. */\n  titleAs?: \"h1\" | \"h2\";\n  /** Seconds in, hold and out. Default 4, 4 and 6. */\n  pattern?: BreathingPattern;\n  /** The promise under the ring. */\n  title: string;\n  /** One line under the title. */\n  description?: string;\n  /** The label of the main button. */\n  cta?: string;\n  /** Called when the main button is pressed: start the session in your app. */\n  onStart?: () => void;\n  /** Where the main button goes, when it is a link rather than an action. */\n  ctaHref?: string;\n  /** Stops the ring and the clock. Give it to control the pause yourself, with onPausedChange; leave it out to let the button do it. */\n  paused?: boolean;\n  /** Whether the ring starts paused, when `paused` is not given. */\n  defaultPaused?: boolean;\n  /** Called with the new state when the pause button is pressed. */\n  onPausedChange?: (paused: boolean) => void;\n  /** Words for the fixed text, for a site that is not in English. */\n  labels?: Partial<BreathingHeroLabels>;\n  /** Classes for the section. */\n  className?: string;\n}\n\ntype Phase = \"in\" | \"hold\" | \"out\";\n\nconst PHASES: readonly Phase[] = [\"in\", \"hold\", \"out\"];\nconst PATTERN: BreathingPattern = { in: 4, hold: 4, out: 6 };\nconst LABELS: BreathingHeroLabels = {\n  in: \"Breathe in\",\n  hold: \"Hold\",\n  out: \"Breathe out\",\n  paused: \"Paused\",\n  pause: \"Pause\",\n  resume: \"Resume\",\n  timeIn: \"In {count}s\",\n  timeHold: \"Hold {count}s\",\n  timeOut: \"Out {count}s\",\n};\n\n/**\n * A wellness opening where the demo is the pitch: a ring that breathes. It\n * grows while you breathe in, rests, and shrinks while you breathe out on a 4,\n * 4 and 6 second rhythm (or yours), the phase is written in the ring and\n * announced politely each time it changes, and under it come the title, a line\n * and the button that starts a session. The ring is driven by CSS animations\n * that take their length from the pattern, so there is no script per frame;\n * the one timer only wakes at each change of phase to update the words. A\n * Pause and Resume button is always there, as WCAG asks of anything that moves\n * by itself. Under reduced motion the ring stays still, and the words and a\n * thin progress line in three named parts, one per phase (\"In 4s\", \"Hold 4s\",\n * \"Out 6s\"), carry the timing instead. Other props, an id for a nav anchor,\n * aria or data attributes and a ref, go to the section.\n */\nexport function BreathingHero({\n  titleAs: Title = \"h2\",\n  pattern = PATTERN,\n  title,\n  description,\n  cta = \"Start a 3-minute session\",\n  onStart,\n  ctaHref,\n  paused: controlled,\n  defaultPaused = false,\n  onPausedChange,\n  labels: custom,\n  className,\n  ...props\n}: BreathingHeroProps) {\n  const words = { ...LABELS, ...custom };\n  /** The caption under each part of the timing line. */\n  const timing: Record<Phase, string> = { in: words.timeIn, hold: words.timeHold, out: words.timeOut };\n  const id = useId();\n  const seconds: Record<Phase, number> = { in: Math.max(0.5, pattern.in), hold: Math.max(0, pattern.hold), out: Math.max(0.5, pattern.out) };\n  const steps = PHASES.filter((phase) => seconds[phase] > 0);\n  const [phase, setPhase] = useState<Phase>(\"in\");\n  // The ring waits for the page to be alive, so its clock and the words start together.\n  const [live, setLive] = useState(false);\n  const [resting, setResting] = useState(defaultPaused);\n  const paused = controlled ?? resting;\n  /** How long is left of the current phase, so a pause continues where it stopped. */\n  const left = useRef(0);\n  const shape = `${seconds.in}/${seconds.hold}/${seconds.out}`;\n\n  useEffect(() => setLive(true), []);\n\n  useEffect(() => {\n    left.current = 0;\n  }, [shape]);\n\n  useEffect(() => {\n    if (!live || paused) return;\n    const wait = left.current > 0 ? left.current : (seconds[phase] || 0) * 1000;\n    const began = performance.now();\n    let fired = false;\n    const timer = window.setTimeout(() => {\n      fired = true;\n      left.current = 0;\n      setPhase((now) => steps[(steps.indexOf(now) + 1) % steps.length] ?? \"in\");\n    }, wait);\n    return () => {\n      window.clearTimeout(timer);\n      if (!fired) left.current = Math.max(0, wait - (performance.now() - began));\n    };\n    // steps and seconds follow shape.\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [live, paused, phase, shape]);\n\n  const toggle = () => {\n    const next = !paused;\n    if (controlled === undefined) setResting(next);\n    onPausedChange?.(next);\n  };\n\n  const order = steps.indexOf(phase);\n\n  return (\n    <section data-slot=\"breathing-hero\" aria-labelledby={`${id}-title`} className={cn(\"py-14 text-center sm:py-20\", className)} {...props}>\n      <div className=\"relative mx-auto grid size-[min(78vw,19rem)] place-items-center sm:size-[21rem]\">\n        {/* The full breath is the outer line; the dashed line is the smallest one. The ring moves between them. */}\n        <span aria-hidden=\"true\" className=\"absolute inset-0 rounded-full border border-border\" />\n        <span\n          aria-hidden=\"true\"\n          data-phase={phase}\n          data-live={live}\n          data-paused={paused}\n          // Length and play state are inline: they have to win over the animation shorthand of the class, in whatever order the styles land.\n          style={{ animationDuration: `${phase === \"out\" ? seconds.out : seconds.in}s`, animationPlayState: paused ? \"paused\" : \"running\" }}\n          className={cn(\n            \"absolute inset-0 rounded-full border border-foreground/25 bg-foreground/[0.05] scale-[0.6] motion-reduce:scale-100\",\n            \"data-[phase=hold]:scale-100\",\n            \"motion-safe:data-[live=true]:data-[phase=in]:animate-rhs-breathe-in motion-safe:data-[live=true]:data-[phase=out]:animate-rhs-breathe-out\",\n          )}\n        >\n          {/* A second disc inside the first, so the ring has a depth that scales with it. */}\n          <span className=\"absolute inset-[14%] rounded-full bg-foreground/[0.05]\" />\n        </span>\n        <span aria-hidden=\"true\" className=\"absolute inset-[20%] rounded-full border border-dashed border-foreground/25 motion-reduce:hidden\" />\n        <p aria-hidden=\"true\" className=\"relative text-xl font-medium tracking-[-0.025em] sm:text-2xl\">\n          {words[phase]}\n        </p>\n        <p role=\"status\" className=\"sr-only\">\n          {live ? (paused ? words.paused : words[phase]) : \"\"}\n        </p>\n      </div>\n\n      <div className=\"mx-auto mt-6 grid w-[min(78vw,19rem)] gap-2 sm:w-[21rem]\" style={{ gridTemplateColumns: steps.map((step) => `${seconds[step]}fr`).join(\" \") }} aria-hidden=\"true\">\n        {steps.map((step, index) => {\n          const state = !live ? \"idle\" : index < order ? \"done\" : index === order ? \"active\" : \"idle\";\n          return (\n            <div key={step} className=\"grid gap-1.5 text-left\">\n              <span className=\"relative h-0.5 overflow-hidden rounded-full bg-border\">\n                <span\n                  data-state={state}\n                  style={{ animationDuration: `${seconds[step]}s`, animationPlayState: paused ? \"paused\" : \"running\" }}\n                  className=\"absolute inset-0 origin-left scale-x-0 rounded-full bg-foreground data-[state=active]:animate-rhs-breathe-fill data-[state=done]:scale-x-100\"\n                />\n              </span>\n              <span className={cn(\"text-xs tabular-nums transition-colors duration-200 motion-reduce:transition-none\", step === phase ? \"font-medium text-foreground\" : \"text-muted-foreground\")}>\n                {timing[step].replace(\"{count}\", String(seconds[step]))}\n              </span>\n            </div>\n          );\n        })}\n      </div>\n\n      <Title id={`${id}-title`} className=\"mx-auto mt-10 max-w-xl text-4xl leading-[1.04] font-medium tracking-[-0.045em] text-balance sm:text-5xl\">\n        {title}\n      </Title>\n      {description ? <p className=\"mx-auto mt-5 max-w-md text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg\">{description}</p> : null}\n\n      <div className=\"mt-8 flex flex-wrap items-center justify-center gap-3\">\n        {ctaHref ? (\n          <Button asChild size=\"lg\">\n            <a href={ctaHref}>{cta}</a>\n          </Button>\n        ) : (\n          <Button size=\"lg\" onClick={onStart}>\n            {cta}\n          </Button>\n        )}\n        <Button type=\"button\" variant=\"outline\" size=\"lg\" onClick={toggle}>\n          {paused ? <IconPlay fill=\"currentColor\" /> : <IconPause />}\n          {paused ? words.resume : words.pause}\n        </Button>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/breathing-hero.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-breathe-in": "rhs-breathe-in 4s cubic-bezier(0.37, 0, 0.63, 1) both",
+      "animate-rhs-breathe-out": "rhs-breathe-out 6s cubic-bezier(0.37, 0, 0.63, 1) both",
+      "animate-rhs-breathe-fill": "rhs-breathe-fill 4s linear both"
+    }
+  },
+  "css": {
+    "@keyframes rhs-breathe-in": {
+      "from": {
+        "scale": "0.6"
+      },
+      "to": {
+        "scale": "1"
+      }
+    },
+    "@keyframes rhs-breathe-out": {
+      "from": {
+        "scale": "1"
+      },
+      "to": {
+        "scale": "0.6"
+      }
+    },
+    "@keyframes rhs-breathe-fill": {
+      "from": {
+        "scale": "0 1"
+      },
+      "to": {
+        "scale": "1 1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "hero"
+  },
+  "docs": "pattern is seconds in, hold and out (4, 4 and 6 by default; a hold of 0 skips it). The ring is moved by CSS animations whose length comes from the pattern, so no script runs per frame; one timer wakes at each change of phase to update the words and the status announcement, which is polite and stops while paused. A Pause and Resume button is always there: leave paused out to let it work, or pass paused and onPausedChange to control it. onStart is called when the main button is pressed, or pass ctaHref to make it a link. Under reduced motion the ring stays still and the words and a thin progress line in three named parts (In 4s, Hold 4s, Out 6s) carry the timing. onStart is a function, so use the hero inside a Client Component. A pattern you change while it runs takes effect from the current phase; give the hero a new key to start again from the first breath. labels translates the fixed words, the three timing captions included ({count} stands for the seconds). Any other prop, such as an id for a nav anchor, aria or data attributes or a ref, goes to the section.",
+  "categories": [
+    "marketing",
+    "hero"
+  ],
+  "type": "registry:block"
+}

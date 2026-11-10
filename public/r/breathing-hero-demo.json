@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breathing-hero-demo",
+  "title": "Breathing hero demo",
+  "description": "A working preview of Breathing hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/breathing-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/breathing-hero-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\n\nimport { BreathingHero } from \"@rhs-ui/marketing/breathing-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  const [note, setNote] = useState(\"\");\n\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">The 4, 4 and 6 rhythm. The ring and the words move together; Pause stops both, and a screen reader hears each change.</p>\n      <BreathingHero\n        title=\"Three minutes to slow down.\"\n        description=\"Stillwater guides your breath with a ring you can follow. No audio, no setup: press start when you are ready.\"\n        onStart={() => setNote(\"Your 3-minute session is ready in the Stillwater app.\")}\n      />\n      <p role=\"status\" className=\"-mt-8 min-h-6 pb-10 text-center text-sm text-muted-foreground\">\n        {note}\n      </p>\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">A longer exhale, 4, 7 and 8, starting paused. Resume continues from the first breath.</p>\n      <BreathingHero\n        pattern={{ in: 4, hold: 7, out: 8 }}\n        defaultPaused\n        title=\"Sleep comes easier on a long breath.\"\n        description=\"The 4-7-8 pattern holds a little longer and lets go slowly. Use it in bed, with the lights off.\"\n        cta=\"Start a 5-minute session\"\n        ctaHref=\"#sleep\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

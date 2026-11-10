@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "danger-zone-demo",
+  "title": "Danger zone demo",
+  "description": "A working preview of Danger zone.",
+  "registryDependencies": [
+    "https://rhsui.com/r/danger-zone.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/danger-zone-demo.tsx",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\n\nimport { DangerZone } from \"@rhs-ui/application/danger-zone\";\n\nconst wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));\n\nexport default function Demo(): React.JSX.Element {\n  const [log, setLog] = useState(\"Nothing has been changed.\");\n  const deleteTries = useRef(0);\n\n  return (\n    <div className=\"grid w-full max-w-2xl min-w-0 gap-3\">\n      <DangerZone\n        description=\"You cannot undo these yourself. Read what each one does before you press its button.\"\n        actions={[\n          {\n            id: \"archive\",\n            title: \"Archive this workspace\",\n            description: \"Hide Kestrel Studio from everyone's sidebar and stop the monthly billing. Projects and files are kept for 90 days, and an Admin can restore it from Settings.\",\n            label: \"Archive workspace\",\n            dialogDescription: \"Kestrel Studio disappears from the sidebar of all 12 members and billing stops today. Nothing is deleted for 90 days, and you can restore it from Settings until then.\",\n            onConfirm: async () => {\n              await wait(800);\n              setLog(\"Archived. It can be restored for 90 days.\");\n            },\n          },\n          {\n            id: \"transfer\",\n            title: \"Transfer ownership\",\n            description: \"Make another member the owner of Kestrel Studio. They take over billing and can delete the workspace.\",\n            label: \"Transfer ownership\",\n            disabledReason: \"Only the owner can do this\",\n            onConfirm: () => setLog(\"Ownership transferred.\"),\n          },\n          {\n            id: \"delete\",\n            title: \"Delete this workspace\",\n            description: \"Permanently remove Kestrel Studio, its 24 projects and every file in them, for all 12 members. There is no undo, and we cannot bring any of it back.\",\n            label: \"Delete workspace\",\n            confirmLabel: \"Delete forever\",\n            dialogDescription: \"This removes Kestrel Studio, its 24 projects and every file in them for all 12 members, at once. There is no undo, and we cannot bring any of it back.\",\n            confirmation: \"Kestrel Studio\",\n            onConfirm: async () => {\n              await wait(1000);\n              deleteTries.current += 1;\n              if (deleteTries.current === 1) throw new Error(\"The server did not answer in time. Nothing was deleted.\");\n              setLog(\"Deleted Kestrel Studio. Not really: this is a preview.\");\n            },\n          },\n        ]}\n      />\n      <p role=\"status\" className=\"text-xs text-muted-foreground\">\n        {log}\n      </p>\n      <p className=\"text-xs text-muted-foreground\">Archive asks once. Delete asks for the name, and its first try fails so you can see the message: the second one goes through.</p>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

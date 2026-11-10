@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quiet-hours-field-demo",
+  "title": "Quiet hours field demo",
+  "description": "A working preview of Quiet hours field.",
+  "registryDependencies": [
+    "https://rhsui.com/r/quiet-hours-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/quiet-hours-field-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { QuietHoursField, type QuietHoursLabels, type QuietHoursValue } from \"@rhs-ui/application/quiet-hours-field\";\n\n/** A caption and the example under it. */\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 grid-cols-1 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nconst card = \"grid gap-5 rounded-xl border border-border bg-card p-5 text-card-foreground shadow-xs sm:p-6\";\n\n/** The same field in Dutch: the names of the days and the sentence come from the locale, the rest from labels. */\nconst DUTCH: QuietHoursLabels = {\n  title: \"Niet storen\",\n  description: \"Zet meldingen op een schema uit.\",\n  from: \"Van\",\n  to: \"Tot\",\n  days: \"Op deze dagen\",\n  overnight: \"Over de nacht: eindigt de volgende dag om {to}\",\n  summaryOn: \"Stil van {from} tot {to}, {days}\",\n  summaryOff: \"Niet storen staat uit. Je schema blijft bewaard: {from} tot {to}, {days}.\",\n  sameTime: \"Van en Tot mogen niet hetzelfde tijdstip zijn. Kies een ander eindtijdstip.\",\n  oneDay: \"Houd minstens één dag geselecteerd.\",\n  everyDay: \"elke dag\",\n  weekends: \"in het weekend\",\n  through: \"tot en met\",\n  noDays: \"geen dagen\",\n};\n\nexport default function Demo(): React.JSX.Element {\n  const [night, setNight] = useState<QuietHoursValue>({ enabled: true, from: \"22:00\", to: \"07:00\", days: [1, 2, 3, 4, 5] });\n  const [lunch, setLunch] = useState<QuietHoursValue>({ enabled: false, from: \"12:30\", to: \"13:30\", days: [1, 2, 3, 4, 5] });\n\n  return (\n    <div className=\"grid w-full max-w-4xl grid-cols-1 gap-x-10 gap-y-9 md:grid-cols-2 md:items-start\">\n      <Example caption=\"Try it: 22:00 to 07:00 crosses midnight and says so. Set both times the same, or turn off the last day, and the field refuses in words.\">\n        <div className={card}>\n          <QuietHoursField locale=\"en-GB\" value={night} onValueChange={setNight} />\n          <p className=\"flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t border-border pt-4 text-xs text-muted-foreground\">\n            <span>Reported</span>\n            <code className=\"font-mono text-[0.6875rem] break-words text-foreground\">{JSON.stringify(night).replace(/,/g, \", \")}</code>\n          </p>\n        </div>\n      </Example>\n\n      <Example caption=\"Off, in Dutch (locale nl-NL and labels): the schedule is dimmed, not cleared, and comes back when you switch it on.\">\n        <div className={card}>\n          <QuietHoursField locale=\"nl-NL\" labels={DUTCH} value={lunch} onValueChange={setLunch} />\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

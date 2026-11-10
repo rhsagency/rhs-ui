@@ -111,6 +111,15 @@ own `meta.version` and are listed when they change.
 - Marketing, 7 more: `donation-hero`, `service-start-hero`, `property-search-hero`, `reservation-hero`, `appointment-hero`, `timetable-hero`, `advisor-hero`.
 - Application, 8 more: `drop-overlay`, `form-actions`, `form-section`, `translatable-field`, `utm-builder`, `status-message-field`, `focal-point-field`, `image-cropper`.
 - Primitives, 11 more: `aligned-card-grid`, `collapsing-columns`, `leader-list`, `inline-list`, `holy-grail-layout`, `split-screen`, `screen-frame`, `status-bar`, `collapsible-panes`, `chrome-offsets`, `floating-stack`.
+- Marketing, 8 more: `podcast-hero`, `book-hero`, `lineup-hero`, `recipe-hero`, `matchday-hero`, `inline-image-hero`, `big-number-hero`, `gallery-hero`.
+- Primitives, 8 more: `hairline-grid`, `bento-layout`, `progressive-image`, `thumbnail-strip`, `zoomable-image`, `photo-mosaic`, `justified-gallery`, `video-facade`.
+- Application, 9 more: `conditional-fields`, `field-repeater`, `form-dialog`, `form-tabs`, `editable-section`, `danger-zone`, `contact-fieldset`, `social-links-fieldset`, `answers-review`.
+- Marketing, 9 more: `community-hero`, `creator-hero`, `breathing-hero`, `navbar-centered-logo`, `navbar-with-search`, `navbar-transparent`, `navbar-onepage`, `footer-link-rows`, `footer-folding-columns`.
+- Primitives, 9 more: `seek-bar`, `volume-control`, `audio-waveform`, `media-card`, `file-type-icon`, `browser-frame`, `phone-frame`, `qr-code`, `story-ring`.
+- Application, 8 more: `form-outline`, `status-select`, `guest-picker`, `likert-matrix`, `answer-checklist`, `event-time-fieldset`, `send-schedule-field`, `quiet-hours-field`.
+- Marketing, 10 more: `mobile-nav-drilldown`, `utility-bar`, `breadcrumb-bar`, `footer-app-stores`, `footer-local-business`, `footer-region-selector`, `locale-suggestion-bar`, `smart-app-banner`, `navbar-two-row`, `docs-header`.
+- Primitives, 10 more: `hotspot-image`, `embed-consent`, `pausable-image`, `laptop-frame`, `image-tile`, `photo-stack`, `pattern-cover`, `play-clip-button`, `image-sequence`, `hover-video-preview`.
+- Application, 7 more: `inherited-field`, `agreement-scroll`, `report-form`, `tiered-rates-editor`, `transfer-list`, `record-lookup`, `seo-fieldset`.
 
 ## Unreleased (0.7.0)
 

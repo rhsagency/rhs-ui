@@ -1,0 +1,98 @@
+import { RecipeHero } from "@rhs-ui/marketing/recipe-hero";
+
+/* The photos are drawn for the demo, so they need no files. In your site: the finished dish, shot from above or at a slight angle, with room around the plate. */
+
+const svg = (art: string, height = 1250) => "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 ${height}'>${art}</svg>`);
+
+const soup = (() => {
+  const planks = [0, 1, 2, 3, 4, 5].map((index) => `<rect y='${index * 215}' width='1000' height='215' fill='${index % 2 ? "#a8774a" : "#b3814f"}'/><rect y='${index * 215 + 211}' width='1000' height='4' fill='#7d5430'/>`).join("");
+  const grain = [
+    [60, 80, 300], [520, 140, 380], [140, 300, 260], [640, 360, 300], [80, 520, 340], [600, 700, 360], [180, 860, 300], [700, 930, 260], [90, 1080, 380], [560, 1150, 320],
+  ].map(([x, y, length]) => `<path d='M${x} ${y}h${length}' stroke='#8a5c33' stroke-width='2' opacity='.3'/>`).join("");
+  const leaf = (x: number, y: number, turn: number, scale: number) =>
+    `<g transform='translate(${x} ${y}) rotate(${turn}) scale(${scale})'><path d='M0 0C26-34 78-34 104 0C78 34 26 34 0 0Z' fill='#4c7a38'/><path d='M6 0H98' stroke='#93b772' stroke-width='3' stroke-linecap='round'/></g>`;
+  const crouton = (x: number, y: number, turn: number) => `<rect x='${x - 24}' y='${y - 24}' width='48' height='48' rx='9' fill='#d7a05a' stroke='#b9803c' stroke-width='4' transform='rotate(${turn} ${x} ${y})'/>`;
+  const speck = (x: number, y: number, r = 4) => `<circle cx='${x}' cy='${y}' r='${r}' fill='#2a1a14'/>`;
+  const oil = (x: number, y: number) => `<circle cx='${x}' cy='${y}' r='8' fill='#f0cf72' opacity='.85'/><circle cx='${x - 2}' cy='${y - 3}' r='2.5' fill='#fff' opacity='.6'/>`;
+  return svg(
+    [
+      planks,
+      grain,
+      // The napkin and the bread, under the bowl.
+      `<g transform='rotate(-9 330 1010)'><rect x='60' y='850' width='560' height='330' rx='8' fill='#ece4d3'/><rect x='60' y='902' width='560' height='14' fill='#b9c9cf'/><rect x='60' y='1100' width='560' height='14' fill='#b9c9cf'/></g>`,
+      `<g transform='rotate(14 780 1040)'><rect x='610' y='930' width='340' height='220' rx='64' fill='#c78b4a'/><rect x='626' y='946' width='308' height='188' rx='50' fill='#efd29c'/><circle cx='690' cy='1010' r='14' fill='#e3c487'/><circle cx='770' cy='1060' r='10' fill='#e3c487'/><circle cx='840' cy='1000' r='12' fill='#e3c487'/><circle cx='890' cy='1070' r='9' fill='#e3c487'/></g>`,
+      // Two tomatoes on the table.
+      `<circle cx='815' cy='170' r='64' fill='#cf3f27'/><circle cx='900' cy='232' r='54' fill='#c53621'/><ellipse cx='796' cy='146' rx='16' ry='9' fill='#fff' opacity='.22' transform='rotate(-30 796 146)'/><path d='M806 108q8-22 30-28M898 188q6-16 24-22' stroke='#47703a' stroke-width='8' stroke-linecap='round' fill='none'/>`,
+      // The bowl, from above.
+      `<circle cx='520' cy='640' r='344' fill='#000' opacity='.16'/>`,
+      `<circle cx='500' cy='610' r='340' fill='#efe8d9'/><circle cx='500' cy='610' r='340' fill='none' stroke='#d8cfba' stroke-width='5'/>`,
+      `<circle cx='500' cy='610' r='292' fill='#faf6ec'/><circle cx='500' cy='610' r='252' fill='#e6dcc7'/>`,
+      `<circle cx='500' cy='610' r='236' fill='#c9452a'/><circle cx='500' cy='610' r='224' fill='none' stroke='#e0643a' stroke-width='28' opacity='.45'/><circle cx='500' cy='610' r='150' fill='#d4512d' opacity='.5'/>`,
+      `<path d='M500 610a36 36 0 0 1 36-36a72 72 0 0 1 72 72a108 108 0 0 1-108 108a144 144 0 0 1-144-144a180 180 0 0 1 180-180' fill='none' stroke='#f6e3c4' stroke-width='15' stroke-linecap='round' opacity='.94'/>`,
+      crouton(430, 700, 12), crouton(600, 676, -18), crouton(478, 748, 30), crouton(648, 590, 8),
+      leaf(548, 508, -28, 1), leaf(566, 546, 38, 0.86), leaf(520, 470, -84, 0.78),
+      oil(400, 560), oil(612, 742), oil(386, 650), oil(560, 424), oil(650, 690), oil(446, 466),
+      [[432, 584], [470, 650], [552, 612], [596, 560], [520, 700], [412, 618], [640, 650], [574, 478], [492, 524], [455, 720], [606, 726], [380, 700]].map(([x, y], index) => speck(x ?? 0, y ?? 0, index % 3 ? 3.5 : 5)).join(""),
+      // A spoon beside it.
+      `<g transform='rotate(12 920 700)'><ellipse cx='920' cy='500' rx='46' ry='64' fill='#c9cdd0'/><ellipse cx='920' cy='500' rx='32' ry='48' fill='#e8ebed'/><rect x='911' y='556' width='18' height='420' rx='9' fill='#c9cdd0'/></g>`,
+    ].join(""),
+  );
+})();
+
+const pancakes = (() => {
+  const layers = [0, 1, 2, 3, 4].map((index) => {
+    const y = 822 - index * 64;
+    const shift = [0, 10, -8, 8, -4][index] ?? 0;
+    return `<rect x='${240 + shift}' y='${y - 36}' width='520' height='76' rx='38' fill='#d4903f'/><rect x='${252 + shift}' y='${y - 30}' width='496' height='14' rx='7' fill='#e8b165' opacity='.8'/><ellipse cx='${500 + shift}' cy='${y - 30}' rx='258' ry='34' fill='#efc27a'/>`;
+  });
+  const top = 822 - 4 * 64 - 30;
+  const berry = (x: number, y: number, r = 25) => `<circle cx='${x}' cy='${y}' r='${r}' fill='#34437f'/><circle cx='${x - r * 0.3}' cy='${y - r * 0.32}' r='${r * 0.26}' fill='#fff' opacity='.28'/><path d='M${x - 6} ${y - r * 0.1}l6 -6l6 6l-6 6z' fill='#222b55'/>`;
+  return svg(
+    [
+      `<rect width='1000' height='1250' fill='#e8e2d6'/><rect y='740' width='1000' height='510' fill='#c8b699'/><rect y='736' width='1000' height='8' fill='#b09b7a'/>`,
+      `<rect x='740' y='170' width='150' height='520' rx='14' fill='#d8e2e4'/><rect x='756' y='186' width='118' height='488' rx='8' fill='#eef3f3'/>`,
+      `<ellipse cx='510' cy='930' rx='410' ry='88' fill='#000' opacity='.14'/>`,
+      `<ellipse cx='500' cy='890' rx='392' ry='88' fill='#fbf9f4'/><ellipse cx='500' cy='882' rx='318' ry='60' fill='#efeae0'/>`,
+      layers.join(""),
+      // Syrup over the top, and down the sides.
+      `<ellipse cx='500' cy='${top + 2}' rx='214' ry='26' fill='#9b4a16' opacity='.94'/><ellipse cx='470' cy='${top - 6}' rx='80' ry='8' fill='#d98a3d' opacity='.6'/>`,
+      `<path d='M312 ${top + 8}v58a13 13 0 0 0 26 0v-48zM640 ${top + 8}v84a13 13 0 0 0 26 0v-74zM470 ${top + 22}v44a12 12 0 0 0 24 0v-40z' fill='#9b4a16'/>`,
+      // Butter and berries.
+      `<rect x='455' y='${top - 44}' width='112' height='56' rx='9' fill='#f6dd8c'/><rect x='455' y='${top - 44}' width='112' height='16' rx='8' fill='#fff3b8'/>`,
+      berry(360, top - 14), berry(630, top - 12), berry(402, top + 12, 22), berry(584, top + 14, 22), berry(300, 872, 24), berry(718, 884, 24), berry(640, 914, 22),
+    ].join(""),
+  );
+})();
+
+export default function Demo(): React.JSX.Element {
+  return (
+    <div className="mx-auto max-w-6xl px-6">
+      <p className="pt-6 text-xs text-muted-foreground">Everything on: the stars with their count, the facts as one region, diet chips, and Save, which reports pressed.</p>
+      <RecipeHero
+        className="py-8 sm:py-10 lg:py-12"
+        title="Roasted tomato and white bean soup"
+        image={{ src: soup, alt: "A white bowl of roasted tomato soup seen from above, with a swirl of cream, basil leaves, croutons and black pepper", width: 1000, height: 1250 }}
+        description="A slow-roasted soup with a creamy white bean base. Ready in about an hour, and better the next day."
+        author={{ name: "Maren Visser", href: "#maren-visser" }}
+        publishedAt="2026-10-12"
+        rating={{ value: 4.8, count: 1284, href: "#reviews" }}
+        facts={{ prep: 20, cook: 45, servings: 4, difficulty: "Easy" }}
+        diet={["Vegetarian", "Gluten-free", "Dairy-free"]}
+        jumpHref="#recipe"
+      />
+
+      <p className="border-t border-border pt-6 text-xs text-muted-foreground">Only what is known: no ratings or chips, a time that is not a sum, and a recipe that was already saved.</p>
+      <RecipeHero
+        className="py-8 sm:py-10 lg:py-12"
+        title="Buttermilk pancakes with blueberries"
+        image={{ src: pancakes, alt: "A stack of five pancakes with butter, syrup and blueberries on a white plate", width: 1000, height: 1250 }}
+        description="Tall, tender and ready before the coffee has cooled."
+        author="Teo Alvarez"
+        publishedAt="2026-09-03"
+        facts={{ prep: 10, cook: 20, total: 40, servings: "12 pancakes", difficulty: "Easy" }}
+        jumpHref="#recipe"
+        defaultSaved
+      />
+    </div>
+  );
+}

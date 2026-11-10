@@ -1,0 +1,100 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
+
+import { AgreementScroll } from "@rhs-ui/application/agreement-scroll";
+import { Button } from "@rhs-ui/primitives/button";
+
+/** A caption and the example under it. */
+function Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {
+  return (
+    <div className="grid min-w-0 content-start gap-3">
+      <p className="text-xs text-muted-foreground">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+export default function Demo(): React.JSX.Element {
+  const [terms, setTerms] = useState(false);
+  const [release, setRelease] = useState(false);
+
+  return (
+    <div className="grid w-full max-w-4xl gap-x-10 gap-y-9 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-start">
+      <Example caption="Try it: the checkbox is locked until you reach the end. Scroll, press End with the text focused, or use Jump to the end.">
+        <div className="grid gap-4">
+          <AgreementScroll
+            title="Northwind Studio terms of service"
+            version="3.2"
+            accepted={terms}
+            onAcceptedChange={setTerms}
+            acceptLabel="I have read and accept the Northwind Studio terms of service"
+          >
+            <h4>1. Who we are</h4>
+            <p>
+              Northwind Studio B.V. (&ldquo;Northwind&rdquo;, &ldquo;we&rdquo;) is a design and engineering studio registered in Utrecht under chamber of commerce number 81234567. These terms apply to every project we
+              agree with you, called the &ldquo;client&rdquo; below, unless we have both signed something that says otherwise.
+            </p>
+            <h4>2. The work</h4>
+            <p>
+              We deliver what the signed proposal describes, in the phases it lists. A change to the scope is agreed in writing before work on it starts, with its price and its effect on the date, so that neither of us is
+              surprised on the invoice.
+            </p>
+            <h4>3. Payment</h4>
+            <p>
+              We invoice 40% when a project starts, 40% at the midpoint review and 20% on delivery. Invoices are due within 14 days. After that we may pause the work, and statutory interest runs on the open amount until it
+              is paid.
+            </p>
+            <h4>4. Revisions</h4>
+            <p>Each phase includes two rounds of revisions, collected in one consolidated list. A third round is billed at our hourly rate of &euro;95, and we will tell you before it starts.</p>
+            <h4>5. Ownership</h4>
+            <p>
+              The finished work becomes yours when the final invoice is paid. Until then we grant you a licence to use it for the project. We keep our tools, libraries and working files, and may show the project in our
+              portfolio unless you ask us not to.
+            </p>
+            <h4>6. Confidentiality</h4>
+            <p>
+              Both of us keep what the other shares for the project private, and use it for nothing else. This lasts for five years after the project ends and does not cover what is already public or what the law requires
+              us to disclose.
+            </p>
+            <h4>7. Liability</h4>
+            <p>
+              Our liability for any claim about a project is limited to the amount you paid us for it in the twelve months before the claim. We are not liable for indirect loss such as lost revenue or lost data.
+            </p>
+            <h4>8. Ending an agreement</h4>
+            <p>Either of us may end a project with 30 days&rsquo; written notice. You pay for the work done up to the end date, and we hand over everything finished so far.</p>
+            <h4>9. Governing law</h4>
+            <p>Dutch law applies. A dispute we cannot settle between us goes to the court in Utrecht.</p>
+          </AgreementScroll>
+          <Button disabled={!terms} className="justify-self-start">
+            Create account
+          </Button>
+        </div>
+      </Example>
+
+      <div className="grid min-w-0 content-start gap-9">
+        <Example caption="A short text that fits needs no scrolling: it unlocks at once, and the line shows full.">
+          <AgreementScroll
+            title="Photo release"
+            version="1.0"
+            height="auto"
+            accepted={release}
+            onAcceptedChange={setRelease}
+            acceptLabel="Northwind may use photos of me from the workshop in its newsletter"
+          >
+            <p>
+              We take photos at the Halcyon workshop on 14 March. If you agree, we may use the ones you appear in on our website and in the newsletter for two years. You can change your mind at any time by writing to
+              hello@northwind.example.
+            </p>
+          </AgreementScroll>
+        </Example>
+
+        <Example caption="Without requireScroll the checkbox is always available; the text is only offered.">
+          <AgreementScroll title="Newsletter terms" height="auto" requireScroll={false} defaultAccepted>
+            <p>One email a month about what we are building. We never share your address, and every email has an unsubscribe link.</p>
+          </AgreementScroll>
+        </Example>
+      </div>
+    </div>
+  );
+}

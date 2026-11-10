@@ -14218,6 +14218,1300 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "hairline-grid",
+      "type": "registry:ui",
+      "title": "Hairline grid",
+      "description": "Cells divided by single hairlines: no doubled rules, no line on the outer edge, and a short last row that never leaves a grey slot or a stray line.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/hairline-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/hairline-grid.tsx"
+        }
+      ],
+      "docs": "Put HairlineGridCell elements in a HairlineGrid. columns is a number or a map per breakpoint ({ base: 1, sm: 2, lg: 4 }, a missing breakpoint keeps the one before it); minCell sets the narrowest a cell may get and lets the width decide the number of columns. bordered adds a rounded frame, padding (none, sm, md, lg) is the padding of every cell, and as makes the grid a ul or ol, with as=\"li\" on the cells. A cell with asChild around a link or a button gets a hover tint and an inset focus ring that stay inside its own box. The cells are painted in --hg-cell, which is the page background unless you set it on the grid."
+    },
+    {
+      "name": "hairline-grid-demo",
+      "type": "registry:example",
+      "title": "Hairline grid demo",
+      "description": "A working preview of Hairline grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hairline-grid.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hairline-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "bento-layout",
+      "type": "registry:ui",
+      "title": "Bento layout",
+      "description": "Mixed-size tiles from a named pattern: pick one, pass the tiles as children, and every span is worked out, including a list that keeps growing.",
+      "categories": [
+        "primitives",
+        "layout"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/bento-layout.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/bento-layout.tsx"
+        }
+      ],
+      "docs": "pattern is feature-left, feature-top, mosaic, split or quartet. The children fill the pattern in order, so put the most important one first: it gets the largest cell. A list longer than one run continues in a second run, and a last run that is cut short shares one row instead of leaving holes. The layout reads its own width: twelve columns when it is wide, two on a tablet and one on a phone, with the first tile still first. gap is sm, md or lg and rowHeight is sm, md or lg. Each child is wrapped in a plain tile with one radius and the height of its cell; give the child a surface of its own."
+    },
+    {
+      "name": "bento-layout-demo",
+      "type": "registry:example",
+      "title": "Bento layout demo",
+      "description": "A working preview of Bento layout.",
+      "registryDependencies": [
+        "https://rhsui.com/r/bento-layout.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/bento-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "progressive-image",
+      "type": "registry:ui",
+      "title": "Progressive image",
+      "description": "An image that arrives gracefully: a blurred placeholder in the right shape, a fade to the sharp picture, and a Retry button if it fails.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/progressive-image.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/progressive-image.tsx"
+        }
+      ],
+      "docs": "Give it src and alt, and either ratio or the file's width and height, so the space is reserved before anything loads. blurDataURL (a tiny picture) or placeholderColor paints under the image until it has decoded; an image that was already there, from the cache or the server's HTML, shows without the fade. If it fails to load you get a quiet placeholder with the alt text and Retry; onRetry lets you swap the address. priority loads at once with a high fetch priority, fit is cover or contain, and src may be left out while the address is still unknown. With asChild it wraps your own element, such as a next/image with fill, and gives it the same behaviour."
+    },
+    {
+      "name": "progressive-image-demo",
+      "type": "registry:example",
+      "title": "Progressive image demo",
+      "description": "A working preview of Progressive image.",
+      "registryDependencies": [
+        "https://rhsui.com/r/progressive-image.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/progressive-image-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "thumbnail-strip",
+      "type": "registry:ui",
+      "title": "Thumbnail strip",
+      "description": "A row or column of small previews that chooses the big picture: arrow-key selection, the active one ringed and scrolled into view, and fading edges.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/thumbnail-strip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/thumbnail-strip.tsx"
+        }
+      ],
+      "docs": "items are { id, src, alt, kind, duration }; value, defaultValue and onChange(id, item, index) choose the one shown in the large picture. The strip is one tab stop: the arrow keys move and choose, Home and End jump, and every preview is a button with aria-current. orientation is horizontal or vertical (give a vertical strip a height), size is sm, md or lg, and ratio is the shape of a preview. A video shows a play badge and its length. When there is more than fits it scrolls natively, and the fade at an edge grows with the scroll as more of the strip lies beyond it."
+    },
+    {
+      "name": "thumbnail-strip-demo",
+      "type": "registry:example",
+      "title": "Thumbnail strip demo",
+      "description": "A working preview of Thumbnail strip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/thumbnail-strip.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/thumbnail-strip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "zoomable-image",
+      "type": "registry:ui",
+      "title": "Zoomable image",
+      "description": "An image you can zoom in place: click or tap for 2x, wheel or pinch for more, drag to pan, and buttons and keys for everyone else.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/zoomable-image.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/zoomable-image.tsx"
+        }
+      ],
+      "docs": "Click or tap toggles 2x around the point you hit, Ctrl or Cmd with the wheel and a pinch zoom up to maxZoom (4 by default), and a drag pans without the edge of the picture ever showing. Zoom in, Zoom out and a Reset button that shows the level sit in the corner; with the picture focused, + - and 0 zoom and the arrow keys move it. highResSrc is a sharper file, loaded the first time the zoom passes 1.5. A new src starts over at 100% and asks for its own sharper file only when it is looked at closely, so the picture can follow a thumbnail strip. onZoomChange gets the zoom, the step back to 1 included, ratio sets the frame, and labels and locale translate the names, hints and the level. Under reduced motion the zoom steps instantly."
+    },
+    {
+      "name": "zoomable-image-demo",
+      "type": "registry:example",
+      "title": "Zoomable image demo",
+      "description": "A working preview of Zoomable image.",
+      "registryDependencies": [
+        "https://rhsui.com/r/zoomable-image.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/zoomable-image-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "photo-mosaic",
+      "type": "registry:ui",
+      "title": "Photo mosaic",
+      "description": "The header gallery of a listing: one large photo, four small ones, and a Show all button on the last, collapsing to one photo on a phone.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/photo-mosaic.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/photo-mosaic.tsx"
+        }
+      ],
+      "docs": "photos are { src, alt, label }; the first five are shown. total is the number of photos in all, when the gallery holds more than you pass. onOpen(index) is called with the place of the photo that was pressed and onShowAll when the button is, so you open your own lightbox or sheet: the mosaic opens nothing. Every cell is a button named 'Photo 3 of 24: Kitchen'. With fewer than five photos the layout falls back to one, two, three or four. Below about 32rem of its own width it shows the first photo with a '1 / 24' counter (none for a lone photo), and below 48rem the Show all button shrinks to its icon and the count so it never outgrows its cell, its name staying whole. labels and locale translate the names and the number."
+    },
+    {
+      "name": "photo-mosaic-demo",
+      "type": "registry:example",
+      "title": "Photo mosaic demo",
+      "description": "A working preview of Photo mosaic.",
+      "registryDependencies": [
+        "https://rhsui.com/r/photo-mosaic.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/photo-mosaic-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "justified-gallery",
+      "type": "registry:ui",
+      "title": "Justified gallery",
+      "description": "Photos in rows of equal height with no cropping and no gaps, the widths following each photo's own shape, laid out by CSS alone.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/justified-gallery.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/justified-gallery.tsx"
+        }
+      ],
+      "docs": "items are { src, alt, width, height, caption }: the width and height only give the shape. rowHeight is the height the rows aim for (a number in px or any CSS length; the default grows with the window) and gap the space between photos. Every row grows its photos in proportion to their shapes until it fills the width, and the last row keeps its size. On a phone, where a row holds only two or three photos, a very wide photo that does not fit beside the one before it leaves that one alone on a row, stretched to the full width: put such a photo where it fits, or aim for a smaller row. It is flexbox only, with no layout script and no resize observer. With onSelect(index) each photo is a button for your lightbox; without it a photo is a plain figure. Captions appear on hover and, on a button, on focus, and on a touch screen on every photo wide enough to hold one (9rem)."
+    },
+    {
+      "name": "justified-gallery-demo",
+      "type": "registry:example",
+      "title": "Justified gallery demo",
+      "description": "A working preview of Justified gallery.",
+      "registryDependencies": [
+        "https://rhsui.com/r/justified-gallery.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/justified-gallery-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "video-facade",
+      "type": "registry:ui",
+      "title": "Video facade",
+      "description": "A poster that becomes the player only when pressed, so a page with a video loads no video code and makes no third-party request until it is wanted.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/video-facade.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/video-facade.tsx"
+        }
+      ],
+      "docs": "Pass provider (youtube, vimeo or file), videoId or src, poster, title and duration. Before the press there is one button with the poster, a play button, the title and the length, and a line under it names the provider that will load; no request is made to YouTube or Vimeo. Pressing swaps in the player (YouTube no-cookie, Vimeo with do-not-track, or a video element), starts it and moves focus into it. onActivate gets the click: call event.preventDefault() to keep the poster while you ask for consent. aspect is the shape of the frame, and a missing or broken poster falls back to a block with the title."
+    },
+    {
+      "name": "video-facade-demo",
+      "type": "registry:example",
+      "title": "Video facade demo",
+      "description": "A working preview of Video facade.",
+      "registryDependencies": [
+        "https://rhsui.com/r/video-facade.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/video-facade-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "seek-bar",
+      "type": "registry:ui",
+      "title": "Seek bar",
+      "description": "The scrubber for any player: played, buffered and remaining, chapters, a time tooltip on hover, and keyboard seeking by seconds.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/seek-bar/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/seek-bar/index.tsx"
+        },
+        {
+          "path": "registry/primitives/seek-bar/time.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/seek-bar/time.ts"
+        }
+      ],
+      "docs": "value and duration are in seconds: feed value from timeupdate (or every animation frame for a smoother thumb) and read the visitor's choice from onSeek. buffered is a list of { start, end } ranges, and toBuffered(media.buffered), from @rhs-ui/primitives/seek-bar/time, makes it from a media element. chapters is a list of { start, title } and draws the bar in a piece for each. onSeek fires for every move of a drag, a click and each key press. onSeekStart fires when a drag begins, so you can pause. onSeekEnd fires once on release and after each key press: seek the media only there to keep video from stuttering. The thumb stays where the visitor put it until the player reports that it got there. Keys: arrows seek step seconds (5), Shift three times that, Home and End jump, Page Up and Page Down move a tenth of the length. aria-valuetext reads '1 minute 23 seconds of 4 minutes 56 seconds' (plus the chapter), or whatever valueText returns. A duration of 0, NaN or Infinity turns the bar off: it has no value, and a screen reader hears 'Length not known yet' (or what valueText(0, 0) returns) instead of '0 seconds of 0 seconds'."
+    },
+    {
+      "name": "seek-bar-demo",
+      "type": "registry:example",
+      "title": "Seek bar demo",
+      "description": "A working preview of Seek bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/seek-bar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/seek-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "volume-control",
+      "type": "registry:ui",
+      "title": "Volume control",
+      "description": "A mute button and volume slider that remembers the last level, steps with the arrow keys, says the level in words and folds into a popover when space is short.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/volume-control/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/volume-control/index.tsx"
+        },
+        {
+          "path": "registry/primitives/volume-control/levels.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/volume-control/levels.ts"
+        }
+      ],
+      "docs": "value is the level from 0 to 1 and muted is a separate flag, so muting keeps the level and unmuting puts it back (from a level of nothing, the last audible one). Control both with onChange and onMutedChange (set media.volume and media.muted there), or leave them to defaultValue and defaultMuted. Moving the slider while muted unmutes. The arrow keys move the level by step (0.05, so 5 percent), Page keys and Shift by half, Home and End go to the ends; on a muted slider a key steps from the level that was muted and unmutes. M mutes and unmutes from the button or the slider. A screen reader hears 'Volume 60 percent' or 'Muted', and the button is named Mute or Unmute. showValue writes the level as a number. With compact the slider stands upright in a popover behind a small button, for a control bar with no room to spare. labels replaces the words."
+    },
+    {
+      "name": "volume-control-demo",
+      "type": "registry:example",
+      "title": "Volume control demo",
+      "description": "A working preview of Volume control.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/volume-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/volume-control-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "audio-waveform",
+      "type": "registry:ui",
+      "title": "Audio waveform",
+      "description": "A waveform drawn from peak values with a played portion and click-to-seek, as two SVG paths, light enough to repeat fifty times in a list.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/audio-waveform/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/audio-waveform/index.tsx"
+        },
+        {
+          "path": "registry/primitives/audio-waveform/peaks.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/audio-waveform/peaks.ts"
+        }
+      ],
+      "docs": "peaks is a list of numbers from 0 to 1 in time order, as many as you have: the bars are resampled to the width, so one set of peaks fits a list row and a full-width player. progress is how much has played, 0 to 1. barWidth, gap and height are in px. It draws two SVG paths however many bars there are, so fifty in a list is fine. The width is only known in the browser, so on the server a flat dotted line stands in until it has been measured. With interactive it is a slider: a press or drag calls onSeek with a position from 0 to 1, the arrow keys seek 5 seconds (2 percent without a duration), Shift three times that, Home, End and the Page keys jump, and a marker shows where a press will land, with the time when duration is known. A screen reader hears '1 minute 23 seconds of 4 minutes 56 seconds', or '42 percent' without a duration. A still waveform is hidden from assistive technology unless you pass a label. Get peaks from your server, or in the browser with peaksFromArrayBuffer(await (await fetch(url)).arrayBuffer()), peaksFromAudioBuffer(buffer) or peaksFromChannelData(samples, count), all from @rhs-ui/primitives/audio-waveform/peaks; for a long file work them out once on the server."
+    },
+    {
+      "name": "audio-waveform-demo",
+      "type": "registry:example",
+      "title": "Audio waveform demo",
+      "description": "A working preview of Audio waveform.",
+      "registryDependencies": [
+        "https://rhsui.com/r/audio-waveform.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/audio-waveform-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "media-card",
+      "type": "registry:ui",
+      "title": "Media card",
+      "description": "A card for a video, a podcast episode or an image: thumbnail, kind badge, duration chip, title and a progress line, as one link or button.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/media-card/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/media-card/index.tsx"
+        },
+        {
+          "path": "registry/primitives/media-card/time.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/media-card/time.ts"
+        }
+      ],
+      "docs": "The whole card is one link (pass href) or one button (pass onClick without href), so there is a single tab stop and a single target for a finger. kind is video, audio or image: it sets the icon and the word on the badge (labels={{ audio: 'Podcast' }} says what you show) and the mark in the middle, a play button or a magnifier. thumbnail is decoration (alt is empty) because the title is what is read; without it a calm block stands in. duration is in seconds, drawn bottom right in tabular numbers on a dark chip that holds contrast on any picture, and a screen reader hears it in words. progress from 0 to 1 draws a thin white line in a dark strip along the bottom of the picture, so it reads on a pale picture and on a white page alike, and the card's name then ends with 'Resume at 12:40' (or 'Finished' near the end, when the line is full). Hover only brightens the play mark. aspectRatio is width over height (16 / 9 by default, 1 for cover art): give a grid one ratio and its rows line up. meta is the line under the title, and the title keeps to two lines. labels replaces the words."
+    },
+    {
+      "name": "media-card-demo",
+      "type": "registry:example",
+      "title": "Media card demo",
+      "description": "A working preview of Media card.",
+      "registryDependencies": [
+        "https://rhsui.com/r/media-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/media-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-type-icon",
+      "type": "registry:ui",
+      "title": "File type icon",
+      "description": "A file icon picked from the extension or MIME type, drawn in the library's own style, with the extension as a small label.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/file-type-icon/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/file-type-icon/index.tsx"
+        },
+        {
+          "path": "registry/primitives/file-type-icon/types.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/file-type-icon/types.ts"
+        }
+      ],
+      "docs": "Pass name ('report-final.xlsx'), mime ('application/pdf') or both: the extension in the name wins (it has to look like one, up to eight letters and digits with at least one letter and no spaces, so 'Invoice no. 4821' has none), then the MIME type, then its first part (image/, video/, audio/, text/). You get a page with a folded corner, a glyph and a dark tag with the extension (up to five letters). The families are document, sheet, slide, image, video, audio, archive, code and unknown, and each has a glyph of its own (lines, a grid, a screen, hills, a play mark, a waveform, a zipper, brackets, a question mark), so none is told apart by colour alone. size is sm, md (default) or lg: 28, 40 and 64px wide. sm leaves the tag off, which would be too small to read, and draws the glyph larger; showExtension overrides that either way. FILE_TYPES (extension to family) and MIME_TYPES (MIME type to extension) are plain exported objects: add your own at startup, FILE_TYPES.blend = 'image', and every icon follows. family forces a family, and fileTypeLabel(name, mime) gives 'PDF document' for a label. The icon is hidden from assistive technology unless you pass a label, because the file name beside it carries the meaning. It is a server component: no script is shipped."
+    },
+    {
+      "name": "file-type-icon-demo",
+      "type": "registry:example",
+      "title": "File type icon demo",
+      "description": "A working preview of File type icon.",
+      "registryDependencies": [
+        "https://rhsui.com/r/file-type-icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-type-icon-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "browser-frame",
+      "type": "registry:ui",
+      "title": "Browser frame",
+      "description": "A browser window drawn in CSS around a screenshot or live UI: tab, address bar and window controls, in calm monochrome.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/browser-frame.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/browser-frame.tsx"
+        }
+      ],
+      "docs": "Wrap anything in it: a screenshot (an img is made block and full width) or live UI. url is written in the address bar, plain by default or a real link that opens in a new tab with href (the link is the one part of the chrome that stays in the accessibility tree, and says it opens a new tab). title adds a tab; without it the dots and the address share one row, and the address is centred in a field of its own that stands out from the strip in every tone. The chrome is lines and radii only, with three neutral window dots: no images, and no copy of a real browser. It follows the theme tokens, or fix it with tone='light' or tone='dark', for a dark window around a light screenshot whatever the page's theme. The chrome is hidden from assistive technology, and the figure has one caption that says what the window shows: your caption, or a hidden one such as 'Browser window showing Overview, app.northwind.example/overview'. It narrows to 320px without clipping: the address and the tab truncate first. It is a server component, so no script is shipped."
+    },
+    {
+      "name": "browser-frame-demo",
+      "type": "registry:example",
+      "title": "Browser frame demo",
+      "description": "A working preview of Browser frame.",
+      "registryDependencies": [
+        "https://rhsui.com/r/browser-frame.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/browser-frame-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "phone-frame",
+      "type": "registry:ui",
+      "title": "Phone frame",
+      "description": "A modern phone drawn in CSS around your screenshot or live UI, with island, bezel and side buttons, in the house monochrome.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/phone-frame.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/phone-frame.tsx"
+        }
+      ],
+      "docs": "Pass src and alt for a screenshot, or children for live UI. width is the width of the whole device in px or any CSS length (280 by default, never wider than its container), and every size on the device, from the corner radius to the island, is a share of that width in container units, so it scales cleanly from a thumbnail to a life-size 390px. The same units (text-[4.4cqw], p-[5cqw]) are there for the live UI inside it. The screen keeps the 19.5 to 9 shape of a phone and clips its content to the rounded corners. tone is dark (graphite, the default) or light (silver) around a black bezel; notch is island (default) or none. Live UI is padded clear of the island and the home bar (safeArea, on by default) and scrolls inside the screen; turn it off to draw to the edges and use --phone-safe-top and --phone-safe-bottom, which are set on the screen. The body, buttons, island and home bar are hidden from assistive technology, and the screen has the one name: alt for a picture, label (Phone screen) for live UI or a picture without alt. There are no image files. It is a server component."
+    },
+    {
+      "name": "phone-frame-demo",
+      "type": "registry:example",
+      "title": "Phone frame demo",
+      "description": "A working preview of Phone frame.",
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/phone-frame.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/phone-frame-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "qr-code",
+      "type": "registry:ui",
+      "title": "QR code",
+      "description": "A QR code as crisp SVG from any string, drawn by a bundled encoder with four error correction levels, a quiet zone and SVG and PNG download.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/qr-code/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/qr-code/index.tsx"
+        },
+        {
+          "path": "registry/primitives/qr-code/encode.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/qr-code/encode.ts"
+        },
+        {
+          "path": "registry/primitives/qr-code/actions.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/qr-code/actions.tsx"
+        }
+      ],
+      "docs": "value is any string, sent as UTF-8. The encoder is bundled (pure TypeScript, versions 1 to 40, no package and no request): it picks the smallest version that holds the text in the densest mode the text allows, adds Reed-Solomon error correction and keeps the mask a scanner reads most easily. The code is one SVG path, so it is sharp at any size and prints well, and it is always dark modules on a white tile in both themes, because a scanner needs that contrast. size is the width of the tile in px (never wider than its container). level is L, M (default), Q or H: about 7, 15, 25 and 30 percent of the code may be lost, and a higher level is denser. margin is the quiet zone in modules (4, which scanners want). The figure is named after what it leads to, 'QR code for northwind.example/invite', from title or from value without its scheme. With actions a row offers Download SVG (a vector file at least 512px wide, on whole pixels per module, so Figma, Word or Keynote import it at a usable size) and Download PNG; the PNG is drawn from the SVG only when its button is pressed, on whole pixels per module and at least pngSize wide (1024), and onDownload(format, file) is called after either download starts (pass it from a client component). An empty value, or one too long for any code (7089 digits, 4296 capital letters or 2953 bytes at level L), shows a message in place of the tile. encodeQr(value, level) gives the modules for your own drawing and qrSvg(matrix, margin, pixels) a whole SVG document (with pixels it has a width and height). Only the download buttons need a script."
+    },
+    {
+      "name": "qr-code-demo",
+      "type": "registry:example",
+      "title": "QR code demo",
+      "description": "A working preview of QR code.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/qr-code.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/qr-code-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "story-ring",
+      "type": "registry:ui",
+      "title": "Story ring",
+      "description": "An avatar with a ring that says whether a story is new, seen or live, as a button that opens it, plus a snapping row with your own slot.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/story-ring/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/story-ring/index.tsx"
+        },
+        {
+          "path": "registry/primitives/story-ring/states.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/story-ring/states.ts"
+        }
+      ],
+      "docs": "StoryRing wraps the house Avatar in a ring with a gap and is one button. state is unseen (a bold solid ring), seen (a thin muted ring), live (a dashed ring with a small Live tag) or none (no ring). The picture keeps its size in all four, so a row stays level, and the ring never depends on colour: weight, dashes and a word carry it. The button is named after the person and their state, 'Maya, new story', 'Maya, story seen', 'Maya, live now', labels replaces those words, and label replaces the whole name. src falls back to the initials of name when it is missing or fails to load. size is sm, md or lg (48, 64 and 80px). onOpen is called when it is pressed. showName writes the name under the ring inside the button, so the two are one target; badge puts a small mark on the bottom right. StoryRingRow is a sideways-scrolling list named Stories that snaps ring by ring: items is a list of { id, name, src, state } and onOpen receives the person. you adds the viewer's own slot first: Your story with a plus when state is none (onAdd), and the ring when they have a story (onOpen). With a mouse, small arrows appear at the ends that can still be scrolled, and smooth scrolling is turned off under reduced motion."
+    },
+    {
+      "name": "story-ring-demo",
+      "type": "registry:example",
+      "title": "Story ring demo",
+      "description": "A working preview of Story ring.",
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/story-ring.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/story-ring-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hotspot-image",
+      "type": "registry:ui",
+      "title": "Hotspot image",
+      "description": "A picture with numbered markers that open a note, for annotated product shots, floor plans and diagrams. Percent positions, 44px targets, notes that stay on screen.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/hotspot-image.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/hotspot-image.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-hotspot-ping": {
+          "from": {
+            "opacity": "0.55",
+            "transform": "scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "scale(2.1)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-hotspot-ping": "rhs-hotspot-ping 1600ms cubic-bezier(0, 0, 0.2, 1) 2 both"
+        }
+      },
+      "docs": "hotspots is a list of { id, x, y, title, body }: x and y are percentages of the picture (0 to 100), so a marker stays on its spot at any width, and the order of the list is the number and the Tab order. Give ratio the shape of your picture (default 3 / 2) so the markers land where you put them. Control the open note with activeId and onActiveChange (null means none), or leave both out; defaultActiveId opens one at load, but a floating note open at load puts a focus guard at each end of the page, so the first Tab lands on an invisible stop. A note floats next to its marker and flips and shifts to stay fully on screen; in a picture narrower than 30rem it opens in a panel under the picture instead, so on a phone it never covers the picture or the page. The markers are white with a dark number in both themes, because a picture does not follow the theme. showList repeats every note as a numbered list under the picture, for screen readers and for phones. Each marker is named '2: Living room'. Tab from an open note moves on to the next marker, Shift+Tab returns to its own, Escape closes. The notes are read-only text; it is not a tour and not a place for comments."
+    },
+    {
+      "name": "hotspot-image-demo",
+      "type": "registry:example",
+      "title": "Hotspot image demo",
+      "description": "A working preview of Hotspot image.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hotspot-image.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hotspot-image-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "embed-consent",
+      "type": "registry:ui",
+      "title": "Embed consent",
+      "description": "A gate for third-party embeds: it names the provider and what it receives, and loads the iframe only after the visitor agrees, with a way to remember and revoke.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/embed-consent/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/embed-consent/index.tsx"
+        },
+        {
+          "path": "registry/primitives/embed-consent/consent.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/embed-consent/consent.ts"
+        }
+      ],
+      "docs": "Put the provider's iframe in children: it is not rendered, so it makes no request, until the visitor presses Load content. provider names who runs it and is also the key a 'yes, always' is stored under (localStorage under rhs-ui:embed-consent:<provider>, one answer per provider, shared by every embed of it and every tab). remember='always' (default) adds the checkbox; remember='once' stores nothing. receives lists what the provider gets, in short phrases: name what yours really sends. After loading, focus moves to the iframe and a line under it offers Revoke consent (or Hide, when the answer was not remembered); pressing it brings the placeholder back, puts focus on Load content and says 'Content from <provider> hidden.' to a screen reader (labels.hidden). Pass consented, onConsent and onRevoke to let your own consent manager decide instead; the component then stores nothing. The server renders the placeholder, so a returning visitor's embed arrives right after hydration."
+    },
+    {
+      "name": "embed-consent-demo",
+      "type": "registry:example",
+      "title": "Embed consent demo",
+      "description": "A working preview of Embed consent.",
+      "registryDependencies": [
+        "https://rhsui.com/r/embed-consent.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/embed-consent-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pausable-image",
+      "type": "registry:ui",
+      "title": "Pausable image",
+      "description": "An animated GIF or WebP that starts still behind a Play button, so moving images meet the rule for pause, stop and hide. Reduced motion always starts paused.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/pausable-image.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pausable-image.tsx"
+        }
+      ],
+      "docs": "src is the animated file (GIF, animated WebP or APNG, or an animated SVG) and alt is required. Without poster the first frame of src is drawn to a canvas as the still, which loads src up front; with poster nothing animated is requested until Play. The button is one element with aria-pressed, so focus stays on it when it turns from Play into the corner Pause. autoPlay is ignored for a visitor who prefers reduced motion. It is the pause control WCAG 2.2.2 asks for when motion lasts more than five seconds. onPlayingChange reports the state."
+    },
+    {
+      "name": "pausable-image-demo",
+      "type": "registry:example",
+      "title": "Pausable image demo",
+      "description": "A working preview of Pausable image.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pausable-image.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pausable-image-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "laptop-frame",
+      "type": "registry:ui",
+      "title": "Laptop frame",
+      "description": "A laptop drawn in CSS around a screenshot or live UI: lid, bezel, hinge and base, with a lid that opens from 0 to 1 so a scroll position can lift it.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/laptop-frame.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/laptop-frame.tsx"
+        }
+      ],
+      "docs": "Pass src and alt for a screenshot, or children for live UI; the screen keeps 16 / 10 and clips to its corners. Everything on the device is a share of its own width (container units), so it scales with width: set width in px or any CSS length, and size live UI in cqw (text-[1.5cqw]). tone is the body finish, dark (graphite) or light (silver). open (0 to 1) turns the lid on its hinge; feed it a scroll value to lift it on scroll. The device is decoration: the alt of the picture, or label for live UI, is what is read."
+    },
+    {
+      "name": "laptop-frame-demo",
+      "type": "registry:example",
+      "title": "Laptop frame demo",
+      "description": "A working preview of Laptop frame.",
+      "registryDependencies": [
+        "https://rhsui.com/r/laptop-frame.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/laptop-frame-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-tile",
+      "type": "registry:ui",
+      "title": "Image tile",
+      "description": "A picture tile with its title on the image, for a category, a destination or a collection: one link, a scrim that keeps the text readable on any photo.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/image-tile.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/image-tile.tsx"
+        }
+      ],
+      "docs": "The whole tile is one link (href). Give every tile of a grid the same ratio and the rows stay level. align='start' puts the text at the bottom left with the arrow at the right; align='center' centres it over a dim that is deepest behind the text. The text is always white on a scrim, so it reads on any photo in light and dark. Hover pulls the picture in and nudges the arrow, both off under reduced motion; the focus ring is drawn inside the tile. Titles clamp to two lines, and below about 13rem wide the arrow moves to the corner. alt is empty by default because the title names the link. priority loads a tile above the fold at once."
+    },
+    {
+      "name": "image-tile-demo",
+      "type": "registry:example",
+      "title": "Image tile demo",
+      "description": "A working preview of Image tile.",
+      "registryDependencies": [
+        "https://rhsui.com/r/image-tile.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-tile-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "photo-stack",
+      "type": "registry:ui",
+      "title": "Photo stack",
+      "description": "A small pile of photos for an album or an attachment set: the cover on top, the rest peeking out at fixed angles, a count chip, and a fan on hover.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/photo-stack.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/photo-stack.tsx"
+        }
+      ],
+      "docs": "photos takes up to five { src, alt }, the cover first; count is how many the album holds in all, and the chip shows how many the pile does not. The angles are fixed numbers, so server and browser draw the same pile. fanOnHover opens the pile on hover and keyboard focus; touch screens and reduced motion keep it closed. With href it is a link, with onClick and no href a button, with neither a labelled picture; the name is 'Summer 2025, 24 photos'. On a link or button with a caption the name is read from the caption itself, so what a voice-control user says matches what is on screen. showCaption puts the title and count under the pile; turn it off for the pile alone."
+    },
+    {
+      "name": "photo-stack-demo",
+      "type": "registry:example",
+      "title": "Photo stack demo",
+      "description": "A working preview of Photo stack.",
+      "registryDependencies": [
+        "https://rhsui.com/r/photo-stack.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/photo-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pattern-cover",
+      "type": "registry:ui",
+      "title": "Pattern cover",
+      "description": "A designed placeholder for missing artwork: a monochrome pattern drawn from any string, the same on server and client, square or round, in theme tokens.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/pattern-cover.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pattern-cover.tsx"
+        }
+      ],
+      "docs": "seed is any string (a playlist name, a project id): the same seed always draws the same cover. The seed picks one of five families (rings, stripes, a Bauhaus grid, Truchet arcs, a halftone), the layout and whether the cover is light or dark. It is SVG in foreground and muted tokens, with no random numbers, no images and no network. shape is square or round, size a number of px or any CSS length. It is decoration (aria-hidden) unless you give it a label."
+    },
+    {
+      "name": "pattern-cover-demo",
+      "type": "registry:example",
+      "title": "Pattern cover demo",
+      "description": "A working preview of Pattern cover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pattern-cover.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pattern-cover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "play-clip-button",
+      "type": "registry:ui",
+      "title": "Play clip button",
+      "description": "A round button that plays a short sound, such as a pronunciation or a sample, with a progress ring, one clip at a time and no audio loaded until it is pressed.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/play-clip-button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/play-clip-button/index.tsx"
+        },
+        {
+          "path": "registry/primitives/play-clip-button/player.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/play-clip-button/player.ts"
+        }
+      ],
+      "docs": "src is the sound and label is the name of the button as a sentence: 'Play pronunciation of cheese'. The audio element is created on the first press, so a page of these loads no audio until one is used. Starting a clip stops any other that is playing, through a shared registry. The button is a toggle with aria-pressed, shows a spinner while the file arrives and 'Could not play' under the button, with a retry arrow, when it cannot; a second press asks for the file again, so a flaky network recovers without a reload. onEnded fires when a clip plays to its end. The ring keeps showing progress under reduced motion and only drops the easing."
+    },
+    {
+      "name": "play-clip-button-demo",
+      "type": "registry:example",
+      "title": "Play clip button demo",
+      "description": "A working preview of Play clip button.",
+      "registryDependencies": [
+        "https://rhsui.com/r/play-clip-button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/play-clip-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "image-sequence",
+      "type": "registry:ui",
+      "title": "Image sequence",
+      "description": "Scrub through a set of frames by dragging or hovering: a 360-degree product spin, a flipbook or a video hover preview, with keyboard stepping and a slider role.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/image-sequence.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/image-sequence.tsx"
+        }
+      ],
+      "docs": "frames is a list of image addresses (keep the array stable between renders). mode='drag' turns the picture as the pointer is dragged (sensitivity 1 means dragging across it shows every frame once; loop wraps past the ends); mode='hover' maps the pointer's place along the picture to a frame and rests on the first when it leaves. The first frame shows at once and the rest are preloaded behind it in batches of four, with a thin line along the top; until a frame arrives the nearest loaded one stays up. The picture is a slider named by alt: arrows step one frame, Page Up and Page Down ten percent, Home and End jump, and aria-valuetext reads 'Frame 12 of 36'. autoRotate (drag only) turns it once, slowly, on first view, never under reduced motion. Vertical swipes still scroll the page."
+    },
+    {
+      "name": "image-sequence-demo",
+      "type": "registry:example",
+      "title": "Image sequence demo",
+      "description": "A working preview of Image sequence.",
+      "registryDependencies": [
+        "https://rhsui.com/r/image-sequence.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/image-sequence-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "hover-video-preview",
+      "type": "registry:ui",
+      "title": "Hover video preview",
+      "description": "A video thumbnail that plays a muted preview after you rest on it, and loads nothing until you do; skipped on touch, Save-Data and reduced motion.",
+      "categories": [
+        "primitives",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/hover-video-preview.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/hover-video-preview.tsx"
+        }
+      ],
+      "docs": "poster is the still and previewSrc a short muted clip. Nothing is requested before the pointer or keyboard focus has rested on the tile for delay milliseconds (300): the video element is not even on the page until then, and when you leave it stops and rewinds. The preview is skipped on touch screens, when the browser asks to save data and under reduced motion, where the poster simply stays. The whole tile is one link (href) or one button (onClick), named by its title and length; the video is decoration. duration is seconds or text."
+    },
+    {
+      "name": "hover-video-preview-demo",
+      "type": "registry:example",
+      "title": "Hover video preview demo",
+      "description": "A working preview of Hover video preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/hover-video-preview.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/hover-video-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

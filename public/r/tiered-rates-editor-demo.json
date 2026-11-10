@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tiered-rates-editor-demo",
+  "title": "Tiered rates editor demo",
+  "description": "A working preview of Tiered rates editor.",
+  "registryDependencies": [
+    "https://rhsui.com/r/tiered-rates-editor.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/tiered-rates-editor-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { TieredRatesEditor, type Tier } from \"@rhs-ui/application/tiered-rates-editor\";\n\n/** A caption and the example under it. */\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  const [volume, setVolume] = useState<Tier[]>([\n    { from: 1, rate: 1200 },\n    { from: 10, rate: 1050 },\n    { from: 50, rate: 900 },\n  ]);\n  const [shipping, setShipping] = useState<Tier[]>([\n    { from: 1, rate: 490 },\n    { from: 501, rate: 690 },\n    { from: 2001, rate: 990 },\n  ]);\n  const [commission, setCommission] = useState<Tier[]>([\n    { from: 1, rate: 5 },\n    { from: 26, rate: 7.5 },\n    { from: 101, rate: 10 },\n  ]);\n\n  return (\n    // The preview stage caps its child at 900px, so the width that suits the table is set one level in.\n    <div className=\"w-full\">\n      <div className=\"mx-auto grid w-full max-w-2xl gap-9\">\n        <Example caption=\"Try it: change the From of tier 2 and the To above it follows. Type 1 there and pause, or a number past tier 3, and the start is refused with the reason.\">\n          <TieredRatesEditor value={volume} onValueChange={setVolume} unit={{ one: \"unit\", other: \"units\" }} rateLabel=\"Price per unit\" currency=\"EUR\" />\n          <p className=\"flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-xs text-muted-foreground\">\n            <span>Reported, rates in cents</span>\n            <code className=\"font-mono text-[0.6875rem] text-foreground\">{JSON.stringify(volume).replace(/\"/g, \"\").replace(/,/g, \", \")}</code>\n          </p>\n        </Example>\n\n        <Example caption=\"Shipping bands by weight in grams: the last band runs on, and a tier can be removed, which hands its range to the one before it.\">\n          <TieredRatesEditor value={shipping} onValueChange={setShipping} unit=\"g\" rateLabel=\"Shipping cost\" currency=\"EUR\" minRows={2} />\n        </Example>\n\n        <Example caption=\"Commissions are a plain rate rather than money: no currency, a % after the number.\">\n          <TieredRatesEditor value={commission} onValueChange={setCommission} unit={{ one: \"order\", other: \"orders\" }} rateLabel=\"Commission\" rateSuffix=\"%\" />\n        </Example>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

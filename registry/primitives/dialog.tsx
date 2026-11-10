@@ -32,7 +32,7 @@ export function DialogOverlay({ className, ...props }: ComponentProps<typeof Dia
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-foreground/55 data-[state=open]:animate-rhs-fade-in data-[state=closed]:animate-rhs-fade-out",
+        "fixed inset-0 z-50 bg-black/55 data-[state=open]:animate-rhs-fade-in data-[state=closed]:animate-rhs-fade-out",
         className,
       )}
       {...props}

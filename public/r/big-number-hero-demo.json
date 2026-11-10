@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "big-number-hero-demo",
+  "title": "Big number hero demo",
+  "description": "A working preview of Big number hero.",
+  "registryDependencies": [
+    "https://rhsui.com/r/big-number-hero.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/big-number-hero-demo.tsx",
+      "content": "import { BigNumberHero } from \"@rhs-ui/marketing/big-number-hero\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <p className=\"pt-6 text-xs text-muted-foreground\">Counts up once (in 0.6 seconds here), the first time it is on screen. The page holds 4.2 from the first render, and a reader who asked for less motion sees it at once.</p>\n      <BigNumberHero\n        className=\"py-8 sm:py-10 lg:py-12\"\n        animate\n        duration={0.6}\n        label=\"Drinking water saved since 2019\"\n        value={4.2}\n        unit=\"million litres\"\n        format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }}\n        description=\"Across 312 households in the Veluwe, with smart meters, leak alerts and a tariff that rewards a short shower. Close to two Olympic swimming pools.\"\n        source={{ label: \"Northwind Water Authority, annual report 2025\", href: \"#report\" }}\n        asOf=\"2025-12-31\"\n        actions={[\n          { label: \"Read the report\", href: \"#report\" },\n          { label: \"See how it adds up\", href: \"#method\" },\n        ]}\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">A short unit stays beside the figure at every width, and the figure takes the room that is left.</p>\n      <BigNumberHero\n        className=\"py-8 sm:py-10 lg:py-12\"\n        label=\"Pickups made inside the two-hour window\"\n        value={98}\n        unit=\"%\"\n        description=\"Every one of our 41 depots reports its window each night, and the figure is the median across the quarter.\"\n        source=\"Kestrel Logistics, third quarter 2026\"\n        asOf=\"2026-09-30\"\n        actions={[\n          { label: \"Book a pickup\", href: \"#book\" },\n          { label: \"How we measure\", href: \"#method\" },\n        ]}\n      />\n\n      <p className=\"border-t border-border pt-6 text-xs text-muted-foreground\">A short figure with a longer word after it, and no source to quote.</p>\n      <BigNumberHero\n        className=\"py-8 sm:py-10 lg:py-12\"\n        label=\"Sunday dinners at Halcyon Kitchen, a seat for anyone\"\n        value={12}\n        unit=\"years\"\n        description=\"We have not missed a week, including the two years the doors had to stay shut and the food went out in boxes.\"\n        actions={[{ label: \"Join us on Sunday\", href: \"#join\" }]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -1,0 +1,97 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
+
+import { HoverVideoPreview } from "@rhs-ui/primitives/hover-video-preview";
+
+/*
+ * The posters are drawn as SVG, and the two preview clips are the same drawings moving (clouds over dunes, a boat on a swell),
+ * two and a half seconds each as a WebM of a few kilobytes, so the demo needs no files. Your own clips go in `previewSrc`.
+ */
+const f = (x: number): number => Math.round(x * 10) / 10;
+const TAU = Math.PI * 2;
+const uri = (svg: string): string => "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+
+function dunes(t: number): string {
+  const ridge = (base: number, amp: number, lambda: number, phase: number, fill: string) => {
+    let d = `M-20 360V${f(base)}`;
+    for (let x = -20; x <= 660; x += 10) d += `L${x} ${f(base + amp * Math.sin((TAU * x) / lambda + phase) + amp * 0.35 * Math.sin((TAU * x) / (lambda * 0.43) + phase * 2))}`;
+    return `<path d='${d}V360Z' fill='${fill}'/>`;
+  };
+  const cloud = (x0: number, y: number, s: number) => `<g transform='translate(${f(((x0 + 760 * t) % 760) - 100)} ${y}) scale(${s})' fill='#fff7ea' opacity='.88'><rect x='0' y='14' width='110' height='26' rx='13'/><circle cx='34' cy='16' r='18'/><circle cx='64' cy='10' r='22'/></g>`;
+  return (
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360' width='640' height='360'><defs>` +
+    `<linearGradient id='s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#f5e9d6'/><stop offset='1' stop-color='#e8cda6'/></linearGradient>` +
+    `<radialGradient id='g'><stop offset='0' stop-color='#fff3da' stop-opacity='.7'/><stop offset='1' stop-color='#fff3da' stop-opacity='0'/></radialGradient></defs>` +
+    `<rect width='640' height='360' fill='url(#s)'/><circle cx='470' cy='150' r='120' fill='url(#g)'/><circle cx='470' cy='150' r='44' fill='#fff4de'/>` +
+    cloud(40, 60, 1.1) +
+    cloud(330, 104, 0.8) +
+    cloud(560, 40, 0.65) +
+    ridge(238, 14, 520, 0.6, "#d8b88a") +
+    ridge(274, 16, 440, 2.2, "#b68d60") +
+    ridge(318, 14, 380, 4.1, "#86654a") +
+    `</svg>`
+  );
+}
+
+function harbour(t: number): string {
+  const wave = (y: number, alpha: number, shift: number) => {
+    let d = `M-20 ${y}`;
+    for (let x = -20; x <= 660; x += 8) d += `L${x} ${f(y + 3.2 * Math.sin((TAU * (x - 80 * t)) / 80 + shift))}`;
+    return `<path d='${d}' fill='none' stroke='#fff' stroke-opacity='${alpha}' stroke-width='2.2' stroke-linecap='round'/>`;
+  };
+  const bob = 4 * Math.sin(TAU * t);
+  const tilt = 2.2 * Math.sin(TAU * t + 0.8);
+  return (
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360' width='640' height='360'><defs>` +
+    `<linearGradient id='s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#e3e9ed'/><stop offset='1' stop-color='#c5d1d9'/></linearGradient>` +
+    `<linearGradient id='w' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#8fa4b3'/><stop offset='1' stop-color='#4d6376'/></linearGradient></defs>` +
+    `<rect width='640' height='360' fill='url(#s)'/><circle cx='440' cy='112' r='36' fill='#f6f8f9'/><rect y='196' width='640' height='164' fill='url(#w)'/>` +
+    [0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => wave(212 + i * 18, f(0.18 + i * 0.035), i * 0.9)).join("") +
+    `<path d='M520 200l14-86h24l14 86Z' fill='#f4f6f7'/><path d='M534 114h24v-12l-12-14-12 14Z' fill='#34414c'/><path d='M538 150h16v14h-16ZM534 124h24v10h-24Z' fill='#34414c' opacity='.9'/><path d='M500 204c10-14 30-18 56-18s46 4 56 18Z' fill='#4d5b66'/>` +
+    `<g transform='translate(250 ${f(206 + bob)}) rotate(${f(tilt)} 40 10)'><path d='M0 0h92l-14 26H14Z' fill='#2f3b46'/><path d='M46 -88v86' stroke='#2f3b46' stroke-width='4'/><path d='M50 -84L96 -8H50Z' fill='#f5f7f8'/><path d='M42 -70L8 -8h34Z' fill='#d7dfe4'/></g>` +
+    `</svg>`
+  );
+}
+
+/** A recorded talk has no clip here: a title slide, so the tile stays a poster. */
+function talk(): string {
+  return uri(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'><rect width='640' height='360' fill='#1d2024'/><rect x='56' y='44' width='44' height='8' rx='4' fill='#7d848c'/>` +
+      `<rect x='56' y='72' width='380' height='28' rx='8' fill='#f1f2f3'/><rect x='56' y='112' width='290' height='28' rx='8' fill='#f1f2f3'/><rect x='56' y='154' width='200' height='11' rx='5.5' fill='#5e656d'/>` +
+      `<circle cx='520' cy='262' r='74' fill='#2a2e33'/><circle cx='520' cy='240' r='26' fill='#4a5057'/><path d='M472 308c8-26 30-38 48-38s40 12 48 38Z' fill='#4a5057'/></svg>`,
+  );
+}
+
+const DUNES_POSTER = uri(dunes(0));
+const HARBOUR_POSTER = uri(harbour(0));
+const TALK_POSTER = talk();
+const DUNES_CLIP = "data:video/webm;base64,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";
+const HARBOUR_CLIP = "data:video/webm;base64,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";
+
+function Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {
+  return (
+    <div className="grid min-w-0 grid-cols-1 content-start gap-5">
+      <p className="text-xs text-muted-foreground">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+export default function Demo(): React.JSX.Element {
+  const [opened, setOpened] = useState("Press a tile: one with an href is a link, one without is a button.");
+  return (
+    <div className="grid w-full max-w-4xl grid-cols-1 gap-12">
+      <Example caption="Rest the pointer on a tile, or Tab to it, for a moment: the preview is fetched then and plays over the poster. Leave and it rewinds. The last tile has no clip, so it stays a poster.">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <HoverVideoPreview href="#dune-house" poster={DUNES_POSTER} previewSrc={DUNES_CLIP} title="Slow mornings in the Dune House" meta="Kestrel Studio · 12K views" duration={252} />
+          <HoverVideoPreview href="#harbour" poster={HARBOUR_POSTER} previewSrc={HARBOUR_CLIP} title="Four days around the harbour, from the first ferry to the last light" meta="Halcyon Journal · 48K views" duration={618} />
+          <HoverVideoPreview poster={TALK_POSTER} title="Quarterly all-hands, full recording" meta="Internal · Recorded on Thursday" duration={3840} onClick={() => setOpened('Opening "Quarterly all-hands, full recording".')} />
+        </div>
+        <p role="status" className="text-xs text-muted-foreground">
+          {opened}
+        </p>
+      </Example>
+    </div>
+  );
+}

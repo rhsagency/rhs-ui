@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "seo-fieldset-demo",
+  "title": "SEO fieldset demo",
+  "description": "A working preview of SEO fieldset.",
+  "registryDependencies": [
+    "https://rhsui.com/r/seo-fieldset.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/seo-fieldset-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ReactNode } from \"react\";\n\nimport { SeoFieldset, type SeoValue } from \"@rhs-ui/application/seo-fieldset\";\n\n/** A caption and the example under it. */\nfunction Example({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"grid min-w-0 content-start gap-3\">\n      <p className=\"text-xs text-muted-foreground\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nconst card = \"grid gap-5 rounded-xl border border-border bg-card p-5 text-card-foreground shadow-xs sm:p-6\";\n\nexport default function Demo(): React.JSX.Element {\n  const [post, setPost] = useState<SeoValue>({\n    title: \"How we price a website project | Northwind Studio\",\n    description: \"We price a site by what it has to do, not by pages. Here is how scope, content, integrations and support shape the quote, with real ranges from last year.\",\n    slug: \"journal/how-we-price-a-website\",\n  });\n  const [draft, setDraft] = useState<SeoValue>({\n    title: \"Our complete, honest, step by step guide to pricing a custom website project in 2026\",\n    description: \"\",\n    slug: \"journal/pricing-guide\",\n  });\n\n  return (\n    <div className=\"grid w-full max-w-5xl gap-x-10 gap-y-9 lg:grid-cols-2 lg:items-start\">\n      <Example caption=\"Try it: edit the title and the description and watch the meter and the preview. The slug has its own field here.\">\n        <div className={card}>\n          <h2 className=\"text-base font-semibold tracking-[-0.02em]\">Search appearance</h2>\n          <SeoFieldset\n            baseUrl=\"https://northwind.example\"\n            siteName=\"Northwind Studio\"\n            value={post}\n            onValueChange={setPost}\n            editSlug\n            fallbackTitle=\"How we price a website project\"\n            fallbackDescription=\"Pricing a website starts with what it has to do. Here is how we think about scope, content, integrations and support.\"\n          />\n        </div>\n      </Example>\n\n      <Example caption=\"A title that is too long is cut where the limit says, and an empty description shows the page's own text in grey.\">\n        <div className={card}>\n          <h2 className=\"text-base font-semibold tracking-[-0.02em]\">Search appearance</h2>\n          <SeoFieldset\n            baseUrl=\"https://northwind.example\"\n            siteName=\"Northwind Studio\"\n            value={draft}\n            onValueChange={setDraft}\n            fallbackTitle=\"Pricing guide\"\n            fallbackDescription=\"Every project is different, but the cost always comes back to four things: scope, content, integrations and support.\"\n          />\n        </div>\n      </Example>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

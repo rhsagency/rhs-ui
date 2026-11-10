@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "locale-suggestion-bar",
+  "title": "Locale suggestion bar",
+  "description": "A polite bar that offers the local version of the site once, with Switch and Stay actions, and leaves remembering the answer to you.",
+  "dependencies": [
+    "radix-ui@^1.6.7"
+  ],
+  "registryDependencies": [
+    "https://rhsui.com/r/button.json",
+    "https://rhsui.com/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/locale-suggestion-bar/index.tsx",
+      "content": "import { useId, type ComponentProps, type ElementType } from \"react\";\n\nimport { IconArrowRight, IconClose, IconGlobe } from \"@rhs-ui/icons\";\nimport { LocaleBarAction, LocaleBarRoot } from \"@rhs-ui/marketing/locale-suggestion-bar/bar\";\nimport type { LocaleOption, LocaleSuggestion } from \"@rhs-ui/marketing/locale-suggestion-bar/types\";\nimport { Button } from \"@rhs-ui/primitives/button\";\n\nexport type { LocaleOption, LocaleSuggestion } from \"@rhs-ui/marketing/locale-suggestion-bar/types\";\n\nexport interface LocaleSuggestionBarProps extends Omit<ComponentProps<\"div\">, \"children\" | \"onChange\"> {\n  /** The version the visitor is on now. It is handed back to onStay so you can store it. */\n  current: LocaleOption;\n  /** The version you offer, and the question and button words in its own language. */\n  suggested: LocaleSuggestion;\n  /** Called when the visitor takes the offer, as the link is followed. Store the choice here. */\n  onSwitch?: (suggested: LocaleSuggestion) => void;\n  /** Called when the visitor keeps the version they are on. Store the choice here, and do not show the bar again. */\n  onStay?: (current: LocaleOption) => void;\n  /** Called when the visitor closes the bar without choosing. */\n  onDismiss?: () => void;\n  /** Renders the Switch link. Defaults to \"a\"; pass your router's Link. */\n  linkAs?: ElementType;\n}\n\n/**\n * A polite bar that offers the version of the site in the visitor's language,\n * once: a short question in that language, a primary Switch button, a quiet\n * Stay button and a close. It never redirects by itself and never guesses from\n * an IP address: you decide when to show it, for instance when Accept-Language\n * differs from the page, and you store the answer. It is a region whose lang is\n * the suggested language, so a screen reader pronounces the question right,\n * and the type asks for every word of the bar (the question and the names of\n * the three buttons), so none is left in English by accident. Translations run\n * long: when the buttons do not fit side by side, Stay drops under Switch. It\n * slides in once, instantly under reduced motion, and any choice removes it\n * for good. The callbacks are functions, so use the bar from a Client\n * Component, or pass Server Actions.\n */\nexport function LocaleSuggestionBar({ current, suggested, onSwitch, onStay, onDismiss, linkAs: Link = \"a\", className, ...props }: LocaleSuggestionBarProps) {\n  const id = useId();\n\n  return (\n    <LocaleBarRoot current={current} suggested={suggested} labelledBy={id} onSwitch={onSwitch} onStay={onStay} onDismiss={onDismiss} className={className} {...props}>\n      <div className=\"relative mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 pr-14 sm:flex-row sm:items-center sm:justify-center sm:gap-5 sm:px-14 sm:py-2.5\">\n        <p id={id} className=\"flex items-start gap-2.5 text-sm sm:items-center\">\n          <IconGlobe aria-hidden=\"true\" className=\"mt-0.5 size-4 shrink-0 text-muted-foreground sm:mt-0\" />\n          <span className=\"text-pretty\">{suggested.question}</span>\n        </p>\n        <div className=\"flex flex-wrap items-center gap-2\">\n          <LocaleBarAction choice=\"switch\">\n            <Button asChild size=\"sm\" className=\"h-10 px-4 sm:h-8 sm:px-3\">\n              <Link href={suggested.href} hrefLang={suggested.code}>\n                {suggested.switchLabel}\n                <IconArrowRight aria-hidden=\"true\" />\n              </Link>\n            </Button>\n          </LocaleBarAction>\n          <LocaleBarAction choice=\"stay\">\n            <Button type=\"button\" variant=\"ghost\" size=\"sm\" className=\"h-10 px-4 sm:h-8 sm:px-3\">\n              {suggested.stayLabel}\n            </Button>\n          </LocaleBarAction>\n        </div>\n        <div className=\"absolute inset-y-0 right-2 flex items-start pt-2 sm:items-center sm:pt-0\">\n          <LocaleBarAction choice=\"dismiss\">\n            <Button type=\"button\" variant=\"ghost\" size=\"icon-sm\" aria-label={suggested.closeLabel}>\n              <IconClose />\n            </Button>\n          </LocaleBarAction>\n        </div>\n      </div>\n    </LocaleBarRoot>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/locale-suggestion-bar/index.tsx"
+    },
+    {
+      "path": "registry/marketing/locale-suggestion-bar/bar.tsx",
+      "content": "\"use client\";\n\nimport { createContext, useContext, useState, type ComponentProps, type ReactNode } from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport type { LocaleOption, LocaleSuggestion } from \"@rhs-ui/marketing/locale-suggestion-bar/types\";\nimport { cn } from \"@/lib/utils\";\n\ntype Choice = \"switch\" | \"stay\" | \"dismiss\";\n\nconst ChoiceContext = createContext<((choice: Choice) => void) | null>(null);\n\nexport interface LocaleBarRootProps extends Omit<ComponentProps<\"div\">, \"onChange\"> {\n  /** What the visitor is on now. */\n  current: LocaleOption;\n  /** What is on offer. Its code becomes the lang of the bar. */\n  suggested: LocaleSuggestion;\n  /** The id of the element holding the question, which names the region. */\n  labelledBy: string;\n  /** Called when the visitor takes the offer. */\n  onSwitch?: (suggested: LocaleSuggestion) => void;\n  /** Called when the visitor keeps the version they are on. */\n  onStay?: (current: LocaleOption) => void;\n  /** Called when the visitor closes the bar without choosing. */\n  onDismiss?: () => void;\n}\n\n/**\n * The bar around the question: a region in the suggested language that slides\n * in once and is gone for good as soon as the visitor makes any choice, Switch,\n * Stay or the close. Nothing here redirects or remembers: it only reports the\n * choice, and storing it is yours.\n */\nexport function LocaleBarRoot({ current, suggested, labelledBy, onSwitch, onStay, onDismiss, className, children, ...props }: LocaleBarRootProps) {\n  const [open, setOpen] = useState(true);\n  if (!open) return null;\n\n  const choose = (choice: Choice) => {\n    setOpen(false);\n    if (choice === \"switch\") onSwitch?.(suggested);\n    else if (choice === \"stay\") onStay?.(current);\n    else onDismiss?.();\n  };\n\n  return (\n    <ChoiceContext.Provider value={choose}>\n      <div\n        data-slot=\"locale-suggestion-bar\"\n        role=\"region\"\n        lang={suggested.code}\n        aria-labelledby={labelledBy}\n        className={cn(\"grid grid-rows-[1fr] border-b border-border bg-muted/60 motion-safe:animate-rhs-locale-bar-in\", className)}\n        {...props}\n      >\n        <div className=\"min-h-0 overflow-hidden\">{children}</div>\n      </div>\n    </ChoiceContext.Provider>\n  );\n}\n\n/** Wraps one button or link of the bar and reports which choice it is: the bar hides itself and hands the choice back to you. */\nexport function LocaleBarAction({ choice, children }: { choice: Choice; children: ReactNode }) {\n  const choose = useContext(ChoiceContext);\n  return <Slot.Root onClick={() => choose?.(choice)}>{children}</Slot.Root>;\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/locale-suggestion-bar/bar.tsx"
+    },
+    {
+      "path": "registry/marketing/locale-suggestion-bar/types.ts",
+      "content": "/** A language version of the site. */\nexport interface LocaleOption {\n  /** A language tag: \"en\", \"de\", \"pt-BR\". It becomes the lang of the bar when it is the suggestion. */\n  code: string;\n  /** The version named in itself: \"Deutsch\". */\n  label: string;\n  /** Where that version lives. */\n  href: string;\n}\n\n/** The version you offer, and the words to offer it in. Everything the bar says is in this language, so everything is here. */\nexport interface LocaleSuggestion extends LocaleOption {\n  /** The question, in the suggested language: \"Möchten Sie die deutsche Website sehen?\" */\n  question: string;\n  /** The primary button, in the suggested language: \"Zur deutschen Website wechseln\". */\n  switchLabel: string;\n  /** The quiet button, in the suggested language: \"Auf dieser Seite bleiben\". */\n  stayLabel: string;\n  /** The name of the close button, in the suggested language: \"Schließen\". */\n  closeLabel: string;\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/locale-suggestion-bar/types.ts"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-locale-bar-in": "rhs-locale-bar-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+    }
+  },
+  "css": {
+    "@keyframes rhs-locale-bar-in": {
+      "from": {
+        "grid-template-rows": "0fr",
+        "opacity": "0"
+      },
+      "to": {
+        "grid-template-rows": "1fr",
+        "opacity": "1"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "docs": "Decide when to show it, for instance when Accept-Language names a language you have a version in and the page is another, and store the answer yourself: the bar never redirects, never guesses from an IP address and removes itself on any choice, so render it only if you have not asked before. suggested carries the question and the words of the buttons in the suggested language (switchLabel, stayLabel and closeLabel are all required, so nothing on the bar is left in English by accident), and its code becomes the lang of the region, so every word on the bar is pronounced right. When the buttons do not fit side by side on a narrow screen, Stay drops under Switch instead of being cut off. Switch is a link to suggested.href, so linkAs can be your router's Link; onSwitch, onStay (which gets current) and onDismiss are where you store the choice. The bar slides in once, and instantly under reduced motion. The callbacks are functions, so use the bar from a Client Component or pass Server Actions.",
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

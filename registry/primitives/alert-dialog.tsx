@@ -25,7 +25,7 @@ export function AlertDialogContent({ className, ...props }: ComponentProps<typeo
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Overlay
         data-slot="alert-dialog-overlay"
-        className="fixed inset-0 z-50 bg-foreground/55 data-[state=open]:animate-rhs-fade-in data-[state=closed]:animate-rhs-fade-out"
+        className="fixed inset-0 z-50 bg-black/55 data-[state=open]:animate-rhs-fade-in data-[state=closed]:animate-rhs-fade-out"
       />
       <AlertDialogPrimitive.Content
         data-slot="alert-dialog-content"
