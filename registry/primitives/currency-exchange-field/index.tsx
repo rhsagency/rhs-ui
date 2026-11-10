@@ -85,7 +85,8 @@ function CurrencyMenu({ side, value, currencies, onPick, locale, labels, disable
           type="button"
           data-slot={`currency-${side}`}
           disabled={disabled}
-          aria-label={`${labels.currency} (${labels[side]}): ${currencyName(value, locale)} (${value})`}
+          // Starts with the code it shows ("GBP"), then the name and the side in full (WCAG 2.5.3).
+          aria-label={`${value}, ${currencyName(value, locale)}, ${labels.currency}, ${labels[side]}`}
           className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border border-border bg-background pr-2.5 pl-3.5 text-sm font-medium tabular-nums shadow-xs outline-none transition-colors duration-150 hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:pointer-events-none data-[state=open]:bg-muted motion-reduce:transition-none"
         >
           {value}
@@ -363,6 +364,7 @@ export function CurrencyExchangeField({
     <div
       data-slot="currency-exchange-field"
       role="group"
+      aria-disabled={disabled || undefined}
       aria-label={labelledBy ? undefined : (ariaLabel ?? labels.group)}
       aria-labelledby={labelledBy}
       className={cn("@container w-full min-w-0", className)}

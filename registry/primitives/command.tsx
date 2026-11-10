@@ -100,7 +100,13 @@ export function CommandGroup({ className, ...props }: ComponentProps<typeof Comm
 }
 
 export function CommandSeparator({ className, ...props }: ComponentProps<typeof CommandPrimitive.Separator>) {
-  return <CommandPrimitive.Separator data-slot="command-separator" className={cn("-mx-1 my-1 h-px bg-border", className)} {...props} />;
+  // A rule between groups is a picture, not an entry: cmdk writes role="separator", which a listbox may not hold (axe
+  // aria-required-children, critical). The div it renders through asChild takes role="none" instead.
+  return (
+    <CommandPrimitive.Separator asChild {...props}>
+      <div role="none" data-slot="command-separator" className={cn("-mx-1 my-1 h-px bg-border", className)} />
+    </CommandPrimitive.Separator>
+  );
 }
 
 export function CommandItem({ className, ...props }: ComponentProps<typeof CommandPrimitive.Item>) {

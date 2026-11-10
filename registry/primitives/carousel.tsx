@@ -44,10 +44,14 @@ export function Carousel({ children, label, perView = 1, className }: CarouselPr
   const button = "grid size-9 place-items-center rounded-full border border-border bg-background shadow-xs outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 disabled:opacity-40";
   return (
     <section data-slot="carousel" aria-roledescription="carousel" aria-label={label} className={cn("grid gap-4", className)}>
+      {/* The track takes focus, so a keyboard scrolls it with the arrow keys even when no slide holds a link or a button. */}
       <div
         ref={track}
+        role="group"
+        aria-label={`${slides.length} slides`}
+        tabIndex={0}
         className={cn(
-          "relative grid snap-x snap-mandatory auto-cols-[85%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] motion-reduce:scroll-auto [&::-webkit-scrollbar]:hidden",
+          "relative grid snap-x snap-mandatory auto-cols-[85%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain scroll-smooth rounded-lg pb-2 outline-none [scrollbar-width:none] focus-visible:ring-[3px] focus-visible:ring-ring/40 motion-reduce:scroll-auto [&::-webkit-scrollbar]:hidden",
           perView === 2 && "md:auto-cols-[calc((100%-1rem)/2)]",
           perView === 3 && "md:auto-cols-[calc((100%-2rem)/3)]",
           perView === 1 && "md:auto-cols-[100%]",

@@ -1,0 +1,162 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
+
+import { FilePreview, type PreviewFile } from "@rhs-ui/application/file-preview";
+import { IconFileCode, IconFileImage, IconFileSheet, IconFileText, IconFilm, IconMusic } from "@rhs-ui/icons";
+import { cn } from "@/lib/utils";
+
+export default function Demo(): React.JSX.Element {
+  const [picked, setPicked] = useState("harbour");
+  const [fetched, setFetched] = useState<"failed" | "loading" | "ready">("failed");
+  const current = ATTACHMENTS.find((item) => item.id === picked) ?? ATTACHMENTS[0];
+
+  return (
+    <div className="w-full">
+      <div className="mx-auto grid max-w-4xl gap-12">
+        <Case caption="Every kind of file in one place: a picture fitted whole, a PDF, video and audio with the native controls, a code file read in place with its copy button, and a spreadsheet, which has no preview, as a card with a Download. Pick one. This demo has no PDF behind it, so it shows what a phone would: a message and an Open PDF link.">
+          <div className="grid gap-4 md:grid-cols-[13.5rem_minmax(0,1fr)] md:items-start">
+            <div role="group" aria-label="Attachments" className="flex flex-col gap-1.5">
+              {ATTACHMENTS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={item.id === picked}
+                  onClick={() => setPicked(item.id)}
+                  className={cn(
+                    "flex w-full min-w-0 items-center gap-2.5 rounded-lg border px-2.5 py-2 text-start outline-none transition-colors duration-150 motion-reduce:transition-none",
+                    "focus-visible:ring-[3px] focus-visible:ring-ring/40",
+                    item.id === picked ? "border-foreground bg-muted/50" : "border-border bg-card hover:bg-muted/50",
+                  )}
+                >
+                  <item.icon aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
+                  <span className="min-w-0 truncate text-sm leading-5 font-medium">{item.file.name}</span>
+                </button>
+              ))}
+            </div>
+            {current ? <FilePreview file={current.file} embedPdf={false} /> : null}
+          </div>
+        </Case>
+
+        <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 md:items-start">
+          <Case caption="Loading, for what you fetch yourself: the shape of what is coming and a line that says so.">
+            <FilePreview file={{ name: "annual-report-2025.pdf", mime: "application/pdf", size: 5_872_640, url: "#" }} status="loading" />
+          </Case>
+          <Case caption="Failed, in words, with Retry. Retry here asks again and the file arrives the second time.">
+            <FilePreview
+              file={{ name: "release-checklist.md", mime: "text/markdown", size: CHECKLIST.length, text: CHECKLIST, url: "#" }}
+              status={fetched}
+              onRetry={() => {
+                setFetched("loading");
+                window.setTimeout(() => setFetched("ready"), 1100);
+              }}
+              maxHeight="14rem"
+            />
+          </Case>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Case({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {
+  return (
+    <div className="grid min-w-0 content-start gap-3">
+      <p className="text-xs leading-relaxed text-muted-foreground">{caption}</p>
+      {children}
+    </div>
+  );
+}
+
+/* The files are made here, so the demo needs no network: a picture drawn as SVG, a short screen recording and a poster for it, a two-note chime built sample by sample, and a text. */
+
+/** The picture: a harbour at sunrise, drawn as SVG. */
+function harbour(): string {
+  const boats = [
+    { x: 150, y: 360, scale: 1 },
+    { x: 540, y: 392, scale: 1.25 },
+  ]
+    .map(
+      ({ x, y, scale }) =>
+        `<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-60 0h120l-18 26h-84z" fill="#3b3a4a"/><rect x="-2" y="-96" width="4" height="96" fill="#3b3a4a"/><path d="M4 -92L52 -10H4z" fill="#fbeedd"/><path d="M-4 -80L-44 -10H-4z" fill="#f1d3b8"/><rect x="-60" y="30" width="120" height="3" fill="#fff1d0" opacity="0.35"/></g>`,
+    )
+    .join("");
+  const houses = Array.from({ length: 9 }, (_, index) => {
+    const height = 44 + ((index * 37) % 38);
+    return `<g><rect x="${index * 92 - 10}" y="${300 - height}" width="80" height="${height}" fill="${index % 2 ? "#6a5a63" : "#7b6a70"}"/><path d="M${index * 92 - 14} ${300 - height}l${44} -${22}l${44} ${22}z" fill="#4a3f4b"/><rect x="${index * 92 + 14}" y="${300 - height + 16}" width="10" height="14" fill="#fbe0b0" opacity="0.8"/><rect x="${index * 92 + 40}" y="${300 - height + 16}" width="10" height="14" fill="#fbe0b0" opacity="0.6"/></g>`;
+  }).join("");
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b08d"/><stop offset="1" stop-color="#fbe6cd"/></linearGradient><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e7c87"/><stop offset="1" stop-color="#4c4a5c"/></linearGradient></defs>` +
+    `<rect width="800" height="600" fill="url(#sky)"/><circle cx="470" cy="236" r="58" fill="#fff3d6"/><rect y="300" width="800" height="300" fill="url(#sea)"/>${houses}` +
+    `<rect x="420" y="312" width="100" height="6" fill="#fff3d6" opacity="0.55"/><rect x="438" y="332" width="64" height="5" fill="#fff3d6" opacity="0.4"/><rect x="452" y="352" width="36" height="4" fill="#fff3d6" opacity="0.3"/>${boats}</svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+/** A voicemail: two soft bell notes, E and then A, as 16-bit samples in a WAV file. */
+function chime(): string {
+  const rate = 8000;
+  const count = rate * 3;
+  const bytes = new Uint8Array(44 + count * 2);
+  const view = new DataView(bytes.buffer);
+  const write = (offset: number, text: string) => [...text].forEach((char, index) => view.setUint8(offset + index, char.charCodeAt(0)));
+  write(0, "RIFF");
+  view.setUint32(4, 36 + count * 2, true);
+  write(8, "WAVEfmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, rate, true);
+  view.setUint32(28, rate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  write(36, "data");
+  view.setUint32(40, count * 2, true);
+  for (let index = 0; index < count; index += 1) {
+    const time = index / rate;
+    const note = (start: number, hertz: number) => (time < start ? 0 : Math.exp(-(time - start) * 3.2) * (Math.sin(2 * Math.PI * hertz * (time - start)) + 0.3 * Math.sin(4 * Math.PI * hertz * (time - start))));
+    view.setInt16(44 + index * 2, Math.max(-1, Math.min(1, 0.35 * (note(0, 659.25) + note(0.45, 880)))) * 32767, true);
+  }
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return `data:audio/wav;base64,${btoa(binary)}`;
+}
+
+const CLIP = "data:video/webm;base64,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";
+const POSTER = "data:image/png;base64,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";
+
+const CONFIG = `export const project = "halcyon-console";
+
+export const environments = {
+  development: { url: "http://localhost:4000", seed: true },
+  staging: { url: "https://api.staging.halcyon.dev", seed: true },
+  production: { url: "https://api.halcyon.dev", seed: false, confirm: true },
+} as const;
+
+export const deploy = {
+  branch: "main",
+  checks: ["typecheck", "test", "lighthouse"],
+  notify: ["#releases"],
+} as const;
+
+export function urlFor(name: keyof typeof environments): string {
+  return environments[name].url;
+}
+`;
+
+const CHECKLIST = `# Release checklist
+
+- [x] Typecheck and unit tests pass on main
+- [x] Lighthouse score above 90 on the five key pages
+- [ ] Staging smoke test signed off by Mara
+- [ ] Changelog written and linked from the release
+- [ ] Announce in #releases once production is live
+`;
+
+const ATTACHMENTS: readonly { id: string; icon: typeof IconFileText; file: PreviewFile }[] = [
+  { id: "harbour", icon: IconFileImage, file: { name: "harbour-sunrise.svg", mime: "image/svg+xml", size: 3_904, url: harbour() } },
+  { id: "review", icon: IconFileText, file: { name: "Q3-review.pdf", mime: "application/pdf", size: 2_411_520, url: "#" } },
+  { id: "tour", icon: IconFilm, file: { name: "onboarding-tour.webm", mime: "video/webm", size: 8_106, url: CLIP, poster: POSTER } },
+  { id: "voicemail", icon: IconMusic, file: { name: "voicemail-from-mara.wav", mime: "audio/wav", size: 48_044, url: chime() } },
+  { id: "config", icon: IconFileCode, file: { name: "northwind.config.ts", mime: "text/typescript", size: CONFIG.length, text: CONFIG, url: "#" } },
+  { id: "forecast", icon: IconFileSheet, file: { name: "Q3-forecast.xlsx", mime: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", size: 184_320, url: "#" } },
+];

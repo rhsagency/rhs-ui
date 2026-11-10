@@ -30,7 +30,11 @@ export interface ReplySummaryLabels {
   newCount?: string;
   /** The time of the latest reply. Default "Last reply {time}". */
   lastReply?: string;
-  /** The same words inside the link's name, where they follow a comma. Default "last reply {time}". */
+  /**
+   * No longer read: the link's name now uses `lastReply` as the line shows it, so it holds the words a voice user
+   * reads (WCAG 2.5.3). Kept so a labels object that sets it still type-checks.
+   * @deprecated
+   */
   lastReplyName?: string;
   /** What a reply under a minute old is called. Default "just now". */
   justNow?: string;
@@ -169,7 +173,11 @@ export function ReplySummary({ replies, repliers = [], lastReplyAt, unread, href
   // In a narrow column the same time is written short ("2h ago"), so it still fits whole.
   const timeShort = known && clock !== null ? ageIn(at, clock, locale, text.justNow, "narrow") : timeText;
   const [before = "", after = ""] = text.lastReply.split("{time}");
-  const name = [text.view, countName, unreadText, known ? fill(text.lastReplyName, { time: timeText }) : ""].filter(Boolean).join(", ");
+  // The name holds what the line shows, in its order ("1.3k replies, New, Last reply 9 minutes ago, View thread"), so a
+  // voice user can say it (WCAG 2.5.3); the exact count of a compacted one follows. The short time of a narrow column is
+  // drawn by CSS (it would sit in the name where a wide column hides it), and the name keeps the long one.
+  const lastShown = known ? `${before}${timeText}${after}`.trim() : "";
+  const name = [countText, unreadText, lastShown, text.view, compact ? countName : ""].filter(Boolean).join(", ");
 
   const content = (
     <>
@@ -180,8 +188,9 @@ export function ReplySummary({ replies, repliers = [], lastReplyAt, unread, href
           {repliers.slice(0, 3).map((replier, index) => (
             <Avatar key={`${index}-${replier.name}`} className={cn("data-[size=default]:size-6", index > 0 && "-ms-1", index === 1 && "@max-[16rem]:hidden", index === 2 && "@max-[17.5rem]:hidden")}>
               {replier.image ? <AvatarImage src={replier.image} alt="" /> : null}
-              {/* Not the muted tone of the avatar and of the hovered line, or the disc melts into the line under the pointer. */}
-              <AvatarFallback className="bg-foreground/10 text-[0.6875rem] font-semibold">{initialsOf(replier.name).slice(0, 1)}</AvatarFallback>
+              {/* Not the muted tone of the avatar and of the hovered line, or the disc melts into the line under the pointer. The
+                  letter is drawn by CSS: as text it joined the link's words, and no name could hold them. */}
+              <AvatarFallback data-initials={initialsOf(replier.name).slice(0, 1)} className="bg-foreground/10 text-[0.6875rem] font-semibold before:content-[attr(data-initials)]" />
             </Avatar>
           ))}
         </AvatarGroup>
@@ -189,11 +198,14 @@ export function ReplySummary({ replies, repliers = [], lastReplyAt, unread, href
       <span aria-hidden="true" className="shrink-0 font-medium tracking-[-0.01em] tabular-nums">
         {countText}
       </span>
+      {/* Spaces between the parts, so their words stay apart in the link's text ("5 replies2 new") that its name is checked against. */}
+      {" "}
       {unreadText ? (
         <span aria-hidden="true" className="inline-flex h-[1.125rem] shrink-0 items-center rounded-full bg-foreground px-1.5 text-[0.6875rem] font-semibold text-background">
           {unreadText}
         </span>
       ) : null}
+      {" "}
       {known ? (
         // The time is never cut: it keeps its size, and a column too narrow for everything sheds the avatars, then the chevron, and last of all lets the time drop to a second line.
         // "View thread" shares the time's cell only where the column is wide enough to swap it in; narrower, it would only reserve a gap before the chevron.
@@ -201,11 +213,12 @@ export function ReplySummary({ replies, repliers = [], lastReplyAt, unread, href
           <span className="col-start-1 row-start-1 whitespace-nowrap transition-opacity duration-150 @min-[24rem]:group-hover/reply:opacity-0 @min-[24rem]:group-focus-visible/reply:opacity-0 motion-reduce:transition-none">
             <span className="@max-[24rem]:hidden">{before}</span>
             <time dateTime={new Date(at).toISOString()} title={dateIn(at, locale, timeZone, { dateStyle: "medium", timeStyle: "short" })} suppressHydrationWarning>
-              <span className="@max-[24rem]:hidden">{timeText}</span>
-              <span className="hidden @max-[24rem]:inline">{timeShort}</span>
+              <span className="@max-[24rem]:hidden">{timeText}</span>{" "}
+              <span data-label={timeShort} className="hidden @max-[24rem]:inline before:content-[attr(data-label)]" />
             </time>
             <span className="@max-[24rem]:hidden">{after}</span>
           </span>
+          {" "}
           <span className="col-start-1 row-start-1 hidden whitespace-nowrap text-foreground opacity-0 transition-opacity duration-150 group-hover/reply:opacity-100 group-focus-visible/reply:opacity-100 motion-reduce:transition-none @min-[24rem]:block">{text.view}</span>
         </span>
       ) : null}

@@ -156,8 +156,10 @@ export function FollowButton({
               type="button"
               variant={shown === "none" ? variant : variant === "outline" ? "secondary" : "outline"}
               size={size}
-              aria-label={`Follow ${name}`}
-              aria-pressed={shown !== "none"}
+              // Named by the word it shows ("Following", "Requested"), then the action once it shows ("Unfollow" on hover or
+              // focus), so a voice user can say what they see (WCAG 2.5.3). A label that changes with the state is a plain
+              // button, not aria-pressed.
+              aria-label={`${look.label} ${name}${showAlt && look.alt ? `, ${look.alt}` : ""}`}
               aria-describedby={describedBy}
               aria-haspopup={asksFirst ? "dialog" : undefined}
               aria-expanded={asksFirst ? confirming : undefined}
@@ -190,11 +192,9 @@ export function FollowButton({
                 <span key={shown} aria-hidden="true" className={cn(fade, "starting:opacity-0", showAlt ? "opacity-0" : "opacity-100")}>
                   {look.label}
                 </span>
-                {look.alt ? (
-                  <span aria-hidden="true" className={cn(fade, showAlt ? "opacity-100" : "opacity-0")}>
-                    {look.alt}
-                  </span>
-                ) : null}
+                {/* The word for the action under the pointer ("Unfollow") is drawn by CSS, not written in the button: as text it
+                    ran into the label ("FollowingUnfollow"), so no name could hold what the button shows (WCAG 2.5.3). */}
+                {look.alt ? <span aria-hidden="true" data-label={look.alt} className={cn(fade, showAlt ? "opacity-100" : "opacity-0", "before:content-[attr(data-label)]")} /> : null}
               </span>
             </Button>
           </PopoverAnchor>

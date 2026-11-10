@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { Fragment, useRef, useState, type ComponentProps, type ReactNode } from "react";
 
 import { IconCheck, IconPlusCircle } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
@@ -89,7 +89,11 @@ export function FacetFilter({
   };
   const toggle = (item: string): void => set(chosen.has(item) ? current.filter((entry) => entry !== item) : [...current, item]);
 
-  const name = `${title} filter${picked.length ? `, ${picked.length} selected: ${picked.map((option) => option.label).join(", ")}` : ""}`;
+  // The name starts with what the button shows, in its order ("Status, Open, Pending" or "Team, 3 selected"), so a voice
+  // user can say it (WCAG 2.5.3); the rest follows for a screen reader.
+  const labels = picked.map((option) => option.label);
+  const shown = picked.length > 2 ? [`${picked.length} selected`, ...labels] : picked.length ? [...labels, `${picked.length} selected`] : [];
+  const name = [title, ...shown, "filter"].join(", ");
 
   return (
     <Popover
@@ -104,6 +108,8 @@ export function FacetFilter({
         <Button type="button" variant="outline" size={size} {...props} data-slot="facet-filter" aria-label={name} className={cn("max-w-full min-w-0 shrink border-dashed", className)}>
           <IconPlusCircle aria-hidden="true" className="text-muted-foreground" />
           {title}
+          {/* Spaces between the title and the chosen names, so their words stay apart in the button's text ("StatusOpenPending"). */}
+          {picked.length ? " " : null}
           {picked.length ? (
             <>
               <Separator orientation="vertical" className="mx-0.5 h-4" />
@@ -114,10 +120,13 @@ export function FacetFilter({
               ) : (
                 // On a narrow screen a long name gives way with an ellipsis instead of pushing the button out of its row.
                 <span className="flex min-w-0 items-center gap-1">
-                  {picked.map((option) => (
-                    <Badge key={option.value} variant="secondary" className="min-w-0 shrink rounded-md px-1.5 font-normal">
-                      <span className="truncate">{option.label}</span>
-                    </Badge>
+                  {picked.map((option, index) => (
+                    <Fragment key={option.value}>
+                      {index > 0 ? " " : null}
+                      <Badge variant="secondary" className="min-w-0 shrink rounded-md px-1.5 font-normal">
+                        <span className="truncate">{option.label}</span>
+                      </Badge>
+                    </Fragment>
                   ))}
                 </span>
               )}

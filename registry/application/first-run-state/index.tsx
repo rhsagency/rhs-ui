@@ -159,7 +159,9 @@ export function FirstRunState({ title, description, options, recommendedId, onSk
             </>
           );
           const recommendedStyle = recommended ? "border-foreground/45" : "";
-          const names = { "aria-labelledby": recommended ? `${key}-title ${key}-badge` : `${key}-title`, "aria-describedby": `${key}-text` };
+          // Named by the whole card, in the order it is read ("Recommended, Connect Google Sheets, Keep a live copy..."):
+          // a name of the title alone left out words the card shows, which a voice user may say (WCAG 2.5.3).
+          const names = {};
           return option.href ? (
             <a key={option.id} data-option="" href={option.href} onClick={option.onSelect} {...names} className={cn(card, recommendedStyle)}>
               {body}

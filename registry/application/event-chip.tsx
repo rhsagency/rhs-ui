@@ -159,7 +159,9 @@ export function EventChip({
     else if (kind === "multi-day" && !Number.isNaN(end)) when = fill(text.range, { start: format(start, locale, timeZone, DAY), end: format(end, locale, timeZone, DAY) });
     else when = `${format(start, locale, timeZone, DAY)}, ${text.allDay.toLowerCase()}`;
   }
-  const name = [event.title, when, event.calendar, event.tentative ? text.tentative.toLowerCase() : null].filter(Boolean).join(", ");
+  // The name starts with what the chip shows, in its order ("16:00 Dentist"), so a voice user can say it (WCAG 2.5.3);
+  // the whole range and the calendar follow for a screen reader.
+  const name = [time ? `${time} ${event.title}` : event.title, when, event.calendar, event.tentative ? text.tentative.toLowerCase() : null].filter(Boolean).join(", ");
   const details = [when, event.calendar].filter(Boolean).join(" · ");
 
   return (
@@ -203,6 +205,8 @@ export function EventChip({
                 {time}
               </span>
             ) : null}
+            {/* A space between the time and the title, so their words do not run together ("09:00Standup") in the text a name is checked against. */}
+            {time ? " " : null}
             <span ref={title} aria-hidden="true" className="min-w-0 flex-1 truncate">
               {event.title}
             </span>

@@ -16,11 +16,14 @@ function endTransform(effect: ScrollAwayEffect, distance: number): string {
 
 /**
  * Two animations on one view timeline, longhands only (the `animation`
- * shorthand would reset the timeline). The first dims, moves and softens the
- * element. The second only switches pointer events off, stepping at the very
- * end of the range, so a link that has faded out cannot be pressed by mistake
- * while one that is still visible always can. Gated twice: reduced motion and
- * a browser without scroll timelines both leave the element as it is.
+ * shorthand would reset the timeline). The first clears the element away from
+ * below with a clip, never a fade, and moves it: a scroll position is a still,
+ * so every line still in view keeps its full contrast (a fade left them at
+ * 1.77:1 half way, WCAG 1.4.3). The second only switches pointer events off,
+ * stepping at the very end of the range, so a link that has gone cannot be
+ * pressed by mistake while one that is still visible always can. Gated twice:
+ * reduced motion and a browser without scroll timelines both leave the element
+ * as it is.
  */
 const scrollAwayClass = [
   "motion-safe:supports-[animation-timeline:view()]:[animation-name:var(--animate-rhs-scroll-away),var(--animate-rhs-scroll-away-inert)]",
@@ -31,11 +34,11 @@ const scrollAwayClass = [
 ].join(" ");
 
 export interface ScrollAwayProps extends ComponentProps<"div"> {
-  /** How it leaves. `fade` only dims, `lift` rises as it dims, `scale` shrinks away. */
+  /** How it leaves. `fade` clears in place, `lift` rises as it clears, `scale` shrinks away as it clears. */
   effect?: ScrollAwayEffect;
   /** Travel in pixels for `lift`, a third of it for `scale`. */
   distance?: number;
-  /** Blur in pixels reached by the time it is gone: 0 stays sharp, 6 to 10 softens it. */
+  /** Blur in pixels reached by the time it is gone: 0 stays sharp, 6 to 10 softens it. For an element without words: blurred text cannot be read where the scroll stops. */
   blur?: number;
   /** When it runs, as CSS `animation-range`. The default starts as the element reaches the top of the screen and ends when 80% of it has gone. */
   range?: string;
@@ -44,9 +47,9 @@ export interface ScrollAwayProps extends ComponentProps<"div"> {
 }
 
 /**
- * The exit counterpart to Reveal: content that fades, lifts and softens as it
- * scrolls off the top, so a hero or a page header makes way instead of being
- * cut by the edge of the screen. Pure CSS on a view timeline, no scroll
+ * The exit counterpart to Reveal: content that clears away line by line as it
+ * scrolls off the top, in place, lifting or receding, so a hero or a page
+ * header makes way, sharp to its last visible line. Pure CSS on a view timeline, no scroll
  * handler and no layout shift; the server renders the element at rest, and
  * reduced motion or a browser without scroll timelines keeps it fully visible.
  */

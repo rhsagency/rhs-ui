@@ -197,7 +197,7 @@ export function PercentageField({
   const at = answer ? line.lastIndexOf(answer) : -1;
 
   return (
-    <div data-slot="percentage-field" className={cn("grid w-full min-w-0 grid-cols-1", className)}>
+    <div data-slot="percentage-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1", className)}>
       <InputGroup onClick={focusNumber} className="cursor-text">
         <InputGroupInput
           ref={attach}

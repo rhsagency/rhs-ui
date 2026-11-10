@@ -14,7 +14,8 @@ const alertVariants = cva(
           "border-[color-mix(in_oklch,var(--color-success,oklch(0.62_0.15_150))_45%,transparent)] bg-[color-mix(in_oklch,var(--color-success,oklch(0.62_0.15_150))_7%,transparent)] text-foreground [&>svg]:text-[var(--color-success,oklch(0.62_0.15_150))]",
         warning:
           "border-[color-mix(in_oklch,var(--color-warning,oklch(0.72_0.16_75))_55%,transparent)] bg-[color-mix(in_oklch,var(--color-warning,oklch(0.72_0.16_75))_9%,transparent)] text-foreground [&>svg]:text-[var(--color-warning,oklch(0.62_0.16_65))]",
-        destructive: "border-destructive/40 bg-destructive/5 text-destructive [&>svg]:text-destructive",
+        // Words in the red darkened toward the text colour reach 4.5:1 on the red wash (plain red was 4.32:1); the icon keeps the red.
+        destructive: "border-destructive/40 bg-destructive/5 text-[color:color-mix(in_oklch,var(--destructive),var(--foreground)_30%)] [&>svg]:text-destructive",
       },
     },
     defaultVariants: { tone: "default" },

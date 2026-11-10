@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "claim-quotes",
+  "title": "Claim quotes",
+  "description": "Each claim you make (fast setup, honest pricing, real support) backed by a customer quote and, where you have one, a number.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/claim-quotes.tsx",
+      "content": "import { useId, type ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface ClaimFigure {\n  /** The number as you want it written: \"11 min\", \"0\", \"99.98%\". */\n  value: string;\n  /** What it counts, in a short phrase: \"median time to first project\". */\n  label: string;\n}\n\nexport interface Claim {\n  /** Identifies the claim in the row. */\n  id: string;\n  /** The promise, as a short heading: \"Set up in an afternoon.\". */\n  claim: string;\n  /** The number that backs it. Optional: a claim without one keeps its place and the figure's row stays empty. */\n  figure?: ClaimFigure;\n  /** The customer's words, without quotation marks: the block adds them. */\n  quote: string;\n  /** Who said it. */\n  name: string;\n  /** Their job and company: \"Head of operations, Northwind\". */\n  role: string;\n}\n\nexport interface ClaimQuotesProps extends Omit<ComponentProps<\"section\">, \"title\" | \"children\"> {\n  /** The heading of the section. */\n  title: string;\n  /** Three or four claims. Two work and five or more fall back to three columns. */\n  claims: readonly Claim[];\n}\n\n/** The columns by the number of claims, written out so Tailwind sees every class whole. */\nconst COLUMNS: Record<number, string> = {\n  1: \"max-w-md\",\n  2: \"md:grid-cols-2\",\n  3: \"lg:grid-cols-3\",\n  4: \"md:grid-cols-2 xl:grid-cols-4\",\n};\n\n/**\n * A pile of praise turned into an argument: each column opens with a promise\n * as a short heading, shows the number that proves it, and then lets a\n * customer say it in their own words. Every claim is an article with a\n * heading, a description list for the figure and a blockquote, so a screen\n * reader hears the claim, then the number, then the evidence. From 768px the\n * claims share rows (a subgrid), so the headings, the figures, the quotes and\n * the attributions line up across the row however long any quote runs or how\n * many lines a figure's label takes (every number sits at the top of its row);\n * on a phone each claim is a full-width block under its own rule. No state of\n * its own, so it renders on the server.\n */\nexport function ClaimQuotes({ title, claims, className, ...props }: ClaimQuotesProps) {\n  const heading = useId();\n\n  return (\n    <section data-slot=\"claim-quotes\" aria-labelledby={heading} className={cn(\"py-16 sm:py-24\", className)} {...props}>\n      <h2 id={heading} className=\"mx-auto max-w-2xl text-center text-3xl font-medium tracking-[-0.04em] text-balance sm:text-4xl\">\n        {title}\n      </h2>\n      <div className={cn(\"mt-12 grid gap-x-10 sm:mt-16\", COLUMNS[claims.length] ?? COLUMNS[3])}>\n        {claims.map((item, index) => (\n          <article\n            key={item.id}\n            aria-labelledby={`${heading}-${index}`}\n            className=\"grid min-w-0 content-start border-t border-border pt-8 pb-12 md:row-span-4 md:grid-rows-subgrid\"\n          >\n            <h3 id={`${heading}-${index}`} className=\"text-xl leading-snug font-medium tracking-[-0.025em] text-balance md:row-start-1 sm:text-2xl\">\n              {item.claim}\n            </h3>\n            {item.figure ? (\n              // The number is shown above its label, so the column runs in reverse and flex-end is its top: every number stays on one line when the labels wrap to different lengths.\n              <dl className=\"flex flex-col-reverse justify-end pt-6 md:row-start-2\">\n                <dt className=\"mt-2 text-sm text-pretty text-muted-foreground\">{item.figure.label}</dt>\n                <dd className=\"text-5xl leading-none font-medium tracking-[-0.05em] tabular-nums\">{item.figure.value}</dd>\n              </dl>\n            ) : null}\n            <blockquote className=\"max-w-[46ch] pt-6 md:row-start-3\">\n              <p className=\"text-[0.9375rem] leading-relaxed text-pretty\">&ldquo;{item.quote}&rdquo;</p>\n            </blockquote>\n            <footer className=\"grid content-start pt-5 text-sm leading-snug md:row-start-4\">\n              <cite className=\"font-medium not-italic\">{item.name}</cite>\n              <span className=\"text-muted-foreground\">{item.role}</span>\n            </footer>\n          </article>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/claim-quotes.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "docs": "Pass title and claims ({ id, claim, figure?: { value, label }, quote, name, role }); three or four read best (two work, five or more fall back to three columns). Each claim is an article with a heading, a description-list figure and a blockquote, so a screen reader hears the claim, the number, then the evidence. From 768px the articles share rows through a subgrid, so headings, figures, quotes and attributions line up across the row however long any quote is, and every number sits at the top of its row however many lines its label takes; a claim without a figure leaves its row empty rather than shifting the rest. On a phone every claim is a full-width block under its own rule. The block adds the quotation marks. Renders on the server.",
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

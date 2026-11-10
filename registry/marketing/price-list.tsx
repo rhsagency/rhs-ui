@@ -42,13 +42,17 @@ export function PriceList({ title, description, groups, footnote, className }: P
             <h3 className="border-b border-foreground pb-2 text-xs font-medium tracking-[.14em] uppercase">{group.title}</h3>
             <dl className="mt-2 grid">
               {group.items.map((item) => (
-                <div key={item.name} className="py-2.5">
-                  <div className="flex items-baseline gap-2">
-                    <dt className="font-medium">{item.name}{item.detail ? <span className="ml-2 text-sm font-normal text-muted-foreground">{item.detail}</span> : null}</dt>
-                    <span aria-hidden="true" className="min-w-6 flex-1 translate-y-[-3px] border-b border-dotted border-muted-foreground/50" />
-                    <dd className="font-medium tabular-nums">{item.price}</dd>
-                  </div>
-                  {item.note ? <p className="mt-0.5 text-xs text-muted-foreground">{item.note}</p> : null}
+                // A group in a dl holds its dt and dd and nothing else: the dotted leader is the dt's own ::after, and the
+                // note is a second dd, so the list reads as term, price, note (an li-style wrapper broke the dl for a reader).
+                <div key={item.name} className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-2 py-2.5">
+                  <dt className="flex min-w-0 items-baseline gap-2 font-medium after:min-w-6 after:flex-1 after:translate-y-[-3px] after:border-b after:border-dotted after:border-muted-foreground/50 after:content-['']">
+                    <span className="min-w-0">
+                      {item.name}
+                      {item.detail ? <span className="ml-2 text-sm font-normal text-muted-foreground">{item.detail}</span> : null}
+                    </span>
+                  </dt>
+                  <dd className="font-medium tabular-nums">{item.price}</dd>
+                  {item.note ? <dd className="col-span-2 mt-0.5 text-xs text-muted-foreground">{item.note}</dd> : null}
                 </div>
               ))}
             </dl>

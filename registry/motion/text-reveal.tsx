@@ -6,7 +6,11 @@ export interface TextRevealProps extends Omit<HTMLAttributes<HTMLElement>, "chil
   /** The sentence to reveal. Plain text: it is split into words. */
   text: string;
   as?: "p" | "h2" | "h3" | "blockquote";
-  /** How dim a word is before its turn, 0 to 1. */
+  /**
+   * How dim a word is before its turn, 0 to 1. A word that waits is still read, so it keeps the contrast of large
+   * text (3:1, WCAG 1.4.3): the default 0.5 gives 3.6:1 on a light page and 5.2:1 on a dark one. 0.35 holds on a
+   * dark page only (3.1:1, 2.3:1 on white); the old default of 0.18 was 1.5:1 on white.
+   */
   dim?: number;
 }
 
@@ -16,7 +20,7 @@ export interface TextRevealProps extends Omit<HTMLAttributes<HTMLElement>, "chil
  * sentence whole; the words are presentation. Pure CSS on a view timeline;
  * reduced motion and browsers without one show every word at full strength.
  */
-export function TextReveal({ text, as: Tag = "p", dim = 0.18, className, style, ...props }: TextRevealProps) {
+export function TextReveal({ text, as: Tag = "p", dim = 0.5, className, style, ...props }: TextRevealProps) {
   const words = text.trim().split(/\s+/);
   const vars = { "--text-reveal-dim": dim } as CSSProperties;
   return (

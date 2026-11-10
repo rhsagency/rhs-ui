@@ -660,7 +660,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable",
         "preview": "frame"
@@ -701,7 +701,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable",
         "preview": "frame"
@@ -2063,7 +2063,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable",
         "preview": "frame"
@@ -2495,7 +2495,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable",
         "preview": "frame"
@@ -2536,7 +2536,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable",
         "preview": "frame"
@@ -11640,6 +11640,1965 @@
       "files": [
         {
           "path": "registry/examples/docs-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "docs-page-footer",
+      "type": "registry:block",
+      "title": "Docs page footer",
+      "description": "The end of every docs page: an edit link, when it changed and who wrote it, a feedback slot, and previous and next cards that say where each goes.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/docs-page-footer.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/docs-page-footer.tsx"
+        }
+      ],
+      "docs": "Pass editHref (where the page can be edited; it opens in a new tab and says so), updated ({ label, dateTime }: the label is the words, formatted on your side in the language and time zone of the page, and dateTime the same day for the time element), contributors ({ name, image }: up to four avatars with the total written beside them, and every name in a list only a screen reader gets), a feedback slot (keep its buttons in the page after a choice, as the demo does, so keyboard focus is not dropped), and previous and next ({ href, title }). The cards keep their direction words on screen (\"Previous guide\", \"Next guide\", from noun), so a screen reader hears them with the title; a missing side leaves its half empty, so the other card stays on the right. linkAs renders the cards with your router's Link, and labels translates the fixed words. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "docs-page-footer-demo",
+      "type": "registry:example",
+      "title": "Docs page footer demo",
+      "description": "A working preview of Docs page footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/docs-page-footer.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/docs-page-footer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "page-header-split",
+      "type": "registry:block",
+      "title": "Split page header",
+      "description": "An inner-page opening in two columns: the title set very large on the left, the lede, up to four facts and one action on the right.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/description-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/page-header-split.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/page-header-split.tsx"
+        }
+      ],
+      "docs": "Pass eyebrow, title and lede, up to four facts ({ label, value }, a description list whose labels never wrap) and one action. titleAs defaults to h1 because this header opens an inner page; use h2 under another heading or in a preview. children go in a slot under the closing hairline: tabs, a filter row, a search field. Below lg the columns stack with the title first. The facts follow the width of their column, not of the window: four share a row once their column is 448px wide, three once it is 384px, and until then they keep two to a row, so a value never wraps or runs into its neighbour. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "page-header-split-demo",
+      "type": "registry:example",
+      "title": "Split page header demo",
+      "description": "A working preview of Split page header.",
+      "registryDependencies": [
+        "https://rhsui.com/r/page-header-split.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/page-header-split-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "product-subnav",
+      "type": "registry:block",
+      "title": "Product subnav",
+      "description": "A product's local navigation: its name set large above the links, then a 56px sticky bar with the name, the links and one action once you scroll.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/edge-fade-scroller.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/product-subnav/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/product-subnav/index.tsx"
+        },
+        {
+          "path": "registry/marketing/product-subnav/subnav-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/product-subnav/subnav-bar.tsx"
+        },
+        {
+          "path": "registry/marketing/product-subnav/styles.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/product-subnav/styles.ts"
+        }
+      ],
+      "docs": "Pass name, tagline, links ({ label, href }), an action, currentHref, mode, offset and linkAs. It renders two siblings, the intro and the bar, so put it directly in the element that holds the page: a sticky bar stays for as long as its parent is on screen. The intro is the name set large with the tagline (nameAs picks the element: p by default, h1 on the overview page). The bar is 56px from md up and sticks at offset pixels from the top, the height of your main navbar; once it has reached its place the name appears at its left, with the links in the middle and the action at the right. In pages mode (the default) the links go to the product's other pages and the current one carries aria-current=\"page\". In anchors mode they are fragment links to sections of the page: the bar follows the scroll with aria-current=\"location\", scrolls to a section with the navbar and the bar cleared (smoothly, or at once under reduced motion), and moves focus to its heading; give the sections a scroll-margin as tall as both for visitors who arrive with the hash in the address. On a phone the bar is two rows: the name above, and under it a row of links that scrolls sideways with fading edges and holds the action pinned at its right end, so the button stays level with the links before the name arrives and after. The links of pages mode are rendered on the server, so a Server Component can pass its router's Link as linkAs."
+    },
+    {
+      "name": "product-subnav-demo",
+      "type": "registry:example",
+      "title": "Product subnav demo",
+      "description": "A working preview of Product subnav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/product-subnav.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/product-subnav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mobile-contact-bar",
+      "type": "registry:block",
+      "title": "Mobile contact bar",
+      "description": "A phone-only bar fixed to the bottom with Call, WhatsApp, Directions and Book as equal icon buttons, for local business sites.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/mobile-contact-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/mobile-contact-bar.tsx"
+        }
+      ],
+      "docs": "Pass two to four actions ({ kind, label, detail, href, external }): kind is call, whatsapp, directions, book or email and picks the icon, label is the short name, and detail is the number or the street written under it, so the action is clear to everyone and not only to people who read the icon (a number inside the label works too). Every action is a real link (tel:, a WhatsApp or maps address, your booking page), so it works without script. The bar is fixed to the bottom and hidden from md up; hideFrom takes another breakpoint, or never. It respects the safe-area inset, so add viewport-fit=cover to your viewport meta. While it shows it adds its own height to the bottom of the page (reserve={false} turns that off) and publishes the height as --contact-bar-height on the root, for a footer or a back-to-top button that must clear it. showAfter keeps it away until the visitor has scrolled that many pixels. It is out of the tab order and the accessibility tree while hidden, and under reduced motion it fades instead of sliding. Inside a preview frame or any pane that scrolls instead of the window, pass that element as scrollRoot (a ref)."
+    },
+    {
+      "name": "mobile-contact-bar-demo",
+      "type": "registry:example",
+      "title": "Mobile contact bar demo",
+      "description": "A working preview of Mobile contact bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/mobile-contact-bar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/mobile-contact-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-regulatory",
+      "type": "registry:block",
+      "title": "Regulatory footer",
+      "description": "A footer for regulated businesses: registration facts, the regulator statement, a risk notice and the legal links, set to be read.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/description-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-regulatory.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-regulatory.tsx"
+        }
+      ],
+      "docs": "Pass the link columns, the registration rows ({ label, value }: trade register, VAT ID, licence, registered office; each value selects whole in one click), the statements ({ title, body, icon }: the regulator statement and the risk or liability notice, set in normal text and never as fine print; body may hold a link to the register entry), the complaint and dispute links, and reviewed ({ label, dateTime }) for the last time the wording was checked, which sits in a time element. brand and tagline are optional. Links that leave your site open in a new tab and say so; linkAs renders the internal ones with your router's Link, and labels translates the fixed words. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "footer-regulatory-demo",
+      "type": "registry:example",
+      "title": "Regulatory footer demo",
+      "description": "A working preview of Regulatory footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-regulatory.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-regulatory-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-trust-marks",
+      "type": "registry:block",
+      "title": "Trust marks footer",
+      "description": "A footer with a row of quality marks and memberships drawn as quiet, named tiles, for businesses where credentials decide the sale.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/footer-section.json",
+        "https://rhsui.com/r/edge-fade-scroller.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-trust-marks.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-trust-marks.tsx"
+        }
+      ],
+      "docs": "Pass the link columns and the marks ({ label, issuer, href, image, since }). A tile shows the issuer's artwork, greyed, when you pass image, and the issuer as a clean text mark when you do not; the issuer is the tile's accessible name, label sits under it, and since is written \"Since 2014\" (labels.since translates it). A mark with href links to its entry in the issuer's register and opens in a new tab. Every tile is one size, so mixed artwork lines up, and nothing animates. Artwork should be dark on a clear ground: the tile turns it grey, and light in the dark theme. From md up the tiles sit in a grid whose columns follow how many marks there are, so the last row is full: one row for four or five, three by two for six (one row of six from xl), two rows of four for seven or eight. On a phone the row scrolls sideways with fading edges, and when no mark is a link that row gets a focus stop of its own so the keyboard can scroll it; the grid, which does not scroll, never gets one. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "footer-trust-marks-demo",
+      "type": "registry:example",
+      "title": "Trust marks footer demo",
+      "description": "A working preview of Trust marks footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-trust-marks.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-trust-marks-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-split-panel",
+      "type": "registry:block",
+      "title": "Split panel footer",
+      "description": "A footer in two panels: an inverted card with the pitch and one action, and the link columns on the plain page beside it.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-split-panel.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-split-panel.tsx"
+        }
+      ],
+      "docs": "Pass brand, statement, an action and social ({ label, href, icon }) for the card, the columns for the page beside it, and legal with legalLinks for the row beneath both. Inside the card the primary pair is turned round and the neutral tokens follow, so a plain Button or a focus ring is already the right way round, and a hairline sits just inside its edge. On a phone the card comes first and the columns follow two across. Profiles open in a new tab and say so; linkAs renders the internal links with your router's Link; labels translates the fixed words. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "footer-split-panel-demo",
+      "type": "registry:example",
+      "title": "Split panel footer demo",
+      "description": "A working preview of Split panel footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-split-panel.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-split-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "family-sites-bar",
+      "type": "registry:block",
+      "title": "Family sites bar",
+      "description": "A slim strip above the header that lists the sibling sites of a group, with the current one marked and a link to the parent.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/edge-fade-scroller.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/family-sites-bar/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/family-sites-bar/index.tsx"
+        },
+        {
+          "path": "registry/marketing/family-sites-bar/sites-menu.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/family-sites-bar/sites-menu.tsx"
+        }
+      ],
+      "docs": "Pass group ({ label, href }, written as it is read: \"Part of Northwind\"), the sites ({ label, href }), current (an href or a label) and an optional trailing link, usually to the group home. The strip is one navigation landmark named \"Our sites\"; the current site gets aria-current, weight, an underline and the words \"Current site\" for a screen reader. Sibling links open in the same tab, and every label stays on one line: from lg up a list that is wider than the room it has scrolls sideways with fading edges instead of wrapping, and the group keeps its whole name. Below lg the sites move into a button that opens a panel under the strip: a disclosure, closed by Escape, a click elsewhere, Tab leaving it or choosing a link, with the current site marked in plain words and the trailing link as its last row. linkAs renders the links with your router's Link; labels translates the fixed words. The server renders everything but the button's open state and the fade of the list."
+    },
+    {
+      "name": "family-sites-bar-demo",
+      "type": "registry:example",
+      "title": "Family sites bar demo",
+      "description": "A working preview of Family sites bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/family-sites-bar.json",
+        "https://rhsui.com/r/navbar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/family-sites-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-floating",
+      "type": "registry:block",
+      "title": "Floating navbar",
+      "description": "A rounded bar that floats clear of the page edges, with a highlight that slides to the link you hover or the page you are on.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-floating/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-floating/index.tsx"
+        },
+        {
+          "path": "registry/marketing/navbar-floating/floating-bar.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-floating/floating-bar.tsx"
+        }
+      ],
+      "docs": "Pass brand, flat items ({ label, href }), actions and currentHref. The pill is solid and bordered, centred with space on every side, and sticky by default so the page scrolls behind it; give it a negative bottom margin (className=\"-mb-[4.5rem]\") when the hero should sit behind it. One highlight follows hover and focus along the links and settles on the current page when they leave; it is measured from the link boxes, so it fits any label, and under reduced motion it jumps instead of sliding. On a phone the pill shrinks to the brand and a menu button, and the links open as a panel under it: a disclosure closed by Escape, a click outside or choosing a link. linkAs renders the links with your router's Link, so a Server Component can use the bar."
+    },
+    {
+      "name": "navbar-floating-demo",
+      "type": "registry:example",
+      "title": "Floating navbar demo",
+      "description": "A working preview of Floating navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-floating.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-floating-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-fullscreen-menu",
+      "type": "registry:block",
+      "title": "Fullscreen menu navbar",
+      "description": "A bar with only the brand and a Menu button that opens a full-screen overlay of large numbered links and contact details.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-fullscreen-menu/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-fullscreen-menu/index.tsx"
+        }
+      ],
+      "css": {
+        "@keyframes rhs-menu-link-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translate3d(0, 1.5rem, 0)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translate3d(0, 0, 0)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-menu-link-in": "rhs-menu-link-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both"
+        }
+      },
+      "docs": "Pass brand, links ({ label, href, hint }), contact ({ address, email, phone, social }), currentHref and menuLabel. At rest the bar is only the brand and a Menu button, at every screen size. The button opens a full-screen overlay built on Dialog: focus moves in and stays there, Escape or the Close button leaves, and focus returns to the Menu button. The links are set in very large type under a two-digit index, the current one marked with aria-current and a dot, and while one is under the pointer or the keyboard the titles of the others soften to half strength (still 3:1 against the page); choosing a link closes the overlay. From sm up a hint sits at the right of its title in a column of its own, where it wraps (two lines at most) so that no row is taller than the others; below sm it sits under the title. The second column holds the address, the email and phone as links, and the profiles, which open in a new tab. The links arrive one after another with a short stagger, and simply appear under reduced motion. linkAs renders the links with your router's Link; labels translates the fixed words. No state of its own, so it renders on the server."
+    },
+    {
+      "name": "navbar-fullscreen-menu-demo",
+      "type": "registry:example",
+      "title": "Fullscreen menu navbar demo",
+      "description": "A working preview of Fullscreen menu navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-fullscreen-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-fullscreen-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-side-rail",
+      "type": "registry:block",
+      "title": "Side rail navbar",
+      "description": "A navigation rail fixed to the left edge: the mark at the top, large vertical links, contact and profiles at the foot, and a top bar with a menu sheet on a phone.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-side-rail.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-side-rail.tsx"
+        }
+      ],
+      "docs": "Wrap your page: <NavbarSideRail brand links footer currentHref>{page}</NavbarSideRail>. From lg up the rail is fixed to the left edge and the page sits beside it, padded by the rail width (width, default 16rem), which is also written on the root as --rail-width for your own full-bleed or fixed parts. links take label, href and an optional count; currentHref marks the current page with aria-current and a dot. footer takes email, social ({ label, href }) and a note, and sits at the foot of the rail and of the phone menu. Below lg the rail is a sticky top bar with the brand and a Menu button that opens a sheet with the same links. The rail is position: fixed, so the window must scroll (inside a frame, give the frame a transform). The page region is a main landmark: mainId names it for a skip link, contentAs=\"div\" drops the landmark. linkAs renders the links with your router Link."
+    },
+    {
+      "name": "navbar-side-rail-demo",
+      "type": "registry:example",
+      "title": "Side rail navbar demo",
+      "description": "A working preview of Side rail navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-side-rail.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-side-rail-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-masthead",
+      "type": "registry:block",
+      "title": "Masthead navbar",
+      "description": "An editorial header in three tiers: a thin date and account line, the publication name set large in the middle, and the sections ruled below.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/navbar-masthead/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-masthead/index.tsx"
+        },
+        {
+          "path": "registry/marketing/navbar-masthead/sections-row.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/navbar-masthead/sections-row.tsx"
+        }
+      ],
+      "docs": "Pass name (a string or your wordmark; nameHref makes it a link home), date (today's, from the server), locale and timeZone, sections ({ label, href }), actions (sign in and a subscribe button) and currentHref. The three tiers are siblings and the header is display: contents, so the top line and the sections are sticky for the whole page: put the header directly in the page's wrapper, not in a wrapper of its own. The name scrolls away behind the top line; there is no scroll handler. The date is written with Intl in the stated locale and time zone, so server and browser agree. Below md the sections scroll sideways with the current one brought into view and the date shortens. sticky={false} makes it an ordinary header. linkAs renders the section links with your router's Link."
+    },
+    {
+      "name": "navbar-masthead-demo",
+      "type": "registry:example",
+      "title": "Masthead navbar demo",
+      "description": "A working preview of Masthead navbar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navbar-masthead.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navbar-masthead-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "section-dots-nav",
+      "type": "registry:block",
+      "title": "Section dots nav",
+      "description": "A slim rail of dots down the side of a long page, one per section, each a labelled link that marks where you are.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/section-dots-nav/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/section-dots-nav/index.tsx"
+        },
+        {
+          "path": "registry/marketing/section-dots-nav/dots-rail.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/section-dots-nav/dots-rail.tsx"
+        }
+      ],
+      "docs": "Pass sections as { id, label } in page order: each becomes a dot linking to #id. The section in view is found with an IntersectionObserver and marked aria-current='location'; the last one takes over at the end of the page. A click scrolls smoothly (instantly under reduced motion) and moves focus to the section. offset is the height of a fixed header, side is 'left' or 'right', label names the navigation, and scrollContainer is a CSS selector for the element that scrolls when it is not the window. The rail is hidden below lg, where AnchorNav or a menu does the job. linkAs renders the dots with your router's Link."
+    },
+    {
+      "name": "section-dots-nav-demo",
+      "type": "registry:example",
+      "title": "Section dots nav demo",
+      "description": "A working preview of Section dots nav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/section-dots-nav.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/section-dots-nav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-inverted-contact",
+      "type": "registry:block",
+      "title": "Inverted contact footer",
+      "description": "A dark footer led by one large email address, with the studio's details, profiles, sitemap and its local time beside them.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/footer-inverted-contact/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-inverted-contact/index.tsx"
+        },
+        {
+          "path": "registry/marketing/footer-inverted-contact/local-time.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-inverted-contact/local-time.tsx"
+        }
+      ],
+      "docs": "Pass email (the large link; a long one breaks after the @), headline, address (lines), social, links (the sitemap) and legal. city with timeZone ('Europe/Amsterdam') adds the local-time line, and locale 'en-GB' writes it as 14:32. The clock renders after mount and is rewritten every minute; it is a time element with an accessible name, not a live region. A time zone the browser does not know shows the city without a clock, never a guessed time. The colours are primary and primary-foreground, so the footer is inverted in light and in dark. labels translate the fixed words. linkAs renders the sitemap links with your router's Link."
+    },
+    {
+      "name": "footer-inverted-contact-demo",
+      "type": "registry:example",
+      "title": "Inverted contact footer demo",
+      "description": "A working preview of Inverted contact footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-inverted-contact.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-inverted-contact-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "footer-curtain",
+      "type": "registry:block",
+      "title": "Curtain footer",
+      "description": "A footer that stays put while the page slides up over it, uncovering it like a curtain at the end of the scroll, in plain CSS.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/footer-curtain.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/footer-curtain.tsx"
+        }
+      ],
+      "docs": "Wrap the page and give the footer: <FooterCurtain footer={<FooterSection … />}>{page}</FooterCurtain>. The page sits on an opaque raised layer and the footer is sticky to the bottom of the window beneath it. Keep the footer shorter than the window, or its top is cut off. minViewportHeight (default 640) is the window height below which the effect is off and the footer is an ordinary one; it is off in print too. Put it directly in the page's wrapper. Keyboard focus inside the footer lifts the curtain at once, so a focused link is never hidden under the page. It is pure CSS with no listener, so it works with native and with smooth scrolling."
+    },
+    {
+      "name": "footer-curtain-demo",
+      "type": "registry:example",
+      "title": "Curtain footer demo",
+      "description": "A working preview of Curtain footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/footer-curtain.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/footer-section.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/footer-curtain-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "print-letterhead",
+      "type": "registry:block",
+      "title": "Print letterhead",
+      "description": "The letterhead and running footer that appear only when a page is printed or saved as a PDF, with the site chrome taken off the paper.",
+      "categories": [
+        "marketing",
+        "page-chrome"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/print-letterhead/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/print-letterhead/index.tsx"
+        },
+        {
+          "path": "registry/marketing/print-letterhead/running-line.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/print-letterhead/running-line.tsx"
+        },
+        {
+          "path": "registry/marketing/print-letterhead/margin-boxes.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/print-letterhead/margin-boxes.ts"
+        }
+      ],
+      "docs": "Render it once in your layout: <PrintLetterhead brand details url hideSelectors />. On screen it renders nothing. When printed it shows the letterhead (brand left, details right, a rule) and, in the bottom page margin of every page, a running footer: the address on the left and 'Printed <date> · Page 1 of 3' on the right. The footer is written into page margin boxes, outside the text area, so a list, a table or a paragraph can never print over it; Chromium prints margin boxes, and a browser without them prints no footer rather than one over the text. The stylesheet takes off navigation, the site header and footer (not those inside an article, main or section), dialogs, banners and anything marked data-print-hide, plus your hideSelectors; it removes backgrounds and shadows, prints the light palette in dark mode, writes the address after links inside the article (data-print-no-url opts out) and keeps headings and table rows whole. The date is written as printing starts, the only script. locale, timeZone and three labels translate the footer. Switch off the print dialog's own headers and footers to avoid doubles."
+    },
+    {
+      "name": "print-letterhead-demo",
+      "type": "registry:example",
+      "title": "Print letterhead demo",
+      "description": "A working preview of Print letterhead.",
+      "registryDependencies": [
+        "https://rhsui.com/r/print-letterhead.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/print-letterhead-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "logo-strip",
+      "type": "registry:block",
+      "title": "Logo strip",
+      "description": "A single quiet row of customer marks with a short lead-in on the left, made to sit right under a hero without competing with it.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/logo-strip.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/logo-strip.tsx"
+        }
+      ],
+      "docs": "Pass title, logos (the Logo type of LogoCloud: name, mark, href) and an optional more ({ label, href }) that sits under the lead-in. Marks are drawn at one height in the muted text colour; a linked mark comes to full strength on hover and has a focus ring, and a picture mark is greyed and dimmed. Every mark carries its name for screen readers. The strip answers to its own width, not the window: from 56rem, where six marks fit, the lead-in sits on the left and the marks spread across one row; narrower, the marks sit three to a row (two under 18rem), beside the lead-in down to 42rem and under it below that, so six make two even rows. Marks never shrink to an unreadable size. Put it directly under a hero."
+    },
+    {
+      "name": "logo-strip-demo",
+      "type": "registry:example",
+      "title": "Logo strip demo",
+      "description": "A working preview of Logo strip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/logo-strip.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/logo-strip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-list",
+      "type": "registry:block",
+      "title": "Testimonial list",
+      "description": "Customer quotes set as editorial rows between hairlines: the words large on the left, the person and their result on the right.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/testimonial-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonial-list.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional eyebrow, and testimonials ({ id, quote, name, role, company, avatar?, result? }). The list adds the quotation marks. A row is the quote on the left and the person on the right (portrait or initials, name, 'role, company'); result adds a chip that screen readers hear as 'Result: …', and labels.result translates that word. Hairlines divide the rows, on a phone each row is the quote and then the person, and nothing animates."
+    },
+    {
+      "name": "testimonial-list-demo",
+      "type": "registry:example",
+      "title": "Testimonial list demo",
+      "description": "A working preview of Testimonial list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonial-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonial-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "reviews-by-source",
+      "type": "registry:block",
+      "title": "Reviews by source",
+      "description": "Review cards with stars, title, date and reviewer, filtered by where they were written, with the average and count for each source.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/reviews-by-source.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/reviews-by-source.tsx"
+        }
+      ],
+      "docs": "Pass reviews ({ id, source, rating, title, body, author, date }) and sources ({ name, average, count, href? }) in tab order. The summary under the tabs uses each source's own average and count, and for All the weighted average of them; it is a polite live region. A rating is read as 'Rated 4.5 out of 5' and drawn to the half star. href adds 'Read all on {source}'. value, defaultValue ('all' or a source's name) and onValueChange control the tab. locale and timeZone format numbers and dates; labels translate every fixed word (templates use {average}, {count}, {reviews}, {source}, {rating} and {max}). Source names are text, never logos."
+    },
+    {
+      "name": "reviews-by-source-demo",
+      "type": "registry:example",
+      "title": "Reviews by source demo",
+      "description": "A working preview of Reviews by source.",
+      "registryDependencies": [
+        "https://rhsui.com/r/reviews-by-source.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/reviews-by-source-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "headline-stat",
+      "type": "registry:block",
+      "title": "Headline stat",
+      "description": "One number set enormous with the sentence that explains it, backed by three smaller figures and an honest source line.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/count-up.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/headline-stat.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/headline-stat.tsx"
+        }
+      ],
+      "docs": "Pass value (a number counts up once as it enters the view, through CountUp; a string is set as written), prefix, suffix, decimals and locale for a number, then label (the section's heading), description, supporting ({ value, label }; three read best) and source ({ text, href? }). The figure is sized to its column from the length it will have, so '$128.4M' shrinks to fit. The final value is in the page from the first render, and under reduced motion nothing counts."
+    },
+    {
+      "name": "headline-stat-demo",
+      "type": "registry:example",
+      "title": "Headline stat demo",
+      "description": "A working preview of Headline stat.",
+      "registryDependencies": [
+        "https://rhsui.com/r/headline-stat.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/headline-stat-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "press-mentions-list",
+      "type": "registry:block",
+      "title": "Press mentions list",
+      "description": "In the news as a dated list: outlet, headline and date per row, every headline a link, with an optional limit and a show-all button.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/press-mentions-list.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/press-mentions-list.tsx"
+        }
+      ],
+      "docs": "Pass items ({ outlet, headline, date, href, excerpt? }), title, locale and timeZone for the dates, and limit to show that many rows with a 'Show all coverage' button. The date and outlet sit in the left column and the headline is the link, though the whole row is the click target; a full http(s) address opens in a new tab with an arrow and 'opens in a new tab' for screen readers, a relative one stays in the tab. A date-only string is a calendar date and never shifts with the time zone. labels translate the three fixed texts."
+    },
+    {
+      "name": "press-mentions-list-demo",
+      "type": "registry:example",
+      "title": "Press mentions list demo",
+      "description": "A working preview of Press mentions list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/press-mentions-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/press-mentions-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quote-rail",
+      "type": "registry:block",
+      "title": "Quote rail",
+      "description": "Testimonial cards in one sideways rail that snaps card by card, with previous and next buttons, for more quotes than room, and nothing that moves by itself.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/rating.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/quote-rail.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/quote-rail.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and items ({ id, quote, name, role, avatar?, rating? }); six to twelve read well. Cards share one readable width and one height, with the person pinned to the bottom. It is the browser's own scrolling with scroll snapping, so touch, trackpad and the arrow keys work with no script (the rail is a focusable list named by the heading) and nothing ever autoplays. Two round buttons step one card back or on and rest at the ends (aria-disabled, still in the tab order); they sit at the end of the heading row from 640px and under the heading on a phone, so the title keeps the full width; after a press a polite live region says 'Quote 3 of 9' or 'Quotes 3 to 5 of 9', and a thin line with a count under the rail shows the position. On a phone the rail runs to the screen edge so the next card peeks in: set --rail-gutter on the section to your page's side padding (default 1.5rem). labels carries the fixed words, locale the numbers."
+    },
+    {
+      "name": "quote-rail-demo",
+      "type": "registry:example",
+      "title": "Quote rail demo",
+      "description": "A working preview of Quote rail.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quote-rail.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quote-rail-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "logo-groups",
+      "type": "registry:block",
+      "title": "Logo groups",
+      "description": "Customers grouped by industry or segment under small headings, so an enterprise buyer finds the sector that matters in one glance.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/logo-groups.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/logo-groups.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and groups ({ title, count, logos, href? }). Logos use the Logo type of LogoCloud (name, mark, href); every mark is drawn at one height in the muted text colour and comes to full strength on hover and focus, and each keeps its company name for screen readers. count is written as you want it ('38 customers'); give a group href and the count becomes a link to that sector's customer list, named 'in {sector}' for screen readers (labels.inGroup translates it). Groups sit in two columns from 640px and one on a phone, cut apart by hairlines; an odd last group spans both columns. From 1024px the marks of each group sit on a two-column grid (four in a row for a group that spans), so four marks make a tidy two by two and the groups line up with each other; below that they wrap. A mark with no image or SVG is set as text in a muted tone that still meets AA contrast. Renders on the server."
+    },
+    {
+      "name": "logo-groups-demo",
+      "type": "registry:example",
+      "title": "Logo groups demo",
+      "description": "A working preview of Logo groups.",
+      "registryDependencies": [
+        "https://rhsui.com/r/logo-groups.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/logo-groups-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "video-testimonials",
+      "type": "registry:block",
+      "title": "Video testimonials",
+      "description": "Customer video cards with a poster, a visible play button and the length; a press opens the video in an accessible dialog and stops it on close.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/video-testimonials/index.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/video-testimonials/index.tsx"
+        },
+        {
+          "path": "registry/marketing/video-testimonials/video-card.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/video-testimonials/video-card.tsx"
+        },
+        {
+          "path": "registry/marketing/video-testimonials/types.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/video-testimonials/types.ts"
+        },
+        {
+          "path": "registry/marketing/video-testimonials/duration.ts",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/video-testimonials/duration.ts"
+        }
+      ],
+      "docs": "Pass title, an optional description and videos ({ id, name, role, poster, src?, duration, captions? }); three is the layout it is made for. A card is one real button named like \"Play Maria's story, 2 minutes 14 seconds\" (spoken with Intl; labels.play translates it), with the poster always visible, a play disc, and the name, role and length as text. Nothing about the video is fetched before the press. A press opens a Dialog with a native video (controls, preload none, a captions track from captions: { src, lang, label? } switched on) and starts it; closing pauses it, Escape closes, and focus returns to the card. A video that fails shows a message. A card whose poster is missing or fails to load shows the initials in a small tile in the corner, and keeps the middle for the play button; give posters open ground in the middle (the speaker off to one side). To host the video elsewhere pass renderPlayer(video) returning your embed (className=\"absolute inset-0 size-full\"): it only mounts when its card is pressed. Only the card is a client component."
+    },
+    {
+      "name": "video-testimonials-demo",
+      "type": "registry:example",
+      "title": "Video testimonials demo",
+      "description": "A working preview of Video testimonials.",
+      "registryDependencies": [
+        "https://rhsui.com/r/video-testimonials.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/video-testimonials-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "customer-results-table",
+      "type": "registry:block",
+      "title": "Customer results table",
+      "description": "Results per customer in a real table: who, their industry, the metric before and after, and how long it took.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/customer-results-table.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/customer-results-table.tsx"
+        }
+      ],
+      "docs": "Pass title, rows ({ customer, mark?, industry, metric, before, after, change, period, href? }) and caption, which is required: say where the numbers come from and how they were measured. Figures are strings written as you want them. After is set heavier with the signed change beside it as a chip (a leading minus or plus adds a trend arrow, and screen readers hear 'change -41%'); the chip has a column of its own, so a long change such as '+12.5 percentage points' widens that column and never overprints its neighbour; every figure uses tabular digits. A row with href makes the customer name a link. From 768px it is a real table named by the heading, with header cells and a row header per customer and the caption under it; below that each row is a card that leads with the outcome (the metric under the name, then before and after on one line with the change beside it, then the industry and the time in a quiet line) and gives every value its label to screen readers, so a phone never scrolls sideways. mark is a small mark drawn at about 16px in a tile; without it the tile holds the first letter. labels carries the column names. Renders on the server."
+    },
+    {
+      "name": "customer-results-table-demo",
+      "type": "registry:example",
+      "title": "Customer results table demo",
+      "description": "A working preview of Customer results table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/customer-results-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/customer-results-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "claim-quotes",
+      "type": "registry:block",
+      "title": "Claim quotes",
+      "description": "Each claim you make (fast setup, honest pricing, real support) backed by a customer quote and, where you have one, a number.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/claim-quotes.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/claim-quotes.tsx"
+        }
+      ],
+      "docs": "Pass title and claims ({ id, claim, figure?: { value, label }, quote, name, role }); three or four read best (two work, five or more fall back to three columns). Each claim is an article with a heading, a description-list figure and a blockquote, so a screen reader hears the claim, the number, then the evidence. From 768px the articles share rows through a subgrid, so headings, figures, quotes and attributions line up across the row however long any quote is, and every number sits at the top of its row however many lines its label takes; a claim without a figure leaves its row empty rather than shifting the rest. On a phone every claim is a full-width block under its own rule. The block adds the quotation marks. Renders on the server."
+    },
+    {
+      "name": "claim-quotes-demo",
+      "type": "registry:example",
+      "title": "Claim quotes demo",
+      "description": "A working preview of Claim quotes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/claim-quotes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/claim-quotes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-by-role",
+      "type": "registry:block",
+      "title": "Testimonials by role",
+      "description": "Let visitors hear from people like them: role or industry chips narrow a grid of quotes, and the count is announced.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/auto-height.json",
+        "https://rhsui.com/r/crossfade.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/testimonials-by-role.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/testimonials-by-role.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, testimonials ({ id, quote, name, role, group, avatar? }) and groups (the chip labels after All; each quote's group must equal one of them). The chips are one toggle group with exactly one pressed, so the arrow keys move between them and pressing the pressed chip keeps it; the count under them ('4 of 12 quotes', labels.count) is a polite live region. Quotes sit in balanced columns at their natural height, with as many columns as the filter leaves quotes for (one quote is centred at a readable width, two or four fill two columns, three or more fill three from 1024px), so a short result never hugs one side; they swap with a crossfade while the section glides to its new height, so nothing jumps; reduced motion swaps at once. A group with no quotes shows one line and a button back to All, and focus moves to the first chip when it is used. Uncontrolled with defaultGroup, or controlled with group (null is All) and onGroupChange."
+    },
+    {
+      "name": "testimonials-by-role-demo",
+      "type": "registry:example",
+      "title": "Testimonials by role demo",
+      "description": "A working preview of Testimonials by role.",
+      "registryDependencies": [
+        "https://rhsui.com/r/testimonials-by-role.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/testimonials-by-role-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "logo-results-grid",
+      "type": "registry:block",
+      "title": "Logo results grid",
+      "description": "A customer wall where every logo carries one line of outcome and a link to the story, so each name earns its place.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/logo-results-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/logo-results-grid.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and items ({ name, mark?, result, metric?, href? }); six to nine read best, and a count that does not tile still ends on a full row. Each hairline cell shows the mark (an SVG or image drawn about 28px tall in the text colour; the name is set as text without one), the result in plain words and, with an href, a quiet 'Read the story' arrow. The figure inside the result is medium weight in tabular digits: give metric exactly as it appears in result ('41 percent'), or leave it out and the first number with its unit is used. A cell with an href is one link as a whole (focus ring inside, the arrow moves on hover); a cell without one is not a link and has no arrow. Three columns from 1024px, two from 640px, one on a phone; when the last row is short, its last cell stretches across the free columns (all three for a seventh, two for an eighth, both on two columns for an odd one), so no blank cell is left behind. labels.readStory translates the arrow line. Renders on the server."
+    },
+    {
+      "name": "logo-results-grid-demo",
+      "type": "registry:example",
+      "title": "Logo results grid demo",
+      "description": "A working preview of Logo results grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/logo-results-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/logo-results-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "satisfaction-scores",
+      "type": "registry:block",
+      "title": "Satisfaction scores",
+      "description": "An overall score and category scores as labelled bars, the way buyers compare tools, with the source and a method link built in.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/satisfaction-scores.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/satisfaction-scores.tsx"
+        }
+      ],
+      "docs": "Pass overall ({ score, max, responses, period }), categories ({ label, score }; five or six), source (required) and methodHref, plus an optional title and description. The overall number is plain, large text in tabular digits. Every category is a role=\"meter\" with label, range and value, so assistive technology reads 'Ease of use, 9.4 out of 10' once and the drawing is left out of the reading. The server renders the bars full, and a list on screen when the page opens stays full; once the reader scrolls, a list still below the window fills its bars once, a little after one another, as it comes into view. Reduced motion and print show everything at rest. The source and the method link are part of the API on purpose: a score without them undermines itself. decimals sets the digits, locale the numbers, labels the fixed words."
+    },
+    {
+      "name": "satisfaction-scores-demo",
+      "type": "registry:example",
+      "title": "Satisfaction scores demo",
+      "description": "A working preview of Satisfaction scores.",
+      "registryDependencies": [
+        "https://rhsui.com/r/satisfaction-scores.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/satisfaction-scores-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "benchmark-bars",
+      "type": "registry:block",
+      "title": "Benchmark bars",
+      "description": "Prove a claim against the field: your customers' result beside the industry median for each metric, as paired bars with the multiple in words.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/benchmark-bars.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/benchmark-bars.tsx"
+        }
+      ],
+      "docs": "Pass title, metrics ({ id, label, ours: { value, label? }, benchmark: { value, label? }, unit?, better, comparative? }), source (required) and methodHref. Each metric has its own scale: two bars (your customers in the foreground tone, the benchmark muted), both values written at the bar ends in tabular digits (keep them short: past 14 characters a value may wrap beside its bar, and the values never take more than 45% of a row, so a bar never collapses), and the multiple in words worked out from the same numbers ('7.4 times faster'; comparative picks the word when you win, otherwise 'higher' or 'lower'). With better: \"lower\" the shorter bar wins and a note says so; within 5 percent it reads 'in line with the median'; a result that trails is described as it is. Each metric is a figure whose caption reads the whole comparison to a screen reader. The bars are full on the server and on screen at load; a row still below the window grows once as it comes into view. Reduced motion and print show them at rest. labels sets the words."
+    },
+    {
+      "name": "benchmark-bars-demo",
+      "type": "registry:example",
+      "title": "Benchmark bars demo",
+      "description": "A working preview of Benchmark bars.",
+      "registryDependencies": [
+        "https://rhsui.com/r/benchmark-bars.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/benchmark-bars-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "review-topics",
+      "type": "registry:block",
+      "title": "Review topics",
+      "description": "What reviewers mention most: topics with how often and how positively, each opening to a real snippet rather than an invented summary.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/review-topics.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/review-topics.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and topics ({ id, label, mentions, positive, snippet: { quote, author } }); five to eight read well, most mentioned first. A row shows the topic, 'mentioned in 842 reviews' and a bar for the share of positive mentions (0 to 1) with the percentage written beside it followed by the word 'positive' (small and muted, labels.positive), so '94%' always says what it is the share of, for everyone. Each row is a disclosure on the Accordion primitive: it opens to one verbatim snippet and its author, and only one row stays open at a time; the content glides open and shut unless reduced motion is on. A row tints quietly on hover, and the bars are decoration in the foreground tone, so the list reads in monochrome and in dark mode. Uncontrolled with defaultValue (a topic id), or controlled with value and onValueChange. locale formats the numbers, labels the fixed words.",
+      "css": {
+        "@keyframes rhs-topic-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
+        },
+        "@keyframes rhs-topic-up": {
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-topic-down": "rhs-topic-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "animate-rhs-topic-up": "rhs-topic-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+        }
+      }
+    },
+    {
+      "name": "review-topics-demo",
+      "type": "registry:example",
+      "title": "Review topics demo",
+      "description": "A working preview of Review topics.",
+      "registryDependencies": [
+        "https://rhsui.com/r/review-topics.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/review-topics-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "expert-endorsements",
+      "type": "registry:block",
+      "title": "Expert endorsements",
+      "description": "Quotes from doctors, chefs and coaches with their qualification as real text, a required disclosure and a Sponsored badge for paid voices.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/expert-endorsements.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/expert-endorsements.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, experts ({ id, name, credential, quote, affiliation?, photo?, href?, sponsored? }) and disclosure. The disclosure is required and printed under the grid, because endorsements are regulated in many markets: say whether the experts were paid, or which of them were; pass null only when you have checked that nothing needs saying. An expert with sponsored: true carries a solid Sponsored badge on the top edge of the card and a rel=\"sponsored\" link. The credential is a chip of real text that a screen reader hears as 'Credential: Dermatologist, MD', never part of the picture, and the portrait shows at once (initials, without a title such as Dr., stand in until it loads). Two to six experts; three sit in a row on a desktop, four sit two by two, and an odd last card spans the width on a tablet. labels carries the fixed words."
+    },
+    {
+      "name": "expert-endorsements-demo",
+      "type": "registry:example",
+      "title": "Expert endorsements demo",
+      "description": "A working preview of Expert endorsements.",
+      "registryDependencies": [
+        "https://rhsui.com/r/expert-endorsements.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/expert-endorsements-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "customer-photo-grid",
+      "type": "registry:block",
+      "title": "Customer photo grid",
+      "description": "A tight grid of customer photos, each linking to the original post, with the handle and caption on the tile and a call to share yours.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/customer-photo-grid.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/customer-photo-grid.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, photos ({ id, photo, alt, handle, caption?, href }), an optional cta ({ label, href }) and an optional permission line ('Shared with permission'). Three across on a desktop and two on a phone. The strip under every photo is the link to the original post: it is named by the handle and the caption, exactly what is written on it, and it stretches over the whole tile so the photo is part of the target. The handle and caption are always visible, never on hover only, and the handle wraps on a narrow tile instead of being cut short; the alt text, which is required, describes the picture. Photos are cropped to a square through AspectRatio, so nothing shifts as they load, and they load lazily. The call to action is a Button link; permission is plain text next to it."
+    },
+    {
+      "name": "customer-photo-grid-demo",
+      "type": "registry:example",
+      "title": "Customer photo grid demo",
+      "description": "A working preview of Customer photo grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/customer-photo-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/customer-photo-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "before-after-pairs",
+      "type": "registry:block",
+      "title": "Before and after pairs",
+      "description": "Before and after photo pairs side by side with text labels, a timeframe and what was done: no slider, so it is instant and survives print.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/before-after-pairs.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/before-after-pairs.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description and pairs ({ id, before: { src, alt }, after: { src, alt }, caption, timeframe?, details? }). Alt text is required for both images of a pair. The two images share one aspect ratio (4:3, or set ratio to 3/4 for portrait work) so the pair lines up, each carries a Before or After label in its corner as text on a solid chip, never colour alone, and on a phone the pair stacks with the labels intact. There is no slider and no animation, so the comparison is immediate; the chips keep their fill when printed without background graphics. details is the list of what was done; timeframe is read as 'Time it took: 6 weeks'. labels carries the fixed words."
+    },
+    {
+      "name": "before-after-pairs-demo",
+      "type": "registry:example",
+      "title": "Before and after pairs demo",
+      "description": "A working preview of Before and after pairs.",
+      "registryDependencies": [
+        "https://rhsui.com/r/before-after-pairs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/before-after-pairs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sponsor-tiers",
+      "type": "registry:block",
+      "title": "Sponsor tiers",
+      "description": "Sponsors or backers grouped by tier with falling visual weight, tier names as headings, an optional rel=sponsored and a clear way to join.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/sponsor-tiers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/sponsor-tiers.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, tiers ({ name, size: 'lg' | 'md' | 'sm', sponsors: [{ name, mark?, avatar?, href?, blurb? }] }) and an optional action ({ label, href }). A lg tier shows large tiles with the mark, the name and a line; md a compact hairline grid of marks whose short last row grows to fill the width; sm supporters as avatars with names in columns (avatar is an image URL, initials stand in without one; the avatar is only decoration, so a link is read as the name alone). Tier names are h3 headings, a tier without sponsors is left out, each sponsor with an href is one link named by its text, and sponsoredLinks adds rel=\"sponsored\" to every link when the sponsorship is paid. Works for open-source projects, events, charities and partner programmes."
+    },
+    {
+      "name": "sponsor-tiers-demo",
+      "type": "registry:example",
+      "title": "Sponsor tiers demo",
+      "description": "A working preview of Sponsor tiers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sponsor-tiers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sponsor-tiers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alumni-outcomes",
+      "type": "registry:block",
+      "title": "Alumni outcomes",
+      "description": "Graduate stories for courses and coaching: where they started, where they work now and how long it took, with a disclaimer built in.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/alumni-outcomes.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/alumni-outcomes.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, alumni ({ id, name, from, to, duration, quote, employer?, photo? }) and note, the disclaimer printed under the list ('Individual results vary'); outcome claims need context, so it is required, and null is only for when you have checked that nothing needs saying. Each card is a portrait and name, a result panel with a From line and a To line joined by an arrow with the time it took on the rail between them, and one sentence in their own words. A screen reader hears 'Before: Barista', 'Time it took: 9 months' and 'After: Frontend developer, Northwind', so the arrow is never the only signal. Two columns on a desktop, one on a phone. labels carries the fixed words."
+    },
+    {
+      "name": "alumni-outcomes-demo",
+      "type": "registry:example",
+      "title": "Alumni outcomes demo",
+      "description": "A working preview of Alumni outcomes.",
+      "registryDependencies": [
+        "https://rhsui.com/r/alumni-outcomes.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/alumni-outcomes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "review-form",
+      "type": "registry:block",
+      "title": "Review form",
+      "description": "Collect a review or testimonial: stars, headline, story, name and an unticked permission to publish, with busy, sent and error states announced.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/rating.json",
+        "https://rhsui.com/r/textarea.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/review-form.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/review-form.tsx"
+        }
+      ],
+      "docs": "Pass onSubmit(review) (it may return a promise), title and an optional description. The review is { rating, headline, story, name, role, email, photo, consent }; rating, story, first name and consent are required, the rest optional, and fields switches the role field (on by default) and the photo field (off; it is a Choose a photo button with a small preview, the file name and a button to take the picture away again). Consent starts unchecked and says exactly what may be published; privacy replaces the line under it (a sensible default is built in; pass links to your privacy page). Problems appear under the field, the field is marked invalid and described by its message (the stars, the story and the consent box as well as the text fields), and focus goes to the first one. While the promise is pending the fields lock and the button shows a spinner; when it resolves the confirmation replaces the form in place, takes focus and shows what was sent, with after for the next step; when it rejects an alert appears above the button and takes focus, one Tab from trying again, and every value is kept for another try. A polite live region announces sending, sent and the problems found. To drive the state yourself (a server action, a mutation) pass status ('idle' | 'busy' | 'done' | 'error') and error; defaultValues pre-fills the fields and restores a form after a failed server action. labels carries every fixed word, so the form can speak any language."
+    },
+    {
+      "name": "review-form-demo",
+      "type": "registry:example",
+      "title": "Review form demo",
+      "description": "A working preview of Review form.",
+      "registryDependencies": [
+        "https://rhsui.com/r/review-form.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/review-form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "logo-quote-popovers",
+      "type": "registry:block",
+      "title": "Logo quote popovers",
+      "description": "A logo wall where each customer opens a small panel with their quote, name and result, on click or tap and not on hover alone.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/logo-quote-popovers.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/logo-quote-popovers.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description ('Select a logo to read what they said.') and customers ({ id, name, mark?, quote, person, role?, result?, href? }). Every mark is a button that opens a Popover anchored to it; the marks sit in the muted text colour with a small plus that turns into a cross, and the open one is full strength with aria-expanded. Only one panel is open at a time, Escape or the close button closes it and focus returns to the mark; when a panel opens, focus moves to the panel, which is named for the customer. Because it opens on press it works on touch and with a keyboard, which a hover card does not. The panel holds the quote, the person, their role and an optional result line that links to the story when href is set. Which panel is open is state you can own: pass openId (a customer id, or null) with onOpenChange(id | null) to control it, or defaultOpenId to start with one open, which is how a preview shows a quote; a panel that starts open, or that the page opens, does not take focus. labels carries the fixed words, with {name} filled in."
+    },
+    {
+      "name": "logo-quote-popovers-demo",
+      "type": "registry:example",
+      "title": "Logo quote popovers demo",
+      "description": "A working preview of Logo quote popovers.",
+      "registryDependencies": [
+        "https://rhsui.com/r/logo-quote-popovers.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/logo-quote-popovers-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "message-testimonials",
+      "type": "registry:block",
+      "title": "Message testimonials",
+      "description": "Real customer messages shown as a calm chat: grouped bubbles with sender and time, for the praise that arrives by DM or email.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/message-testimonials.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/message-testimonials.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional description, threads ({ id, channel, date, messages: [{ from, text, time, avatar?, own? }], dateTime?, icon? }) and an optional note ('Shared with permission, lightly trimmed for length'). Two or three threads read well. Consecutive messages from one sender are grouped under one avatar, name and time; a message with own: true is from your team and sits on the right in an outlined bubble. Bubbles are plain text with no copied interface and nothing animates. Each thread is a list named 'Messages from Anna, 12 March', and every message is read with its sender and time. labels carries the fixed words."
+    },
+    {
+      "name": "message-testimonials-demo",
+      "type": "registry:example",
+      "title": "Message testimonials demo",
+      "description": "A working preview of Message testimonials.",
+      "registryDependencies": [
+        "https://rhsui.com/r/message-testimonials.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/message-testimonials-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quote-stack",
+      "type": "registry:block",
+      "title": "Quote stack",
+      "description": "Short lines of praise set as large type and stacked down the page with small attributions; the line you point at stays at full strength.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/marketing/quote-stack.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/quote-stack.tsx"
+        }
+      ],
+      "docs": "Pass title and quotes ({ id, quote, name, role }); four to six one-sentence quotes under fifteen words each read best. On a wide screen the quotes alternate between the left and the right two thirds of the width; on a phone they sit in one left-aligned column. While the pointer is over one quote, or keyboard focus is on it, the others dim to 40 percent with a CSS selector on the list: no script, no motion, and on a touch screen everything stays at full strength. A quote and the air around it are one hover target, so the pointer hands over from one quote to the next and the stack never flashes back to full strength in between. Each quote is in the tab order unless focusable is false. It is a real list of figures that reads in any order."
+    },
+    {
+      "name": "quote-stack-demo",
+      "type": "registry:example",
+      "title": "Quote stack demo",
+      "description": "A working preview of Quote stack.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quote-stack.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quote-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "proof-bento",
+      "type": "registry:block",
+      "title": "Proof bento",
+      "description": "One grid for all your proof: a large quote, a stat that counts up, a rating, a row of customer logos and a photo, in tiles of mixed size.",
+      "categories": [
+        "marketing",
+        "social-proof"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/count-up.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "registry/marketing/proof-bento.tsx",
+          "type": "registry:block",
+          "target": "components/rhs-ui/marketing/proof-bento.tsx"
+        }
+      ],
+      "docs": "Pass title, an optional eyebrow and description, and tiles: objects told apart by kind. quote { quote, name, role?, avatar? } sets the words large with the person under them (the tile adds the quotation marks). stat { value, label, detail?, prefix?, suffix?, decimals? } shows one figure; a number counts up once as it scrolls into view, text such as '24/7' is set as written. rating { score, count, source, max?, href? } draws stars to the fraction and is read as one sentence ('Rated 4.8 out of 5 on G2, 2,140 reviews'); with an href the whole tile is one link. logos { title?, logos } takes the same { name, mark?, href? } as LogoCloud; every mark keeps its own width, so a narrow tile wraps them in a row and a wide one sets them in columns, and a wordmark is never squeezed into a cell. image { src, alt, caption, credit?, focalPoint? } fills the tile with a photo and puts the caption on a solid chip, so it reads on any picture; alt is required. Every tile has an id and takes span (1 or 2 of the four columns) and rowSpan (1 or 2 rows, from a desktop up). Tiles are placed in the order you give and never reordered, so the DOM order is the reading order: pair the spans until each row of four is full. Below a desktop (1024px) there are two columns and row spans are ignored, and a single tile that would be left alone in its row takes the whole row, so there is never a hole (a one-column quote that gets a row to itself is set at the wider size there). A quote is set largest on two columns and two rows, smaller on two columns and smallest on one, so give a one-column quote one short sentence. Figures are sized to their tile from the longest figure of that width, so '99.98%' fits and a row of stats stays level; counting is skipped under reduced motion and the final value is in the page from the first render. locale sets digits and separators (a tag the browser cannot read, such as 'en_US', falls back to en-US); labels carries the fixed words."
+    },
+    {
+      "name": "proof-bento-demo",
+      "type": "registry:example",
+      "title": "Proof bento demo",
+      "description": "A working preview of Proof bento.",
+      "registryDependencies": [
+        "https://rhsui.com/r/proof-bento.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/proof-bento-demo.tsx",
           "type": "registry:example"
         }
       ]

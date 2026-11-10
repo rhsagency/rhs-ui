@@ -70,8 +70,10 @@ function Inset({ side = "x", className, ...props }: InsetProps) {
     <div
       data-slot="inset-panel-inset"
       data-side={side}
+      // It scrolls sideways when its content is wider, so it takes focus: a keyboard scrolls it with the arrows.
+      tabIndex={0}
       className={cn(
-        "relative min-w-0 overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-color:color-mix(in_oklab,var(--foreground)_28%,transparent)_transparent] [scrollbar-width:thin]",
+        "relative min-w-0 overflow-x-auto overflow-y-hidden overscroll-x-contain outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 [scrollbar-color:color-mix(in_oklab,var(--foreground)_28%,transparent)_transparent] [scrollbar-width:thin]",
         SIDES[side],
         className,
       )}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "review-form-demo",
+  "title": "Review form demo",
+  "description": "A working preview of Review form.",
+  "registryDependencies": [
+    "https://rhsui.com/r/review-form.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/review-form-demo.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\n\nimport { ReviewForm, type ReviewValues } from \"@rhs-ui/marketing/review-form\";\n\n/** What a customer already wrote, so the states below show a form that was really filled in. */\nconst FILLED: Partial<Omit<ReviewValues, \"photo\">> = {\n  rating: 5,\n  headline: \"Worth every euro\",\n  story: \"I was sceptical about coffee on subscription. Three months in I have not bought a bag at the supermarket once, and the Ethiopian roast is the best thing I drink all week.\",\n  name: \"Anna\",\n  role: \"Product manager, Northwind\",\n  email: \"anna@example.com\",\n  consent: true,\n};\n\nconst DESCRIPTION = \"A few honest lines help the next person decide. We publish only what you allow.\";\n\nfunction Cell({ caption, children }: { caption: string; children: ReactNode }): React.JSX.Element {\n  return (\n    <div className=\"min-w-0\">\n      <p className=\"mb-5 text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase\">{caption}</p>\n      {children}\n    </div>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-6xl gap-x-12 gap-y-16 px-6 py-10 lg:grid-cols-2\">\n      <Cell caption=\"Idle. Live: fill it in and send it\">\n        <ReviewForm\n          title=\"Tell us how it went\"\n          description={DESCRIPTION}\n          fields={{ photo: true }}\n          onSubmit={async () => {\n            await new Promise((resolve) => setTimeout(resolve, 1400));\n          }}\n          className=\"py-0 sm:py-0\"\n        />\n      </Cell>\n      <Cell caption=\"Sending. The fields lock, the button spins\">\n        <ReviewForm title=\"How was your first box?\" description={DESCRIPTION} status=\"busy\" defaultValues={FILLED} onSubmit={() => {}} className=\"py-0 sm:py-0\" />\n      </Cell>\n      <Cell caption=\"Failed. Every value is kept for another try\">\n        <ReviewForm title=\"Share your experience\" description={DESCRIPTION} status=\"error\" defaultValues={FILLED} onSubmit={() => {}} className=\"py-0 sm:py-0\" />\n      </Cell>\n      <Cell caption=\"Sent. The confirmation replaces the form\">\n        <ReviewForm\n          title=\"Leave a review\"\n          description={DESCRIPTION}\n          status=\"done\"\n          defaultValues={FILLED}\n          onSubmit={() => {}}\n          after={\n            <a href=\"#\" className=\"text-sm font-medium underline underline-offset-4 outline-none hover:text-muted-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40\">\n              Back to the shop\n            </a>\n          }\n          className=\"py-0 sm:py-0\"\n        />\n      </Cell>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

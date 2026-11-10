@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { IconCheck, IconChevronsUpDown } from "@rhs-ui/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@rhs-ui/primitives/command";
@@ -38,6 +38,8 @@ export interface ComboboxProps {
   id?: string;
   disabled?: boolean;
   required?: boolean;
+  /** Said with the field when it is required: a button takes no aria-required, so it is read as part of its description. Default "Required". */
+  requiredLabel?: string;
   className?: string;
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
@@ -64,10 +66,14 @@ export function Combobox({
   id,
   disabled,
   required,
+  requiredLabel = "Required",
   className,
   "aria-invalid": ariaInvalid,
   "aria-describedby": ariaDescribedBy,
 }: ComboboxProps) {
+  // A button takes no aria-required (axe aria-allowed-attr, critical), so a required field says it in its description.
+  const requiredId = useId();
+  const describedBy = [ariaDescribedBy, required ? requiredId : null].filter(Boolean).join(" ") || undefined;
   const [open, setOpen] = useState(false);
   const [uncontrolled, setUncontrolled] = useState<string | null>(defaultValue);
   const hidden = useRef<HTMLInputElement>(null);
@@ -93,12 +99,16 @@ export function Combobox({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
+      {required ? (
+        <span id={requiredId} className="sr-only">
+          {requiredLabel}
+        </span>
+      ) : null}
       <PopoverTrigger
         id={id}
         disabled={disabled}
         aria-invalid={ariaInvalid}
-        aria-describedby={ariaDescribedBy}
-        aria-required={required || undefined}
+        aria-describedby={describedBy}
         data-slot="combobox-trigger"
         data-placeholder={current ? undefined : ""}
         className={cn(

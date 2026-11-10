@@ -345,14 +345,16 @@ export function BulkPasteField({
               <li key={issue.line}>
                 <button
                   type="button"
-                  aria-label={`${labels.goToLine(issue.line)}: ${issue.text}. ${issue.reason}`}
+                  // Starts with what the row shows ("Line 5, KES-22, Use the format ABC-1234"), then what it does, in any language (WCAG 2.5.3).
+                  aria-label={`${labels.line(issue.line)}, ${issue.text}, ${issue.reason}. ${labels.goToLine(issue.line)}`}
                   onClick={() => goTo(issue.line)}
                   className="flex w-full flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 text-left text-xs outline-none transition-colors duration-100 hover:bg-muted focus-visible:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset"
                 >
                   <Badge variant="outline" className="shrink-0 bg-background font-mono tabular-nums">
                     {labels.line(issue.line)}
                   </Badge>
-                  <span className="min-w-0 flex-1 basis-28 truncate font-mono text-foreground">{issue.text}</span>
+                  {/* Spaces between the parts, so their words stay apart in the button's text ("Line 5KES-22"). */}{" "}
+                  <span className="min-w-0 flex-1 basis-28 truncate font-mono text-foreground">{issue.text}</span>{" "}
                   <span className="shrink-0 text-muted-foreground">{issue.reason}</span>
                 </button>
               </li>

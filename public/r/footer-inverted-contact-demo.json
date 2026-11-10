@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-inverted-contact-demo",
+  "title": "Inverted contact footer demo",
+  "description": "A working preview of Inverted contact footer.",
+  "registryDependencies": [
+    "https://rhsui.com/r/footer-inverted-contact.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/footer-inverted-contact-demo.tsx",
+      "content": "import { FooterInvertedContact } from \"@rhs-ui/marketing/footer-inverted-contact\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-6xl gap-10 px-6 py-6\">\n      <figure className=\"grid gap-3\">\n        <figcaption className=\"text-xs leading-relaxed text-muted-foreground\">\n          The page ends on the inverted pair of the theme: one very large address with an arrow, three small columns beneath and the studio's local time, which is rewritten every minute and read out as a label, never announced as it ticks.\n        </figcaption>\n        <section aria-label=\"Atelier Nord, full footer\" className=\"overflow-hidden rounded-xl border border-border bg-background\">\n          <FooterInvertedContact\n            headline=\"Have a project in mind? Write to us, and we will answer within two working days.\"\n            email=\"hello@ateliernord.example\"\n            address={[\"Atelier Nord\", \"Keizersgracht 412\", \"1016 GZ Amsterdam\", \"The Netherlands\"]}\n            social={[\n              { label: \"Instagram\", href: \"https://example.com/ateliernord/instagram\" },\n              { label: \"Are.na\", href: \"https://example.com/ateliernord/arena\" },\n              { label: \"Vimeo\", href: \"https://example.com/ateliernord/vimeo\" },\n            ]}\n            links={[\n              { label: \"Work\", href: \"#work\" },\n              { label: \"Studio\", href: \"#studio\" },\n              { label: \"Journal\", href: \"#journal\" },\n              { label: \"Careers\", href: \"#careers\" },\n            ]}\n            city=\"Amsterdam\"\n            timeZone=\"Europe/Amsterdam\"\n            locale=\"en-GB\"\n            legal=\"© 2026 Atelier Nord. Chamber of Commerce 12345678.\"\n          />\n        </section>\n      </figure>\n\n      <figure className=\"grid gap-3\">\n        <figcaption className=\"text-xs leading-relaxed text-muted-foreground\">A long address breaks after the @ instead of running off the screen, and with nothing else to show the footer is the address and the time.</figcaption>\n        <section aria-label=\"Kestrel Studio, short footer\" className=\"overflow-hidden rounded-xl border border-border bg-background\">\n          <FooterInvertedContact email=\"commissions@kestrelstudio-photography.example\" city=\"Lisbon\" timeZone=\"Europe/Lisbon\" locale=\"en-GB\" legal=\"© 2026 Kestrel Studio\" />\n        </section>\n      </figure>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

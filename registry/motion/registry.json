@@ -12,7 +12,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -191,7 +191,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -906,7 +906,7 @@
       "name": "scroll-away",
       "type": "registry:component",
       "title": "Scroll away",
-      "description": "The exit counterpart to Reveal: hero text and headers fade, lift and soften as they scroll off the top, in pure CSS with no scroll handler.",
+      "description": "The exit counterpart to Reveal: hero text and headers clear away line by line as they scroll off the top, in place, lifting or receding, every line still in view at full contrast. Pure CSS, no scroll handler.",
       "categories": [
         "motion",
         "scroll"
@@ -931,8 +931,11 @@
       ],
       "css": {
         "@keyframes rhs-scroll-away": {
+          "from": {
+            "clip-path": "inset(-25% -25% -25% -25%)"
+          },
           "to": {
-            "opacity": "0",
+            "clip-path": "inset(-25% -25% 100% -25%)",
             "transform": "var(--away-transform)",
             "filter": "var(--away-filter)"
           }

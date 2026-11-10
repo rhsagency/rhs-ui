@@ -105,10 +105,15 @@ function CheckoutChart(): React.JSX.Element {
 function ScrollBox({ label, hint, children }: { label: string; hint?: string; children: ReactNode }): React.JSX.Element {
   const box = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: false, end: false });
+  // Until it is measured it may scroll, so it can take focus: before hydration, or without script, a keyboard still reaches it.
+  const [measured, setMeasured] = useState(false);
   useEffect(() => {
     const node = box.current;
     if (!node) return;
-    const measure = () => setEdges({ start: node.scrollLeft > 4, end: node.scrollLeft + node.clientWidth < node.scrollWidth - 4 });
+    const measure = () => {
+      setEdges({ start: node.scrollLeft > 4, end: node.scrollLeft + node.clientWidth < node.scrollWidth - 4 });
+      setMeasured(true);
+    };
     measure();
     node.addEventListener("scroll", measure, { passive: true });
     const observer = new ResizeObserver(measure);
@@ -118,7 +123,7 @@ function ScrollBox({ label, hint, children }: { label: string; hint?: string; ch
       observer.disconnect();
     };
   }, []);
-  const scrolls = edges.start || edges.end;
+  const scrolls = !measured || edges.start || edges.end;
   return (
     <div className="relative overflow-hidden rounded-xl border border-border">
       <div

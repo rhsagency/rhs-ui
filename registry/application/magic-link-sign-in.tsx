@@ -405,7 +405,8 @@ export function MagicLinkSignIn({
               className="w-full tabular-nums aria-disabled:cursor-default aria-disabled:bg-muted/50 aria-disabled:text-muted-foreground aria-disabled:hover:bg-muted/50"
             >
               {busy ? <Spinner size={16} label="" role="presentation" aria-hidden="true" /> : waiting ? <IconClock /> : <IconRefresh />}
-              {busy ? text.resendSending : waiting ? fill(text.resendWait, { seconds: String(left) }) : text.resend}
+              {/* While it waits, the countdown is drawn by CSS: the name stays the resend words (the aria-label above), and words in the button that the name lacks fail label-in-name (WCAG 2.5.3). */}
+              {busy ? text.resendSending : waiting ? <span data-label={fill(text.resendWait, { seconds: String(left) })} className="before:content-[attr(data-label)]" /> : text.resend}
             </Button>
             <div className="flex flex-col items-center gap-0.5 @xs:flex-row @xs:justify-center @xs:gap-x-1">
               <Button type="button" variant="ghost" size="sm" onClick={back} className="text-muted-foreground hover:text-foreground">

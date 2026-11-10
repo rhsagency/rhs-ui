@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quote-stack-demo",
+  "title": "Quote stack demo",
+  "description": "A working preview of Quote stack.",
+  "registryDependencies": [
+    "https://rhsui.com/r/quote-stack.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/quote-stack-demo.tsx",
+      "content": "import { QuoteStack } from \"@rhs-ui/marketing/quote-stack\";\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto max-w-6xl px-6\">\n      <QuoteStack\n        title=\"Customers, in one sentence\"\n        quotes={[\n          { id: \"ines\", quote: \"It replaced three tools and two weekly meetings.\", name: \"Inès Moreau\", role: \"Founder, Atelier Moreau\" },\n          { id: \"sam\", quote: \"The first software our whole studio opens without being asked.\", name: \"Sam Okafor\", role: \"Design lead, Harbour & Co\" },\n          { id: \"arjun\", quote: \"Setup took an afternoon. Nobody needed training.\", name: \"Arjun Mehta\", role: \"Partner, Mirror Labs\" },\n          { id: \"lotte\", quote: \"Finally, a status page my clients actually read.\", name: \"Lotte de Vries\", role: \"Head of marketing, Fieldwork\" },\n          { id: \"jonas\", quote: \"Quiet, fast and exactly where I left it.\", name: \"Jonas Keller\", role: \"Staff engineer, Kestrel Studio\" },\n          { id: \"mei\", quote: \"We cancelled the spreadsheet and nobody even noticed.\", name: \"Mei Tanaka\", role: \"Producer, Polder Health\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

@@ -12,9 +12,9 @@ interface Hero {
 
 /** Three heroes in one row, so a single scroll shows all three ways out at the same moment. */
 const HEROES: readonly Hero[] = [
-  { effect: "fade", title: "Planning that keeps pace.", note: "Dims in place. The quietest way out.", link: "Release notes" },
-  { effect: "lift", title: "Capacity you can see.", note: "Rises as it dims. The everyday hero.", link: "What is new" },
-  { effect: "scale", blur: 6, title: "Reports that write themselves.", note: "Recedes and softens. Good over layered pages.", link: "Take the tour" },
+  { effect: "fade", title: "Planning that keeps pace.", note: "Clears in place. The quietest way out.", link: "Release notes" },
+  { effect: "lift", title: "Capacity you can see.", note: "Rises as it clears. The everyday hero.", link: "What is new" },
+  { effect: "scale", title: "Reports that write themselves.", note: "Recedes as it clears. Good over layered pages.", link: "Take the tour" },
 ];
 
 const UPDATES: readonly { title: string; shipped: string }[] = [

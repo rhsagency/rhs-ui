@@ -68,7 +68,9 @@ const CODE = `const shop = createShop({
  */
 function ScrollingInset({ label, className, ...props }: ComponentProps<typeof InsetPanel.Inset> & { label: string }): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
-  const [scrolls, setScrolls] = useState(false);
+  // Until it has measured, it counts as scrolling: before hydration (and in a server render) the columns out of sight
+  // can still be reached, and a wide screen gives up the stop once it sees everything fits.
+  const [scrolls, setScrolls] = useState(true);
   useEffect(() => {
     const node = ref.current;
     if (!node) return;

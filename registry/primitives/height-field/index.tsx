@@ -303,7 +303,7 @@ export function HeightField({
   );
 
   return (
-    <div data-slot="height-field" className={cn("grid w-full min-w-0 grid-cols-1", className)} {...props}>
+    <div data-slot="height-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1", className)} {...props}>
       <div className="flex flex-wrap items-center gap-2">
         <InputGroup
           role="group"

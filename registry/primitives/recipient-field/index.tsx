@@ -366,7 +366,8 @@ export function RecipientField({
                     type="button"
                     data-recipient-chip=""
                     tabIndex={-1}
-                    aria-label={reason ? `${person.email}, ${reason}` : person.name ? `${person.name}, ${person.email}` : person.email}
+                    // Starts with what the chip shows (the name, or the address), then the address and why it is refused (WCAG 2.5.3).
+                    aria-label={[shown, person.email !== shown ? person.email : null, reason].filter(Boolean).join(", ")}
                     title={reason ?? (person.name ? person.email : undefined)}
                     aria-describedby={hintId}
                     onKeyDown={(event) => chipKey(event, index)}

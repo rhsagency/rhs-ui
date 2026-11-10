@@ -186,7 +186,7 @@ export function DueDateField({
   const mark = <IconCheck aria-hidden="true" className={MARK} />;
 
   return (
-    <div data-slot="due-date-field" className={cn("grid w-full min-w-0 grid-cols-1 justify-items-start gap-3", className)} {...props}>
+    <div data-slot="due-date-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1 justify-items-start gap-3", className)} {...props}>
       <Popover open={open} onOpenChange={setOpen}>
         <div ref={group} role="radiogroup" aria-label={labelledBy ? undefined : (ariaLabel ?? labels.group)} aria-labelledby={labelledBy} onKeyDown={keyDown} className="flex flex-wrap gap-2">
           {quick.map((chip) =>

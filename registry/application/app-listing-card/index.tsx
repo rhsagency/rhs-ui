@@ -301,7 +301,8 @@ export function AppListingCard({
           type="button"
           size="sm"
           variant={state === "get" || state === "update" ? "default" : "outline"}
-          aria-label={fill(installing ? text.progress : state === "installed" ? text.openFor : state === "update" ? text.updateFor : text.getFor, { name })}
+          // While it installs, the name starts with what the button shows ("Installing 42%"), then the app (WCAG 2.5.3).
+          aria-label={installing && known ? `${text.installing} ${percentText(percent / 100, locale)}, ${name}` : fill(installing ? text.progress : state === "installed" ? text.openFor : state === "update" ? text.updateFor : text.getFor, { name })}
           // Not `disabled`: a disabled button drops the focus it has.
           aria-disabled={installing || undefined}
           aria-busy={installing || undefined}

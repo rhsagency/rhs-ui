@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { IconAlertCircle, IconCheck, IconChevronsUpDown, IconClose, IconInfo, IconPlus } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
@@ -104,6 +104,8 @@ export interface CreatableSelectMessages {
   count: (label: string, chosen: number) => string;
   /** The name of the search box, from the name of the list: "Search or create labels". */
   search: (label: string) => string;
+  /** Read with the field when it is required: "Required". */
+  required: string;
 }
 
 const MESSAGES: CreatableSelectMessages = {
@@ -117,6 +119,7 @@ const MESSAGES: CreatableSelectMessages = {
   selected: "selected",
   count: (label, chosen) => `${label}: ${chosen} selected`,
   search: (label) => `Search or create ${label.toLowerCase()}`,
+  required: "Required",
 };
 
 /**
@@ -157,6 +160,9 @@ export function CreatableSelect(props: CreatableSelectProps) {
     defaultValue,
   } = props;
   const messages: CreatableSelectMessages = { ...MESSAGES, ...overrides };
+  // A button takes no aria-required (axe aria-allowed-attr, critical), so a required field says it in its description.
+  const requiredId = useId();
+  const describedBy = [ariaDescribedBy, required ? requiredId : null].filter(Boolean).join(" ") || undefined;
   const [open, setOpen] = useState(defaultOpen);
   const [query, setQuery] = useState("");
   const [own, setOwn] = useState<readonly string[]>(() => asList(defaultValue));
@@ -330,8 +336,7 @@ export function CreatableSelect(props: CreatableSelectProps) {
         id={id}
         disabled={disabled}
         aria-invalid={ariaInvalid}
-        aria-describedby={ariaDescribedBy}
-        aria-required={required || undefined}
+        aria-describedby={describedBy}
         aria-label={`${addText}, ${messages.count(label, chips.length)}`}
         data-slot="creatable-select-trigger"
         className="min-w-24 flex-1 bg-transparent px-1 py-0.5 text-left text-sm text-muted-foreground outline-none disabled:cursor-not-allowed"
@@ -345,8 +350,7 @@ export function CreatableSelect(props: CreatableSelectProps) {
       id={id}
       disabled={disabled}
       aria-invalid={ariaInvalid}
-      aria-describedby={ariaDescribedBy}
-      aria-required={required || undefined}
+      aria-describedby={describedBy}
       data-slot="creatable-select-trigger"
       data-placeholder={selected ? undefined : ""}
       className={cn(fieldSurface, "flex h-9 w-full min-w-0 items-center justify-between gap-2 px-3 text-left whitespace-nowrap data-[placeholder]:text-muted-foreground")}
@@ -391,6 +395,11 @@ export function CreatableSelect(props: CreatableSelectProps) {
 
   return (
     <div ref={root} data-slot="creatable-select" className={cn("w-full min-w-0", className)}>
+      {required ? (
+        <span id={requiredId} className="sr-only">
+          {messages.required}
+        </span>
+      ) : null}
       <Popover open={open && !disabled} onOpenChange={show}>
         {/* The list is anchored to the field together with the line under it, so a message about a failed create is never covered. */}
         <PopoverAnchor asChild>

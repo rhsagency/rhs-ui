@@ -121,7 +121,7 @@ export function AsyncSwitch({
 
   return (
     <div
-      data-slot="async-switch"
+      data-slot="async-switch" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined}
       data-status={status}
       className={cn("grid w-full min-w-0 grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3", className)}
     >

@@ -125,14 +125,16 @@ export function EventConference({ name = "Frontier 2026", dates = "14 and 15 Nov
           <Reveal>
             <h2 className="text-5xl font-semibold tracking-[-0.04em]">Programme</h2>
           </Reveal>
-          <Tabs defaultValue={days[0]} className="mt-10">
+          {/* A tab's value becomes part of its id and its aria-controls, so it is a plain slug: "Day 1 · 14 Nov" as an id
+              split into four ids that do not exist. The day itself is the label. */}
+          <Tabs defaultValue="day-1" className="mt-10">
             <TabsList>
-              {days.map((day) => (
-                <TabsTrigger key={day} value={day}>{day}</TabsTrigger>
+              {days.map((day, index) => (
+                <TabsTrigger key={day} value={`day-${index + 1}`}>{day}</TabsTrigger>
               ))}
             </TabsList>
-            {days.map((day) => (
-              <TabsContent key={day} value={day} className="mt-8">
+            {days.map((day, index) => (
+              <TabsContent key={day} value={`day-${index + 1}`} className="mt-8">
                 <ol className="divide-y divide-border rounded-2xl border border-border bg-background">
                   {schedule[day]!.map((session) => (
                     <li key={session.time + session.title} className="grid gap-2 px-6 py-5 sm:grid-cols-[5rem_1fr_auto] sm:items-baseline sm:gap-6">

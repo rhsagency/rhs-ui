@@ -132,7 +132,8 @@ export default function Demo(): React.JSX.Element {
                   key={store.id}
                   type="button"
                   aria-pressed={on}
-                  aria-label={`${store.name}, ${store.distance}`}
+                  // Named by what the pin shows first, its number, then the place (WCAG 2.5.3).
+                  aria-label={`${index + 1}, ${store.name}, ${store.distance}`}
                   tabIndex={visible ? 0 : -1}
                   onClick={() => choose(store.id)}
                   className={cn(
@@ -144,6 +145,7 @@ export default function Demo(): React.JSX.Element {
                   style={{ left: CENTER.x + store.at[0], top: CENTER.y + store.at[1], transform: `translate(-50%, calc(-100% - 7px)) scale(${1 / zoom})`, transformOrigin: "50% 100%" }}
                 >
                   {index + 1}
+                  {on ? " " : null}
                   {on ? <span className="absolute bottom-full left-1/2 mb-3 -translate-x-1/2 rounded-md border border-border bg-card px-2 py-1 text-xs font-medium whitespace-nowrap text-card-foreground shadow-sm">{store.name}</span> : null}
                 </button>
               );

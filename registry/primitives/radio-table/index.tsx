@@ -104,6 +104,9 @@ export function RadioTable({
                   role="row"
                   data-slot="radio-table-row"
                   data-disabled={off || undefined}
+                  // A row that is off dims its figures. Saying so on the row tells a screen reader, and axe, that it is
+                  // inactive, and the text of an inactive control is exempt from contrast (WCAG 1.4.3).
+                  aria-disabled={off || undefined}
                   className={cn(
                     "relative grid gap-y-1 rounded-xl border border-border bg-card px-4 py-3.5 shadow-xs transition-[background-color,border-color,box-shadow] duration-150 motion-reduce:transition-none",
                     "@[560px]:items-center @[560px]:gap-x-4 @[560px]:gap-y-0 @[560px]:[grid-template-columns:var(--table-columns)]",

@@ -11,7 +11,7 @@ const PARAGRAPHS = [
 
 export default function Demo(): React.JSX.Element {
   return (
-    <div className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-background">
+    <div tabIndex={0} role="region" aria-label="Scroll progress demo, scroll inside" className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-background outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset">
       <ScrollProgress source="nearest" />
       <article className="mx-auto max-w-prose px-6 py-10">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">Scroll inside this panel</p>

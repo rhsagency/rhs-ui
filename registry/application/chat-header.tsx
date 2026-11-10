@@ -196,13 +196,19 @@ function menuStart(bar: HTMLElement | null, inline: number): number {
 }
 
 /** Up to four faces in a circle, split the way a chat app does it: halves for two, a half and two quarters for three, quarters for four. */
+/**
+ * Initials drawn by CSS, not written as text: inside the info button they joined its words ("A T M J Checkout
+ * redesign"), so no name could hold what the button shows (WCAG 2.5.3). They are a picture of the people, aria-hidden.
+ */
+const DRAWN = "before:content-[attr(data-initials)]";
+
 function Mosaic({ conversation }: { conversation: ChatConversation }) {
   const cells = (conversation.members ?? []).slice(0, 4);
   if (!cells.length) {
     return (
       <Avatar aria-hidden="true" className="data-[size=default]:size-10">
         {conversation.image ? <AvatarImage src={conversation.image} alt="" /> : null}
-        <AvatarFallback>{initialsOf(conversation.name)}</AvatarFallback>
+        <AvatarFallback data-initials={initialsOf(conversation.name)} className={DRAWN} />
       </Avatar>
     );
   }
@@ -211,7 +217,7 @@ function Mosaic({ conversation }: { conversation: ChatConversation }) {
       {cells.map((member, index) => (
         <Avatar key={`${index}-${member.name}`} className={cn("size-full rounded-none data-[size=default]:size-full", cells.length === 3 && index === 0 && "row-span-2")}>
           {member.image ? <AvatarImage src={member.image} alt="" /> : null}
-          <AvatarFallback className={cn("rounded-none text-[0.6875rem] font-semibold text-foreground/70", index % 2 === 0 ? "bg-foreground/[0.07]" : "bg-foreground/[0.13]")}>{initialsOf(member.name).slice(0, 1)}</AvatarFallback>
+          <AvatarFallback data-initials={initialsOf(member.name).slice(0, 1)} className={cn(DRAWN, "rounded-none text-[0.6875rem] font-semibold text-foreground/70", index % 2 === 0 ? "bg-foreground/[0.07]" : "bg-foreground/[0.13]")} />
         </Avatar>
       ))}
     </span>
@@ -307,16 +313,18 @@ export function ChatHeader({
         ) : (
           <Avatar aria-hidden="true" className="data-[size=default]:size-10">
             {conversation.image ? <AvatarImage src={conversation.image} alt="" /> : null}
-            <AvatarFallback>{initialsOf(conversation.name)}</AvatarFallback>
+            <AvatarFallback data-initials={initialsOf(conversation.name)} className={DRAWN} />
           </Avatar>
         )}
         {!conversation.group && presence ? <PresenceMark state={presence.state} /> : null}
       </span>
       <span className="grid min-w-0 flex-1">
         <span className="truncate text-[0.9375rem] leading-5 font-semibold tracking-[-0.02em]">{conversation.name}</span>
+        {/* A space between the name and the status, so their words stay apart in the button's text ("Anna de VriesActive now"). */}
+        {" "}
         {status || conversation.muted ? (
           <span id={statusId} className="flex min-w-0 flex-wrap items-center gap-x-1.5 text-[0.8125rem] leading-5 text-muted-foreground @md:flex-nowrap">
-            {status ? <span className="max-w-full truncate @md:shrink-[0.2]">{status}</span> : null}
+            {status ? <span className="max-w-full truncate @md:shrink-[0.2]">{status}</span> : null}{" "}
             {conversation.muted ? (
               <>
                 {status ? (
@@ -347,8 +355,8 @@ export function ChatHeader({
       {onOpenInfo ? (
         <button
           type="button"
-          aria-label={fill(text.openInfo, { name: conversation.name })}
-          aria-describedby={status || conversation.muted ? statusId : undefined}
+          // Named by what it shows, in its order (the name, the status, muted), then what it does (WCAG 2.5.3).
+          aria-label={`${[conversation.name, status, conversation.muted ? text.muted : ""].filter(Boolean).join(", ")}. ${fill(text.openInfo, { name: conversation.name })}`}
           onClick={onOpenInfo}
           className="flex min-w-0 flex-1 items-center gap-2.5 rounded-lg px-2 py-1.5 text-start outline-none transition-colors duration-150 hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 motion-reduce:transition-none"
         >

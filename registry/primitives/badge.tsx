@@ -25,7 +25,8 @@ const badgeVariants = cva(
         muted: "border-transparent bg-muted text-muted-foreground",
         success: "border-transparent bg-[color-mix(in_oklch,var(--color-success,oklch(0.62_0.15_150))_18%,transparent)] text-foreground",
         warning: "border-transparent bg-[color-mix(in_oklch,var(--color-warning,oklch(0.72_0.16_75))_22%,transparent)] text-foreground",
-        destructive: "border-transparent bg-destructive/12 text-destructive",
+        // The red darkened toward the text colour, so small words on the red tint reach 4.5:1 (plain red was 3.88:1), in both themes.
+        destructive: "border-transparent bg-destructive/12 text-[color:color-mix(in_oklch,var(--destructive),var(--foreground)_30%)]",
       },
     },
     defaultVariants: { variant: "default" },

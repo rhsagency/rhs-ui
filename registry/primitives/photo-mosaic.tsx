@@ -93,10 +93,10 @@ export function PhotoMosaic({ photos, total, onOpen, onShowAll, locale = "en-US"
                 className="absolute inset-0 bg-black/0 transition-colors duration-200 group-hover/photo:bg-black/20 group-focus-visible/photo:shadow-[inset_0_0_0_2px_rgba(255,255,255,0.95),inset_0_0_0_4px_rgba(0,0,0,0.5)] motion-reduce:transition-none"
               />
             </button>
-            {/* On a phone the counter says there is more; a lone photo has nothing more to say, so it shows none. The name carries the words as well as the visible "1 / 24", so voice control can say what it sees. */}
+            {/* On a phone the counter says there is more; a lone photo has nothing more to say, so it shows none. The name carries the words as well as the visible "1 / 24", so voice control can say what it sees; not in brackets, which axe (and a voice matcher) leave out. */}
             {index === 0 && count > 1 ? (
               onShowAll ? (
-                <Button type="button" variant="outline" size="sm" aria-label={`${showAll} (1 / ${shown})`} onClick={onShowAll} className="absolute right-3 bottom-3 tabular-nums shadow-xs @lg:hidden">
+                <Button type="button" variant="outline" size="sm" aria-label={`${showAll}, 1 / ${shown}`} onClick={onShowAll} className="absolute right-3 bottom-3 tabular-nums shadow-xs @lg:hidden">
                   <IconGrid aria-hidden="true" />
                   {`1 / ${shown}`}
                 </Button>
@@ -108,7 +108,7 @@ export function PhotoMosaic({ photos, total, onOpen, onShowAll, locale = "en-US"
             ) : null}
             {/* The last cell is a quarter of the width, so under 48rem it is narrower than the words need: the button keeps its icon and the count, and its name stays whole. The max-width and the ellipsis are a net for long translations. */}
             {index === visible.length - 1 && onShowAll ? (
-              <Button type="button" variant="outline" size="sm" aria-label={showAll} onClick={onShowAll} className="absolute right-3 bottom-3 hidden max-w-[calc(100%-1.5rem)] shadow-xs @lg:inline-flex">
+              <Button type="button" variant="outline" size="sm" aria-label={`${showAll}, ${shown}`} onClick={onShowAll} className="absolute right-3 bottom-3 hidden max-w-[calc(100%-1.5rem)] shadow-xs @lg:inline-flex">
                 <IconGrid aria-hidden="true" />
                 <span className="min-w-0 truncate @max-3xl:hidden">{showAll}</span>
                 <span className="hidden tabular-nums @max-3xl:inline">{shown}</span>

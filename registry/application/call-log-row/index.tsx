@@ -67,7 +67,7 @@ export interface CallLogRowLabels {
   calling?: string;
   /** Shown under the row, and said, when `onCallBack` rejects. Default "Could not call {name}. Try again." */
   callFailed?: string;
-  /** The play button's name. Default "Play voicemail from {name}, {duration}". */
+  /** Read after the words the play button shows ("Voicemail 0:42"), so its name starts with them (WCAG 2.5.3). Default "play, from {name}, {duration}". */
   playVoicemail?: string;
   /** The note button's name when there is no note yet. Default "Add a note for {name}". */
   addNote?: string;
@@ -115,7 +115,7 @@ const DEFAULT_LABELS = {
   callBack: "Call back {name}",
   calling: "Calling {name}.",
   callFailed: "Could not call {name}. Try again.",
-  playVoicemail: "Play voicemail from {name}, {duration}",
+  playVoicemail: "play, from {name}, {duration}",
   addNote: "Add a note for {name}",
   editNote: "Edit the note for {name}",
 } satisfies Required<CallLogRowLabels>;
@@ -243,12 +243,13 @@ export function CallLogRow({
   }
 
   const playControl = playSlot ?? (voicemail && onPlayVoicemail ? (
-    <Button type="button" variant="outline" size="sm" aria-label={fill(text.playVoicemail, { name: who, duration: voicemail.words })} onClick={() => onPlayVoicemail(call)} className="h-7 gap-1.5 rounded-full px-2.5 text-xs tabular-nums">
-      <IconPlay className="size-3" />
-      {text.voicemail}
-      <span aria-hidden="true" className="text-muted-foreground">
-        {voicemail.clock}
-      </span>
+    // Named by what it shows ("Voicemail 0:42") with who and how long after it, for a screen reader: an aria-label that
+    // left out the shown "0:42" failed label-in-name (WCAG 2.5.3), and a voice user says what they see.
+    <Button type="button" variant="outline" size="sm" onClick={() => onPlayVoicemail(call)} className="h-7 gap-1.5 rounded-full px-2.5 text-xs tabular-nums">
+      <IconPlay aria-hidden="true" className="size-3" />
+      {text.voicemail}{" "}
+      <span className="text-muted-foreground">{voicemail.clock}</span>
+      <span className="sr-only">, {fill(text.playVoicemail, { name: who, duration: voicemail.words })}</span>
     </Button>
   ) : null);
 

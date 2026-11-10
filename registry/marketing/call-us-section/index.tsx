@@ -152,7 +152,8 @@ export function CallUsSection({ phone, title, description, hours, timeZone = "UT
       {afterHours ? (
         <a
           href={dial(afterHours.phone)}
-          aria-label={[fill(labels.call, { phone: afterHours.phone }), closed ? labels.useNow : null, afterHours.label].filter(Boolean).join(", ")}
+          // The name reads the card in its order (the tag, the line, the number), then what the link does (WCAG 2.5.3).
+          aria-label={`${[closed ? labels.useNow : null, afterHours.label, afterHours.phone].filter(Boolean).join(", ")}. ${fill(labels.call, { phone: afterHours.phone })}`}
           data-priority={closed || undefined}
           className={cn(
             "mx-auto mt-8 flex max-w-lg items-center gap-4 rounded-xl border px-4 py-4 text-left outline-none @sm:px-5 transition-colors duration-300 hover:bg-muted/60 focus-visible:ring-[3px] focus-visible:ring-ring/40 motion-reduce:transition-none",
@@ -163,8 +164,8 @@ export function CallUsSection({ phone, title, description, hours, timeZone = "UT
             <IconMoon className="size-[1.125rem]" />
           </span>
           <span className="min-w-0 flex-1">
-            {closed ? <span className="mb-1.5 inline-block rounded-full bg-foreground px-2 py-0.5 text-xs leading-snug font-medium text-background">{labels.useNow}</span> : null}
-            <span className="block text-sm leading-snug font-medium">{afterHours.label}</span>
+            {closed ? <span className="mb-1.5 inline-block rounded-full bg-foreground px-2 py-0.5 text-xs leading-snug font-medium text-background">{labels.useNow}</span> : null}{" "}
+            <span className="block text-sm leading-snug font-medium">{afterHours.label}</span>{" "}
             <span className="mt-0.5 block text-xl leading-snug font-medium tracking-[-0.02em] whitespace-nowrap tabular-nums">{afterHours.phone}</span>
           </span>
         </a>

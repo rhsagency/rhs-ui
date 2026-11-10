@@ -34,6 +34,12 @@ export interface RevealProps extends ComponentProps<"div"> {
   order?: number;
   /** The scroll range as CSS `animation-range`. The default finishes when the element is a third of the way up the screen. */
   range?: string;
+  /**
+   * Also fade it in, and for `blur` blur it. Off by default: the animation is tied to the scroll, so an element that
+   * stops low on the screen stays where the fade is, half clear, and the words in it miss their contrast (WCAG 1.4.3).
+   * For an image or a decoration without words only.
+   */
+  fade?: boolean;
   asChild?: boolean;
 }
 
@@ -41,11 +47,13 @@ export interface RevealProps extends ComponentProps<"div"> {
  * Brings an element forward as it scrolls into view, tied to the scroll
  * itself: scroll back and it steps back. Pure CSS (scroll-driven animations),
  * no JavaScript and no layout shift; the server renders the element at rest,
- * so nothing is hidden before hydration or without support.
+ * so nothing is hidden before hydration or without support. It moves at full
+ * opacity and sharp unless `fade` is on, so every scroll position is readable.
  */
-export function Reveal({ effect = "rise", distance = 48, order = 0, range, asChild = false, className, style, ...props }: RevealProps) {
+export function Reveal({ effect = "rise", distance = 48, order = 0, range, fade = false, asChild = false, className, style, ...props }: RevealProps) {
   const Comp = asChild ? Slot.Root : "div";
-  const start = startOf(effect, distance);
+  const motion = startOf(effect, distance);
+  const start = fade ? motion : { ...motion, opacity: 1, filter: "none" };
   const offset = Math.max(0, order) * 6;
   const vars = {
     "--reveal-transform": start.transform,

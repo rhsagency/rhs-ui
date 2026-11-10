@@ -9991,6 +9991,1774 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "chapter-list",
+      "type": "registry:component",
+      "title": "Chapter list",
+      "description": "The chapters of a video or podcast as timestamps: the playing one marked with a rail and a progress line, click to seek, each length shown.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/chapter-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chapter-list/index.tsx"
+        },
+        {
+          "path": "registry/application/chapter-list/chapters.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/chapter-list/chapters.ts"
+        }
+      ],
+      "docs": "Pass chapters ({ start, title }, start in seconds), currentTime and onSeek; duration gives the last chapter an end and a length. Ends and lengths are worked out from the next start, so you only keep starts. The chapter that holds currentTime gets aria-current, a thin rail, a heavier title, a line that fills as the chapter goes by and \"Now playing\" for screen readers. Every row is a button read as one phrase (\"04:12, Pricing, 3 minutes\") that calls onSeek(start). Tab enters the list once, on the playing chapter; the arrow keys, Home and End walk it. The list moves itself to the playing chapter, never the page, and jumps without animation under reduced motion. It does not own the media element, so it works with a video, an audio element or an embed. maxHeight sets where it scrolls, locale writes the lengths, labels translates the fixed words."
+    },
+    {
+      "name": "chapter-list-demo",
+      "type": "registry:example",
+      "title": "Chapter list demo",
+      "description": "A working preview of Chapter list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/chapter-list.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/chapter-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "media-playlist",
+      "type": "registry:component",
+      "title": "Media playlist",
+      "description": "Tracks or videos for your own player: a now-playing row with an animated equaliser, durations, an Up next heading and arrow-key browsing.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/media-playlist/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/media-playlist/index.tsx"
+        },
+        {
+          "path": "registry/application/media-playlist/playlist.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/media-playlist/playlist.ts"
+        }
+      ],
+      "docs": "Pass items ({ id, title, subtitle?, duration, artwork? }, duration in seconds), currentId, playing and onSelect(id). It is presentation only: you own the player, it owns the list. The current row is tinted, carries aria-current and says \"Now playing\" or \"Paused\" to a screen reader; four bars replace its number, move only while playing is true, rest at different heights when paused and stay still under reduced motion. Other rows show a play mark on hover and focus. Tab enters the list once, on the current item; the arrow keys, Home and End walk it; Enter calls onSelect, also for the current item (read it as play or pause). A cut title shows whole in a tooltip on hover and focus. showUpNext adds an \"Up next\" heading after the current item, kind=\"video\" draws 16:9 thumbnails, title adds a header with count and total length, maxHeight sets where it scrolls, locale and labels translate. The list answers to its own width: below 24rem the numbers leave the rows (the current row shows its bars on its picture), pictures shrink and titles wrap to two lines (three below 20rem) instead of being cut to a few words; a video list always wraps to two.",
+      "css": {
+        "@keyframes rhs-equalizer": {
+          "0%, 100%": {
+            "transform": "scaleY(0.3)"
+          },
+          "22%": {
+            "transform": "scaleY(1)"
+          },
+          "46%": {
+            "transform": "scaleY(0.5)"
+          },
+          "68%": {
+            "transform": "scaleY(0.9)"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-equalizer": "rhs-equalizer 900ms ease-in-out infinite"
+        }
+      }
+    },
+    {
+      "name": "media-playlist-demo",
+      "type": "registry:example",
+      "title": "Media playlist demo",
+      "description": "A working preview of Media playlist.",
+      "registryDependencies": [
+        "https://rhsui.com/r/media-playlist.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/media-playlist-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "transcript-list",
+      "type": "registry:component",
+      "title": "Transcript list",
+      "description": "A synced transcript: each line with its timestamp, the spoken line highlighted, click to jump, and a search that marks the words it finds.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/scroll-area.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/transcript-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/transcript-list/index.tsx"
+        },
+        {
+          "path": "registry/application/transcript-list/transcript.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/transcript-list/transcript.ts"
+        }
+      ],
+      "docs": "Pass cues ({ start, end, speaker?, text }, seconds, from your own WebVTT parser), currentTime and onSeek. The line being spoken is highlighted and carries aria-current. While the media plays the list scrolls that line to a comfortable place, moving itself and never the page; if the reader scrolls it out of view, following stops and Jump to current appears, and it resumes when the line is back in view or the button is pressed. Timestamps are buttons that call onSeek(start); the text is plain, selectable text and clicking it seeks too, unless the click ended a selection. searchable (default true) adds a search that ignores case and accents, hides lines that do not match, marks the words that do and announces the count politely; defaultQuery and onQueryChange control it. A speaker name shows above each turn. autoScroll, maxHeight, locale and labels tune it."
+    },
+    {
+      "name": "transcript-list-demo",
+      "type": "registry:example",
+      "title": "Transcript list demo",
+      "description": "A working preview of Transcript list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/transcript-list.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/transcript-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "voice-message",
+      "type": "registry:component",
+      "title": "Voice message",
+      "description": "A chat voice note: play or pause, a waveform that fills as it plays and doubles as the seek slider, elapsed over total time, and a speed toggle.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/voice-message/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/voice-message/index.tsx"
+        },
+        {
+          "path": "registry/application/voice-message/voice.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/voice-message/voice.ts"
+        },
+        {
+          "path": "registry/application/voice-message/playback.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/voice-message/playback.ts"
+        }
+      ],
+      "docs": "Pass src (an address or a data URI), peaks (loudness values on any scale), duration in seconds, sender (\"me\" sits right in the inverted tone, \"them\" left in the quiet one) and onPlay. The audio is fetched only as far as its length until play is pressed. The play button keeps its name and reports aria-pressed; the waveform is a slider (click or drag; arrow keys seek 5 seconds, 15 with Shift; Page Up and Down, Home and End) with its value written as \"0:12 of 0:42\". The speed button goes 1x, 1.5x, 2x. Starting one message pauses the one that was playing, through a tiny shared store (pauseAllPlayback() stops all), and a message that ends returns to its start. Loading shows a spinner and is announced; failure is written out (\"Could not load voice message\") with Try again. Without peaks a waveform is drawn from the address, the same on server and browser. name, defaultTime and labels tune it."
+    },
+    {
+      "name": "voice-message-demo",
+      "type": "registry:example",
+      "title": "Voice message demo",
+      "description": "A working preview of Voice message.",
+      "registryDependencies": [
+        "https://rhsui.com/r/voice-message.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/voice-message-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quiz-options",
+      "type": "registry:component",
+      "title": "Quiz options",
+      "description": "A multiple-choice question: pick one or several, lock it in, and every option is marked with an icon and a word, with a one-line reason.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/quiz-options/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quiz-options/index.tsx"
+        },
+        {
+          "path": "registry/application/quiz-options/quiz.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quiz-options/quiz.ts"
+        }
+      ],
+      "docs": "Pass question, options ({ value, label, reason? }) and correct (one value or a list). One right answer makes a radio group, several make checkboxes (multiple overrides). value (always a list), defaultValue and onValueChange control the choice. Check answer locks the question and marks every option that matters with an icon and a word, never colour alone: \"Correct\", \"Your answer, incorrect\", and for a right option left out \"Missed\" (several right) or \"Correct answer\" (one). A reason appears under its option once checked and is announced politely with the marks; the options stay focusable so a screen reader can walk the result. onCheck gets { correct, value }; the verdict panel is yours. status is controlled or kept inside; allowRetry turns the button into Try again, which clears the answer and calls onRetry. name submits one field per choice, labels translates."
+    },
+    {
+      "name": "quiz-options-demo",
+      "type": "registry:example",
+      "title": "Quiz options demo",
+      "description": "A working preview of Quiz options.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quiz-options.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quiz-options-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sentence-fields",
+      "type": "registry:component",
+      "title": "Sentence fields",
+      "description": "A rule written as a sentence with the choices inline: \"Email me every Monday at 09:00 about new orders\", for digests, alerts and automations.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/sentence-fields/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sentence-fields/index.tsx"
+        },
+        {
+          "path": "registry/application/sentence-fields/sentence.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/sentence-fields/sentence.ts"
+        }
+      ],
+      "docs": "Pass template and slots. The template is an array of plain words, { slot: \"id\" } for a choice and { text: \"at\", withSlot: \"time\" } for words that come and go with a slot, or one string with {id} marks (\"Email me {frequency} at {time}.\"). A slot has an id, options (strings or { value, label }), a placeholder, a label and an optional when ({ slot, is } or { slot, not }) that hides it, and its words, while the condition fails; a hidden slot keeps its answer. value, defaultValue and onValueChange hold the whole object by slot id. Each slot is the house select drawn as an underlined word (typeahead, arrow keys), and Tab walks the slots in reading order. The sentence is a group named by its own words, and a slot is named \"Frequency: every Monday\". A choice longer than the line wraps inside its slot, and a very long word is broken, so a phone never scrolls sideways. onSentenceChange gets { text, complete } for a confirmation step; sentenceText() (in sentence.ts) writes the same text anywhere, also on the server."
+    },
+    {
+      "name": "sentence-fields-demo",
+      "type": "registry:example",
+      "title": "Sentence fields demo",
+      "description": "A working preview of Sentence fields.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sentence-fields.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sentence-fields-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "availability-grid",
+      "type": "registry:component",
+      "title": "Availability grid",
+      "description": "Paint the hours you are free: days across, hours down, drag or press to toggle, with a keyboard grid and a summary of the ranges.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/availability-grid/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/availability-grid/index.tsx"
+        },
+        {
+          "path": "registry/application/availability-grid/slots.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/availability-grid/slots.ts"
+        }
+      ],
+      "docs": "value is a list of slot keys: a day (0 Sunday to 6 Saturday), a dash and the start time, \"1-09:00\" for Monday from nine; onValueChange gets it sorted. days, weekStartsOn, startHour, endHour (the last row ends there) and slotMinutes (15, 20, 30, 60) shape the grid. Drag to paint a rectangle: the cell you start on decides, a chosen cell clears, an empty one fills; a day heading fills or clears its day; on touch a swipe still scrolls the page, and a finger that rests on a cell for a quarter of a second starts painting instead (the page stops scrolling under it and the card gets a ring). One tab stop: arrow keys move, Home, End, Page Up and Down jump, Space or Enter toggles, Shift with the arrows extends a range that Space applies. It is a grid role, each cell named and stated (\"Tuesday 09:00 to 09:30, available\"), changes announced politely. A summary folds the choice into ranges (\"Monday to Friday, 09:00 to 17:00\") with hours a week. Chosen cells also carry a check in forced-colours mode. locale, hour12, name, labels."
+    },
+    {
+      "name": "availability-grid-demo",
+      "type": "registry:example",
+      "title": "Availability grid demo",
+      "description": "A working preview of Availability grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/availability-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/availability-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-help-panel",
+      "type": "registry:component",
+      "title": "Field help panel",
+      "description": "A side panel of help that follows the field in focus: why we ask, an example and what happens next, beside the form on desktop and under the field on a phone.",
+      "categories": [
+        "application",
+        "forms"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/field-help-panel/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/field-help-panel/index.tsx"
+        },
+        {
+          "path": "registry/application/field-help-panel/help.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/field-help-panel/help.ts"
+        }
+      ],
+      "docs": "Pass help (field id to { title, body, example?, next?, link? }), the form as children and defaultId, the key of the general note. An element in the form with a data-help-id that is a key of help feeds the panel while the focus is in it: put it on the field or on the wrapper of its label, control and hint (FormField takes it as a prop). Below 1024px the help's bar goes last inside that element, so a wrapper wants a block or grid layout. On nothing with help the panel shows help[defaultId], which may be a field too. Changes cross-fade, instantly under reduced motion. Each field keeps its short hint in aria-describedby and the panel is a labelled complementary region, never a live region, so nothing depends on seeing it. Pin (aria-pressed) stops it changing while someone reads. From 1024px it is a sticky column (panelClassName moves where it sticks). Below that the column becomes two kinds of one-line bar: the general note above the form, and the help of the field in focus, put inside that field under its hint. Nothing above a field moves when it takes the focus, the bar stays under the last field you were in (also when the focus goes to a button), and a bar that is open stays open where it is when the focus moves on. A list that a field opens, a Select or a date picker, keeps the help on that field. In a row of fields give the row items-start, so an open bar does not stretch its neighbour. labels, headingLevel.",
+      "css": {
+        "@keyframes rhs-help-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(3px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        },
+        "@keyframes rhs-help-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "animate-rhs-help-in": "rhs-help-in 240ms cubic-bezier(0.2, 0.7, 0.2, 1) both",
+          "animate-rhs-help-out": "rhs-help-out 160ms ease-out both"
+        }
+      }
+    },
+    {
+      "name": "field-help-panel-demo",
+      "type": "registry:example",
+      "title": "Field help panel demo",
+      "description": "A working preview of Field help panel.",
+      "registryDependencies": [
+        "https://rhsui.com/r/field-help-panel.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/field-help-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "task-list",
+      "type": "registry:component",
+      "title": "Task list",
+      "description": "The hub of a long application: every section as a link with its status in words and a shape, a count of what is done, and a reason for what cannot start yet.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/task-list/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-list/index.tsx"
+        },
+        {
+          "path": "registry/application/task-list/tasks.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/task-list/tasks.ts"
+        }
+      ],
+      "docs": "Pass sections ({ id, title, href, status, hint }). status is completed, in-progress, not-started, needs-attention or cannot-start. The first four are links when they have an href, with the status as a pill: a disc with a check, a half-filled ring, a dashed ring, a disc with an exclamation mark. A section that cannot start is plain text with a lock and its hint, which is the reason, and has nothing to follow. The status and the hint are part of each link's accessible name (\"Business details, In progress, 2 of 3 people added\"). heading names the region and showSummary adds \"3 of 6 sections complete\" with a bar of one segment per section. onNavigate receives the section and the click event: call preventDefault to route it yourself. Rows are at least 56px tall; from 28rem of room the status becomes a column of its own. labels translates every word and locale writes the numbers."
+    },
+    {
+      "name": "task-list-demo",
+      "type": "registry:example",
+      "title": "Task list demo",
+      "description": "A working preview of Task list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/task-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/task-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "wizard-footer",
+      "type": "registry:component",
+      "title": "Wizard footer",
+      "description": "The Back, Skip and Continue bar of a multi-step flow: step context, a pending state that locks the other buttons, and the reason in words when Continue is off.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/wizard-footer/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/wizard-footer/index.tsx"
+        },
+        {
+          "path": "registry/application/wizard-footer/footer.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/wizard-footer/footer.ts"
+        }
+      ],
+      "docs": "Pass step (counted from 1), stepCount and onContinue. Back shows from step 2 when onBack is given. Skip shows when onSkip is given, so pass it only on optional steps. Continue says Next, or Finish on the last step; continueLabel overrides it. onContinue and onSkip may return a promise: that button shows a spinner and savingLabel while it runs, keeps the keyboard's focus (it is aria-disabled, never disabled) and the others lock; if it throws, the Error's message appears in a row of its own above the bar, as wide as the bar, and the step stays. While canContinue is false and canContinueReason is set, the reason replaces Continue as text in a polite live region. \"Step 2 of 5\" is a polite live region too, with a segment per step up to 8. sticky pins the bar to the bottom of the area that scrolls. The bar answers to its own width: under 28rem the buttons stack with Continue on top and a long label wraps, then they are a row, and from 36rem the step context joins that row. labels translates."
+    },
+    {
+      "name": "wizard-footer-demo",
+      "type": "registry:example",
+      "title": "Wizard footer demo",
+      "description": "A working preview of Wizard footer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/wizard-footer.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/wizard-footer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "period-stepper",
+      "type": "registry:component",
+      "title": "Period stepper",
+      "description": "Step through days, weeks, months or years with previous, next and a Today shortcut. The label is announced as it changes, and the buttons switch off at your limits.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/period-stepper/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/period-stepper/index.tsx"
+        },
+        {
+          "path": "registry/application/period-stepper/periods.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/period-stepper/periods.ts"
+        }
+      ],
+      "docs": "unit is day, week (default), month or year. value is any day inside the period, written 2026-10-21; onChange receives the new period's first day and its { start, end, unit }. Days are calendar days, never moments, so nothing shifts with a time zone. min and max limit what can be shown: the buttons switch off at the period that holds the limit, and focus moves to the label so it is not lost. Today appears only when the period shown is not the current one and is within the limits. The label is a polite live region and a tab stop: with focus on it the left and right arrow keys step (reversed in right-to-left). Week labels read \"Week 43, 19 to 25 Oct 2026\" and day labels \"Monday, 26 Oct 2026\", both on two lines; weekStart 1 numbers by ISO, any other start counts the week holding 1 January as week 1. The control keeps the width of the widest label its unit can show in the language (a week across New Year, the longest month), so the buttons do not move as you step, and in a container too narrow for it the label shrinks and ends in an ellipsis. locale writes the label and timeZone decides what today is; a cached page must pass today or value. labels translates."
+    },
+    {
+      "name": "period-stepper-demo",
+      "type": "registry:example",
+      "title": "Period stepper demo",
+      "description": "A working preview of Period stepper.",
+      "registryDependencies": [
+        "https://rhsui.com/r/period-stepper.json",
+        "https://rhsui.com/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/period-stepper-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "question-navigator",
+      "type": "registry:component",
+      "title": "Question navigator",
+      "description": "A numbered grid for quizzes and long forms: answered, flagged, current and open questions differ in shape and words, with a summary and one tap to jump.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/question-navigator/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/question-navigator/index.tsx"
+        },
+        {
+          "path": "registry/application/question-navigator/questions.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/question-navigator/questions.ts"
+        }
+      ],
+      "docs": "Pass questions ({ id, label, state, flagged }), current and onSelect. state is unanswered or answered; flagged is separate, so a question can be both. A cell tells its state by shape: a dot for answered, a flag for flagged, an outline for the current one. Its name is one phrase: \"Question 7, answered, flagged, current question\". The summary above the grid (\"Answered 14 of 20, 2 flagged\") is a polite live region. The grid is one tab stop on the current cell; arrow keys move by a cell or a row, Home and End go to the ends of a row (with Control, to the first and last), Enter jumps. filter (all, unanswered, flagged) lists only those questions, set by you or with the buttons showFilter draws; an empty filter says so, and so does a list with no questions at all (labels.empty), instead of \"Answered 0 of 0\". columns is the most cells per row and a cell is never smaller than 2.5rem. showLegend draws the key. labels and locale translate."
+    },
+    {
+      "name": "question-navigator-demo",
+      "type": "registry:example",
+      "title": "Question navigator demo",
+      "description": "A working preview of Question navigator.",
+      "registryDependencies": [
+        "https://rhsui.com/r/question-navigator.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/question-navigator-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "environment-switcher",
+      "type": "registry:component",
+      "title": "Environment switcher",
+      "description": "Switch between Development, Staging and Production. The live one is drawn with a solid mark and the word Live, and asks for confirmation before you move to it.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/environment-switcher/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/environment-switcher/index.tsx"
+        },
+        {
+          "path": "registry/application/environment-switcher/environments.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/environment-switcher/environments.ts"
+        }
+      ],
+      "docs": "Pass environments ({ id, name, description, kind, consequence }), value and onValueChange (or defaultValue). kind is development, preview, staging or production, each with its own mark: an open ring, a dashed ring, a half-filled ring, a solid disc. Production is drawn as live on the button and in the list, with an inverted label that says Live, so it never depends on colour. The list is a menu of radio items with a check on the current one. confirmKinds (default: production) lists the kinds that ask first: an alert dialog names where you come from and where you go, says what changes (the environment's consequence, or a general sentence) and starts on Cancel. Cancel and Escape keep the current environment and return focus to the button. Any other kind switches at once. disabled turns the button off; align lines the list up with either edge. labels translates."
+    },
+    {
+      "name": "environment-switcher-demo",
+      "type": "registry:example",
+      "title": "Environment switcher demo",
+      "description": "A working preview of Environment switcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/environment-switcher.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/environment-switcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "accordion-steps",
+      "type": "registry:component",
+      "title": "Accordion steps",
+      "description": "A multi-step form on one page: the current step is open, finished steps fold into a summary with Edit, later steps wait and say what must come first.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/accordion-steps/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/accordion-steps/index.tsx"
+        },
+        {
+          "path": "registry/application/accordion-steps/steps.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/accordion-steps/steps.ts"
+        }
+      ],
+      "docs": "Pass steps ({ id, title, content, state, summary, continueLabel }) and control current with onStepChange, or leave it uncontrolled. One step is open at a time; each reachable step is a button with aria-expanded inside a heading, in an ordered list. A complete step folds to its one-line summary (or renderSummary) with Edit, unless editable is false. Steps after the first incomplete one are locked and say \"Complete Delivery first\". Completion is yours, so editing a finished step never resets the steps after it. The open step that is not done is announced as \"current step\", the others as \"not started\", and a long title wraps. Opening a step moves focus to its heading button. onContinue may be async: Continue shows a pending state, keeps the keyboard's focus (it is aria-disabled, never disabled) and the other headers wait; if it throws an Error or returns a string, that message appears in the step, the step stays open and focus stays on Continue, otherwise the next step that is not complete opens. A step's content is mounted only while open, so keep field values in your own state. labels translates."
+    },
+    {
+      "name": "accordion-steps-demo",
+      "type": "registry:example",
+      "title": "Accordion steps demo",
+      "description": "A working preview of Accordion steps.",
+      "registryDependencies": [
+        "https://rhsui.com/r/accordion-steps.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-cards.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/accordion-steps-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "photo-select-grid",
+      "type": "registry:component",
+      "title": "Photo select grid",
+      "description": "Choose many photos from a library of hundreds: click or Space to toggle, Shift for a range, Ctrl A for all, with a live count and an optional limit.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/photo-select-grid/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/photo-select-grid/index.tsx"
+        },
+        {
+          "path": "registry/application/photo-select-grid/selection.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/photo-select-grid/selection.ts"
+        }
+      ],
+      "docs": "Pass photos ({ id, src, alt }) and the chosen ids as selected with onSelectedChange (or defaultSelected). Each photo is a checkbox named by its alt, with a circle that fills with a check. Click toggles; Shift-click chooses everything between the last photo you clicked and this one; Space toggles; Shift with an arrow key or Space extends a range (moving back takes the extra photos out); Control or Cmd with A chooses all; Escape clears. The grid is one tab stop and the arrow keys move like a grid. The status line (\"3 selected\") is a polite live region. maxSelect limits the choice: at the limit the others dim, the status line says \"6 of 6 selected, limit reached\" and a note under the grid says what to do. With onOpen, selecting starts with the first chosen photo: until then a plain click opens the photo and only the circle chooses it. Hundreds of photos are fine: tiles are memoised and pictures load lazily. Below 28rem of room the toolbar is two rows: the choice, the count and Clear, then your actions. columns, ratio, actions, labels, locale."
+    },
+    {
+      "name": "photo-select-grid-demo",
+      "type": "registry:example",
+      "title": "Photo select grid demo",
+      "description": "A working preview of Photo select grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/photo-select-grid.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/photo-select-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "file-preview",
+      "type": "registry:component",
+      "title": "File preview",
+      "description": "Preview any file the right way: image, PDF, video, audio or text in place, with loading and failed states, an Open PDF fallback for phones and a Download for the rest.",
+      "categories": [
+        "application",
+        "media"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/code-block.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/file-preview/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/file-preview/index.tsx"
+        },
+        {
+          "path": "registry/application/file-preview/files.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/file-preview/files.ts"
+        }
+      ],
+      "docs": "Pass file ({ name, mime, size, url, text, poster }). The type picks the renderer: an image fitted whole, a PDF in the browser's own viewer, video and audio with the native controls, a text or code file read in place when you give text, and for anything else its icon, name, size and a Download button. Nothing is fetched for you. maxHeight caps the preview (text scrolls, and is cut after 2,000 lines). Images, video, audio and PDFs have a loading and a failed state in words with Retry; a PDF counts as failed after 15 seconds. Where the browser has no PDF viewer (most phones) a message and an Open PDF link appear; embedPdf false forces that. status loading or failed (with onRetry) is for what you fetch yourself, like a file's text. onDownload turns Download into a button that calls you. The preview is a region named by the file's name and type. labels and locale translate."
+    },
+    {
+      "name": "file-preview-demo",
+      "type": "registry:example",
+      "title": "File preview demo",
+      "description": "A working preview of File preview.",
+      "registryDependencies": [
+        "https://rhsui.com/r/file-preview.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/file-preview-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "branch-switcher",
+      "type": "registry:component",
+      "title": "Branch switcher",
+      "description": "Pick a branch or tag from a searchable popover: recent refs on top, matched letters in bold, a capped list for hundreds of refs, and Create branch from main.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/branch-switcher/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/branch-switcher/index.tsx"
+        },
+        {
+          "path": "registry/application/branch-switcher/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/branch-switcher/panel.tsx"
+        },
+        {
+          "path": "registry/application/branch-switcher/refs.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/branch-switcher/refs.ts"
+        }
+      ],
+      "docs": "Pass branches (names), tags, recent (newest first, branches and tags together), value and onValueChange(name, kind), and defaultRef, the default branch: it is marked and listed first. The button shows the ref with an icon, and a long name gives way in the middle so its end stays readable. The popover has a search field and the Branches and Tags tabs, with a count on each that turns into the number of matches while typing. Matching ignores case; a name that holds the text whole beats scattered letters, initials work (fcr finds feature/checkout-redesign), and the letters that matched are bold. The list is a listbox driven from the search field: Arrow keys move, PageUp and PageDown jump, Enter chooses, and Escape empties the field before it closes the popover. Only the first pageSize refs (40) are drawn: Show more, or Arrow Down at the end, draws the next batch. The popover is never taller than the room the window has: the list gives way and the foot stays in reach, and Tab goes from the search field to the tabs and Show more, because the list is driven from the field and is no stop of its own. With onCreate(name, from), a typed name that is no branch yet gets a first row, Create branch feature/x from main; spaces become dashes, a name Git would refuse says why, the row shows a spinner while the promise runs, and a rejection keeps the popover open with its message. createFrom changes the base. When the name is found only in the other tab, a tag such as v2.3, the row is still there but not highlighted, so Enter does nothing until an arrow key chooses it, and a button under it, 3 in Tags, goes to the other tab. loading shows placeholders. BranchPanel (from the item's panel file) is the same list without the button, for a sheet on a phone; defaultQuery and autoFocus tune it. labels translates every word."
+    },
+    {
+      "name": "branch-switcher-demo",
+      "type": "registry:example",
+      "title": "Branch switcher demo",
+      "description": "A working preview of Branch switcher.",
+      "registryDependencies": [
+        "https://rhsui.com/r/branch-switcher.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/branch-switcher-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "adaptive-nav",
+      "type": "registry:component",
+      "title": "Adaptive nav",
+      "description": "One list of destinations that is a bottom bar on a phone, a rail on a tablet and a sidebar on a desktop, chosen by its own width, with focus kept on the same item.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/adaptive-nav/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/adaptive-nav/index.tsx"
+        },
+        {
+          "path": "registry/application/adaptive-nav/nav.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/adaptive-nav/nav.ts"
+        }
+      ],
+      "docs": "Pass items ({ id, label, icon, href, badge, badgeLabel, group }), current (an id) and the page as children. The component measures its own width, not the window's, and follows the compact, medium and expanded window classes: below breakpoints.medium (600) it is a bar along the bottom, from there to breakpoints.expanded (840) a rail of icons with tooltips, and above that a sidebar with the groups as headings. Only one shape is in the page at a time, the current item carries aria-current in all of them, and when the shape changes focus goes to the same item in the new one. The bar shows the first four items and More, which opens a sheet inside the component with the rest, the header and the footer; five items and no header or footer fit without it. header and footer are the brand and the account: they fill the top and bottom of the sidebar and rail, and read the shape with useAdaptiveNavForm(), or with group-data-[form=rail]/adaptive-nav: classes. An item with an href is a link and an item without is a button; onNavigate(item, event) runs on a plain click, and a link is routed by you only when you call event.preventDefault(), so open-in-new-tab keeps working. A badge is a count or a short word, with badgeLabel to say what it counts. initialForm is the shape drawn on the server before the width is known. labels translates every word."
+    },
+    {
+      "name": "adaptive-nav-demo",
+      "type": "registry:example",
+      "title": "Adaptive nav demo",
+      "description": "A working preview of Adaptive nav.",
+      "registryDependencies": [
+        "https://rhsui.com/r/adaptive-nav.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/adaptive-nav-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "quick-exit",
+      "type": "registry:component",
+      "title": "Quick exit",
+      "description": "A quick exit for sensitive services: one button always in view, or Escape three times, blanks the page and replaces it with a neutral site.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/quick-exit/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quick-exit/index.tsx"
+        },
+        {
+          "path": "registry/application/quick-exit/exit.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/quick-exit/exit.ts"
+        }
+      ],
+      "docs": "Put it first in your layout, so the first Tab reaches it, and pass href, the neutral site (required: pick one that is ordinary for your audience, a weather page or a news site). The button, Leave this site now by default (label), stays in a corner of the window (placement) on every page, 44px tall on a phone. Pressing it, or Escape three times within a second (shortcut, { key, presses, within } or false), blanks the page at once with a plain surface and nothing from your site on it, then replaces the current history entry with the neutral address (hideHistory, default true), so Back does not return, and opens it in the same tab. The button is named by what it says and described as Quick exit, opens a neutral site, with the shortcut added (labels). The Escape count ignores presses that came from inside a dialog, a menu or an open list, and presses that something already handled, so it never fights a dialog that closes on Escape; it counts in text fields, because someone typing a form must be able to leave. Each press shows on the button as Esc x3, x2, x1. onExit(event) runs a moment before the page goes, with the reason (button or keyboard) and the href: use it to clear a draft or a session, call event.preventDefault() to take over in a preview or a test, and keep analytics out of it. A browser still keeps its history and the page may show in an app switcher: say so on the page that explains how to stay safe."
+    },
+    {
+      "name": "quick-exit-demo",
+      "type": "registry:example",
+      "title": "Quick exit demo",
+      "description": "A working preview of Quick exit.",
+      "registryDependencies": [
+        "https://rhsui.com/r/quick-exit.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/quick-exit-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "go-to-shortcuts",
+      "type": "registry:component",
+      "title": "Go-to shortcuts",
+      "description": "Two-key navigation like G then I: press the prefix and a small panel lists where each letter goes, so the first press teaches the keys.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/go-to-shortcuts/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/go-to-shortcuts/index.tsx"
+        },
+        {
+          "path": "registry/application/go-to-shortcuts/shortcuts.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/go-to-shortcuts/shortcuts.ts"
+        }
+      ],
+      "docs": "Pass destinations ({ key, label, href, onGo }): onGo wins, and href loads the address. After the prefix (g by default) a hint panel appears at the bottom left of the window, listing each key with its label; the next key goes there, and Escape, any other key, a click or the timeout (1500 ms, shown as a bar running down along the foot of the panel) puts the panel away. The listener ignores presses in text fields, selects and editable areas, inside dialogs, with Ctrl, Cmd, Alt or Shift on the prefix, and while a key is held down. A screen reader hears Go to: press a letter, politely, and Going to Inbox after. scope is a ref to an element: only presses from inside it count, for a region of an app; leave it out to listen to the whole page. enabled turns it off. The panel is fixed, and className moves it, for example className=\"absolute bottom-3 left-3\" inside a relative region. GoToHint is the same panel drawn on its own, to teach the keys in a help page. goToShortcut(key, prefix) from the item's shortcuts file returns { aria-keyshortcuts } for links you draw yourself: ARIA has no syntax for a sequence, so the value is the keys in order, g i. labels translates every word."
+    },
+    {
+      "name": "go-to-shortcuts-demo",
+      "type": "registry:example",
+      "title": "Go-to shortcuts demo",
+      "description": "A working preview of Go-to shortcuts.",
+      "registryDependencies": [
+        "https://rhsui.com/r/go-to-shortcuts.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/go-to-shortcuts-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "view-stack",
+      "type": "registry:component",
+      "title": "View stack",
+      "description": "Push and pop views inside one panel, like a phone settings app: titles, a Back button, a slide and a height that follows, in a popover, sheet or card.",
+      "categories": [
+        "application",
+        "navigation"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/view-stack/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/view-stack/index.tsx"
+        },
+        {
+          "path": "registry/application/view-stack/stack.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/view-stack/stack.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "animate-rhs-view-in": "rhs-view-in 280ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards",
+          "animate-rhs-view-fade": "rhs-view-fade 180ms ease-out backwards"
+        }
+      },
+      "css": {
+        "@keyframes rhs-view-in": {
+          "from": {
+            "translate": "100% 0"
+          },
+          "to": {
+            "translate": "0 0"
+          }
+        },
+        "@keyframes rhs-view-fade": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        }
+      },
+      "docs": "Pass views, a registry by id ({ settings: { title, content }, email: { … } }); the first is the root. defaultStack (ids, root first) or stack with onStackChange(stack) controls which are open. Each view has a heading; a view above another shows a Back button named after the title it returns to (labels.back, Back to {title}). A pushed view slides in from the side and the one below slides away, or they cross-fade under reduced motion; focus moves to the new heading, and on Back it returns to the row that opened the view. Views below the top stay mounted but are inert, so Tab and a screen reader only meet the one on top, and a form in them keeps what was typed. The height of the stack follows the view on top with a transition, so a popover or sheet resizes smoothly; give the stack a max-height class and a long view scrolls inside it with its header kept in place. Views push and pop with useViewStack(), which returns { stack, current, push(id, opener), pop(count), reset() }, or with ViewStackRow, a row with an icon, a name, what is set today and a chevron. headingLevel (2, 3 or 4) fits the headings to the page. The stack takes its background from its container (bg-inherit), so put a background on the popover, card or sheet around it."
+    },
+    {
+      "name": "view-stack-demo",
+      "type": "registry:example",
+      "title": "View stack demo",
+      "description": "A working preview of View stack.",
+      "registryDependencies": [
+        "https://rhsui.com/r/view-stack.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/view-stack-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "filter-popover",
+      "type": "registry:component",
+      "title": "Filter popover",
+      "description": "A Filters button with a count that opens a panel of grouped options: choices are staged and applied together, with Reset and a live result count.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/filter-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/filter-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/filter-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/filter-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/filter-popover/filters.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/filter-popover/filters.ts"
+        }
+      ],
+      "docs": "Pass groups, each { id, label, kind } with kind checkbox or radio (options of { value, label, count, disabled }, and defaultValue for the option that means no filter), range ({ min, max, step, prefix, suffix }) or toggle ({ description }), value (the applied filters) and onApply(next), which receives only the groups that are on: checkbox lists of values, a radio value, a range as [min, max], a toggle as true. The button reads Filters with a badge counting the groups that are on, and opens a panel where every change is a draft: closing it with Escape or a click outside throws the draft away, and it starts from the applied value each time. Groups fold, the first and every group with something chosen start open, and a closed group says what is chosen in it. A checkbox or radio list with more than eight options gets a search field and scrolls inside itself, and in the popover Escape in that field empties it first and closes the panel only when it is already empty (a sheet around FilterPanel has to ask the same of its own Escape handler). A range is a slider with two number fields: a field takes what was typed when it is left or Enter is pressed, never a digit at a time, the smaller of the two numbers becomes the minimum, and an empty field leaves its end of the range open; the arrow keys and the spinner of a field step at once and stop at the other end of the range. Focus starts on the first group, not on Reset. Reset empties the draft and calls onReset; it stays focusable when it has nothing to do. The one button at the foot names what it will do: with resultCount(draft), sync or async, it counts as the draft changes (the first count at once, later ones after a short pause, late answers dropped) and says Show 128 results, Show results while the first count is on its way, and No results, switched off with a hint, when nothing would be left; without it, Apply 3 filters, Apply filters or Clear filters. Apply calls onApply when something changed, closes the panel, returns focus to the button and announces 3 filters applied in a live region that outlives the panel. At 320 pixels the panel stays inside the window and scrolls inside itself. trigger replaces the button, locale writes the numbers and plurals, and labels translates every word. FilterPanel (from the item's panel file) is the same panel without the popover, for a sheet on a phone."
+    },
+    {
+      "name": "filter-popover-demo",
+      "type": "registry:example",
+      "title": "Filter popover demo",
+      "description": "A working preview of Filter popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/filter-popover.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/filter-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notification-popover",
+      "type": "registry:component",
+      "title": "Notification popover",
+      "description": "The bell in a header: a count badge, a panel of the latest notifications with unread marked in words, mark all as read, and a link to the full list.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/notification-badge.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/notification-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/notification-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/notification-popover/notifications.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/notification-popover/notifications.ts"
+        }
+      ],
+      "docs": "Pass items (id, title, body, time, href, unread, actor or icon), the unreadCount if the server knows more than the list holds, and the callbacks: onOpenItem receives the event so a client-side router can call preventDefault, onMarkRead(id) runs for an unread row that was opened, onMarkAllRead shows the button. The badge caps at 99+ and the bell is named \"Notifications, 3 unread\"; the panel announces \"3 unread notifications\" when it opens from a live region on the bell. Rows are links (or buttons without an href) with one tab stop and arrow keys, Home and End between them. Pass now so the times, like \"4 min. ago\", are the same in server HTML and in the browser; without it they start as dates. NotificationPanel is the inside on its own, for a sheet on a phone. max is the most rows drawn, loading draws skeleton rows, and labels translate every word."
+    },
+    {
+      "name": "notification-popover-demo",
+      "type": "registry:example",
+      "title": "Notification popover demo",
+      "description": "A working preview of Notification popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/notification-popover.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/notification-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "move-to-dialog",
+      "type": "registry:component",
+      "title": "Move to dialog",
+      "description": "Pick the destination folder for one or many items: a searchable tree, the current location marked, new folder inline and the path spelled out.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/move-to-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/move-to-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/move-to-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/move-to-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/move-to-dialog/tree.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/move-to-dialog/tree.tsx"
+        },
+        {
+          "path": "registry/application/move-to-dialog/folders.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/move-to-dialog/folders.ts"
+        }
+      ],
+      "docs": "Give folders as nested nodes ({ id, name, children, disabled, reason }), the currentFolderId, itemCount and mode (\"move\" or \"copy\"); onMove(folderId) may return a promise, and the dialog locks while it runs and closes when it resolves. The folder the items are in is marked Already here and cannot be chosen while moving; while copying it is marked Current folder and can be, because a copy may go beside its original. movingIds names the folders that are themselves being moved: they and everything inside them cannot be chosen, and each says why. A node with disabled and a reason cannot be chosen either. The search expands the matching branches; Enter in it chooses the first match. onCreateFolder(parentId, name) adds New folder, which puts a field under the selection; resolve with the new id or folder so it is chosen. The tree has a file manager's keyboard, and the chosen folder (or the one the items are in) is brought into view when it opens. On a narrow panel a folder that cannot be chosen gives its reason on a second line, whole. The foot spells the path out and the button names the folder. MoveToPanel is the inside on its own."
+    },
+    {
+      "name": "move-to-dialog-demo",
+      "type": "registry:example",
+      "title": "Move to dialog demo",
+      "description": "A working preview of Move to dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/move-to-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/move-to-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "duplicate-dialog",
+      "type": "registry:component",
+      "title": "Duplicate dialog",
+      "description": "Duplicate a project, document or board: a suggested name, checkboxes for what to copy with counts, and a link to the copy when it is ready.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/result-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/duplicate-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/duplicate-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/duplicate-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/duplicate-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/duplicate-dialog/duplicate.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/duplicate-dialog/duplicate.ts"
+        }
+      ],
+      "docs": "Pass sourceName, kind (a noun like project or board), options ({ id, label, count, unit, defaultChecked, disabled, reason }) and existingNames. The name starts as \"Halcyon launch (copy)\", or (copy 2) when that is taken, and a typed name that clashes is refused with a button that takes the nearest free one. onDuplicate({ name, include }) may return a promise: the fields lock and the button shows progress while it runs and the dialog will not close; resolve with the new item's address and the form is replaced by Copy created and an Open link, reject and the form stays as it was with the message above it and the button reads Try again. The foot says what will happen, \"Copies 48 tasks and 12 files\", from the counts and units. DuplicatePanel is the inside on its own."
+    },
+    {
+      "name": "duplicate-dialog-demo",
+      "type": "registry:example",
+      "title": "Duplicate dialog demo",
+      "description": "A working preview of Duplicate dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/duplicate-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/duplicate-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "find-in-page-bar",
+      "type": "registry:component",
+      "title": "Find in page bar",
+      "description": "Find text inside a document, log or article: a small bar with the match count, next and previous, and the matches marked in the text.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/find-in-page-bar/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/find-in-page-bar/index.tsx"
+        },
+        {
+          "path": "registry/application/find-in-page-bar/search.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/find-in-page-bar/search.ts"
+        }
+      ],
+      "docs": "Pass containerRef, the element whose text is searched, and put the bar inside a relative wrapper around it (not inside the element that scrolls), and leave room at the top of the region as high as the bar: two rows on a phone, so about 7rem. A bar that is open from the start (defaultOpen) takes no focus and scrolls nothing until somebody uses it. Matches are painted with the CSS Custom Highlight API where it exists, which leaves your elements alone, and with wrapper marks where it does not (highlight=\"marks\" forces them); the marks are taken out again exactly. Marks are real changes to the page, so about 500 matches around the current one are marked at a time and the marks move along as you step; the count always covers every match. The current match is stronger and scrolled into view with room around it, the count reads \"3 of 12\" in a polite live region and \"No results\" when empty. Enter and Shift with Enter step, Escape closes, Ctrl or Cmd with F opens it while focus is inside the region (shortcut). Case and whole word are pressed buttons, controlled with caseSensitive, wholeWord and onOptionsChange. The text is read in idle slices, so a large log never stalls typing, and it is searched again if the region changes. onMatchesChange reports the count."
+    },
+    {
+      "name": "find-in-page-bar-demo",
+      "type": "registry:example",
+      "title": "Find in page bar demo",
+      "description": "A working preview of Find in page bar.",
+      "registryDependencies": [
+        "https://rhsui.com/r/find-in-page-bar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/find-in-page-bar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "feedback-dialog",
+      "type": "registry:component",
+      "title": "Feedback dialog",
+      "description": "Collect product feedback in a small dialog: what kind it is, a message with a counter, an optional email and a thank-you that closes itself.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/result-state.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/feedback-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/feedback-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/feedback-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/feedback-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/feedback-dialog/feedback.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/feedback-dialog/feedback.ts"
+        }
+      ],
+      "docs": "Pass onSubmit({ type, message, email, metadata }), which may return a promise: the fields lock and the button shows progress, a rejection keeps the text and the button reads Try again, and success shows a thank-you that says where replies go and closes after closeAfterMs (holding still while keyboard focus is on its button), or on Escape. types are idea, problem, praise and other by default, each with a prompt that becomes the placeholder. The counter shows only near maxLength and is read to screen readers at a few steps. askEmail is \"optional\", \"required\" or false. metadata, such as the page address, is listed in plain words before it is sent. Ctrl or Cmd with Enter sends. What was typed survives an accidental close. FeedbackPanel is the inside on its own."
+    },
+    {
+      "name": "feedback-dialog-demo",
+      "type": "registry:example",
+      "title": "Feedback dialog demo",
+      "description": "A working preview of Feedback dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/feedback-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/feedback-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-dialog",
+      "type": "registry:component",
+      "title": "Newsletter dialog",
+      "description": "A newsletter invitation that behaves: it opens after a delay or scroll depth, asks for one email, and stays away for weeks once dismissed.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/form-field.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/result-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/newsletter-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/newsletter-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/newsletter-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/newsletter-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/newsletter-dialog/newsletter.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/newsletter-dialog/newsletter.ts"
+        }
+      ],
+      "docs": "trigger is \"delay\" (delayMs, default 20 s), \"scroll\" (scrollDepth, a percentage) or \"manual\" (you control open). It never opens on the first page view of a session (pageViews, or its own count in sessionStorage, against minPageViews), never while somebody is typing in a field or another dialog is open, never in a background tab, and never again inside suppressDays after a dismissal or a sign-up. storage is a pair { read, write } for the moment of the last dismissal, so you choose cookie or localStorage (the default); read may return Infinity for someone who must never be asked. onDismiss says how: decline, close, escape or outside. onSubscribe(email) may return a promise; success replaces the form in place and closes after a moment. When it closes, focus returns to whatever had it when it opened, such as your own button with trigger=\"manual\". incentive is the line about what people get. NewsletterPanel is the inside on its own."
+    },
+    {
+      "name": "newsletter-dialog-demo",
+      "type": "registry:example",
+      "title": "Newsletter dialog demo",
+      "description": "A working preview of Newsletter dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/newsletter-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/newsletter-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "external-link-dialog",
+      "type": "registry:component",
+      "title": "External link dialog",
+      "description": "The pause before leaving your site through a user-supplied link: it shows the real destination, says it is not yours, and offers Continue or Go back.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/external-link-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/external-link-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/external-link-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/external-link-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/external-link-dialog/link.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/external-link-dialog/link.ts"
+        }
+      ],
+      "docs": "Give it a trigger and an href for one link, or wrap content with intercept and every link inside that leaves your site asks first (your own origin, mailto, tel and trustedHosts pass through; a javascript or data link is stopped). A plain click is caught; a click with a modifier key goes through. The dialog says \"This link goes to another website\", shows the destination with the host in bold, and a host with look-alike letters is shown in its ASCII form under a warning, as is a user name hiding in front of the host. Continue is a real link that opens a new tab with noopener noreferrer, and Go back has focus; when the dialog closes, focus returns to the link or button that was clicked. The dialog never grows taller than the screen: it scrolls. trustedHosts match exactly or as *.example.com. onTrust(host) adds the Don't ask again for this site box, so you decide how to store it. onContinue and onCancel report the answer. ExternalLinkPanel is the inside on its own."
+    },
+    {
+      "name": "external-link-dialog-demo",
+      "type": "registry:example",
+      "title": "External link dialog demo",
+      "description": "A working preview of External link dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/external-link-dialog.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/external-link-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "embed-dialog",
+      "type": "registry:component",
+      "title": "Embed dialog",
+      "description": "Let people embed your content: size and theme controls, a live code snippet that updates as they choose, and a copy button that confirms.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input-group.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/segmented-control.json",
+        "https://rhsui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/embed-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/embed-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/embed-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/embed-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/embed-dialog/snippet.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/embed-dialog/snippet.ts"
+        }
+      ],
+      "docs": "buildSnippet(settings) returns the code for { width, height, theme, responsive }, and runs again on every change. embed-dialog/snippet exports escapeAttribute, which makes a value safe inside a double-quoted attribute (a quote or an ampersand cannot break out of it), and iframeSnippet, which writes an escaped iframe with lazy loading, the theme in the address, and for responsive a full-width wrapper that keeps the aspect ratio. controls picks which of width, height, theme and responsive to show. previewUrl (or a function of the settings) frames a page in a sandboxed frame of the same size (scripts run, but in an origin of their own; pass trustedPreview for a page of your own origin that needs its storage, and accept that such a page can lift its own sandbox), and preview draws it yourself; the frame is shrunk to fit and says by how much. With a preview the dialog is wider and the options sit beside it, so the code and its copy button stay in view. The code keeps its own lines and scrolls sideways when one is too long. The copy button confirms and is announced, and onCopy reports it. EmbedPanel is the inside on its own."
+    },
+    {
+      "name": "embed-dialog-demo",
+      "type": "registry:example",
+      "title": "Embed dialog demo",
+      "description": "A working preview of Embed dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/embed-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/embed-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

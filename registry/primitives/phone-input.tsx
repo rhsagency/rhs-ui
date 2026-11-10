@@ -54,7 +54,8 @@ export function PhoneInput({ value, onValueChange, countries = PHONE_COUNTRIES, 
   return (
     <div data-slot="phone-input" className={cn("flex", className)}>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger className={cn(fieldSurface, "flex h-9 w-auto shrink-0 items-center gap-1.5 rounded-r-none border-r-0 px-3 text-sm tabular-nums")} aria-label={`Country code: ${country.name} +${country.dial}`}>
+        {/* Named by what it shows first ("NL +31"), then the country in full, so a voice user can say it (WCAG 2.5.3). */}
+        <PopoverTrigger className={cn(fieldSurface, "flex h-9 w-auto shrink-0 items-center gap-1.5 rounded-r-none border-r-0 px-3 text-sm tabular-nums")} aria-label={`${country.code} +${country.dial}, country code: ${country.name}`}>
           <span className="font-medium">{country.code}</span>
           <span className="text-muted-foreground">+{country.dial}</span>
           <IconChevronDown className="size-3.5 text-muted-foreground" />

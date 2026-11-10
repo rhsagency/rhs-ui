@@ -19,7 +19,8 @@ export interface LogoCloudProps {
 /**
  * Customer marks on a hairline grid. Marks render in the text colour at
  * reduced strength so a mixed set of brands reads as one row, and full
- * strength on hover. Each cell names the company for screen readers.
+ * strength on hover. Each cell names the company for screen readers. The
+ * reduced strength is 60%, which keeps a name set as text at 4.5:1.
  */
 export function LogoCloud({ title, logos, className }: LogoCloudProps) {
   return (
@@ -29,7 +30,7 @@ export function LogoCloud({ title, logos, className }: LogoCloudProps) {
         {logos.map((logo) => {
           const body = logo.mark ? <span aria-hidden="true" className="[&_svg]:h-7 [&_svg]:w-auto">{logo.mark}</span> : <span className="text-lg font-semibold tracking-tight">{logo.name}</span>;
           return (
-            <li key={logo.name} className="flex h-24 items-center justify-center bg-background px-6 text-foreground/55 transition-colors duration-200 hover:text-foreground">
+            <li key={logo.name} className="flex h-24 items-center justify-center bg-background px-6 text-foreground/60 transition-colors duration-200 hover:text-foreground">
               {logo.href ? (
                 <a href={logo.href} className="flex items-center rounded-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40" aria-label={logo.name}>{body}</a>
               ) : (

@@ -208,15 +208,18 @@ export function ThumbnailStrip({ items, value, defaultValue, onChange, orientati
             tabIndex={index === tabStop ? 0 : -1}
             onClick={() => choose(index)}
             className={cn(
-              "relative block shrink-0 rounded-md outline-none transition-[opacity,box-shadow] duration-150 motion-reduce:transition-none",
+              "group/thumb relative block shrink-0 rounded-md outline-none transition-[box-shadow] duration-150 motion-reduce:transition-none",
               // The chosen one is ringed by an outline with a gap, so the gap is whatever is behind the strip: a page, a card or a dark panel. Keyboard focus adds a soft halo outside that ring.
               "focus-visible:shadow-[0_0_0_7px_color-mix(in_oklch,var(--ring)_32%,transparent)]",
               WIDTH[size],
-              isSelected ? "opacity-100 outline-2 outline-offset-2 outline-solid outline-foreground" : "opacity-65 hover:opacity-100",
+              isSelected && "outline-2 outline-offset-2 outline-solid outline-foreground",
             )}
           >
             <span className="relative block overflow-hidden rounded-md bg-muted" style={{ aspectRatio: ratio }}>
-              <Picture src={item.src} />
+              {/* Only the picture dims when it is not the chosen one. The badges on it stay at full strength, so a video's length reads on every preview (dimmed with the picture it was 3.6:1). */}
+              <span className={cn("absolute inset-0 block transition-opacity duration-150 motion-reduce:transition-none", isSelected ? "opacity-100" : "opacity-65 group-hover/thumb:opacity-100")}>
+                <Picture src={item.src} />
+              </span>
               {video ? (
                 <>
                   <span aria-hidden="true" className="absolute bottom-1 left-1 grid size-5 place-items-center rounded-full bg-background text-foreground shadow-xs">

@@ -242,7 +242,8 @@ export function MultiCurrencyField({
                   type="button"
                   data-slot="currency-trigger"
                   disabled={disabled}
-                  aria-label={`${labels.currency}: ${longName} (${currency})`}
+                  // Starts with the code it shows ("EUR"), then the name in full: axe skips words in brackets (WCAG 2.5.3).
+                  aria-label={`${currency}, ${longName}, ${labels.currency}`}
                   className={cn(TAB, "text-foreground outline-none hover:bg-muted focus-visible:bg-muted data-[state=open]:bg-muted disabled:pointer-events-none")}
                 >
                   {currency}

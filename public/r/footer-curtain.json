@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-curtain",
+  "title": "Curtain footer",
+  "description": "A footer that stays put while the page slides up over it, uncovering it like a curtain at the end of the scroll, in plain CSS.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/marketing/footer-curtain.tsx",
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface FooterCurtainProps extends Omit<ComponentProps<\"div\">, \"children\"> {\n  /** The page: everything above the footer. It becomes an opaque layer that slides up over the footer, so give it content that fills the width. */\n  children: ReactNode;\n  /** The footer that waits underneath. Its height must stay below the height of the window, or the top of it is cut off; where the window is shorter than `minViewportHeight` it is an ordinary footer. */\n  footer: ReactNode;\n  /** The shortest window height, in pixels, in which the footer is uncovered. In a shorter one, where a revealed footer would not fit, the page and the footer simply follow each other. Default 640. */\n  minViewportHeight?: number;\n}\n\n/**\n * A footer that stays put while the page slides up over it, uncovering the\n * footer like a curtain at the end of the scroll. The page sits on an opaque,\n * raised layer and the footer is sticky to the bottom edge of the window beneath\n * it, so scrolling to the end lifts the page off it. It is pure CSS (sticky\n * positioning and stacking): no scroll listener, and it works with native scroll\n * and with smooth-scroll libraries alike. Nothing moves except the page, so\n * reduced motion needs no special case. A height media query switches the effect\n * off in windows shorter than `minViewportHeight`, where a revealed footer would\n * be cut off, and in print; the footer then follows the page as usual. Keyboard\n * focus inside the footer lifts the curtain at once, so a focused link is never\n * hidden under the page. No state of its own, so it renders on the server.\n */\nexport function FooterCurtain({ children, footer, minViewportHeight = 640, className, ...props }: FooterCurtainProps) {\n  const min = Math.max(0, Math.round(minViewportHeight));\n  // The rules are scoped to the height this instance was given, so two curtains with different heights do not touch each other.\n  const rules = `@media (min-height:${min}px){[data-curtain=\"${min}\"]>[data-slot=\"footer-curtain-footer\"]{position:sticky;bottom:0}[data-curtain=\"${min}\"]:has([data-slot=\"footer-curtain-footer\"] :focus-visible)>[data-slot=\"footer-curtain-footer\"]{position:relative}}@media print{[data-slot=\"footer-curtain-footer\"]{position:static!important}}`;\n\n  return (\n    <div data-slot=\"footer-curtain\" data-curtain={min} className={cn(\"relative isolate\", className)} {...props}>\n      <style dangerouslySetInnerHTML={{ __html: rules }} />\n      <div data-slot=\"footer-curtain-page\" className=\"relative z-10 border-b border-border bg-background shadow-sm\">\n        {children}\n      </div>\n      <div data-slot=\"footer-curtain-footer\" className=\"relative z-0\">\n        {footer}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/footer-curtain.tsx"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "page-chrome"
+  },
+  "docs": "Wrap the page and give the footer: <FooterCurtain footer={<FooterSection … />}>{page}</FooterCurtain>. The page sits on an opaque raised layer and the footer is sticky to the bottom of the window beneath it. Keep the footer shorter than the window, or its top is cut off. minViewportHeight (default 640) is the window height below which the effect is off and the footer is an ordinary one; it is off in print too. Put it directly in the page's wrapper. Keyboard focus inside the footer lifts the curtain at once, so a focused link is never hidden under the page. It is pure CSS with no listener, so it works with native and with smooth scrolling.",
+  "categories": [
+    "marketing",
+    "page-chrome"
+  ],
+  "type": "registry:block"
+}

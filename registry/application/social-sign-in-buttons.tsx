@@ -85,11 +85,15 @@ function monograms(providers: readonly SignInProvider[]): Map<string, string> {
 function Mark({ provider, letters, working, bare = false }: { provider: SignInProvider; letters: string; working: boolean; bare?: boolean }) {
   if (working) return <Spinner size={18} label="" role="presentation" aria-hidden="true" className="block" />;
   if (provider.mark) return <span aria-hidden="true" className="grid size-6 shrink-0 place-items-center [&_svg]:size-5">{provider.mark}</span>;
-  // A neutral tile with the first letter: the same shape for every provider, and nobody's logo.
+  // A neutral tile with the first letter: the same shape for every provider, and nobody's logo. The letters are drawn by
+  // CSS, not written in the button: as text they joined its words ("GH GitHub"), so the name "Continue with GitHub" no
+  // longer held what the button shows (WCAG 2.5.3).
   return (
-    <span aria-hidden="true" className={cn("grid size-6 shrink-0 place-items-center rounded-md bg-muted/60 text-xs leading-none font-semibold text-foreground", bare ? "bg-muted" : "border border-border")}>
-      {letters}
-    </span>
+    <span
+      aria-hidden="true"
+      data-letters={letters}
+      className={cn("grid size-6 shrink-0 place-items-center rounded-md bg-muted/60 text-xs leading-none font-semibold text-foreground before:content-[attr(data-letters)]", bare ? "bg-muted" : "border border-border")}
+    />
   );
 }
 

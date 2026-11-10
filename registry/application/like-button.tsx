@@ -106,7 +106,10 @@ export function LikeButton({
   const plural = new Intl.PluralRules(locale);
   const word = (value: number) => noun[plural.select(value) === "one" ? 0 : 1];
   const exact = (value: number) => `${numbers.format(value)} ${word(value)}`;
-  const tail = (value: number | undefined) => (value === undefined || !showCount ? "" : `, ${exact(value)}`);
+  // The name says the count as the button shows it ("1.2K likes"), so it holds what a voice user reads (WCAG 2.5.3);
+  // the exact number is the tooltip's.
+  const asShown = (value: number) => (value >= 1000 ? new Intl.NumberFormat(locale, SHORT).format(value) : numbers.format(value));
+  const tail = (value: number | undefined) => (value === undefined || !showCount ? "" : `, ${asShown(value)} ${word(value)}`);
   const name = `${label}${tail(shownCount)}`;
 
   // Who liked it, when names are given; otherwise the exact count behind an abbreviated one ("1,204 likes" for the 1.2K the eye reads).

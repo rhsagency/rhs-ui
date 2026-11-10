@@ -87,7 +87,8 @@ export function MatchHighlight({ text, query, caseSensitive = false, accentSensi
       <mark
         key={`m${from}`}
         data-slot="match-highlight-mark"
-        className={cn("rounded-[0.2em] bg-foreground/[0.18] px-[0.12em] py-px -mx-[0.12em] text-inherit [box-decoration-break:clone]", markClassName)}
+        // The match in the text colour, whatever colour the line around it has: quiet text on the mark's own tint was 4.0:1.
+        className={cn("rounded-[0.2em] bg-foreground/[0.18] px-[0.12em] py-px -mx-[0.12em] text-foreground [box-decoration-break:clone]", markClassName)}
       >
         {text.slice(from, to)}
       </mark>,

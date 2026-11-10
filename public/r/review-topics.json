@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "review-topics",
+  "title": "Review topics",
+  "description": "What reviewers mention most: topics with how often and how positively, each opening to a real snippet rather than an invented summary.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/marketing/review-topics.tsx",
+      "content": "\"use client\";\n\nimport { useId, type ComponentProps } from \"react\";\n\nimport { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@rhs-ui/primitives/accordion\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ReviewSnippet {\n  /** One verbatim line from a real review, without quotation marks: the list adds them. Never a summary of your own. */\n  quote: string;\n  /** Who wrote it and where, as the review shows them: \"Ingrid S., practice manager, G2\". */\n  author: string;\n}\n\nexport interface ReviewTopic {\n  /** Identifies the topic. It is the value of the row that is open. */\n  id: string;\n  /** The topic: \"Ease of use\". */\n  label: string;\n  /** How many reviews mention it. */\n  mentions: number;\n  /** The share of those mentions that were positive, from 0 to 1. It is written as a percentage and drawn as a bar. */\n  positive: number;\n  /** What the row opens to. */\n  snippet: ReviewSnippet;\n}\n\nexport interface ReviewTopicsLabels {\n  /** How often a topic comes up; `{count}` is filled in. Default \"mentioned in {count} reviews\". */\n  mentions: string;\n  /** The same for a topic mentioned once. Default \"mentioned in 1 review\". */\n  mentionsOne: string;\n  /** Written after the percentage, in small muted type (and read with it), so \"94%\" is not a loose number. Default \"positive\". */\n  positive: string;\n}\n\nexport interface ReviewTopicsProps extends Omit<ComponentProps<\"section\">, \"title\" | \"children\" | \"defaultValue\" | \"onChange\"> {\n  /** The heading of the section. */\n  title: string;\n  /** One sentence under the title. */\n  description?: string;\n  /** Five to eight topics, most mentioned first. */\n  topics: readonly ReviewTopic[];\n  /** The `id` of the topic that is open, or \"\" for none. Pass it with `onValueChange` to control the list. */\n  value?: string;\n  /** The topic that starts open when you do not control `value`. Leave it out to start with every row closed. */\n  defaultValue?: string;\n  /** Called with the `id` of the topic that was opened, or \"\" when the open one was closed. */\n  onValueChange?: (value: string) => void;\n  /** The locale of the numbers. Default \"en-US\". */\n  locale?: string;\n  /** Words for the fixed text, for a site that is not in English. */\n  labels?: Partial<ReviewTopicsLabels>;\n}\n\nconst LABELS: ReviewTopicsLabels = { mentions: \"mentioned in {count} reviews\", mentionsOne: \"mentioned in 1 review\", positive: \"positive\" };\n\n/** A number formatter that survives a locale the browser does not know. */\nfunction numberFormat(locale: string, options?: Intl.NumberFormatOptions): Intl.NumberFormat {\n  try {\n    return new Intl.NumberFormat(locale, options);\n  } catch {\n    return new Intl.NumberFormat(\"en-US\", options);\n  }\n}\n\n/**\n * What reviewers talk about most, as a list you can open: each row is a topic\n * (\"Ease of use\"), how often it comes up (\"mentioned in 842 reviews\") and a\n * bar for the share of those mentions that were positive, with the percentage\n * written beside it and followed by the word \"positive\", so nobody has to\n * guess what the number is the share of. A row is a disclosure: it opens to\n * one verbatim line from a real review and who wrote it, and only one row\n * stays open at a time; it answers a hover with a quiet tint. The bars are\n * decoration in the foreground tone, so the list reads the same in monochrome\n * and in dark mode, and the percentage is the content. It brings the\n * \"customers say\" pattern of retail pages to software and services.\n * Controlled with `value`, or uncontrolled with `defaultValue`.\n */\nexport function ReviewTopics({ title, description, topics, value, defaultValue, onValueChange, locale = \"en-US\", labels, className, ...props }: ReviewTopicsProps) {\n  const words = { ...LABELS, ...labels };\n  const heading = useId();\n  const count = numberFormat(locale, { maximumFractionDigits: 0 });\n  const percent = numberFormat(locale, { style: \"percent\", maximumFractionDigits: 0 });\n\n  return (\n    <section data-slot=\"review-topics\" aria-labelledby={heading} className={cn(\"py-16 sm:py-24\", className)} {...props}>\n      <header className=\"mx-auto max-w-2xl text-center\">\n        <h2 id={heading} className=\"text-3xl font-medium tracking-[-0.04em] text-balance sm:text-4xl\">\n          {title}\n        </h2>\n        {description ? <p className=\"mt-3 text-base leading-relaxed text-pretty text-muted-foreground\">{description}</p> : null}\n      </header>\n      <Accordion type=\"single\" collapsible value={value} defaultValue={defaultValue} onValueChange={onValueChange} className=\"mx-auto mt-12 max-w-4xl border-t border-border sm:mt-16\">\n        {topics.map((topic) => {\n          const share = Math.min(1, Math.max(0, topic.positive));\n          return (\n            <AccordionItem key={topic.id} value={topic.id}>\n              {/* The row is a little wider than its text, so the focus ring has room and the text still lines up with the heading. */}\n              <AccordionTrigger className=\"-mx-3 w-[calc(100%+1.5rem)] cursor-pointer rounded-lg px-3 py-5 outline-none transition-colors duration-150 hover:bg-muted/50 focus-visible:ring-[3px] focus-visible:ring-ring/40 max-sm:items-start motion-reduce:transition-none sm:py-6\">\n                <span className=\"grid min-w-0 flex-1 items-center gap-x-10 gap-y-3.5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]\">\n                  <span className=\"grid gap-0.5\">\n                    <span className=\"text-base font-medium tracking-[-0.01em]\">{topic.label}</span>\n                    <span className=\"text-sm font-normal text-muted-foreground tabular-nums\">\n                      <span className=\"sr-only\">, </span>\n                      {topic.mentions === 1 ? words.mentionsOne : words.mentions.replace(\"{count}\", count.format(topic.mentions))}\n                    </span>\n                  </span>\n                  <span className=\"flex items-center gap-4\">\n                    <span aria-hidden=\"true\" className=\"h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-muted\">\n                      <span className=\"block h-full rounded-full bg-foreground\" style={{ width: `${share * 100}%` }} />\n                    </span>\n                    <span className=\"w-24 shrink-0 text-right text-sm font-medium whitespace-nowrap tabular-nums sm:w-28\">\n                      <span className=\"sr-only\">, </span>\n                      {percent.format(share)}{\" \"}\n                      <span className=\"text-xs font-normal text-muted-foreground\">{words.positive}</span>\n                    </span>\n                  </span>\n                </span>\n              </AccordionTrigger>\n              <AccordionContent className=\"data-[state=closed]:animate-rhs-topic-up data-[state=open]:animate-rhs-topic-down motion-reduce:animate-none\">\n                <figure className=\"max-w-2xl border-l-2 border-foreground/25 pl-5\">\n                  <blockquote>\n                    <p className=\"text-base leading-relaxed text-pretty text-foreground\">&ldquo;{topic.snippet.quote}&rdquo;</p>\n                  </blockquote>\n                  <figcaption className=\"mt-3 text-sm text-muted-foreground\">{topic.snippet.author}</figcaption>\n                </figure>\n              </AccordionContent>\n            </AccordionItem>\n          );\n        })}\n      </Accordion>\n    </section>\n  );\n}\n",
+      "type": "registry:block",
+      "target": "components/rhs-ui/marketing/review-topics.tsx"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-rhs-topic-down": "rhs-topic-down 200ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "animate-rhs-topic-up": "rhs-topic-up 160ms cubic-bezier(0.4, 0, 1, 1)"
+    }
+  },
+  "css": {
+    "@keyframes rhs-topic-down": {
+      "from": {
+        "height": "0"
+      },
+      "to": {
+        "height": "var(--radix-accordion-content-height)"
+      }
+    },
+    "@keyframes rhs-topic-up": {
+      "from": {
+        "height": "var(--radix-accordion-content-height)"
+      },
+      "to": {
+        "height": "0"
+      }
+    }
+  },
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "frame",
+    "family": "social-proof"
+  },
+  "docs": "Pass title, an optional description and topics ({ id, label, mentions, positive, snippet: { quote, author } }); five to eight read well, most mentioned first. A row shows the topic, 'mentioned in 842 reviews' and a bar for the share of positive mentions (0 to 1) with the percentage written beside it followed by the word 'positive' (small and muted, labels.positive), so '94%' always says what it is the share of, for everyone. Each row is a disclosure on the Accordion primitive: it opens to one verbatim snippet and its author, and only one row stays open at a time; the content glides open and shut unless reduced motion is on. A row tints quietly on hover, and the bars are decoration in the foreground tone, so the list reads in monochrome and in dark mode. Uncontrolled with defaultValue (a topic id), or controlled with value and onValueChange. locale formats the numbers, labels the fixed words.",
+  "categories": [
+    "marketing",
+    "social-proof"
+  ],
+  "type": "registry:block"
+}

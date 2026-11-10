@@ -221,7 +221,9 @@ function ColumnView({ name, column, options, baseId, selected, onSelect, itemHei
         onScroll={onScroll}
         onKeyDown={onKeyDown}
         style={{ height: rows * itemHeight, maskImage: mask, WebkitMaskImage: mask }}
-        className="relative snap-y snap-mandatory overflow-y-auto overscroll-contain outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        // Disabled, it holds still: a column that scrolled with no way to focus it is a region a keyboard cannot reach (axe
+        // scrollable-region-focusable), and a disabled picker has nothing to turn. The selected row stays in place.
+        className={cn("relative snap-y snap-mandatory overflow-y-auto overscroll-contain outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden", disabled && "overflow-y-hidden")}
       >
         <div aria-hidden="true" style={{ height: pad }} />
         {Array.from({ length: copies }, (_, copy) => copy).flatMap((copy) =>

@@ -2,7 +2,7 @@ import { ParallaxLayer } from "@rhs-ui/motion/parallax-layer";
 
 export default function Demo(): React.JSX.Element {
   return (
-    <div className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40">
+    <div tabIndex={0} role="region" aria-label="Parallax layer demo, scroll inside" className="relative h-[30rem] w-full overflow-y-auto rounded-xl border border-border bg-muted/40 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset">
       <div className="grid h-72 place-items-center text-center">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">Scroll inside this panel</p>
       </div>

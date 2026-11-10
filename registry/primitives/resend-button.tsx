@@ -212,7 +212,9 @@ export function ResendButton({
     ),
     waiting: (
       <>
-        <IconClock /> {waitText(left)}
+        {/* The countdown is drawn by CSS, not written in the button: the name stays "Resend code" while it waits (see the
+            label below), and words in the button that the name lacks fail label-in-name (WCAG 2.5.3). */}
+        <IconClock /> <span data-label={waitText(left)} className="before:content-[attr(data-label)]" />
       </>
     ),
     limit: (

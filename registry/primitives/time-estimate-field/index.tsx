@@ -205,7 +205,7 @@ export function TimeEstimateField({
   const invalid = error !== null;
 
   return (
-    <div data-slot="time-estimate-field" className={cn("grid w-full min-w-0 grid-cols-1", className)}>
+    <div data-slot="time-estimate-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1", className)}>
       <InputGroup onClick={focusText} className={cn("cursor-text", invalid && WRONG)}>
         <InputGroupAddon aria-hidden="true" className="pr-0">
           <IconClock />

@@ -302,7 +302,7 @@ export function DimensionsField({
   };
 
   return (
-    <div data-slot="dimensions-field" className={cn("grid w-full min-w-0 grid-cols-1", className)} {...props}>
+    <div data-slot="dimensions-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1", className)} {...props}>
       <InputGroup
         role="group"
         aria-label={labelledBy ? undefined : (ariaLabel ?? labels.group)}

@@ -56,20 +56,24 @@ export function MenuSection({ title, courses, legend = {}, footnote, className }
         ))}
       </div>
       {course ? (
-        <ul id={`menu-panel-${course.id}`} role="tabpanel" aria-labelledby={`menu-tab-${course.id}`} className="relative mt-8 divide-y divide-border">
-          {course.dishes.map((dish) => (
-            <li key={dish.name} className="flex justify-between gap-6 py-4">
-              <div>
-                <p className="font-medium">
-                  {dish.name}
-                  {dish.tags?.map((tag) => <span key={tag}><abbr title={legend[tag] ?? tag} aria-hidden="true" className="ml-2 rounded border border-border px-1 text-[10px] font-normal tracking-wide text-muted-foreground no-underline">{tag}</abbr><span className="sr-only">, {legend[tag] ?? tag}</span></span>)}
-                </p>
-                {dish.description ? <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{dish.description}</p> : null}
-              </div>
-              <p className="shrink-0 font-medium tabular-nums">{dish.price}</p>
-            </li>
-          ))}
-        </ul>
+        // The panel holds the list, so the dishes stay a list: a ul that is itself the tabpanel is no longer a list, and its
+        // items belong to nothing.
+        <div id={`menu-panel-${course.id}`} role="tabpanel" aria-labelledby={`menu-tab-${course.id}`} className="relative mt-8">
+          <ul className="divide-y divide-border">
+            {course.dishes.map((dish) => (
+              <li key={dish.name} className="flex justify-between gap-6 py-4">
+                <div>
+                  <p className="font-medium">
+                    {dish.name}
+                    {dish.tags?.map((tag) => <span key={tag}><abbr title={legend[tag] ?? tag} aria-hidden="true" className="ml-2 rounded border border-border px-1 text-[10px] font-normal tracking-wide text-muted-foreground no-underline">{tag}</abbr><span className="sr-only">, {legend[tag] ?? tag}</span></span>)}
+                  </p>
+                  {dish.description ? <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{dish.description}</p> : null}
+                </div>
+                <p className="shrink-0 font-medium tabular-nums">{dish.price}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : null}
       {Object.keys(legend).length || footnote ? (
         <p className="mt-6 text-center text-xs text-muted-foreground">

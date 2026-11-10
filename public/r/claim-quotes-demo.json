@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "claim-quotes-demo",
+  "title": "Claim quotes demo",
+  "description": "A working preview of Claim quotes.",
+  "registryDependencies": [
+    "https://rhsui.com/r/claim-quotes.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/claim-quotes-demo.tsx",
+      "content": "import { ClaimQuotes, type Claim } from \"@rhs-ui/marketing/claim-quotes\";\n\nconst THREE: readonly Claim[] = [\n  {\n    id: \"setup\",\n    claim: \"Set up in an afternoon.\",\n    figure: { value: \"11 min\", label: \"median time to the first published schedule\" },\n    quote: \"I imported our rota at ten past nine and sent the first schedule to the drivers before lunch.\",\n    name: \"Marit de Vries\",\n    role: \"Head of operations, Northwind Logistics\",\n  },\n  {\n    id: \"pricing\",\n    claim: \"Pricing that stays honest.\",\n    figure: { value: \"0\", label: \"overage charges across 2,400 workspaces last year, enterprise contracts included\" },\n    quote: \"The invoice in month twelve was the invoice from month one, which has never happened to us with software.\",\n    name: \"Tomás Herrera\",\n    role: \"Finance director, Kestrel Studio\",\n  },\n  {\n    id: \"support\",\n    claim: \"Support that answers.\",\n    figure: { value: \"8 min\", label: \"median first reply\" },\n    quote: \"I asked a question at eleven at night and had an answer with a screenshot before I closed the laptop.\",\n    name: \"Ingrid Solheim\",\n    role: \"Co-founder, Polder Health\",\n  },\n];\n\nconst FOUR: readonly Claim[] = [\n  THREE[0]!,\n  {\n    id: \"export\",\n    claim: \"Your data stays yours.\",\n    quote: \"We exported everything in one click during our audit, and nobody asked us a single question in return.\",\n    name: \"Daniel Okafor\",\n    role: \"CTO, Lumen Energy\",\n  },\n  THREE[1]!,\n  THREE[2]!,\n];\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"mx-auto grid max-w-6xl gap-14 px-6 py-6\">\n      <figure className=\"grid gap-3\">\n        <figcaption className=\"text-xs leading-relaxed text-muted-foreground\">\n          Three promises, each with the number that proves it and a customer who says the same. From 768px the claims share rows, so the numbers, the quotes and the names line up across the row however long a quote runs and however many lines a label takes (the middle label is the longest). On a phone each claim is a full-width block under its own rule.\n        </figcaption>\n        <ClaimQuotes title=\"Three promises, and the customers who held us to them\" claims={THREE} className=\"py-2 sm:py-4\" />\n      </figure>\n\n      <figure className=\"grid gap-3 border-t border-border pt-10\">\n        <figcaption className=\"text-xs leading-relaxed text-muted-foreground\">\n          Four claims, one of them without a number: its figure row stays empty so the quotes and names still line up with their neighbours.\n        </figcaption>\n        <ClaimQuotes title=\"What customers hold us to\" claims={FOUR} className=\"py-2 sm:py-4\" />\n      </figure>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

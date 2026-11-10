@@ -65,7 +65,7 @@ export function PhoneFrame({ width = 280, tone = "dark", notch = "island", safeA
               {src !== undefined ? (
                 <img src={src} alt={alt ?? label} draggable={false} className="absolute inset-0 size-full object-cover object-top" />
               ) : (
-                <div role="group" aria-label={label} style={vars} className={cn("absolute inset-0 overflow-x-hidden overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden", safeArea && "pt-(--phone-safe-top) pb-(--phone-safe-bottom)")}>
+                <div role="group" aria-label={label} tabIndex={0} style={vars} className={cn("absolute inset-0 overflow-x-hidden overflow-y-auto outline-none [scrollbar-width:none] focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset [&::-webkit-scrollbar]:hidden", safeArea && "pt-(--phone-safe-top) pb-(--phone-safe-bottom)")}>
                   {children}
                 </div>
               )}

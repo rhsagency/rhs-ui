@@ -18,7 +18,8 @@ export interface LogoMarqueeProps {
 
 /**
  * A drifting row of customer marks under a quiet line. Built on Marquee, so
- * it pauses on hover and focus and stands still under reduced motion.
+ * it pauses on hover and focus and stands still under reduced motion. Marks
+ * are the text colour at 60%, which keeps a name set as text at 4.5:1.
  */
 export function LogoMarquee({ title = "Trusted by teams at", logos, duration = 36, className }: LogoMarqueeProps) {
   return (
@@ -26,7 +27,7 @@ export function LogoMarquee({ title = "Trusted by teams at", logos, duration = 3
       <h2 className="mb-8 text-center text-sm text-muted-foreground">{title}</h2>
       <Marquee label={title} duration={duration}>
         {logos.map((logo) => (
-          <span key={logo.name} className="flex h-10 items-center text-foreground/55 [&_svg]:h-7 [&_svg]:w-auto">
+          <span key={logo.name} className="flex h-10 items-center text-foreground/60 [&_svg]:h-7 [&_svg]:w-auto">
             {logo.mark ? (
               <>
                 <span aria-hidden="true">{logo.mark}</span>

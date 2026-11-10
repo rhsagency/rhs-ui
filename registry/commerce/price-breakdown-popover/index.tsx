@@ -124,7 +124,8 @@ export function PriceBreakdownPopover({
     >
       <PopoverTrigger
         data-slot="price-breakdown-popover"
-        aria-label={fill(words.trigger, { amount: spoken })}
+        // A trigger of your own is named by its own words ("Processing fee $3.50"), so the name holds what it shows (WCAG 2.5.3).
+        aria-label={trigger ? undefined : fill(words.trigger, { amount: spoken })}
         className={cn(
           // No negative margin: in a sentence the filled pill must not reach over the word before it. Pass `-ml-1` to line a price up with the text above it.
           "group/trigger inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 outline-none transition-colors duration-150",

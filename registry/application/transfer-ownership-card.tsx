@@ -111,9 +111,10 @@ function MemberPicker({ members, value, onValueChange, triggerId, labelId }: { m
             <>
               <MemberAvatar member={chosen} />
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm leading-tight font-medium">{chosen.name}</span>
+                <span className="block truncate text-sm leading-tight font-medium">{chosen.name}</span>{" "}
                 <span className="block truncate text-xs text-muted-foreground">{chosen.email}</span>
               </span>
+              {/* Spaces keep the name, the address and the role apart in the text that names the trigger ("Mara Jansenmara@..."). */}{" "}
               <span className="shrink-0 text-xs text-muted-foreground">{chosen.role}</span>
             </>
           ) : (

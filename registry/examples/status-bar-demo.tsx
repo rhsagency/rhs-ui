@@ -50,7 +50,7 @@ function useEditorSegments() {
       announcement: sync === "synced" ? "All changes synced" : "Syncing changes",
     },
     // Problems matter more than their place in the list says, so they stay longer than the segments before them.
-    { id: "problems", label: "2 errors, 3 warnings", icon: <IconWarning />, onSelect: () => undefined, tooltip: "Show problems", ariaLabel: "Problems: 2 errors and 3 warnings", priority: 1 },
+    { id: "problems", label: "2 errors, 3 warnings", icon: <IconWarning />, onSelect: () => undefined, tooltip: "Show problems", ariaLabel: "2 errors, 3 warnings in Problems", priority: 1 },
   ];
   const end: StatusBarSegment[] = [
     { id: "cursor", label: `Ln ${cursor.line}, Col ${cursor.col}`, onSelect: () => setCursor((current) => ({ line: (current.line % CODE.length) + 1, col: 1 })), tooltip: "Go to line" },

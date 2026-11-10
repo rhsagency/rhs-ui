@@ -27,17 +27,28 @@ export function AvatarImage({ className, ...props }: ComponentProps<typeof Avata
   return <AvatarPrimitive.Image data-slot="avatar-image" className={cn("aspect-square size-full object-cover", className)} {...props} />;
 }
 
-export function AvatarFallback({ className, ...props }: ComponentProps<typeof AvatarPrimitive.Fallback>) {
+/**
+ * Initials given as a string are drawn by CSS, not written as text. Written, they joined the words of whatever control
+ * holds the avatar ("MO" in an "Account menu" button, "MJ Mara Jansen"), and no name could hold them (WCAG 2.5.3,
+ * axe label-content-name-mismatch on six rhsui.com demos). They are a picture of the person, as before: an avatar
+ * beside a name stays aria-hidden, one on its own keeps a name. Anything else you pass (an icon) renders as it is.
+ */
+export function AvatarFallback({ className, children, ...props }: ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  const drawn = typeof children === "string" || typeof children === "number";
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
+      data-initials={drawn ? String(children) : undefined}
       className={cn(
         "flex size-full items-center justify-center rounded-full bg-muted font-medium text-muted-foreground",
         "text-[0.8125rem] group-data-[size=sm]/avatar:text-[0.6875rem] group-data-[size=lg]/avatar:text-base",
+        drawn && "before:content-[attr(data-initials)]",
         className,
       )}
       {...props}
-    />
+    >
+      {drawn ? null : children}
+    </AvatarPrimitive.Fallback>
   );
 }
 

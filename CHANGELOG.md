@@ -5,6 +5,90 @@ own `meta.version` and are listed when they change.
 
 ## Unreleased (0.8.0)
 
+- `reveal` and `text-reveal` keep their words readable at every scroll position.
+  Both run on the scroll itself, so wherever someone stops scrolling is what they
+  read. `reveal` now moves the element in (rise, tilt, scale, slide) at full
+  opacity and sharp: a card that stopped low on the screen stood half clear, at
+  1.45 to 4.36:1 for its text. A new `fade` prop brings the fade, and for `blur`
+  the blur, back for an image or a decoration without words. `text-reveal` dims
+  a waiting word to 0.5 instead of 0.18, which keeps the 3:1 of large text: 3.6:1
+  on a light page and 5.2:1 on a dark one, where 0.18 was 1.5:1 on white.
+  `scroll-away` clears its content away from below with a clip instead of a fade,
+  so the lines still in view stay sharp at full contrast (its fade left them at
+  1.77:1 half way); every effect still ends gone. Its `blur` is for an element
+  without words.
+- `carousel`'s track takes focus (with a ring), so a keyboard scrolls it with the
+  arrow keys when no slide holds a link or a button. `call-log-row`'s voicemail
+  button is named by what it shows, "Voicemail 0:42", with who and how long read
+  after it: its label left the shown time out (WCAG 2.5.3). `playVoicemail` is
+  now the words after it, default "play, from {name}, {duration}".
+- Seventeen controls are named by what they show, so a voice user can say what
+  they see (WCAG 2.5.3, axe label-content-name-mismatch on every rhsui.com page
+  that showed them): `follow-button`, `like-button`, `social-sign-in-buttons`,
+  `event-chip`, `weekday-picker`, `chat-header`, `reply-summary`, `facet-filter`,
+  `first-run-state`, `app-listing-card`, `price-breakdown-popover`, `phone-input`,
+  `resend-button`, `recipient-field`, `multi-currency-field`,
+  `currency-exchange-field` and `bulk-paste-field`. A name now starts with the
+  shown words in their order ("16:00 Dentist", "EUR, Euro", "1.2K likes", "Mon,
+  Monday"); words that ran together for lack of a space ("09:00Standup") are
+  apart; and a logo's letters, an avatar's initials, a countdown and a word that
+  only shows on hover are drawn by CSS, so they never join a control's words.
+  `follow-button` is a plain button now, since its label changes with its state;
+  `reply-summary`'s `lastReplyName` is no longer read.
+- Contrast and keyboard reach, from the same sweep. `badge` (destructive) and
+  `alert` (destructive) darken their red words toward the text colour, so they
+  reach 4.5:1 on the red tint (3.88 and 4.32:1 before). Nine fields that dim
+  themselves when disabled (`dimensions-field`, `height-field`,
+  `shorthand-number-field`, `percentage-field`, `due-date-field`,
+  `natural-date-field`, `time-estimate-field`, `currency-exchange-field`,
+  `async-switch`) say so on their root (`role="group"` with `aria-disabled`):
+  text of an inactive control is exempt from contrast, and now a screen reader
+  and axe know it is inactive. A disabled `wheel-picker` holds still instead of
+  scrolling where no keyboard can reach. `command`'s separator is presentational
+  (`role="none"`), since a listbox may hold only options and groups.
+  `creatable-select` says "Required" in its description instead of
+  `aria-required`, which a button cannot take (new `required` message). The
+  demos of `reveal`, `parallax-layer`, `scroll-progress` and `text-reveal`
+  scroll in a panel that takes focus.
+- Every demo now passes axe's label, ARIA and keyboard rules (984 of 984,
+  server-rendered). `avatar`'s fallback draws initials given as a string with
+  CSS, so an avatar's letters never join the words of the control around it
+  ("MO" in an account button); anything else you pass renders as before.
+  `video-facade`, `call-us-section`, `transfer-ownership-card` and the
+  `map-panel-shell` demo keep their parts apart with spaces and are named in the
+  order they show. `magic-link-sign-in` and `phone-sign-in` draw their resend
+  countdown with CSS while the name stays the resend words. `combobox` says
+  "Required" in its description instead of `aria-required` (new
+  `requiredLabel`), and `phone-frame`'s screen takes focus when it scrolls.
+- Contrast in the demos rhsui.com shows in a frame, which the page sweep had not
+  reached; the registry's own check now measures every demo for contrast too, in
+  light and dark (1011 of 1011). `logo-cloud` and `logo-marquee` set a name in
+  the text colour at 60% instead of 55%, so it reads at 5:1 (4.2:1 before; a mark
+  you pass stays as it is). `radio-table` says a row is off on the row itself
+  (`aria-disabled`), so its dimmed figures count as an inactive control's. A
+  `thumbnail-strip` preview that is not the chosen one dims its picture, not its
+  badges, so a video's length reads on every preview (3.6:1 before).
+- Structure a screen reader relies on, from the same frames, now that the
+  registry's check runs every WCAG 2.1 A and AA rule axe has instead of eight:
+  `price-list` keeps each group of its definition list to a term and its
+  descriptions (the dotted leader is the term's own `::after`, a note is a second
+  `dd`), `menu-section` puts its list inside the tab panel instead of making the
+  list the panel, so the dishes are list items again, and the `event-conference`
+  template gives its programme tabs plain values (`day-1`), since a value with
+  spaces became an id and an `aria-controls` that pointed at nothing. Both
+  blocks to 0.8.0.
+- `match-highlight` sets a match in the text colour, whatever the line around it
+  has: quiet text on the mark's own tint was 4.0:1 (found through Pro's
+  `address-lookup`, which uses it). `adaptive-nav`'s page area, which scrolls on
+  its own, is a named region that takes focus (new `content` label, "Page
+  content"), so a keyboard can scroll it.
+- On a phone, from the registry's check measuring every demo at 390 px too:
+  `table`'s container, which scrolls sideways when the table is wider than the
+  screen, takes focus (with a ring), so a keyboard scrolls it; so do
+  `awards-row`'s sideways row and `inset-panel`'s inset (pass `tabIndex` to
+  take that stop away where you know nothing scrolls). `photo-mosaic`'s
+  show-all buttons say their count after a comma instead of in brackets, which
+  a voice matcher leaves out. `table` and `awards-row` to 0.8.0.
 - A component index for tools: `/r/component-index.json` lists every free item with
   its kind, import path, exported components and their props, a usage example and
   what it depends on, plus the theme tokens. Read it instead of the source; a
@@ -120,6 +204,19 @@ own `meta.version` and are listed when they change.
 - Marketing, 10 more: `mobile-nav-drilldown`, `utility-bar`, `breadcrumb-bar`, `footer-app-stores`, `footer-local-business`, `footer-region-selector`, `locale-suggestion-bar`, `smart-app-banner`, `navbar-two-row`, `docs-header`.
 - Primitives, 10 more: `hotspot-image`, `embed-consent`, `pausable-image`, `laptop-frame`, `image-tile`, `photo-stack`, `pattern-cover`, `play-clip-button`, `image-sequence`, `hover-video-preview`.
 - Application, 7 more: `inherited-field`, `agreement-scroll`, `report-form`, `tiered-rates-editor`, `transfer-list`, `record-lookup`, `seo-fieldset`.
+- Marketing, 10 more: `docs-page-footer`, `page-header-split`, `product-subnav`, `mobile-contact-bar`, `footer-regulatory`, `footer-trust-marks`, `footer-split-panel`, `family-sites-bar`, `navbar-floating`, `navbar-fullscreen-menu`.
+- Marketing, 11 more: `navbar-side-rail`, `navbar-masthead`, `section-dots-nav`, `footer-inverted-contact`, `footer-curtain`, `print-letterhead`, `logo-strip`, `testimonial-list`, `reviews-by-source`, `headline-stat`, `press-mentions-list`.
+- Primitives, 8 more: `responsive-tabs`, `folder-tabs`, `priority-nav`, `page-jump`, `related-links`, `filterable-nav`, `path-bar`, `history-controls`.
+- Primitives, 10 more: `text-link`, `count-tabs`, `cursor-pagination`, `dot-stepper`, `compact-stepper`, `adaptive-pagination`, `breadcrumb-siblings`, `nav-rail`, `top-bar`, `floating-player`.
+- Application, 8 more: `chapter-list`, `media-playlist`, `transcript-list`, `voice-message`, `quiz-options`, `sentence-fields`, `availability-grid`, `field-help-panel`.
+- Application, 8 more: `task-list`, `wizard-footer`, `period-stepper`, `question-navigator`, `environment-switcher`, `accordion-steps`, `photo-select-grid`, `file-preview`.
+- Marketing, 10 more: `quote-rail`, `logo-groups`, `video-testimonials`, `customer-results-table`, `claim-quotes`, `testimonials-by-role`, `logo-results-grid`, `satisfaction-scores`, `benchmark-bars`, `review-topics`.
+- Marketing, 9 more: `expert-endorsements`, `customer-photo-grid`, `before-after-pairs`, `sponsor-tiers`, `alumni-outcomes`, `review-form`, `logo-quote-popovers`, `message-testimonials`, `quote-stack`.
+- Primitives, 9 more: `alphabet-index`, `route-focus`, `stage-path`, `category-strip`, `lazy-tabs`, `closable-tabs`, `archive-nav`, `load-earlier`, `accessible-feed`.
+- Application, 6 more: `branch-switcher`, `adaptive-nav`, `quick-exit`, `go-to-shortcuts`, `view-stack`, `filter-popover`.
+- Primitives, 8 more: `swipe-tabs`, `floating-tab-bar`, `expanding-search`, `toc-rail`, `story-progress`, `card-tabs`, `responsive-dialog`, `choice-dialog`.
+- Marketing, 1 more: `proof-bento`.
+- Application, 8 more: `notification-popover`, `move-to-dialog`, `duplicate-dialog`, `find-in-page-bar`, `feedback-dialog`, `newsletter-dialog`, `external-link-dialog`, `embed-dialog`.
 
 ## Unreleased (0.7.0)
 

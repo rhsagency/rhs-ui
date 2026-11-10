@@ -202,7 +202,7 @@ export function ShorthandNumberField({
   const invalid = error !== null;
 
   return (
-    <div data-slot="shorthand-number-field" className={cn("grid w-full min-w-0 grid-cols-1", className)}>
+    <div data-slot="shorthand-number-field" role={disabled ? "group" : undefined} aria-disabled={disabled || undefined} className={cn("grid w-full min-w-0 grid-cols-1", className)}>
       <InputGroup onClick={focusNumber} className={cn("cursor-text", invalid && WRONG)}>
         <InputGroupInput
           ref={attach}

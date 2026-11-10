@@ -11,7 +11,9 @@ import { cn } from "@/lib/utils";
  */
 export function Table({ className, ...props }: ComponentProps<"table">) {
   return (
-    <div data-slot="table-container" className="relative w-full overflow-x-auto">
+    // The table scrolls sideways when it is wider than its box (on a phone, mostly), so the box takes focus: a keyboard
+    // scrolls it with the arrows, as a mouse or a finger does.
+    <div data-slot="table-container" tabIndex={0} className="relative w-full overflow-x-auto rounded-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40">
       <table data-slot="table" className={cn("w-full caption-bottom border-collapse text-sm", className)} {...props} />
     </div>
   );

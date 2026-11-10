@@ -159,6 +159,8 @@ export function VideoFacade({ provider, videoId, src, poster, title, duration, a
               <span aria-hidden="true" className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3">
                 {/* On a narrow poster the title wraps to a second line instead of being cut in the middle of a word. */}
                 {hasPoster ? <span className="line-clamp-2 min-w-0 rounded-md bg-background px-2.5 py-1 text-xs font-medium text-foreground shadow-xs">{title}</span> : <span />}
+                {/* A space before the length, so the title and the time stay two parts of the button's text ("first light 4:12"). */}
+                {length ? " " : null}
                 {length ? <span className="shrink-0 rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background tabular-nums">{length}</span> : null}
               </span>
             </button>

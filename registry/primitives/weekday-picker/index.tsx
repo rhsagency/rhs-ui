@@ -172,7 +172,9 @@ export function WeekdayPicker({
               data-selected={on ? "" : undefined}
               data-refused={refused === day ? "" : undefined}
               aria-pressed={on}
-              aria-label={names.long[day]}
+              // The name holds what the button shows: "Mon, Monday", since "Mon" alone is not a word of "Monday" (WCAG 2.5.3).
+              // One letter is not a label anyone says, so the letter variant keeps the long name only.
+              aria-label={variant === "letter" || names.short[day] === names.long[day] ? names.long[day] : `${names.short[day]}, ${names.long[day]}`}
               aria-describedby={on && lone ? requireId : undefined}
               disabled={disabled}
               onClick={() => toggle(day)}
