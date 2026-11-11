@@ -118,7 +118,7 @@ export default function Demo(): React.JSX.Element {
         <p>
           Each request carries three headers. The one that matters is <code>Kestrel-Signature</code>: a timestamp and an HMAC-SHA256 of the timestamp and the body, signed with your secret.
         </p>
-        <table>
+        <table tabIndex={0}>
           <thead>
             <tr>
               <th>Header</th>

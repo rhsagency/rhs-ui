@@ -159,7 +159,7 @@ export default function Demo(): React.JSX.Element {
             </h2>
             <p className="text-sm text-muted-foreground">Create the client once and share it. Your existing keys keep working.</p>
             <InsetPanel.Inset className="border-y border-border bg-muted/60">
-              <pre className="relative overflow-x-auto px-8 py-4 text-[0.8125rem] leading-relaxed">
+              <pre tabIndex={0} className="relative overflow-x-auto px-8 py-4 text-[0.8125rem] leading-relaxed outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset">
                 <code className="font-mono">{CODE}</code>
               </pre>
             </InsetPanel.Inset>

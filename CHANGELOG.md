@@ -5,6 +5,10 @@ own `meta.version` and are listed when they change.
 
 ## Unreleased (0.8.0)
 
+- `timesheet-grid` writes the week it shows the same on the server and in the
+  browser: "19 – 25 Oct 2026". The dash between two days came out with spaces
+  in one engine and without in another (Node 22 against Chrome), so a page
+  rendered on the server failed to hydrate.
 - `reveal` and `text-reveal` keep their words readable at every scroll position.
   Both run on the scroll itself, so wherever someone stops scrolling is what they
   read. `reveal` now moves the element in (rise, tilt, scale, slide) at full
@@ -89,6 +93,18 @@ own `meta.version` and are listed when they change.
   take that stop away where you know nothing scrolls). `photo-mosaic`'s
   show-all buttons say their count after a comma instead of in brackets, which
   a voice matcher leaves out. `table` and `awards-row` to 0.8.0.
+- From a sweep of every rhsui.com page on a screen and a phone, and the
+  registry's check at 320 px. `embed-consent`'s example draws each embed as a
+  whole document with its own title and language, as a provider's page has,
+  and its calendar's weekday labels read at 5.3:1 (3.3:1 before).
+  `docs-page-layout`'s example gives its table `tabIndex={0}`, as the layout's
+  notes ask, and `inset-panel`'s example its code block: in a narrow frame both
+  scroll on their own, and a keyboard could not reach them. `workbench-shell`'s
+  status bar is a tab stop until the browser has measured it, so a strip that
+  is cut off can be reached without script; once it fits, it gives the stop
+  back. The registry's check now measures the frames a demo draws itself, in
+  rhsui.com's own fonts, with the preview's padding, and at 320 px (the reflow
+  width of WCAG 1.4.10) as well.
 - A component index for tools: `/r/component-index.json` lists every free item with
   its kind, import path, exported components and their props, a usage example and
   what it depends on, plus the theme tokens. Read it instead of the source; a

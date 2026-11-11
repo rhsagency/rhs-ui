@@ -236,6 +236,9 @@ export function isoWeek(day: string): number {
 
 // Intl writes some spaces as narrow or thin no-break spaces, and the version of its data decides which: a plain space looks the same and every engine agrees on it.
 const ODD_SPACES = new RegExp(`[${String.fromCharCode(0x00a0, 0x2009, 0x202f)}]`, "g");
+// The version also decides whether the dash between two days has spaces at all: Node 22 writes "19–25 Oct 2026" and Chrome
+// "19 – 25 Oct 2026", so a page rendered on the server failed to hydrate. One spaced dash, whichever the engine wrote.
+const RANGE_DASH = /\s*–\s*/g;
 
 function format(ms: number, locale: string, options: Intl.DateTimeFormatOptions): string {
   let text: string;
@@ -266,7 +269,7 @@ export function longDayText(day: string, locale: string): string {
 export function rangeText(first: string, last: string, locale: string): string {
   const options: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" };
   try {
-    return new Intl.DateTimeFormat(locale, options).formatRange(dayMs(first), dayMs(last)).replace(ODD_SPACES, " ");
+    return new Intl.DateTimeFormat(locale, options).formatRange(dayMs(first), dayMs(last)).replace(ODD_SPACES, " ").replace(RANGE_DASH, " – ");
   } catch {
     return `${format(dayMs(first), locale, options)} – ${format(dayMs(last), locale, options)}`;
   }

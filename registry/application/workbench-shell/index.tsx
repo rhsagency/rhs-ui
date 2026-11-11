@@ -80,10 +80,11 @@ const fill = (template: string, panel: string) => template.replace("{panel}", pa
  * Whether an element has more to show than it has room for, so that it can be
  * given a tab stop and a keyboard can scroll it. It is measured with every
  * render, whenever the element or one of its children changes size, and when
- * children come and go.
+ * children come and go. `before` is the answer until the browser has measured:
+ * on the server, without script, and before hydration.
  */
-function useOverflows(ref: RefObject<HTMLElement | null>): boolean {
-  const [overflows, setOverflows] = useState(false);
+function useOverflows(ref: RefObject<HTMLElement | null>, before = false): boolean {
+  const [overflows, setOverflows] = useState(before);
   const measure = useRef<() => void>(() => undefined);
   useBrowserLayoutEffect(() => {
     const element = ref.current;
@@ -148,10 +149,14 @@ function usePlace(host: HTMLElement | null) {
   );
 }
 
-/** The strip along the bottom. It scrolls sideways when its facts do not fit, and then it is a tab stop, so a keyboard can reach what is cut off. Memoised: a drag re-renders the shell on every move, not the strip. */
+/**
+ * The strip along the bottom. It scrolls sideways when its facts do not fit, and then it is a tab stop, so a keyboard
+ * can reach what is cut off. It starts as one, so a narrow screen without script (or before it runs) can still reach
+ * them; once measured, a strip that fits gives the stop back. Memoised: a drag re-renders the shell on every move, not the strip.
+ */
 const StatusBar = memo(function StatusBar({ label, children }: { label: string; children: ReactNode }) {
   const element = useRef<HTMLDivElement>(null);
-  const scrolls = useOverflows(element);
+  const scrolls = useOverflows(element, true);
   return (
     <div
       ref={element}

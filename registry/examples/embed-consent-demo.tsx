@@ -10,9 +10,12 @@ import { EmbedConsent } from "@rhs-ui/primitives/embed-consent";
  * outside frames. In your app the child is the provider's own iframe: <iframe src="https://..." title="..." />.
  */
 const PAGE = "*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{font:12px/1.4 Helvetica,Arial,sans-serif;color:#2b2f33}svg{display:block;width:100%;height:100%}";
-const doc = (css: string, body: string): string => `<!doctype html><html><head><meta charset="utf-8"><style>${PAGE}${css}</style></head><body>${body}</body></html>`;
+// A whole document, as the provider's page is: its own title and language, so a screen reader names what it stepped into.
+const doc = (title: string, css: string, body: string): string =>
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${title}</title><style>${PAGE}${css}</style></head><body>${body}</body></html>`;
 
 const MAP = doc(
+  "Kestrel Maps: Halcyon Quay, Studio 4",
   ".z{position:absolute;right:12px;top:12px;display:grid;border:1px solid #cfd3cd;border-radius:8px;background:#fff;overflow:hidden}.z b{display:grid;place-items:center;width:30px;height:30px;font-weight:600;font-size:16px}.z b+b{border-top:1px solid #e3e6e1}.q{position:absolute;left:12px;top:12px;padding:8px 12px;border:1px solid #cfd3cd;border-radius:8px;background:#fff;font-weight:600}",
   `<svg viewBox='0 0 800 450' preserveAspectRatio='xMidYMid slice'><rect width='800' height='450' fill='#e9ece6'/>` +
     `<path d='M-20 300C140 250 240 330 400 290S660 200 820 250V340C660 290 540 380 400 360S140 320 -20 380Z' fill='#bccbd4'/>` +
@@ -27,7 +30,8 @@ const MAP = doc(
 );
 
 const CALENDAR = doc(
-  "body{background:#fff;display:grid;grid-template-rows:auto minmax(0,1fr);padding:16px 20px 18px}h1{margin:0 0 10px;font-size:18px;letter-spacing:-.02em}.g{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto repeat(6,minmax(0,1fr));gap:4px;min-height:0;font-size:11px}.g span{padding:2px 5px;color:#8a8e93}.d{border:1px solid #e6e8e5;border-radius:7px;padding:2px 6px;min-height:0;display:flex;flex-direction:column;gap:2px;line-height:1.25}.d i{display:block;height:4px;border-radius:2px;background:#2b2f33}.d i.m{background:#b9bdc1;width:60%}.t{background:#2b2f33;color:#fff;border-color:#2b2f33}@media(max-height:240px){body{padding:12px 14px}h1{margin-bottom:6px;font-size:15px}.g{gap:3px}.d{padding:0 4px}.d i{display:none}}",
+  "Halcyon Calendar: November 2026",
+  "body{background:#fff;display:grid;grid-template-rows:auto minmax(0,1fr);padding:16px 20px 18px}h1{margin:0 0 10px;font-size:18px;letter-spacing:-.02em}.g{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto repeat(6,minmax(0,1fr));gap:4px;min-height:0;font-size:11px}.g span{padding:2px 5px;color:#686c71}.d{border:1px solid #e6e8e5;border-radius:7px;padding:2px 6px;min-height:0;display:flex;flex-direction:column;gap:2px;line-height:1.25}.d i{display:block;height:4px;border-radius:2px;background:#2b2f33}.d i.m{background:#b9bdc1;width:60%}.t{background:#2b2f33;color:#fff;border-color:#2b2f33}@media(max-height:240px){body{padding:12px 14px}h1{margin-bottom:6px;font-size:15px}.g{gap:3px}.d{padding:0 4px}.d i{display:none}}",
   `<h1>November 2026</h1><div class='g'>` +
     ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => `<span>${d}</span>`).join("") +
     // 1 November 2026 is a Sunday: a Monday-first month opens with six empty cells, runs 30 days, and the 10th is a Tuesday.
@@ -37,6 +41,7 @@ const CALENDAR = doc(
 );
 
 const VIDEO = doc(
+  "Northwind Video: Inside the Dune House",
   "body{background:#17191c;display:grid;place-items:center}.p{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#fff}.p b{width:0;height:0;border-left:20px solid #17191c;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}.c{position:absolute;left:16px;bottom:14px;color:#f1f2f3;font-weight:600;font-size:14px}.k{position:absolute;left:16px;right:16px;bottom:44px;height:3px;border-radius:2px;background:#3a3d42}.k i{display:block;width:22%;height:100%;border-radius:2px;background:#fff}",
   `<div class='p'><b></b></div><div class='k'><i></i></div><div class='c'>Inside the Dune House · 4:12</div>`,
 );
