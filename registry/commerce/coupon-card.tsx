@@ -7,6 +7,7 @@ import { Badge } from "@rhs-ui/primitives/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@rhs-ui/primitives/collapsible";
 import { CopyButton } from "@rhs-ui/primitives/copy-button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** Whether the voucher can still be used: `active`, already `used`, or past its date (`expired`). */
@@ -200,7 +201,7 @@ function TapTooltip({ content, children }: { content: string; children: ReactEle
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           tabIndex={0}
           className="rounded-sm underline decoration-dotted decoration-from-font underline-offset-4 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 [@media(hover:none)]:cursor-pointer"
           onPointerDown={() => {

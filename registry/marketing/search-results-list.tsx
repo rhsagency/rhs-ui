@@ -4,6 +4,7 @@ import { IconChevronLeft, IconChevronRight } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
 import { EmptySearch } from "@rhs-ui/primitives/empty-search";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, paginationRange } from "@rhs-ui/primitives/pagination";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface SearchFilter {
@@ -201,7 +202,7 @@ export function SearchResultsList({
     return (
       <PaginationItem>
         <PaginationLink
-          asChild
+          {...AS_CHILD}
           size="default"
           aria-disabled={disabled || undefined}
           className={cn("gap-1 max-sm:border-border max-sm:bg-background max-[359px]:px-2.5", direction === "previous" ? "pr-3 pl-2" : "pr-2 pl-3")}

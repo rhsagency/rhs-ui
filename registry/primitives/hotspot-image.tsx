@@ -7,6 +7,7 @@ import { IconClose } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
 import { Collapsible, CollapsibleContent } from "@rhs-ui/primitives/collapsible";
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface Hotspot {
@@ -261,7 +262,7 @@ export function HotspotImage({ src, alt, hotspots, activeId, defaultActiveId = n
                     }
                   />
                 </div>
-                <PopoverPrimitive.Arrow asChild>
+                <PopoverPrimitive.Arrow {...AS_CHILD}>
                   <span className="block size-2.5 -translate-y-1/2 rotate-45 border-r border-b border-border bg-popover" />
                 </PopoverPrimitive.Arrow>
               </PopoverContent>

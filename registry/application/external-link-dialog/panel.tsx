@@ -8,6 +8,7 @@ import { AlertDialogAction, AlertDialogCancel, AlertDialogDescription, AlertDial
 import { Button, buttonVariants } from "@rhs-ui/primitives/button";
 import { Checkbox } from "@rhs-ui/primitives/checkbox";
 import { Label } from "@rhs-ui/primitives/label";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ExternalLinkPanelProps extends Omit<ComponentProps<"div">, "children"> {
@@ -146,7 +147,7 @@ export function ExternalLinkPanel({ href, standalone = false, onContinue, onCanc
           <AlertDialogCancel>{words.cancel}</AlertDialogCancel>
         )}
         {link && !standalone ? (
-          <AlertDialogAction asChild variant={variant}>
+          <AlertDialogAction {...AS_CHILD} variant={variant}>
             {link}
           </AlertDialogAction>
         ) : (

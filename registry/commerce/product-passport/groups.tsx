@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import { Accordion, AccordionContent, AccordionItem } from "@rhs-ui/primitives/accordion";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 
 export interface PassportGroupsProps {
   /** The groups, in the order they are drawn. `key` is what `defaultOpen` names. */
@@ -24,7 +25,7 @@ export function PassportGroups({ groups, defaultOpen, as: Title }: PassportGroup
     <Accordion type="multiple" defaultValue={[...defaultOpen]} className="divide-y divide-border">
       {groups.map((group) => (
         <AccordionItem key={group.key} value={group.key} className="border-b-0">
-          <AccordionPrimitive.Header asChild>
+          <AccordionPrimitive.Header {...AS_CHILD}>
             <Title className="m-0">
               <AccordionPrimitive.Trigger
                 data-slot="accordion-trigger"

@@ -5,6 +5,7 @@ import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import { IconBookOpen, IconCheck, IconChevronDown, IconClipboardCheck, IconEye, IconLock, IconPlay } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** What kind of lesson it is. */
@@ -213,7 +214,7 @@ export function CurriculumList({
           const progress = fill(text.progress, { done, total });
           return (
             <AccordionPrimitive.Item key={module.id} value={module.id} data-slot="curriculum-module">
-              <AccordionPrimitive.Header asChild>
+              <AccordionPrimitive.Header {...AS_CHILD}>
                 <Heading className="m-0">
                   <AccordionPrimitive.Trigger className="group/module flex w-full items-start gap-4 px-5 py-4 text-left outline-none transition-colors duration-150 hover:bg-muted/50 focus-visible:z-10 focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:ring-inset motion-reduce:transition-none">
                     <span className="min-w-0 flex-1">

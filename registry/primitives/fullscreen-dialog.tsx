@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { IconClose } from "@rhs-ui/icons";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface FullscreenDialogProps {
@@ -27,7 +28,7 @@ export interface FullscreenDialogProps {
 export function FullscreenDialog({ open, onOpenChange, trigger, title, description, action, children, className }: FullscreenDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent showCloseButton={false} className={cn("top-0 left-0 flex h-dvh max-h-none w-screen max-w-none translate-x-0 translate-y-0 flex-col gap-0 rounded-none border-0 p-0 sm:max-w-none", className)}>
         <header className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-6">
           <DialogClose aria-label="Close" className="inline-flex size-9 items-center justify-center rounded-full outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40 [&_svg]:size-5"><IconClose /></DialogClose>

@@ -3,6 +3,7 @@
 import type { ComponentProps } from "react";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -10,11 +11,13 @@ import { cn } from "@/lib/utils";
  * long description. For a list of sections use accordion. The content
  * animates its height, and under reduced motion it simply appears.
  */
-export function Collapsible(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {
+export function Collapsible(input: ComponentProps<typeof CollapsiblePrimitive.Root> & RenderProp) {
+  const props = renderAs(input);
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
 }
 
-export function CollapsibleTrigger(props: ComponentProps<typeof CollapsiblePrimitive.Trigger>) {
+export function CollapsibleTrigger(input: ComponentProps<typeof CollapsiblePrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />;
 }
 

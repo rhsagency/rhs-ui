@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type ComponentProps, type
 
 import { IconAlarm, IconAlertCircle, IconCalendar, IconCheckCircle, IconClock } from "@rhs-ui/icons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 type DateInput = Date | string | number;
@@ -159,7 +160,7 @@ function TapTooltip({ content, focusable, children }: { content: ReactNode; focu
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           tabIndex={focusable ? 0 : undefined}
           // iOS Safari only sends a click to an element it takes for clickable, and a pointer cursor says so. Touch only: a mouse keeps its arrow.
           className="[@media(hover:none)]:cursor-pointer"

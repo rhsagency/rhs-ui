@@ -5,6 +5,7 @@ import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
 import { IconAlertCircle, IconCheck } from "@rhs-ui/icons";
 import { asList, DEFAULT_LABELS, inOrder, type ChipOption, type ChipSelectLabels } from "@rhs-ui/primitives/chip-select/choices";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { ChipCounts, ChipOption, ChipSelectLabels } from "@rhs-ui/primitives/chip-select/choices";
@@ -220,7 +221,7 @@ export function ChipSelect(props: ChipSelectProps) {
 
   if (multiple) return group;
   return (
-    <RadioGroupPrimitive.Root asChild name={name} value={chosen[0] ?? ""} disabled={disabled} onValueChange={(next) => write([next])}>
+    <RadioGroupPrimitive.Root {...AS_CHILD} name={name} value={chosen[0] ?? ""} disabled={disabled} onValueChange={(next) => write([next])}>
       {group}
     </RadioGroupPrimitive.Root>
   );

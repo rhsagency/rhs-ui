@@ -3,6 +3,7 @@
 import type { ComponentProps } from "react";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -10,7 +11,8 @@ import { cn } from "@/lib/utils";
  * (a roving tabindex), and the circle is visible at rest, not only on hover.
  * Name the group with aria-label, or put it in a <fieldset> with a <legend>.
  */
-export function RadioGroup({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Root>) {
+export function RadioGroup(input: ComponentProps<typeof RadioGroupPrimitive.Root> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <RadioGroupPrimitive.Root data-slot="radio-group" className={cn("grid gap-3", className)} {...props} />;
 }
 

@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -37,7 +38,8 @@ export interface BadgeProps extends ComponentProps<"span">, VariantProps<typeof 
   asChild?: boolean;
 }
 
-export function Badge({ className, variant, asChild = false, ...props }: BadgeProps) {
+export function Badge(input: BadgeProps & RenderProp) {
+  const { className, variant, asChild = false, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "span";
   return <Comp data-slot="badge" data-variant={variant ?? "default"} className={cn(badgeVariants({ variant }), className)} {...props} />;
 }

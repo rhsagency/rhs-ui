@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEv
 import { IconClose, IconPlus } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface SpeedDialAction {
@@ -233,7 +234,7 @@ export function SpeedDial({
           }}
         >
           <Tooltip>
-            <TooltipTrigger asChild>{button}</TooltipTrigger>
+            <TooltipTrigger {...AS_CHILD}>{button}</TooltipTrigger>
             {open ? null : (
               <TooltipContent side={position === "bottom-left" ? "right" : position === "bottom-center" ? "top" : "left"} sideOffset={12}>
                 {label}

@@ -21,6 +21,7 @@ import {
   type ShortcutPlatform,
 } from "@rhs-ui/primitives/shortcut-recorder/shortcut";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { ShortcutPlatform } from "@rhs-ui/primitives/shortcut-recorder/shortcut";
@@ -370,7 +371,7 @@ export function ShortcutRecorder({
       >
         <TooltipProvider delayDuration={0}>
           <Tooltip open={recording && !showRefused}>
-            <TooltipTrigger asChild>{recorder}</TooltipTrigger>
+            <TooltipTrigger {...AS_CHILD}>{recorder}</TooltipTrigger>
             <TooltipContent side="bottom" align="start" sideOffset={8} className="flex items-center gap-1.5 px-2 py-1.5 text-xs whitespace-nowrap">
               <HintKey>Esc</HintKey>
               <span className="mr-1.5">{text.cancelHint}</span>

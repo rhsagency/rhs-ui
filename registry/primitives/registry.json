@@ -12,7 +12,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.8.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -22,7 +22,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -53,7 +54,9 @@
         "class-variance-authority@^0.7.1",
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/badge.tsx",
@@ -223,7 +226,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.8.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -231,7 +234,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/tooltip.tsx",
@@ -360,6 +365,31 @@
       "docs": "Wrap your app once in TooltipProvider. A tooltip is never the only place a label lives."
     },
     {
+      "name": "render-prop",
+      "type": "registry:internal",
+      "title": "Render prop",
+      "description": "How RHS UI's Radix parts install into a Base UI project of the shadcn CLI as well: they take Base UI's render prop, and asChild is a spread the CLI leaves alone.",
+      "categories": [
+        "primitives"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/render-prop.ts",
+          "type": "registry:lib",
+          "target": "components/rhs-ui/primitives/render-prop.ts"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -370,7 +400,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.8.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -379,7 +409,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -519,7 +550,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.2.0",
+        "version": "0.8.0",
         "since": "0.1.0",
         "status": "stable",
         "preview": "inline"
@@ -529,7 +560,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -710,7 +742,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/dialog.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -999,7 +1032,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1007,7 +1040,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/radio-group.tsx",
@@ -1214,7 +1249,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1222,7 +1257,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/popover.tsx",
@@ -1289,7 +1326,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1299,7 +1336,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -1501,7 +1539,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1509,7 +1547,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/card.tsx",
@@ -1652,7 +1692,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1662,7 +1702,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/button.json"
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -1699,7 +1740,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1708,7 +1749,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -1745,7 +1787,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "frame"
@@ -1754,7 +1796,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -1883,7 +1926,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -1892,7 +1935,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/button.json"
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -2048,7 +2092,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -2057,7 +2101,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -2124,7 +2169,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -2134,7 +2179,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/popover.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -2275,7 +2321,7 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.5.0",
+        "version": "0.8.0",
         "since": "0.5.0",
         "status": "stable",
         "preview": "inline"
@@ -2283,7 +2329,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/collapsible.tsx",
@@ -4345,14 +4393,15 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable"
       },
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -5230,14 +5279,16 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable"
       },
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/drawer.tsx",
@@ -5739,14 +5790,15 @@
       ],
       "meta": {
         "tier": "free",
-        "version": "0.6.0",
+        "version": "0.8.0",
         "since": "0.6.0",
         "status": "stable"
       },
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/dialog.json"
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -6022,7 +6074,8 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/animated-copy.json",
         "https://rhsui.com/r/button.json",
-        "https://rhsui.com/r/tooltip.json"
+        "https://rhsui.com/r/tooltip.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -6317,7 +6370,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/button.json",
-        "https://rhsui.com/r/tooltip.json"
+        "https://rhsui.com/r/tooltip.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -6562,6 +6616,7 @@
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -6612,6 +6667,7 @@
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -7180,6 +7236,7 @@
       },
       "dependencies": [],
       "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -7276,7 +7333,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/card.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -7322,6 +7380,7 @@
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -7425,6 +7484,7 @@
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/animated-copy.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -7471,6 +7531,7 @@
       },
       "dependencies": [],
       "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -9202,7 +9263,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/update-highlight.tsx",
@@ -10282,7 +10345,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/calendar.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12170,6 +12234,7 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -12382,7 +12447,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12582,7 +12648,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -13338,7 +13405,8 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/kbd.json",
-        "https://rhsui.com/r/tooltip.json"
+        "https://rhsui.com/r/tooltip.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -14036,6 +14104,7 @@
       },
       "dependencies": [],
       "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -14238,7 +14307,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/primitives/hairline-grid.tsx",
@@ -15061,7 +15132,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/collapsible.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -15686,6 +15758,7 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -15927,7 +16000,8 @@
         "radix-ui@^1.6.7"
       ],
       "registryDependencies": [
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -16110,7 +16184,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -16159,6 +16234,7 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/pagination.json",
         "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -16251,6 +16327,7 @@
       "dependencies": [],
       "registryDependencies": [
         "https://rhsui.com/r/notification-badge.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -17175,7 +17252,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/dialog.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -17276,7 +17354,8 @@
         "https://rhsui.com/r/checkbox.json",
         "https://rhsui.com/r/dialog.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/label.json"
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -17933,7 +18012,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/dialog.json",
-        "https://rhsui.com/r/drawer.json"
+        "https://rhsui.com/r/drawer.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -18137,7 +18217,8 @@
         "https://rhsui.com/r/dialog.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input.json",
-        "https://rhsui.com/r/kbd.json"
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -18198,7 +18279,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/aspect-ratio.json",
         "https://rhsui.com/r/dialog.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {

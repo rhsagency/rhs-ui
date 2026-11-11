@@ -7,6 +7,7 @@ import { IconClose, IconPlay, IconVolumeOff } from "@rhs-ui/icons";
 import { AspectRatio } from "@rhs-ui/primitives/aspect-ratio";
 import { Dialog, DialogClose, DialogDescription, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
 import { embedSource } from "@rhs-ui/primitives/video-dialog/embed";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface VideoSource {
@@ -167,7 +168,7 @@ export function VideoDialog({ sources, poster, captions, title, trigger, autoPla
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger === null ? null : <DialogTrigger asChild>{trigger ?? posterTrigger({ title, poster, ratio: shape, label: words.watch })}</DialogTrigger>}
+      {trigger === null ? null : <DialogTrigger {...AS_CHILD}>{trigger ?? posterTrigger({ title, poster, ratio: shape, label: words.watch })}</DialogTrigger>}
       <DialogPortal>
         <DialogOverlay />
         <DialogPrimitive.Content

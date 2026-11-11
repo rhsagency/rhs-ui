@@ -10,6 +10,7 @@ import { isTyping, matchesShortcut, parseShortcut, shortcutKeys } from "@rhs-ui/
 import { articleFor, checkNumber, dayHint, DEFAULT_LABELS, fillIn, numberHint, type GoToKind, type GoToLabels, type GoToValue } from "@rhs-ui/primitives/go-to-dialog/validate";
 import { Input } from "@rhs-ui/primitives/input";
 import { Kbd, KbdGroup } from "@rhs-ui/primitives/kbd";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { GoToKind, GoToLabels, GoToValue } from "@rhs-ui/primitives/go-to-dialog/validate";
@@ -276,7 +277,7 @@ export function GoToDialog<K extends GoToKind = "number">({
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         data-slot="go-to-dialog"
         showCloseButton={false}

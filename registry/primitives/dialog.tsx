@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
 import { IconClose } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -15,7 +16,8 @@ export function Dialog(props: ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
-export function DialogTrigger(props: ComponentProps<typeof DialogPrimitive.Trigger>) {
+export function DialogTrigger(input: ComponentProps<typeof DialogPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
@@ -23,7 +25,8 @@ export function DialogPortal(props: ComponentProps<typeof DialogPrimitive.Portal
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
-export function DialogClose(props: ComponentProps<typeof DialogPrimitive.Close>) {
+export function DialogClose(input: ComponentProps<typeof DialogPrimitive.Close> & RenderProp) {
+  const props = renderAs(input);
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
@@ -81,10 +84,12 @@ export function DialogFooter({ className, ...props }: ComponentProps<"div">) {
   return <div data-slot="dialog-footer" className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...props} />;
 }
 
-export function DialogTitle({ className, ...props }: ComponentProps<typeof DialogPrimitive.Title>) {
+export function DialogTitle(input: ComponentProps<typeof DialogPrimitive.Title> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <DialogPrimitive.Title data-slot="dialog-title" className={cn("text-base leading-tight font-semibold", className)} {...props} />;
 }
 
-export function DialogDescription({ className, ...props }: ComponentProps<typeof DialogPrimitive.Description>) {
+export function DialogDescription(input: ComponentProps<typeof DialogPrimitive.Description> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <DialogPrimitive.Description data-slot="dialog-description" className={cn("text-sm text-muted-foreground", className)} {...props} />;
 }

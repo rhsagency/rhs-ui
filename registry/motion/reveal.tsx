@@ -1,6 +1,7 @@
 import type { ComponentProps, CSSProperties } from "react";
 import { Slot } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type RevealEffect = "rise" | "scale" | "tilt" | "blur" | "slide-left" | "slide-right";
@@ -50,7 +51,8 @@ export interface RevealProps extends ComponentProps<"div"> {
  * so nothing is hidden before hydration or without support. It moves at full
  * opacity and sharp unless `fade` is on, so every scroll position is readable.
  */
-export function Reveal({ effect = "rise", distance = 48, order = 0, range, fade = false, asChild = false, className, style, ...props }: RevealProps) {
+export function Reveal(input: RevealProps & RenderProp) {
+  const { effect = "rise", distance = 48, order = 0, range, fade = false, asChild = false, className, style, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "div";
   const motion = startOf(effect, distance);
   const start = fade ? motion : { ...motion, opacity: 1, filter: "none" };

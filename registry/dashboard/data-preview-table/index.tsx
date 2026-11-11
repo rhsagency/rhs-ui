@@ -8,6 +8,7 @@ import { Kbd, KbdGroup } from "@rhs-ui/primitives/kbd";
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@rhs-ui/primitives/table";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
 import { TYPE_LABEL, clearOfPinned, copyText, valueAt, viewOf, type CellView, type PreviewColumn, type PreviewRow } from "@rhs-ui/dashboard/data-preview-table/cells";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { PreviewColumn, PreviewColumnType, PreviewRow } from "@rhs-ui/dashboard/data-preview-table/cells";
@@ -82,7 +83,7 @@ function CellTip({ content, children }: { content: ReactNode; children: ReactEle
       }}
     >
       <TooltipTrigger
-        asChild
+        {...AS_CHILD}
         // iOS Safari only sends a click to an element it takes for clickable, and a pointer cursor says so. Touch only: a mouse keeps its arrow.
         className="[@media(hover:none)]:cursor-pointer"
         // A press closes an open tooltip before its click arrives, so the click has to know how it started.

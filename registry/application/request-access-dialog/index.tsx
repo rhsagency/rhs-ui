@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import { RequestAccessPanel } from "@rhs-ui/application/request-access-dialog/panel";
 import type { AccessOwner, AccessRequest, RequestAccessLabels, RequestLevel, RequestTime } from "@rhs-ui/application/request-access-dialog/request";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type {
@@ -84,7 +85,7 @@ export function RequestAccessDialog({ trigger, open, defaultOpen = false, onOpen
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent data-slot="request-access-dialog" showCloseButton={false} className={cn("flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-md", className)}>
         <RequestAccessPanel
           {...panel}

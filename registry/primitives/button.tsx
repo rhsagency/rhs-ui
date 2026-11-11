@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
 import { IconSpinner } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -49,7 +50,8 @@ export interface ButtonProps extends ComponentProps<"button">, VariantProps<type
   loading?: boolean;
 }
 
-export function Button({ className, variant, size, asChild = false, loading = false, disabled, children, ...props }: ButtonProps) {
+export function Button(input: ButtonProps & RenderProp) {
+  const { className, variant, size, asChild = false, loading = false, disabled, children, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "button";
   return (
     <Comp

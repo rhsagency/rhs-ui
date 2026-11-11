@@ -5,6 +5,7 @@ import { Slot } from "radix-ui";
 
 import { ROOT_PANEL } from "@rhs-ui/marketing/mobile-nav-drilldown/types";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@rhs-ui/primitives/sheet";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 interface Stack {
@@ -259,7 +260,7 @@ export function DrilldownSheet({ trigger, title, description, side = "left", ope
     <EscapeContext.Provider value={register}>
       <DismissContext.Provider value={() => change(false)}>
         <Sheet open={isOpen} onOpenChange={change}>
-          <SheetTrigger asChild>{trigger}</SheetTrigger>
+          <SheetTrigger {...AS_CHILD}>{trigger}</SheetTrigger>
           <SheetContent
             side={side}
             showCloseButton={false}

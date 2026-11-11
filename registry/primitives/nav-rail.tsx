@@ -4,6 +4,7 @@ import { createContext, Fragment, useContext, type ComponentProps, type MouseEve
 
 import { NotificationBadge } from "@rhs-ui/primitives/notification-badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface NavRailEntry {
@@ -126,7 +127,7 @@ export function NavRailItem({ id, label, icon, href, badge, badgeLabel = "update
   if (mode !== "icons" || context === null) return control;
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{control}</TooltipTrigger>
+      <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
       <TooltipContent side="right" sideOffset={10}>
         {label}
       </TooltipContent>

@@ -5,6 +5,7 @@ import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 
 import { IconAlertCircle } from "@rhs-ui/icons";
 import { agreementOptions, fromRadio, NOT_APPLICABLE, toRadio, type LikertValue } from "@rhs-ui/primitives/likert-scale/scale";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { LikertValue } from "@rhs-ui/primitives/likert-scale/scale";
@@ -132,7 +133,7 @@ export function LikertScale({
   return (
     <div data-slot="likert-scale" className={cn("@container w-full min-w-0", className)} {...rest}>
       <RadioGroupPrimitive.Root
-        asChild
+        {...AS_CHILD}
         name={name}
         value={toRadio(current)}
         disabled={disabled}

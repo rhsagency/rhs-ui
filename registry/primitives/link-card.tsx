@@ -3,6 +3,7 @@ import { Slot } from "radix-ui";
 
 import { IconArrowRight, IconArrowUpRight } from "@rhs-ui/icons";
 import { Card, CardDescription } from "@rhs-ui/primitives/card";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface LinkCardProps extends Omit<ComponentProps<"div">, "title"> {
@@ -37,7 +38,8 @@ export interface LinkCardProps extends Omit<ComponentProps<"div">, "title"> {
  * unless reduced motion is on. For docs home pages, resource lists and
  * navigation grids.
  */
-export function LinkCard({ href, title, description, icon, image, external = false, orientation = "vertical", as: Heading = "h3", asChild = false, children, className, ...props }: LinkCardProps) {
+export function LinkCard(input: LinkCardProps & RenderProp) {
+  const { href, title, description, icon, image, external = false, orientation = "vertical", as: Heading = "h3", asChild = false, children, className, ...props } = renderAs(input);
   const descriptionId = useId();
   const Link = asChild ? Slot.Root : "a";
   const Arrow = external ? IconArrowUpRight : IconArrowRight;

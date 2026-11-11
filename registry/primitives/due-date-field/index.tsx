@@ -20,6 +20,7 @@ import {
   type DueDateLabels,
 } from "@rhs-ui/primitives/due-date-field/due-dates";
 import { Popover, PopoverAnchor, PopoverContent } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { DueDateChip, DueDateLabels } from "@rhs-ui/primitives/due-date-field/due-dates";
@@ -198,7 +199,7 @@ export function DueDateField({
               </>,
             ),
           )}
-          <PopoverAnchor asChild>
+          <PopoverAnchor {...AS_CHILD}>
             {radio(
               CUSTOM,
               <>

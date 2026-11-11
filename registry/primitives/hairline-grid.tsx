@@ -1,6 +1,7 @@
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { Slot } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** The breakpoints a column map speaks. They are Tailwind's: `base` is everything below `sm`. */
@@ -100,7 +101,8 @@ export function HairlineGrid({ columns = { base: 1, sm: 2, lg: 3 }, minCell, bor
 }
 
 /** One cell of a HairlineGrid: the grid's padding, the cell colour, and nothing else, so it holds any content. */
-export function HairlineGridCell({ as: Tag = "div", asChild = false, className, ...props }: HairlineGridCellProps) {
+export function HairlineGridCell(input: HairlineGridCellProps & RenderProp) {
+  const { as: Tag = "div", asChild = false, className, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : (Tag as "div");
   return (
     <Comp

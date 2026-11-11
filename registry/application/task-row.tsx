@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage, initialsOf } from "@rhs-ui/primiti
 import { Checkbox } from "@rhs-ui/primitives/checkbox";
 import { DueDateLabel } from "@rhs-ui/primitives/due-date-label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 type DateInput = Date | string | number;
@@ -179,7 +180,7 @@ export function TaskRow({ task, onToggle, onOpen, selected = false, density = "c
       {overlay ? (
         <TooltipProvider delayDuration={400}>
           <Tooltip open={cut && tip} onOpenChange={setTip}>
-            <TooltipTrigger asChild>{overlay}</TooltipTrigger>
+            <TooltipTrigger {...AS_CHILD}>{overlay}</TooltipTrigger>
             <TooltipContent side="top" align="start" className="max-w-sm text-pretty">
               {task.title}
             </TooltipContent>

@@ -7,6 +7,7 @@ import { Badge } from "@rhs-ui/primitives/badge";
 import { Button } from "@rhs-ui/primitives/button";
 import { Card } from "@rhs-ui/primitives/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** Where a quote stands. `sent` and `viewed` are open: the customer can still decide. */
@@ -266,7 +267,7 @@ function Decision({ title, description, confirmLabel, cancelLabel, onConfirm, ch
   }
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
+      <PopoverTrigger {...AS_CHILD}>{children}</PopoverTrigger>
       <PopoverContent data-slot="price-quote-confirm" role="alertdialog" aria-label={title} aria-describedby={`${id}-text`} collisionPadding={16}>
         <p className="text-sm font-medium">{title}</p>
         <p id={`${id}-text`} className="mt-1 text-sm text-muted-foreground">

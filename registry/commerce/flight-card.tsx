@@ -8,6 +8,7 @@ import { Button } from "@rhs-ui/primitives/button";
 import { Card } from "@rhs-ui/primitives/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@rhs-ui/primitives/collapsible";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface FlightAirport {
@@ -161,7 +162,7 @@ function TapTooltip({ content, focusable, children }: { content: string; focusab
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           tabIndex={focusable ? 0 : undefined}
           className="-mx-1 rounded-sm px-1 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 [@media(hover:none)]:cursor-pointer"
           onPointerDown={() => {

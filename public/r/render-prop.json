@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "render-prop",
+  "title": "Render prop",
+  "description": "How RHS UI's Radix parts install into a Base UI project of the shadcn CLI as well: they take Base UI's render prop, and asChild is a spread the CLI leaves alone.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/primitives/render-prop.ts",
+      "content": "import { cloneElement, isValidElement, type ReactElement, type ReactNode } from \"react\";\n\n/*\n * RHS UI's primitives are Radix parts, and the shadcn CLI installs into Radix and Base UI projects alike. In a Base UI\n * project (a `base-` style in components.json, the default since shadcn 4) the CLI rewrites every asChild attribute in\n * the files it installs: onto Base UI's `render` prop when the child is an element, and away altogether when it is not,\n * which leaves a button around a button. So the primitives take `render` too, and asChild without an element child is\n * written as a spread, which the CLI leaves alone.\n */\n\n/**\n * asChild as a spread, for a part whose child is not an element: `<TooltipTrigger {...AS_CHILD}>{children}</TooltipTrigger>`.\n * The CLI rewrites an attribute, never a spread, so this reaches the part as written in every project.\n */\nexport const AS_CHILD = { asChild: true } as const;\n\n/** Base UI's way of saying asChild, which the shadcn CLI writes into a Base UI project in its place. */\nexport type RenderProp = {\n  /** The element to render as, with this part's children inside it: asChild, with that element as the child. */\n  render?: ReactElement;\n  /** Base UI's flag for a button rendered as another element. The element itself tells the browser here, so it is ignored. */\n  nativeButton?: boolean;\n};\n\n/**\n * Turns `render` into asChild for a part: the render element becomes the child, holding the part's children (or its\n * own, when the part has none). Without `render` the props pass through unchanged.\n */\nexport function renderAs<P extends { asChild?: boolean; children?: ReactNode }>({ render, nativeButton: _nativeButton, ...props }: P & RenderProp): Omit<P, keyof RenderProp> {\n  if (!isValidElement<{ children?: ReactNode }>(render)) return props;\n  const children = props.children === undefined ? render.props.children : props.children;\n  return { ...props, asChild: true, children: cloneElement(render, { children }) };\n}\n",
+      "type": "registry:lib",
+      "target": "components/rhs-ui/primitives/render-prop.ts"
+    }
+  ],
+  "meta": {
+    "tier": "free",
+    "version": "0.8.0",
+    "since": "0.8.0",
+    "status": "stable",
+    "preview": "inline"
+  },
+  "categories": [
+    "primitives"
+  ],
+  "type": "registry:internal"
+}

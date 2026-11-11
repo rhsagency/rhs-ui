@@ -5,6 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
 import { IconClose } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -17,11 +18,13 @@ export function Sheet(props: ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-export function SheetTrigger(props: ComponentProps<typeof SheetPrimitive.Trigger>) {
+export function SheetTrigger(input: ComponentProps<typeof SheetPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-export function SheetClose(props: ComponentProps<typeof SheetPrimitive.Close>) {
+export function SheetClose(input: ComponentProps<typeof SheetPrimitive.Close> & RenderProp) {
+  const props = renderAs(input);
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
@@ -89,11 +92,13 @@ export function SheetFooter({ className, ...props }: ComponentProps<"div">) {
   return <div data-slot="sheet-footer" className={cn("mt-auto flex flex-col gap-2 p-5", className)} {...props} />;
 }
 
-export function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
+export function SheetTitle(input: ComponentProps<typeof SheetPrimitive.Title> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <SheetPrimitive.Title data-slot="sheet-title" className={cn("text-base leading-tight font-semibold", className)} {...props} />;
 }
 
-export function SheetDescription({ className, ...props }: ComponentProps<typeof SheetPrimitive.Description>) {
+export function SheetDescription(input: ComponentProps<typeof SheetPrimitive.Description> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <SheetPrimitive.Description data-slot="sheet-description" className={cn("text-sm text-muted-foreground", className)} {...props} />;
 }
 

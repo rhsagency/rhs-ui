@@ -3,6 +3,7 @@ import { Slot } from "radix-ui";
 
 import { IconChevronLeft, IconChevronRight, IconMoreHorizontal } from "@rhs-ui/icons";
 import { buttonVariants } from "@rhs-ui/primitives/button";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -50,7 +51,8 @@ export interface PaginationLinkProps extends ComponentProps<"a"> {
   size?: "icon" | "default";
 }
 
-export function PaginationLink({ className, isActive, asChild = false, size = "icon", ...props }: PaginationLinkProps) {
+export function PaginationLink(input: PaginationLinkProps & RenderProp) {
+  const { className, isActive, asChild = false, size = "icon", ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "a";
   return (
     <Comp

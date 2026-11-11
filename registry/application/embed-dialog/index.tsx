@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import type { EmbedControl, EmbedLabels, EmbedSettings } from "@rhs-ui/application/embed-dialog/snippet";
 import { EmbedPanel } from "@rhs-ui/application/embed-dialog/panel";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { EmbedControl, EmbedLabels, EmbedSettings, EmbedTheme } from "@rhs-ui/application/embed-dialog/snippet";
@@ -81,7 +82,7 @@ export function EmbedDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         data-slot="embed-dialog"
         showCloseButton={false}

@@ -3,6 +3,7 @@
 import type { ComponentProps } from "react";
 import { Tooltip as TooltipPrimitive } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -18,7 +19,8 @@ export function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 }
 
-export function TooltipTrigger(props: ComponentProps<typeof TooltipPrimitive.Trigger>) {
+export function TooltipTrigger(input: ComponentProps<typeof TooltipPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 

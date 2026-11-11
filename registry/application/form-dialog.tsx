@@ -6,6 +6,7 @@ import { IconAlertCircle, IconClose, IconSpinner } from "@rhs-ui/icons";
 import { Alert, AlertDescription, AlertTitle } from "@rhs-ui/primitives/alert";
 import { Button } from "@rhs-ui/primitives/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** The words the dialog says, for translation. */
@@ -249,7 +250,7 @@ export function FormDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         ref={content}
         data-slot="form-dialog"

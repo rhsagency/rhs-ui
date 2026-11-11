@@ -5,6 +5,7 @@ import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 import { IconCheck, IconChevronRight } from "@rhs-ui/icons";
 import { panelSurface } from "@rhs-ui/primitives/popover";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,7 +17,8 @@ export function ContextMenu(props: ComponentProps<typeof ContextMenuPrimitive.Ro
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
 }
 
-export function ContextMenuTrigger(props: ComponentProps<typeof ContextMenuPrimitive.Trigger>) {
+export function ContextMenuTrigger(input: ComponentProps<typeof ContextMenuPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <ContextMenuPrimitive.Trigger data-slot="context-menu-trigger" {...props} />;
 }
 

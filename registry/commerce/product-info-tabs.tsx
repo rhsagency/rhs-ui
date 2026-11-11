@@ -6,6 +6,7 @@ import { Accordion as AccordionPrimitive } from "radix-ui";
 import { IconChevronDown } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@rhs-ui/primitives/tabs";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ProductInfoSection {
@@ -144,7 +145,7 @@ export function ProductInfoTabs({ sections, defaultId, breakpoint = 768, onChang
         <AccordionPrimitive.Root type="single" collapsible value={current ?? ""} onValueChange={(id) => (id ? select(id) : setOpen(null))} className="border-t border-border">
           {sections.map((section) => (
             <AccordionPrimitive.Item key={section.id} value={section.id} className="border-b border-border">
-              <AccordionPrimitive.Header asChild>
+              <AccordionPrimitive.Header {...AS_CHILD}>
                 <Heading>
                   <AccordionPrimitive.Trigger className="group/trigger flex w-full items-center gap-3 rounded-md py-4 text-left text-[0.9375rem] font-medium outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40">
                     {section.title}

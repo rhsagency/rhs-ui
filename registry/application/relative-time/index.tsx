@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState, type ComponentProps, type ReactEleme
 
 import { dateText, exactText, isRelative, msUntilChange, relativeText, stableText, toTimestamp, type RelativeTimeFormat, type RelativeTimeInput } from "@rhs-ui/application/relative-time/format";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface RelativeTimeProps extends Omit<ComponentProps<"time">, "children" | "dateTime"> {
@@ -55,7 +56,7 @@ function TapTooltip({ content, focusable, defaultOpen, children }: { content: Re
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           tabIndex={focusable ? 0 : undefined}
           // iOS Safari only sends a click to an element it takes for clickable, and a pointer cursor says so. Touch only: a mouse keeps its arrow.
           className="[@media(hover:none)]:cursor-pointer"

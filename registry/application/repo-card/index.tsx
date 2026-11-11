@@ -6,6 +6,7 @@ import { ageText, compactNumber, dateIn, fill, wholeNumber, type DateInput } fro
 import { IconBook, IconGitBranch, IconGlobe, IconLock, IconStar } from "@rhs-ui/icons";
 import { Badge } from "@rhs-ui/primitives/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** Who can see the repository. Each has its own glyph and word, so none depends on colour. */
@@ -123,7 +124,7 @@ function Tip({ content, children }: { content: ReactNode; children: ReactElement
       }}
     >
       <TooltipTrigger
-        asChild
+        {...AS_CHILD}
         onPointerDown={() => {
           wasOpen.current = open;
         }}

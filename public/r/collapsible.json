@@ -6,11 +6,13 @@
   "dependencies": [
     "radix-ui@^1.6.7"
   ],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/render-prop.json"
+  ],
   "files": [
     {
       "path": "registry/primitives/collapsible.tsx",
-      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Collapsible as CollapsiblePrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One section that opens and closes: \"Show 12 more\", advanced settings, a\n * long description. For a list of sections use accordion. The content\n * animates its height, and under reduced motion it simply appears.\n */\nexport function Collapsible(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nexport function CollapsibleTrigger(props: ComponentProps<typeof CollapsiblePrimitive.Trigger>) {\n  return <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />;\n}\n\nexport function CollapsibleContent({ className, ...props }: ComponentProps<typeof CollapsiblePrimitive.Content>) {\n  return (\n    <CollapsiblePrimitive.Content\n      data-slot=\"collapsible-content\"\n      className={cn(\"overflow-hidden motion-safe:data-[state=closed]:animate-rhs-collapse-up motion-safe:data-[state=open]:animate-rhs-collapse-down\", className)}\n      {...props}\n    />\n  );\n}\n",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Collapsible as CollapsiblePrimitive } from \"radix-ui\";\n\nimport { renderAs, type RenderProp } from \"@rhs-ui/primitives/render-prop\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One section that opens and closes: \"Show 12 more\", advanced settings, a\n * long description. For a list of sections use accordion. The content\n * animates its height, and under reduced motion it simply appears.\n */\nexport function Collapsible(input: ComponentProps<typeof CollapsiblePrimitive.Root> & RenderProp) {\n  const props = renderAs(input);\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nexport function CollapsibleTrigger(input: ComponentProps<typeof CollapsiblePrimitive.Trigger> & RenderProp) {\n  const props = renderAs(input);\n  return <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />;\n}\n\nexport function CollapsibleContent({ className, ...props }: ComponentProps<typeof CollapsiblePrimitive.Content>) {\n  return (\n    <CollapsiblePrimitive.Content\n      data-slot=\"collapsible-content\"\n      className={cn(\"overflow-hidden motion-safe:data-[state=closed]:animate-rhs-collapse-up motion-safe:data-[state=open]:animate-rhs-collapse-down\", className)}\n      {...props}\n    />\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/rhs-ui/primitives/collapsible.tsx"
     }
@@ -41,7 +43,7 @@
   },
   "meta": {
     "tier": "free",
-    "version": "0.5.0",
+    "version": "0.8.0",
     "since": "0.5.0",
     "status": "stable",
     "preview": "inline",

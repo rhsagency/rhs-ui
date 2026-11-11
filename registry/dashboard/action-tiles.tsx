@@ -6,6 +6,7 @@ import { IconLock } from "@rhs-ui/icons";
 import { Card } from "@rhs-ui/primitives/card";
 import { Kbd, KbdGroup } from "@rhs-ui/primitives/kbd";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ActionTile {
@@ -152,7 +153,7 @@ function Tile({ action, dense }: { action: ActionTile; dense: boolean }) {
       {disabled && action.disabledReason ? (
         <>
           <Tooltip>
-            <TooltipTrigger asChild>{control}</TooltipTrigger>
+            <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
             <TooltipContent>{action.disabledReason}</TooltipContent>
           </Tooltip>
           {reasonShown ? null : (

@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 import { fitSegments, type MeasuredSegment } from "./fit";
 
@@ -86,7 +87,7 @@ function SegmentView({ segment, hidden, divider }: { segment: StatusBarSegment; 
   if (!segment.tooltip || hidden) return button;
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
+      <TooltipTrigger {...AS_CHILD}>{button}</TooltipTrigger>
       <TooltipContent side="top" sideOffset={6}>
         {segment.tooltip}
       </TooltipContent>

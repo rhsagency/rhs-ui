@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type ComponentProps, type MouseEventHandle
 import { IconPlus } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface FloatingActionButtonProps extends Omit<ComponentProps<"button">, "children" | "className" | "aria-label" | "type" | "onClick"> {
@@ -166,7 +167,7 @@ export function FloatingActionButton({
           className={cn("pointer-events-auto transition-[opacity,translate,scale] duration-200 ease-out motion-reduce:transition-none", hidden && "pointer-events-none translate-y-3 scale-90 opacity-0")}
         >
           <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger {...AS_CHILD}>
               {href ? (
                 // A link has no disabled state of its own, so it is dimmed, taken out of the tab order and stopped on click.
                 <Button asChild className={cn(classes, "aria-disabled:pointer-events-none aria-disabled:opacity-50")}>

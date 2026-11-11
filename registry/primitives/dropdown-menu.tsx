@@ -5,6 +5,7 @@ import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 import { IconCheck, IconChevronRight } from "@rhs-ui/icons";
 import { panelSurface } from "@rhs-ui/primitives/popover";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -17,7 +18,8 @@ export function DropdownMenu(props: ComponentProps<typeof DropdownMenuPrimitive.
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 }
 
-export function DropdownMenuTrigger(props: ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+export function DropdownMenuTrigger(input: ComponentProps<typeof DropdownMenuPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
 }
 
@@ -63,7 +65,8 @@ export interface DropdownMenuItemProps extends ComponentProps<typeof DropdownMen
   variant?: "default" | "destructive";
 }
 
-export function DropdownMenuItem({ className, inset, variant = "default", ...props }: DropdownMenuItemProps) {
+export function DropdownMenuItem(input: DropdownMenuItemProps & RenderProp) {
+  const { className, inset, variant = "default", ...props } = renderAs(input);
   return (
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"

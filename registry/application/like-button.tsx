@@ -7,6 +7,7 @@ import { IconAlertCircle, IconHeart } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
 import { Popover, PopoverAnchor, PopoverContent } from "@rhs-ui/primitives/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface LikeButtonProps extends Omit<ComponentProps<"div">, "children" | "onToggle"> {
@@ -212,7 +213,7 @@ export function LikeButton({
           {/* The tooltip is always part of the tree, so the button is the same element whether or not it has something to say: a count growing past 999 must not rebuild it under a keyboard user's focus. */}
           <TooltipProvider>
             <Tooltip open={tooltip ? hinting : false} onOpenChange={setHinting}>
-              <TooltipTrigger asChild>{button}</TooltipTrigger>
+              <TooltipTrigger {...AS_CHILD}>{button}</TooltipTrigger>
               {tooltip ? <TooltipContent>{tooltip}</TooltipContent> : null}
             </Tooltip>
           </TooltipProvider>

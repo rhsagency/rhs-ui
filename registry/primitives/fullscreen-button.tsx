@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState, type ComponentProps, type Ref
 import { IconMaximize, IconMinimize } from "@rhs-ui/icons";
 import { Button, type ButtonProps } from "@rhs-ui/primitives/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface FullscreenButtonProps extends Omit<ComponentProps<"button">, "onClick" | "onChange" | "children" | "title" | "aria-label"> {
@@ -142,7 +143,7 @@ export function FullscreenButton({ target, labels, onChange, variant = "outline"
   return iconOnly ? (
     <TooltipProvider delayDuration={200}>
       <Tooltip>
-        <TooltipTrigger asChild>{control}</TooltipTrigger>
+        <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
         <TooltipContent>{label}</TooltipContent>
       </Tooltip>
     </TooltipProvider>

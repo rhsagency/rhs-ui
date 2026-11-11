@@ -3,6 +3,7 @@
 import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface DrawerProps {
@@ -44,7 +45,7 @@ export function Drawer({ open, onOpenChange, trigger, title, description, childr
   }
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
-      {trigger ? <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger> : null}
+      {trigger ? <DialogPrimitive.Trigger {...AS_CHILD}>{trigger}</DialogPrimitive.Trigger> : null}
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/40 data-[state=open]:animate-rhs-fade-in data-[state=closed]:animate-rhs-fade-out" />
         <DialogPrimitive.Content

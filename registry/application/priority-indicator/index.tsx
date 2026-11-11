@@ -6,6 +6,7 @@ import { IconChevronDown } from "@rhs-ui/icons";
 import { PRIORITIES, PRIORITY_WORDS, PriorityGlyph, type Priority } from "@rhs-ui/application/priority-indicator/glyph";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@rhs-ui/primitives/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface PriorityIndicatorProps extends Omit<ComponentProps<"span">, "children"> {
@@ -75,7 +76,7 @@ export function PriorityIndicator({ priority, showLabel = true, size = "md", edi
     ) : (
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger asChild>{element}</TooltipTrigger>
+          <TooltipTrigger {...AS_CHILD}>{element}</TooltipTrigger>
           <TooltipContent>{word}</TooltipContent>
         </Tooltip>
       </TooltipProvider>

@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 
 import { Button } from "@rhs-ui/primitives/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 
 export interface ConfirmPopoverProps {
   /** The button that asks: usually a destructive action. */
@@ -35,7 +36,7 @@ export function ConfirmPopover({ children, title, description, confirmLabel = "C
   }
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
+      <PopoverTrigger {...AS_CHILD}>{children}</PopoverTrigger>
       <PopoverContent data-slot="confirm-popover" role="alertdialog" aria-label={title} className="w-72">
         <p className="text-sm font-medium">{title}</p>
         {description ? <p className="mt-1 text-sm text-muted-foreground">{description}</p> : null}

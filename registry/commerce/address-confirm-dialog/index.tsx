@@ -17,6 +17,7 @@ import {
 import { Button } from "@rhs-ui/primitives/button";
 import { Callout } from "@rhs-ui/primitives/callout";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { AddressChoice, AddressConfirmLabels, AddressLine } from "@rhs-ui/commerce/address-confirm-dialog/address";
@@ -310,7 +311,7 @@ export function AddressConfirmDialog({ open, defaultOpen = false, onOpenChange, 
 
   return (
     <Dialog open={shown} onOpenChange={setOpen}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         className={cn("flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl", className)}
         onOpenAutoFocus={(event) => {

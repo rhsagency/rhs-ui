@@ -20,6 +20,7 @@ import {
 import { Badge } from "@rhs-ui/primitives/badge";
 import { Button } from "@rhs-ui/primitives/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type {
@@ -116,7 +117,7 @@ export function DisplayOptionsPopover({
   return (
     <div data-slot="display-options-popover" data-changed={count || undefined} className={cn("inline-flex max-w-full min-w-0", className)} {...props}>
       <Popover open={isOpen} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger {...AS_CHILD}>
           {trigger ?? (
             <Button type="button" variant="outline" className="gap-2">
               <IconLayout aria-hidden="true" />

@@ -5,6 +5,7 @@ import { useRef, useState, type ReactElement } from "react";
 import { RoleChangePanel } from "@rhs-ui/application/role-change-dialog/panel";
 import type { RoleChange, RoleChangeLabels, RoleInfo, RoleMember } from "@rhs-ui/application/role-change-dialog/roles";
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@rhs-ui/primitives/alert-dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type {
@@ -76,7 +77,7 @@ export function RoleChangeDialog({ trigger, open, defaultOpen = false, onOpenCha
 
   return (
     <AlertDialog open={isOpen} onOpenChange={change}>
-      {trigger ? <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger> : null}
+      {trigger ? <AlertDialogTrigger {...AS_CHILD}>{trigger}</AlertDialogTrigger> : null}
       <AlertDialogContent
         data-slot="role-change-dialog"
         onEscapeKeyDown={(event) => {

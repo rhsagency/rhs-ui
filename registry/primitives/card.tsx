@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { Slot } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -32,7 +33,8 @@ export function CardHeader({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function CardTitle({ className, asChild = false, ...props }: ComponentProps<"h3"> & { asChild?: boolean }) {
+export function CardTitle(input: ComponentProps<"h3"> & { asChild?: boolean } & RenderProp) {
+  const { className, asChild = false, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "h3";
   return <Comp data-slot="card-title" className={cn("font-semibold leading-tight tracking-tight", className)} {...props} />;
 }

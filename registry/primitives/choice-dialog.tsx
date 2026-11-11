@@ -8,6 +8,7 @@ import { Button } from "@rhs-ui/primitives/button";
 import { Checkbox } from "@rhs-ui/primitives/checkbox";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
 import { Label } from "@rhs-ui/primitives/label";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ChoiceOption {
@@ -124,7 +125,7 @@ export function ChoiceDialog({ title, description, options, defaultValue, onConf
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         data-slot="choice-dialog"
         showCloseButton={false}

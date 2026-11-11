@@ -5,6 +5,7 @@ import { Slot, Tooltip as TooltipPrimitive } from "radix-ui";
 
 import { IconInfo } from "@rhs-ui/icons";
 import { Tooltip, TooltipContent, TooltipProvider } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface DisabledReasonProps {
@@ -127,7 +128,7 @@ export function DisabledReason({ disabled = false, reason, placement = "top", in
           }}
         >
           {/* The trigger is Radix's own, not the house wrapper: that one stamps a data-slot onto its child, and the control must keep its own. data-state is cleared too, so an enabled control carries nothing of ours. */}
-          <TooltipPrimitive.Trigger asChild data-state={undefined}>
+          <TooltipPrimitive.Trigger {...AS_CHILD} data-state={undefined}>
             <Slot.Root
               ref={(node: Element | null) => {
                 control.current = node;

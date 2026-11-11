@@ -17,6 +17,7 @@ import {
   type DocumentStatsLabels,
 } from "@rhs-ui/application/document-stats-popover/stats";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { DocumentGoal, DocumentStats, DocumentStatsLabels } from "@rhs-ui/application/document-stats-popover/stats";
@@ -123,7 +124,7 @@ export function DocumentStatsPopover({
   return (
     <>
       <Popover open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger {...AS_CHILD}>
           {trigger ?? (
             <button
               type="button"

@@ -6,6 +6,7 @@ import { Dialog as DialogPrimitive } from "radix-ui";
 import { Button } from "@rhs-ui/primitives/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@rhs-ui/primitives/dialog";
 import { Drawer } from "@rhs-ui/primitives/drawer";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ActionSheetAction {
@@ -224,7 +225,7 @@ export function ActionSheet({ title, message, actions, cancelLabel = "Cancel", t
   if (wide) {
     return (
       <Dialog open={isOpen} onOpenChange={change}>
-        {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+        {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
         {/* Never taller than the screen: the header keeps its height and the list gives way, so the Cancel is always on it. */}
         <DialogContent showCloseButton={false} className="flex max-h-[calc(100dvh-2rem)] flex-col gap-4 p-5 sm:max-w-sm">
           <DialogHeader className="shrink-0">

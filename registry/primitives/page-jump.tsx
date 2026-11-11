@@ -6,6 +6,7 @@ import { IconAlertCircle, IconChevronLeft, IconChevronRight, IconChevronsLeft, I
 import { buttonVariants } from "@rhs-ui/primitives/button";
 import { fieldSurface } from "@rhs-ui/primitives/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface PageJumpLabels {
@@ -117,7 +118,7 @@ function Control({ label, href, disabled, reason, onPress, className, children }
     );
   return (
     <Tooltip open={disabled && reason !== "" && hint} onOpenChange={setHint}>
-      <TooltipTrigger asChild>{control}</TooltipTrigger>
+      <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
       <TooltipContent side="top">{reason}</TooltipContent>
     </Tooltip>
   );

@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage, initialsOf } from "@rhs-ui/primiti
 import { Badge } from "@rhs-ui/primitives/badge";
 import { Button } from "@rhs-ui/primitives/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** Where the work happens. */
@@ -159,7 +160,7 @@ function Tip({ content, children }: { content: ReactNode; children: ReactElement
       }}
     >
       <TooltipTrigger
-        asChild
+        {...AS_CHILD}
         onPointerDown={() => {
           wasOpen.current = open;
         }}

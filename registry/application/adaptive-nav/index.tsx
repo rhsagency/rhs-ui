@@ -19,6 +19,7 @@ import {
 } from "@rhs-ui/application/adaptive-nav/nav";
 import { Sheet, SheetOverlay, SheetPortal, SheetTitle, SheetTrigger, sheetVariants } from "@rhs-ui/primitives/sheet";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { AdaptiveNavBreakpoints, AdaptiveNavItem, AdaptiveNavLabels, NavForm } from "@rhs-ui/application/adaptive-nav/nav";
@@ -137,7 +138,7 @@ function NavItem({ item, current, variant, onPress }: NavItemProps) {
   if (variant !== "rail") return node;
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{node}</TooltipTrigger>
+      <TooltipTrigger {...AS_CHILD}>{node}</TooltipTrigger>
       <TooltipContent side="right" sideOffset={8}>
         {item.label}
         {hasBadge(item) ? <span className="ml-2 tabular-nums opacity-70">{item.badge}</span> : null}

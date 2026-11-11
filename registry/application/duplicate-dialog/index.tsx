@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import type { DuplicateLabels, DuplicateOption } from "@rhs-ui/application/duplicate-dialog/duplicate";
 import { DuplicatePanel, type DuplicateValues } from "@rhs-ui/application/duplicate-dialog/panel";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { DuplicateLabels, DuplicateOption } from "@rhs-ui/application/duplicate-dialog/duplicate";
@@ -65,7 +66,7 @@ export function DuplicateDialog({ sourceName, options, existingNames, kind, onDu
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent data-slot="duplicate-dialog" showCloseButton={false} className={cn("flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-lg", className)}>
         <DuplicatePanel
           sourceName={sourceName}

@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 
 import { buttonVariants } from "@rhs-ui/primitives/button";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,7 +17,8 @@ export function AlertDialog(props: ComponentProps<typeof AlertDialogPrimitive.Ro
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
 
-export function AlertDialogTrigger(props: ComponentProps<typeof AlertDialogPrimitive.Trigger>) {
+export function AlertDialogTrigger(input: ComponentProps<typeof AlertDialogPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />;
 }
 
@@ -61,10 +63,12 @@ export interface AlertDialogActionProps extends ComponentProps<typeof AlertDialo
   variant?: "default" | "destructive";
 }
 
-export function AlertDialogAction({ className, variant = "default", ...props }: AlertDialogActionProps) {
+export function AlertDialogAction(input: AlertDialogActionProps & RenderProp) {
+  const { className, variant = "default", ...props } = renderAs(input);
   return <AlertDialogPrimitive.Action data-slot="alert-dialog-action" className={cn(buttonVariants({ variant }), className)} {...props} />;
 }
 
-export function AlertDialogCancel({ className, ...props }: ComponentProps<typeof AlertDialogPrimitive.Cancel>) {
+export function AlertDialogCancel(input: ComponentProps<typeof AlertDialogPrimitive.Cancel> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return <AlertDialogPrimitive.Cancel data-slot="alert-dialog-cancel" className={cn(buttonVariants({ variant: "outline" }), className)} {...props} />;
 }

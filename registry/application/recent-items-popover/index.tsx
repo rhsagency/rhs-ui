@@ -7,6 +7,7 @@ import { RecentItemsPanel } from "@rhs-ui/application/recent-items-popover/panel
 import { DEFAULT_LABELS, type RecentItem, type RecentItemsLabels, type RecentTime } from "@rhs-ui/application/recent-items-popover/recent";
 import { Button } from "@rhs-ui/primitives/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { RecentGroup, RecentGroupId, RecentItem, RecentItemsLabels, RecentTime } from "@rhs-ui/application/recent-items-popover/recent";
@@ -96,7 +97,7 @@ export function RecentItemsPopover({
   return (
     <div data-slot="recent-items-popover" className={cn("inline-flex max-w-full min-w-0", className)} {...props}>
       <Popover open={isOpen} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger {...AS_CHILD}>
           {trigger ?? (
             <Button type="button" variant="outline" className="gap-2">
               <IconHistory aria-hidden="true" />

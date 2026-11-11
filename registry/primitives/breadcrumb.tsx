@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { Slot } from "radix-ui";
 
 import { IconChevronRight, IconMoreHorizontal } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -28,7 +29,8 @@ export function BreadcrumbItem({ className, ...props }: ComponentProps<"li">) {
   return <li data-slot="breadcrumb-item" className={cn("inline-flex items-center gap-1.5", className)} {...props} />;
 }
 
-export function BreadcrumbLink({ className, asChild = false, ...props }: ComponentProps<"a"> & { asChild?: boolean }) {
+export function BreadcrumbLink(input: ComponentProps<"a"> & { asChild?: boolean } & RenderProp) {
+  const { className, asChild = false, ...props } = renderAs(input);
   const Comp = asChild ? Slot.Root : "a";
   return (
     <Comp

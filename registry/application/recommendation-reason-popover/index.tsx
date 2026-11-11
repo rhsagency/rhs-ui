@@ -6,6 +6,7 @@ import { IconClose, IconInfo } from "@rhs-ui/icons";
 import { RecommendationReasonPanel } from "@rhs-ui/application/recommendation-reason-popover/panel";
 import { DEFAULT_LABELS, type RecommendationReason, type RecommendationReasonLabels, type Sponsorship } from "@rhs-ui/application/recommendation-reason-popover/reasons";
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { ReasonKind, RecommendationReason, RecommendationReasonLabels, Sponsorship } from "@rhs-ui/application/recommendation-reason-popover/reasons";
@@ -73,7 +74,7 @@ export function RecommendationReasonPopover({
 
   return (
     <Popover open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger {...AS_CHILD}>
         {trigger ?? (
           <button
             type="button"

@@ -4055,7 +4055,8 @@
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/empty-search.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/pagination.json"
+        "https://rhsui.com/r/pagination.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -11117,6 +11118,7 @@
       "registryDependencies": [
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/sheet.json"
       ],
       "files": [

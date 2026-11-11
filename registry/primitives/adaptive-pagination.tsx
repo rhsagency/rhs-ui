@@ -7,6 +7,7 @@ import { buttonVariants } from "@rhs-ui/primitives/button";
 import { PaginationEllipsis, paginationRange } from "@rhs-ui/primitives/pagination";
 import { Popover, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface AdaptivePaginationLabels {
@@ -120,7 +121,7 @@ function Control({ part, label, href, disabled = false, reason, current = false,
   );
   return (
     <Tooltip open={disabled && Boolean(reason) && hint} onOpenChange={setHint}>
-      <TooltipTrigger asChild>{control}</TooltipTrigger>
+      <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
       <TooltipContent side="top">{reason}</TooltipContent>
     </Tooltip>
   );

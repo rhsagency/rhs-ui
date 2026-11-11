@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -23,15 +24,18 @@ export function Popover(props: ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />;
 }
 
-export function PopoverTrigger(props: ComponentProps<typeof PopoverPrimitive.Trigger>) {
+export function PopoverTrigger(input: ComponentProps<typeof PopoverPrimitive.Trigger> & RenderProp) {
+  const props = renderAs(input);
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
-export function PopoverAnchor(props: ComponentProps<typeof PopoverPrimitive.Anchor>) {
+export function PopoverAnchor(input: ComponentProps<typeof PopoverPrimitive.Anchor> & RenderProp) {
+  const props = renderAs(input);
   return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
 }
 
-export function PopoverClose(props: ComponentProps<typeof PopoverPrimitive.Close>) {
+export function PopoverClose(input: ComponentProps<typeof PopoverPrimitive.Close> & RenderProp) {
+  const props = renderAs(input);
   return <PopoverPrimitive.Close data-slot="popover-close" {...props} />;
 }
 

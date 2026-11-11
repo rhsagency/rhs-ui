@@ -3,6 +3,7 @@ import { cva } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
 import { IconArrowUpRight, IconDownload } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -136,7 +137,8 @@ function withTail(children: ReactNode, tail: ReactNode): ReactNode {
  * marked with `aria-current` and a heavier weight; and a disabled link becomes a span, so it is not a
  * dead tab stop. `asChild` puts the same look on your framework's link.
  */
-export function TextLink({ tone, external = false, download, current, disabled = false, asChild = false, locale = "en-US", labels, href, rel, target, hrefLang, className, children, ...props }: TextLinkProps) {
+export function TextLink(input: TextLinkProps & RenderProp) {
+  const { tone, external = false, download, current, disabled = false, asChild = false, locale = "en-US", labels, href, rel, target, hrefLang, className, children, ...props } = renderAs(input);
   const words = { newTab: labels?.newTab ?? "opens in a new tab", download: labels?.download ?? "download", language: labels?.language ?? "in {language}" };
   const file: TextLinkDownload | null = download === undefined || download === false ? null : typeof download === "object" ? download : { filename: typeof download === "string" ? download : undefined };
   const size = file?.size === undefined ? "" : typeof file.size === "number" ? formatBytes(file.size, locale) : file.size;

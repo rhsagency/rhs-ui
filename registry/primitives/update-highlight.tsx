@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type ComponentProps, type CSSProperties, type Ref } from "react";
 import { Slot } from "radix-ui";
 
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** What tells the highlight that the content changed: the value itself, a version number, a timestamp. */
@@ -102,7 +103,8 @@ function setRef<T>(ref: Ref<T> | undefined, node: T | null) {
  * Use `asChild` to put it on a table row. Made for live tables, feeds and
  * dashboards where values change under the reader's eyes.
  */
-export function UpdateHighlight({ changeKey, duration = 1500, label, announce, skipFirst = true, reduceMotion, asChild = false, inline = false, className, style, children, ref, ...props }: UpdateHighlightProps) {
+export function UpdateHighlight(input: UpdateHighlightProps & RenderProp) {
+  const { changeKey, duration = 1500, label, announce, skipFirst = true, reduceMotion, asChild = false, inline = false, className, style, children, ref, ...props } = renderAs(input);
   const [phase, setPhase] = useState<Phase>("idle");
   const [run, setRun] = useState(0);
   const [row, setRow] = useState(false);

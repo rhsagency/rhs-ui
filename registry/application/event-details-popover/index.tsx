@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import { DEFAULT_LABELS, type EventDetailsLabels, type EventInfo, type EventMoment } from "@rhs-ui/application/event-details-popover/event";
 import { EventDetailsPanel } from "@rhs-ui/application/event-details-popover/panel";
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { EventDetailsLabels, EventInfo, EventMoment, EventPerson, EventStatus } from "@rhs-ui/application/event-details-popover/event";
@@ -69,7 +70,7 @@ export function EventDetailsPopover({
 
   return (
     <Popover open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
+      <PopoverTrigger {...AS_CHILD}>{children}</PopoverTrigger>
       <PopoverContent
         ref={panel}
         data-slot="event-details-popover"

@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import { DEFAULT_LABELS, type Template, type TemplateCategory, type TemplatePickerLabels } from "@rhs-ui/application/template-picker-dialog/templates";
 import { TemplatePickerPanel } from "@rhs-ui/application/template-picker-dialog/panel";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { Template, TemplateCategory, TemplatePickerLabels } from "@rhs-ui/application/template-picker-dialog/templates";
@@ -79,7 +80,7 @@ export function TemplatePickerDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         ref={content}
         data-slot="template-picker-dialog"

@@ -1387,6 +1387,7 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -3066,6 +3067,7 @@
         "https://rhsui.com/r/checkbox.json",
         "https://rhsui.com/r/due-date-label.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -5021,6 +5023,7 @@
       },
       "dependencies": [],
       "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -5121,6 +5124,7 @@
       "registryDependencies": [
         "https://rhsui.com/r/dropdown-menu.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -5527,6 +5531,7 @@
       "registryDependencies": [
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -5631,6 +5636,7 @@
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/tooltip.json"
       ],
       "files": [
@@ -5781,7 +5787,8 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/badge.json",
-        "https://rhsui.com/r/icons.json"
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -8828,7 +8835,8 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/alert.json",
         "https://rhsui.com/r/button.json",
-        "https://rhsui.com/r/dialog.json"
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -10983,6 +10991,7 @@
       ],
       "registryDependencies": [
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/sheet.json",
         "https://rhsui.com/r/tooltip.json"
       ],
@@ -11229,6 +11238,7 @@
         "https://rhsui.com/r/input.json",
         "https://rhsui.com/r/popover.json",
         "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/search-input.json",
         "https://rhsui.com/r/slider.json",
         "https://rhsui.com/r/switch.json"
@@ -11353,6 +11363,7 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/dialog.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/search-input.json"
       ],
       "files": [
@@ -11421,6 +11432,7 @@
         "https://rhsui.com/r/form-field.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/result-state.json"
       ],
       "files": [
@@ -11536,6 +11548,7 @@
         "https://rhsui.com/r/form-field.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/result-state.json",
         "https://rhsui.com/r/segmented-control.json",
         "https://rhsui.com/r/textarea.json"
@@ -11660,7 +11673,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/checkbox.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/label.json"
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -11721,6 +11735,7 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input-group.json",
         "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/segmented-control.json",
         "https://rhsui.com/r/switch.json"
       ],
@@ -11781,7 +11796,8 @@
         "https://rhsui.com/r/avatar.json",
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -11841,6 +11857,7 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/dialog.json",
         "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/search-input.json"
       ],
       "files": [
@@ -11899,7 +11916,8 @@
       "registryDependencies": [
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/icons.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -11957,7 +11975,8 @@
         "https://rhsui.com/r/badge.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/popover.json",
-        "https://rhsui.com/r/progress.json"
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12228,7 +12247,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/input.json",
-        "https://rhsui.com/r/label.json"
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12294,6 +12314,7 @@
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/label.json",
         "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/textarea-counter.json"
       ],
       "files": [
@@ -12356,7 +12377,8 @@
         "https://rhsui.com/r/popover.json",
         "https://rhsui.com/r/select.json",
         "https://rhsui.com/r/toggle.json",
-        "https://rhsui.com/r/toggle-group.json"
+        "https://rhsui.com/r/toggle-group.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12415,7 +12437,8 @@
         "https://rhsui.com/r/button.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/kbd.json",
-        "https://rhsui.com/r/popover.json"
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json"
       ],
       "files": [
         {
@@ -12528,6 +12551,7 @@
         "https://rhsui.com/r/calendar.json",
         "https://rhsui.com/r/icons.json",
         "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/render-prop.json",
         "https://rhsui.com/r/select.json"
       ],
       "files": [

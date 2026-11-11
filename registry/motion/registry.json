@@ -20,7 +20,9 @@
       "dependencies": [
         "radix-ui@^1.6.7"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/render-prop.json"
+      ],
       "files": [
         {
           "path": "registry/motion/reveal.tsx",

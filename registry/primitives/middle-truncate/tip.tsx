@@ -3,6 +3,7 @@
 import { useRef, useState, type ReactElement, type ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 
 /** True when the start of the text is wider than its box, or the ending is: something is cut off. */
 function isCut(root: HTMLElement | null): boolean {
@@ -35,7 +36,7 @@ export function TruncateTip({ content, focusable, children }: { content: ReactNo
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           ref={root}
           tabIndex={focusable ? 0 : undefined}
           // The text is already the name; the tooltip repeating it as a description would be read twice.

@@ -6,18 +6,20 @@
   "dependencies": [
     "radix-ui@^1.6.7"
   ],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "https://rhsui.com/r/render-prop.json"
+  ],
   "files": [
     {
       "path": "registry/primitives/radio-group.tsx",
-      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One choice out of a few. Arrow keys move and choose, Tab leaves the group\n * (a roving tabindex), and the circle is visible at rest, not only on hover.\n * Name the group with aria-label, or put it in a <fieldset> with a <legend>.\n */\nexport function RadioGroup({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return <RadioGroupPrimitive.Root data-slot=\"radio-group\" className={cn(\"grid gap-3\", className)} {...props} />;\n}\n\nexport function RadioGroupItem({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"peer inline-flex size-[18px] shrink-0 items-center justify-center rounded-full border border-muted-foreground bg-background shadow-xs\",\n        \"transition-[border-color,box-shadow] duration-150 outline-none hover:border-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"data-[state=checked]:border-primary\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator data-slot=\"radio-group-indicator\" className=\"size-2 rounded-full bg-primary\" />\n    </RadioGroupPrimitive.Item>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\";\n\nimport { renderAs, type RenderProp } from \"@rhs-ui/primitives/render-prop\";\nimport { cn } from \"@/lib/utils\";\n\n/**\n * One choice out of a few. Arrow keys move and choose, Tab leaves the group\n * (a roving tabindex), and the circle is visible at rest, not only on hover.\n * Name the group with aria-label, or put it in a <fieldset> with a <legend>.\n */\nexport function RadioGroup(input: ComponentProps<typeof RadioGroupPrimitive.Root> & RenderProp) {\n  const { className, ...props } = renderAs(input);\n  return <RadioGroupPrimitive.Root data-slot=\"radio-group\" className={cn(\"grid gap-3\", className)} {...props} />;\n}\n\nexport function RadioGroupItem({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"peer inline-flex size-[18px] shrink-0 items-center justify-center rounded-full border border-muted-foreground bg-background shadow-xs\",\n        \"transition-[border-color,box-shadow] duration-150 outline-none hover:border-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"data-[state=checked]:border-primary\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/25\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator data-slot=\"radio-group-indicator\" className=\"size-2 rounded-full bg-primary\" />\n    </RadioGroupPrimitive.Item>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/rhs-ui/primitives/radio-group.tsx"
     }
   ],
   "meta": {
     "tier": "free",
-    "version": "0.5.0",
+    "version": "0.8.0",
     "since": "0.5.0",
     "status": "stable",
     "preview": "inline",

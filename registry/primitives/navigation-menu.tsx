@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 
 import { IconChevronDown } from "@rhs-ui/icons";
+import { renderAs, type RenderProp } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /**
@@ -89,7 +90,8 @@ export function NavigationMenuViewport({ className, ...props }: ComponentProps<t
   );
 }
 
-export function NavigationMenuLink({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+export function NavigationMenuLink(input: ComponentProps<typeof NavigationMenuPrimitive.Link> & RenderProp) {
+  const { className, ...props } = renderAs(input);
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"

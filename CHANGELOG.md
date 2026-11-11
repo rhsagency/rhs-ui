@@ -105,6 +105,21 @@ own `meta.version` and are listed when they change.
   back. The registry's check now measures the frames a demo draws itself, in
   rhsui.com's own fonts, with the preview's padding, and at 320 px (the reflow
   width of WCAG 1.4.10) as well.
+- RHS UI installs into a Base UI project of the shadcn CLI as well as into a
+  Radix one. In a Base UI project (a `base-` style, the default since shadcn 4)
+  the CLI rewrites every `asChild` in the files it installs: onto Base UI's
+  `render` prop when the child is an element, and away when it is not, which
+  left a button around a button. A fresh Base UI project gave 41 type errors on
+  46 Pro items and their free parts. Now 33 parts take `render` as well
+  (`Button`, `Badge`, `CardTitle`, the triggers, closes, anchors, titles and
+  descriptions of `dialog`, `sheet`, `alert-dialog`, `popover`, `tooltip`,
+  `dropdown-menu`, `hover-card` and `context-menu`, `collapsible`,
+  `navigation-menu`, `breadcrumb` and `pagination` links, `radio-group`,
+  `hairline-grid`, `link-card`, `text-link`, `update-highlight` and `reveal`),
+  rendering exactly what `asChild` renders, and every other `asChild` in the
+  registry is a spread the CLI leaves alone (`AS_CHILD`, from the new internal
+  `render-prop`). `check:registry` fails on any `asChild` the rewrite would
+  break, and `test:render-prop` compares the two forms part by part.
 - A component index for tools: `/r/component-index.json` lists every free item with
   its kind, import path, exported components and their props, a usage example and
   what it depends on, plus the theme tokens. Read it instead of the source; a

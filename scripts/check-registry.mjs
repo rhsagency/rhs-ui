@@ -14,6 +14,7 @@
  *    or a namespaced name (fails without namespace setup)
  *  - dependencies never include lucide-react, cn, shadcn, @base-ui/*, @radix-ui/* (use the unified radix-ui)
  *  - names are unique across fragments
+ *  - every asChild survives the shadcn CLI's rewrite in a Base UI project (scripts/aschild.mjs)
  *
  * Negative controls at the end prove the gate can fail. Run: pnpm check:registry
  */
@@ -21,6 +22,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
+import { asChildProblems, asChildSelfTests, renderReady } from "./aschild.mjs";
 import { FAMILIES, familyOf } from "./families.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -326,7 +328,7 @@ function main() {
 const strays = [];
 const items = loadItems(strays);
 const registrySources = registrySourcesOf(items);
-const problems = [...strays, ...aliasProblems(), ...checkItems(items), ...groupNameProblems(registrySources)];
+const problems = [...strays, ...aliasProblems(), ...checkItems(items), ...groupNameProblems(registrySources), ...asChildProblems(registrySources, renderReady(registrySources))];
 for (const pr of problems) console.log(`FAIL ${pr}`);
 
 // Negative controls: every planted mistake must be caught, or the gate proves nothing.
@@ -392,6 +394,7 @@ const selfTests = [
   ["an animated icon naming a glyph that does not exist", animatedMetaProblems({ meta: { motion: "trigger", glyph: "IconNope", usage: "<IconBellAnimated />" }, files: [] }, new Set(["IconBell"]), "export function IconBellAnimated() {}").length === 1],
   ["a complete animated icon", animatedMetaProblems({ meta: { motion: "state", glyph: ["IconLock", "IconUnlock"], usage: "<IconLockAnimated active />" }, files: [] }, new Set(["IconLock", "IconUnlock"]), "export function IconLockAnimated() {}").length === 0],
 ];
+selfTests.push(...asChildSelfTests());
 for (const [name, ok] of selfTests) {
   if (!ok) {
     console.log(`FAIL self-test: ${name}`);

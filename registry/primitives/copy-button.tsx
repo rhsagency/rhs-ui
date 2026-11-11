@@ -6,6 +6,7 @@ import { IconKeyboard } from "@rhs-ui/icons";
 import { IconCopyAnimated } from "@rhs-ui/icons/animated/copy";
 import { Button, type ButtonProps } from "@rhs-ui/primitives/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type CopyStatus = "idle" | "copied" | "manual";
@@ -227,7 +228,7 @@ export function CopyButton({
       {iconOnly ? (
         <TooltipProvider delayDuration={200}>
           <Tooltip open={hovered || status !== "idle"} onOpenChange={setHovered}>
-            <TooltipTrigger asChild>{control}</TooltipTrigger>
+            <TooltipTrigger {...AS_CHILD}>{control}</TooltipTrigger>
             <TooltipContent>{current}</TooltipContent>
           </Tooltip>
         </TooltipProvider>

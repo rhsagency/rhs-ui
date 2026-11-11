@@ -293,7 +293,7 @@ export function CheckoutSignInChoice({
                 ))}
               </ul>
               {createAccountHref || onCreateAccount ? (
-                <Button asChild={Boolean(createAccountHref)} type={createAccountHref ? undefined : "button"} variant="link" onClick={createAccountHref ? undefined : onCreateAccount} className="mt-3 h-auto p-0 underline">
+                <Button {...{ asChild: Boolean(createAccountHref) }} type={createAccountHref ? undefined : "button"} variant="link" onClick={createAccountHref ? undefined : onCreateAccount} className="mt-3 h-auto p-0 underline">
                   {createAccountHref ? <a href={createAccountHref}>{words.createAccount}</a> : words.createAccount}
                 </Button>
               ) : null}

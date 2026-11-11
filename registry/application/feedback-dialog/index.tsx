@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import type { FeedbackDraft, FeedbackLabels, FeedbackType, FeedbackValues } from "@rhs-ui/application/feedback-dialog/feedback";
 import { FeedbackPanel } from "@rhs-ui/application/feedback-dialog/panel";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { FeedbackDraft, FeedbackLabels, FeedbackType, FeedbackValues } from "@rhs-ui/application/feedback-dialog/feedback";
@@ -81,7 +82,7 @@ export function FeedbackDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         ref={content}
         data-slot="feedback-dialog"

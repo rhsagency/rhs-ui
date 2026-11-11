@@ -3,6 +3,7 @@
 import { useRef, useState, type ReactElement, type ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@rhs-ui/primitives/tooltip";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 
 /**
  * The tooltip half of `FormattedNumber`: the full figure behind a compact one.
@@ -26,7 +27,7 @@ export function NumberTip({ content, focusable, children }: { content: ReactNode
         }}
       >
         <TooltipTrigger
-          asChild
+          {...AS_CHILD}
           tabIndex={focusable ? 0 : undefined}
           // iOS Safari only sends a click to an element it takes for clickable, and a pointer cursor says so. Touch only: a mouse keeps its arrow.
           className="[@media(hover:none)]:cursor-pointer"

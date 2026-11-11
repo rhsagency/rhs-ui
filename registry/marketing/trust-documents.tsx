@@ -495,7 +495,7 @@ export function TrustDocuments({
                     labels={labels}
                   />
                 ) : (
-                  <Button asChild={Boolean(doc.href)} variant="outline" size="sm" className={ACTION} disabled={!doc.href}>
+                  <Button {...{ asChild: Boolean(doc.href) }} variant="outline" size="sm" className={ACTION} disabled={!doc.href}>
                     {doc.href ? (
                       <a href={doc.href} download>
                         <IconDownload aria-hidden="true" />

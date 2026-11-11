@@ -6,6 +6,7 @@ import { IconClose } from "@rhs-ui/icons";
 import type { FolderNode, MoveToLabels } from "@rhs-ui/application/move-to-dialog/folders";
 import { MoveToPanel } from "@rhs-ui/application/move-to-dialog/panel";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export type { FolderNode, MoveToLabels } from "@rhs-ui/application/move-to-dialog/folders";
@@ -67,7 +68,7 @@ export function MoveToDialog({ folders, currentFolderId, movingIds, itemCount, m
 
   return (
     <Dialog open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
+      {trigger ? <DialogTrigger {...AS_CHILD}>{trigger}</DialogTrigger> : null}
       <DialogContent
         ref={content}
         data-slot="move-to-dialog"

@@ -5,6 +5,7 @@ import { Dialog as DialogPrimitive } from "radix-ui";
 
 import { IconClose } from "@rhs-ui/icons";
 import { DialogDescription, DialogFooter, DialogOverlay, DialogTitle } from "@rhs-ui/primitives/dialog";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 export interface ResponsiveDialogProps {
@@ -154,7 +155,7 @@ export function ResponsiveDialog({ open, defaultOpen = false, onOpenChange, titl
 
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={change}>
-      {trigger ? <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger> : null}
+      {trigger ? <DialogPrimitive.Trigger {...AS_CHILD}>{trigger}</DialogPrimitive.Trigger> : null}
       <DialogPrimitive.Portal>
         <DialogOverlay />
         <DialogPrimitive.Content

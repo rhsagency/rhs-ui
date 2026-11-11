@@ -3,6 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { IconAlertCircle, IconCheck, IconChevronDown } from "@rhs-ui/icons";
 import { Button } from "@rhs-ui/primitives/button";
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from "@rhs-ui/primitives/popover";
+import { AS_CHILD } from "@rhs-ui/primitives/render-prop";
 import { cn } from "@/lib/utils";
 
 /** Where a step stands. `current` and `upcoming` follow from the `current` prop; `done` and `error` can be set on the step. */
@@ -139,7 +140,7 @@ export function CompactStepper({ steps, current, onStepSelect, allowJumpBack = f
                 return (
                   <li key={step.id} aria-current={index === at ? "step" : undefined}>
                     {jump ? (
-                      <PopoverClose asChild>
+                      <PopoverClose {...AS_CHILD}>
                         {step.href ? (
                           <a href={step.href} onClick={choose} className={cn(shared, "outline-none hover:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/40")}>
                             {row}
