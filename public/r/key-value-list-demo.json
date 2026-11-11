@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "key-value-list-demo",
+  "title": "Key value list demo",
+  "description": "A working preview of Key value list.",
+  "registryDependencies": [
+    "https://rhsui.com/r/key-value-list.json"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/key-value-list-demo.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nimport { KeyValueList, type KeyValueItem } from \"@rhs-ui/primitives/key-value-list\";\n\nconst ENDPOINT = \"https://api.northwind.example/v2/orders/ord_9F3K27XQ/events\";\n\n// The order id links to a page of this app, the endpoint to another site: only that one carries the arrow.\nconst ITEMS: readonly KeyValueItem[] = [\n  { label: \"Order ID\", value: \"ord_9F3K27XQ\", mono: true, copyable: true, href: \"#orders/ord_9F3K27XQ\" },\n  { label: \"Events endpoint\", value: ENDPOINT, mono: true, copyable: true, href: ENDPOINT, tail: 19 },\n  { label: \"Webhook secret\", value: \"whsec_7f4c91d2a8b34e6f90c1d57b\", mono: true, secret: true, copyable: true },\n  { label: \"SHA-256\", value: \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", mono: true, copyable: true },\n  { label: \"Created\", value: \"28 Oct 2026, 14:07 UTC\" },\n  { label: \"Region\", value: \"eu-west-1\" },\n];\n\nfunction Card({ title, caption, children, className }: { title: string; caption: string; children: ReactNode; className?: string }): React.JSX.Element {\n  return (\n    <section className={className}>\n      <p className=\"mb-3 text-xs text-muted-foreground\">{caption}</p>\n      <div className=\"rounded-xl border border-border bg-card p-5 shadow-xs\">\n        <h2 className=\"mb-4 text-sm font-medium tracking-[-0.01em]\">{title}</h2>\n        {children}\n      </div>\n    </section>\n  );\n}\n\nexport default function Demo(): React.JSX.Element {\n  return (\n    <div className=\"grid w-full max-w-2xl gap-10\">\n      <Card\n        className=\"max-w-sm\"\n        title=\"Order ord_9F3K27XQ\"\n        caption=\"Stacked, for a narrow card: each label over its value. The long URL gives up its middle, the secret is dots until you reveal it, and a value that is a link is underlined, with an arrow when it leaves the site\"\n      >\n        <KeyValueList items={ITEMS} />\n      </Card>\n      <Card title=\"Webhook delivery\" caption=\"Two columns when there is room: the labels in a column of their own, and the copy buttons lined up at the end\">\n        <KeyValueList layout=\"columns\" items={ITEMS} hideSecretsAfter={0} />\n      </Card>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ],
+  "type": "registry:example"
+}

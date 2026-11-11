@@ -17647,6 +17647,1563 @@
       ]
     },
     {
+      "name": "selectable-table",
+      "type": "registry:ui",
+      "title": "Selectable table",
+      "description": "Row selection for a table: a checkbox per row, a select-all header with a mixed state, Shift-click ranges, rows that say why they cannot be picked, and a live count.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/disabled-reason.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/selectable-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/selectable-table/index.tsx"
+        },
+        {
+          "path": "registry/primitives/selectable-table/selection.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/selectable-table/selection.ts"
+        }
+      ],
+      "docs": "Give it columns, rows and getRowId, then hold the ids in a Set: selected and onSelectedChange. The header checkbox acts on the rows on screen and keeps ids that are not on screen, so a selection can span pages. Shift-click picks the range between two rows; return a sentence from isRowDisabled to say why a row cannot be picked (the box stays reachable by keyboard). Pass getRowLabel so each checkbox is named for its row. Pair it with SelectionBanner to offer every row across pages."
+    },
+    {
+      "name": "selectable-table-demo",
+      "type": "registry:example",
+      "title": "Selectable table demo",
+      "description": "A working preview of Selectable table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/selectable-table.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/selectable-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "row-actions-menu",
+      "type": "registry:ui",
+      "title": "Row actions menu",
+      "description": "The three-dot menu at the end of a row: named for its row, grouped actions, disabled items that say why, and a destructive item that asks first.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/row-actions-menu/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/row-actions-menu/index.tsx"
+        },
+        {
+          "path": "registry/primitives/row-actions-menu/actions.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/row-actions-menu/actions.ts"
+        }
+      ],
+      "docs": "label names the row ('Invoice 1042'), so the trigger reads 'Actions for Invoice 1042'. actions is a list of { id, label, icon, shortcut, group, destructive, disabled, disabledReason }; groups are divided by rules in the order they first appear. A destructive action opens a confirm popover next to the button and calls onAction only after the confirm. contextMenu also opens the menu on a right-click anywhere on the row and on Shift+F10; the row is the closest tr, [role=row] or li, and a link or a field keeps the browser's own menu. Shortcuts are display only. After a confirmed delete the row, and the focus that was on its button, are gone: move focus to the actions button of the next row yourself (the one above when it was the last, a restore link or the table when none are left). The demo does it with a layout effect keyed on the rows."
+    },
+    {
+      "name": "row-actions-menu-demo",
+      "type": "registry:example",
+      "title": "Row actions menu demo",
+      "description": "A working preview of Row actions menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/row-actions-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/row-actions-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "selection-banner",
+      "type": "registry:ui",
+      "title": "Selection banner",
+      "description": "The line under a table header that offers to select every row across all pages once the whole page is selected.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/selection-banner.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/selection-banner.tsx"
+        }
+      ],
+      "docs": "Mount it when every row of the page is selected. It reads 'All 25 orders on this page are selected' with 'Select all 312 orders'; once allSelected is true it reads 'All 312 orders are selected' with 'Clear selection'. Keeping the 'everything matching the query' flag is yours, because only you know what all 312 means. It is one button that changes its words, so focus stays on it. Clear selection is the exception: it removes the banner and the button that had the focus, so in onClear move focus to the header checkbox of the table first (the demo does)."
+    },
+    {
+      "name": "selection-banner-demo",
+      "type": "registry:example",
+      "title": "Selection banner demo",
+      "description": "A working preview of Selection banner.",
+      "registryDependencies": [
+        "https://rhsui.com/r/selection-banner.json",
+        "https://rhsui.com/r/selectable-table.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/selection-banner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table-states",
+      "type": "registry:ui",
+      "title": "Table states",
+      "description": "The four states of a table body, loading, empty, no results after filtering and a failed load with retry, all kept inside the table.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/skeleton.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/table-states/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-states/index.tsx"
+        },
+        {
+          "path": "registry/primitives/table-states/words.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-states/words.ts"
+        }
+      ],
+      "docs": "Put TableBodyState where the TableBody would be: it renders its own tbody, so the header stays put from one state to the next. For the columns to hold their widths when the rows arrive too, give the table table-fixed and widths on its header cells (w-28 and so on, one column left automatic): a table that sizes its columns to what is in them re-flows when that changes, and no body can prevent it. Give columnCount the number of columns and rowCount about a page of rows, so loading takes the height the rows will. A message is one cell across all columns; its words reach a screen reader through a status region that exists before the words do. filters names the active filters in the filtered-empty state; onClear and onRetry add the buttons. Retry and Clear filters are removed by the state they cause, so while the body stays mounted it takes the focus they had (it is focusable by script and is not a tab stop). When you swap it for your own rows, move focus yourself, to the table or its first row."
+    },
+    {
+      "name": "table-states-demo",
+      "type": "registry:example",
+      "title": "Table states demo",
+      "description": "A working preview of Table states.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table-states.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-states-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sticky-table",
+      "type": "registry:ui",
+      "title": "Sticky table",
+      "description": "A table in its own scroll area with a sticky header and a pinned first column, edge shadows appearing only when there is more to scroll.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/sticky-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sticky-table/index.tsx"
+        }
+      ],
+      "docs": "Pass the Table parts (TableHeader, TableBody, TableFooter) as children, not a Table, and a label for the scroll box. maxHeight sets where rows start to scroll under the header; stickyColumns pins up to three leading columns. A table scrolls sideways only when its columns want more room than the box has: give it a min-w through tableClassName or its cells whitespace-nowrap. scrollRef reaches the scrolling box."
+    },
+    {
+      "name": "sticky-table-demo",
+      "type": "registry:example",
+      "title": "Sticky table demo",
+      "description": "A working preview of Sticky table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sticky-table.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sticky-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "responsive-table",
+      "type": "registry:ui",
+      "title": "Responsive table",
+      "description": "A table that turns into stacked label and value cards when its own box is narrow, with the table semantics kept for screen readers.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/responsive-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/responsive-table/index.tsx"
+        }
+      ],
+      "docs": "Below 40rem of its own width each row is a card; the switch is a container query, so a sidebar, a dialog and a page behave alike. header must be plain text, because it is also the label in front of a value in a card. priority 2 and 3 columns leave the table as the box narrows (below 48rem and 60rem) and always show in a card. primary names the column that becomes the title and the row header; getRowHref turns it into a link, or the whole card in the card layout. Give it a box with a width: a flex item needs w-full or min-w-0."
+    },
+    {
+      "name": "responsive-table-demo",
+      "type": "registry:example",
+      "title": "Responsive table demo",
+      "description": "A working preview of Responsive table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/responsive-table.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/responsive-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "numeric-table",
+      "type": "registry:ui",
+      "title": "Numeric table",
+      "description": "A table of figures set properly: right-aligned tabular numbers, units in the header, readable negatives and a totals row.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/numeric-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/numeric-table/index.tsx"
+        },
+        {
+          "path": "registry/primitives/numeric-table/format.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/numeric-table/format.ts"
+        }
+      ],
+      "docs": "Columns declare kind (number, currency, percent or text), precision and unit; percent values are fractions. Figures are written by Intl for the locale you give, with a true minus sign and the word 'negative' for a screen reader. mark: 'highest', 'lowest' or 'both' marks a column's extremes with an arrow and words. total: 'sum', 'average' or a function fills the tfoot row; missing values read 'no data' and are left out of the sums, never counted as zero. The helpers in format.ts work on the server too."
+    },
+    {
+      "name": "numeric-table-demo",
+      "type": "registry:example",
+      "title": "Numeric table demo",
+      "description": "A working preview of Numeric table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/numeric-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/numeric-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "expandable-table",
+      "type": "registry:ui",
+      "title": "Expandable table",
+      "description": "A table whose rows open a detail panel underneath: one button per row, aria-expanded and an expand-all control.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/expandable-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/expandable-table/index.tsx"
+        }
+      ],
+      "docs": "renderDetail(row) draws the panel, a row of its own that spans every column. Each row's button is named 'Expand row {label}' (give getRowLabel) with aria-expanded and aria-controls; a closed panel is aria-hidden and inert, and opening eases the height unless reduced motion is on. expanded and onExpandedChange hold the open ids as a Set; mode 'single' keeps one open and drops the expand-all button, which otherwise shows a mixed state while only some rows are open."
+    },
+    {
+      "name": "expandable-table-demo",
+      "type": "registry:example",
+      "title": "Expandable table demo",
+      "description": "A working preview of Expandable table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/expandable-table.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/expandable-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "key-value-list",
+      "type": "registry:ui",
+      "title": "Key value list",
+      "description": "Technical facts you copy: IDs, URLs and hashes in mono, a copy button per row, long values cut in the middle, secrets masked.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/masked-value.json",
+        "https://rhsui.com/r/middle-truncate.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/key-value-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/key-value-list/index.tsx"
+        }
+      ],
+      "docs": "items are { label, value, copyable, mono, secret, href }. It is the description list's dl markup, so a screen reader hears the same terms and values. A copyable row's button is named 'Copy order ID' and confirms with 'Copied order ID'; a secret stays dots until its reveal button is pressed and hides again after hideSecretsAfter seconds; a long string value gives up its middle, with the whole text in a tooltip and for a screen reader. A value with an href is underlined at rest, and a link to another site (https://) carries a small arrow. A secret needs a string value: any other node stays dots with no reveal button, and development logs an error. layout 'columns' puts the labels beside the values once the list is 28rem wide; it measures its own width, so give it a box that has one."
+    },
+    {
+      "name": "key-value-list-demo",
+      "type": "registry:example",
+      "title": "Key value list demo",
+      "description": "A working preview of Key value list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/key-value-list.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/key-value-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table-density-toggle",
+      "type": "registry:ui",
+      "title": "Table density toggle",
+      "description": "Compact, comfortable or spacious rows: a small segmented control plus a context that every table cell reads.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/table-density-toggle/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-density-toggle/index.tsx"
+        },
+        {
+          "path": "registry/primitives/table-density-toggle/density.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-density-toggle/density.ts"
+        }
+      ],
+      "docs": "Wrap the tables and the control in TableDensityProvider. It sets data-density on a display: contents wrapper and every td and th below takes its height (32, 44 or 56px) and text size from it, whether it comes from this kit's Table or a plain table. value, onValueChange, defaultValue and storageKey work as in any controlled field; with storageKey the choice is remembered, the first render uses defaultValue and the stored choice follows. useTableDensity() gives a cell of your own the density. A cell that sets its own height and padding (a panel that spans the table, a message) opts out with data-density-skip, and so does everything inside it: a table in an expandable panel keeps its own sizes. The control takes what a div takes (id, aria-*, data-*) for the group of three."
+    },
+    {
+      "name": "table-density-toggle-demo",
+      "type": "registry:example",
+      "title": "Table density toggle demo",
+      "description": "A working preview of Table density toggle.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table-density-toggle.json",
+        "https://rhsui.com/r/expandable-table.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-density-toggle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "unsaved-changes-dialog",
+      "type": "registry:ui",
+      "title": "Unsaved changes dialog",
+      "description": "The question before leaving a form with changes: Save, Discard or Keep editing, with a guard hook for link clicks, the Back button and the browser's own prompt.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/unsaved-changes-dialog/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/unsaved-changes-dialog/index.tsx"
+        },
+        {
+          "path": "registry/primitives/unsaved-changes-dialog/use-leave-guard.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/unsaved-changes-dialog/use-leave-guard.ts"
+        }
+      ],
+      "docs": "The dialog is only the question and useLeaveGuard(dirty) is the guard; either works alone. Spread guard.dialogProps onto the dialog and give it onSave: resolve true (or nothing) to save and leave, resolve false or throw to stay open and show why. Without onSave there are two answers and Discard turns solid. The guard catches a link click before your router and clicks the link again on leave; it catches Back with one extra history entry of its own; and it registers the browser's own prompt for closing the tab or reloading. A router.push from a button cannot be seen: wrap it in guard.request(() => router.push(url)). The extra entry has a cost: while there are changes the page is in the history twice, and a leave through a link or request first steps back off it (your router sees a Back to the same page), so the history stays page, next page."
+    },
+    {
+      "name": "unsaved-changes-dialog-demo",
+      "type": "registry:example",
+      "title": "Unsaved changes dialog demo",
+      "description": "A working preview of Unsaved changes dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/unsaved-changes-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/unsaved-changes-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "progress-dialog",
+      "type": "registry:ui",
+      "title": "Progress dialog",
+      "description": "A modal for a long task: a real progress bar read out every ten percent, the step in words, a cancel that asks once, and a done or failed end state in place.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/progress-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/progress-dialog.tsx"
+        }
+      ],
+      "docs": "Set status to running, done, failed or cancelled and the body follows in place; focus moves to the primary button of the end state. progress runs from 0 to 1, and leaving it out gives a bar with no length. The bar is announced politely every ten percent, and a step label that is the only news at most every five seconds. onCancel runs after the person confirms the question; you set status to cancelled when it is carried out. onBackground hands the task back to the page: close the dialog and show your own banner. result is the body of the done state, with its next action; error and onRetry belong to the failed one. Escape and a click outside never close a running task."
+    },
+    {
+      "name": "progress-dialog-demo",
+      "type": "registry:example",
+      "title": "Progress dialog demo",
+      "description": "A working preview of Progress dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/progress-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/progress-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "action-sheet",
+      "type": "registry:ui",
+      "title": "Action sheet",
+      "description": "The mobile list of actions that rises from the bottom edge: large rows, a destructive row last, a separate Cancel, menu keys, and a narrow dialog on wide screens.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "overlay"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/drawer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/action-sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/action-sheet.tsx"
+        }
+      ],
+      "docs": "actions are plain objects: label, icon (an element), onSelect, destructive, disabled and description. Destructive rows are moved to the end. The list is a menu: one tab stop, the arrow keys, Home, End and type-ahead; a disabled row stays reachable so its description can say why. Below 640px (breakpoint), and on any screen under 560px tall such as a phone held sideways, it is a Drawer, so a drag on the handle or a tap on the backdrop dismisses it; from 640px wide on a taller screen it is a narrow Dialog with the same list. In both the rows scroll when the screen is too short for them and the Cancel stays in view. With a trigger, focus goes back to it on close; without one (open with `open`) give focus back yourself in onOpenChange. For more than about seven choices use a menu or a list instead."
+    },
+    {
+      "name": "action-sheet-demo",
+      "type": "registry:example",
+      "title": "Action sheet demo",
+      "description": "A working preview of Action sheet.",
+      "registryDependencies": [
+        "https://rhsui.com/r/action-sheet.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/action-sheet-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-sheet",
+      "type": "registry:ui",
+      "title": "Form sheet",
+      "description": "A side sheet built for editing: header and footer in view, a scrolling body with edge shadows, a Discard changes? guard, and a problem summary after a failed save.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/sheet.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/form-sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/form-sheet.tsx"
+        }
+      ],
+      "docs": "onSubmit receives the form's FormData. To fail, return a list of { field, message } or throw an Error: the sheet stays open with a summary at the top and focus on the first invalid field, so mark invalid controls aria-invalid=\"true\". dirty makes closing by the corner button, Cancel, Escape or the backdrop ask Discard changes? first, and Keep editing puts focus back where it was. While onSubmit is pending (or pending is true) the fields, which sit in one fieldset, and the close button are locked, and the Save button says it is busy. side is right or left on a wide screen and a bottom sheet on a phone."
+    },
+    {
+      "name": "form-sheet-demo",
+      "type": "registry:example",
+      "title": "Form sheet demo",
+      "description": "A working preview of Form sheet.",
+      "registryDependencies": [
+        "https://rhsui.com/r/form-sheet.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/switch.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/form-sheet-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "help-popover",
+      "type": "registry:ui",
+      "title": "Help popover",
+      "description": "The small question-mark button beside a label that opens a short explanation with a link or two, for touch, keyboard and screen readers.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/help-popover.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/help-popover.tsx"
+        }
+      ],
+      "docs": "label is required: it names the button after what it explains (Help: API rate limit). With side=\"auto\" the popover opens to the right of the field when the label next to the button names one (label for) and there is room, above the label otherwise, and below the field when there is no room above either, so it does not sit on the field. The content can be paragraphs, a list, strong text or a short code sample, which wraps instead of scrolling. A link with external opens in a new tab with noopener and says so to screen readers. It is a non-modal popover: Escape closes it, focus returns to the button, and opening another help button closes the first."
+    },
+    {
+      "name": "help-popover-demo",
+      "type": "registry:example",
+      "title": "Help popover demo",
+      "description": "A working preview of Help popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/help-popover.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/help-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "truncate-tooltip",
+      "type": "registry:ui",
+      "title": "Truncate tooltip",
+      "description": "Text that ends in an ellipsis and shows the full text in a tooltip only when it is actually cut off, by hover, keyboard focus or a tap.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/truncate-tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/truncate-tooltip.tsx"
+        }
+      ],
+      "docs": "Give it a width to work in: a flex child with min-w-0, a table cell in a fixed layout, or a box with a maximum width. lines sets a clamp to that many lines. It measures after layout, on resize and when web fonts arrive, and only a cut-off text gets the tooltip and a tab stop, so a table of names adds no tab stop to rows that fit. The text stays whole in the DOM, so screen readers and copy get all of it. On touch a tap toggles the tooltip."
+    },
+    {
+      "name": "truncate-tooltip-demo",
+      "type": "registry:example",
+      "title": "Truncate tooltip demo",
+      "description": "A working preview of Truncate tooltip.",
+      "registryDependencies": [
+        "https://rhsui.com/r/truncate-tooltip.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/slider.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/truncate-tooltip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "go-to-dialog",
+      "type": "registry:ui",
+      "title": "Go to dialog",
+      "description": "Jump to a page, line, row or date from the keyboard: a one-field dialog opened by a shortcut, with the range as its hint, as-you-type checks and Enter to go.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/date-field.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/go-to-dialog/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/go-to-dialog/index.tsx"
+        },
+        {
+          "path": "registry/primitives/go-to-dialog/shortcut.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/go-to-dialog/shortcut.ts"
+        },
+        {
+          "path": "registry/primitives/go-to-dialog/validate.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/go-to-dialog/validate.ts"
+        }
+      ],
+      "docs": "kind is number or date. A number is checked as it is typed (whole numbers, between min and max) and named in words; a date is the library's DateField in the order the locale writes it. min, max and defaultValue are numbers, or ISO dates for a date. onGo runs once the dialog has closed and given focus back, so you can move focus to where you went. shortcut defaults to mod+g (Command on a Mac, Control elsewhere), is ignored while someone types in another field or another modal is open, and false turns it off. validate.ts has checkNumber, to run the same check on the server."
+    },
+    {
+      "name": "go-to-dialog-demo",
+      "type": "registry:example",
+      "title": "Go to dialog demo",
+      "description": "A working preview of Go to dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/go-to-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/go-to-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "video-dialog",
+      "type": "registry:ui",
+      "title": "Video dialog",
+      "description": "Watch the video in a dialog: a poster with a play button opens a player at the video's proportions that starts on open, stops on close and returns focus.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [
+        "radix-ui@^1.6.7"
+      ],
+      "registryDependencies": [
+        "https://rhsui.com/r/aspect-ratio.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/video-dialog/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/video-dialog/index.tsx"
+        },
+        {
+          "path": "registry/primitives/video-dialog/embed.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/video-dialog/embed.ts"
+        }
+      ],
+      "docs": "title is required: it is the dialog's title and names the player and the iframe. Give sources (best first, with their type) or an embedUrl. The player exists only while the dialog is open: it starts when the browser allows sound, otherwise muted with a hint to turn it on, and it is paused the moment the dialog closes. An embedUrl is shown in a titled iframe that is created after the dialog opens; only http, https and your own paths are used, and your Content-Security-Policy must allow the host in frame-src. trigger is any single element: leave it out for a poster button, pass null to open it yourself with open. The open animation is skipped under reduced motion."
+    },
+    {
+      "name": "video-dialog-demo",
+      "type": "registry:example",
+      "title": "Video dialog demo",
+      "description": "A working preview of Video dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/video-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/video-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cell-preview-popover",
+      "type": "registry:ui",
+      "title": "Cell preview popover",
+      "description": "Peek at the full value of a cut-off table cell: long text, a JSON blob or a URL in a scrollable monospaced popover with Copy.",
+      "categories": [
+        "primitives",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/cell-preview-popover/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cell-preview-popover/index.tsx"
+        },
+        {
+          "path": "registry/primitives/cell-preview-popover/format.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/cell-preview-popover/format.ts"
+        }
+      ],
+      "docs": "Use it in a table with table-fixed, or in any box with a width. kind is text, json (pretty-printed, keys in a quieter grey) or url (a link that opens a new tab; only http and https addresses become links). maxLines is how many lines the cell shows before the ellipsis. children replaces what the cell shows; the popover still shows the value. The expand mark appears only when the text is cut off. The cell is a button with aria-expanded; Escape closes the popover. The popover is never taller than the room the screen leaves: the value scrolls inside it and Copy stays in view. format.ts has fullText and cellText for the server."
+    },
+    {
+      "name": "cell-preview-popover-demo",
+      "type": "registry:example",
+      "title": "Cell preview popover demo",
+      "description": "A working preview of Cell preview popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/cell-preview-popover.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/cell-preview-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sortable-table",
+      "type": "registry:ui",
+      "title": "Sortable table",
+      "description": "A table driven by a column list that sorts on header click, with aria-sort on the active header, a stable order, and text, numbers and dates each compared the right way.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/sortable-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sortable-table/index.tsx"
+        },
+        {
+          "path": "registry/primitives/sortable-table/sort.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/sortable-table/sort.ts"
+        }
+      ],
+      "docs": "columns take key, header, align, sortType (text, number or date, or false for no sort), accessor and cell; a header cycles ascending, descending, off. Text is ordered by Intl.Collator for the locale with numbers in natural order, numbers and ISO dates by value, empty values are always last and equal rows keep their order. Only the sorted header has aria-sort, and a polite line says what changed. Use getRowId for stable keys, and sort (with onSortChange) or defaultSort. cell and accessor are functions, so render it from a client component. sort.ts has sortRows for sorting on the server."
+    },
+    {
+      "name": "sortable-table-demo",
+      "type": "registry:example",
+      "title": "Sortable table demo",
+      "description": "A working preview of Sortable table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/sortable-table.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/sortable-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "column-header-menu",
+      "type": "registry:ui",
+      "title": "Column header menu",
+      "description": "A column header with a menu: sort ascending or descending, clear the sort, hide the column, pin it left or right. Each group shows only when you pass its callback.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/column-header-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/column-header-menu.tsx"
+        }
+      ],
+      "docs": "Use it as the header cell of a column: give it the label, the current sort and the callbacks you support, and the menu shows only those groups. It sets aria-sort on the th itself while the column is sorted, so never add it yourself. Hiding removes the button, so move the focus to the table afterwards. Pinning only reports the edge: the sticky positioning is yours."
+    },
+    {
+      "name": "column-header-menu-demo",
+      "type": "registry:example",
+      "title": "Column header menu demo",
+      "description": "A working preview of Column header menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/column-header-menu.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/column-header-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table-cells",
+      "type": "registry:ui",
+      "title": "Table cells",
+      "description": "The seven cells every table needs, aligned and truncating correctly: person, date, money, status, progress, tags and actions.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/progress.json",
+        "https://rhsui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/table-cells/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-cells/index.tsx"
+        },
+        {
+          "path": "registry/primitives/table-cells/date-cell.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-cells/date-cell.tsx"
+        },
+        {
+          "path": "registry/primitives/table-cells/format.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-cells/format.ts"
+        }
+      ],
+      "docs": "Put each cell inside a TableCell and give it plain values: IdentityCell a name, DateCell a date with a locale and time zone, MoneyCell an amount and a currency. Pass now to DateCell when the text must read the same every time. Give the header of a money or number column text-right, and change where a cell truncates with a max-width class. IdentityCell keeps its avatar at one size with or without a detail line (size sm, default or lg), so a column of people stays straight."
+    },
+    {
+      "name": "table-cells-demo",
+      "type": "registry:example",
+      "title": "Table cells demo",
+      "description": "A working preview of Table cells.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table-cells.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-cells-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "linked-row-table",
+      "type": "registry:ui",
+      "title": "Linked row table",
+      "description": "Whole-row navigation done right: one real link per row, buttons inside still work, and Cmd-click opens a new tab.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/linked-row-table.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/linked-row-table.tsx"
+        }
+      ],
+      "docs": "Give it columns, rows, getRowHref and the key of the column that holds the name of the row, which becomes the link. Mark columns with buttons, checkboxes or menus as interactive so they sit above the link. Use onRowClick to route on the client; a Cmd, Ctrl or middle click still opens the address in a new tab. Because the link covers the row, text in it cannot be selected. className goes to the box around the table and tableClassName to the table itself; the other props (aria-label, id) go to the table."
+    },
+    {
+      "name": "linked-row-table-demo",
+      "type": "registry:example",
+      "title": "Linked row table demo",
+      "description": "A working preview of Linked row table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/linked-row-table.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/linked-row-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "editable-cell",
+      "type": "registry:ui",
+      "title": "Editable cell",
+      "description": "A table cell that edits in place like a spreadsheet: Enter to edit, Enter to save, Escape to cancel, with validation and a saving state.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/editable-cell/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/editable-cell/index.tsx"
+        }
+      ],
+      "docs": "Put it in a TableCell with a value, a label and onCommit. Return a promise from onCommit to show the saving state; reject with an Error whose message is written for people, and the old value comes back with that line under it. Use type number or select for those fields, and validate to refuse a value with a message that shows under the cell. The cell follows value whenever it changes. A mouse starts an edit with a double-click, Enter or F2, and says so on hover; a tap starts it at once on a touch screen."
+    },
+    {
+      "name": "editable-cell-demo",
+      "type": "registry:example",
+      "title": "Editable cell demo",
+      "description": "A working preview of Editable cell.",
+      "registryDependencies": [
+        "https://rhsui.com/r/editable-cell.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/editable-cell-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "grouped-list",
+      "type": "registry:ui",
+      "title": "Grouped list",
+      "description": "A long list under sticky group headers (days, letters, teams) with counts and an optional A to Z jump rail.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/grouped-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/grouped-list/index.tsx"
+        }
+      ],
+      "docs": "Give it groups of items, a renderItem function and a height such as h-96, because it scrolls inside. The id of a group can be a date: pass getGroupLabel to write it as Today or Yesterday. Turn on indexRail for alphabetical lists; groups with no items are left out, so the rail has no empty letters. The rail is one Tab stop: Up, Down, Home and End walk its letters, Enter or Space jump. Each button is 24 pixels tall, so give the list about 24 pixels per group (h-[34rem] for A to Z) or the rail scrolls."
+    },
+    {
+      "name": "grouped-list-demo",
+      "type": "registry:example",
+      "title": "Grouped list demo",
+      "description": "A working preview of Grouped list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/grouped-list.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/grouped-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pinnable-list",
+      "type": "registry:ui",
+      "title": "Pinnable list",
+      "description": "A list where items can be pinned to the top: a Pinned group, a pin toggle on each row and an order you control.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/pinnable-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/pinnable-list/index.tsx"
+        }
+      ],
+      "docs": "Give it items with an id and a label, and hold the pinned ids yourself (pinned and onPinnedChange) or let it hold them (defaultPinned). The order of items is the order inside each group. Set maxPinned to cap it: at the limit the other pin buttons switch off and the reason is written under the group title."
+    },
+    {
+      "name": "pinnable-list-demo",
+      "type": "registry:example",
+      "title": "Pinnable list demo",
+      "description": "A working preview of Pinnable list.",
+      "registryDependencies": [
+        "https://rhsui.com/r/pinnable-list.json",
+        "https://rhsui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/pinnable-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table-export-menu",
+      "type": "registry:ui",
+      "title": "Table export menu",
+      "description": "An Export menu for any table: download the rows as CSV or copy them for a spreadsheet, with no server involved.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/table-export-menu/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-export-menu/index.tsx"
+        },
+        {
+          "path": "registry/primitives/table-export-menu/export.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-export-menu/export.ts"
+        }
+      ],
+      "docs": "Describe the file with columns (a key, a header and an optional exportValue for raw values) and pass rows, or getRows to build them only when asked. The file is built in the browser: UTF-8 with a byte order mark for Excel, quotes escaped, hidden columns skipped. Use a semicolon delimiter for locales that write decimals with a comma, and onExported to show your own toast. After an export the button shows a check and one short word for a moment (the labels downloadedShort, copiedShort and so on), so the toolbar does not move; the whole line is announced to screen readers and set as the title."
+    },
+    {
+      "name": "table-export-menu-demo",
+      "type": "registry:example",
+      "title": "Table export menu demo",
+      "description": "A working preview of Table export menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table-export-menu.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-export-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "table-column-resizer",
+      "type": "registry:ui",
+      "title": "Table column resizer",
+      "description": "A drag handle for a column header that resizes with the pointer or arrow keys, with limits, a reset and a live width.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/primitives/table-column-resizer.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/table-column-resizer.tsx"
+        }
+      ],
+      "docs": "Place it inside a TableHead with className relative, hold the width in state and pass it as width and onWidthChange. Put the same width on the header cell and set table-layout fixed on the table, with a table width that is the sum of its columns. Pass defaultWidth so Enter and a double-click can reset the column, and onResizeEnd to save the widths. The handle of the last column stays inside its cell, so the table is never wider than the sum of its columns. Left and Right move 8 pixels (32 with Shift), Home and End go to the limits."
+    },
+    {
+      "name": "table-column-resizer-demo",
+      "type": "registry:example",
+      "title": "Table column resizer demo",
+      "description": "A working preview of Table column resizer.",
+      "registryDependencies": [
+        "https://rhsui.com/r/table-column-resizer.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/table-column-resizer-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "column-group-table",
+      "type": "registry:ui",
+      "title": "Column group table",
+      "description": "A table with grouped column headers: spanning headers over sub-columns, built with proper scope so screen readers still hear them.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/column-group-table/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/column-group-table/index.tsx"
+        }
+      ],
+      "docs": "Give it columnGroups (an id, a label and columns), rows and an optional rowHeader. Give a group a summary column key and it can be folded down to that column. Pass label to name the scroll box and a caption to say what the figures are. Columns read row[key]; use accessor and cell for anything else. With a rowHeader, the label of a group and its button stay beside the row names while the group's columns scroll under them."
+    },
+    {
+      "name": "column-group-table-demo",
+      "type": "registry:example",
+      "title": "Column group table demo",
+      "description": "A working preview of Column group table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/column-group-table.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/column-group-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navigable-grid",
+      "type": "registry:ui",
+      "title": "Navigable grid",
+      "description": "A table with the spreadsheet keyboard model: arrow keys between cells, Home and End along a row, one cell in the tab order, and Enter to reach the controls inside.",
+      "categories": [
+        "primitives",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/primitives/navigable-grid/index.tsx",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/navigable-grid/index.tsx"
+        },
+        {
+          "path": "registry/primitives/navigable-grid/navigation.ts",
+          "type": "registry:ui",
+          "target": "components/rhs-ui/primitives/navigable-grid/navigation.ts"
+        }
+      ],
+      "docs": "Give it columns and rows and name it with a caption or an aria-label. The grid is one Tab stop: arrows move one cell, Home and End go to the ends of the row, Ctrl+Home and Ctrl+End to the corners, PageUp and PageDown by a screenful. Buttons, checkboxes and inputs in cells leave the Tab order until you press Enter or F2 on their cell; Escape hands the focus back, and Tab walks that cell's controls and then leaves the grid. Mark the column that names the row with rowHeader, read where the person is from onCellFocus, and hide columns with CSS if you like: the keyboard steps over them. Keep columns the same array between renders and moving the cursor redraws two rows, not all of them."
+    },
+    {
+      "name": "navigable-grid-demo",
+      "type": "registry:example",
+      "title": "Navigable grid demo",
+      "description": "A working preview of Navigable grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/navigable-grid.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/checkbox.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/navigable-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "icons",
       "type": "registry:ui",
       "title": "Icons",
@@ -50631,6 +52188,1156 @@
       "files": [
         {
           "path": "registry/examples/embed-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "event-details-popover",
+      "type": "registry:component",
+      "title": "Event details popover",
+      "description": "Click an event on a calendar to read it: title, time in the viewer's zone, place, people and actions, in a panel anchored to the chip.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/event-details-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-details-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/event-details-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-details-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/event-details-popover/event.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/event-details-popover/event.ts"
+        }
+      ],
+      "docs": "Pass event and the event chip as children: the chip opens the panel. viewerTimeZone is the reader's own IANA zone; when its clock differs from the event's, both are written, each with the name of its zone. A cancelled event has its title struck through and says Cancelled, a tentative one says so, one that is on says Happening now and one that is over says how long ago (pass now for the same text on the server and in the browser). A long description is cut to four lines with a Show more button that appears only when something is hidden. actions takes your own Buttons for the foot. The popover is non-modal: Escape or a click outside closes it and focus goes back to the chip. The panel is never taller than the room there is: on a short screen it scrolls inside itself and its close button stays in view. EventDetailsPanel is the same content without the popover, for a side panel or a sheet."
+    },
+    {
+      "name": "event-details-popover-demo",
+      "type": "registry:example",
+      "title": "Event details popover demo",
+      "description": "A working preview of Event details popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/event-details-popover.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/event-chip.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/event-details-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "template-picker-dialog",
+      "type": "registry:component",
+      "title": "Template picker dialog",
+      "description": "Start from a template: a dialog with search, categories, a grid of cards, a preview of the one in focus and Blank always first.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/template-picker-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/template-picker-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/template-picker-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/template-picker-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/template-picker-dialog/templates.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/template-picker-dialog/templates.ts"
+        }
+      ],
+      "docs": "Pass templates ({ id, name, description, category, preview, tags }) and categories ({ id, label }). The preview is any node that fills its box, such as an SVG with a viewBox, because it is drawn small on the card and larger beside the grid. onSelect receives the template id, or null for Blank, which is always the first card and the default. Return a promise and the dialog locks while it runs, cannot be closed and closes when it resolves; if it rejects, it stays open and says why. The arrow keys move across the grid and choose, Enter makes it, and Escape empties a search before it closes the dialog. Below 640px the side panel becomes a sheet at the foot. What is chosen is always in the grid: a pick that a search or a category hides is set aside and Blank stands in until the filter lets go of it, and a search that finds nothing in the open category says where the matches are and offers Search all templates. TemplatePickerPanel is the inside of the dialog, for a page of its own. labels translates every word."
+    },
+    {
+      "name": "template-picker-dialog-demo",
+      "type": "registry:example",
+      "title": "Template picker dialog demo",
+      "description": "A working preview of Template picker dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/template-picker-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/template-picker-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recommendation-reason-popover",
+      "type": "registry:component",
+      "title": "Recommendation reason popover",
+      "description": "Answer why am I seeing this next to a recommendation or ad: the reasons in plain words, and one-step controls to see less of it.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/recommendation-reason-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recommendation-reason-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/recommendation-reason-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recommendation-reason-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/recommendation-reason-popover/reasons.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recommendation-reason-popover/reasons.ts"
+        }
+      ],
+      "docs": "Pass reasons ({ label, detail, kind }) in plain language, most important first, and sponsored ({ by, note }) for an ad: it says so before anything else and names who paid. onLessLikeThis and onHide add real buttons; return a promise and the row spins, then confirms in its own place (We will show you less like this), and if it rejects the row goes back and says why. settingsHref adds the link to your personalisation settings. trigger replaces the small info button, which is named Why am I seeing this? (title changes both). The panel is a non-modal popover, so it works with touch, keyboard and screen readers, and Escape returns focus to the button. On a short screen the panel scrolls inside itself and its close button stays in view. RecommendationReasonPanel is the same content without the popover. labels translates every word."
+    },
+    {
+      "name": "recommendation-reason-popover-demo",
+      "type": "registry:example",
+      "title": "Recommendation reason popover demo",
+      "description": "A working preview of Recommendation reason popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recommendation-reason-popover.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recommendation-reason-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "document-stats-popover",
+      "type": "registry:component",
+      "title": "Document stats popover",
+      "description": "Words, characters, sentences and reading time for a document or the current selection, with an optional goal, from the editor footer.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/document-stats-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/document-stats-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/document-stats-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/document-stats-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/document-stats-popover/stats.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/document-stats-popover/stats.ts"
+        }
+      ],
+      "docs": "Pass text, and selectionText while something is selected: the button reads 412 words (or 36 of 412 words) and the panel shows words, characters with and without spaces, sentences, paragraphs and the time to read and to say it aloud, tagged Document or Selection. Words and sentences are counted by the rules of the locale. goal adds a bar and Goal: 800 words, 388 to go. A text over 20,000 characters is counted in idle time, so typing never waits for it, and a screen reader hears the new count only once typing has paused. wordsPerMinute and speakingWordsPerMinute set the pace. trigger replaces the button. The panel is never taller than the room there is; on a short screen it scrolls inside itself. countText, in the item's stats file, counts a text for DocumentStatsPanel when you use the panel alone."
+    },
+    {
+      "name": "document-stats-popover-demo",
+      "type": "registry:example",
+      "title": "Document stats popover demo",
+      "description": "A working preview of Document stats popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/document-stats-popover.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/document-stats-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "props-table",
+      "type": "registry:component",
+      "title": "Props table",
+      "description": "An API reference table for docs: name, type, default, required and description, with nested object props that expand.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/props-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/props-table/index.tsx"
+        },
+        {
+          "path": "registry/application/props-table/props.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/props-table/props.ts"
+        }
+      ],
+      "docs": "Pass rows ({ name, type, defaultValue, required, description, children, group }). A union type breaks at its pipes, a required prop carries the word Required and a prop with no default says None. A row with children has a button that opens its fields beneath it, indented, to any depth; defaultExpanded opens some at the start. Every row has an id (prop-variant, or data-table-variant with idPrefix) and a link: opening the page at one opens what holds it, scrolls there and highlights the row. Below 42rem of width each prop becomes a block with its name on top, and the rows keep their table semantics for screen readers. labels translates every word."
+    },
+    {
+      "name": "props-table-demo",
+      "type": "registry:example",
+      "title": "Props table demo",
+      "description": "A working preview of Props table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/props-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/props-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "timesheet-grid",
+      "type": "registry:component",
+      "title": "Timesheet grid",
+      "description": "A weekly timesheet: projects down, days across, hours in each cell, with row and day totals, a daily target and week navigation.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/timesheet-grid/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/timesheet-grid/index.tsx"
+        },
+        {
+          "path": "registry/application/timesheet-grid/hours.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/timesheet-grid/hours.ts"
+        }
+      ],
+      "docs": "Pass projects ({ id, name, client }) and entries as entries[projectId][\"2026-10-26\"] = 7.5, with onChange(entries, change) to keep them; weekStart with onWeekChange, or defaultWeekStart, sets the week. A cell reads 7.5, 7:30, 7h 30m or 90m. Enter saves and moves down, the arrow keys move between cells, Escape undoes, and what cannot be read is said in words and kept to fix: every cell that was refused stays marked until it is edited, saved or undone. Row totals sit at the end and day totals in the footer; with dailyTarget and dailyCap a day says Target met, how much is short or to go, or that it is over the cap, always in words. Today's column says Today (pass now for the same output on the server and in the browser). locked makes every cell read-only and shows lockedReason. format switches between 7.5 and 7:30. On a phone the week scrolls sideways beside the pinned project names, a soft shade at the right edge says there is more, and the hint speaks of touch. labels translates every word."
+    },
+    {
+      "name": "timesheet-grid-demo",
+      "type": "registry:example",
+      "title": "Timesheet grid demo",
+      "description": "A working preview of Timesheet grid.",
+      "registryDependencies": [
+        "https://rhsui.com/r/timesheet-grid.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/timesheet-grid-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "attendance-register",
+      "type": "registry:component",
+      "title": "Attendance register",
+      "description": "A register of who came: people down the side, sessions across, a present, late, absent or excused mark per cell and a rate per person.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/attendance-register/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/attendance-register/index.tsx"
+        },
+        {
+          "path": "registry/application/attendance-register/marks.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/attendance-register/marks.ts"
+        }
+      ],
+      "docs": "Pass people, sessions ({ id, date, title }) and marks as marks[personId][sessionId] = \"late\", with onMarkChange(changes, marks) to keep them. Every mark is a glyph and a word, and each cell is named in full (Mara Visser, 12 Oct, late). A cell opens a menu of present, late, absent and excused; with the keyboard the arrow keys move across the grid, P, L, A and E set a mark and Backspace clears it. Each row ends with a rate (the sessions someone came to, of those that count: excused and unmarked ones are left out), the footer counts who came, and a button in a session's heading marks everyone who has no mark yet as present. A cell that still needs a mark shows a dashed outline and a plus, so what is left to mark is seen without pointing. A session after today is disabled and says why (pass now for stable output). readOnly shows plain marks. labels translates every word."
+    },
+    {
+      "name": "attendance-register-demo",
+      "type": "registry:example",
+      "title": "Attendance register demo",
+      "description": "A working preview of Attendance register.",
+      "registryDependencies": [
+        "https://rhsui.com/r/attendance-register.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/attendance-register-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "access-level-menu",
+      "type": "registry:component",
+      "title": "Access level menu",
+      "description": "The role control beside a person or a link: one choice of access levels with a line on what each allows, levels you cannot grant explained, and Remove access kept apart.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dropdown-menu.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/access-level-menu/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/access-level-menu/index.tsx"
+        },
+        {
+          "path": "registry/application/access-level-menu/levels.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/access-level-menu/levels.ts"
+        }
+      ],
+      "docs": "Pass levels ({ id, label, description }) and either value with onValueChange or a defaultValue. onValueChange(id) may return a promise: the button shows the choice and a spinner while it runs, and if it rejects the button goes back to the level it had and writes the reason under itself (an Error's message is added to the sentence). disabledLevels ({ id, reason }) keeps a level the person may not be given in the list with its reason under it; it stays reachable with the arrow keys so the reason is read, and choosing it does nothing. onRemove adds a destructive entry below a separator (removeLabel renames it), and confirmRemove turns the menu into 'Remove access? Yes, remove access / Keep access' first, with focus on the safe answer. locked shows the level as text with a lock and lockedReason beneath it, for an owner row. subject names the button for a screen reader ('Access for Dana Whitfield: Editor'), size is sm or default, variant is outline or ghost, and every change, removal and refusal is said in a polite live region. align picks the edge the menu lines up with and the edge a message under the button hangs from, open, defaultOpen and onOpenChange control the menu, and a menu that is open from the start never takes focus from the page. labels translates every word."
+    },
+    {
+      "name": "access-level-menu-demo",
+      "type": "registry:example",
+      "title": "Access level menu demo",
+      "description": "A working preview of Access level menu.",
+      "registryDependencies": [
+        "https://rhsui.com/r/access-level-menu.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/access-level-menu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "role-change-dialog",
+      "type": "registry:component",
+      "title": "Role change dialog",
+      "description": "Confirm a role change by showing what the person gains and loses in plain words, and ask for the email to be typed before anyone is made an owner.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/alert-dialog.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/input.json",
+        "https://rhsui.com/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/role-change-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/role-change-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/role-change-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/role-change-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/role-change-dialog/roles.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/role-change-dialog/roles.ts"
+        }
+      ],
+      "docs": "Pass member ({ name, email, image }), fromRole and toRole ({ id, name, capabilities, powerful }) and onConfirm. Every role lists everything it allows (a string, or { id, label }), and the dialog works out Gains and Loses from the two lists, with a count of what stays the same, so the change reads right however many roles you have. The two lists sit side by side once the panel is 28rem wide and both have something to show; a side with nothing on it is one quiet line across the full width. onConfirm({ member, fromRole, toRole }) may return a promise: the field locks, the button shows progress and the dialog will not close; on success the form becomes 'Role changed' and 'Dana Whitfield now has the Editor role.' with focus on Done when the focus was in the panel (a panel that nobody pressed by hand never takes focus or scrolls the page), and on a rejection the form stays with the Error's message above the buttons and the button says Try again. warnOnDowngrade (default true) adds a note when something is taken away. A toRole with powerful: true asks for the member's email (their name when there is none) to be typed, and the button stays off until it matches. lastOwner refuses a change that takes something away and says why; blockedReason refuses any other change in your own words; two roles that allow the same say so. It is an alert dialog, so focus starts on Cancel: trigger is the element that opens it, open, defaultOpen and onOpenChange control it, and RoleChangePanel is the inside on its own (standalone). labels translates every word and locale the counts."
+    },
+    {
+      "name": "role-change-dialog-demo",
+      "type": "registry:example",
+      "title": "Role change dialog demo",
+      "description": "A working preview of Role change dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/role-change-dialog.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/role-change-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "request-access-dialog",
+      "type": "registry:component",
+      "title": "Request access dialog",
+      "description": "For someone who lands on something they cannot open: ask the owner for access with an optional note, then see that it was sent and what happens next.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/alert.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/dialog.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/radio-group.json",
+        "https://rhsui.com/r/textarea-counter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/request-access-dialog/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/request-access-dialog/index.tsx"
+        },
+        {
+          "path": "registry/application/request-access-dialog/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/request-access-dialog/panel.tsx"
+        },
+        {
+          "path": "registry/application/request-access-dialog/request.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/request-access-dialog/request.ts"
+        }
+      ],
+      "docs": "Pass resourceName, owner ({ name, email, image }), levels ({ id, label, description }; with a single level the choice is left out), onRequest({ level, message }) and, when you know it, signedInAs, which says as whom the person is asking and where the answer will go. onRequest may return a promise: the fields lock, the button shows progress and the dialog will not close; on success the form becomes 'Request sent to Maya Okafor' with what happens next and focus on Close when the focus was in the panel (a panel that nobody pressed by hand never takes focus or scrolls the page), and on a rejection the form stays with the note still in it and the Error's message above the buttons. pendingSince (a Date, an ISO string or a timestamp) recognises a repeat request: a notice reads 'Already requested 2 hours ago' and the button offers Send again. Pass now to get those words in server HTML, otherwise they appear once the browser's clock is read; locale and timeZone shape the words and the dates. maxLength limits the note (default 280, counted by the textarea counter), showOwnerEmail adds the owner's address (off by default: it is theirs to share), and Ctrl or Command with Enter sends from the note. trigger is the element that opens the dialog, open, defaultOpen and onOpenChange control it, RequestAccessPanel is the inside on its own (standalone), and labels translates every word."
+    },
+    {
+      "name": "request-access-dialog-demo",
+      "type": "registry:example",
+      "title": "Request access dialog demo",
+      "description": "A working preview of Request access dialog.",
+      "registryDependencies": [
+        "https://rhsui.com/r/request-access-dialog.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/request-access-dialog-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "display-options-popover",
+      "type": "registry:component",
+      "title": "Display options popover",
+      "description": "The Display button of a list view: choose layout, grouping, ordering and which properties show, with changes applying at once and a reset.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/toggle.json",
+        "https://rhsui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/display-options-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/display-options-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/display-options-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/display-options-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/display-options-popover/options.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/display-options-popover/options.ts"
+        }
+      ],
+      "docs": "Pass layouts ({ id, label, icon }), groupings and orderings ({ id, label }), properties ({ id, label, visible }) and the current value ({ layout, grouping, ordering, direction, properties }) with onValueChange, or a defaultValue to let the popover keep it. Layout is a group of small icon tiles (a list, board, table, grid or calendar id draws its own icon, and icon replaces it); grouping and ordering use the house select, with a button that turns the ordering round; properties are chips that show and hide fields, and value.properties holds the ids that show. Every change applies at once through onValueChange(next). The button counts how many of the four settings differ from the defaults (ordering counts once, whether the field or the direction moved) and is named 'Display, 2 changed'; the defaults are the first layout, grouping and ordering, ascending, and the properties not marked visible: false, or pass defaults. Reset puts the defaults back, calls onReset and says 'Back to the defaults' in a polite live region. A saved value that names an option that no longer exists falls back to the default for it. The panel keeps inside the window and scrolls inside itself at 320 pixels. trigger replaces the button, open, defaultOpen and onOpenChange control the panel, DisplayOptionsPanel is the inside on its own for a sheet on a phone, and labels translates every word."
+    },
+    {
+      "name": "display-options-popover-demo",
+      "type": "registry:example",
+      "title": "Display options popover demo",
+      "description": "A working preview of Display options popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/display-options-popover.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/display-options-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "recent-items-popover",
+      "type": "registry:component",
+      "title": "Recent items popover",
+      "description": "A Recent button that lists what you opened lately, grouped by day, with pinning and a Clear history that offers Undo instead of asking, for apps where people jump around.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/kbd.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/recent-items-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recent-items-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/recent-items-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recent-items-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/recent-items-popover/recent.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/recent-items-popover/recent.ts"
+        }
+      ],
+      "docs": "Pass items ({ id, title, kind, href, openedAt, pinned }) in any order; the panel groups them under Pinned, Today, Yesterday and Earlier and orders each group newest first. kind picks the icon and the word under the title (project, document, record, board, folder, file, sheet and image are known, labels.kinds adds more). Pass now and timeZone so the headings and the times ('12 min. ago') are the same in server HTML and in the browser, with locale for the words; without now the browser's clock is read once the page is live. max is how many unpinned items are listed (default 8). Rows are links, or buttons without an href: onOpen(item, event) receives the event so a client-side router can preventDefault, and the popover closes. The list has one tab stop, the arrow keys, Home and End move between rows, Enter opens one and P calls onPin(item, pinned); a pin button on each row does the same for a pointer, and focus follows the item to its new group. onClear shows Clear history: the rows disappear and an Undo bar runs for undoMs (6 seconds), and only when Undo goes unused is onClear(clearedItems) called, which is the moment to delete them and to remove them from items; pinned items are kept, and closing the popover ends the wait. With nothing to show the panel explains that recent items appear after opening something. RecentItemsPanel is the inside on its own, trigger replaces the button, open, defaultOpen and onOpenChange control the popover, and labels translates every word."
+    },
+    {
+      "name": "recent-items-popover-demo",
+      "type": "registry:example",
+      "title": "Recent items popover demo",
+      "description": "A working preview of Recent items popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/recent-items-popover.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/recent-items-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar-group-popover",
+      "type": "registry:component",
+      "title": "Avatar group popover",
+      "description": "Make the +5 on an avatar stack useful: press it to see everyone in a short list with name, role and presence, and filter when the list is long.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/search-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/avatar-group-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/avatar-group-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/avatar-group-popover/people.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/avatar-group-popover/people.ts"
+        }
+      ],
+      "docs": "Pass people ({ id, name, role, image, status }) in the order the stack should show them, and max (default 4): that many avatars are drawn, and the rest fold into a button named 'Show 5 more people' that opens the list of everyone; with no more people than max there is no button. Each visible avatar is an image with the person's name, and the whole stack is a group that reads as 'Maya Okafor and 6 others' ('A and B' for two). The list shows an avatar, the name, the role in muted text and the presence as a drawing and a word (online, away, busy, offline: a disc, a half disc, a ring with a bar, a ring), never colour alone. It is one tab stop with the arrow keys, Home and End, and it scrolls inside itself when it is long. searchable (default true) adds a filter field once there are more than eight people: Escape empties it before it closes the list, the arrow down goes to the first row, names are matched without capitals and accents, and a polite line says how many match. onSelect(person) makes the rows buttons and closes the list; without it the rows are plain text. viewAllHref adds a link at the foot, size is sm, default or lg, align picks the edge, open, defaultOpen and onOpenChange control the list, locale shapes the counts, and labels translates every word."
+    },
+    {
+      "name": "avatar-group-popover-demo",
+      "type": "registry:example",
+      "title": "Avatar group popover demo",
+      "description": "A working preview of Avatar group popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar-group-popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/avatar-group-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "snooze-popover",
+      "type": "registry:component",
+      "title": "Snooze popover",
+      "description": "Snooze until later: presets for this evening, tomorrow and next week worked out from now, plus a date and time of your own, with the zone said aloud.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/calendar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json",
+        "https://rhsui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/snooze-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/snooze-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/snooze-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/snooze-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/snooze-popover/snooze.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/snooze-popover/snooze.ts"
+        }
+      ],
+      "docs": "Pass onSnooze(date), the moment of the choice, and a now, a timeZone and a locale: every choice is worked out from now on the calendar of that zone through Intl (never the zone of the machine, daylight saving included), so the server and the browser agree; without now the browser's clock is read once the page is live. The four default choices are Later today (18:00), Tomorrow morning (08:00), This weekend (Saturday 09:00, not offered on a Sunday) and Next week (Monday 08:00), each with the day and the time at the right ('Tomorrow, 08:00', 'Sat 24 Oct, 09:00'), and a choice that would land in the past is left out. Pass presets ({ id, label, resolve(now, timeZone) }) to replace them: resolve returns a Date, or null when the choice does not apply, and atTime and nextWeekday in snooze.ts do the zone work. 'Pick date and time' opens the Calendar and a time field (the house select, in half hours, written the way the locale writes a time), writes the choice out in words ('Snooze until Thu 23 Oct, 08:00') and refuses a time that has passed, so the slots that have gone are off for today; the zone is said in full words at the foot. onSnooze may return a promise: the row shows progress, and a rejection keeps the panel open with a message. A choice closes the popover and is announced from the button ('Snoozed until Thu 23 Oct, 08:00'). The list is one tab stop with the arrow keys, and Enter on a choice snoozes it; in the calendar view Enter on the Snooze button, or Ctrl or Command with Enter from anywhere in it, confirms. trigger replaces the button, open, defaultOpen and onOpenChange control the popover, SnoozePanel is the inside on its own, and labels translates every word."
+    },
+    {
+      "name": "snooze-popover-demo",
+      "type": "registry:example",
+      "title": "Snooze popover demo",
+      "description": "A working preview of Snooze popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/snooze-popover.json",
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/snooze-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "local-time-popover",
+      "type": "registry:component",
+      "title": "Local time popover",
+      "description": "Show an event time in everyone's time zone: a popover from the time itself lists the same moment in your zone and the zones you choose.",
+      "categories": [
+        "application",
+        "overlay"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "inline",
+        "family": "overlay"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/local-time-popover/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/local-time-popover/index.tsx"
+        },
+        {
+          "path": "registry/application/local-time-popover/panel.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/local-time-popover/panel.tsx"
+        },
+        {
+          "path": "registry/application/local-time-popover/zones.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/local-time-popover/zones.ts"
+        }
+      ],
+      "docs": "Pass instant (an ISO string with its offset, or a Z), zones ({ id, label }; the id is an IANA name such as America/Los_Angeles) and, as you need them, eventZone (default: the first zone), viewerZone, locale, format, now and title. The trigger is a button holding a real time element written in the event's zone, by default as '17:00 CET', or as you say with format (Intl.DateTimeFormat options). Pressing it opens the same moment in each zone, the viewer's own zone first and tagged 'You' (added at the top if it is not among zones, and read from the browser when viewerZone is not given: nothing depends on the server's zone), each with the time, the date, the distance from UTC in tabular digits ('UTC+1', 'UTC−7', 'UTC+5:30') and 'Next day' or 'Previous day' where the date differs from the event's. Offsets and dates are worked out for the actual date by Intl, so daylight saving is right on both sides of a change of clocks. The head of the list gives the event's day and, measured from now (pass it for server HTML), 'in 5 days'. Copy as text puts one line on the clipboard ('Halcyon product sync: Mon 26 Oct, 17:00 Amsterdam (UTC+1) / 09:00 San Francisco (UTC−7) / ...', with a date where a zone is on another day) and says Copied. align, open, defaultOpen and onOpenChange control the popover, LocalTimePanel is the inside on its own, and labels translates every word."
+    },
+    {
+      "name": "local-time-popover-demo",
+      "type": "registry:example",
+      "title": "Local time popover demo",
+      "description": "A working preview of Local time popover.",
+      "registryDependencies": [
+        "https://rhsui.com/r/local-time-popover.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/local-time-popover-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "route-timetable",
+      "type": "registry:component",
+      "title": "Route timetable",
+      "description": "A line's timetable as a real table: stops down the side, trips across, the next departure marked in words, and on a phone a stop picker with that stop's times.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/label.json",
+        "https://rhsui.com/r/select.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/route-timetable/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/route-timetable/index.tsx"
+        },
+        {
+          "path": "registry/application/route-timetable/times.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/route-timetable/times.ts"
+        }
+      ],
+      "docs": "Pass stops ({ id, name, note }) in route order and trips ({ id, label, note, times }), where times is an object of 24-hour clock times by stop id: { harbour: \"08:00\", marina: \"08:12\" }. A stop that is left out, or null, is one the trip does not stop at: the cell shows a dash and says 'does not stop'. now decides which trip is next and which have gone; leave it out to use the browser's clock (read after the page is live, then every half minute) or pass it to get the same page on the server and in tests. Times are read in timeZone (default UTC) and written in locale (default en-US, so '7:42 AM'; en-GB writes '07:42'). The reader picks their stop in the picker above the grid: pass highlightStop with onHighlightStopChange to control it, or defaultHighlightStop to start somewhere. The next trip at that stop is marked 'Next', trips that have left it are muted, and a line says how long to wait. The grid opens scrolled to the next trip and follows when another stop is picked, but never moves by itself as time passes. The stop column stays pinned and the scroll box takes the keyboard. In a box narrower than 36rem the grid is replaced by the picker and the list of that stop's times, with the caption above the picker. There everything before the last trip that left folds into one line to open: that trip stays, as context, and a run that skips the stop is folded with the rest. caption names the table, note goes under it, and labels translates every word, including the line shown when there are no stops or trips."
+    },
+    {
+      "name": "route-timetable-demo",
+      "type": "registry:example",
+      "title": "Route timetable demo",
+      "description": "A working preview of Route timetable.",
+      "registryDependencies": [
+        "https://rhsui.com/r/route-timetable.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/route-timetable-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "departures-board",
+      "type": "registry:component",
+      "title": "Departures board",
+      "description": "A departures board for stations, ferries and airports: time, destination, platform and a status in words, delays shown against the plan, changes announced politely.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/departures-board/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/departures-board/index.tsx"
+        },
+        {
+          "path": "registry/application/departures-board/board.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/departures-board/board.ts"
+        }
+      ],
+      "docs": "Pass departures ({ id, scheduled, expected, destination, via, platform, status, operator }) in any order; the board sorts them by the time they leave. scheduled and expected are ISO strings with their offset (or Z), timestamps or Dates, because the board has to know the day to know what has left. A delay is worked out from the two times and shown as the planned time struck through beside the new one; give status 'cancelled' or 'boarding' to say those, 'on-time' or 'delayed' to override the sum. now decides which rows have left (they fade back and say 'Departed'); leave it out to use the browser's clock, or pass it for the same page on the server and in tests. updated sets the 'Updated 14:32' stamp (default: now). Times are written in locale (default en-US; en-GB writes 14:35) in timeZone (default UTC; a zone that is not known falls back to UTC). Give departures a new array whenever the data updates: the rows that changed rest on a plate for a moment, and a polite live region says what changed in one sentence for the first three rows (cancellations first, then delays, boarding and platforms), gathered so a burst of updates is never a flood; the first paint says nothing. onSelect makes each destination a button. labels translates every word, and platform can be renamed Gate, Pier or Stand. Below 42rem each row is a card of two lines, or three when the stops and the operator do not fit beside the status, and they wrap instead of being cut off."
+    },
+    {
+      "name": "departures-board-demo",
+      "type": "registry:example",
+      "title": "Departures board demo",
+      "description": "A working preview of Departures board.",
+      "registryDependencies": [
+        "https://rhsui.com/r/departures-board.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/icons.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/departures-board-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "standings-table",
+      "type": "registry:component",
+      "title": "Standings table",
+      "description": "A league table: position, club, played, won, drawn, lost, goal difference and points, with form shapes and promotion and relegation zones named in words, not colour.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/avatar.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/standings-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/standings-table/index.tsx"
+        },
+        {
+          "path": "registry/application/standings-table/standings.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/standings-table/standings.ts"
+        }
+      ],
+      "docs": "Pass rows in table order: { team, logo, position, played, won, drawn, lost, for, against, points, form }. Position defaults to the place in rows, so rows that are already in order need none. Points are never worked out, because the rules differ; goal difference is for minus against and always shows its sign. form is the last results, oldest first, as 'WWDLW', ['W','D'] or the words win, draw and loss: the last five are drawn as a filled shape for a win, a hollow one for a draw and a dash for a loss, and read out as 'Last five: win, win, draw, loss, win'. zones ({ from, to, label, tone }) put a rule on the left of their rows (solid for positive, dashed for neutral, dotted and destructive for negative) and a line in the legend; a screen reader hears the zone after the club's name. highlightTeam names a club to single out with a star, a plate and the word 'highlighted'. The columns step aside as the box narrows, down to position, club, played and points, by container width and not by screen, and the crest steps aside below 22rem so a club's name is never clipped. It renders on the server. locale writes the figures and labels translates every word, including the column abbreviations and their full forms."
+    },
+    {
+      "name": "standings-table-demo",
+      "type": "registry:example",
+      "title": "Standings table demo",
+      "description": "A working preview of Standings table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/standings-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/standings-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "competition-results-table",
+      "type": "registry:component",
+      "title": "Competition results table",
+      "description": "Results of a race or competition by category: place, athlete, club, finish time and gap to the winner, with ties, records and non-finishers named in words.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/table.json",
+        "https://rhsui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/competition-results-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/competition-results-table/index.tsx"
+        },
+        {
+          "path": "registry/application/competition-results-table/results.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/competition-results-table/results.ts"
+        }
+      ],
+      "docs": "Pass results ({ place, name, club, bib, category, time, status, marks, note }) in any order and categories ({ id, label }) for the tabs; a result's category is the id of one of them. time is seconds or text such as '1:02:45', '20:15.4' or '58.42', and is written the way a results sheet writes it (with hours once any time needs them) and read out in words. Places come from the times, and athletes with the same time share a place and are marked 'equal'; give every finisher an official place and the table trusts those instead (a photo finish, a penalty). A category tab narrows the table and counts the places again inside it; control it with category and onCategoryChange, or start it with defaultCategory. An entry with status 'dnf', 'dns' or 'dsq', or with no time, says 'Did not finish', 'Did not start' or 'Disqualified' in words and is kept below the finishers. marks ('record', 'personal-best', 'season-best') become labelled badges by the name. highlightName marks an athlete with a plate and the word 'You'. precision (0, 1 or 2) sets the digits after the second. onSelect makes each name a button. Below 48rem club, category and bib fold under the name, and below 28rem the gap folds under the time. The folded bib is written by labels.bibFolded ('#{bib}' by default; 'Lane {bib}' for a pool). labels translates every word."
+    },
+    {
+      "name": "competition-results-table-demo",
+      "type": "registry:example",
+      "title": "Competition results table demo",
+      "description": "A working preview of Competition results table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/competition-results-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/competition-results-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "design-token-table",
+      "type": "registry:component",
+      "title": "Design token table",
+      "description": "Design tokens documented as a table: each drawn as itself, with its value and a copy button, a filter that marks matches, folding groups and a link per token.",
+      "categories": [
+        "application",
+        "tables"
+      ],
+      "meta": {
+        "tier": "free",
+        "version": "0.8.0",
+        "since": "0.8.0",
+        "status": "stable",
+        "preview": "frame",
+        "family": "tables"
+      },
+      "dependencies": [],
+      "registryDependencies": [
+        "https://rhsui.com/r/badge.json",
+        "https://rhsui.com/r/button.json",
+        "https://rhsui.com/r/collapsible.json",
+        "https://rhsui.com/r/color-token-card.json",
+        "https://rhsui.com/r/copy-button.json",
+        "https://rhsui.com/r/icons.json",
+        "https://rhsui.com/r/search-input.json",
+        "https://rhsui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/application/design-token-table/index.tsx",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/design-token-table/index.tsx"
+        },
+        {
+          "path": "registry/application/design-token-table/tokens.ts",
+          "type": "registry:component",
+          "target": "components/rhs-ui/application/design-token-table/tokens.ts"
+        }
+      ],
+      "docs": "Pass tokens ({ name, value, type, usage, group, contrast }) where type is color, size, radius, shadow, font or duration. The preview draws the value itself: a swatch (over a checkerboard when it is see-through), a bar as long as a length, a corner for a radius, a raised tile for a shadow, a font specimen, and for a duration a track that grows with the time (a second is the whole width) with a dot that runs along it for that long when the row is hovered or has focus (under reduced motion it stays put). The value is mono with a copy button. Groups fold (defaultFolded names the ones that start folded), and the filter matches name or value, marks what matched and opens every group that has a match. Each name links to its own row (idPrefix goes before every anchor when two tables share a page); a link to a token inside a folded group opens the group and scrolls to the token. Name a colour token in background and every colour shows its WCAG contrast against it as a ratio and a grade in words with a glyph; a colour the table cannot read (hsl, a name, a var) shows none, and contrast: false leaves one out. Narrower than 56rem the table becomes one card per token. onCopy is called after a copy and labels translates every word."
+    },
+    {
+      "name": "design-token-table-demo",
+      "type": "registry:example",
+      "title": "Design token table demo",
+      "description": "A working preview of Design token table.",
+      "registryDependencies": [
+        "https://rhsui.com/r/design-token-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/design-token-table-demo.tsx",
           "type": "registry:example"
         }
       ]

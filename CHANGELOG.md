@@ -217,6 +217,13 @@ own `meta.version` and are listed when they change.
 - Primitives, 8 more: `swipe-tabs`, `floating-tab-bar`, `expanding-search`, `toc-rail`, `story-progress`, `card-tabs`, `responsive-dialog`, `choice-dialog`.
 - Marketing, 1 more: `proof-bento`.
 - Application, 8 more: `notification-popover`, `move-to-dialog`, `duplicate-dialog`, `find-in-page-bar`, `feedback-dialog`, `newsletter-dialog`, `external-link-dialog`, `embed-dialog`.
+- Primitives, 10 more: `selectable-table`, `row-actions-menu`, `selection-banner`, `table-states`, `sticky-table`, `responsive-table`, `numeric-table`, `expandable-table`, `key-value-list`, `table-density-toggle`.
+- Primitives, 10 more: `unsaved-changes-dialog`, `progress-dialog`, `action-sheet`, `form-sheet`, `help-popover`, `truncate-tooltip`, `go-to-dialog`, `video-dialog`, `cell-preview-popover`, `sortable-table`.
+- Application, 7 more: `event-details-popover`, `template-picker-dialog`, `recommendation-reason-popover`, `document-stats-popover`, `props-table`, `timesheet-grid`, `attendance-register`.
+- Application, 8 more: `access-level-menu`, `role-change-dialog`, `request-access-dialog`, `display-options-popover`, `recent-items-popover`, `avatar-group-popover`, `snooze-popover`, `local-time-popover`.
+- Primitives, 9 more: `column-header-menu`, `table-cells`, `linked-row-table`, `editable-cell`, `grouped-list`, `pinnable-list`, `table-export-menu`, `table-column-resizer`, `column-group-table`.
+- Primitives, 1 more: `navigable-grid`.
+- Application, 5 more: `route-timetable`, `departures-board`, `standings-table`, `competition-results-table`, `design-token-table`.
 
 ## Unreleased (0.7.0)
 
